@@ -27,13 +27,13 @@ class Toolbar extends Component {
         return(
             <div>
                 <Navbar color='light' light expand='lg'>
-                    <Link to="/"><NavbarBrand>Dreamary</NavbarBrand></Link>
+                    <NavbarBrand tag={Link} to={"/"}>Dreamary</NavbarBrand>
                     <Nav className='ml-auto' navbar>
-                        <Navitems showLogin={this.loginToggleHandler} showSignUp={this.signUpToggleHandler}/>
+                        <Navitems showLogin={this.loginToggleHandler} showSignUp={this.signUpToggleHandler} />
                     </Nav>
                 </Navbar>
-                <MyModal showLogin={this.state.showLogin} off={this.loginToggleHandler} toggle={this.switchHandler} modalTitle="Login" />
-                <MyModal showLogin={this.state.showSignUp} off={this.signUpToggleHandler} toggle={this.switchHandler} modalTitle="Sign Up" />
+                <MyModal showLogin={this.state.showLogin} off={this.loginToggleHandler} toggle={this.switchHandler} modalTitle="Login" modalText="로그인화면"/>
+                <MyModal showLogin={this.state.showSignUp} off={this.signUpToggleHandler} toggle={this.switchHandler} modalTitle="Sign Up" modalText="회원가입화면" />
             </div>
         )
     }

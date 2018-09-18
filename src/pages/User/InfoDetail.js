@@ -1,9 +1,14 @@
-import React from 'react'
+import React, { Component } from 'react'
 
-const InfoDetail = () => (
-    <div>
-        <h1>This is InfoDetail</h1>
-    </div>
-)
+class InfoDetail extends Component{
+
+    render(){
+        return(
+            <div>
+                <h1>This is InfoDetail</h1>
+            </div>
+        )
+    }
+}
 
 export default InfoDetail
