@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Footer = () => (
-    <div className="fixed-bottom">
+    <div className="mt-5 fixed-bottom">
         <div className="row">
             <div className="col-8 row">
                 <li>이용약관</li>
