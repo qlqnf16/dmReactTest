@@ -1,11 +1,16 @@
-import React from 'react'
+import React, { Component } from 'react'
 import UserNav from '../../components/Navigation/UserNav/UserNav';
 
-const Reservations = () => (
-    <div>
-        <h1>This is Reservations</h1>
-        <UserNav />
-    </div>
-)
+class Reservations extends Component {
+    
+    render(){
+        return(
+            <div>
+            <h1>This is Reservations</h1>
+            <UserNav />
+            </div>
+        )
+    }
+}
 
 export default Reservations
