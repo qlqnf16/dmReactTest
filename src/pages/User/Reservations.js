@@ -64,7 +64,7 @@ class Reservations extends Component {
         const futureReservations = this.state.reservations.filter((reservation) => reservation.date.until > 600 && !reservation.isCanceled); // 실제로는 현재 타임스탬프 사용
         const previousReservations = this.state.reservations.filter((reservation) => reservation.date.until <= 600 || reservation.isCanceled);
 
-        return(
+        return (
             <div className="container">
                 <UserNav />
                 <div className="row">

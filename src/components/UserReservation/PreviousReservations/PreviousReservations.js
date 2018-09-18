@@ -4,7 +4,7 @@ import ReservationCard from "../ReservationCard/RervationCard";
 
 const PreviousReservations = (props) => {
     const cards = props.reservations.map(reservation => (
-        <div className="col-4">
+        <div className="col-4" key={reservation.id}>
             <ReservationCard
                 designerName={reservation.designer.name}
                 title={reservation.title}
