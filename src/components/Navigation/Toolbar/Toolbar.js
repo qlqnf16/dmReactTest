@@ -3,11 +3,18 @@ import { Navbar, NavbarBrand, Nav } from 'reactstrap';
 import { Link } from 'react-router-dom'
 import Navitems from '../Navitems/Navitems'
 import MyModal from '../../UI/MyModal/MyModal';
+import firebase from '../../../config/Firebase'
 
 class Toolbar extends Component {
     state = {
         showLogin: false,
-        showSignUp: false
+        showSignUp: false,
+    }
+
+    componentWillMount(){
+        firebase.auth().onAuthStateChanged(() => {
+            this.offHandler()
+        })
     }
 
     loginToggleHandler = () => {
@@ -19,17 +26,26 @@ class Toolbar extends Component {
     }
 
     switchHandler = () => {
-        this.setState({showSignUp: !this.state.showSignUp})
-        this.setState({showLogin: !this.state.showLogin})
+        this.setState({showSignUp: !this.state.showSignUp, showLogin: !this.state.showLogin})
+    }
+
+    offHandler = () => {
+        this.setState({showSignUp: false, showLogin: false})
+        
     }
 
     render() {
+        console.log("Toolbar rendering")
         return(
             <div>
                 <Navbar color='light' light expand='lg'>
                     <NavbarBrand tag={Link} to={"/"}>Dreamary</NavbarBrand>
                     <Nav className='ml-auto' navbar>
-                        <Navitems showLogin={this.loginToggleHandler} showSignUp={this.signUpToggleHandler} />
+                        <Navitems 
+                            showLogin={this.loginToggleHandler} 
+                            showSignUp={this.signUpToggleHandler} 
+                            user={firebase.auth().currentUser}
+                        />
                     </Nav>
                 </Navbar>
                 <MyModal 
@@ -51,6 +67,7 @@ class Toolbar extends Component {
                 />
             </div>
         )
+        
     }
 }
 

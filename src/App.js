@@ -3,8 +3,35 @@ import { Route } from 'react-router-dom';
 import { Landing, About, AddDesigner, DesignerList, DesignerDetail, ReservationConfirm, Coupon, MyTicket, Reservations, UserInfo, DesignerCoupon, DesignerInfo, DesignerReservations, DesignerTicket, Schedule, WhyDreamary, InfoDetail } from './pages'
 import Toolbar from './components/Navigation/Toolbar/Toolbar'
 import Footer from './components/UI/Footer/Footer'
+import firebase from './config/Firebase'
 
 class App extends Component {
+  constructor(props){
+    super(props)
+    this.state = {
+        user : null
+    }
+  } 
+  
+
+  componentWillMount(){
+    this.authListener()
+    console.log("WillMOUNTED")
+    console.log(firebase.auth().currentUser)
+    console.log(this.state.user)
+  }
+
+  authListener() {
+      firebase.auth().onAuthStateChanged((user) => {
+          if (user) {
+              this.setState({ user });
+              console.log(this.state.user)
+          } else {
+              this.setState({ user : null });
+          }
+      })
+  }
+
   render() {
     return (
       <Fragment>
