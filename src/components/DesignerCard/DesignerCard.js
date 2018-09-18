@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from 'react-router-dom'
 import { CardDeck, Col, Card, CardHeader, CardBody, CardTitle, CardSubtitle } from 'reactstrap';
 import DesignerCarousel from './DesignerCarousel/DesignerCarousel';
+
 
 class DesginerCard extends Component {
     state = {
@@ -59,6 +61,7 @@ class DesginerCard extends Component {
                             <CardSubtitle>{designer.shop}</CardSubtitle>
                             <CardTitle>{designer.title}</CardTitle>
                             <CardSubtitle>{designer.name}</CardSubtitle>
+                            <Link to={`/designerdetail/${key}`}>상세 보기</Link>
                         </CardBody>
                     </Card>
                 </Col>
