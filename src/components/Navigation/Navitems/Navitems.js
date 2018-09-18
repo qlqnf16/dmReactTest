@@ -7,7 +7,8 @@ class Navitems extends Component {
         return (
             <Fragment>
                 <NavItem>
-                    <Link to="/about"><NavLink>드리머리 소개</NavLink></Link>
+                    {/* <Link to="/about"><NavLink >드리머리 소개</NavLink></Link> */}
+                    <NavLink tag={Link} to={"/about"} >드리머리 소개</NavLink>
                 </NavItem>
                 <NavItem>
                     <NavLink onClick={this.props.showSignUp}>회원가입</NavLink>
@@ -16,10 +17,10 @@ class Navitems extends Component {
                     <NavLink onClick={this.props.showLogin}>로그인</NavLink>
                 </NavItem>
                 <NavItem>
-                    <Link to="/designerList"><NavLink>막내찾기</NavLink></Link>
+                    <NavLink tag={Link} to={"/designerList"}>막내찾기</NavLink>
                 </NavItem>
                 <NavItem>
-                    <Link to="/addDesigner"><NavLink>막내등록</NavLink></Link>
+                    <NavLink tag={Link} to={"/addDesigner"}>막내등록</NavLink>
                 </NavItem>
                 <UncontrolledDropdown nav inNavbar>
                     <DropdownToggle nav caret>

@@ -1,5 +1,5 @@
 import React from 'react';
-import DesignerCard from '../components/DesginerCard/DesignerCard'
+import DesignerCard from '../components/DesignerCard/DesignerCard'
 import { Container } from 'reactstrap'
 
 const DesignerList = () => (
