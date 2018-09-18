@@ -55,7 +55,7 @@ class DesginerDetail extends Component {
                             time={this.state.time}
                         />
                     </div>
-                    <Button className="btn-light float-right"><Link to="/reservationConfirm">예약하기</Link></Button>
+                    <Button className="btn-light float-right"><Link to={`/reservationConfirm/${"예약번호"}`}>예약하기</Link></Button>
                 </div>
             </div>
         )

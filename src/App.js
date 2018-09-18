@@ -13,7 +13,7 @@ class App extends Component {
         <Route path='/addDesigner' component={AddDesigner} />
         <Route path='/designerList' component={DesignerList} />
         <Route path='/designerDetail/:id' component={DesignerDetail} />
-        <Route path='/reservationConfirm' component={ReservationConfirm} />
+        <Route path='/reservationConfirm/:reservation_id' component={ReservationConfirm} />
 
         <Route path='/coupon' component={Coupon} />
         <Route path='/myTicket' component={MyTicket} />
