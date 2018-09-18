@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import ReservationCard from '../../components/DesignerReservation/ReservationCard';
+import ReservationCard from '../../components/DesignerReservations/ReservationCard';
 
 class DesignerReservations extends Component {
 

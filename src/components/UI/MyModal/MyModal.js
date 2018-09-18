@@ -5,19 +5,30 @@ import { Link } from 'react-router-dom'
 class MyModal extends Component {
     render() {
         let switchModal
-        switchModal = this.props.modalTitle === 'Login' ? 'Sign up' : 'Login'
+        switchModal = this.props.modalType === 'Login' ? 'Sign up' : 'Login'
         
         return (
             <div>
                 <Modal isOpen={this.props.showLogin} fade={false} toggle={this.props.off} className={this.props.className}>
-                    <ModalHeader toggle={this.props.off}>{this.props.modalTitle}</ModalHeader>
+                    <ModalHeader>
+                        <p className="h2">{this.props.modalTitle}</p>
+                        <p className="small mb-0">{this.props.modalSubtitle}</p>
+                    </ModalHeader>
                     <ModalBody>
-                        {this.props.modalText}
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        <div>
+                            <p className="h2">구글 버튼</p>
+                        </div>
+                        <div>
+                            <p className="h2">페이스북 버튼</p>
+                        </div>
+                        <div>
+                            <p className="h2">카카오톡 버튼</p>
+                        </div>
                     </ModalBody>
                     <ModalFooter>
-                        <Link to='/infoDetail'><Button color="primary" onClick={this.props.off}>{this.props.modalTitle}</Button></Link>
-                        <Button color="secondary" onClick={this.props.toggle}>{switchModal}</Button>
+                        <p>{this.props.modalText}</p>
+                        {/* <Link to='/infoDetail'><Button color="primary" onClick={this.props.off}>{this.props.modalType}</Button></Link> */}
+                        <p className="btn btn-light" onClick={this.props.toggle}>{switchModal}</p>
                     </ModalFooter>
                 </Modal>
             </div>
