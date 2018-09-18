@@ -7,7 +7,6 @@ class Navitems extends Component {
         return (
             <Fragment>
                 <NavItem>
-                    {/* <Link to="/about"><NavLink >드리머리 소개</NavLink></Link> */}
                     <NavLink tag={Link} to={"/about"} >드리머리 소개</NavLink>
                 </NavItem>
                 <NavItem>
