@@ -32,8 +32,23 @@ class Toolbar extends Component {
                         <Navitems showLogin={this.loginToggleHandler} showSignUp={this.signUpToggleHandler} />
                     </Nav>
                 </Navbar>
-                <MyModal showLogin={this.state.showLogin} off={this.loginToggleHandler} toggle={this.switchHandler} modalTitle="Login" modalText="로그인화면"/>
-                <MyModal showLogin={this.state.showSignUp} off={this.signUpToggleHandler} toggle={this.switchHandler} modalTitle="Sign Up" modalText="회원가입화면" />
+                <MyModal 
+                    showLogin={this.state.showLogin} 
+                    off={this.loginToggleHandler}
+                    toggle={this.switchHandler} 
+                    modalType="Login" 
+                    modalTitle="로그인"
+                    modalText="아직 드리머리 회원이 아니신가요?"
+                />
+                <MyModal 
+                    showLogin={this.state.showSignUp} 
+                    off={this.signUpToggleHandler} 
+                    toggle={this.switchHandler} 
+                    modalType="Sign Up"
+                    modalTitle="환영합니다!"
+                    modalSubtitle="간단한 회원가입으로 서비스를 이용해 보세요"
+                    modalText="이미 드리머리 계정이 있나요?" 
+                />
             </div>
         )
     }

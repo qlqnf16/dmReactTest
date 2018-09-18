@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Route } from 'react-router-dom';
 import { Landing, About, AddDesigner, DesignerList, DesignerDetail, ReservationConfirm, Coupon, MyTicket, Reservations, UserInfo, DesignerCoupon, DesignerInfo, DesignerReservations, DesignerTicket, Schedule, WhyDreamary, InfoDetail } from './pages'
 import Toolbar from './components/Navigation/Toolbar/Toolbar'
+import Footer from './components/UI/Footer/Footer'
 
 class App extends Component {
   render() {
@@ -13,7 +14,7 @@ class App extends Component {
         <Route path='/addDesigner' component={AddDesigner} />
         <Route path='/designerList' component={DesignerList} />
         <Route path='/designerDetail/:id' component={DesignerDetail} />
-        <Route path='/reservationConfirm' component={ReservationConfirm} />
+        <Route path='/reservationConfirm/:reservation_id' component={ReservationConfirm} />
 
         <Route path='/coupon' component={Coupon} />
         <Route path='/myTicket' component={MyTicket} />
@@ -27,6 +28,7 @@ class App extends Component {
         <Route path='/designer/ticket' component={DesignerTicket} />
         <Route path='/designer/schedule' component={Schedule} />
         <Route path='/designer/whyDreamary' component={WhyDreamary} />
+        <Footer />
       </Fragment>
     );
   }

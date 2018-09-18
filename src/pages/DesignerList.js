@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import DesignerCard from '../components/DesignerCard/DesignerCard'
-import { Container, CardDeck } from 'reactstrap'
+import { CardDeck } from 'reactstrap'
 
 class DesignerList extends Component{
     state = {
