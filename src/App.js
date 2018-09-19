@@ -49,7 +49,7 @@ class App extends Component {
         <Route path='/userInfo' component={this.state.user? UserInfo : WrongAccess} />
         <Route path='/infoDetail' component={this.state.user? InfoDetail : WrongAccess} />
 
-        <Route path='/designer/coupon' component={this.state.isD? DesignerCoupon : WrongAccess} />
+        <Route path='/designer/coupon' component={DesignerCoupon} />
         <Route path='/designer/info' component={DesignerInfo} />
         <Route path='/designer/reservations' component={DesignerReservations} />
         <Route path='/designer/ticket' component={DesignerTicket} />

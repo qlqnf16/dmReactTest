@@ -6,15 +6,31 @@ import firebase from '../../../config/Firebase'
 
 console.log(firebase.auth().currentUser)
 class Navitems extends Component {
+    constructor(props){
+        super(props)
+        this.state = {
+            isD : false,
+            rendering: false,
+        }
+    }
 
     logout() {
         firebase.auth().signOut();
     }
 
     render() {
-        console.log("Navitems rendering")
-        if(this.props.user){
-
+        
+        if(this.props.uid && !this.state.rendering){
+            firebase.database().ref('/users/'+this.props.uid).on('value',res => {
+                if(res.val()) {
+                    this.setState({isD : res.val().isD, rendering: true})
+                    console.log(this.state)
+                } 
+            })
+        }
+        // 로그인 했는지 && 디자이너가 아닌지 확인 후 고객용 navbar
+        if(this.props.user && !this.state.isD){
+            console.log(this.props.user)
             return (
                 <Fragment>
                     <NavItem>
@@ -41,6 +57,34 @@ class Navitems extends Component {
                     </UncontrolledDropdown>
                 </Fragment>
             )
+        // 로그인 했는지 && 디자이너인지 확인 후 디자이너용 navbar 
+        } else if(this.props.user && this.state.isD) {
+            return (
+                <Fragment>
+                    <NavItem>
+                        <NavLink tag={Link} to={"/designer/whydreamary"} >왜?</NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink tag={Link} to={"/designer/reservations"}>예약관리</NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink tag={Link} to={"/designer/schedule"}>스케줄등록</NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink tag={Link} to={"/designer/ticket"}>이용권관리</NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink tag={Link} to={"/designer/info"}>회원정보관리</NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink tag={Link} to={"/designer/coupon"}>추천인/쿠폰</NavLink>
+                    </NavItem>
+                    <NavItem>
+                        <NavLink onClick={this.logout}>로그아웃</NavLink>
+                    </NavItem>
+                </Fragment>
+            )
+        // 로그인 안했으면, 비회원 navbar
         } else {
             return (
                 <Fragment>

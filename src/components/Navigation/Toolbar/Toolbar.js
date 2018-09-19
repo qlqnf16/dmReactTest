@@ -50,6 +50,12 @@ class Toolbar extends Component {
 
     render() {
         console.log("Toolbar rendering")
+        // let isD = null
+        // if(firebase.auth().currentUser){
+        //     firebase.database().ref('/users/'+firebase.auth().currentUser.uid).on('value',res => {
+        //         isD = res.val().isD
+        //     })
+        // }
         return(
             <div>
                 <Navbar color='light' light expand='lg'>
@@ -59,6 +65,7 @@ class Toolbar extends Component {
                             showLogin={this.loginToggleHandler} 
                             showSignUp={this.signUpToggleHandler} 
                             user={firebase.auth().currentUser}
+                            uid={firebase.auth().currentUser? firebase.auth().currentUser.uid : null}
                         />
                     </Nav>
                 </Navbar>
