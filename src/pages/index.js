@@ -1,4 +1,5 @@
 export { default as Landing } from './Landing'
+export { default as WrongAccess } from './WrongAccess'
 export { default as About } from './About'
 export { default as DesignerList } from './DesignerList'
 export { default as DesignerDetail } from './DesignerDetail'
