@@ -9,17 +9,25 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-        user : null
+        user : null,
+        rendering : false
     }
   } 
   
 
   componentWillMount(){
     this.authListener()
+    this.setState({
+      ...this.state,
+      rendering : true
+    })
     console.log("WillMOUNTED")
-    console.log(firebase.auth().currentUser)
-    console.log(this.state.user)
   }
+
+  // shouldComponentUpdate = (nextProps, nextState) => {
+  //   return this.state.rendering !== nextState.rendering
+  // }
+  
 
   authListener() {
       firebase.auth().onAuthStateChanged((user) => {
@@ -33,6 +41,7 @@ class App extends Component {
   }
 
   render() {
+    console.log("app rendering")
     return (
       <Fragment>
         <Toolbar />

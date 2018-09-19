@@ -9,13 +9,31 @@ class Toolbar extends Component {
     state = {
         showLogin: false,
         showSignUp: false,
+        rendering: false,
+        LoginChange : false,
     }
 
     componentWillMount(){
         firebase.auth().onAuthStateChanged(() => {
             this.offHandler()
+            this.setState({
+                ...this.state,
+                LoginChange : !this.state.LoginChange,
+            })
+        })
+        this.setState({
+            ...this.state,
+            rendering: true
         })
     }
+
+    shouldComponentUpdate = (nextProps, nextState) => {
+        const isRendering = this.state.rendering !== nextState.rendering
+        const isChangeShowState = this.state.showLogin !== nextState.showLogin || this.state.showSignUp !== nextState.showSignUp
+        const isLoginChange = this.state.LoginChange !== nextState.LoginChange
+        return isRendering || isChangeShowState || isLoginChange
+    }
+    
 
     loginToggleHandler = () => {
         this.setState({showLogin: !this.state.showLogin})

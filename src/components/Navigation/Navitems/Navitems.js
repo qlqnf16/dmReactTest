@@ -6,9 +6,6 @@ import firebase from '../../../config/Firebase'
 
 console.log(firebase.auth().currentUser)
 class Navitems extends Component {
-    constructor(props){
-        super(props)
-    }
 
     logout() {
         firebase.auth().signOut();

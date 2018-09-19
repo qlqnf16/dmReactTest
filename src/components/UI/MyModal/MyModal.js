@@ -9,11 +9,6 @@ import KaKaoKey from '../../../config/Kakao'
 
 class MyModal extends Component {
     
-    constructor(props){
-        super(props)
-    }
-
-
     success = (response) => {
         // 카카오톡 로그인으로 카카오톡 토큰 발급
         const userToken = {"userToken" : response.response.access_token}
