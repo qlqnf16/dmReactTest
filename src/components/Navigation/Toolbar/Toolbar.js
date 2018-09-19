@@ -43,10 +43,6 @@ class Toolbar extends Component {
         this.setState({showSignUp: !this.state.showSignUp})
     }
 
-    switchHandler = () => {
-        this.setState({showSignUp: !this.state.showSignUp, showLogin: !this.state.showLogin})
-    }
-
     offHandler = () => {
         this.setState({showSignUp: false, showLogin: false})
         
@@ -69,19 +65,12 @@ class Toolbar extends Component {
                 <MyModal 
                     showLogin={this.state.showLogin} 
                     off={this.loginToggleHandler}
-                    toggle={this.switchHandler} 
-                    modalType="Login" 
-                    modalTitle="로그인"
-                    modalText="아직 드리머리 회원이 아니신가요?"
+                    type="login"
                 />
                 <MyModal 
                     showLogin={this.state.showSignUp} 
                     off={this.signUpToggleHandler} 
-                    toggle={this.switchHandler} 
-                    modalType="Sign Up"
-                    modalTitle="환영합니다!"
-                    modalSubtitle="간단한 회원가입으로 서비스를 이용해 보세요"
-                    modalText="이미 드리머리 계정이 있나요?" 
+                    type="signUp"
                 />
             </div>
         )

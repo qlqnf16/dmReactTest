@@ -9,6 +9,29 @@ import KaKaoKey from '../../../config/Kakao'
 
 class MyModal extends Component {
     
+    state = {
+        title: "",
+        text: "",
+        subTitle: ""
+    }
+
+    componentWillMount = () => {
+        console.log("willMount")
+        this.props.type === "login"? 
+        this.setState({
+            title: "로그인",
+            text: "아직 드리머리 회원이 아니신가요??",
+            subTitle: null
+        }) :
+        this.setState({
+            title: "회원가입",
+            text: "이미 드리머리 계정이 있나요?",
+            subTitle: "간단한 회원가입으로 서비스를 이용해보세요"
+        })
+
+    }
+    
+
     success = (response) => {
         // 카카오톡 로그인으로 카카오톡 토큰 발급
         const userToken = {"userToken" : response.response.access_token}
@@ -45,18 +68,30 @@ class MyModal extends Component {
     failure = (error) => {
         console.log(error);
     };
-
+    
+    changeToLogin = () => {
+        this.setState({
+            title: "로그인",
+            text: "아직 드리머리 회원이 아니신가요?",
+            subTitle: null
+        })
+    }
+    changeToSignUp = () => {
+        this.setState({
+            title : "회원가입",
+            text: "이미 드리머리 계정이 있나요?",
+            subTitle: "간단한 회원가입으로 서비스를 이용해보세요"
+        })
+    }
+    
 
     render() {
-        let switchModal
-        switchModal = this.props.modalType === 'Login' ? 'Sign up' : 'Login'
-        
         return (
             <div>
-                <Modal isOpen={this.props.showLogin} fade={false} toggle={this.props.off} className={this.props.className}>
+                <Modal isOpen={this.props.showLogin} fade={false} toggle={this.props.off}>
                     <ModalHeader>
-                        <p className="h2">{this.props.modalTitle}</p>
-                        <p className="small mb-0">{this.props.modalSubtitle}</p>
+                        <p className="h2">{this.state.title}</p>
+                        <p className="small mb-0">{this.state.subTitle}</p>
                     </ModalHeader>
                     <ModalBody>
                         <StyledFirebaseAuth
@@ -72,8 +107,13 @@ class MyModal extends Component {
                         
                     </ModalBody>
                     <ModalFooter>
-                        <p>{this.props.modalText}</p>
-                        <p className="btn btn-light" onClick={this.props.toggle}>{switchModal}</p>
+                        <p>{this.state.text}</p>
+                        {
+                            this.state.title === '로그인' ? 
+                            <p className="btn btn-light" onClick={this.changeToSignUp}>회원가입</p> : 
+                            <p className="btn btn-light" onClick={this.changeToLogin}>로그인</p>
+                        }
+                        
                     </ModalFooter>
                 </Modal>
             </div>
