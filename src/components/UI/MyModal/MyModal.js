@@ -16,7 +16,6 @@ class MyModal extends Component {
     }
 
     componentWillMount = () => {
-        console.log("willMount")
         this.props.type === "login"? 
         this.setState({
             title: "로그인",

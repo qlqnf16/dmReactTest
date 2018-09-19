@@ -32,10 +32,10 @@ class Navitems extends Component {
                         </DropdownToggle>
                         <DropdownMenu right>
                             <DropdownItem>
-                                <Link to='/reservations'>마이페이지</Link>
+                                <NavLink tag={Link} to={'/reservations'}>마이페이지</NavLink>
                             </DropdownItem>
                             <DropdownItem>
-                                <a onClick={this.logout}>LogOut</a>
+                                <NavLink onClick={this.logout}>LogOut</NavLink>
                             </DropdownItem>
                         </DropdownMenu>
                     </UncontrolledDropdown>
@@ -57,7 +57,7 @@ class Navitems extends Component {
                         <NavLink tag={Link} to={"/designerList"}>막내찾기</NavLink>
                     </NavItem>
                     <NavItem>
-                        <NavLink tag={Link} to={"/addDesigner"}>막내등록</NavLink>
+                        <NavLink onClick={this.props.showLogin}>막내등록</NavLink>
                     </NavItem>
                 </Fragment>
             )

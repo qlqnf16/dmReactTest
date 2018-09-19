@@ -1,21 +1,25 @@
 import React, { Component } from 'react'
 import { Button } from 'reactstrap'
 import { Link } from 'react-router-dom'
+import firebase from 'firebase'
 
 import DetailContent from '../components/DesignerDetail/DetailContent'
 import DetailFilter from '../components/DesignerDetail/DetailFilter'
+import MyModal from '../components/UI/MyModal/MyModal'
 
 class DesginerDetail extends Component {
     state = {
         introduce : "",
         data : "",
         time : "",
-        review : []
-
+        review : [],
+        showLogin: false,
+        LoginChange: false,
     }
 
     componentWillMount = () => {
         // DB에서 정보받아와서 넣어주는 곳
+        console.log(firebase.auth().currentUser)
         const userData = {
             introduce : "안녕하세요 오상우 입니다",
             data : "경력과 이력을 쏼라쏼라",
@@ -37,8 +41,23 @@ class DesginerDetail extends Component {
             ]
         }
         this.setState(userData)
+        firebase.auth().onAuthStateChanged(() => {
+            this.offHandler()
+            this.setState({
+                ...this.state,
+                LoginChange : !this.state.LoginChange,
+            })
+        })
     }
     
+
+    loginToggleHandler = () => {
+        this.setState({showLogin: !this.state.showLogin})
+    }
+    offHandler = () => {
+        this.setState({showSignUp: false, showLogin: false})
+    }
+
 
     render() {
         return(
@@ -55,8 +74,17 @@ class DesginerDetail extends Component {
                             time={this.state.time}
                         />
                     </div>
-                    <Button className="btn-light float-right"><Link to={`/reservationConfirm/${"예약번호"}`}>예약하기</Link></Button>
+                    {
+                        firebase.auth().currentUser ?
+                        <Button className="btn-light float-right"><Link to={`/reservationConfirm/${"예약번호"}`}>예약하기</Link></Button> :
+                        <Button onClick={this.loginToggleHandler} className="btn-light float-right">예약하기</Button> 
+                    }
                 </div>
+                <MyModal 
+                    showLogin={this.state.showLogin} 
+                    off={this.loginToggleHandler}
+                    type="login"
+                />
             </div>
         )
     }
