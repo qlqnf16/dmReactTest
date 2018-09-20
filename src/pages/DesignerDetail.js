@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Button } from 'reactstrap'
 import { Link } from 'react-router-dom'
 import firebase from 'firebase'
+import axios from "axios";
 
 import DetailContent from '../components/DesignerDetail/DetailContent'
 import DetailFilter from '../components/DesignerDetail/DetailFilter'
@@ -9,40 +10,22 @@ import MyModal from '../components/UI/MyModal/MyModal'
 
 class DesginerDetail extends Component {
     state = {
-        introduce : "",
-        data : "",
-        time : "",
-        review : [],
+        recruit: {},
         showLogin: false,
         LoginChange: false,
+        madeRequest: false
     }
 
-    componentWillMount = () => {
+    componentDidMount = async () => {
         // DB에서 정보받아와서 넣어주는 곳
-        console.log(firebase.auth().currentUser)
-        const userData = {
-            introduce : "안녕하세요 오상우 입니다",
-            data : "경력과 이력을 쏼라쏼라",
-            time : "되는 시간대들",
-            reviews : [
-                {
-                    name: "신한결",
-                    star : 1,
-                    date: "9/18",
-                    content: "너무 못 자르시네요"
-                },
-                {
-                    name: "이정민",
-                    star : 5,
-                    date: "9/17",
-                    content: "최고에요!"
-                }
-                
-            ]
+        console.log(firebase.auth().currentUser);
+        console.log(this.props);
+        if(!this.state.madeRequest) {
+            const {data} = await axios.get(`http://localhost:3030/recruits/${this.props.match.params.id}`);
+            this.setState({recruit: data, madeRequest: true});
         }
-        this.setState(userData)
         firebase.auth().onAuthStateChanged(() => {
-            this.offHandler()
+            this.offHandler();
             this.setState({
                 ...this.state,
                 LoginChange : !this.state.LoginChange,
@@ -60,20 +43,27 @@ class DesginerDetail extends Component {
 
 
     render() {
+        console.log(this.state);
+        let loading = null;
+        if(Object.keys(this.state.recruit).length) {
+            loading = (
+                <div className="row">
+                    <DetailContent 
+                        introduce={this.state.recruit.introduction}
+                        data={this.state.recruit.requirement}
+                        reviews={[{}]}
+                    />
+                    <DetailFilter
+                        time={this.state.recruit.ableDates}
+                    />
+                </div>
+            )
+        }
         return(
             <div>
                 <div className='container'>
                     <h1 className="text-center m-5 ">2단계 : 예약하기(이미지로)</h1>
-                    <div className="row">
-                        <DetailContent 
-                            introduce={this.state.introduce} 
-                            data={this.state.data}
-                            reviews={this.state.reviews}
-                        />
-                        <DetailFilter
-                            time={this.state.time}
-                        />
-                    </div>
+                    {loading}
                     {
                         firebase.auth().currentUser ?
                         <Button className="btn-light float-right"><Link to={`/reservationConfirm/${"예약번호"}`}>예약하기</Link></Button> :

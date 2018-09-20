@@ -1,52 +1,38 @@
 import React, { Component } from 'react';
-import DesignerCard from '../components/DesignerCard/DesignerCard'
-import { CardDeck } from 'reactstrap'
+import DesignerCard from '../components/DesignerCard/DesignerCard';
+import { CardDeck } from 'reactstrap';
+import axios from "axios";
 
 class DesignerList extends Component{
     state = {
-        designers: [
-            {
-                title: '제목',
-                name: '이정민',
-                shop: '차홍아르더/청담동',
-                test: [
-                    'https://picsum.photos/300/200/?image=2',
-                    'https://picsum.photos/300/200/?image=5',
-                    'https://picsum.photos/300/200/?image=8'
-                ]
-            },
-            {
-                title: '제목2',
-                name: '이정민',
-                shop: '차홍아르더/청담동',
-                test: [
-                    'https://picsum.photos/300/200/?image=5',
-                    'https://picsum.photos/300/200/?image=7'
-                ]
-            },
-            {
-                title: '제목3',
-                name: '이정민',
-                shop: '차홍아르더/청담동',
-                test: 'https://picsum.photos/300/200/?image=4'
-            },
-            {
-                title: '제목4',
-                name: '이정민',
-                shop: '차홍아르더/청담동',
-                test: 'https://picsum.photos/300/200/?image=4'
-            },
-            {
-                title: '제목5',
-                name: '이정민',
-                shop: '차홍아르더/청담동',
-                test: 'https://picsum.photos/300/200/?image=4'
-            }
-        ]
+        recruits: [],
+        madeRequest: false
+    }
+
+    async componentDidMount() {
+        if(!this.state.madeRequest) {
+            const {data} = await axios.get("http://localhost:3030/recruits");
+            this.setState({
+                recruits: data,
+                madeRequest: true
+            });
+        }
     }
 
     render(){
-
+        let recruits = null;
+        if(this.state.recruits.length) {
+            recruits = this.state.recruits.map((recruit) => (
+                <DesignerCard
+                    id={recruit._id}
+                    title={recruit.title}
+                    name={recruit._designer.name}
+                    shop={recruit._designer.locations[0].shop}
+                    test={recruit.portfolios}
+                    key={recruit._id}
+                />
+            ));
+        };
         return(
             <div className="container">
                 <div className="m-5 text-center">
@@ -56,17 +42,7 @@ class DesignerList extends Component{
                     <h1>filter</h1>
                 </div>
                 <CardDeck className="m-5">
-                    {
-                        this.state.designers.map((designer,key) => (
-                            <DesignerCard 
-                                title={designer.title}
-                                name={designer.name}
-                                shop={designer.shop}
-                                test={designer.test}
-                                key={key}
-                            />
-                        ))
-                    }
+                    {recruits}
                 </CardDeck>
             </div>
         )
