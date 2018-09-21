@@ -5,12 +5,12 @@ import ReservationDetail from "../ReservationDetail/ReservationDetail";
 
 const PreviousReservations = (props) => {
     const cards = props.reservations.map(reservation => (
-        <div className="col-10 d-flex justify-content-around">
+        <div className="col-10 d-flex justify-content-around" key={reservation._id}>
             <ReservationCard
-                designerName={reservation.designer.name}
-                title={reservation.title}
-                date={reservation.date}
-                location={`${reservation.designer.shop} / ${reservation.designer.location}`}
+                designerName={reservation._designer.name}
+                title={"타이틀없"}
+                date={reservation.time}
+                location={`${reservation._designer.locations[0].region} / ${reservation._designer.locations[0].shop}`}
                 type={"컷/염색"}
                 ></ReservationCard>
             <ReservationDetail
