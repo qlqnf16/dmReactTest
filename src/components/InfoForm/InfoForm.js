@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
-import { Form, FormGroup, Label, Input, Button, Container, Col } from 'reactstrap'
+import React, { Component, Fragment } from 'react'
+import { FormGroup, Label, Input, Col } from 'reactstrap';
+import ImgPreview from './ImgPreview'
 
 class InfoForm extends Component {
-    render() {
+    render() {        
         return (
-            <Container>
-            <Form className="m-5">
+            <Fragment>
                 <FormGroup row>
                     <Label for="exampleEmail" sm={2}>성명</Label>
                     <Col sm={10}>
@@ -60,15 +60,13 @@ class InfoForm extends Component {
                 <FormGroup row>
                     <Label for="exampleFile" sm={2}>면허증/자격증</Label>
                     <Col sm={10}>
-                        <Input type="file" name="cert1" id="cert1" />
-                        <Input type="file" name="cert2" id="cert2" />
+                        <ImgPreview url={this.props.certImg1}/>
+                        <ImgPreview url={this.props.certImg2}/>
+                        <input type="file" name='cert1' onChange={this.props.imgChange} />
+                        <input type="file" name='cert2' onChange={this.props.imgChange} />
                     </Col>
                 </FormGroup>
-                <div className='text-center'>
-                    <Button className='m-5'>Submit</Button>
-                </div>
-            </Form>
-            </Container>
+            </Fragment>
         )
     }
 }
