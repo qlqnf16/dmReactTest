@@ -15,13 +15,13 @@ const DetailContent = props => (
         <div className="m-4">
             <h3>리뷰들</h3>
             {
-                props.reviews.map((review, key) => (
+                props.reviews.map((review) => (
                     <Review 
-                        name={review.name} 
-                        date={review.date} 
-                        star={review.star}
+                        name={review._user.name} 
+                        date={review.createdAt} 
+                        star={review.score}
                         content={review.content}
-                        key={key}
+                        key={review._id}
                     />
                 ))  
             }

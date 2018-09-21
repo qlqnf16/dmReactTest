@@ -15,7 +15,7 @@ const DesginerCard = props => (
                 <CardSubtitle>{props.shop}</CardSubtitle>
                 <CardTitle>{props.title}</CardTitle>
                 <CardSubtitle>{props.name}</CardSubtitle>
-                <Link to={`/designerdetail/${props.name}`}>상세 보기</Link>
+                <Link to={`/designerdetail/${props.id}`}>상세 보기</Link>
             </CardBody>
         </Card>
     </Col>
