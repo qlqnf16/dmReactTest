@@ -51,7 +51,7 @@ class DesginerDetail extends Component {
                     <DetailContent 
                         introduce={this.state.recruit.introduction}
                         data={this.state.recruit.requirement}
-                        reviews={[{}]}
+                        reviews={this.state.recruit._reviews}
                     />
                     <DetailFilter
                         time={this.state.recruit.ableDates}
