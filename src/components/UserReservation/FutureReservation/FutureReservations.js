@@ -12,11 +12,11 @@ const PreviousReservations = (props) => {
                 date={reservation.time}
                 location={`${reservation._designer.locations[0].region} / ${reservation._designer.locations[0].shop}`}
                 type={"컷/염색"}
-                ></ReservationCard>
+            />
             <ReservationDetail
                 requirement={reservation.requirement}
                 additionalPrice={reservation.additionalPrice}
-                ></ReservationDetail>
+            />
         </div>
     ));
 

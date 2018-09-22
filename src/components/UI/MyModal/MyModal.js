@@ -37,7 +37,7 @@ class MyModal extends Component {
         console.log(userToken)
         
         // 카카오톡 토큰을 node 서버에 전달
-        axios.post('http://localhost:3030/kakao_login', userToken)
+        axios.post('http://52.79.227.227:3030/kakao_login', userToken)
             .then(res => {
                 //서버에서 customToken 넘겨 받기
                 const customToken = res.data.token

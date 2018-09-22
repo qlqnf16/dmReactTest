@@ -21,7 +21,7 @@ class DesginerDetail extends Component {
         console.log(firebase.auth().currentUser);
         console.log(this.props);
         if(!this.state.madeRequest) {
-            const {data} = await axios.get(`http://localhost:3030/recruits/${this.props.match.params.id}`);
+            const {data} = await axios.get(`http://52.79.227.227:3030/recruits/${this.props.match.params.id}`);
             this.setState({recruit: data, madeRequest: true});
         }
         firebase.auth().onAuthStateChanged(() => {

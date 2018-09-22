@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ReservationCard = (props) => (
-    <div>
+    <div className="border">
         <h3>{props.designerName}</h3>
         <span>D - 2</span>
         <h2>{props.title}</h2>
