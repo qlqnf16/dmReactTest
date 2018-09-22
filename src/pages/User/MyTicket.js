@@ -21,13 +21,22 @@ class MyTicket extends Component{
 
     render(){
         return (
-            <div>
-                <h1>This is MyTicket</h1>
-                <UserNav />
-                <div>
-                    <TicketCounter count={this.state.tickets.reduce((accu, pres) => !pres.expiredAt ? accu + 1 : accu , 0)} />
-                    <TicketPurchaseButton />
-                    <TicketBox tickets={this.state.tickets} />
+            <div className="container">
+                <div className="row">
+                    <UserNav />
+                    <div className="col-10 my-5">
+                        <h1>이용권 관리</h1>
+                        <div className="row">
+                            <div className="col-4 border py-2">
+
+                                <TicketCounter count={this.state.tickets.reduce((accu, pres) => !pres.expiredAt ? accu + 1 : accu , 0)} />
+                                <TicketPurchaseButton />
+                            </div>
+                            <div className="col-8">
+                                <TicketBox tickets={this.state.tickets} />
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         )

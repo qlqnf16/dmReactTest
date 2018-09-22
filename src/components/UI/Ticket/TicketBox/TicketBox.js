@@ -2,16 +2,16 @@ import React from "react";
 import TicketList from "./TicketList/TicketList";
 
 const TicketBox = (props) => (
-    <div>
-        <div className="d-flex justify-content-around">
-            <div>종류</div>
-            <div>결제일</div>
-            <div>결제금액</div>
-            <div>상태</div>
-            <div>사용날짜</div>
-        </div>
+    <table className="m-3 table text-center">
+        <thead >
+            <th scope="col">종류</th>
+            <th scope="col">결제일</th>
+            <th scope="col">결제금액</th>
+            <th scope="col">상태</th>
+            <th scope="col">사용날짜</th>
+        </thead>
         <TicketList tickets={props.tickets} />
-    </div>
+    </table>
 );
 
 export default TicketBox;
