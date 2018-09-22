@@ -2,7 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 const UserNav = () => (
-    <div>
+    <div className="col-2 p-3">
+        <h4> 마이 페이지 </h4>
         <Link to='/reservations'><li>예약관리</li></Link>
         <Link to='/myTicket'><li>이용권관리</li></Link>
         <Link to='/userInfo'><li>회원정보관리</li></Link>

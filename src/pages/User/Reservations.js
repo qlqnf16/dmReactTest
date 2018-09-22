@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import UserNav from '../../components/Navigation/UserNav/UserNav';
-import PreviousReservations from "../../components/UserReservation/PreviousReservations/PreviousReservations";
-import FutureReservations from '../../components/UserReservation/FutureReservation/FutureReservations';
 import axios from "axios";
+import ReservationCards from '../../components/UserReservation/ReservationCards/ReservationCards'
 
 class Reservations extends Component {
     state = {
@@ -25,23 +24,23 @@ class Reservations extends Component {
     
     render(){
         console.log(this.state);
-        let futureReservationsEle;
-        let previousReservationsEle;
+        let futureReservations =[];
+        let previousReservations=[];
         if(this.state.reservations) {
-            const futureReservations = this.state.reservations.filter((reservation) => reservation.time.until > 600 && !reservation.isCanceled); // 실제로는 현재 타임스탬프 사용
-            const previousReservations = this.state.reservations.filter((reservation) => reservation.time.until <= 600 || reservation.isCanceled);
-            futureReservationsEle = (<FutureReservations reservations={futureReservations} />);
-            previousReservationsEle = (<PreviousReservations reservations={previousReservations} />);
+            futureReservations = this.state.reservations.filter((reservation) => reservation.time.until > 600 && !reservation.isCanceled); // 실제로는 현재 타임스탬프 사용
+            previousReservations = this.state.reservations.filter((reservation) => reservation.time.until <= 600 || reservation.isCanceled);
         }
+        console.log(futureReservations)
 
         return (
             <div className="container">
-                <UserNav />
                 <div className="row">
-                    <h1>This is Reservations</h1>
+                    <UserNav />
+                    <ReservationCards
+                        futureReservations={futureReservations}
+                        previousReservations={previousReservations}
+                    />
                 </div>
-                {futureReservationsEle}
-                {previousReservationsEle}
             </div>
         )
     }
