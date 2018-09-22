@@ -5,9 +5,11 @@ class Coupon extends Component{
 
     render(){
         return(
-            <div>
-                <h1>This is Coupon</h1>
-                <UserNav />
+            <div className="container">
+                <div className="row mt-5">
+                    <UserNav />
+                    <div className="col-10">This is Coupon</div>
+                </div>
             </div>
         )
     }
