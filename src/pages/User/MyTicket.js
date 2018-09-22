@@ -27,7 +27,7 @@ class MyTicket extends Component{
                     <div className="col-10 my-5">
                         <h1>이용권 관리</h1>
                         <div className="row">
-                            <div className="col-4 border py-2">
+                            <div className="col-4  py-2">
 
                                 <TicketCounter count={this.state.tickets.reduce((accu, pres) => !pres.expiredAt ? accu + 1 : accu , 0)} />
                                 <TicketPurchaseButton />
