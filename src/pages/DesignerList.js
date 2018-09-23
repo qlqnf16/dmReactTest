@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import DesignerCard from '../components/DesignerCard/DesignerCard';
+import Filter from '../components/DesignerCard/Filter/Filter';
 import { CardDeck } from 'reactstrap';
 import axios from "axios";
 
@@ -38,9 +39,7 @@ class DesignerList extends Component{
                 <div className="m-5 text-center">
                     <h1>1단계 : 막내 찾기(이미지)</h1>
                 </div>
-                <div className="m-5 text-center">
-                    <h1>filter</h1>
-                </div>
+                <Filter />
                 <CardDeck className="m-5">
                     {recruits}
                 </CardDeck>
