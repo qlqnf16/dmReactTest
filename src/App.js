@@ -10,54 +10,76 @@ class App extends Component {
     super(props)
     this.state = {
         user : null,
+        madeRequest: false,
+        isD: false,
+        firstRender:false
     }
   } 
   
-  componentWillMount(){
-    this.authListener()
-    console.log("WillMOUNTED")
+  componentDidMount = async () => {
+    if(!this.state.madeRequest){
+      await this.authListener()
+    }
+    console.log("DidMOUNTED")
   }
 
   authListener() {
-      firebase.auth().onAuthStateChanged((user) => {
-          if (user) {
-              this.setState({ user });
-              console.log(this.state.user)
-          } else {
-              this.setState({ user : null });
-          }
-      })
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        firebase.database().ref('/users/'+firebase.auth().currentUser.uid).on('value', res => {
+          this.setState({ 
+            user ,
+            madeRequest: true, 
+            isD: res.val().isD, 
+            firstRender:true
+          })
+        })
+      } else {
+        this.setState({ 
+          user : null , 
+          madeRequest: true,
+          isD: false, 
+          firstRender:true 
+        });
+      }
+    })
   }
 
   render() {
     console.log("app rendering")
-    
-    return (
-      <Fragment>
-        <Toolbar />
-        <Route path='/' exact component={Landing} />
-        <Route path='/about' component={About} />
-        <Route path='/addDesigner' component={AddDesigner} />
-        <Route path='/designerList' component={DesignerList} />
-        <Route path='/designerDetail/:id' component={DesignerDetail} />
-        <Route path='/reservationConfirm/:reservation_id' component={ReservationConfirm} />
+    if(!this.state.firstRender){
+      return(
+        <div className="h1">Wait...</div>
+      )
+    } else {
+      return (
+        <Fragment>
+          <Toolbar />
+          <Route path='/' exact component={Landing} />
+          <Route path='/about' component={About} />
+          <Route path='/addDesigner' component={AddDesigner} />
+          <Route path='/designerList' component={DesignerList} />
+          <Route path='/designerDetail/:id' component={DesignerDetail} />
+          <Route path='/reservationConfirm/:reservation_id' component={ReservationConfirm} />
 
-        {/* 비로그인 상태에서 url로 접근시 WrongAccess 렌더링 */}
-        <Route path='/coupon' component={this.state.user? Coupon : WrongAccess} /> 
-        <Route path='/myTicket' component={this.state.user? MyTicket : WrongAccess} />
-        <Route path='/reservations' component={this.state.user? Reservations : WrongAccess} />
-        <Route path='/userInfo' component={this.state.user? UserInfo : WrongAccess} />
-        <Route path='/infoDetail' component={this.state.user? InfoDetail : WrongAccess} />
+          {/* 비로그인 상태에서 url로 접근시 WrongAccess 렌더링 */}
+          <Route path='/coupon' component={this.state.user? Coupon : WrongAccess} /> 
+          <Route path='/myTicket' component={this.state.user? MyTicket : WrongAccess} />
+          <Route path='/reservations' component={this.state.user? Reservations : WrongAccess} />
+          <Route path='/userInfo' component={this.state.user? UserInfo : WrongAccess} />
+          <Route path='/infoDetail' component={this.state.user? InfoDetail : WrongAccess} />
 
-        <Route path='/designer/coupon' component={DesignerCoupon} />
-        <Route path='/designer/info' component={DesignerInfo} />
-        <Route path='/designer/reservations' component={DesignerReservations} />
-        <Route path='/designer/ticket' component={DesignerTicket} />
-        <Route path='/designer/schedule' component={Schedule} />
-        <Route path='/designer/whyDreamary' component={WhyDreamary} />
-        <Footer />
-      </Fragment>
-    );
+          {/* 디자이너 아닌 user가 url로 접근시 WrongAccess 렌더링  */}
+          <Route path='/designer/coupon' component={this.state.isD? DesignerCoupon : WrongAccess} />
+          <Route path='/designer/info' component={this.state.isD? DesignerInfo : WrongAccess} />
+          <Route path='/designer/reservations' component={this.state.isD? DesignerReservations : WrongAccess} />
+          <Route path='/designer/ticket' component={this.state.isD? DesignerTicket : WrongAccess} />
+          <Route path='/designer/schedule' component={this.state.isD? Schedule : WrongAccess} />
+          <Route path='/designer/whyDreamary' component={this.state.isD? WhyDreamary : WrongAccess} />
+          <Footer />
+        </Fragment>
+      );
+    }
   }
 }
 

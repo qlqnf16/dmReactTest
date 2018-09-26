@@ -27,17 +27,17 @@ const Filter = () => (
       </select>
     </div>
     <div className="col-2">
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" value="option1" />
-        <label class="form-check-label" for="inlineRadio1">컷트</label>
+      <div className="form-check form-check-inline">
+        <input className="form-check-input" type="radio" value="option1" />
+        <label className="form-check-label">컷트</label>
       </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" value="option2" />
-        <label class="form-check-label" for="inlineRadio2">염색</label>
+      <div className="form-check form-check-inline">
+        <input className="form-check-input" type="radio" value="option2" />
+        <label className="form-check-label">염색</label>
       </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input" type="radio" value="option3"  />
-        <label class="form-check-label" for="inlineRadio3">펌</label>
+      <div className="form-check form-check-inline">
+        <input className="form-check-input" type="radio" value="option3"  />
+        <label className="form-check-label">펌</label>
       </div>
     </div>
     <div className="col-2 btn btn-light">

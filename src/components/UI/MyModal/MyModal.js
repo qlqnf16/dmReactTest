@@ -3,6 +3,7 @@ import { Modal, ModalBody, ModalHeader, ModalFooter } from 'reactstrap';
 import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth'
 import KakaoLogin from 'react-kakao-login';
 
+import firebaseApp from 'firebase'
 import firebase, { uiConfig } from '../../../config/Firebase'
 import axios from '../../../config/Axios';
 import KaKaoKey from '../../../config/Kakao'
@@ -82,6 +83,42 @@ class MyModal extends Component {
             subTitle: "간단한 회원가입으로 서비스를 이용해보세요"
         })
     }
+
+    googleLogin = () => {
+        const provider = new firebaseApp.auth.GoogleAuthProvider();
+        firebase.auth().signInWithPopup(provider).then((result) => {
+            const currentUser = firebase.auth().currentUser
+            const userData = {
+                name : currentUser.displayName,
+                age : null,
+                uid : currentUser.uid,
+                email : currentUser.email,
+                isD : true
+            }
+            firebase.database().ref('users/' + currentUser.uid).set(userData)    
+        
+          }).catch(function(error) {
+              console.log(error)
+          });
+    }
+
+    facebookLogin = () => {
+        const provider = new firebaseApp.auth.FacebookAuthProvider();
+        firebase.auth().signInWithPopup(provider).then((result) => {
+            const currentUser = firebase.auth().currentUser
+            const userData = {
+                name : currentUser.displayName,
+                age : null,
+                uid : currentUser.uid,
+                email : currentUser.email,
+                isD : true
+            }
+            firebase.database().ref('users/' + currentUser.uid).set(userData)    
+        
+          }).catch(function(error) {
+              console.log(error)
+          });
+    }
     
 
     render() {
@@ -92,16 +129,20 @@ class MyModal extends Component {
                         <p className="h2">{this.state.title}</p>
                         <p className="small mb-0">{this.state.subTitle}</p>
                     </ModalHeader>
-                    <ModalBody>
-                        <StyledFirebaseAuth
-                            uiConfig = {uiConfig}
-                            firebaseAuth={firebase.auth()}
-                        />
+                    <ModalBody className="text-center">
+                        <button className="btn btn-light d-block w-100" onClick={this.googleLogin}>
+                            구글 {this.state.title}
+                        </button>
+                        <button className="btn btn-light d-block w-100" onClick={this.facebookLogin}>
+                            페이스북 {this.state.title}
+                        </button>
                         <KakaoLogin
+                            className="btn btn-light d-block w-100"
                             jsKey={KaKaoKey}
                             onSuccess={this.success}
                             onFailure={this.failure}
                             getProfile={true}
+                            buttonText={`카카오톡 ${this.state.title}`}
                         />
                         
                     </ModalBody>
