@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import firebase from 'firebase'
 import UserNav from '../../components/Navigation/UserNav/UserNav';
 import { Form, FormGroup, Label, Input, Button, Container, Col } from 'reactstrap'
 
@@ -15,13 +16,13 @@ class UserInfo extends Component {
                             <FormGroup row>
                                 <Label for="exampleEmail" sm={2}>성명</Label>
                                 <Col sm={10}>
-                                    <Input type="text" name="name" id="name" />
+                                    <Input type="text" name="name" id="name" value={firebase.auth().currentUser.name} />
                                 </Col>
                             </FormGroup>
                             <FormGroup row>
                                 <Label for="exampleEmail" sm={2}>이메일 주소</Label>
                                 <Col sm={10}>
-                                    <Input type="email" name="email" id="email" />
+                                    <Input type="email" name="email" id="email" value={firebase.auth().currentUser.email} />
                                 </Col>
                             </FormGroup>
                             <FormGroup row>

@@ -51,6 +51,21 @@ class AddDesigner extends Component{
     //     return  post(url, formData,config)
     // }
 
+    handleInputChange(e) {
+		const target = e.target;
+		const value = target.value;
+		const name = target.name;
+
+		this.setState({
+			[name]: value
+		});
+    }
+     
+    submit = () => {
+		console.log(this.state)
+		// 실제 submit으로 수정해야
+	}
+
     render(){
         return(
             <Container>
@@ -61,9 +76,10 @@ class AddDesigner extends Component{
                     certImg2 = {this.state.certImg2}
                     certFile2 = {this.state.certFile2}
                     imgChange = {e=>this.handleImgChange(e)}
+					changeInput  = {e=>this.handleInputChange(e)}
                 />
                 <div className='text-center'>
-                    <Button className='m-5'>Submit</Button>
+                    <Button className='m-5' onClick={this.submit}>등록하기</Button>
                 </div>
             </Form>
             </Container>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import firebase from 'firebase'
 import UserNav from '../../components/Navigation/UserNav/UserNav';
 
 class Coupon extends Component{
@@ -8,7 +9,9 @@ class Coupon extends Component{
             <div className="container">
                 <div className="row mt-5">
                     <UserNav />
-                    <div className="col-10">This is Coupon</div>
+                    <div className="col-10">
+                        <h1>{firebase.auth().currentUser.uid}</h1>
+                    </div>
                 </div>
             </div>
         )
