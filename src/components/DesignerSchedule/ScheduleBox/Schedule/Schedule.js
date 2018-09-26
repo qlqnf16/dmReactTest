@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import { FormGroup, Label, Input, Button } from "reactstrap";
 
 class Schedule extends Component {
-	timeSelector=()=>{
+	timeSelector = ( )=> {
 		let timeSelector = []
-		for(let i=0; i<this.props.time; i++){
+		for(let i=0; i < this.props.time; i++){
 			timeSelector.push(
-				<div className='row'>
+				<div className='row' key={i}>
 					<Input type="select" name={`startTime${i}`} id={`startTime${i}`} className='col-5'>
 						<option>10:00</option>
 						<option>11:00</option>
@@ -94,7 +94,7 @@ class Schedule extends Component {
 								</Label>
 							</FormGroup>
 						</div>
-						<Button color='light'>등록하기</Button>
+						<div className="btn btn-light" color='light'>등록하기</div>
 					</div>
 			</div>
 		)
