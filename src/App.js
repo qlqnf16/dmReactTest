@@ -67,6 +67,7 @@ class App extends Component {
               user,
               madeRequest: true,
               isD: res.val().isD,
+              isRegiser: res.val().isRegiser,
               firstRender: true
             });
           });
@@ -100,7 +101,6 @@ class App extends Component {
           <Toolbar />
           <Route path="/" exact component={Landing} />
           <Route path="/about" component={About} />
-          <Route path="/addDesigner" component={AddDesigner} />
           <Route path="/designerList" component={DesignerList} />
           <Route path="/designerDetail/:id" component={DesignerDetail} />
           <Route
@@ -110,16 +110,44 @@ class App extends Component {
 
           {/* 비로그인 상태에서 url로 접근시 WrongAccess 렌더링 */}
           <Route
+            path="/addDesigner"
+            component={
+              this.state.user
+                ? this.state.isRegiser
+                  ? AddDesigner
+                  : UserInfo
+                : WrongAccess
+            }
+          />
+          <Route
             path="/coupon"
-            component={this.state.user ? Coupon : WrongAccess}
+            component={
+              this.state.user
+                ? this.state.isRegiser
+                  ? Coupon
+                  : UserInfo
+                : WrongAccess
+            }
           />
           <Route
             path="/myTicket"
-            component={this.state.user ? MyTicket : WrongAccess}
+            component={
+              this.state.user
+                ? this.state.isRegiser
+                  ? MyTicket
+                  : UserInfo
+                : WrongAccess
+            }
           />
           <Route
             path="/reservations"
-            component={this.state.user ? Reservations : WrongAccess}
+            component={
+              this.state.user
+                ? this.state.isRegiser
+                  ? Reservations
+                  : UserInfo
+                : WrongAccess
+            }
           />
           <Route
             path="/userInfo"

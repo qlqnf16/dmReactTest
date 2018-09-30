@@ -104,7 +104,9 @@ class MyModal extends Component {
           age: null,
           uid: currentUser.uid,
           email: currentUser.email,
-          isD: true
+          isD: true,
+          // 임시로.
+          isRegiser: true
         };
         firebase
           .database()
