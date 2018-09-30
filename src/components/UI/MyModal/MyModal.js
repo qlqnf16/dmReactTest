@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { Modal, ModalBody, ModalHeader, ModalFooter } from 'reactstrap';
-import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import KakaoLogin from 'react-kakao-login';
 
 import firebaseApp from 'firebase';
-import firebase, { uiConfig } from '../../../config/Firebase';
+import firebase from '../../../config/Firebase';
 import axios from '../../../config/Axios';
 import KaKaoKey from '../../../config/Kakao';
 
@@ -12,21 +11,26 @@ class MyModal extends Component {
   state = {
     title: '',
     text: '',
-    subTitle: ''
+    subTitle: '',
+    firstRender: false
   };
 
-  componentWillMount = () => {
-    this.props.type === 'login'
-      ? this.setState({
-          title: '로그인',
-          text: '아직 드리머리 회원이 아니신가요??',
-          subTitle: null
-        })
-      : this.setState({
-          title: '회원가입',
-          text: '이미 드리머리 계정이 있나요?',
-          subTitle: '간단한 회원가입으로 서비스를 이용해보세요'
-        });
+  componentDidlMount = () => {
+    if (!this.state.firstRender) {
+      this.props.type === 'login'
+        ? this.setState({
+            title: '로그인',
+            text: '아직 드리머리 회원이 아니신가요??',
+            subTitle: null,
+            firstRender: true
+          })
+        : this.setState({
+            title: '회원가입',
+            text: '이미 드리머리 계정이 있나요?',
+            subTitle: '간단한 회원가입으로 서비스를 이용해보세요',
+            firstRender: true
+          });
+    }
   };
 
   success = response => {

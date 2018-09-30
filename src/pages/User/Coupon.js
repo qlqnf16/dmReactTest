@@ -1,21 +1,20 @@
-import React, { Component } from 'react'
-import firebase from 'firebase'
+import React, { Component } from 'react';
+import firebase from 'firebase';
 import UserNav from '../../components/Navigation/UserNav/UserNav';
 
-class Coupon extends Component{
-
-    render(){
-        return(
-            <div className="container">
-                <div className="row mt-5">
-                    <UserNav />
-                    <div className="col-10">
-                        <h1>{firebase.auth().currentUser.uid}</h1>
-                    </div>
-                </div>
-            </div>
-        )
-    }
+class Coupon extends Component {
+  render() {
+    return (
+      <div className="container">
+        <div className="row mt-5">
+          <UserNav />
+          <div className="col-10">
+            <h1>{firebase.auth().currentUser.uid}</h1>
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
-export default Coupon
+export default Coupon;

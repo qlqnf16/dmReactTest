@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 const Filter = () => (
   <div className="form-row text-center justify-content-center">
@@ -36,14 +36,12 @@ const Filter = () => (
         <label className="form-check-label">염색</label>
       </div>
       <div className="form-check form-check-inline">
-        <input className="form-check-input" type="radio" value="option3"  />
+        <input className="form-check-input" type="radio" value="option3" />
         <label className="form-check-label">펌</label>
       </div>
     </div>
-    <div className="col-2 btn btn-light">
-      검색
-    </div>
+    <div className="col-2 btn btn-light">검색</div>
   </div>
-)
+);
 
-export default Filter
+export default Filter;

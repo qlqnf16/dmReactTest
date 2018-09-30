@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Route } from 'react-router-dom';
+import Moment from 'react-moment';
 import {
   Landing,
   WrongAccess,
@@ -37,8 +38,9 @@ class App extends Component {
 
   componentDidMount = async () => {
     if (!this.state.madeRequest) {
-      console.log(await this.authListener());
+      await this.authListener();
     }
+
     let links = [
       'https://code.jquery.com/jquery-1.12.4.min.js',
       'https://cdn.iamport.kr/js/iamport.payment-1.1.5.js'
@@ -81,8 +83,17 @@ class App extends Component {
 
   render() {
     console.log('app rendering');
+    console.log(new Date('2018-10-23T00:00:00').getTime());
     if (!this.state.firstRender) {
-      return <div className="h1">Wait...</div>;
+      return (
+        <div className="h1">
+          <p>Wait...</p>
+          <Moment className="h5">{new Date()}</Moment>
+          <Moment className="h5" from="2018-10-23">
+            {new Date()}
+          </Moment>
+        </div>
+      );
     } else {
       return (
         <Fragment>
