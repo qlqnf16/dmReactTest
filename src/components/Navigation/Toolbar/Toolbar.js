@@ -13,7 +13,7 @@ class Toolbar extends Component {
     LoginChange: false
   };
 
-  componentWillMount() {
+  componentDidMount() {
     firebase.auth().onAuthStateChanged(() => {
       this.offHandler();
       this.setState({
@@ -28,11 +28,14 @@ class Toolbar extends Component {
   }
 
   shouldComponentUpdate = (nextProps, nextState) => {
+    // 첫 렌더링이 완료가 됐는지
     const isRendering = this.state.rendering !== nextState.rendering;
+    // Loing 또는 SingUp의 show 상태가 변화 했는지
     const isChangeShowState =
       this.state.showLogin !== nextState.showLogin ||
       this.state.showSignUp !== nextState.showSignUp;
     const isLoginChange = this.state.LoginChange !== nextState.LoginChange;
+    // 하나라도 변화 했다면, true 반환 => 리렌더링
     return isRendering || isChangeShowState || isLoginChange;
   };
 
@@ -50,12 +53,6 @@ class Toolbar extends Component {
 
   render() {
     console.log('Toolbar rendering');
-    // let isD = null
-    // if(firebase.auth().currentUser){
-    //     firebase.database().ref('/users/'+firebase.auth().currentUser.uid).on('value',res => {
-    //         isD = res.val().isD
-    //     })
-    // }
     return (
       <div>
         <Navbar color="light" light expand="lg">
@@ -66,12 +63,6 @@ class Toolbar extends Component {
             <Navitems
               showLogin={this.loginToggleHandler}
               showSignUp={this.signUpToggleHandler}
-              user={firebase.auth().currentUser}
-              uid={
-                firebase.auth().currentUser
-                  ? firebase.auth().currentUser.uid
-                  : null
-              }
             />
           </Nav>
         </Navbar>

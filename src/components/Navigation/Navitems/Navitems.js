@@ -11,17 +11,10 @@ import { Link } from 'react-router-dom';
 import firebase from '../../../config/Firebase';
 
 import { connect } from 'react-redux';
-import * as actionTypes from '../../../store/actions';
-
-console.log(firebase.auth().currentUser);
 
 class Navitems extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      isD: false,
-      rendering: false
-    };
   }
 
   logout() {
@@ -137,13 +130,4 @@ const mapStateToProps = state => {
   return { userData: state.userData };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    login: userData => dispatch({ type: actionTypes.LOGIN, userData: userData })
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Navitems);
+export default connect(mapStateToProps)(Navitems);

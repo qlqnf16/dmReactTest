@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import firebase from 'firebase';
+import firebase from '../../config/Firebase';
 import UserNav from '../../components/Navigation/UserNav/UserNav';
 import {
   Form,
@@ -35,6 +35,19 @@ class UserInfo extends Component {
         }
       }
     );
+  }
+
+  certification() {
+    firebase
+      .database()
+      .ref('users/' + firebase.auth().currentUser.uid)
+      .update({ isRegiser: true });
+  }
+  noCertification() {
+    firebase
+      .database()
+      .ref('users/' + firebase.auth().currentUser.uid)
+      .update({ isRegiser: false });
   }
 
   render() {
@@ -87,6 +100,12 @@ class UserInfo extends Component {
               </FormGroup>
               <div className="text-center">
                 <Button className="m-5">Submit</Button>
+                <div onClick={() => this.certification()} className="btn m-5">
+                  임시인증
+                </div>
+                <div onClick={() => this.noCertification()} className="btn m-5">
+                  인증해제
+                </div>
               </div>
             </Form>
           </Container>

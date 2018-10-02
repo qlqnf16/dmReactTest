@@ -38,6 +38,7 @@ class App extends Component {
       this.authListener();
     }
 
+    // iamport 사용하기 위한 inline script 작성
     let links = [
       'https://code.jquery.com/jquery-1.12.4.min.js',
       'https://cdn.iamport.kr/js/iamport.payment-1.1.5.js'
@@ -61,10 +62,14 @@ class App extends Component {
           .ref('/users/' + firebase.auth().currentUser.uid)
           .on('value', res => {
             this.setState({ madeRequest: true });
+
+            // redux
             this.props.login(res.val());
           });
       } else {
         this.setState({ madeRequest: true });
+
+        // redux
         this.props.login({});
       }
     });
@@ -72,6 +77,8 @@ class App extends Component {
 
   render() {
     console.log('app rendering');
+
+    // firebase에서 불러오기 전
     if (!this.state.madeRequest) {
       return (
         <div className="h1">
@@ -79,6 +86,8 @@ class App extends Component {
           <Moment className="h5">{new Date()}</Moment>
         </div>
       );
+
+      // firebase database에서 호출 후,
     } else {
       return (
         <Fragment>
