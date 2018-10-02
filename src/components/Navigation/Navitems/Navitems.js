@@ -10,7 +10,11 @@ import {
 import { Link } from 'react-router-dom';
 import firebase from '../../../config/Firebase';
 
+import { connect } from 'react-redux';
+import * as actionTypes from '../../../store/actions';
+
 console.log(firebase.auth().currentUser);
+
 class Navitems extends Component {
   constructor(props) {
     super(props);
@@ -25,20 +29,8 @@ class Navitems extends Component {
   }
 
   render() {
-    if (this.props.uid && !this.state.rendering) {
-      firebase
-        .database()
-        .ref('/users/' + this.props.uid)
-        .on('value', res => {
-          if (res.val()) {
-            this.setState({ isD: res.val().isD, rendering: true });
-            console.log(this.state);
-          }
-        });
-    }
     // 로그인 했는지 && 디자이너가 아닌지 확인 후 고객용 navbar
-    if (this.props.user && !this.state.isD) {
-      console.log(this.props.user);
+    if (this.props.userData.uid && !this.props.userData.isD) {
       return (
         <Fragment>
           <NavItem>
@@ -58,7 +50,7 @@ class Navitems extends Component {
           </NavItem>
           <UncontrolledDropdown nav inNavbar>
             <DropdownToggle nav caret>
-              안녕하세요 {firebase.auth().currentUser.displayName}님
+              안녕하세요 {this.props.userData.name}님
             </DropdownToggle>
             <DropdownMenu right>
               <DropdownItem>
@@ -74,7 +66,7 @@ class Navitems extends Component {
         </Fragment>
       );
       // 로그인 했는지 && 디자이너인지 확인 후 디자이너용 navbar
-    } else if (this.props.user && this.state.isD) {
+    } else if (this.props.userData.uid && this.props.userData.isD) {
       return (
         <Fragment>
           <NavItem>
@@ -141,4 +133,17 @@ class Navitems extends Component {
   }
 }
 
-export default Navitems;
+const mapStateToProps = state => {
+  return { userData: state.userData };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    login: userData => dispatch({ type: actionTypes.LOGIN, userData: userData })
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Navitems);

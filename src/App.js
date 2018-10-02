@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, withRouter } from 'react-router-dom';
 import Moment from 'react-moment';
 import {
   Landing,
@@ -25,20 +25,17 @@ import Toolbar from './components/Navigation/Toolbar/Toolbar';
 import Footer from './components/UI/Footer/Footer';
 import firebase from './config/Firebase';
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      user: null,
-      madeRequest: false,
-      isD: false,
-      firstRender: false
-    };
-  }
+import { connect } from 'react-redux';
+import * as actionTypes from './store/actions';
 
-  componentDidMount = async () => {
+class App extends Component {
+  state = {
+    madeRequest: false
+  };
+
+  componentDidMount = () => {
     if (!this.state.madeRequest) {
-      await this.authListener();
+      this.authListener();
     }
 
     let links = [
@@ -63,36 +60,23 @@ class App extends Component {
           .database()
           .ref('/users/' + firebase.auth().currentUser.uid)
           .on('value', res => {
-            this.setState({
-              user,
-              madeRequest: true,
-              isD: res.val().isD,
-              isRegiser: res.val().isRegiser,
-              firstRender: true
-            });
+            this.setState({ madeRequest: true });
+            this.props.login(res.val());
           });
       } else {
-        this.setState({
-          user: null,
-          madeRequest: true,
-          isD: false,
-          firstRender: true
-        });
+        this.setState({ madeRequest: true });
+        this.props.login({});
       }
     });
   }
 
   render() {
     console.log('app rendering');
-    console.log(new Date('2018-10-23T00:00:00').getTime());
-    if (!this.state.firstRender) {
+    if (!this.state.madeRequest) {
       return (
         <div className="h1">
           <p>Wait...</p>
           <Moment className="h5">{new Date()}</Moment>
-          <Moment className="h5" from="2018-10-23">
-            {new Date()}
-          </Moment>
         </div>
       );
     } else {
@@ -112,8 +96,8 @@ class App extends Component {
           <Route
             path="/addDesigner"
             component={
-              this.state.user
-                ? this.state.isRegiser
+              this.props.userData.uid
+                ? this.props.userData.isRegiser
                   ? AddDesigner
                   : UserInfo
                 : WrongAccess
@@ -122,8 +106,8 @@ class App extends Component {
           <Route
             path="/coupon"
             component={
-              this.state.user
-                ? this.state.isRegiser
+              this.props.userData.uid
+                ? this.props.userData.isRegiser
                   ? Coupon
                   : UserInfo
                 : WrongAccess
@@ -132,8 +116,8 @@ class App extends Component {
           <Route
             path="/myTicket"
             component={
-              this.state.user
-                ? this.state.isRegiser
+              this.props.userData.uid
+                ? this.props.userData.isRegiser
                   ? MyTicket
                   : UserInfo
                 : WrongAccess
@@ -142,8 +126,8 @@ class App extends Component {
           <Route
             path="/reservations"
             component={
-              this.state.user
-                ? this.state.isRegiser
+              this.props.userData.uid
+                ? this.props.userData.isRegiser
                   ? Reservations
                   : UserInfo
                 : WrongAccess
@@ -151,37 +135,39 @@ class App extends Component {
           />
           <Route
             path="/userInfo"
-            component={this.state.user ? UserInfo : WrongAccess}
+            component={this.props.userData.uid ? UserInfo : WrongAccess}
           />
           <Route
             path="/infoDetail"
-            component={this.state.user ? InfoDetail : WrongAccess}
+            component={this.props.userData.uid ? InfoDetail : WrongAccess}
           />
 
           {/* 디자이너 아닌 user가 url로 접근시 WrongAccess 렌더링  */}
           <Route
             path="/designer/coupon"
-            component={this.state.isD ? DesignerCoupon : WrongAccess}
+            component={this.props.userData.isD ? DesignerCoupon : WrongAccess}
           />
           <Route
             path="/designer/info"
-            component={this.state.isD ? DesignerInfo : WrongAccess}
+            component={this.props.userData.isD ? DesignerInfo : WrongAccess}
           />
           <Route
             path="/designer/reservations"
-            component={this.state.isD ? DesignerReservations : WrongAccess}
+            component={
+              this.props.userData.isD ? DesignerReservations : WrongAccess
+            }
           />
           <Route
             path="/designer/ticket"
-            component={this.state.isD ? DesignerTicket : WrongAccess}
+            component={this.props.userData.isD ? DesignerTicket : WrongAccess}
           />
           <Route
             path="/designer/schedule"
-            component={this.state.isD ? Schedule : WrongAccess}
+            component={this.props.userData.isD ? Schedule : WrongAccess}
           />
           <Route
             path="/designer/whyDreamary"
-            component={this.state.isD ? WhyDreamary : WrongAccess}
+            component={this.props.userData.isD ? WhyDreamary : WrongAccess}
           />
           <Footer />
         </Fragment>
@@ -190,4 +176,19 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  return { userData: state.userData };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    login: userData => dispatch({ type: actionTypes.LOGIN, userData: userData })
+  };
+};
+
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(App)
+);

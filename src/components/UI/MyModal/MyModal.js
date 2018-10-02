@@ -7,6 +7,9 @@ import firebase from '../../../config/Firebase';
 import axios from '../../../config/Axios';
 import KaKaoKey from '../../../config/Kakao';
 
+import { connect } from 'react-redux';
+import * as actionTypes from '../../../store/actions';
+
 class MyModal extends Component {
   state = {
     title: '',
@@ -112,6 +115,7 @@ class MyModal extends Component {
           .database()
           .ref('users/' + currentUser.uid)
           .set(userData);
+        // this.props.login(userData);
       })
       .catch(function(error) {
         console.log(error);
@@ -194,4 +198,17 @@ class MyModal extends Component {
   }
 }
 
-export default MyModal;
+const mapStateToProps = state => {
+  return { sangwoo: state.sangwoo };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    login: userData => dispatch({ type: actionTypes.LOGIN, userData: userData })
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(MyModal);
