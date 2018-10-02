@@ -41,13 +41,13 @@ class UserInfo extends Component {
     firebase
       .database()
       .ref('users/' + firebase.auth().currentUser.uid)
-      .update({ isRegiser: true });
+      .update({ isRegister: true });
   }
   noCertification() {
     firebase
       .database()
       .ref('users/' + firebase.auth().currentUser.uid)
-      .update({ isRegiser: false });
+      .update({ isRegister: false });
   }
 
   render() {

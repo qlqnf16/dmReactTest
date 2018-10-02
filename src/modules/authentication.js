@@ -13,7 +13,7 @@ const initialState = {
   userData: {
     email: null,
     isD: false,
-    isRegiser: false,
+    isRegister: false,
     name: null,
     uid: null
   }

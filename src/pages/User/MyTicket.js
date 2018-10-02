@@ -20,6 +20,22 @@ class MyTicket extends Component {
     ]
   };
 
+  componentDidMount = () => {
+    // iamport 사용하기 위한 inline script 작성
+    let links = [
+      'https://code.jquery.com/jquery-1.12.4.min.js',
+      'https://cdn.iamport.kr/js/iamport.payment-1.1.5.js'
+    ];
+
+    for (let link of links) {
+      const script = document.createElement('script');
+
+      script.src = link;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  };
+
   purchaseHandler(kind) {
     console.log('hello', kind);
     const { IMP } = window;

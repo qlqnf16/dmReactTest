@@ -14,6 +14,7 @@ class Toolbar extends Component {
   };
 
   componentDidMount() {
+    console.log(this.props);
     firebase.auth().onAuthStateChanged(() => {
       this.offHandler();
       this.setState({

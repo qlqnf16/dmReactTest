@@ -38,19 +38,19 @@ class App extends Component {
       this.authListener();
 
       // iamport 사용하기 위한 inline script 작성
-      let links = [
-        'https://code.jquery.com/jquery-1.12.4.min.js',
-        'https://cdn.iamport.kr/js/iamport.payment-1.1.5.js'
-      ];
+      // let links = [
+      //   'https://code.jquery.com/jquery-1.12.4.min.js',
+      //   'https://cdn.iamport.kr/js/iamport.payment-1.1.5.js'
+      // ];
 
-      for (let link of links) {
-        const script = document.createElement('script');
+      // for (let link of links) {
+      //   const script = document.createElement('script');
 
-        script.src = link;
-        script.async = true;
+      //   script.src = link;
+      //   script.async = true;
 
-        document.body.appendChild(script);
-      }
+      //   document.body.appendChild(script);
+      // }
     }
   };
 
@@ -64,10 +64,12 @@ class App extends Component {
           .on('value', res => {
             this.setState({ madeRequest: true });
 
-            // redux
+            // redux;
             this.props.login(res.val());
           });
       } else {
+        // logout 하면 landing page로 이동
+        this.props.history.push('/');
         this.setState({ madeRequest: true });
 
         // redux
@@ -107,7 +109,7 @@ class App extends Component {
             path="/addDesigner"
             component={
               this.props.userData.uid
-                ? this.props.userData.isRegiser
+                ? this.props.userData.isRegister
                   ? AddDesigner
                   : UserInfo
                 : WrongAccess
@@ -117,7 +119,7 @@ class App extends Component {
             path="/coupon"
             component={
               this.props.userData.uid
-                ? this.props.userData.isRegiser
+                ? this.props.userData.isRegister
                   ? Coupon
                   : UserInfo
                 : WrongAccess
@@ -127,7 +129,7 @@ class App extends Component {
             path="/myTicket"
             component={
               this.props.userData.uid
-                ? this.props.userData.isRegiser
+                ? this.props.userData.isRegister
                   ? MyTicket
                   : UserInfo
                 : WrongAccess
@@ -137,7 +139,7 @@ class App extends Component {
             path="/reservations"
             component={
               this.props.userData.uid
-                ? this.props.userData.isRegiser
+                ? this.props.userData.isRegister
                   ? Reservations
                   : UserInfo
                 : WrongAccess
