@@ -13,10 +13,6 @@ import firebase from '../../../config/Firebase';
 import { connect } from 'react-redux';
 
 class Navitems extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   logout() {
     firebase.auth().signOut();
   }

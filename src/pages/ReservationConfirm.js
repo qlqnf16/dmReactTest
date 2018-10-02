@@ -10,20 +10,24 @@ class ReservationConfirm extends Component {
     date: '',
     time: '',
     location: '',
-    style: ''
+    style: '',
+    firstRendering: false
   };
 
-  componentWillMount = () => {
+  componentDidlMount = () => {
     // url로 넘겨받은 {this.props.match.params.reservation_id} 를 이용해서 db에서 정보 추출해서 넣기
-    const reservation = {
-      user: '오상우',
-      designer: '안운장',
-      date: '2018/12/32',
-      time: '25:00',
-      location: '안암/스스',
-      style: '컷트'
-    };
-    this.setState(reservation);
+    if (!this.state.firstRendering) {
+      const reservation = {
+        user: '오상우',
+        designer: '안운장',
+        date: '2018/12/32',
+        time: '25:00',
+        location: '안암/스스',
+        style: '컷트',
+        firstRendering: true
+      };
+      this.setState(reservation);
+    }
   };
 
   render() {

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import firebase from '../config/Firebase';
 
 class Landing extends Component {
+  // 디자이너 등록 임시 토글
   certification() {
     firebase
       .database()
