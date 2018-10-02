@@ -7,10 +7,10 @@ import registerServiceWorker from './registerServiceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import reducer from './store/reducer';
-
-const store = createStore(reducer);
+import { createStore, compose, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import reducers from './modules';
+const store = createStore(reducers, {}, compose(applyMiddleware(thunk)));
 
 const app = (
   <Provider store={store}>

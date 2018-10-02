@@ -26,8 +26,8 @@ import Footer from './components/UI/Footer/Footer';
 import firebase from './config/Firebase';
 
 import { connect } from 'react-redux';
-import * as actionTypes from './store/actions';
-
+import * as actions from './modules';
+console.log(actions);
 class App extends Component {
   state = {
     madeRequest: false
@@ -36,26 +36,27 @@ class App extends Component {
   componentDidMount = () => {
     if (!this.state.madeRequest) {
       this.authListener();
-    }
 
-    // iamport 사용하기 위한 inline script 작성
-    let links = [
-      'https://code.jquery.com/jquery-1.12.4.min.js',
-      'https://cdn.iamport.kr/js/iamport.payment-1.1.5.js'
-    ];
+      // iamport 사용하기 위한 inline script 작성
+      let links = [
+        'https://code.jquery.com/jquery-1.12.4.min.js',
+        'https://cdn.iamport.kr/js/iamport.payment-1.1.5.js'
+      ];
 
-    for (let link of links) {
-      const script = document.createElement('script');
+      for (let link of links) {
+        const script = document.createElement('script');
 
-      script.src = link;
-      script.async = true;
+        script.src = link;
+        script.async = true;
 
-      document.body.appendChild(script);
+        document.body.appendChild(script);
+      }
     }
   };
 
   authListener() {
     firebase.auth().onAuthStateChanged(user => {
+      console.log(this.props);
       if (user) {
         firebase
           .database()
@@ -185,19 +186,13 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return { userData: state.userData };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    login: userData => dispatch({ type: actionTypes.LOGIN, userData: userData })
-  };
+const mapStateToProps = ({ authentication: { userData } }) => {
+  return { userData };
 };
 
 export default withRouter(
   connect(
     mapStateToProps,
-    mapDispatchToProps
+    actions
   )(App)
 );

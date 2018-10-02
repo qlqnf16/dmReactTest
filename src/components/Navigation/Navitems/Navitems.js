@@ -122,8 +122,8 @@ class Navitems extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return { userData: state.userData };
+const mapStateToProps = ({ authentication: { userData } }) => {
+  return { userData };
 };
 
 export default connect(mapStateToProps)(Navitems);
