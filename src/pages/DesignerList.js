@@ -44,8 +44,18 @@ class DesignerList extends Component {
         <div className="m-5 text-center">
           <h1>1단계 : 막내 찾기(이미지)</h1>
         </div>
-        <Filter />
-        <CardDeck className="m-5">{recruits}</CardDeck>
+        <div className="row">
+          <Filter />
+          <div className="col-md-10">
+            <CardDeck className="m-5">
+              {recruits}
+              {recruits}
+              {recruits}
+              {recruits}
+              {recruits}
+            </CardDeck>
+          </div>
+        </div>
       </div>
     );
   }
