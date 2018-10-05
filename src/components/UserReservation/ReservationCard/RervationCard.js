@@ -9,7 +9,7 @@ const ReservationCard = props => (
       <p className="small">{props.date}</p>
       <p className="small">{props.location}</p>
       <p className="small">{props.type}</p>
-      <button>예약 취소</button>
+      <button onClick={() => props.cancelHandler(props.id)}>예약 취소</button>
       <button>더보기</button>
     </div>
   </div>

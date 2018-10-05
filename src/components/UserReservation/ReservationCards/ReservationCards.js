@@ -10,6 +10,7 @@ const Reservations = props => (
       {props.futureReservations.map((reservation, key) => (
         <div className="row" key={key}>
           <ReservationCard
+            id={reservation._id}
             designerName={reservation._designer.name}
             title={reservation.title}
             date={reservation.time.until}
@@ -17,6 +18,7 @@ const Reservations = props => (
               reservation._designer.locations[0].address
             }`}
             type={'컷/염색'}
+            cancelHandler={props.cancelHandler}
             state={'D-2'}
           />
           <ReservationDetail

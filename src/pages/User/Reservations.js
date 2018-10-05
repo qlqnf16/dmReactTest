@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import UserNav from '../../components/Navigation/UserNav/UserNav';
 import axios from 'axios';
+import moment from 'moment';
+import UserNav from '../../components/Navigation/UserNav/UserNav';
 import ReservationCards from '../../components/UserReservation/ReservationCards/ReservationCards';
 
 class Reservations extends Component {
@@ -13,9 +14,8 @@ class Reservations extends Component {
     if (!this.state.madeRequest) {
       // 일단은 더미유저 아이디를 가져와서 사용. 이후 현재 로그인 유저의 아이디로 요청을 보내면 됨.
       const users = (await axios.get(`http://52.79.227.227:3030/users`)).data;
-
       const { data } = await axios.get(
-        `http://52.79.227.227:3030/reservations/${users[0]._id}`
+        `http://52.79.227.227:3030/users/${users[0]._id}/reservations`
       );
       this.setState({
         reservations: data,
@@ -24,19 +24,35 @@ class Reservations extends Component {
     }
   };
 
+  cancelReservationHandler = async reservationId => {
+    console.log(reservationId);
+    const users = (await axios.get(`http://52.79.227.227:3030/users`)).data;
+    await axios.patch(
+      `http://52.79.227.227:3030/users/${
+        users[0]._id
+      }/reservations/${reservationId}`
+    );
+    this.setState({
+      madeRequest: false
+    });
+  };
+
   render() {
     console.log(this.state);
     let futureReservations = [];
     let previousReservations = [];
     if (this.state.reservations) {
       futureReservations = this.state.reservations.filter(
-        reservation => reservation.time.until > 600 && !reservation.isCanceled
+        reservation =>
+          reservation.date > new Date().getHours(6, 0, 0, 0) &&
+          !reservation.isCanceled
       ); // 실제로는 현재 타임스탬프 사용
       previousReservations = this.state.reservations.filter(
-        reservation => reservation.time.until <= 600 || reservation.isCanceled
+        reservation =>
+          reservation.date <= new Date().getHours(6, 0, 0, 0) ||
+          reservation.isCanceled
       );
     }
-    console.log(futureReservations);
 
     return (
       <div className="container">
@@ -45,6 +61,7 @@ class Reservations extends Component {
           <ReservationCards
             futureReservations={futureReservations}
             previousReservations={previousReservations}
+            cancelHandler={this.cancelReservationHandler}
           />
         </div>
       </div>
