@@ -13,14 +13,14 @@ class DetailCard extends Component {
   render() {
     console.log(this.props.cardData);
     let addData = null;
-    let must = '';
-    let no = '';
+    let must = [];
+    let no = [];
     if (this.props.cardData) {
       Object.entries(this.props.cardData.must).map(entry => {
-        if (entry[1] === true) must += entry[0];
+        if (entry[1] === true) must.push(entry[0]);
       });
       Object.entries(this.props.cardData.no).map(entry => {
-        if (entry[1] === true) no += entry[0];
+        if (entry[1] === true) no.push(entry[0]);
       });
     }
     if (this.state.click) {
@@ -29,6 +29,9 @@ class DetailCard extends Component {
           must={must}
           no={no}
           ableTimes={this.props.cardData.ableTimes}
+          price={this.props.cardData.price}
+          time={this.props.cardData.requireTime}
+          id={this.props.cardData._id}
         />
       );
     }
