@@ -63,18 +63,13 @@ class DesginerDetail extends Component {
             {loading}
             <DetailCards cards={this.state.recruit._cards} />
           </div>
-          {firebase.auth().currentUser ? (
-            <Button className="btn-light float-right">
-              <Link to={`/reservationConfirm/${'예약번호'}`}>예약하기</Link>
-            </Button>
-          ) : (
-            <Button
-              onClick={this.loginToggleHandler}
-              className="btn-light float-right"
-            >
-              예약하기
-            </Button>
-          )}
+
+          <Button
+            onClick={this.loginToggleHandler}
+            className="btn-light float-right"
+          >
+            예약하기
+          </Button>
         </div>
         <MyModal
           showLogin={this.state.showLogin}
