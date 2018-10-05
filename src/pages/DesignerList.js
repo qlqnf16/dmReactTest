@@ -7,7 +7,8 @@ import axios from 'axios';
 class DesignerList extends Component {
   state = {
     recruits: [],
-    madeRequest: false
+    madeRequest: false,
+    filter: null
   };
 
   async componentDidMount() {
@@ -18,6 +19,10 @@ class DesignerList extends Component {
         madeRequest: true
       });
     }
+  }
+
+  async getFilteredCards() {
+    const { data } = await axios.get('http://52.79.227.227:3030/');
   }
 
   render() {
