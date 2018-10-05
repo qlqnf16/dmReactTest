@@ -32,8 +32,12 @@ class Reservations extends Component {
         users[0]._id
       }/reservations/${reservationId}`
     );
+    const { data } = await axios.get(
+      `http://52.79.227.227:3030/users/${users[0]._id}/reservations`
+    );
     this.setState({
-      madeRequest: false
+      reservations: data,
+      madeRequest: true
     });
   };
 
