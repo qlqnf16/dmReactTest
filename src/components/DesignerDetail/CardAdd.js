@@ -50,10 +50,10 @@ class CardAdd extends Component {
     this.props.ableTimes.map(ableTime => {
       let time = ableTime.since;
       while (time <= ableTime.until - 90) {
-        let timeFormat = `${parseInt(time / 60)} : ${
-          time % 60 === 0 ? '00' : '30'
-        }`;
-        Times.push(timeFormat);
+        // let timeFormat = `${parseInt(time / 60)} : ${
+        //   time % 60 === 0 ? '00' : '30'
+        // }`;
+        Times.push(time);
         time += 30;
       }
     });
@@ -61,9 +61,12 @@ class CardAdd extends Component {
     timeButtons = Times.map(time => {
       let classN = 'btn btn-sm btn-light col-md-6';
       if (time === this.state.time) classN += ' btn-outline-primary';
+      let timeFormat = `${parseInt(time / 60)} : ${
+        time % 60 === 0 ? '00' : '30'
+      }`;
       return (
         <div onClick={() => this.selectTime(time)} className={classN}>
-          <p>{time}</p>
+          <p>{timeFormat}</p>
         </div>
       );
     });
@@ -136,7 +139,11 @@ class CardAdd extends Component {
         <div className="btn btn-danger">
           <Link
             className="text-white"
-            to={`/reservationConfirm/${this.props.id}`}
+            // to={`/reservation/${this.props.id}`}
+            to={{
+              pathname: `/reservation/${this.props.id}`,
+              state: { price, time, starTime: this.state.time }
+            }}
           >
             예약하기
           </Link>
