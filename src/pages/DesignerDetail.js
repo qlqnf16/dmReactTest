@@ -5,7 +5,7 @@ import firebase from 'firebase';
 import axios from 'axios';
 
 import DetailContent from '../components/DesignerDetail/DetailContent';
-import DetailFilter from '../components/DesignerDetail/DetailFilter';
+import DetailCards from '../components/DesignerDetail/DetailCards';
 import MyModal from '../components/UI/MyModal/MyModal';
 
 class DesginerDetail extends Component {
@@ -43,25 +43,26 @@ class DesginerDetail extends Component {
   };
 
   render() {
-    console.log(this.state);
+    console.log(this.state.recruit.cards);
     let loading = null;
     if (Object.keys(this.state.recruit).length) {
       loading = (
-        <div className="row">
-          <DetailContent
-            introduce={this.state.recruit.introduction}
-            data={this.state.recruit.requirement}
-            reviews={this.state.recruit._reviews}
-          />
-          <DetailFilter time={this.state.recruit.ableDates} />
-        </div>
+        <DetailContent
+          introduce={this.state.recruit.introduction}
+          data={this.state.recruit.requirement}
+          reviews={this.state.recruit._reviews}
+        />
       );
+      console.log(typeof this.state.recruit._cards);
     }
     return (
       <div>
         <div className="container">
           <h1 className="text-center m-5 ">2단계 : 예약하기(이미지로)</h1>
-          {loading}
+          <div className="row align-items-start">
+            {loading}
+            <DetailCards cards={this.state.recruit._cards} />
+          </div>
           {firebase.auth().currentUser ? (
             <Button className="btn-light float-right">
               <Link to={`/reservationConfirm/${'예약번호'}`}>예약하기</Link>
