@@ -21,7 +21,9 @@ const ReservationCard = props => {
   let button = null;
   let type = null;
   if (props.reservation.isCanceled) {
-    button = <button>취소 사유 보기</button>;
+    button = (
+      <button onClick={() => props.cancelModalToggle()}>취소 사유 보기</button>
+    );
     type = '취소';
   } else if (props.type === 'soon') {
     button = (
@@ -31,7 +33,9 @@ const ReservationCard = props => {
     );
     type = 'D-2';
   } else if (props.type === 'finish') {
-    button = <button>리뷰 등록</button>;
+    button = (
+      <button onClick={() => props.reviewModalToggle()}>리뷰 등록</button>
+    );
     type = '완료';
   }
 

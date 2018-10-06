@@ -66,7 +66,7 @@ class ReservationConfirm extends Component {
   }
 
   render() {
-    const startTime = this.props.location.state.starTime;
+    const startTime = this.props.location.state.startTime;
     const time = this.props.location.state.time;
     let startTimeFormat = `${parseInt(startTime / 60, 10)} : ${
       startTime % 60 === 0 ? '00' : '30'
@@ -83,7 +83,7 @@ class ReservationConfirm extends Component {
           <h2>예약/결제</h2>
           {/* <h2>예약 번호 : {this.props.match.params.card_id}</h2> */}
         </div>
-        <div className>
+        <div>
           <h4>예약자 정보</h4>
           <h5 className="m-4">이름 : {this.props.userData.name} </h5>
           <h5 className="m-4">이메일 : {this.props.userData.email} </h5>

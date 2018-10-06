@@ -1,14 +1,34 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import moment from 'moment';
 import UserNav from '../../components/Navigation/UserNav/UserNav';
 import ReservationCards from '../../components/UserReservation/ReservationCards/ReservationCards';
+import CancelReasonModal from '../../components/UI/ReservationModals/CancelReasonModal';
+import ReviewModal from '../../components/UI/ReservationModals/ReviewModal';
 
 class Reservations extends Component {
-  state = {
-    reservations: null,
-    madeRequest: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      reservations: null,
+      madeRequest: false,
+      cancelModal: false,
+      reviewModal: false
+    };
+
+    this.cancelModalToggle = this.cancelModalToggle.bind(this);
+    this.reviewModalToggle = this.reviewModalToggle.bind(this);
+  }
+
+  reviewModalToggle() {
+    this.setState({
+      reviewModal: !this.state.reviewModal
+    });
+  }
+  cancelModalToggle() {
+    this.setState({
+      cancelModal: !this.state.cancelModal
+    });
+  }
 
   componentDidMount = async () => {
     if (!this.state.madeRequest) {
@@ -42,19 +62,19 @@ class Reservations extends Component {
   };
 
   render() {
+    console.log(this.state.reservations);
     console.log(new Date().getTime());
+    console.log(new Date().getHours(6, 0, 0, 0));
     let futureReservations = [];
     let previousReservations = [];
     if (this.state.reservations) {
       futureReservations = this.state.reservations.filter(
         reservation =>
-          reservation.date > new Date().getHours(6, 0, 0, 0) &&
-          !reservation.isCanceled
-      ); // 실제로는 현재 타임스탬프 사용
+          reservation.date > new Date().getTime() && !reservation.isCanceled
+      );
       previousReservations = this.state.reservations.filter(
         reservation =>
-          reservation.date <= new Date().getHours(6, 0, 0, 0) ||
-          reservation.isCanceled
+          reservation.date <= new Date().getTime() || reservation.isCanceled
       );
     }
 
@@ -66,8 +86,18 @@ class Reservations extends Component {
             futureReservations={futureReservations}
             previousReservations={previousReservations}
             cancelHandler={this.cancelReservationHandler}
+            cancelModalToggle={this.cancelModalToggle}
+            reviewModalToggle={this.reviewModalToggle}
           />
         </div>
+        <CancelReasonModal
+          isOpen={this.state.cancelModal}
+          toggle={this.cancelModalToggle}
+        />
+        <ReviewModal
+          isOpen={this.state.reviewModal}
+          toggle={this.reviewModalToggle}
+        />
       </div>
     );
   }

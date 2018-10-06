@@ -7,7 +7,7 @@ const Reservations = props => (
     <h1 className="my-5">예약 관리</h1>
     <div className="m-4">
       <h4>다가오는 예약</h4>
-      {props.previousReservations.map((reservation, key) => (
+      {props.futureReservations.map((reservation, key) => (
         <div className="row" key={key}>
           <ReservationCard
             reservation={reservation}
@@ -31,6 +31,8 @@ const Reservations = props => (
             reservation={reservation}
             type={'finish'}
             key={key}
+            cancelModalToggle={props.cancelModalToggle}
+            reviewModalToggle={props.reviewModalToggle}
           />
         ))}
       </div>

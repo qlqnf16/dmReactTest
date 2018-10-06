@@ -60,8 +60,10 @@ class DetailCard extends Component {
       });
     }
     if (this.state.click) {
+      console.log(this.props.cardData);
       addData = (
         <CardAdd
+          cardData={this.props.cardData}
           must={must}
           no={no}
           ableTimes={this.props.cardData.ableTimes}

@@ -112,7 +112,7 @@ class CardAdd extends Component {
     if (this.state.perm) time += this.props.time.perm;
     if (this.state.dye) time += this.props.time.dye;
 
-    console.log(price);
+    console.log(this.props);
     return (
       <div>
         <div className="row">
@@ -139,7 +139,7 @@ class CardAdd extends Component {
             // to={`/reservation/${this.props.id}`}
             to={{
               pathname: `/reservation/${this.props.id}`,
-              state: { price, time, starTime: this.state.time }
+              state: { price, time, startTime: this.state.time }
             }}
           >
             예약하기
