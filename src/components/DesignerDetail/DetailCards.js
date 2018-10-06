@@ -12,6 +12,8 @@ class DetailCards extends Component {
     let rightCards = [];
     if (this.props.cards) {
       this.props.cards.forEach((card, key) => {
+        //TODO: card.reservable false인 것은 안뜨도록
+        console.log(card.reservable);
         key % 2
           ? rightCards.push(<DetailCard key={key} cardData={card} />)
           : leftCards.push(<DetailCard key={key} cardData={card} />);

@@ -37,7 +37,7 @@ const ReservationCard = props => {
       <div className="col-4">
         <div className="border p-3 m-1">
           <h5 className=" text-right">{type}</h5>
-          <h5 className="small">{props.reservation._designer}</h5>
+          <h5 className="small">{props.reservation._designer.name}</h5>
           <h4>타이틀이 디비에 없네</h4>
           <p className="small">
             <Moment unix format="YYYY/MM/DD">
