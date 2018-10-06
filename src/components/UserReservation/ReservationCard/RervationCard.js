@@ -25,7 +25,9 @@ const ReservationCard = props => {
     type = '취소';
   } else if (props.type === 'soon') {
     button = (
-      <button onClick={() => props.cancelHandler(props.id)}>예약 취소</button>
+      <button onClick={() => props.cancelHandler(props.reservation._id)}>
+        예약 취소
+      </button>
     );
     type = 'D-2';
   } else if (props.type === 'finish') {
