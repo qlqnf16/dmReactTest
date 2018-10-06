@@ -9,7 +9,11 @@ const Reservations = props => (
       <h4>다가오는 예약</h4>
       {props.previousReservations.map((reservation, key) => (
         <div className="row" key={key}>
-          <ReservationCard reservation={reservation} type={'soon'} />
+          <ReservationCard
+            reservation={reservation}
+            type={'soon'}
+            cancelHandler={props.cancelHandler}
+          />
           <ReservationDetail
             requirement={'요구사항을 막 적으면 되는것 같다'}
             requireTime={'3박 4일'}

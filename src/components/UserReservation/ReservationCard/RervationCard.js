@@ -24,7 +24,9 @@ const ReservationCard = props => {
     button = <button>취소 사유 보기</button>;
     type = '취소';
   } else if (props.type === 'soon') {
-    button = <button>예약 취소</button>;
+    button = (
+      <button onClick={() => props.cancelHandler(props.id)}>예약 취소</button>
+    );
     type = 'D-2';
   } else if (props.type === 'finish') {
     button = <button>리뷰 등록</button>;
