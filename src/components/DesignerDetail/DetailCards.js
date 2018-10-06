@@ -8,18 +8,20 @@ class DetailCards extends Component {
   };
 
   render() {
-    let Cards = null;
+    let leftCards = [];
+    let rightCards = [];
     if (this.props.cards) {
-      Cards = this.props.cards.map(card => <DetailCard cardData={card} />);
+      this.props.cards.forEach((card, key) => {
+        key % 2
+          ? rightCards.push(<DetailCard key={key} cardData={card} />)
+          : leftCards.push(<DetailCard key={key} cardData={card} />);
+      });
     }
     return (
       <div className="col-3 align-items-start">
         <div className="border row">
-          <div className="col-6 m-0 p-0">{Cards}</div>
-          <div className="col-6 m-0 p-0">
-            {/* <DetailCard />
-            <DetailCard /> */}
-          </div>
+          <div className="col-6 m-0 p-0">{leftCards}</div>
+          <div className="col-6 m-0 p-0">{rightCards}</div>
         </div>
       </div>
     );

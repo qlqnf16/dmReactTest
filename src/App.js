@@ -10,7 +10,9 @@ import {
   DesignerDetail,
   ReservationConfirm,
   Reservation,
+  Message,
   Coupon,
+  LikeDesigner,
   MyTicket,
   Reservations,
   UserInfo,
@@ -107,6 +109,16 @@ class App extends Component {
 
           {/* 비로그인 상태에서 url로 접근시 WrongAccess 렌더링 */}
           <Route
+            path="/message"
+            component={
+              this.props.userData.uid
+                ? this.props.userData.isRegister
+                  ? Message
+                  : UserInfo
+                : WrongAccess
+            }
+          />
+          <Route
             path="/reservation/:card_id"
             component={
               this.props.userData.uid
@@ -132,6 +144,16 @@ class App extends Component {
               this.props.userData.uid
                 ? this.props.userData.isRegister
                   ? Coupon
+                  : UserInfo
+                : WrongAccess
+            }
+          />
+          <Route
+            path="/likedesigner"
+            component={
+              this.props.userData.uid
+                ? this.props.userData.isRegister
+                  ? LikeDesigner
                   : UserInfo
                 : WrongAccess
             }

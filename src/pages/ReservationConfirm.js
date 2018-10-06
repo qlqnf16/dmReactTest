@@ -1,35 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Button } from 'reactstrap';
 import AttentionCard from '../components/ReservationConfirm/AttentionCard';
 
 class ReservationConfirm extends Component {
-  state = {
-    user: '',
-    designer: '',
-    date: '',
-    time: '',
-    location: '',
-    style: '',
-    firstRendering: false
-  };
-
-  componentDidlMount = () => {
-    // url로 넘겨받은 {this.props.match.params.reservation_id} 를 이용해서 db에서 정보 추출해서 넣기
-    if (!this.state.firstRendering) {
-      const reservation = {
-        user: '오상우',
-        designer: '안운장',
-        date: '2018/12/32',
-        time: '25:00',
-        location: '안암/스스',
-        style: '컷트',
-        firstRendering: true
-      };
-      this.setState(reservation);
-    }
-  };
-
   render() {
     return (
       <div className="container">
@@ -39,22 +12,21 @@ class ReservationConfirm extends Component {
         <div className="m-5 text-center">
           <h1>예약이 완료되었습니다.</h1>
           <h2>예약 번호 : {this.props.match.params.reservation_id}</h2>
+          <h4>
+            {this.props.location.state.userName}
+            님께 최선을 다해서 노력하는 {
+              this.props.location.state.userName
+            }{' '}
+            막내! 예쁘게 봐주세요~ ^_^
+          </h4>
         </div>
-        <div className="row">
-          <div className="col-6">
-            <h4 className="m-4">예약자 : {this.state.user} </h4>
-            <h4 className="m-4">막내 : {this.state.designer}</h4>
-            <h4 className="m-4">
-              날짜/시간 : {this.state.date + ' ' + this.state.time}
-            </h4>
-            <h4 className="m-4">장소 : {this.state.location}</h4>
-            <h4 className="m-4">스타일 : {this.state.style}</h4>
-          </div>
-          <AttentionCard />
-        </div>
+        <AttentionCard />
         <div className="d-block text-center">
           <Link to="/reservations">
-            <Button color="primary">예약확인 / 취소</Button>
+            <div className="btn btn-outline-primary mx-5">예약확인 / 취소</div>
+          </Link>
+          <Link to="/message">
+            <div className="btn btn-outline-primary mx-5">메세지</div>
           </Link>
         </div>
       </div>

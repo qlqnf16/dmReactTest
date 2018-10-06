@@ -58,7 +58,7 @@ class ReservationConfirm extends Component {
           alert(msg);
         } else {
           var errMsg = '결제에 실패하였습니다.';
-          errMsg += '에러내용 : ' + rsp.error_msg;
+          errMsg += ' 에러내용 : ' + rsp.error_msg;
           alert(errMsg);
         }
       }
@@ -68,10 +68,10 @@ class ReservationConfirm extends Component {
   render() {
     const startTime = this.props.location.state.starTime;
     const time = this.props.location.state.time;
-    let startTimeFormat = `${parseInt(startTime / 60)} : ${
+    let startTimeFormat = `${parseInt(startTime / 60, 10)} : ${
       startTime % 60 === 0 ? '00' : '30'
     }`;
-    let finishTimeFormat = `${parseInt((startTime + time) / 60)} : ${
+    let finishTimeFormat = `${parseInt((startTime + time) / 60, 10)} : ${
       (startTime + time) % 60 === 0 ? '00' : '30'
     }`;
     return (
@@ -115,7 +115,15 @@ class ReservationConfirm extends Component {
           >
             결제하기
           </div>
-          <Link to={`/reservationConfirm/${'reservation_id'}`}>
+          <Link
+            to={{
+              pathname: `/reservationConfirm/${'reservation_id'}`,
+              state: {
+                userName: this.props.userData.name,
+                designerName: '디자이너 이름'
+              }
+            }}
+          >
             <Button color="primary">결제 성공한 척 하기</Button>
           </Link>
         </div>

@@ -13,7 +13,11 @@ const ReservationCard = props => (
       </h5>
       <h5>이름 : {props.name}</h5>
       <h5 className="small">
-        날짜 : <Moment format="YYYY/MM/DD hh:mm">{props.date}</Moment>
+        날짜 :{' '}
+        <Moment unix format="YYYY/MM/DD hh:mm">
+          {props.date}
+        </Moment>
+        {/* {props.time.since} */}
       </h5>
       <h5 className="small">장소 : {props.location}</h5>
       <h5 className="small">종류 : {props.style}</h5>

@@ -34,16 +34,22 @@ const Filter = () => (
         <label>싫어요 상관없어요 받을래요</label>
       </div>
       <div className="form-group">
-        <input type="range" class="custom-range" min="0" max="2" id="cut" />
-        <label for="cut">컷트</label>
+        <input type="range" className="custom-range" min="0" max="2" id="cut" />
+        <label>컷트</label>
       </div>
       <div className="form-group">
-        <input type="range" class="custom-range" min="0" max="2" id="dye" />
-        <label for="dye">염색</label>
+        <input type="range" className="custom-range" min="0" max="2" id="dye" />
+        <label>염색</label>
       </div>
       <div className="form-group">
-        <input type="range" class="custom-range" min="0" max="2" id="perm" />
-        <label for="perm">펌</label>
+        <input
+          type="range"
+          className="custom-range"
+          min="0"
+          max="2"
+          id="perm"
+        />
+        <label>펌</label>
       </div>
     </div>
     <div className="col-md-12 btn btn-light">검색</div>

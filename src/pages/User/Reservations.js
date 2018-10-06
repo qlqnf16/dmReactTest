@@ -15,7 +15,7 @@ class Reservations extends Component {
       const users = (await axios.get(`http://52.79.227.227:3030/users`)).data;
 
       const { data } = await axios.get(
-        `http://52.79.227.227:3030/reservations/${users[0]._id}`
+        `http://52.79.227.227:3030/users/${users[0]._id}/reservations/all`
       );
       this.setState({
         reservations: data,
@@ -25,18 +25,20 @@ class Reservations extends Component {
   };
 
   render() {
-    console.log(this.state);
+    console.log(new Date().getTime());
     let futureReservations = [];
     let previousReservations = [];
     if (this.state.reservations) {
       futureReservations = this.state.reservations.filter(
-        reservation => reservation.time.until > 600 && !reservation.isCanceled
+        reservation =>
+          reservation.date > new Date().getTime() && !reservation.isCanceled
       ); // 실제로는 현재 타임스탬프 사용
       previousReservations = this.state.reservations.filter(
-        reservation => reservation.time.until <= 600 || reservation.isCanceled
+        reservation =>
+          reservation.date <= new Date().getTime() || reservation.isCanceled
       );
     }
-    console.log(futureReservations);
+    console.log(previousReservations);
 
     return (
       <div className="container">

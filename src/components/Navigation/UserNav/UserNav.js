@@ -7,8 +7,8 @@ const UserNav = () => (
     <Link to="/reservations">
       <li>예약관리</li>
     </Link>
-    <Link to="/myTicket">
-      <li>이용권관리</li>
+    <Link to="/likedesigner">
+      <li>찜한 막내</li>
     </Link>
     <Link to="/userInfo">
       <li>회원정보관리</li>

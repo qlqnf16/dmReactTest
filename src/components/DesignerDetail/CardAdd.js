@@ -47,25 +47,22 @@ class CardAdd extends Component {
 
   render() {
     const Times = [];
-    this.props.ableTimes.map(ableTime => {
+    this.props.ableTimes.forEach(ableTime => {
       let time = ableTime.since;
       while (time <= ableTime.until - 90) {
-        // let timeFormat = `${parseInt(time / 60)} : ${
-        //   time % 60 === 0 ? '00' : '30'
-        // }`;
         Times.push(time);
         time += 30;
       }
     });
     let timeButtons = null;
-    timeButtons = Times.map(time => {
+    timeButtons = Times.map((time, key) => {
       let classN = 'btn btn-sm btn-light col-md-6';
       if (time === this.state.time) classN += ' btn-outline-primary';
-      let timeFormat = `${parseInt(time / 60)} : ${
+      let timeFormat = `${parseInt(time / 60, 10)} : ${
         time % 60 === 0 ? '00' : '30'
       }`;
       return (
-        <div onClick={() => this.selectTime(time)} className={classN}>
+        <div key={key} onClick={() => this.selectTime(time)} className={classN}>
           <p>{timeFormat}</p>
         </div>
       );
@@ -132,7 +129,7 @@ class CardAdd extends Component {
         <h5 className="small row">{timeButtons}</h5>
         <h5 className="small">예상 소요시간</h5>
         <h5 className="small">
-          {parseInt(time / 60)}
+          {parseInt(time / 60, 10)}
           시간 {time % 60}분
         </h5>
         <h5 className="small">{price}원</h5>

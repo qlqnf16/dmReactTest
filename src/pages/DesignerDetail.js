@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
-import { Link } from 'react-router-dom';
 import firebase from 'firebase';
 import axios from 'axios';
 
@@ -18,8 +17,6 @@ class DesginerDetail extends Component {
 
   componentDidMount = async () => {
     // DB에서 정보받아와서 넣어주는 곳
-    console.log(firebase.auth().currentUser);
-    console.log(this.props);
     if (!this.state.madeRequest) {
       const { data } = await axios.get(
         `http://52.79.227.227:3030/recruits/${this.props.match.params.id}`
@@ -43,7 +40,6 @@ class DesginerDetail extends Component {
   };
 
   render() {
-    console.log(this.state.recruit.cards);
     let loading = null;
     if (Object.keys(this.state.recruit).length) {
       loading = (
@@ -53,7 +49,6 @@ class DesginerDetail extends Component {
           reviews={this.state.recruit._reviews}
         />
       );
-      console.log(typeof this.state.recruit._cards);
     }
     return (
       <div>
