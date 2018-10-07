@@ -27,11 +27,11 @@ const ScheduleCard = props => {
   const typeParse = type => {
     switch (type) {
       case 'cut':
-        return '컷트';
+        return '/ 컷트 ';
       case 'perm':
-        return '펌';
+        return '/ 펌 ';
       case 'dye':
-        return '염색';
+        return '/ 염색 ';
       default:
         break;
     }
@@ -61,8 +61,16 @@ const ScheduleCard = props => {
     if (entry[1] === true) no.push(entry[0]);
   });
 
-  const mustParse = must.map(m => typeParse(m));
-  const noParse = no.map(m => typeParse(m));
+  let mustParse = '';
+  let noParse = '';
+  must.forEach(m => {
+    mustParse += typeParse(m);
+  });
+  no.forEach(n => {
+    noParse += typeParse(n);
+  });
+  mustParse = mustParse.substring(1);
+  noParse = noParse.substring(1);
   return (
     <div className="border col-md-6">
       <div className="row">

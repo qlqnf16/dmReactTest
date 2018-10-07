@@ -73,7 +73,9 @@ const ReservationCard = props => {
             </Moment>{' '}
             {since} ~ {until}
           </p>
-          <p className="small my-1">{props.reservation._card.shop}</p>
+          <p className="small my-1">
+            {props.reservation._card && props.reservation._card.shop}
+          </p>
           <p className="small mt-1">{services}</p>
           {button}
           <button>더보기</button>

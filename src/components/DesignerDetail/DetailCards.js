@@ -12,6 +12,7 @@ class DetailCards extends Component {
     let leftCards = [];
     let rightCards = [];
     if (this.props.recruit._cards) {
+      console.log(this.props.recruit._cards);
       this.props.recruit._cards.forEach((card, key) => {
         if (card.reservable) {
           key % 2

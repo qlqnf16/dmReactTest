@@ -98,7 +98,9 @@ const ReservationCard = props => {
               </Moment>{' '}
               {since} ~ {until}
             </h5>
-            <h5 className="small">장소 : {props.reservation._card.shop}</h5>
+            <h5 className="small">
+              장소 : {props.reservation._card && props.reservation._card.shop}
+            </h5>
             <h5 className="small">종류 : {services}</h5>
           </div>
           {addButton}
