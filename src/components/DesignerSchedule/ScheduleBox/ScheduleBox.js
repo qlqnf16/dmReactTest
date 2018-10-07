@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Schedule from './Schedule/Schedule';
 import ScheduleCard from './ScheduleCard/ScheduleCard';
-
+import TextInfo from '../TextInfo';
 class ScheduleBox extends Component {
   state = {
     time: 1,
@@ -47,8 +47,9 @@ class ScheduleBox extends Component {
 
   render() {
     return (
-      <div className="row">
+      <div className="row align-items-start">
         <div className="col-6">
+          <TextInfo />
           <Schedule
             datePick={this.timeDefault}
             time={this.state.time}
@@ -56,13 +57,11 @@ class ScheduleBox extends Component {
             submit={this.submit}
           />
         </div>
-        <div className="col-6 row">
-          {this.state.schedules.map((schedule, key) => (
+        <div className="col-6 row mt-5">
+          {this.props.cards.map((card, key) => (
             <ScheduleCard
-              date={schedule.date}
-              time={schedule.time}
-              essential={schedule.essential.join(', ')}
-              gender={schedule.gender.join(', ')}
+              cancelCardHandler={this.props.cancelCardHandler}
+              card={card}
               key={key}
             />
           ))}

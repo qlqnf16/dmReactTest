@@ -2,35 +2,41 @@ import React from 'react';
 import { FormGroup, Label, Col, Input } from 'reactstrap';
 
 const TextInfo = () => (
-  <div className="row mt-5">
-    <Col sm={6}>
-      <FormGroup row>
-        <Label for="title" sm={2}>
-          제목
-        </Label>
-        <Col sm={10}>
-          <Input type="text" name="title" id="title" />
-        </Col>
-      </FormGroup>
-      <FormGroup row>
-        <Label for="detail" sm={2}>
-          요청사항
-        </Label>
-        <Col sm={10}>
-          <Input type="textarea" name="detail" id="detail" />
-        </Col>
-      </FormGroup>
-    </Col>
-    <Col sm={6}>
-      <FormGroup row>
-        <Label for="addition" sm={2}>
-          추가금액
-        </Label>
-        <Col sm={10}>
-          <Input type="textarea" name="addition" id="addition" />
-        </Col>
-      </FormGroup>
-    </Col>
+  <div className="mt-5">
+    <FormGroup>
+      <Label for="title">제목</Label>
+      <Input type="text" name="title" id="title" />
+    </FormGroup>
+    <FormGroup>
+      <Label for="detail">요청사항</Label>
+      <Input type="textarea" name="detail" id="detail" />
+    </FormGroup>
+    <FormGroup>
+      <p>예상 시술 소요 시간</p>
+      <div className="row">
+        <div className="col-md-4">
+          <Label for="cut">컷트</Label>
+          <Input type="select">
+            <option>1시간</option>
+            <option>1시간 30분</option>
+          </Input>
+        </div>
+        <div className="col-md-4">
+          <Label for="cut">펌</Label>
+          <Input type="select">
+            <option>1시간</option>
+            <option>1시간 30분</option>
+          </Input>
+        </div>
+        <div className="col-md-4">
+          <Label for="cut">염색</Label>
+          <Input type="select">
+            <option>1시간</option>
+            <option>1시간 30분</option>
+          </Input>
+        </div>
+      </div>
+    </FormGroup>
   </div>
 );
 
