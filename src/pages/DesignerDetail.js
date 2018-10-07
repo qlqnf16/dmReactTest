@@ -56,7 +56,7 @@ class DesginerDetail extends Component {
           <h1 className="text-center m-5 ">2단계 : 예약하기(이미지로)</h1>
           <div className="row align-items-start">
             {loading}
-            <DetailCards cards={this.state.recruit._cards} />
+            <DetailCards recruit={this.state.recruit} />
           </div>
 
           <Button

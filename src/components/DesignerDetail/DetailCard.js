@@ -47,7 +47,7 @@ class DetailCard extends Component {
   };
 
   render() {
-    console.log(this.props.cardData);
+    console.log(this.props.recruit);
     let addData = null;
     let must = [];
     let no = [];
@@ -70,11 +70,12 @@ class DetailCard extends Component {
           price={this.props.cardData.price}
           time={this.props.cardData.requireTime}
           id={this.props.cardData._id}
+          recruit={this.props.recruit}
         />
       );
     }
-    const mustParse = must.map((m, key) => this.typeParse(m));
-    const noParse = no.map((m, key) => this.typeParse(m));
+    const mustParse = must.map(m => this.typeParse(m));
+    const noParse = no.map(m => this.typeParse(m));
 
     return (
       <div className="border">
@@ -88,8 +89,8 @@ class DetailCard extends Component {
           <h5 className="small">
             필수 : {mustParse} | 불가 : {noParse}
           </h5>
-          <h5 className="small">모델 : </h5>
-          <h5 className="small">헤어샵 : </h5>
+          <h5 className="small">모델 : {this.props.cardData.requireGender}</h5>
+          <h5 className="small">헤어샵 : {this.props.cardData.shop}</h5>
         </div>
         {addData}
       </div>

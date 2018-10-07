@@ -62,9 +62,6 @@ class Reservations extends Component {
   };
 
   render() {
-    console.log(this.state.reservations);
-    console.log(new Date().getTime());
-    console.log(new Date().getHours(6, 0, 0, 0));
     let futureReservations = [];
     let previousReservations = [];
     if (this.state.reservations) {
@@ -80,7 +77,7 @@ class Reservations extends Component {
 
     return (
       <div className="container">
-        <div className="row">
+        <div className="row mt-5">
           <UserNav />
           <ReservationCards
             futureReservations={futureReservations}

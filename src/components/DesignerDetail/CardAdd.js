@@ -103,14 +103,23 @@ class CardAdd extends Component {
     }
 
     let price = 0;
-    if (this.state.cut) price += this.props.price.cut;
-    if (this.state.perm) price += this.props.price.perm;
-    if (this.state.dye) price += this.props.price.dye;
-
+    let service = '';
     let time = 0;
-    if (this.state.cut) time += this.props.time.cut;
-    if (this.state.perm) time += this.props.time.perm;
-    if (this.state.dye) time += this.props.time.dye;
+    if (this.state.cut) {
+      price += this.props.price.cut;
+      time += this.props.time.cut;
+      service += '컷트 ';
+    }
+    if (this.state.perm) {
+      price += this.props.price.perm;
+      time += this.props.time.perm;
+      service += '펌';
+    }
+    if (this.state.dye) {
+      price += this.props.price.dye;
+      time += this.props.time.dye;
+      service += '염색';
+    }
 
     console.log(this.props);
     return (
@@ -139,7 +148,14 @@ class CardAdd extends Component {
             // to={`/reservation/${this.props.id}`}
             to={{
               pathname: `/reservation/${this.props.id}`,
-              state: { price, time, startTime: this.state.time }
+              state: {
+                price,
+                time,
+                service,
+                startTime: this.state.time,
+                recruit: this.props.recruit,
+                cardData: this.props.cardData
+              }
             }}
           >
             예약하기

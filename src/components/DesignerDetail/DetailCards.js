@@ -8,14 +8,27 @@ class DetailCards extends Component {
   };
 
   render() {
+    console.log(this.props.recruit);
     let leftCards = [];
     let rightCards = [];
-    if (this.props.cards) {
-      this.props.cards.forEach((card, key) => {
+    if (this.props.recruit._cards) {
+      this.props.recruit._cards.forEach((card, key) => {
         if (card.reservable) {
           key % 2
-            ? rightCards.push(<DetailCard key={key} cardData={card} />)
-            : leftCards.push(<DetailCard key={key} cardData={card} />);
+            ? rightCards.push(
+                <DetailCard
+                  key={key}
+                  cardData={card}
+                  recruit={this.props.recruit}
+                />
+              )
+            : leftCards.push(
+                <DetailCard
+                  key={key}
+                  cardData={card}
+                  recruit={this.props.recruit}
+                />
+              );
         }
       });
     }

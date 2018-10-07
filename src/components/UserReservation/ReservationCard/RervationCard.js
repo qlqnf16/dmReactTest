@@ -5,6 +5,7 @@ const ReservationCard = props => {
   // 시간 parse
   let since = '';
   let until = '';
+  let services = '';
   if (props.reservation) {
     since = `${parseInt(props.reservation.time.since / 60, 10)}:${
       props.reservation.time.since % 60 === 0 ? '00' : '30'
@@ -12,10 +13,23 @@ const ReservationCard = props => {
     until = `${parseInt(props.reservation.time.until / 60, 10)}:${
       props.reservation.time.until % 60 === 0 ? '00' : '30'
     }`;
+    Object.keys(props.reservation.services).forEach(service => {
+      switch (service) {
+        case 'cut':
+          services += '/ 컷트 ';
+          break;
+        case 'perm':
+          services += '/ 펌 ';
+          break;
+        case 'dye':
+          services += '/ 염색 ';
+          break;
+        default:
+          break;
+      }
+    });
+    services = services.substring(1);
   }
-
-  // TODO : 리뷰 boolean 추가되면 케이스 분류 추가
-  // TODO : 케이스 따라 버튼 Link 또는 Modal 추가
 
   // type따라 버튼 변경
   let button = null;
@@ -33,9 +47,15 @@ const ReservationCard = props => {
     );
     type = 'D-2';
   } else if (props.type === 'finish') {
-    button = (
-      <button onClick={() => props.reviewModalToggle()}>리뷰 등록</button>
-    );
+    if (props.reservation._review) {
+      button = (
+        <button onClick={() => props.reviewModalToggle()}>내 리뷰 보기</button>
+      );
+    } else {
+      button = (
+        <button onClick={() => props.reviewModalToggle()}>리뷰 등록</button>
+      );
+    }
     type = '완료';
   }
 
@@ -53,8 +73,8 @@ const ReservationCard = props => {
             </Moment>{' '}
             {since} ~ {until}
           </p>
-          <p className="small">{props.reservation.location}</p>
-          <p className="small">{props.reservation.type}</p>
+          <p className="small my-1">{props.reservation._card.shop}</p>
+          <p className="small mt-1">{services}</p>
           {button}
           <button>더보기</button>
           <p className="small">{props.reservation._id}</p>

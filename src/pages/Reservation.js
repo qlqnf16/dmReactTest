@@ -4,10 +4,6 @@ import { Button } from 'reactstrap';
 import { connect } from 'react-redux';
 
 class ReservationConfirm extends Component {
-  state = {
-    madeRequest: false
-  };
-
   componentDidMount = () => {
     // iamport 사용하기 위한 inline script 작성
     let links = [
@@ -21,12 +17,6 @@ class ReservationConfirm extends Component {
       script.src = link;
       script.async = true;
       document.body.appendChild(script);
-    }
-
-    if (!this.state.madeRequest) {
-      // TODO: url로 넘겨받은 {this.props.match.params.card_id} 를 이용해서 db에서 정보 추출해서 넣기
-
-      this.setState({ madeRequest: true });
     }
   };
 
@@ -74,6 +64,9 @@ class ReservationConfirm extends Component {
     let finishTimeFormat = `${parseInt((startTime + time) / 60, 10)} : ${
       (startTime + time) % 60 === 0 ? '00' : '30'
     }`;
+
+    const recruit = this.props.location.state.recruit;
+    console.log(recruit);
     return (
       <div className="container mb-5">
         <div className="m-5 text-center">
@@ -91,12 +84,14 @@ class ReservationConfirm extends Component {
         </div>
         <div>
           <h4>예약 정보</h4>
-          <h5 className="m-4">막내 이름 : </h5>
+          <h5 className="m-4">막내 이름 : {recruit._designer.name} </h5>
           <h5 className="m-4">
             날짜 / 시간 : 2018/00/00 {startTimeFormat} ~ {finishTimeFormat}
           </h5>
-          <h5 className="m-4">헤어샵 : </h5>
-          <h5 className="m-4">서비스 : </h5>
+          <h5 className="m-4">
+            헤어샵 : {this.props.location.state.cardData.shop}
+          </h5>
+          <h5 className="m-4">서비스 : {this.props.location.state.service} </h5>
         </div>
         <div>
           <h4>결제 정보</h4>
