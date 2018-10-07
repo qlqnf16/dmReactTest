@@ -36,84 +36,118 @@ class Schedule extends Component {
 
   render() {
     return (
-      <div className="row">
-        <FormGroup className="col-6">
-          <Input
-            type="date"
-            name="date"
-            id="exampleDate"
-            placeholder="date placeholder"
-            onChange={this.props.datePick}
-          />
-        </FormGroup>
-        <div className="col-6">
-          <FormGroup row>
-            <Label sm={2}>시간</Label>
-            <div className="col-10">
-              {this.timeSelector()}
-              <Button color="light" onClick={this.props.timeAdd}>
-                + 시간 추가
-              </Button>
+      <div>
+        <FormGroup>
+          <p>예상 시술 소요 시간</p>
+          <div className="row">
+            <div className="col-md-4">
+              <Label for="cut">컷트</Label>
+              <Input type="select">
+                <option>1시간</option>
+                <option>1시간 30분</option>
+              </Input>
             </div>
+            <div className="col-md-4">
+              <Label for="cut">펌</Label>
+              <Input type="select">
+                <option>1시간</option>
+                <option>1시간 30분</option>
+              </Input>
+            </div>
+            <div className="col-md-4">
+              <Label for="cut">염색</Label>
+              <Input type="select">
+                <option>1시간</option>
+                <option>1시간 30분</option>
+              </Input>
+            </div>
+          </div>
+        </FormGroup>
+        <div className="row">
+          <FormGroup className="col-6">
+            <Input
+              type="date"
+              name="date"
+              id="exampleDate"
+              placeholder="date placeholder"
+              onChange={this.props.datePick}
+            />
           </FormGroup>
-          <FormGroup row>
-            <Label sm={2}>장소</Label>
-            <Input type="select" className="col-8">
-              <option>박준뷰티랩 청담본점</option>
-              <option>머리샵 일산웨스턴돔점</option>
-            </Input>
-          </FormGroup>
-          <div>
-            <p>꼭 해야하는 시술 (필수)</p>
-            <FormGroup check inline>
-              <Label check>
-                <Input type="checkbox" /> 커트
-              </Label>
+          <div className="col-6">
+            <FormGroup row>
+              <Label sm={2}>시간</Label>
+              <div className="col-10">
+                {this.timeSelector()}
+                <Button color="light" onClick={this.props.timeAdd}>
+                  + 시간 추가
+                </Button>
+              </div>
             </FormGroup>
-            <FormGroup check inline>
-              <Label check>
-                <Input type="checkbox" /> 펌
-              </Label>
+            <FormGroup row>
+              <Label sm={2}>장소</Label>
+              <Input type="select" className="col-8">
+                <option>박준뷰티랩 청담본점</option>
+                <option>머리샵 일산웨스턴돔점</option>
+              </Input>
             </FormGroup>
-            <FormGroup check inline>
-              <Label check>
-                <Input type="checkbox" /> 염색
-              </Label>
-            </FormGroup>
-          </div>
-          <div>
-            <p>시술 불가한 서비스 (선택)</p>
-            <FormGroup check inline>
-              <Label check>
-                <Input type="checkbox" /> 커트
-              </Label>
-            </FormGroup>
-            <FormGroup check inline>
-              <Label check>
-                <Input type="checkbox" /> 펌
-              </Label>
-            </FormGroup>
-            <FormGroup check inline>
-              <Label check>
-                <Input type="checkbox" /> 염색
-              </Label>
-            </FormGroup>
-          </div>
-          <div>
-            <p>모델 성별</p>
-            <FormGroup check inline>
-              <Label check>
-                <Input type="checkbox" /> 남자
-              </Label>
-            </FormGroup>
-            <FormGroup check inline>
-              <Label check>
-                <Input type="checkbox" /> 여자
-              </Label>
-            </FormGroup>
-          </div>
-          <div className="btn btn-light" color="light">
-            등록하기
+            <div>
+              <p>꼭 해야하는 시술 (필수)</p>
+              <FormGroup check inline>
+                <Label check>
+                  <Input type="checkbox" /> 커트
+                </Label>
+              </FormGroup>
+              <FormGroup check inline>
+                <Label check>
+                  <Input type="checkbox" /> 펌
+                </Label>
+              </FormGroup>
+              <FormGroup check inline>
+                <Label check>
+                  <Input type="checkbox" /> 염색
+                </Label>
+              </FormGroup>
+            </div>
+            <div>
+              <p>시술 불가한 서비스 (선택)</p>
+              <FormGroup check inline>
+                <Label check>
+                  <Input type="checkbox" /> 커트
+                </Label>
+              </FormGroup>
+              <FormGroup check inline>
+                <Label check>
+                  <Input type="checkbox" /> 펌
+                </Label>
+              </FormGroup>
+              <FormGroup check inline>
+                <Label check>
+                  <Input type="checkbox" /> 염색
+                </Label>
+              </FormGroup>
+            </div>
+            <div>
+              <p>모델 성별</p>
+              <FormGroup check inline>
+                <Label check>
+                  <Input type="checkbox" /> 남자
+                </Label>
+              </FormGroup>
+              <FormGroup check inline>
+                <Label check>
+                  <Input type="checkbox" /> 여자
+                </Label>
+              </FormGroup>
+            </div>
+            <div
+              onClick={() =>
+                this.props.cardAddHandler(this.props.card._recruit._id)
+              }
+              className="btn btn-light"
+              color="light"
+            >
+              등록하기
+            </div>
           </div>
         </div>
       </div>

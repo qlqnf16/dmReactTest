@@ -41,7 +41,7 @@ const ScheduleCard = props => {
   let until = '';
   let ableTimes = [];
   if (props.card) {
-    props.card.ableTimes.map(ableTime => {
+    props.card.ableTimes.forEach(ableTime => {
       since = `${parseInt(ableTime.since / 60, 10)}:${
         ableTime.since % 60 === 0 ? '00' : '30'
       }`;
@@ -63,8 +63,6 @@ const ScheduleCard = props => {
 
   const mustParse = must.map(m => typeParse(m));
   const noParse = no.map(m => typeParse(m));
-  console.log(props.card._id);
-  console.log(props.card._recruit._id);
   return (
     <div className="border col-md-6">
       <div className="row">
@@ -73,8 +71,10 @@ const ScheduleCard = props => {
           {dayOfWeek(props.card.date)})
         </div>
         <div className="col-7">
-          {ableTimes.map(ableTime => (
-            <p className="small my-1">{ableTime}</p>
+          {ableTimes.map((ableTime, key) => (
+            <p key={key} className="small my-1">
+              {ableTime}
+            </p>
           ))}
         </div>
       </div>

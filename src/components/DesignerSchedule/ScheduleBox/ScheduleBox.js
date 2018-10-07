@@ -4,27 +4,7 @@ import ScheduleCard from './ScheduleCard/ScheduleCard';
 import TextInfo from '../TextInfo';
 class ScheduleBox extends Component {
   state = {
-    time: 1,
-    schedules: [
-      {
-        date: '13(목)',
-        time: '10:00-13:00',
-        essential: ['커트', '염색'],
-        gender: ['남자', '여자']
-      },
-      {
-        date: '13(목)',
-        time: '17:00-20:00',
-        essential: ['커트', '염색'],
-        gender: ['남자', '여자']
-      },
-      {
-        date: '14(금)',
-        time: '10:00-13:00',
-        essential: ['커트'],
-        gender: ['남자']
-      }
-    ]
+    time: 1
   };
 
   timeAddHandler = () => {
@@ -55,6 +35,8 @@ class ScheduleBox extends Component {
             time={this.state.time}
             timeAdd={this.timeAddHandler}
             submit={this.submit}
+            cardAddHandler={this.props.cardAddHandler}
+            card={this.props.cards[0]}
           />
         </div>
         <div className="col-6 row mt-5">
