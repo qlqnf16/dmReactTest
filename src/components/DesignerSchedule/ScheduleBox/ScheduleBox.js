@@ -27,8 +27,6 @@ class ScheduleBox extends Component {
   untils = [];
   handleInputChange(event) {
     const target = event.target;
-    console.log(target);
-    // const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
     if (target.type !== 'checkbox') {
       if (target.name === 'since') {
@@ -108,6 +106,7 @@ class ScheduleBox extends Component {
       region: '성북구',
       price: { cut: 3000, perm: 20000, dye: 30000 }
     };
+    console.log(this.props);
     return (
       <div className="row align-items-start">
         <div className="col-6">

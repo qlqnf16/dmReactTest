@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Filter = () => (
+const Filter = props => (
   <div
     style={{ height: 200 }}
     className="col-md-2 form-row text-center d-flex align-items-baseline"
@@ -34,25 +34,45 @@ const Filter = () => (
         <label>싫어요 상관없어요 받을래요</label>
       </div>
       <div className="form-group">
-        <input type="range" className="custom-range" min="0" max="2" id="cut" />
-        <label>컷트</label>
-      </div>
-      <div className="form-group">
-        <input type="range" className="custom-range" min="0" max="2" id="dye" />
-        <label>염색</label>
-      </div>
-      <div className="form-group">
         <input
+          onChange={props.filterChangeHandler}
+          name="cut"
           type="range"
           className="custom-range"
           min="0"
           max="2"
-          id="perm"
+        />
+        <label>컷트</label>
+      </div>
+      <div className="form-group">
+        <input
+          onChange={props.filterChangeHandler}
+          name="dye"
+          type="range"
+          className="custom-range"
+          min="0"
+          max="2"
+        />
+        <label>염색</label>
+      </div>
+      <div className="form-group">
+        <input
+          onChange={props.filterChangeHandler}
+          name="perm"
+          type="range"
+          className="custom-range"
+          min="0"
+          max="2"
         />
         <label>펌</label>
       </div>
     </div>
-    <div className="col-md-12 btn btn-light">검색</div>
+    <div
+      onClick={() => props.getFilteredCards()}
+      className="col-md-12 btn btn-light"
+    >
+      검색
+    </div>
   </div>
 );
 

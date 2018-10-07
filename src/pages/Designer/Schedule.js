@@ -13,6 +13,7 @@ class Schedule extends Component {
     if (!this.state.madeRequest) {
       const { data } = await axios.get(`http://52.79.227.227:3030/cards`);
       this.setState({ cards: data, madeRequest: true });
+      console.log(this.state.cards);
     }
   };
 
