@@ -10,12 +10,21 @@ export const facebookLogin = async () => {
     await firebase.auth().signInWithPopup(provider);
     const currentUser = firebase.auth().currentUser;
     const { displayName, uid, email } = currentUser;
-    const userData = { name: displayName, age: null, uid, email };
+    const firebaseUserData = {
+      name: displayName,
+      birthday: null,
+      uid,
+      email,
+      phoneNumber: null
+    };
+
+    const DBUserData = { uid };
+    await axios.post('http://52.79.227.227:3030/users', DBUserData);
 
     await firebase
       .database()
       .ref('users/' + uid)
-      .set(userData);
+      .set(firebaseUserData);
   } catch (error) {
     console.log(error);
   }
@@ -28,12 +37,22 @@ export const googleLogin = async () => {
     await firebase.auth().signInWithPopup(provider);
     const currentUser = firebase.auth().currentUser;
     const { displayName, uid, email } = currentUser;
-    const userData = { name: displayName, age: null, uid, email };
+    const firebaseUserData = {
+      name: displayName,
+      birthday: null,
+      uid,
+      email,
+      phoneNumber: null
+    };
+
+    const DBUserData = { uid };
 
     await firebase
       .database()
       .ref('users/' + uid)
-      .set(userData);
+      .set(firebaseUserData);
+
+    await axios.post('http://52.79.227.227:3030/users', DBUserData);
   } catch (error) {
     console.log(error);
   }
@@ -57,16 +76,21 @@ export const kakao_login_success = async response => {
 
     // 넘겨받은 토큰으로 커스텀 로그인
     await firebase.auth().signInWithCustomToken(customToken);
-
-    const userData = {
+    const firebaseUserData = {
       name: data.properties.nickname,
-      age: null,
-      uid: data.uuid
+      birthday: null,
+      uid: data.uuid,
+      email: null,
+      phoneNumber: null
     };
+
     await firebase
       .database()
       .ref('users/' + data.uuid)
-      .set(userData);
+      .set(firebaseUserData);
+
+    const DBUserData = { uid: data.uuid };
+    await axios.post('http://52.79.227.227:3030/users', DBUserData);
   } catch (error) {
     console.log(error);
   }

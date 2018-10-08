@@ -15,7 +15,9 @@ const initialState = {
     isD: false,
     isRegister: false,
     name: null,
-    uid: null
+    uid: null,
+    phoneNumber: null,
+    birthday: null
   }
 };
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Form, Button } from 'reactstrap';
 import InfoForm from '../components/InfoForm/InfoForm';
+import { connect } from 'react-redux';
 
 class AddDesigner extends Component {
   constructor(props) {
@@ -89,4 +90,7 @@ class AddDesigner extends Component {
   }
 }
 
-export default AddDesigner;
+const mapStateToProps = ({ authentication: { userData } }) => {
+  return { userData };
+};
+export default connect(mapStateToProps)(AddDesigner);

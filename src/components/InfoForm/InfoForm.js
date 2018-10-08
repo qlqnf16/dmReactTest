@@ -34,12 +34,25 @@ class InfoForm extends Component {
         </FormGroup>
         <FormGroup row>
           <Label for="exampleEmail" sm={2}>
+            생년월일
+          </Label>
+          <Col sm={10}>
+            <Input
+              type="date"
+              name="birthday"
+              id="birthday"
+              onChange={this.props.changeInput}
+            />
+          </Col>
+        </FormGroup>
+        <FormGroup row>
+          <Label for="exampleEmail" sm={2}>
             전화번호
           </Label>
           <Col sm={10}>
             <Input
-              type="text"
-              name="phone"
+              type="number"
+              name="phoneNumber"
               id="phoneNumber"
               onChange={this.props.changeInput}
             />
@@ -52,8 +65,8 @@ class InfoForm extends Component {
           <Col sm={10}>
             <Input
               type="select"
-              name="address1"
-              id="address1"
+              name="region"
+              id="region"
               onChange={this.props.changeInput}
               className="d-inline col-3"
             >
@@ -65,8 +78,8 @@ class InfoForm extends Component {
             </Input>
             <Input
               type="text"
-              name="address2"
-              id="address2"
+              name="shop"
+              id="shop"
               onChange={this.props.changeInput}
               className="d-inline col-9"
             />
