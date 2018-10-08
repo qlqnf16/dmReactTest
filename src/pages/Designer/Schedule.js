@@ -6,7 +6,8 @@ import axios from 'axios';
 class Schedule extends Component {
   state = {
     cards: [],
-    madeRequest: false
+    madeRequest: false,
+    newCards: []
   };
 
   componentDidMount = async () => {
@@ -36,14 +37,25 @@ class Schedule extends Component {
     this.setState({ cards: data, madeRequest: true });
   };
 
-  cardAddHandler = async (cardData, recruitId) => {
-    await axios.post(
-      `http://52.79.227.227:3030/recruits/${recruitId}/cards`,
-      cardData
-    );
+  cardAddHandler = async cardData => {
+    let newCards = this.state.newCards;
+    newCards.push(cardData);
+
+    this.setState({ newCards });
+  };
+
+  totalSubmitHandler = async recruitId => {
+    console.log('total');
+    this.state.newCards.forEach(newCard => {
+      console.log('카드 하나');
+      axios.post(
+        `http://52.79.227.227:3030/recruits/${recruitId}/cards`,
+        newCard
+      );
+    });
     const { data } = await axios.get(`http://52.79.227.227:3030/cards`);
     this.setState({ cards: data, madeRequest: true });
-    console.log(cardData);
+    alert(' 성공적으로 저장되었습니다! ');
   };
 
   render() {
@@ -53,8 +65,10 @@ class Schedule extends Component {
         <Form>
           <ScheduleBox
             cards={this.state.cards}
+            newCards={this.state.newCards}
             cancelCardHandler={this.cancelCardHandler}
             cardAddHandler={this.cardAddHandler}
+            totalSubmitHandler={this.totalSubmitHandler}
             // changeInput={e => this.handleInputChange(e)}
           />
         </Form>

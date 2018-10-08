@@ -11,6 +11,7 @@ import {
   ReservationConfirm,
   Reservation,
   Message,
+  Chat,
   Coupon,
   LikeDesigner,
   MyTicket,
@@ -114,6 +115,16 @@ class App extends Component {
               this.props.userData.uid
                 ? this.props.userData.isRegister
                   ? Message
+                  : UserInfo
+                : WrongAccess
+            }
+          />
+          <Route
+            path="/chat"
+            component={
+              this.props.userData.uid
+                ? this.props.userData.isRegister
+                  ? Chat
                   : UserInfo
                 : WrongAccess
             }

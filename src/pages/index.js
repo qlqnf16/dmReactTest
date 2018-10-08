@@ -6,6 +6,7 @@ export { default as DesignerDetail } from './DesignerDetail';
 export { default as Reservation } from './Reservation';
 export { default as ReservationConfirm } from './ReservationConfirm';
 export { default as Message } from './Message';
+export { default as Chat } from './Chat';
 
 // 디자이너 서비스
 export { default as WhyDreamary } from './Designer/WhyDreamary';

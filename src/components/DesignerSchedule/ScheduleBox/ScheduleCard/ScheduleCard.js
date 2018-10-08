@@ -54,12 +54,16 @@ const ScheduleCard = props => {
 
   let must = [];
   let no = [];
-  Object.entries(props.card.must).forEach(entry => {
-    if (entry[1] === true) must.push(entry[0]);
-  });
-  Object.entries(props.card.no).forEach(entry => {
-    if (entry[1] === true) no.push(entry[0]);
-  });
+  if (props.card.must) {
+    Object.entries(props.card.must).forEach(entry => {
+      if (entry[1] === true) must.push(entry[0]);
+    });
+  }
+  if (props.card.no) {
+    Object.entries(props.card.no).forEach(entry => {
+      if (entry[1] === true) no.push(entry[0]);
+    });
+  }
 
   let mustParse = '';
   let noParse = '';
@@ -92,14 +96,16 @@ const ScheduleCard = props => {
       <p className="my-1">{props.card.requireGender}</p>
       <p className="my-1">{props.card.shop}</p>
       <div className="my-1">
-        <div
-          onClick={() =>
-            props.cancelCardHandler(props.card._id, props.card._recruit._id)
-          }
-          className="btn btn-danger"
-        >
-          삭제
-        </div>
+        {props.cancelCardHandler ? (
+          <div
+            onClick={() =>
+              props.cancelCardHandler(props.card._id, props.card._recruit._id)
+            }
+            className="btn btn-danger"
+          >
+            삭제
+          </div>
+        ) : null}
         <div className="btn btn-primary">수정</div>
       </div>
     </div>

@@ -40,10 +40,12 @@ class ScheduleBox extends Component {
         this.setState({
           untils: this.untils
         });
-      } else if (target.id === 'time') {
-        const value = Number(target.value);
-        this.setState({ [name]: value });
-      } else {
+      }
+      //  else if (target.id === 'time') {
+      //   const value = Number(target.value);
+      //   this.setState({ [name]: value });
+      // }
+      else {
         const value = target.value;
         this.setState({ [name]: value });
       }
@@ -89,10 +91,15 @@ class ScheduleBox extends Component {
     });
 
     const cardData = {
+      // requireTime: {
+      //   cut: this.state.cutTime,
+      //   perm: this.state.permTime,
+      //   dye: this.state.dyeTime
+      // },
       requireTime: {
-        cut: this.state.cutTime,
-        perm: this.state.permTime,
-        dye: this.state.dyeTime
+        cut: 90,
+        perm: 180,
+        dye: 180
       },
       must: this.state.must,
       no: this.state.no,
@@ -110,7 +117,11 @@ class ScheduleBox extends Component {
     return (
       <div className="row align-items-start">
         <div className="col-6">
-          <TextInfo />
+          <TextInfo
+            totalSubmitHandler={() =>
+              this.props.totalSubmitHandler(this.props.cards[0]._recruit._id)
+            }
+          />
           <Schedule
             datePick={e => this.timeDefault(e)}
             time={this.state.time}
@@ -133,6 +144,9 @@ class ScheduleBox extends Component {
               card={card}
               key={key}
             />
+          ))}
+          {this.props.newCards.map((newCard, key) => (
+            <ScheduleCard card={newCard} key={key} />
           ))}
         </div>
       </div>
