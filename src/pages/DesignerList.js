@@ -27,17 +27,17 @@ class DesignerList extends Component {
   getFilteredCards = async () => {
     let must = '';
     let no = '';
-    if (this.state.cut && this.state.cut === '2') {
+    if (this.state.cut && this.state.cut === '100') {
       must += 'cut=1&';
     } else if (this.state.cut === '0') {
       no += 'cut=2&';
     }
-    if (this.state.perm && this.state.perm === '2') {
+    if (this.state.perm && this.state.perm === '100') {
       must += 'perm=1&';
     } else if (this.state.perm === '0') {
       no += 'perm=2&';
     }
-    if (this.state.dye && this.state.dye === '2') {
+    if (this.state.dye && this.state.dye === '100') {
       must += 'dye=1&';
     } else if (this.state.dye === '0') {
       no += 'dye=2&';
@@ -46,9 +46,20 @@ class DesignerList extends Component {
     const { data } = await axios.get(
       'http://52.79.227.227:3030/cards?' + must + no
     );
+    console.log(data);
+    let recruits = data.map(d => d._recruit);
+
+    let uniqueRecruits = [];
+    const counter = {};
+    recruits.forEach((recruit, i) => {
+      if (!counter[recruit._id]) {
+        uniqueRecruits.push(recruit);
+        counter[recruit._id] = true;
+      }
+    });
+
     this.setState({
-      recruits: data,
-      madeRequest: true
+      recruits: uniqueRecruits
     });
   };
 
@@ -63,6 +74,7 @@ class DesignerList extends Component {
   render() {
     let recruits = null;
     if (this.state.recruits.length) {
+      console.log(this.state.recruits);
       recruits = this.state.recruits.map(recruit => (
         <DesignerCard
           id={recruit._id}

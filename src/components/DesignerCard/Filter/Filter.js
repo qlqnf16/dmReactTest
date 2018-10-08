@@ -40,7 +40,8 @@ const Filter = props => (
           type="range"
           className="custom-range"
           min="0"
-          max="2"
+          max="100"
+          step="50"
         />
         <label>컷트</label>
       </div>
@@ -51,7 +52,8 @@ const Filter = props => (
           type="range"
           className="custom-range"
           min="0"
-          max="2"
+          max="100"
+          step="50"
         />
         <label>염색</label>
       </div>
@@ -62,7 +64,8 @@ const Filter = props => (
           type="range"
           className="custom-range"
           min="0"
-          max="2"
+          max="100"
+          step="50"
         />
         <label>펌</label>
       </div>
