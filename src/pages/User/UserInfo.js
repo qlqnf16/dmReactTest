@@ -34,7 +34,6 @@ class UserInfo extends Component {
     const firebaseUserData = {
       name: this.state.name,
       birthday: this.state.birthday,
-      uid,
       email: this.state.email,
       phoneNumber: this.state.phoneNumber
     };
@@ -43,7 +42,7 @@ class UserInfo extends Component {
     await firebase
       .database()
       .ref('users/' + uid)
-      .set(firebaseUserData);
+      .update(firebaseUserData);
   };
 
   phoneCert() {

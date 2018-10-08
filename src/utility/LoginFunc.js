@@ -12,19 +12,17 @@ export const facebookLogin = async () => {
     const { displayName, uid, email } = currentUser;
     const firebaseUserData = {
       name: displayName,
-      birthday: null,
       uid,
-      email,
-      phoneNumber: null
+      email
     };
 
-    const DBUserData = { uid };
+    const DBUserData = { _uid: uid };
     await axios.post('http://52.79.227.227:3030/users', DBUserData);
 
     await firebase
       .database()
       .ref('users/' + uid)
-      .set(firebaseUserData);
+      .update(firebaseUserData);
   } catch (error) {
     console.log(error);
   }
@@ -39,18 +37,16 @@ export const googleLogin = async () => {
     const { displayName, uid, email } = currentUser;
     const firebaseUserData = {
       name: displayName,
-      birthday: null,
       uid,
-      email,
-      phoneNumber: null
+      email
     };
 
-    const DBUserData = { uid };
+    const DBUserData = { _uid: uid };
 
     await firebase
       .database()
       .ref('users/' + uid)
-      .set(firebaseUserData);
+      .update(firebaseUserData);
 
     await axios.post('http://52.79.227.227:3030/users', DBUserData);
   } catch (error) {
@@ -78,18 +74,15 @@ export const kakao_login_success = async response => {
     await firebase.auth().signInWithCustomToken(customToken);
     const firebaseUserData = {
       name: data.properties.nickname,
-      birthday: null,
-      uid: data.uuid,
-      email: null,
-      phoneNumber: null
+      uid: data.uuid
     };
 
     await firebase
       .database()
       .ref('users/' + data.uuid)
-      .set(firebaseUserData);
+      .update(firebaseUserData);
 
-    const DBUserData = { uid: data.uuid };
+    const DBUserData = { _uid: data.uuid };
     await axios.post('http://52.79.227.227:3030/users', DBUserData);
   } catch (error) {
     console.log(error);

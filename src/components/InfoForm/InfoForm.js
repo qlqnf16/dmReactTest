@@ -4,6 +4,7 @@ import ImgPreview from './ImgPreview';
 
 class InfoForm extends Component {
   render() {
+    console.log(this.props.state);
     return (
       <Fragment>
         <FormGroup row>
@@ -16,6 +17,7 @@ class InfoForm extends Component {
               name="name"
               id="name"
               onChange={this.props.changeInput}
+              value={this.props.state.name}
             />
           </Col>
         </FormGroup>
@@ -29,6 +31,7 @@ class InfoForm extends Component {
               name="email"
               id="email"
               onChange={this.props.changeInput}
+              value={this.props.state.email}
             />
           </Col>
         </FormGroup>
@@ -42,6 +45,7 @@ class InfoForm extends Component {
               name="birthday"
               id="birthday"
               onChange={this.props.changeInput}
+              value={this.props.state.birthday}
             />
           </Col>
         </FormGroup>
@@ -55,6 +59,7 @@ class InfoForm extends Component {
               name="phoneNumber"
               id="phoneNumber"
               onChange={this.props.changeInput}
+              value={this.props.state.phoneNumber}
             />
           </Col>
         </FormGroup>

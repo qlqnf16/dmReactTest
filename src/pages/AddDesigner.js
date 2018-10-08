@@ -2,11 +2,16 @@ import React, { Component } from 'react';
 import { Container, Form, Button } from 'reactstrap';
 import InfoForm from '../components/InfoForm/InfoForm';
 import { connect } from 'react-redux';
+import firebase from '../config/Firebase';
 
 class AddDesigner extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      name: this.props.userData.name,
+      birthday: this.props.userData.birthday,
+      email: this.props.userData.email,
+      phoneNumber: this.props.userData.phoneNumber,
       certImg1: null,
       certFile1: null,
       certImg2: null,
@@ -62,9 +67,28 @@ class AddDesigner extends Component {
     });
   }
 
-  submit = () => {
-    console.log(this.state);
-    // 실제 submit으로 수정해야
+  submitHandler = async () => {
+    const firebaseUserData = {
+      name: this.state.name,
+      birthday: this.state.birthday,
+      email: this.state.email,
+      phoneNumber: this.state.phoneNumber,
+      // locations: [
+      //   {
+      //     region: this.state.region,
+      //     shop: this.state.shop,
+      //     address: this.state.address
+      //   }
+      // ],
+      untilDesigner: `${this.state.dYear}년 ${this.state.dMonth}개월`,
+      career: `${this.state.careerYear}년 ${this.state.careerMonth}개월`,
+      careerDetail: this.state.careerDetail
+    };
+    await firebase
+      .database()
+      .ref('users/' + this.props.userData.uid)
+      .update(firebaseUserData);
+    console.log(firebaseUserData);
   };
 
   render() {
@@ -72,6 +96,7 @@ class AddDesigner extends Component {
       <Container>
         <Form className="m-5">
           <InfoForm
+            state={this.state}
             certImg1={this.state.certImg1}
             certFile1={this.state.certFile1}
             certImg2={this.state.certImg2}
@@ -80,7 +105,7 @@ class AddDesigner extends Component {
             changeInput={e => this.handleInputChange(e)}
           />
           <div className="text-center">
-            <Button className="m-5" onClick={this.submit}>
+            <Button className="m-5" onClick={this.submitHandler}>
               등록하기
             </Button>
           </div>
