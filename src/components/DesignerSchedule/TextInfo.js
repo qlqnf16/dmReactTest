@@ -11,11 +11,16 @@ const TextInfo = props => (
     </div>
     <FormGroup>
       <Label for="title">제목</Label>
-      <Input type="text" name="title" id="title" />
+      <Input onChange={props.changeInput} type="text" name="title" id="title" />
     </FormGroup>
     <FormGroup>
-      <Label for="detail">요청사항</Label>
-      <Input type="textarea" name="detail" id="detail" />
+      <Label for="requirement">요청사항</Label>
+      <Input
+        onChange={props.changeInput}
+        type="textarea"
+        name="requirement"
+        id="requirement"
+      />
     </FormGroup>
     <FormGroup>
       <p>예상 시술 소요 시간</p>
@@ -25,7 +30,7 @@ const TextInfo = props => (
           <Input
             name="cutTime"
             id="time"
-            // onChange={this.props.changeInput}
+            onChange={props.changeInput}
             type="select"
           >
             <option value="60">1시간</option>
@@ -40,7 +45,7 @@ const TextInfo = props => (
             type="select"
             name="permTime"
             id="time"
-            // onChange={this.props.changeInput}
+            onChange={props.changeInput}
           >
             <option value="60">1시간</option>
             <option value="90">1시간 30분</option>
@@ -54,7 +59,7 @@ const TextInfo = props => (
             type="select"
             name="dyeTime"
             id="time"
-            // onChange={this.props.changeInput}
+            onChange={props.changeInput}
           >
             <option value="60">1시간</option>
             <option value="90">1시간 30분</option>

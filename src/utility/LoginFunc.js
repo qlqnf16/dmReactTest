@@ -1,6 +1,5 @@
 import firebaseApp from 'firebase';
 import firebase from '../config/Firebase';
-
 import axios from '../config/Axios';
 
 export const facebookLogin = async () => {
@@ -10,19 +9,36 @@ export const facebookLogin = async () => {
     await firebase.auth().signInWithPopup(provider);
     const currentUser = firebase.auth().currentUser;
     const { displayName, uid, email } = currentUser;
-    const firebaseUserData = {
-      name: displayName,
-      uid,
-      email
-    };
-
     const DBUserData = { _uid: uid };
-    await axios.post('http://52.79.227.227:3030/users', DBUserData);
 
-    await firebase
-      .database()
-      .ref('users/' + uid)
-      .update(firebaseUserData);
+    const Users = await axios.get('http://52.79.227.227:3030/users');
+    let newUser = true;
+    Users.data.some(user => {
+      if (user._uid === uid) {
+        console.log('이미 있는 유저입니다');
+        newUser = false;
+      }
+      return user._uid === uid;
+    });
+
+    if (newUser) {
+      const res = await axios.post(
+        'http://52.79.227.227:3030/users',
+        DBUserData
+      );
+
+      const firebaseUserData = {
+        name: displayName,
+        uid,
+        email,
+        _id: res.data._id
+      };
+
+      await firebase
+        .database()
+        .ref('users/' + uid)
+        .update(firebaseUserData);
+    }
   } catch (error) {
     console.log(error);
   }
@@ -30,25 +46,42 @@ export const facebookLogin = async () => {
 
 export const googleLogin = async () => {
   const provider = new firebaseApp.auth.GoogleAuthProvider();
-
   try {
     await firebase.auth().signInWithPopup(provider);
     const currentUser = firebase.auth().currentUser;
     const { displayName, uid, email } = currentUser;
-    const firebaseUserData = {
-      name: displayName,
-      uid,
-      email
-    };
 
     const DBUserData = { _uid: uid };
 
-    await firebase
-      .database()
-      .ref('users/' + uid)
-      .update(firebaseUserData);
+    const Users = await axios.get('http://52.79.227.227:3030/users');
+    let newUser = true;
+    Users.data.some(user => {
+      if (user._uid === uid) {
+        console.log('이미 있는 유저입니다');
+        newUser = false;
+      }
+      return user._uid === uid;
+    });
+    if (newUser) {
+      const res = await axios.post(
+        'http://52.79.227.227:3030/users',
+        DBUserData
+      );
 
-    await axios.post('http://52.79.227.227:3030/users', DBUserData);
+      const firebaseUserData = {
+        name: displayName,
+        uid,
+        email,
+        _id: res.data._id
+      };
+
+      await firebase
+        .database()
+        .ref('users/' + uid)
+        .update(firebaseUserData);
+    }
+
+    // await props.getUserId(res.data._id);
   } catch (error) {
     console.log(error);
   }
@@ -72,18 +105,34 @@ export const kakao_login_success = async (response, a) => {
 
     // 넘겨받은 토큰으로 커스텀 로그인
     await firebase.auth().signInWithCustomToken(customToken);
-    const firebaseUserData = {
-      name: data.properties.nickname,
-      uid: data.uuid
-    };
-
-    await firebase
-      .database()
-      .ref('users/' + data.uuid)
-      .update(firebaseUserData);
 
     const DBUserData = { _uid: data.uuid };
-    await axios.post('http://52.79.227.227:3030/users', DBUserData);
+
+    const Users = await axios.get('http://52.79.227.227:3030/users');
+    let newUser = true;
+    Users.data.some(user => {
+      if (user._uid === data.uuid) {
+        console.log('이미 있는 유저입니다');
+        newUser = false;
+      }
+      return user._uid === data.uuid;
+    });
+    if (newUser) {
+      const response = await axios.post(
+        'http://52.79.227.227:3030/users',
+        DBUserData
+      );
+      const firebaseUserData = {
+        name: data.properties.nickname,
+        uid: data.uuid,
+        _id: response.data._id
+      };
+
+      await firebase
+        .database()
+        .ref('users/' + data.uuid)
+        .update(firebaseUserData);
+    }
   } catch (error) {
     console.log(error);
   }
