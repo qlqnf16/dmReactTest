@@ -2,15 +2,44 @@ import React, { Component } from 'react';
 import Schedule from './Schedule/Schedule';
 import ScheduleCard from './ScheduleCard/ScheduleCard';
 import TextInfo from '../TextInfo';
+import axios from 'axios';
+
 import { connect } from 'react-redux';
 
 class ScheduleBox extends Component {
-  state = {
-    time: 1,
-    must: {},
-    no: {},
-    sinces: [],
-    untils: []
+  constructor(props) {
+    super(props);
+    console.log(props);
+    this.state = {
+      cards: [],
+      time: 1,
+      must: {},
+      no: {},
+      sinces: [],
+      untils: [],
+      title: '',
+      requirement: '',
+      requireTime: {},
+      madeRequest: false
+    };
+  }
+
+  componentDidMount = async () => {
+    if (!this.state.madeRequest) {
+      const { data } = await axios.get(
+        `http://52.79.227.227:3030/recruits/${this.props.userData._recruit}`
+      );
+      console.log(data);
+      this.setState({
+        cards: data._cards,
+        title: data.title,
+        requirement: data.requirement,
+        requireTime: data.requireTime,
+        madeRequest: true
+      });
+      console.log(this.state);
+      console.log(data._cards);
+    }
   };
 
   timeAddHandler = () => {
@@ -113,23 +142,24 @@ class ScheduleBox extends Component {
       region: '성북구',
       price: { cut: 3000, perm: 20000, dye: 30000 }
     };
-    console.log(this.props);
+    console.log(this.state);
     const recruitData = {
       title: this.state.title,
       requirement: this.state.requirement,
-      _designer: this.props.userId,
-      _cards: [],
+      _designer: this.props.userData._id,
+      _cards: this.state.cards,
       _reviews: [],
       requireTime: {
-        cut: this.state.cutTime,
-        perm: this.state.permTime,
-        dye: this.state.dyeTime
+        cut: this.state.cutTime && this.state.cutTime,
+        perm: this.state.permTime && this.state.permTime,
+        dye: this.state.dyeTime && this.state.dyeTime
       }
     };
     return (
       <div className="row align-items-start">
         <div className="col-6">
           <TextInfo
+            state={this.state}
             changeInput={e => this.handleInputChange(e)}
             totalSubmitHandler={() =>
               this.props.totalSubmitHandler(recruitData)
@@ -140,18 +170,13 @@ class ScheduleBox extends Component {
             time={this.state.time}
             timeAdd={this.timeAddHandler}
             submit={this.submit}
-            cardAddHandler={() =>
-              this.props.cardAddHandler(
-                cardData,
-                this.props.cards[0]._recruit._id
-              )
-            }
+            cardAddHandler={() => this.props.cardAddHandler(cardData)}
             card={this.props.cards[0]}
             changeInput={e => this.handleInputChange(e)}
           />
         </div>
         <div className="col-6 row mt-5">
-          {this.props.cards.map((card, key) => (
+          {this.state.cards.map((card, key) => (
             <ScheduleCard
               cancelCardHandler={this.props.cancelCardHandler}
               card={card}
@@ -167,7 +192,7 @@ class ScheduleBox extends Component {
   }
 }
 
-const mapStateToProps = ({ authentication: { userData, userId } }) => {
-  return { userData, userId };
+const mapStateToProps = ({ authentication: { userData } }) => {
+  return { userData };
 };
 export default connect(mapStateToProps)(ScheduleBox);

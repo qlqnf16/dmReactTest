@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Container, Form } from 'reactstrap';
 import ScheduleBox from '../../components/DesignerSchedule/ScheduleBox/ScheduleBox';
 import axios from 'axios';
-
+import { connect } from 'react-redux';
 class Schedule extends Component {
   state = {
     cards: [],
@@ -12,9 +12,15 @@ class Schedule extends Component {
 
   componentDidMount = async () => {
     if (!this.state.madeRequest) {
-      const { data } = await axios.get(`http://52.79.227.227:3030/cards`);
-      this.setState({ cards: data, madeRequest: true });
-      console.log(this.state.cards);
+      const { data } = await axios.get(
+        `http://52.79.227.227:3030/recruits/${this.props.userData._recruit}`
+      );
+      this.setState({
+        cards: data._cards,
+        madeRequest: true,
+        newCards: []
+      });
+      console.log(this.state.recruitData);
     }
   };
 
@@ -39,27 +45,60 @@ class Schedule extends Component {
 
   cardAddHandler = async cardData => {
     let newCards = this.state.newCards;
+    let nCards = [];
     newCards.push(cardData);
+    nCards = [...newCards];
 
-    this.setState({ newCards });
+    this.setState({ newCards: nCards });
   };
 
   totalSubmitHandler = async recruitData => {
     console.log(recruitData);
+    if (!this.props.userData._recruit) {
+      console.log('최초 생성');
+      const res = await axios.post(
+        'http://52.79.227.227:3030/recruits',
+        recruitData
+      );
+      console.log(res);
+      await this.state.newCards.forEach(async newCard => {
+        await axios.post(
+          `http://52.79.227.227:3030/recruits/${
+            this.props.userData._recruit
+          }/cards`,
+          newCard
+        );
+      });
+      const { data } = await axios.get(
+        `http://52.79.227.227:3030/recruits/${
+          this.props.userData._recruit
+        }/cards`
+      );
+      this.setState({ cards: data, newCards: [] });
+      await alert('생성되었습니다');
+    } else {
+      console.log('정보 수정');
+      const res = await axios.patch(
+        `http://52.79.227.227:3030/recruits/${this.props.userData._recruit}`,
+        recruitData
+      );
+      console.log(recruitData);
+      this.state.newCards.forEach(async newCard => {
+        await axios.post(
+          `http://52.79.227.227:3030/recruits/${
+            this.props.userData._recruit
+          }/cards`,
+          newCard
+        );
+      });
+      const { data } = await axios.get(
+        `http://52.79.227.227:3030/recruits/${
+          this.props.userData._recruit
+        }/cards`
+      );
+      this.setState({ cards: data, newCards: [] });
+    }
 
-    const res = await axios.post(
-      'http://52.79.227.227:3030/recruits',
-      recruitData
-    );
-    console.log(res);
-    // this.state.newCards.forEach(async newCard => {
-    //   await axios.post(
-    //     `http://52.79.227.227:3030/recruits/${res.data._id}/cards`,
-    //     newCard
-    //   );
-    // });
-    // const { data } = await axios.get(`http://52.79.227.227:3030/cards`);
-    // this.setState({ cards: data, madeRequest: true });
     alert(' 성공적으로 저장되었습니다! ');
   };
 
@@ -70,16 +109,20 @@ class Schedule extends Component {
         <Form>
           <ScheduleBox
             cards={this.state.cards}
+            recruitData={this.state.recruitData}
             newCards={this.state.newCards}
             cancelCardHandler={this.cancelCardHandler}
             cardAddHandler={this.cardAddHandler}
             totalSubmitHandler={this.totalSubmitHandler}
-            // changeInput={e => this.handleInputChange(e)}
           />
+          {/* // changeInput= {e => this.handleInputChange(e)} */}
         </Form>
       </Container>
     );
   }
 }
+const mapStateToProps = ({ authentication: { userData } }) => {
+  return { userData };
+};
 
-export default Schedule;
+export default connect(mapStateToProps)(Schedule);

@@ -11,11 +11,18 @@ const TextInfo = props => (
     </div>
     <FormGroup>
       <Label for="title">제목</Label>
-      <Input onChange={props.changeInput} type="text" name="title" id="title" />
+      <Input
+        value={props.state.title}
+        onChange={props.changeInput}
+        type="text"
+        name="title"
+        id="title"
+      />
     </FormGroup>
     <FormGroup>
       <Label for="requirement">요청사항</Label>
       <Input
+        value={props.state.requirement}
         onChange={props.changeInput}
         type="textarea"
         name="requirement"
@@ -32,7 +39,9 @@ const TextInfo = props => (
             id="time"
             onChange={props.changeInput}
             type="select"
+            value={props.state.requireTime && props.state.requireTime.cut}
           >
+            <option value>--컷트--</option>
             <option value="60">1시간</option>
             <option value="90">1시간 30분</option>
             <option value="120">2시간</option>
@@ -46,7 +55,9 @@ const TextInfo = props => (
             name="permTime"
             id="time"
             onChange={props.changeInput}
+            value={props.state.requireTime && props.state.requireTime.perm}
           >
+            <option value>--펌--</option>
             <option value="60">1시간</option>
             <option value="90">1시간 30분</option>
             <option value="120">2시간</option>
@@ -60,7 +71,9 @@ const TextInfo = props => (
             name="dyeTime"
             id="time"
             onChange={props.changeInput}
+            value={props.state.requireTime && props.state.requireTime.dye}
           >
+            <option value>--염색--</option>
             <option value="60">1시간</option>
             <option value="90">1시간 30분</option>
             <option value="120">2시간</option>

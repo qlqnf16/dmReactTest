@@ -31,6 +31,7 @@ import firebase from './config/Firebase';
 
 import { connect } from 'react-redux';
 import * as actions from './modules';
+import axios from 'axios';
 console.log(actions);
 class App extends Component {
   state = {
@@ -65,11 +66,20 @@ class App extends Component {
         firebase
           .database()
           .ref('/users/' + firebase.auth().currentUser.uid)
-          .on('value', res => {
+          .on('value', async res => {
             this.setState({ madeRequest: true });
 
             // redux;
-            this.props.login(res.val());
+            let userData = res.val();
+            const { data } = await axios.get(
+              `http://52.79.227.227:3030/users/` + userData._id
+            );
+            console.log(data);
+            userData['_recruit'] = data._recruit;
+            userData['_tickets'] = data._tickets;
+            userData['_reservations'] = data._reservations;
+            console.log(userData);
+            this.props.login(userData);
           });
       } else {
         // logout 하면 landing page로 이동
