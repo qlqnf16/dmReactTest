@@ -7,7 +7,8 @@ class Schedule extends Component {
   state = {
     cards: [],
     madeRequest: false,
-    newCards: []
+    newCards: [],
+    requireTime: {}
   };
 
   componentDidMount = async () => {
@@ -18,7 +19,8 @@ class Schedule extends Component {
       this.setState({
         cards: data._cards,
         madeRequest: true,
-        newCards: []
+        newCards: [],
+        requireTime: data.requireTime
       });
       console.log(this.state.recruitData);
     }
@@ -78,11 +80,13 @@ class Schedule extends Component {
       await alert('생성되었습니다');
     } else {
       console.log('정보 수정');
+
+      //TODO : 특정부분 그대로 하고 새로고침...
       const res = await axios.patch(
         `http://52.79.227.227:3030/recruits/${this.props.userData._recruit}`,
         recruitData
       );
-      console.log(recruitData);
+      console.log(this.state.cards);
       this.state.newCards.forEach(async newCard => {
         await axios.post(
           `http://52.79.227.227:3030/recruits/${
@@ -92,13 +96,13 @@ class Schedule extends Component {
         );
       });
       const { data } = await axios.get(
-        `http://52.79.227.227:3030/recruits/${
-          this.props.userData._recruit
-        }/cards`
+        `http://52.79.227.227:3030/recruits/${this.props.userData._recruit}`
       );
-      this.setState({ cards: data, newCards: [] });
+      this.setState({ cards: data._cards, newCards: [] });
+      console.log(data);
     }
-
+    // TODO : 더 좋은 방법 찾기
+    window.location.reload();
     alert(' 성공적으로 저장되었습니다! ');
   };
 
@@ -109,7 +113,7 @@ class Schedule extends Component {
         <Form>
           <ScheduleBox
             cards={this.state.cards}
-            recruitData={this.state.recruitData}
+            requireTime={this.state.requireTime}
             newCards={this.state.newCards}
             cancelCardHandler={this.cancelCardHandler}
             cardAddHandler={this.cardAddHandler}

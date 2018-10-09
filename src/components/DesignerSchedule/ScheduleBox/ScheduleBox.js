@@ -11,7 +11,7 @@ class ScheduleBox extends Component {
     super(props);
     console.log(props);
     this.state = {
-      cards: [],
+      cards: this.props.cards,
       time: 1,
       must: {},
       no: {},
@@ -120,16 +120,6 @@ class ScheduleBox extends Component {
     });
 
     const cardData = {
-      // requireTime: {
-      //   cut: this.state.cutTime,
-      //   perm: this.state.permTime,
-      //   dye: this.state.dyeTime
-      // },
-      requireTime: {
-        cut: 90,
-        perm: 180,
-        dye: 180
-      },
       must: this.state.must,
       no: this.state.no,
       reservable: true,
@@ -143,18 +133,25 @@ class ScheduleBox extends Component {
       price: { cut: 3000, perm: 20000, dye: 30000 }
     };
     console.log(this.state);
+    let requireTime = null;
+
     const recruitData = {
       title: this.state.title,
       requirement: this.state.requirement,
       _designer: this.props.userData._id,
       _cards: this.state.cards,
       _reviews: [],
-      requireTime: {
-        cut: this.state.cutTime && this.state.cutTime,
-        perm: this.state.permTime && this.state.permTime,
-        dye: this.state.dyeTime && this.state.dyeTime
-      }
+      requireTime: this.props.requireTime
     };
+    if (this.state.cutTime && this.state.permTime && this.state.dyeTime) {
+      requireTime = {
+        cut: this.state.cutTime,
+        perm: this.state.permTime,
+        dye: this.state.dyeTime
+      };
+      recruitData['requireTime'] = requireTime;
+    }
+    console.log(recruitData);
     return (
       <div className="row align-items-start">
         <div className="col-6">
