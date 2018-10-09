@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Schedule from './Schedule/Schedule';
 import ScheduleCard from './ScheduleCard/ScheduleCard';
 import TextInfo from '../TextInfo';
+import { connect } from 'react-redux';
+
 class ScheduleBox extends Component {
   state = {
     time: 1,
@@ -40,12 +42,10 @@ class ScheduleBox extends Component {
         this.setState({
           untils: this.untils
         });
-      }
-      //  else if (target.id === 'time') {
-      //   const value = Number(target.value);
-      //   this.setState({ [name]: value });
-      // }
-      else {
+      } else if (target.id === 'time') {
+        const value = Number(target.value);
+        this.setState({ [name]: value });
+      } else {
         const value = target.value;
         this.setState({ [name]: value });
       }
@@ -114,12 +114,25 @@ class ScheduleBox extends Component {
       price: { cut: 3000, perm: 20000, dye: 30000 }
     };
     console.log(this.props);
+    const recruitData = {
+      title: this.state.title,
+      requirement: this.state.requirement,
+      _designer: this.props.userId,
+      _cards: [],
+      _reviews: [],
+      requireTime: {
+        cut: this.state.cutTime,
+        perm: this.state.permTime,
+        dye: this.state.dyeTime
+      }
+    };
     return (
       <div className="row align-items-start">
         <div className="col-6">
           <TextInfo
+            changeInput={e => this.handleInputChange(e)}
             totalSubmitHandler={() =>
-              this.props.totalSubmitHandler(this.props.cards[0]._recruit._id)
+              this.props.totalSubmitHandler(recruitData)
             }
           />
           <Schedule
@@ -154,4 +167,7 @@ class ScheduleBox extends Component {
   }
 }
 
-export default ScheduleBox;
+const mapStateToProps = ({ authentication: { userData, userId } }) => {
+  return { userData, userId };
+};
+export default connect(mapStateToProps)(ScheduleBox);

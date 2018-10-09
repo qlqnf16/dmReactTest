@@ -1,9 +1,8 @@
 import firebaseApp from 'firebase';
 import firebase from '../config/Firebase';
-
 import axios from '../config/Axios';
 
-export const facebookLogin = async () => {
+export const facebookLogin = async props => {
   const provider = new firebaseApp.auth.FacebookAuthProvider();
 
   try {
@@ -17,8 +16,8 @@ export const facebookLogin = async () => {
     };
 
     const DBUserData = { _uid: uid };
-    await axios.post('http://52.79.227.227:3030/users', DBUserData);
-
+    const res = await axios.post('http://52.79.227.227:3030/users', DBUserData);
+    await props.getUserId(res.data._id);
     await firebase
       .database()
       .ref('users/' + uid)
@@ -28,9 +27,8 @@ export const facebookLogin = async () => {
   }
 };
 
-export const googleLogin = async () => {
+export const googleLogin = async props => {
   const provider = new firebaseApp.auth.GoogleAuthProvider();
-
   try {
     await firebase.auth().signInWithPopup(provider);
     const currentUser = firebase.auth().currentUser;
@@ -48,13 +46,14 @@ export const googleLogin = async () => {
       .ref('users/' + uid)
       .update(firebaseUserData);
 
-    await axios.post('http://52.79.227.227:3030/users', DBUserData);
+    const res = await axios.post('http://52.79.227.227:3030/users', DBUserData);
+    await props.getUserId(res.data._id);
   } catch (error) {
     console.log(error);
   }
 };
 
-export const kakao_login_success = async response => {
+export const kakao_login_success = async (response, props) => {
   // 카카오톡 로그인으로 카카오톡 토큰 발급
   const userToken = { userToken: response.response.access_token };
   console.log(userToken);
@@ -83,7 +82,12 @@ export const kakao_login_success = async response => {
       .update(firebaseUserData);
 
     const DBUserData = { _uid: data.uuid };
-    await axios.post('http://52.79.227.227:3030/users', DBUserData);
+    const response = await axios.post(
+      'http://52.79.227.227:3030/users',
+      DBUserData
+    );
+    const resId = await props.getUserId(response.data._id);
+    await props.getUserId(resId.data._id);
   } catch (error) {
     console.log(error);
   }

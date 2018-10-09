@@ -44,17 +44,22 @@ class Schedule extends Component {
     this.setState({ newCards });
   };
 
-  totalSubmitHandler = async recruitId => {
-    console.log('total');
-    this.state.newCards.forEach(newCard => {
-      console.log('카드 하나');
-      axios.post(
-        `http://52.79.227.227:3030/recruits/${recruitId}/cards`,
-        newCard
-      );
-    });
-    const { data } = await axios.get(`http://52.79.227.227:3030/cards`);
-    this.setState({ cards: data, madeRequest: true });
+  totalSubmitHandler = async recruitData => {
+    console.log(recruitData);
+
+    const res = await axios.post(
+      'http://52.79.227.227:3030/recruits',
+      recruitData
+    );
+    console.log(res);
+    // this.state.newCards.forEach(newCard => {
+    //   axios.post(
+    //     `http://52.79.227.227:3030/recruits/${recruitId}/cards`,
+    //     newCard
+    //   );
+    // });
+    // const { data } = await axios.get(`http://52.79.227.227:3030/cards`);
+    // this.setState({ cards: data, madeRequest: true });
     alert(' 성공적으로 저장되었습니다! ');
   };
 

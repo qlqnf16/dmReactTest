@@ -48,20 +48,22 @@ class MyModal extends Component {
           <ModalBody className="text-center">
             <button
               className="btn btn-light d-block w-100"
-              onClick={LoginFunc.googleLogin}
+              onClick={() => LoginFunc.googleLogin(this.props)}
             >
               구글 {this.state.title}
             </button>
             <button
               className="btn btn-light d-block w-100"
-              onClick={LoginFunc.facebookLogin}
+              onClick={() => LoginFunc.facebookLogin(this.props)}
             >
               페이스북 {this.state.title}
             </button>
             <KakaoLogin
               className="btn btn-light d-block w-100"
               jsKey={KaKaoKey}
-              onSuccess={LoginFunc.kakao_login_success}
+              onSuccess={response =>
+                LoginFunc.kakao_login_success(response, this.props)
+              }
               onFailure={LoginFunc.kakao_login_success}
               getProfile={true}
               buttonText={`카카오톡 ${this.state.title}`}

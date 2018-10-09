@@ -9,6 +9,7 @@ class AddDesigner extends Component {
     super(props);
 
     const userData = this.props.userData;
+
     this.state = {
       name: userData.name,
       birthday: userData.birthday,
@@ -127,6 +128,7 @@ class AddDesigner extends Component {
   // TODO : shouldComponentUpdate 로 렌더링 안되게 하기
 
   render() {
+    console.log(this.props.userData);
     return (
       <Container>
         <Form className="m-5">
