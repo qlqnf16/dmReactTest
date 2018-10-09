@@ -52,9 +52,9 @@ class Schedule extends Component {
       recruitData
     );
     console.log(res);
-    // this.state.newCards.forEach(newCard => {
-    //   axios.post(
-    //     `http://52.79.227.227:3030/recruits/${recruitId}/cards`,
+    // this.state.newCards.forEach(async newCard => {
+    //   await axios.post(
+    //     `http://52.79.227.227:3030/recruits/${res.data._id}/cards`,
     //     newCard
     //   );
     // });
