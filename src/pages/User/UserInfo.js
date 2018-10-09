@@ -11,7 +11,6 @@ import {
   Container,
   Col
 } from 'reactstrap';
-import fire from '../../config/Firebase';
 
 class UserInfo extends Component {
   state = {

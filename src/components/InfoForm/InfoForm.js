@@ -4,7 +4,8 @@ import ImgPreview from './ImgPreview';
 
 class InfoForm extends Component {
   render() {
-    console.log(this.props.state);
+    const userData = this.props.state;
+    console.log(userData);
     return (
       <Fragment>
         <FormGroup row>
@@ -17,7 +18,7 @@ class InfoForm extends Component {
               name="name"
               id="name"
               onChange={this.props.changeInput}
-              value={this.props.state.name}
+              value={userData.name}
             />
           </Col>
         </FormGroup>
@@ -31,7 +32,7 @@ class InfoForm extends Component {
               name="email"
               id="email"
               onChange={this.props.changeInput}
-              value={this.props.state.email}
+              value={userData.email}
             />
           </Col>
         </FormGroup>
@@ -45,7 +46,7 @@ class InfoForm extends Component {
               name="birthday"
               id="birthday"
               onChange={this.props.changeInput}
-              value={this.props.state.birthday}
+              value={userData.birthday}
             />
           </Col>
         </FormGroup>
@@ -59,7 +60,7 @@ class InfoForm extends Component {
               name="phoneNumber"
               id="phoneNumber"
               onChange={this.props.changeInput}
-              value={this.props.state.phoneNumber}
+              value={userData.phoneNumber}
             />
           </Col>
         </FormGroup>
@@ -100,6 +101,7 @@ class InfoForm extends Component {
               name="dYear"
               id="dYear"
               onChange={this.props.changeInput}
+              value={Math.floor(userData.untilDesigner / 12)}
               className="d-inline col-2"
             />{' '}
             년
@@ -108,6 +110,7 @@ class InfoForm extends Component {
               name="dMonth"
               id="dMonth"
               onChange={this.props.changeInput}
+              value={userData.untilDesigner % 12}
               className="d-inline col-2"
             />{' '}
             개월
@@ -123,6 +126,7 @@ class InfoForm extends Component {
               name="careerYear"
               id="careerYear"
               onChange={this.props.changeInput}
+              value={Math.floor(userData.career / 12)}
               className="d-inline col-2"
             />{' '}
             년
@@ -132,6 +136,7 @@ class InfoForm extends Component {
               id="careerMonth"
               onChange={this.props.changeInput}
               className="d-inline col-2"
+              value={userData.career % 12}
             />{' '}
             개월
           </Col>
@@ -146,6 +151,7 @@ class InfoForm extends Component {
               name="careerDetail"
               id="careerDetail"
               onChange={this.props.changeInput}
+              value={userData.careerDetail}
             />
           </Col>
         </FormGroup>

@@ -7,11 +7,16 @@ import firebase from '../config/Firebase';
 class AddDesigner extends Component {
   constructor(props) {
     super(props);
+
+    const userData = this.props.userData;
     this.state = {
-      name: this.props.userData.name,
-      birthday: this.props.userData.birthday,
-      email: this.props.userData.email,
-      phoneNumber: this.props.userData.phoneNumber,
+      name: userData.name,
+      birthday: userData.birthday,
+      email: userData.email,
+      phoneNumber: userData.phoneNumber,
+      untilDesigner: userData.untilDesigner,
+      career: userData.career,
+      careerDetail: userData.careerDetail,
       certImg1: null,
       certFile1: null,
       certImg2: null,
@@ -56,40 +61,70 @@ class AddDesigner extends Component {
   //     }
   //     return  post(url, formData,config)
   // }
-
+  dYear = 0;
+  dMonth = 0;
+  careerYear = 0;
+  careerMonth = 0;
   handleInputChange(e) {
     const target = e.target;
     const value = target.value;
     const name = target.name;
 
-    this.setState({
-      [name]: value
-    });
+    if (target.id === 'dYear' || target.id === 'dMonth') {
+      if (target.id === 'dYear') {
+        this.dYear = Number(value);
+      } else if (target.id === 'dMonth') {
+        this.dMonth = Number(value);
+      }
+      this.setState({ untilDesigner: this.dYear * 12 + this.dMonth });
+    } else if (target.id === 'careerYear' || target.id === 'careerMonth') {
+      if (target.id === 'careerYear') {
+        this.careerYear = Number(value);
+      } else if (target.id === 'careerMonth') {
+        this.careerMonth = Number(value);
+      }
+      this.setState({ career: this.careerYear * 12 + this.careerMonth });
+    } else {
+      this.setState({ [name]: value });
+    }
   }
 
   submitHandler = async () => {
+    const {
+      name,
+      birthday,
+      email,
+      phoneNumber,
+      untilDesigner,
+      career,
+      careerDetail
+    } = this.state;
+
     const firebaseUserData = {
-      name: this.state.name,
-      birthday: this.state.birthday,
-      email: this.state.email,
-      phoneNumber: this.state.phoneNumber,
-      // locations: [
-      //   {
-      //     region: this.state.region,
-      //     shop: this.state.shop,
-      //     address: this.state.address
-      //   }
-      // ],
-      untilDesigner: `${this.state.dYear}년 ${this.state.dMonth}개월`,
-      career: `${this.state.careerYear}년 ${this.state.careerMonth}개월`,
-      careerDetail: this.state.careerDetail
+      name,
+      birthday,
+      email,
+      phoneNumber,
+      untilDesigner,
+      career,
+      careerDetail,
+      // 임시로. 일단 신청하면 디자이너 되도록
+      isD: true
     };
+
+    if (Object.values(firebaseUserData).includes(undefined))
+      return alert('채워지지 않은 정보가 있습니다');
+
+    alert('성공적으로 신청되었습니다');
     await firebase
       .database()
       .ref('users/' + this.props.userData.uid)
       .update(firebaseUserData);
-    console.log(firebaseUserData);
+
+    await this.props.history.push('/designer/whydreamary');
   };
+
+  // TODO : shouldComponentUpdate 로 렌더링 안되게 하기
 
   render() {
     return (
