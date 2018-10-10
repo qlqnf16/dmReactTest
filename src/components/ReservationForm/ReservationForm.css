@@ -22,6 +22,7 @@
   color: #1e3354;
   font-size: 1.5rem;
   font-weight: bold;
+  margin: auto;
 }
 
 .rf-tableHead {
@@ -29,7 +30,7 @@
   font-weight: bold;
   background-color: rgba(245, 177, 173, 0.1);
   height: 40px;
-  padding: auto;
+  margin: auto;
   border-bottom: solid 1px rgba(245, 177, 173, 0.5);
   border-right: solid 1px rgba(245, 177, 173, 0.5);
 }
@@ -37,5 +38,4 @@
 .rf-tableBody {
   color: #2b2e34;
   padding: auto;
-  border-bottom: ;
 }

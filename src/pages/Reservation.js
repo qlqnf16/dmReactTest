@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'reactstrap';
 import { connect } from 'react-redux';
+import ReservationForm from '../components/ReservationForm/ReservationForm';
 
 class ReservationConfirm extends Component {
   componentDidMount = () => {
@@ -66,42 +67,23 @@ class ReservationConfirm extends Component {
     }`;
 
     const recruit = this.props.location.state.recruit;
-    console.log(recruit);
+
     return (
-      <div className="container mb-5">
+      <div className="mb-5">
         <div className="m-5 text-center">
           <h1>2단계 예약하기 </h1>
         </div>
-        <div className="m-5">
-          <h2>예약/결제</h2>
-          {/* <h2>예약 번호 : {this.props.match.params.card_id}</h2> */}
-        </div>
+        <ReservationForm
+          name={this.props.userData.name}
+          email={this.props.userData.email}
+          d_name={recruit._designer.name}
+          startTime={startTimeFormat}
+          finishTime={finishTimeFormat}
+          shop={this.props.location.state.cardData.shop}
+          service={this.props.location.state.service}
+          price={this.props.location.state.price}
+        />
         <div>
-          <h4>예약자 정보</h4>
-          <h5 className="m-4">이름 : {this.props.userData.name} </h5>
-          <h5 className="m-4">이메일 : {this.props.userData.email} </h5>
-          <h5 className="m-4">휴대폰 번호 : </h5>
-        </div>
-        <div>
-          <h4>예약 정보</h4>
-          <h5 className="m-4">막내 이름 : {recruit._designer.name} </h5>
-          <h5 className="m-4">
-            날짜 / 시간 : 2018/00/00 {startTimeFormat} ~ {finishTimeFormat}
-          </h5>
-          <h5 className="m-4">
-            헤어샵 : {this.props.location.state.cardData.shop}
-          </h5>
-          <h5 className="m-4">서비스 : {this.props.location.state.service} </h5>
-        </div>
-        <div>
-          <h4>결제 정보</h4>
-          <h5 className="m-4">
-            총 서비스 가격 : {this.props.location.state.price}원
-          </h5>
-          <h5 className="m-4">Point : </h5>
-          <h5 className="m-4">총 결제 금액 : </h5>
-          <h5 className="m-4">결제 방법 : </h5>
-
           <div
             className="btn btn-danger"
             onClick={() =>

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import './ReservationForm.css';
 
 class ReservationForm extends Component {
@@ -8,6 +7,7 @@ class ReservationForm extends Component {
       <div className="container rf">
         <div className="row rf-title">
           <div className="col-9 rf-title-text1">예약/결제</div>
+          {/* {예약번호: {this.props.match.params.card_id}} */}
           <div className="col-3 text-right rf-title-text2">
             예약결제 > <span style={{ color: '#bcbab7' }}>예약완료</span>
           </div>
@@ -15,12 +15,16 @@ class ReservationForm extends Component {
         <div>
           <div className="rf-tableTitle">예약자 정보</div>
           <div className="row">
-            <div className="col-2  text-right rf-tableHead">이름</div>
-            <div className="col-10">{this.props.userData.name}</div>
+            <div className="col-2  text-right rf-tableHead align-middle">
+              이름
+            </div>
+            <div className="col-10">{this.props.name}</div>
           </div>
           <div className="row">
-            <div className="col-2 text-right rf-tableHead">이메일</div>
-            <div className="col-10">{this.props.userData.email}</div>
+            <div className="col-2 text-right rf-tableHead align-middle">
+              이메일
+            </div>
+            <div className="col-10">{this.props.email}</div>
           </div>
           <div className="row">
             <div className="col-2 text-right rf-tableHead">휴대폰 번호</div>
@@ -35,26 +39,28 @@ class ReservationForm extends Component {
           <div className="rf-tableTitle">예약정보</div>
           <div className="row">
             <div className="col-2  text-right rf-tableHead">막내 이름</div>
-            <div className="col-10">-</div>
+            <div className="col-10">{this.props.d_name}</div>
           </div>
           <div className="row">
             <div className="col-2  text-right rf-tableHead">날짜/시간</div>
-            <div className="col-10">-</div>
+            <div className="col-10">
+              2018/00/00 {this.props.startTime} ~ {this.props.finishTime}
+            </div>
           </div>
           <div className="row">
             <div className="col-2  text-right rf-tableHead">헤어샵</div>
-            <div className="col-10">-</div>
+            <div className="col-10">{this.props.shop}</div>
           </div>
           <div className="row">
             <div className="col-2  text-right rf-tableHead">서비스</div>
-            <div className="col-10">-</div>
+            <div className="col-10">{this.props.service}</div>
           </div>
         </div>
         <div>
           <div className="rf-tableTitle">결제정보</div>
           <div className="row">
             <div className="col-2  text-right rf-tableHead">총서비스가격</div>
-            <div className="col-10">원</div>
+            <div className="col-10">{this.props.price}원</div>
           </div>
           <div className="row">
             <div className="col-2 text-right rf-tableHead">Point</div>
@@ -81,8 +87,4 @@ class ReservationForm extends Component {
   }
 }
 
-const mapStateToProps = ({ authentication: { userData } }) => {
-  return { userData };
-};
-
-export default connect(mapStateToProps)(ReservationForm);
+export default ReservationForm;
