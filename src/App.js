@@ -10,7 +10,6 @@ import {
   DesignerDetail,
   Reservation,
   ReservationConfirm,
-  Reservation,
   Message,
   Chat,
   Coupon,
