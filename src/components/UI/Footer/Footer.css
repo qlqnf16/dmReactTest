@@ -1,0 +1,25 @@
+.background {
+  margin-top: 69.5px;
+  background-color: white;
+  padding: 3.3% 8%;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 1.2rem;
+  line-height: 1.08;
+  letter-spacing: 0.06rem;
+  color: #dd6866;
+  font-weight: bold;
+  margin-bottom: 17.7px;
+}
+
+.content {
+  font-size: 1.1rem;
+  line-height: 1.82;
+  letter-spacing: 0.06rem;
+  color: #1f3354;
+}

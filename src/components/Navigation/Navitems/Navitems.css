@@ -1,0 +1,11 @@
+.navitem {
+  font-size: 1.5rem;
+  letter-spacing: 0.08rem;
+  line-height: 1.2;
+  color: #1f3354;
+  text-decoration: none;
+}
+
+.dropdownMenu {
+  width: 10%;
+}

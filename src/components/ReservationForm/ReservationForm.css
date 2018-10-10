@@ -60,6 +60,7 @@
   border: solid 1px #dd6866;
   background-color: #ffffff;
   margin-right: 15.5px;
+  cursor: pointer;
 }
 
 .rf-input {
