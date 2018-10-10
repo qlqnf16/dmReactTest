@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button } from 'reactstrap';
 import { connect } from 'react-redux';
 import ReservationForm from '../components/ReservationForm/ReservationForm';
-import './Reservation.css';
+import './PageCss.css';
 
 class ReservationConfirm extends Component {
   componentDidMount = () => {

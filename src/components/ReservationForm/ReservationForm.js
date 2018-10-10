@@ -5,10 +5,10 @@ class ReservationForm extends Component {
   render() {
     return (
       <div className="container rf">
-        <div className="row rf-title">
-          <div className="col-9 rf-title-text1">예약/결제</div>
+        <div className="row rf-title d-flex justify-content-between">
+          <div className="rf-title-text1">예약/결제</div>
           {/* {예약번호: {this.props.match.params.card_id}} */}
-          <div className="col-3 text-right rf-title-text2">
+          <div className="text-right rf-title-text2">
             예약결제 > <span style={{ color: '#bcbab7' }}>예약완료</span>
           </div>
         </div>

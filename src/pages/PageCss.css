@@ -1,0 +1,50 @@
+.r_button {
+  width: 10.9%;
+  height: 46.2px;
+  border-radius: 5px;
+  background-color: #dd6866;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.7rem;
+  letter-spacing: 0.17rem;
+  margin: 54.1px auto 0 auto;
+}
+
+.rc_h1 {
+  font-size: 3.8rem;
+  line-height: 1.13;
+  letter-spacing: 0.19rem;
+  color: #1e3354;
+}
+
+.rc_h2 {
+  font-size: 2rem;
+  line-height: 1.15;
+  letter-spacing: 0.1rem;
+  color: #4c91ba;
+  margin-top: 9px;
+  font-weight: bold;
+}
+
+.rc_h3 {
+  font-size: 1.7rem;
+  line-height: 1.12;
+  letter-spacing: 0.09rem;
+  color: #1e3354;
+  margin-top: 40.3px;
+  margin-bottom: 62px;
+  font-weight: bold;
+}
+
+.rc_button {
+  width: 10%;
+  height: 26px;
+  border-radius: 5px;
+  border: solid 1px #dd6866;
+  background-color: white;
+  color: #dd6866;
+  font-size: 1.5rem;
+  padding: 5px 14.5px;
+}

@@ -1,0 +1,24 @@
+.ac_back {
+  width: 523px;
+  border-radius: 25px;
+  border: solid 1.3px #f5b1ad;
+  background-color: rgba(245, 177, 173, 0.1);
+  padding: 1.46%;
+  margin: 0 auto 48px auto;
+}
+
+.ac_title {
+  font-weight: bold;
+  font-size: 1.7rem;
+  line-height: 1.12;
+  letter-spacing: 0.09rem;
+  color: #dd6866;
+  margin-bottom: 2.7rem;
+}
+
+.ac_body {
+  font-size: 1.3rem;
+  color: #2b2e34;
+  line-height: 1.08;
+  letter-spacing: 0.07rem;
+}
