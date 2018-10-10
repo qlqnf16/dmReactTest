@@ -21,7 +21,7 @@ const Review = props => {
   console.log(time);
 
   return (
-    <div className='r_box'>
+    <div className="r_box">
       <div className="r_top">
         <div
           className="r_content"
