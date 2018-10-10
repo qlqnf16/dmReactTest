@@ -35,13 +35,13 @@ class DesignerCarousel extends Component {
     this.onExited = this.onExited.bind(this);
   }
 
-  componentWillMount() {
-    if (typeof this.props.test === 'object') {
-      Object.entries(this.props.test).forEach((t, i) => {
-        items[i].src = t[1];
-      });
-    }
-  }
+  // componentWillMount() {
+  //   if (typeof this.props.test === 'object') {
+  //     Object.entries(this.props.test).forEach((t, i) => {
+  //       items[i].src = t[1];
+  //     });
+  //   }
+  // }
 
   componentDidMount() {
     console.log(this.props);
