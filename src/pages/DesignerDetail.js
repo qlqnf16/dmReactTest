@@ -47,6 +47,8 @@ class DesginerDetail extends Component {
           introduce={this.state.recruit.introduction}
           data={this.state.recruit.requirement}
           reviews={this.state.recruit._reviews}
+          title={this.state.recruit.title}
+          portfolios={this.state.recruit.portfolios}
         />
       );
     }

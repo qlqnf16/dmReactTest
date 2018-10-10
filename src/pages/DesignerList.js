@@ -3,7 +3,7 @@ import DesignerCard from '../components/DesignerCard/DesignerCard';
 import Filter from '../components/DesignerCard/Filter/Filter';
 import { CardDeck } from 'reactstrap';
 import axios from 'axios';
-import './DesignerList.css';
+import './PageCss.css';
 
 class DesignerList extends Component {
   constructor() {

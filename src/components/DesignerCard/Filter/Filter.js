@@ -57,7 +57,7 @@ const Filter = props => (
       </select>
     </div>
     <div className="col-md-12 filterTitle">서비스</div>
-    <div className="col-md-10 m-auto">
+    <div className="col-md-11 m-auto">
       <div
         className="d-flex justify-content-between"
         style={{ marginTop: '15px' }}
@@ -105,7 +105,7 @@ const Filter = props => (
     </div>
     <div
       onClick={() => props.getFilteredCards()}
-      className="col-md-11 filterButton"
+      className="col-md-12 filterButton"
     >
       검색하기
     </div>

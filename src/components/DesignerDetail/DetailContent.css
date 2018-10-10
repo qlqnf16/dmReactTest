@@ -1,0 +1,19 @@
+.dc_title {
+  width: fit-content;
+  /* font-family: NanumSquareEB; */
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 1.15;
+  color: #1e3354;
+  margin: 39.7px 0 9px 0;
+  border-bottom: solid 2px #1e3354;
+  padding-bottom: 5.4px;
+}
+
+.dc_reviews {
+  font-size: 1.2rem;
+  line-height: 1.08;
+  letter-spacing: 0.6px;
+  color: #2b2e34;
+  margin: 13.6px 0 20.4px 0;
+}

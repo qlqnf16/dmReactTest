@@ -1,0 +1,15 @@
+.mi_content {
+  font-size: 1.2rem;
+  line-height: 1.68;
+  letter-spacing: 0.6px;
+  color: #1f3354;
+  margin: 11px 0 44.1px 0;
+}
+
+.mi_subtitle {
+  font-size: 1.6rem;
+  font-weight: bold;
+  line-height: 1.13;
+  letter-spacing: 0.8px;
+  color: #dd6866;
+}

@@ -1,3 +1,5 @@
+/* Reservation.js */
+
 .r_button {
   width: 10.9%;
   height: 46.2px;
@@ -12,6 +14,8 @@
   margin: 54.1px auto 0 auto;
   cursor: pointer;
 }
+
+/* ReservationConfirm.js */
 
 .rc_h1 {
   font-size: 3.8rem;
@@ -48,4 +52,11 @@
   color: #dd6866;
   font-size: 1.5rem;
   padding: 5px 14.5px;
+}
+
+/* DesignerList.js */
+
+.container-fluid.dl {
+  width: 92%;
+  align-items: center;
 }
