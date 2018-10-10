@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button } from 'reactstrap';
 import { connect } from 'react-redux';
 import ReservationForm from '../components/ReservationForm/ReservationForm';
+import './Reservation.css';
 
 class ReservationConfirm extends Component {
   componentDidMount = () => {
@@ -85,7 +86,7 @@ class ReservationConfirm extends Component {
         />
         <div>
           <div
-            className="btn btn-danger"
+            className="r_button"
             onClick={() =>
               this.purchaseHandler(this.props.location.state.price)
             }

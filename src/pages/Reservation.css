@@ -1,0 +1,13 @@
+.r_button {
+  width: 10.9%;
+  height: 46.2px;
+  border-radius: 5px;
+  background-color: #dd6866;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.7rem;
+  letter-spacing: 0.17rem;
+  margin: 54.1px auto 0 auto;
+}
