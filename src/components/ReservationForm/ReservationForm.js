@@ -1,8 +1,33 @@
 import React, { Component } from 'react';
 import './ReservationForm.css';
+import { connect } from 'react-redux';
+import Moment from 'react-moment';
 
 class ReservationForm extends Component {
+  state = {
+    point: 0,
+    finalPrice: this.props.price
+  };
+
+  handleInputChange = e => {
+    const target = e.target;
+    const value = target.value;
+    const name = target.name;
+    this.setState({ [name]: value });
+  };
+
+  pointSubmit = () => {
+    if (this.state.point % 1000 === 0) {
+      this.setState({
+        finalPrice: this.props.price - Number(this.state.point)
+      });
+    } else {
+      alert('1,000 point 단위로 사용 가능합니다.');
+    }
+  };
+
   render() {
+    console.log(this.props.userData);
     return (
       <div className="container rf">
         <div className="row rf-title d-flex justify-content-between">
@@ -19,26 +44,26 @@ class ReservationForm extends Component {
               이름
             </div>
             <div className="col-10 rf-tableBody rf-tableTop">
-              {this.props.name}
+              {this.props.userData.name}
             </div>
           </div>
           <div className="row">
             <div className="col-2 text-right rf-tableHead align-middle">
               이메일
             </div>
-            <div className="col-10 rf-tableBody">{this.props.email}</div>
+            <div className="col-10 rf-tableBody">
+              {this.props.userData.email}
+            </div>
           </div>
           <div className="row">
             <div className="col-2 text-right rf-tableHead">휴대폰 번호</div>
             <div className="col-10 rf-tableBody">
-              <input
-                type="text"
-                name="phonenumber"
-                id="phonenumber"
-                className="rf-input"
-              />
-              <button className="rf-button">수정</button>
-              예약 정보는 휴대폰 번호로 전송됩니다
+              {this.props.userData.phoneNumber.slice(0, 3)}-
+              {this.props.userData.phoneNumber.slice(3, 7)}-
+              {this.props.userData.phoneNumber.slice(7, 10)}
+              <span className="ml-5 font-weight-light">
+                예약 정보는 휴대폰 번호로 전송됩니다
+              </span>
             </div>
           </div>
         </div>
@@ -55,12 +80,18 @@ class ReservationForm extends Component {
           <div className="row">
             <div className="col-2  text-right rf-tableHead">날짜/시간</div>
             <div className="col-10 rf-tableBody">
-              2018/00/00 {this.props.startTime} ~ {this.props.finishTime}
+              <Moment unix format="YYYY/MM/DD">
+                {this.props.date / 1000}
+              </Moment>{' '}
+              <span className="ml-2">
+                {this.props.startTime} ~ {this.props.finishTime}
+              </span>
             </div>
           </div>
           <div className="row">
             <div className="col-2  text-right rf-tableHead">헤어샵</div>
             <div className="col-10 rf-tableBody">{this.props.shop}</div>
+            {/* <div className="col-10 rf-tableBody" /> */}
           </div>
           <div className="row">
             <div className="col-2  text-right rf-tableHead">서비스</div>
@@ -84,13 +115,19 @@ class ReservationForm extends Component {
             <div className="col-2 text-right rf-tableHead">Point</div>
             <div className="col-10 rf-tableBody">
               <input
-                type="text"
-                name="phonenumber"
-                id="phonenumber"
+                onChange={this.handleInputChange}
+                type="number"
+                name="point"
+                id="point"
                 className="rf-input"
+                value={this.state.point}
               />
-              <button className="rf-button">적용</button>
-              1,000 point 단위로 사용 가능합니다.
+              <button onClick={this.pointSubmit} className="rf-button">
+                적용
+              </button>
+              <span className="font-weight-light">
+                1,000 point 단위로 사용 가능합니다.
+              </span>
             </div>
           </div>
           <div className="row">
@@ -99,7 +136,7 @@ class ReservationForm extends Component {
               className="col-10 rf-tableBody"
               style={{ fontWeight: 'bold', color: '#dd6866' }}
             >
-              원
+              {this.state.finalPrice}원
             </div>
           </div>
           <div className="row">
@@ -117,4 +154,8 @@ class ReservationForm extends Component {
   }
 }
 
-export default ReservationForm;
+const mapStateToProps = ({ authentication: { userData } }) => {
+  return { userData };
+};
+
+export default connect(mapStateToProps)(ReservationForm);

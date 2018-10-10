@@ -6,6 +6,9 @@ import ReservationForm from '../components/ReservationForm/ReservationForm';
 import './PageCss.css';
 
 class ReservationConfirm extends Component {
+  state = {
+    point: 0
+  };
   componentDidMount = () => {
     // iamport 사용하기 위한 inline script 작성
     let links = [
@@ -60,29 +63,30 @@ class ReservationConfirm extends Component {
   render() {
     const startTime = this.props.location.state.startTime;
     const time = this.props.location.state.time;
-    let startTimeFormat = `${parseInt(startTime / 60, 10)} : ${
+    let startTimeFormat = `${parseInt(startTime / 60, 10)}:${
       startTime % 60 === 0 ? '00' : '30'
     }`;
-    let finishTimeFormat = `${parseInt((startTime + time) / 60, 10)} : ${
+    let finishTimeFormat = `${parseInt((startTime + time) / 60, 10)}:${
       (startTime + time) % 60 === 0 ? '00' : '30'
     }`;
 
     const recruit = this.props.location.state.recruit;
-
+    const cardData = this.props.location.state.cardData;
+    console.log(recruit);
     return (
       <div className="mb-5">
         <div className="m-5 text-center">
           <h1>2단계 예약하기 </h1>
         </div>
         <ReservationForm
-          name={this.props.userData.name}
-          email={this.props.userData.email}
-          d_name={recruit._designer.name}
+          d_name={recruit.designerName}
           startTime={startTimeFormat}
           finishTime={finishTimeFormat}
-          shop={this.props.location.state.cardData.shop}
+          shop={cardData.shop}
           service={this.props.location.state.service}
           price={this.props.location.state.price}
+          date={cardData.date}
+          // changeInput={e => this.handleInputChange(e)}
         />
         <div>
           <div
