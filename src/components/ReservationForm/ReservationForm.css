@@ -1,0 +1,41 @@
+.container.rf {
+  width: 69.2%;
+}
+
+.rf-title {
+  color: #1e3354;
+  border-bottom: 2px solid #1f3354;
+  margin-bottom: 50px;
+  margin-top: 36px;
+  font-weight: bold;
+}
+
+.rf-title-text1 {
+  font-size: 2.2rem;
+}
+
+.rf-title-text2 {
+  font-size: 1.5rem;
+}
+
+.rf-tableTitle {
+  color: #1e3354;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.rf-tableHead {
+  color: #dd6866;
+  font-weight: bold;
+  background-color: rgba(245, 177, 173, 0.1);
+  height: 40px;
+  padding: auto;
+  border-bottom: solid 1px rgba(245, 177, 173, 0.5);
+  border-right: solid 1px rgba(245, 177, 173, 0.5);
+}
+
+.rf-tableBody {
+  color: #2b2e34;
+  padding: auto;
+  border-bottom: ;
+}

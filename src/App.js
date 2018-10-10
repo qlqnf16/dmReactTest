@@ -8,6 +8,7 @@ import {
   AddDesigner,
   DesignerList,
   DesignerDetail,
+  Reservation,
   ReservationConfirm,
   Coupon,
   MyTicket,
@@ -99,6 +100,7 @@ class App extends Component {
           <Route path="/about" component={About} />
           <Route path="/designerList" component={DesignerList} />
           <Route path="/designerDetail/:id" component={DesignerDetail} />
+          <Route path="/reservation/:reservation_id" component={Reservation} />
           <Route
             path="/reservationConfirm/:reservation_id"
             component={ReservationConfirm}

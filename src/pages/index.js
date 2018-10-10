@@ -3,6 +3,7 @@ export { default as WrongAccess } from './WrongAccess';
 export { default as About } from './About';
 export { default as DesignerList } from './DesignerList';
 export { default as DesignerDetail } from './DesignerDetail';
+export { default as Reservation } from './Reservation';
 export { default as ReservationConfirm } from './ReservationConfirm';
 
 // 디자이너 서비스
