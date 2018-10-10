@@ -107,17 +107,17 @@ class CardAdd extends Component {
     let time = 0;
     if (this.state.cut) {
       price += this.props.price.cut;
-      time += this.props.time.cut;
+      // time += this.props.time.cut;
       service += '컷트 ';
     }
     if (this.state.perm) {
       price += this.props.price.perm;
-      time += this.props.time.perm;
+      // time += this.props.time.perm;
       service += '펌';
     }
     if (this.state.dye) {
       price += this.props.price.dye;
-      time += this.props.time.dye;
+      // time += this.props.time.dye;
       service += '염색';
     }
 
