@@ -52,6 +52,11 @@ class Navitems extends Component {
               </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
+          <NavItem>
+            <NavLink tag={Link} to={'/message'}>
+              메세지
+            </NavLink>
+          </NavItem>
         </Fragment>
       );
       // 로그인 했는지 && 디자이너인지 확인 후 디자이너용 navbar
@@ -86,6 +91,11 @@ class Navitems extends Component {
           <NavItem>
             <NavLink tag={Link} to={'/designer/coupon'}>
               추천인/쿠폰
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink tag={Link} to={'/message'}>
+              메세지
             </NavLink>
           </NavItem>
           <NavItem>

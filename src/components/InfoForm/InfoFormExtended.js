@@ -26,7 +26,13 @@ class InfoFormExtended extends Component {
             자기소개
           </Label>
           <Col sm={10}>
-            <Input type="textarea" name="profileDetail" id="profileDetail" />
+            <Input
+              type="textarea"
+              name="introduce"
+              id="introduce"
+              onChange={this.props.changeInput}
+              value={this.props.state.introduce}
+            />
           </Col>
         </FormGroup>
         <FormGroup row>

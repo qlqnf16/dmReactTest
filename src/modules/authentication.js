@@ -7,6 +7,7 @@ import firebase from '../config/Firebase';
 // 3. Actions
 
 const LOGIN_SUCCESS = 'authentication/LOGIN_SUCCESS';
+const GET_USER_ID = 'authentication/GET_USER_ID';
 // const LOGIN_FAIL = 'authentication/LOGIN_FAIL';
 
 const initialState = {
@@ -15,15 +16,20 @@ const initialState = {
     isD: false,
     isRegister: false,
     name: null,
-    uid: null
-  }
+    uid: null,
+    phoneNumber: null,
+    birthday: null
+  },
+  userId: null
 };
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case LOGIN_SUCCESS:
       return { ...state, userData: payload };
-
+    case GET_USER_ID:
+      console.log(payload);
+      return { ...state, userId: payload };
     default:
       return state;
   }
@@ -52,4 +58,7 @@ export const googleLogin = () => async dispatch => {
 
 export const login = userData => dispatch => {
   dispatch({ type: LOGIN_SUCCESS, payload: userData });
+};
+export const getUserId = _id => dispatch => {
+  dispatch({ type: GET_USER_ID, payload: _id });
 };

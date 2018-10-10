@@ -1,144 +1,117 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import CancelReasonModal from '../../components/UI/ReservationModals/CancelReasonModal';
+import ReviewModal from '../../components/UI/ReservationModals/ReviewModal';
+
 import ReservationCard from '../../components/DesignerReservations/ReservationCard';
 
 class DesignerReservations extends Component {
-  state = {
-    reservations: [],
-    firstRendering: false
-  };
+  constructor(props) {
+    super(props);
+    this.state = { cancelModal: false, reviewModal: false };
 
-  componentDidMount = () => {
-    if (!this.state.firstRendering) {
-      // 디자이너 정보 이용해서 예약 조회
-      const reservations = [
-        {
-          name: '오상우',
-          date: 20180910,
-          time: '25:00',
-          location: '안암/스스',
-          style: '컷트',
-          cancel: false
-        },
-        {
-          name: '이정민',
-          date: 20180911,
-          time: '25:00',
-          location: '안암/스스',
-          style: '염색',
-          cancel: false
-        },
-        {
-          name: '안운장',
-          date: 20180908,
-          time: '25:00',
-          location: '안암/스스',
-          style: '염색',
-          cancel: false
-        },
-        {
-          name: '심건우',
-          date: 20180907,
-          time: '25:00',
-          location: '안암/스스',
-          style: '염색',
-          cancel: true
-        },
-        {
-          name: '이태훈',
-          date: 20180906,
-          time: '25:00',
-          location: '안암/스스',
-          style: '염색',
-          cancel: true
-        },
-        {
-          name: '주기현',
-          date: 20180917,
-          time: '25:00',
-          location: '안암/스스',
-          style: '염색',
-          cancel: false
-        },
-        {
-          name: '성인규',
-          date: 20180916,
-          time: '25:00',
-          location: '안암/스스',
-          style: '컷트',
-          cancel: false
-        }
-      ];
-      this.setState({ reservations, firstRendering: true });
+    this.cancelModalToggle = this.cancelModalToggle.bind(this);
+    this.reviewModalToggle = this.reviewModalToggle.bind(this);
+  }
+
+  reviewModalToggle() {
+    this.setState({
+      reviewModal: !this.state.reviewModal
+    });
+  }
+  cancelModalToggle() {
+    this.setState({
+      cancelModal: !this.state.cancelModal
+    });
+  }
+
+  componentDidMount = async () => {
+    if (!this.state.madeRequest) {
+      // 일단은 더미유저 아이디를 가져와서 사용. 이후 현재 로그인 유저의 아이디로 요청을 보내면 됨.
+      const users = (await axios.get(`http://52.79.227.227:3030/users`)).data;
+      const { data } = await axios.get(
+        `http://52.79.227.227:3030/users/${users[0]._id}/reservations/all`
+      );
+      this.setState({
+        reservations: data,
+        madeRequest: true
+      });
     }
   };
 
+  cancelReservationHandler = async reservationId => {
+    console.log(reservationId);
+    const users = (await axios.get(`http://52.79.227.227:3030/users`)).data;
+    await axios.patch(
+      `http://52.79.227.227:3030/users/${
+        users[0]._id
+      }/reservations/${reservationId}`
+    );
+    const { data } = await axios.get(
+      `http://52.79.227.227:3030/users/${users[0]._id}/reservations`
+    );
+    this.setState({
+      reservations: data,
+      madeRequest: true
+    });
+  };
+
   render() {
+    let futureReservations = [];
+    let previousReservations = [];
+    if (this.state.reservations) {
+      futureReservations = this.state.reservations.filter(
+        reservation =>
+          reservation.date > new Date().getTime() && !reservation.isCanceled
+      );
+      previousReservations = this.state.reservations.filter(
+        reservation =>
+          reservation.date <= new Date().getTime() || reservation.isCanceled
+      );
+    }
+    console.log(futureReservations);
+
     return (
       <div className="container">
         <h1 className="my-5">예약 관리</h1>
         <div className="m-4">
           <h4>다가오는 예약</h4>
           <div className="row">
-            {this.state.reservations
-              .filter(reservation => {
-                return (
-                  reservation.cancel === false && reservation.date > 20180909
-                );
-              })
-              .map((reservation, key) => (
-                <ReservationCard
-                  name={reservation.name}
-                  date={reservation.date}
-                  time={reservation.time}
-                  location={reservation.location}
-                  style={reservation.style}
-                  key={key}
-                />
-              ))}
+            {futureReservations.map((futureReservation, key) => (
+              <ReservationCard
+                type={'soon'}
+                reservation={futureReservation}
+                cancelHandler={this.cancelReservationHandler}
+                cancelModalToggle={this.cancelModalToggle}
+                reviewModalToggle={this.reviewModalToggle}
+                key={key}
+              />
+            ))}
           </div>
         </div>
         <div className="m-4">
           <h4>완료된 예약</h4>
           <div className="row">
-            {this.state.reservations
-              .filter(reservation => {
-                return (
-                  reservation.cancel === false && reservation.date <= 20180909
-                );
-              })
-              .map((reservation, key) => (
-                <ReservationCard
-                  name={reservation.name}
-                  date={reservation.date}
-                  time={reservation.time}
-                  location={reservation.location}
-                  style={reservation.style}
-                  key={key}
-                  state="완료"
-                />
-              ))}
+            {previousReservations.map((previousReservation, key) => (
+              <ReservationCard
+                type={'finish'}
+                reservation={previousReservation}
+                cancelHandler={this.cancelReservationHandler}
+                cancelModalToggle={this.cancelModalToggle}
+                reviewModalToggle={this.reviewModalToggle}
+                key={key}
+              />
+            ))}
           </div>
         </div>
-        <div className="m-4">
-          <h4>취소된 예약</h4>
-          <div className="row card-group">
-            {this.state.reservations
-              .filter(reservation => {
-                return reservation.cancel === true;
-              })
-              .map((reservation, key) => (
-                <ReservationCard
-                  name={reservation.name}
-                  date={reservation.date}
-                  time={reservation.time}
-                  location={reservation.location}
-                  style={reservation.style}
-                  key={key}
-                  state="취소"
-                />
-              ))}
-          </div>
-        </div>
+        <CancelReasonModal
+          isOpen={this.state.cancelModal}
+          toggle={this.cancelModalToggle}
+        />
+        <ReviewModal
+          isOpen={this.state.reviewModal}
+          toggle={this.reviewModalToggle}
+        />
       </div>
     );
   }

@@ -10,7 +10,11 @@ import {
   DesignerDetail,
   Reservation,
   ReservationConfirm,
+  Reservation,
+  Message,
+  Chat,
   Coupon,
+  LikeDesigner,
   MyTicket,
   Reservations,
   UserInfo,
@@ -28,6 +32,7 @@ import firebase from './config/Firebase';
 
 import { connect } from 'react-redux';
 import * as actions from './modules';
+import axios from 'axios';
 console.log(actions);
 class App extends Component {
   state = {
@@ -62,11 +67,20 @@ class App extends Component {
         firebase
           .database()
           .ref('/users/' + firebase.auth().currentUser.uid)
-          .on('value', res => {
+          .on('value', async res => {
             this.setState({ madeRequest: true });
 
             // redux;
-            this.props.login(res.val());
+            let userData = res.val();
+            const { data } = await axios.get(
+              `http://52.79.227.227:3030/users/` + userData._id
+            );
+            console.log(data);
+            userData['_recruit'] = data._recruit;
+            userData['_tickets'] = data._tickets;
+            userData['_reservations'] = data._reservations;
+            console.log(userData);
+            this.props.login(userData);
           });
       } else {
         // logout 하면 landing page로 이동
@@ -108,6 +122,36 @@ class App extends Component {
 
           {/* 비로그인 상태에서 url로 접근시 WrongAccess 렌더링 */}
           <Route
+            path="/message"
+            component={
+              this.props.userData.uid
+                ? this.props.userData.isRegister
+                  ? Message
+                  : UserInfo
+                : WrongAccess
+            }
+          />
+          <Route
+            path="/chat"
+            component={
+              this.props.userData.uid
+                ? this.props.userData.isRegister
+                  ? Chat
+                  : UserInfo
+                : WrongAccess
+            }
+          />
+          <Route
+            path="/reservation/:card_id"
+            component={
+              this.props.userData.uid
+                ? this.props.userData.isRegister
+                  ? Reservation
+                  : UserInfo
+                : WrongAccess
+            }
+          />
+          <Route
             path="/addDesigner"
             component={
               this.props.userData.uid
@@ -123,6 +167,16 @@ class App extends Component {
               this.props.userData.uid
                 ? this.props.userData.isRegister
                   ? Coupon
+                  : UserInfo
+                : WrongAccess
+            }
+          />
+          <Route
+            path="/likedesigner"
+            component={
+              this.props.userData.uid
+                ? this.props.userData.isRegister
+                  ? LikeDesigner
                   : UserInfo
                 : WrongAccess
             }

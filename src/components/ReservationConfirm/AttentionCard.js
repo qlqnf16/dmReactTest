@@ -1,7 +1,7 @@
 import React from 'react';
 
 const AttentionCard = () => (
-  <div className="col-6">
+  <div className="text-center border rounded p-5 m-3">
     <h3>유의사항을 열심히 씁시다</h3>
     <p>
       Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod

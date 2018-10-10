@@ -1,36 +1,87 @@
 import React from 'react';
-import { FormGroup, Label, Col, Input } from 'reactstrap';
+import { FormGroup, Label, Input } from 'reactstrap';
 
-const TextInfo = () => (
-  <div className="row mt-5">
-    <Col sm={6}>
-      <FormGroup row>
-        <Label for="title" sm={2}>
-          제목
-        </Label>
-        <Col sm={10}>
-          <Input type="text" name="title" id="title" />
-        </Col>
-      </FormGroup>
-      <FormGroup row>
-        <Label for="detail" sm={2}>
-          요청사항
-        </Label>
-        <Col sm={10}>
-          <Input type="textarea" name="detail" id="detail" />
-        </Col>
-      </FormGroup>
-    </Col>
-    <Col sm={6}>
-      <FormGroup row>
-        <Label for="addition" sm={2}>
-          추가금액
-        </Label>
-        <Col sm={10}>
-          <Input type="textarea" name="addition" id="addition" />
-        </Col>
-      </FormGroup>
-    </Col>
+const TextInfo = props => (
+  <div className="mt-5">
+    <div
+      onClick={props.totalSubmitHandler}
+      className="btn btn-success text-right"
+    >
+      저장
+    </div>
+    <FormGroup>
+      <Label for="title">제목</Label>
+      <Input
+        value={props.state.title}
+        onChange={props.changeInput}
+        type="text"
+        name="title"
+        id="title"
+      />
+    </FormGroup>
+    <FormGroup>
+      <Label for="requirement">요청사항</Label>
+      <Input
+        value={props.state.requirement}
+        onChange={props.changeInput}
+        type="textarea"
+        name="requirement"
+        id="requirement"
+      />
+    </FormGroup>
+    <FormGroup>
+      <p>예상 시술 소요 시간</p>
+      <div className="row">
+        <div className="col-md-4">
+          <Label for="cut">컷트</Label>
+          <Input
+            name="cutTime"
+            id="time"
+            onChange={props.changeInput}
+            type="select"
+            value={props.state.requireTime && props.state.requireTime.cut}
+          >
+            <option value>--컷트--</option>
+            <option value="60">1시간</option>
+            <option value="90">1시간 30분</option>
+            <option value="120">2시간</option>
+            <option value="150">2시간 30분</option>
+          </Input>
+        </div>
+        <div className="col-md-4">
+          <Label for="perm">펌</Label>
+          <Input
+            type="select"
+            name="permTime"
+            id="time"
+            onChange={props.changeInput}
+            value={props.state.requireTime && props.state.requireTime.perm}
+          >
+            <option value>--펌--</option>
+            <option value="60">1시간</option>
+            <option value="90">1시간 30분</option>
+            <option value="120">2시간</option>
+            <option value="150">2시간 30분</option>
+          </Input>
+        </div>
+        <div className="col-md-4">
+          <Label for="dye">염색</Label>
+          <Input
+            type="select"
+            name="dyeTime"
+            id="time"
+            onChange={props.changeInput}
+            value={props.state.requireTime && props.state.requireTime.dye}
+          >
+            <option value>--염색--</option>
+            <option value="60">1시간</option>
+            <option value="90">1시간 30분</option>
+            <option value="120">2시간</option>
+            <option value="150">2시간 30분</option>
+          </Input>
+        </div>
+      </div>
+    </FormGroup>
   </div>
 );
 

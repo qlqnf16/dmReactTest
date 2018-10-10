@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import { Button } from 'reactstrap';
-import { Link } from 'react-router-dom';
 import firebase from 'firebase';
 import axios from 'axios';
 
 import DetailContent from '../components/DesignerDetail/DetailContent';
-import DetailFilter from '../components/DesignerDetail/DetailFilter';
+import DetailCards from '../components/DesignerDetail/DetailCards';
 import MyModal from '../components/UI/MyModal/MyModal';
 
 class DesginerDetail extends Component {
@@ -18,8 +17,6 @@ class DesginerDetail extends Component {
 
   componentDidMount = async () => {
     // DB에서 정보받아와서 넣어주는 곳
-    console.log(firebase.auth().currentUser);
-    console.log(this.props);
     if (!this.state.madeRequest) {
       const { data } = await axios.get(
         `http://52.79.227.227:3030/recruits/${this.props.match.params.id}`
@@ -43,37 +40,31 @@ class DesginerDetail extends Component {
   };
 
   render() {
-    console.log(this.state);
     let loading = null;
     if (Object.keys(this.state.recruit).length) {
       loading = (
-        <div className="row">
-          <DetailContent
-            introduce={this.state.recruit.introduction}
-            data={this.state.recruit.requirement}
-            reviews={this.state.recruit._reviews}
-          />
-          <DetailFilter time={this.state.recruit.ableDates} />
-        </div>
+        <DetailContent
+          introduce={this.state.recruit.introduction}
+          data={this.state.recruit.requirement}
+          reviews={this.state.recruit._reviews}
+        />
       );
     }
     return (
       <div>
         <div className="container">
           <h1 className="text-center m-5 ">2단계 : 예약하기(이미지로)</h1>
-          {loading}
-          {firebase.auth().currentUser ? (
-            <Button className="btn-light float-right">
-              <Link to={`/reservationConfirm/${'예약번호'}`}>예약하기</Link>
-            </Button>
-          ) : (
-            <Button
-              onClick={this.loginToggleHandler}
-              className="btn-light float-right"
-            >
-              예약하기
-            </Button>
-          )}
+          <div className="row align-items-start">
+            {loading}
+            <DetailCards recruit={this.state.recruit} />
+          </div>
+
+          <Button
+            onClick={this.loginToggleHandler}
+            className="btn-light float-right"
+          >
+            예약하기
+          </Button>
         </div>
         <MyModal
           showLogin={this.state.showLogin}

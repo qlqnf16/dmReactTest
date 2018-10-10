@@ -7,8 +7,8 @@ const ReservationDetail = props => (
       <div>{props.requirement}</div>
     </div>
     <div className="my-4">
-      <h4>추가금액</h4>
-      <div>{props.additionalPrice}</div>
+      <h4>예상 시술 소요시간</h4>
+      <div>{props.requireTime}</div>
     </div>
   </div>
 );

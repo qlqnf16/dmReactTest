@@ -10,40 +10,32 @@ const Reservations = props => (
       {props.futureReservations.map((reservation, key) => (
         <div className="row" key={key}>
           <ReservationCard
-            designerName={reservation._designer.name}
-            title={reservation.title}
-            date={reservation.time.until}
-            location={`${reservation._designer.locations[0].shop} / ${
-              reservation._designer.locations[0].address
-            }`}
-            type={'컷/염색'}
-            state={'D-2'}
+            reservation={reservation}
+            type={'soon'}
+            cancelHandler={props.cancelHandler}
           />
           <ReservationDetail
             requirement={'요구사항을 막 적으면 되는것 같다'}
-            additionalPrice={'추가 금액은 10억이다'}
+            requireTime={'3박 4일'}
             // requirement={reservation.requirement}
-            // additionalPrice={reservation.additionalPrice}
+            // requireTime={reservation.requireTime}
           />
         </div>
       ))}
     </div>
     <div className="m-4">
       <h4>지난 예약</h4>
-      {props.previousReservations.map((reservation, key) => (
-        <div className="row" key={key}>
+      <div className="row">
+        {props.previousReservations.map((reservation, key) => (
           <ReservationCard
-            designerName={reservation._designer.name}
-            title={reservation.title}
-            date={reservation.time.until}
-            location={`${reservation._designer.locations[0].shop} / ${
-              reservation._designer.locations[0].address
-            }`}
-            type={'컷/염색'}
-            state={reservation.isCanceled ? '취소' : '완료'}
+            reservation={reservation}
+            type={'finish'}
+            key={key}
+            cancelModalToggle={props.cancelModalToggle}
+            reviewModalToggle={props.reviewModalToggle}
           />
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   </div>
 );

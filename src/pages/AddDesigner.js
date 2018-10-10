@@ -1,11 +1,23 @@
 import React, { Component } from 'react';
 import { Container, Form, Button } from 'reactstrap';
 import InfoForm from '../components/InfoForm/InfoForm';
+import { connect } from 'react-redux';
+import firebase from '../config/Firebase';
 
 class AddDesigner extends Component {
   constructor(props) {
     super(props);
+
+    const userData = this.props.userData;
+
     this.state = {
+      name: userData.name,
+      birthday: userData.birthday,
+      email: userData.email,
+      phoneNumber: userData.phoneNumber,
+      untilDesigner: userData.untilDesigner,
+      career: userData.career,
+      careerDetail: userData.careerDetail,
       certImg1: null,
       certFile1: null,
       certImg2: null,
@@ -50,27 +62,78 @@ class AddDesigner extends Component {
   //     }
   //     return  post(url, formData,config)
   // }
-
+  dYear = 0;
+  dMonth = 0;
+  careerYear = 0;
+  careerMonth = 0;
   handleInputChange(e) {
     const target = e.target;
     const value = target.value;
     const name = target.name;
 
-    this.setState({
-      [name]: value
-    });
+    if (target.id === 'dYear' || target.id === 'dMonth') {
+      if (target.id === 'dYear') {
+        this.dYear = Number(value);
+      } else if (target.id === 'dMonth') {
+        this.dMonth = Number(value);
+      }
+      this.setState({ untilDesigner: this.dYear * 12 + this.dMonth });
+    } else if (target.id === 'careerYear' || target.id === 'careerMonth') {
+      if (target.id === 'careerYear') {
+        this.careerYear = Number(value);
+      } else if (target.id === 'careerMonth') {
+        this.careerMonth = Number(value);
+      }
+      this.setState({ career: this.careerYear * 12 + this.careerMonth });
+    } else {
+      this.setState({ [name]: value });
+    }
   }
 
-  submit = () => {
-    console.log(this.state);
-    // 실제 submit으로 수정해야
+  submitHandler = async () => {
+    const {
+      name,
+      birthday,
+      email,
+      phoneNumber,
+      untilDesigner,
+      career,
+      careerDetail
+    } = this.state;
+
+    const firebaseUserData = {
+      name,
+      birthday,
+      email,
+      phoneNumber,
+      untilDesigner,
+      career,
+      careerDetail,
+      // 임시로. 일단 신청하면 디자이너 되도록
+      isD: true
+    };
+
+    if (Object.values(firebaseUserData).includes(undefined))
+      return alert('채워지지 않은 정보가 있습니다');
+
+    alert('성공적으로 신청되었습니다');
+    await firebase
+      .database()
+      .ref('users/' + this.props.userData.uid)
+      .update(firebaseUserData);
+
+    await this.props.history.push('/designer/whydreamary');
   };
 
+  // TODO : shouldComponentUpdate 로 렌더링 안되게 하기
+
   render() {
+    console.log(this.props.userData);
     return (
       <Container>
         <Form className="m-5">
           <InfoForm
+            state={this.state}
             certImg1={this.state.certImg1}
             certFile1={this.state.certFile1}
             certImg2={this.state.certImg2}
@@ -79,7 +142,7 @@ class AddDesigner extends Component {
             changeInput={e => this.handleInputChange(e)}
           />
           <div className="text-center">
-            <Button className="m-5" onClick={this.submit}>
+            <Button className="m-5" onClick={this.submitHandler}>
               등록하기
             </Button>
           </div>
@@ -89,4 +152,7 @@ class AddDesigner extends Component {
   }
 }
 
-export default AddDesigner;
+const mapStateToProps = ({ authentication: { userData } }) => {
+  return { userData };
+};
+export default connect(mapStateToProps)(AddDesigner);
