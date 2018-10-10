@@ -1,0 +1,22 @@
+.r_box {
+  width: 100%;
+  border-top: solid 0.5px #d2e3e8;
+  padding: 23.2px 0;
+}
+
+.r_content {
+  /* font-family: NanumSquareEB; */
+  font-size: 1.3rem;
+  /* font-weight: bold; */
+  line-height: 1.08;
+  letter-spacing: 0.7px;
+  color: #2b2e34;
+  margin-bottom: 7.4px;
+}
+
+.r_top {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  margin-bottom: 7.4px;
+}

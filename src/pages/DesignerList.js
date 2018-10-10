@@ -3,6 +3,7 @@ import DesignerCard from '../components/DesignerCard/DesignerCard';
 import Filter from '../components/DesignerCard/Filter/Filter';
 import { CardDeck } from 'reactstrap';
 import axios from 'axios';
+import './PageCss.css';
 
 class DesignerList extends Component {
   constructor() {
@@ -69,6 +70,7 @@ class DesignerList extends Component {
     const name = target.name;
 
     this.setState({ [name]: value });
+    console.log(this.state);
   };
 
   render() {
@@ -88,7 +90,7 @@ class DesignerList extends Component {
       ));
     }
     return (
-      <div className="container">
+      <div className="container-fluid dl">
         <div className="m-5 text-center">
           <h1>1단계 : 막내 찾기(이미지)</h1>
         </div>
@@ -96,8 +98,9 @@ class DesignerList extends Component {
           <Filter
             getFilteredCards={this.getFilteredCards}
             filterChangeHandler={e => this.filterChangeHandler(e)}
+            checked={!this.state.gender ? 'male' : this.state.gender}
           />
-          <div className="col-md-10">
+          <div className="col-md-9">
             <CardDeck className="m-5">
               {recruits}
               {recruits}

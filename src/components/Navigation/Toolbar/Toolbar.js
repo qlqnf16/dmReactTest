@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Navitems from '../Navitems/Navitems';
 import MyModal from '../../UI/MyModal/MyModal';
 import firebase from '../../../config/Firebase';
+import './Toolbar.css';
 
 class Toolbar extends Component {
   state = {
@@ -56,7 +57,7 @@ class Toolbar extends Component {
     console.log('Toolbar rendering');
     return (
       <div>
-        <Navbar color="light" light expand="lg">
+        <Navbar expand="lg" className="toolbar">
           <NavbarBrand tag={Link} to={'/'}>
             Dreamary
           </NavbarBrand>
