@@ -1,0 +1,67 @@
+.rc_back {
+  width: 32%;
+  padding: 9.8px;
+  border-radius: 5px;
+  background-color: #ffffdf;
+  color: #1f3354;
+  margin: 0 5px;
+}
+
+.rc_back.finish {
+  background-color: rgba(0, 0, 0, 0.03);
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.rc_button {
+  width: 44%;
+  height: 26px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #1f3354;
+  font-size: 1rem;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.rc_button.review {
+  background-color: #66ce82;
+  color: white;
+}
+.rc_button.caceled {
+  background-color: #dd6866;
+  color: white;
+}
+
+.rc_content {
+  /* font-family: NanumSquareR; */
+  line-height: 1.2;
+  letter-spacing: 0.05rem;
+  color: #1f3354;
+  margin-bottom: 10.6px;
+}
+
+.rc_content.rc_title {
+  font-size: 1.5rem;
+}
+
+.rc_content.rc_rnumber {
+  margin-top: 10.6px;
+  margin-bottom: 0;
+}
+
+.rc_type {
+  /* font-family: NanumSquareEB; */
+  font-size: 1.5rem;
+  line-height: 1.13;
+  letter-spacing: 0.08rem;
+  color: #dd6866;
+}
+
+.rc_type.rc_finish {
+  color: rgba(102, 206, 130, 0.5);
+}
+
+.rc_type.rc_cancel {
+  color: #f5b1ad;
+}

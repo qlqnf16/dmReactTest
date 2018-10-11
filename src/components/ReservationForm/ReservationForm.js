@@ -112,7 +112,7 @@ class ReservationForm extends Component {
             </div>
             <div
               className="col-10 rf-tableBody rf-tableTop"
-              style={{ fontWeight: 'bold' }}
+              style={{ fontFamily: 'NanumSquareEB' }}
             >
               {this.props.price}원
             </div>
@@ -141,14 +141,17 @@ class ReservationForm extends Component {
             <div className="col-2 text-right rf-tableHead">총결제금액</div>
             <div
               className="col-10 rf-tableBody"
-              style={{ fontWeight: 'bold', color: '#dd6866' }}
+              style={{ fontFamily: 'NanumSquareEB', color: '#dd6866' }}
             >
               {this.state.finalPrice}원
             </div>
           </div>
           <div className="row">
             <div className="col-2 text-right rf-tableHead">결제방법</div>
-            <div className="col-10 rf-tableBody" style={{ fontWeight: 'bold' }}>
+            <div
+              className="col-10 rf-tableBody"
+              style={{ fontFamily: 'NanumSquareEB' }}
+            >
               <input
                 type="radio"
                 name="payment"

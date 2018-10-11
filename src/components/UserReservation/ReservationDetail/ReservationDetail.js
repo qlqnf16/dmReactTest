@@ -1,15 +1,12 @@
 import React from 'react';
+import './ReservationDetail.css';
 
 const ReservationDetail = props => (
-  <div className="col-8 align-items-start border px-3">
-    <div className="my-4">
-      <h4>요청사항</h4>
-      <div>{props.requirement}</div>
-    </div>
-    <div className="my-4">
-      <h4>예상 시술 소요시간</h4>
-      <div>{props.requireTime}</div>
-    </div>
+  <div className="col-7 rd_back">
+    <div className="rd_title">요청사항</div>
+    <div className="rd_content">{props.requirement}</div>
+    <div className="rd_title">예상 시술 소요시간</div>
+    <div className="rd_content">{props.requireTime}</div>
   </div>
 );
 

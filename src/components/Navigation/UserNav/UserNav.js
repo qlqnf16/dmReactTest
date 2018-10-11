@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './UserNav.css';
 
 const UserNav = () => (
-  <div className="col-2 p-3">
+  <div className="un_bg">
     <h4> 마이 페이지 </h4>
     <Link to="/reservations">
       <li>예약관리</li>

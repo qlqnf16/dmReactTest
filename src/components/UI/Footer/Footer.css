@@ -1,5 +1,5 @@
 .background {
-  margin-top: 69.5px;
+  /* margin-top: 69.5px; */
   background-color: white;
   padding: 3.3% 8%;
   flex-shrink: 0;
@@ -13,7 +13,7 @@
   line-height: 1.08;
   letter-spacing: 0.06rem;
   color: #dd6866;
-  font-weight: bold;
+  font-family: NanumSquareEB;
   margin-bottom: 17.7px;
 }
 

@@ -25,7 +25,7 @@ const Review = props => {
       <div className="r_top">
         <div
           className="r_content"
-          style={{ fontWeight: 'bold', margin: '0 6.8px 0 0' }}
+          style={{ fontFamily: 'NanumSquareEB', margin: '0 6.8px 0 0' }}
         >
           이름이
           {props.name}

@@ -5,9 +5,8 @@
 }
 
 .r_content {
-  /* font-family: NanumSquareEB; */
+  font-family: NanumSquareEB;
   font-size: 1.3rem;
-  /* font-weight: bold; */
   line-height: 1.08;
   letter-spacing: 0.7px;
   color: #2b2e34;

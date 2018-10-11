@@ -12,7 +12,10 @@ const BasicInfo = props => {
     <Fragment>
       <div>
         <div className="bi_name">이태훈</div>
-        <div className="bi_title">{props.title}</div>
+        <div className="bi_title">
+          저렴한 가격에 인생 머리 찾아드립니다 :)
+          {props.title}
+        </div>
         <div className="bi_shop">준오헤어 청담점/서울 | 헤어웰 수내점/경기</div>
         <div className="bi_introduce">
           안녕하세요, 준오헤어 인턴 태훈입니다! 남자 여자 커트 종류 상관없이
