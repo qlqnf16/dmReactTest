@@ -20,8 +20,7 @@ class ReservationConfirm extends Component {
       _designer: this.props.location.state.recruit._designer._id,
       _card: this.props.location.state.cardData._id,
       date: this.props.location.state.cardData.date
-    },
-    madeRequest: false
+    }
   };
   componentDidMount = () => {
     // iamport 사용하기 위한 inline script 작성
@@ -118,7 +117,7 @@ class ReservationConfirm extends Component {
           >
             결제하기
           </div>
-          {/* <Link
+          <Link
             to={{
               pathname: `/reservationConfirm/${'reservation_id'}`,
               state: {
@@ -126,11 +125,11 @@ class ReservationConfirm extends Component {
                 designerName: '디자이너 이름'
               }
             }}
-          > */}
-          <Button onClick={this.reservationSubmit} color="primary">
-            결제 성공한 척 하기
-          </Button>
-          {/* </Link> */}
+          >
+            <Button onClick={this.reservationSubmit} color="primary">
+              결제 성공한 척 하기
+            </Button>
+          </Link>
         </div>
       </div>
     );
