@@ -5,24 +5,30 @@ import './DetailContent.css';
 import MoreInfo from './DetailContents/MoreInfo';
 
 const DetailContent = props => {
+  const recruit = props.recruit;
+  console.log(recruit);
   return (
     <div className="col-6">
-      <BasicInfo data={props.data} />
-      <MoreInfo portfolios={props.portfolios} />
+      <BasicInfo recruit={recruit} designerData={props.designerData} />
+      <MoreInfo
+        portfolios={recruit.portfolios}
+        designerData={props.designerData}
+      />
       <div>
         <div className="dc_title">막내리뷰</div>
-        <div className="dc_reviews">
+        <div className="dc__reviews">
           <span style={{ color: '#dd6866', fontWeight: 'bold' }}>
             ★
-            {props.reviews.reduce(
-              (sum, review) => (sum += review['score']),
-              0
-            ) / props.reviews.length}
+            {recruit._reviews &&
+              recruit._reviews.reduce(
+                (sum, review) => (sum += review['score']),
+                0
+              ) / recruit._reviews.length}
           </span>
           <span style={{ color: '#b2b2b2' }}> | </span>
-          리뷰 {props.reviews.length}
+          리뷰 {recruit._reviews.length}
         </div>
-        {props.reviews.map(review => (
+        {recruit._reviews.map(review => (
           <Review
             name={review._user.name}
             date={review.createdAt}

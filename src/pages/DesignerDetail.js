@@ -12,7 +12,8 @@ class DesginerDetail extends Component {
     recruit: {},
     showLogin: false,
     LoginChange: false,
-    madeRequest: false
+    madeRequest: false,
+    designerData: {}
   };
 
   componentDidMount = async () => {
@@ -23,13 +24,22 @@ class DesginerDetail extends Component {
       );
       this.setState({ recruit: data, madeRequest: true });
     }
-    firebase.auth().onAuthStateChanged(() => {
-      this.offHandler();
-      this.setState({
-        ...this.state,
-        LoginChange: !this.state.LoginChange
-      });
-    });
+    // firebase.auth().onAuthStateChanged(() => {
+    //   this.offHandler();
+    //   this.setState({
+    //     ...this.state,
+    //     LoginChange: !this.state.LoginChange
+    //   });
+    // });
+
+    //TODO : Db에 uid와 연동 되면 불러와서 정보 채우기
+    // await firebase
+    //   .database()
+    //   .ref('/users/' + this.state.recruit._designer._uid)
+    //   .on('value', async res => {
+    //     console.log(res.val());
+    //     this.setState({ designerData:res.val()})
+    //   });
   };
 
   loginToggleHandler = () => {
@@ -44,11 +54,8 @@ class DesginerDetail extends Component {
     if (Object.keys(this.state.recruit).length) {
       loading = (
         <DetailContent
-          introduce={this.state.recruit.introduction}
-          data={this.state.recruit.requirement}
-          reviews={this.state.recruit._reviews}
-          title={this.state.recruit.title}
-          portfolios={this.state.recruit.portfolios}
+          recruit={this.state.recruit}
+          designerData={this.state.designerData}
         />
       );
     }
