@@ -1,0 +1,82 @@
+::placeholder {
+  color: rgba(0, 0, 0, 0.2);
+}
+
+.if_input {
+  width: 100%;
+  height: 33px;
+  border: solid 1px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  padding-left: 10px;
+  margin-right: 3px;
+  font-size: 1.3rem;
+  color: #1f3354;
+}
+
+.if_gradio {
+  width: 36px;
+  height: 33px;
+  border: solid 1px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  color: #1f3354;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.08;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.if_gradio.active {
+  border: solid 1px #4c91ba;
+}
+
+.if_makeFlex {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.if_detail {
+  font-size: 1.1rem;
+  line-height: 1.09;
+  color: #1f3354;
+}
+
+.if_head {
+  font-size: 1.3rem;
+  letter-spacing: 0.13rem;
+  color: #1f3354;
+  text-align: right;
+  font-weight: bold;
+}
+
+.if_file .abel {
+  width: 49.2%;
+  height: 135.7px;
+  display: inline-block;
+  padding: 0.5em 0.75em;
+  color: #999;
+  font-size: inherit;
+  line-height: normal;
+  vertical-align: middle;
+  background-color: #fdfdfd;
+  cursor: pointer;
+  border: 1px solid #ebebeb;
+  border-bottom-color: #e2e2e2;
+  border-radius: 0.25em;
+}
+
+.if_file {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.if_file input[type='file'] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
