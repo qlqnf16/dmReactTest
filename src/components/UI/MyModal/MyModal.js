@@ -33,6 +33,21 @@ class MyModal extends Component {
     }
   };
 
+  changeToLogin = () => {
+    this.setState({
+      title: '로그인',
+      text: '아직 드리머리 회원이 아니신가요?',
+      subTitle: null
+    });
+  };
+  changeToSignUp = () => {
+    this.setState({
+      title: '회원가입',
+      text: '이미 드리머리 계정이 있나요?',
+      subTitle: '간단한 회원가입으로 서비스를 이용해보세요'
+    });
+  };
+
   render() {
     return (
       <div>

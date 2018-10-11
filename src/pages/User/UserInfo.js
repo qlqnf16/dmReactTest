@@ -17,7 +17,8 @@ class UserInfo extends Component {
     name: this.props.userData.name,
     email: this.props.userData.email,
     birthday: this.props.userData.birthday,
-    phoneNumber: this.props.userData.phoneNumber
+    phoneNumber: this.props.userData.phoneNumber,
+    gender: this.props.userData.gender
   };
 
   inputChangeHandler = event => {
@@ -34,7 +35,8 @@ class UserInfo extends Component {
       name: this.state.name,
       birthday: this.state.birthday,
       email: this.state.email,
-      phoneNumber: this.state.phoneNumber
+      phoneNumber: this.state.phoneNumber,
+      gender: this.state.gender
     };
     if (!this.props.userData.isRegister)
       return alert('휴대폰 인증을 진행해주세요');
@@ -104,6 +106,28 @@ class UserInfo extends Component {
                   />
                 </Col>
               </FormGroup>
+              <div>
+                <label>
+                  <input
+                    type="radio"
+                    id="male"
+                    name="gender"
+                    value="male"
+                    onChange={e => this.inputChangeHandler(e)} // className="genderRadio"
+                  />
+                  남
+                </label>
+                <label>
+                  <input
+                    type="radio"
+                    id="female"
+                    name="gender"
+                    value="female"
+                    onChange={e => this.inputChangeHandler(e)}
+                  />
+                  여
+                </label>
+              </div>
               <FormGroup row>
                 <Label for="exampleEmail" sm={2}>
                   이메일 주소
