@@ -46,14 +46,23 @@ class CardAdd extends Component {
   };
 
   render() {
+    const reservedTimes = [];
     const Times = [];
+    // this.props.reservedTimes.forEach(reservedTime => {
+    //   let time = reservedTime.since;
+    //   while (time <= reservedTime.until - 30) {
+    //     reservedTimes.push(time);
+    //     time += 30;
+    //   }
+    // });
     this.props.ableTimes.forEach(ableTime => {
       let time = ableTime.since;
-      while (time <= ableTime.until - 90) {
+      while (time <= ableTime.until - 90 && reservedTimes.includes(time)) {
         Times.push(time);
         time += 30;
       }
     });
+    console.log(this.props);
     let timeButtons = null;
     timeButtons = Times.map((time, key) => {
       let classN = 'btn btn-sm btn-light col-md-6';

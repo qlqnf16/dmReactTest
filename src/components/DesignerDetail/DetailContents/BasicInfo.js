@@ -36,7 +36,6 @@ const BasicInfo = props => {
           커트: {timeFormat(recruit.requireTime.cut)} | 염색:{' '}
           {timeFormat(recruit.requireTime.dye)} | 펌:{' '}
           {timeFormat(recruit.requireTime.perm)}
-          {/* 커트: 1시간 30분 | 염색: 3시간 | 펌: 3시간 */}
         </div>
       </div>
     </Fragment>
