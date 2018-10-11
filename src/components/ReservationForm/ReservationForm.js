@@ -58,9 +58,15 @@ class ReservationForm extends Component {
           <div className="row">
             <div className="col-2 text-right rf-tableHead">휴대폰 번호</div>
             <div className="col-10 rf-tableBody">
-              {this.props.userData.phoneNumber.slice(0, 3)}-
-              {this.props.userData.phoneNumber.slice(3, 7)}-
-              {this.props.userData.phoneNumber.slice(7, 10)}
+              {typeof this.props.userData.phoneNumber === 'undefined'
+                ? null
+                : `${this.props.userData.phoneNumber.slice(
+                    0,
+                    3
+                  )}-${this.props.userData.phoneNumber.slice(
+                    3,
+                    7
+                  )}-${this.props.userData.phoneNumber.slice(7, 10)}`}
               <span className="ml-5 font-weight-light">
                 예약 정보는 휴대폰 번호로 전송됩니다
               </span>
@@ -121,6 +127,7 @@ class ReservationForm extends Component {
                 id="point"
                 className="rf-input"
                 value={this.state.point}
+                step="1000"
               />
               <button onClick={this.pointSubmit} className="rf-button">
                 적용
@@ -142,9 +149,17 @@ class ReservationForm extends Component {
           <div className="row">
             <div className="col-2 text-right rf-tableHead">결제방법</div>
             <div className="col-10 rf-tableBody" style={{ fontWeight: 'bold' }}>
-              <input type="radio" style={{ marginRight: '3.5px' }} />
+              <input
+                type="radio"
+                name="payment"
+                style={{ marginRight: '3.5px' }}
+              />
               <span style={{ marginRight: '21.5px' }}>신용/체크카드</span>
-              <input type="radio" style={{ marginRight: '3.5px' }} />
+              <input
+                type="radio"
+                name="payment"
+                style={{ marginRight: '3.5px' }}
+              />
               휴대폰
             </div>
           </div>

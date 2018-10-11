@@ -18,6 +18,7 @@ const Filter = props => (
             name="gender"
             value="male"
             onChange={props.filterChangeHandler}
+            className="genderRadio"
           />
           남
         </label>
@@ -31,6 +32,7 @@ const Filter = props => (
             value="female"
             onChange={props.filterChangeHandler}
             checked={props.checked === 'female'}
+            className="genderRadio"
           />
           여
         </label>
