@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment } from "react";
 import {
   NavItem,
   NavLink,
@@ -6,12 +6,12 @@ import {
   DropdownToggle,
   DropdownMenu,
   UncontrolledDropdown
-} from 'reactstrap';
-import { Link } from 'react-router-dom';
-import firebase from '../../../config/Firebase';
-import './Navitems.css';
+} from "reactstrap";
+import { Link } from "react-router-dom";
+import firebase from "../../../config/Firebase";
+import "./Navitems.css";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 class Navitems extends Component {
   logout() {
@@ -24,12 +24,12 @@ class Navitems extends Component {
       return (
         <Fragment>
           <NavItem>
-            <NavLink tag={Link} to={'/designerList'} className="navitem">
+            <NavLink tag={Link} to={"/designerList"} className="navitem">
               막내찾기
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to={'/addDesigner'} className="navitem">
+            <NavLink tag={Link} to={"/addDesigner"} className="navitem">
               막내등록
             </NavLink>
           </NavItem>
@@ -39,7 +39,7 @@ class Navitems extends Component {
             </DropdownToggle>
             <DropdownMenu right className="dropdownMenu">
               <DropdownItem>
-                <NavLink tag={Link} to={'/reservations'}>
+                <NavLink tag={Link} to={"/reservations"}>
                   마이페이지
                 </NavLink>
               </DropdownItem>
@@ -49,7 +49,7 @@ class Navitems extends Component {
             </DropdownMenu>
           </UncontrolledDropdown>
           <NavItem>
-            <NavLink tag={Link} to={'/message'} className="navitem">
+            <NavLink tag={Link} to={"/message"} className="navitem">
               메세지
             </NavLink>
           </NavItem>
@@ -60,42 +60,52 @@ class Navitems extends Component {
       return (
         <Fragment>
           <NavItem>
-            <NavLink tag={Link} to={'/designer/whydreamary'}>
+            <NavLink
+              tag={Link}
+              to={"/designer/whydreamary"}
+              className="navitem"
+            >
               왜?
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to={'/designer/reservations'}>
+            <NavLink
+              tag={Link}
+              to={"/designer/reservations"}
+              className="navitem"
+            >
               예약관리
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to={'/designer/schedule'}>
+            <NavLink tag={Link} to={"/designer/schedule"} className="navitem">
               스케줄등록
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to={'/designer/ticket'}>
+            <NavLink tag={Link} to={"/designer/ticket"} className="navitem">
               이용권관리
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to={'/designer/info'}>
+            <NavLink tag={Link} to={"/designer/info"} className="navitem">
               회원정보관리
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to={'/designer/coupon'}>
+            <NavLink tag={Link} to={"/designer/coupon"} className="navitem">
               추천인/쿠폰
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to={'/message'}>
+            <NavLink tag={Link} to={"/message"} className="navitem">
               메세지
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink onClick={this.logout}>로그아웃</NavLink>
+            <NavLink onClick={this.logout} className="navitem">
+              로그아웃
+            </NavLink>
           </NavItem>
         </Fragment>
       );
@@ -104,7 +114,7 @@ class Navitems extends Component {
       return (
         <Fragment>
           <NavItem>
-            <NavLink tag={Link} to={'/about'} className="navitem">
+            <NavLink tag={Link} to={"/about"} className="navitem">
               드리머리 소개
             </NavLink>
           </NavItem>
@@ -119,7 +129,7 @@ class Navitems extends Component {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to={'/designerList'} className="navitem">
+            <NavLink tag={Link} to={"/designerList"} className="navitem">
               막내찾기
             </NavLink>
           </NavItem>

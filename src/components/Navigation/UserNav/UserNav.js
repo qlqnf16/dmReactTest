@@ -1,6 +1,6 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import './UserNav.css';
+import React from "react";
+import { NavLink } from "react-router-dom";
+import "./UserNav.css";
 
 const UserNav = () => (
   <div className="un_bg">
@@ -10,8 +10,8 @@ const UserNav = () => (
         to="/reservations"
         className="un_navItem"
         activeStyle={{
-          color: '#1f3354',
-          borderBottom: 'solid 1.8px #1f3354'
+          color: "#1f3354",
+          borderBottom: "solid 1.8px #1f3354"
         }}
       >
         예약관리
@@ -20,8 +20,8 @@ const UserNav = () => (
         to="/likedesigner"
         className="un_navItem"
         activeStyle={{
-          color: '#1f3354',
-          borderBottom: 'solid 1.8px #1f3354'
+          color: "#1f3354",
+          borderBottom: "solid 1.8px #1f3354"
         }}
       >
         찜한 막내
@@ -30,8 +30,8 @@ const UserNav = () => (
         to="/userInfo"
         className="un_navItem"
         activeStyle={{
-          color: '#1f3354',
-          borderBottom: 'solid 1.8px #1f3354'
+          color: "#1f3354",
+          borderBottom: "solid 1.8px #1f3354"
         }}
       >
         회원정보관리
@@ -40,8 +40,8 @@ const UserNav = () => (
         to="/coupon"
         className="un_navItem"
         activeStyle={{
-          color: '#1f3354',
-          borderBottom: 'solid 1.8px #1f3354'
+          color: "#1f3354",
+          borderBottom: "solid 1.8px #1f3354"
         }}
       >
         추천인/쿠폰
@@ -50,8 +50,8 @@ const UserNav = () => (
         to="/messege"
         className="un_navItem"
         activeStyle={{
-          color: '#1f3354',
-          borderBottom: 'solid 1.8px #1f3354'
+          color: "#1f3354",
+          borderBottom: "solid 1.8px #1f3354"
         }}
       >
         메세지

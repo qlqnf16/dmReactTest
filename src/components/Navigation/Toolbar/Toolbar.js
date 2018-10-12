@@ -1,10 +1,12 @@
-import React, { Component } from 'react';
-import { Navbar, NavbarBrand, Nav } from 'reactstrap';
-import { Link } from 'react-router-dom';
-import Navitems from '../Navitems/Navitems';
-import MyModal from '../../UI/MyModal/MyModal';
-import firebase from '../../../config/Firebase';
-import './Toolbar.css';
+import React, { Component } from "react";
+import { Navbar, NavbarBrand, Nav } from "reactstrap";
+import { Link } from "react-router-dom";
+import Navitems from "../Navitems/Navitems";
+import MyModal from "../../UI/MyModal/MyModal";
+import firebase from "../../../config/Firebase";
+import "./Toolbar.css";
+import logo from "../../../assets/images/logo.png";
+import tricolor from "../../../assets/images/tricolor.gif";
 
 class Toolbar extends Component {
   state = {
@@ -54,12 +56,12 @@ class Toolbar extends Component {
   };
 
   render() {
-    console.log('Toolbar rendering');
+    console.log("Toolbar rendering");
     return (
       <div>
-        <Navbar expand="lg" className="toolbar">
-          <NavbarBrand tag={Link} to={'/'}>
-            Dreamary
+        <Navbar expand="lg" className="toolbar" style={{ paddingRight: 0 }}>
+          <NavbarBrand tag={Link} to={"/"}>
+            <img className="logo" src={logo} alt="Main Logo" />
           </NavbarBrand>
           <Nav className="ml-auto" navbar>
             <Navitems
@@ -67,6 +69,7 @@ class Toolbar extends Component {
               showSignUp={this.signUpToggleHandler}
             />
           </Nav>
+          <img className="tricolor" src={tricolor} alt="tricolor" />
         </Navbar>
         <MyModal
           showLogin={this.state.showLogin}
