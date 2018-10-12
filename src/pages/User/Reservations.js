@@ -4,6 +4,7 @@ import UserNav from '../../components/Navigation/UserNav/UserNav';
 import ReservationCards from '../../components/UserReservation/ReservationCards/ReservationCards';
 import CancelReasonModal from '../../components/UI/ReservationModals/CancelReasonModal';
 import ReviewModal from '../../components/UI/ReservationModals/ReviewModal';
+import { connect } from 'react-redux';
 import './UserCss.css';
 
 class Reservations extends Component {
@@ -15,7 +16,6 @@ class Reservations extends Component {
       cancelModal: false,
       reviewModal: false
     };
-
     this.cancelModalToggle = this.cancelModalToggle.bind(this);
     this.reviewModalToggle = this.reviewModalToggle.bind(this);
   }
@@ -33,10 +33,10 @@ class Reservations extends Component {
 
   componentDidMount = async () => {
     if (!this.state.madeRequest) {
-      // 일단은 더미유저 아이디를 가져와서 사용. 이후 현재 로그인 유저의 아이디로 요청을 보내면 됨.
-      const users = (await axios.get(`http://52.79.227.227:3030/users`)).data;
       const { data } = await axios.get(
-        `http://52.79.227.227:3030/users/${users[0]._id}/reservations/all`
+        `http://52.79.227.227:3030/users/${
+          this.props.userData._id
+        }/reservations`
       );
       this.setState({
         reservations: data,
@@ -44,17 +44,22 @@ class Reservations extends Component {
       });
     }
   };
-
+  // TODO : 예약 취소 모달 후 '취소하시겠습니까' 묻는 과정 추가
   cancelReservationHandler = async reservationId => {
     console.log(reservationId);
-    const users = (await axios.get(`http://52.79.227.227:3030/users`)).data;
+    // const users = (await axios.get(`http://52.79.227.227:3030/users`)).data;
     await axios.patch(
       `http://52.79.227.227:3030/users/${
-        users[0]._id
-      }/reservations/${reservationId}`
+        this.props.userData._id
+      }/reservations/${reservationId}`,
+      {
+        isCanceled: true
+      }
     );
     const { data } = await axios.get(
-      `http://52.79.227.227:3030/users/${users[0]._id}/reservations`
+      `http://52.79.227.227:3030/users/${
+        this.this.props.userData._id
+      }/reservations`
     );
     this.setState({
       reservations: data,
@@ -101,4 +106,8 @@ class Reservations extends Component {
   }
 }
 
-export default Reservations;
+const mapStateToProps = ({ authentication: { userData } }) => {
+  return { userData };
+};
+
+export default connect(mapStateToProps)(Reservations);

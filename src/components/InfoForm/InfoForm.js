@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { FormGroup, Label, Input, Col } from 'reactstrap';
+import { FormGroup } from 'reactstrap';
 import ImgPreview from './ImgPreview';
 import './InfoForm.css';
 

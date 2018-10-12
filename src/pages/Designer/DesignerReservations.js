@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import CancelReasonModal from '../../components/UI/ReservationModals/CancelReasonModal';
 import ReviewModal from '../../components/UI/ReservationModals/ReviewModal';
+import { connect } from 'react-redux';
 
 import ReservationCard from '../../components/DesignerReservations/ReservationCard';
 
@@ -40,11 +41,11 @@ class DesignerReservations extends Component {
   };
 
   cancelReservationHandler = async reservationId => {
-    console.log(reservationId);
+    console.log(this.props);
     const users = (await axios.get(`http://52.79.227.227:3030/users`)).data;
     await axios.patch(
       `http://52.79.227.227:3030/users/${
-        users[0]._id
+        this.props.userData._id
       }/reservations/${reservationId}`
     );
     const { data } = await axios.get(
@@ -116,5 +117,8 @@ class DesignerReservations extends Component {
     );
   }
 }
+const mapStateToProps = ({ authentication: { userData } }) => {
+  return { userData };
+};
 
-export default DesignerReservations;
+export default connect(mapStateToProps)(DesignerReservations);
