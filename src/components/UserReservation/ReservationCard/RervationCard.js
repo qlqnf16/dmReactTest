@@ -84,7 +84,7 @@ const ReservationCard = props => {
       button = (
         <div
           className="rc_button review"
-          onClick={() => props.reviewModalToggle()}
+          onClick={() => props.reviewModalToggle(props.reservation._id)}
         >
           리뷰 등록
         </div>

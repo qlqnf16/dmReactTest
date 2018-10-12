@@ -14,22 +14,24 @@ class Reservations extends Component {
       reservations: null,
       madeRequest: false,
       cancelModal: false,
-      reviewModal: false
+      reviewModal: false,
+      reservationId: null
     };
     this.cancelModalToggle = this.cancelModalToggle.bind(this);
     this.reviewModalToggle = this.reviewModalToggle.bind(this);
   }
 
-  reviewModalToggle() {
+  reviewModalToggle = reservationId => {
     this.setState({
-      reviewModal: !this.state.reviewModal
+      reviewModal: !this.state.reviewModal,
+      reservationId
     });
-  }
-  cancelModalToggle() {
+  };
+  cancelModalToggle = () => {
     this.setState({
       cancelModal: !this.state.cancelModal
     });
-  }
+  };
 
   componentDidMount = async () => {
     if (!this.state.madeRequest) {
@@ -100,6 +102,7 @@ class Reservations extends Component {
         <ReviewModal
           isOpen={this.state.reviewModal}
           toggle={this.reviewModalToggle}
+          reservationId={this.state.reservationId}
         />
       </div>
     );
