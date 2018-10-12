@@ -114,21 +114,25 @@ class CardAdd extends Component {
 
     let price = 0;
     let service = '';
+    let serviceFormat = {};
     let time = 0;
     if (this.state.cut) {
       price += this.props.price.cut;
       time += this.props.recruit.requireTime.cut;
       service += '/ 컷트 ';
+      serviceFormat['cut'] = this.props.price.cut;
     }
     if (this.state.perm) {
       price += this.props.price.perm;
       time += this.props.recruit.requireTime.perm;
       service += '/ 펌';
+      serviceFormat['perm'] = this.props.price.perm;
     }
     if (this.state.dye) {
       price += this.props.price.dye;
       time += this.props.recruit.requireTime.dye;
       service += '/ 염색';
+      serviceFormat['dye'] = this.props.price.dye;
     }
 
     service = service.substring(1);
@@ -164,6 +168,7 @@ class CardAdd extends Component {
                 price,
                 time,
                 service,
+                serviceFormat,
                 startTime: this.state.time,
                 recruit: this.props.recruit,
                 cardData: this.props.cardData

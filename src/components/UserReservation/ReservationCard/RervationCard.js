@@ -1,5 +1,6 @@
 import React from 'react';
 import Moment from 'react-moment';
+import './ReservationCard.css';
 
 const ReservationCard = props => {
   // 시간 parse
@@ -36,50 +37,75 @@ const ReservationCard = props => {
   let type = null;
   if (props.reservation.isCanceled) {
     button = (
-      <button onClick={() => props.cancelModalToggle()}>취소 사유 보기</button>
+      <div
+        className="rc_button rc_canceled"
+        onClick={() => props.cancelModalToggle()}
+      >
+        취소 사유 보기
+      </div>
     );
-    type = '취소';
+    type = <div className="rc_type cancel">취소</div>;
   } else if (props.type === 'soon') {
     button = (
-      <button onClick={() => props.cancelHandler(props.reservation._id)}>
-        예약 취소
-      </button>
+      <div
+        className="rc_button"
+        onClick={() => props.cancelHandler(props.reservation._id)}
+      >
+        예약취소
+      </div>
     );
-    type = 'D-2';
+    type = <div className="rc_type">D-2</div>;
   } else if (props.type === 'finish') {
     if (props.reservation._review) {
       button = (
-        <button onClick={() => props.reviewModalToggle()}>내 리뷰 보기</button>
+        <div className="rc_button" onClick={() => props.reviewModalToggle()}>
+          내 리뷰 보기
+        </div>
       );
     } else {
       button = (
-        <button onClick={() => props.reviewModalToggle()}>리뷰 등록</button>
+        <div
+          className="rc_button review"
+          onClick={() => props.reviewModalToggle()}
+        >
+          리뷰 등록
+        </div>
       );
     }
-    type = '완료';
+    type = <div className="rc_type rc_finish">완료</div>;
   }
 
   // return
   if (props.reservation) {
     return (
-      <div className="col-4">
-        <div className="border p-3 m-1">
-          <h5 className=" text-right">{type}</h5>
-          <h5 className="small">{props.reservation._designer.name}</h5>
-          <h4>타이틀이 디비에 없네</h4>
-          <p className="small">
-            <Moment unix format="YYYY/MM/DD">
-              {props.reservation.date / 1000}
-            </Moment>{' '}
-            {since} ~ {until}
-          </p>
-          <p className="small my-1">
-            {props.reservation._card && props.reservation._card.shop}
-          </p>
-          <p className="small mt-1">{services}</p>
+      <div className={`rc_back ${props.type}`}>
+        <div className="d-flex justify-content-between">
+          <div className="rc_content">
+            {props.reservation._designer.name}
+            이정민
+          </div>
+          {type}
+        </div>
+
+        <div className="rc_content rc_title">타이틀이 디비에 없네</div>
+        <div className="rc_content">
+          <Moment unix format="YYYY/MM/DD">
+            {props.reservation.date / 1000}
+          </Moment>{' '}
+          {since} ~ {until}
+        </div>
+        <div className="rc_content">
+          {props.reservation._card && props.reservation._card.shop}
+        </div>
+        <div className="rc_content">{services} (현장 3만원)</div>
+        <div className="d-flex justify-content-between">
           {button}
-          <button>더보기</button>
-          <p className="small">{props.reservation._id}</p>
+          <div className="rc_button" style={{ marginLeft: '22px' }}>
+            더보기
+          </div>
+        </div>
+        <div className="rc_content rc_rnumber">
+          예약번호: {props.reservation._id}
         </div>
       </div>
     );

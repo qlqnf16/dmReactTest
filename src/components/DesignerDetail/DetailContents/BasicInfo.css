@@ -1,7 +1,7 @@
 .bi_name {
-  font-family: NanumSquareEB;
+  font-family: NanumSquare;
+  font-weight: 800;
   font-size: 1.3rem;
-  font-weight: bold;
   line-height: 1.08;
   letter-spacing: 0.7px;
   color: #2b2e34;
@@ -9,9 +9,9 @@
 }
 
 .bi_title {
-  font-family: NanumSquareEB;
+  font-family: NanumSquare;
+  font-weight: 800;
   font-size: 2rem;
-  font-weight: bold;
   line-height: 1.15;
   letter-spacing: 1px;
   color: #1e3354;
@@ -19,7 +19,8 @@
 }
 
 .bi_shop {
-  font-family: NanumSquareEB;
+  font-family: NanumSquare;
+  font-weight: 400;
   font-size: 1rem;
   line-height: 1.2;
   letter-spacing: 0.5px;
@@ -28,7 +29,7 @@
 }
 
 .bi_introduce {
-  font-family: NanumSquareEB;
+  font-family: NanumSquareR;
   font-size: 1.3rem;
   line-height: 1.08;
   letter-spacing: 0.7px;
@@ -46,7 +47,6 @@
 .bi_boxTitle {
   font-family: NanumSquareEB;
   font-size: 1.4rem;
-  font-weight: bold;
   line-height: 1.14;
   letter-spacing: 0.7px;
   color: #dd6866;

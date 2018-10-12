@@ -17,7 +17,12 @@ const DetailContent = props => {
       <div>
         <div className="dc_title">막내리뷰</div>
         <div className="dc__reviews">
-          <span style={{ color: '#dd6866', fontWeight: 'bold' }}>
+          <span
+            style={{
+              color: '#dd6866',
+              fontFamily: 'NanumSquareEB;'
+            }}
+          >
             ★
             {recruit._reviews &&
               recruit._reviews.reduce(

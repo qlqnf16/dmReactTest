@@ -40,12 +40,12 @@ select {
 }
 
 .filterTitle {
+  font-family: NanumSquare;
   font-size: 1.1rem;
   line-height: 1.09;
   color: #dd6866;
   margin-bottom: 4px;
   margin-top: 22px;
-  font-weight: bold;
 }
 
 .filterButton {
@@ -56,11 +56,11 @@ select {
   font-size: 1.3rem;
   line-height: 1.08;
   letter-spacing: 0.13rem;
-  font-weight: bold;
   margin: auto;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   margin-top: 10.8px;
+  font-family: NanumSquare;
 }

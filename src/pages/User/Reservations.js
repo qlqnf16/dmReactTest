@@ -4,6 +4,7 @@ import UserNav from '../../components/Navigation/UserNav/UserNav';
 import ReservationCards from '../../components/UserReservation/ReservationCards/ReservationCards';
 import CancelReasonModal from '../../components/UI/ReservationModals/CancelReasonModal';
 import ReviewModal from '../../components/UI/ReservationModals/ReviewModal';
+import './UserCss.css';
 
 class Reservations extends Component {
   constructor(props) {
@@ -76,8 +77,8 @@ class Reservations extends Component {
     }
 
     return (
-      <div className="container">
-        <div className="row mt-5">
+      <div className="container-fluid u">
+        <div className="d-flex">
           <UserNav />
           <ReservationCards
             futureReservations={futureReservations}

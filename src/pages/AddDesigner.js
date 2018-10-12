@@ -3,6 +3,7 @@ import { Container, Form, Button } from 'reactstrap';
 import InfoForm from '../components/InfoForm/InfoForm';
 import { connect } from 'react-redux';
 import firebase from '../config/Firebase';
+import './PageCss.css';
 
 class AddDesigner extends Component {
   constructor(props) {
@@ -130,10 +131,11 @@ class AddDesigner extends Component {
   render() {
     console.log(this.props.userData);
     return (
-      <Container>
+      <div className="container-fluid ad">
         <Form className="m-5">
           <InfoForm
             state={this.state}
+            checked={!this.state.gender ? 'male' : this.state.gender}
             certImg1={this.state.certImg1}
             certFile1={this.state.certFile1}
             certImg2={this.state.certImg2}
@@ -142,12 +144,12 @@ class AddDesigner extends Component {
             changeInput={e => this.handleInputChange(e)}
           />
           <div className="text-center">
-            <Button className="m-5" onClick={this.submitHandler}>
-              등록하기
-            </Button>
+            <div className="ad_button" onClick={this.submitHandler}>
+              막내 등록하기
+            </div>
           </div>
         </Form>
-      </Container>
+      </div>
     );
   }
 }

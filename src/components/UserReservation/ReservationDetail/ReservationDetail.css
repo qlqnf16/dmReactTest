@@ -1,0 +1,25 @@
+.rd_back {
+  position: relative;
+  background: white;
+  border: solid 1px #c1e4eb;
+  margin-left: 70px;
+  padding: 27.1px 0 5.1px 0;
+}
+
+.rd_title {
+  /* font-family: NanumSquareEB; */
+  font-size: 1.4rem;
+  line-height: 1.14;
+  letter-spacing: 0.07rem;
+  color: #dd6866;
+  margin-bottom: 9px;
+}
+
+.rd_content {
+  /* font-family: NanumSquareR; */
+  font-size: 1.3rem;
+  line-height: 1.54;
+  letter-spacing: 0.07rem;
+  color: #2b2e34;
+  margin-bottom: 22px;
+}

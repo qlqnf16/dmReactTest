@@ -1,8 +1,7 @@
 .dc_title {
   width: fit-content;
-  /* font-family: NanumSquareEB; */
+  font-family: NanumSquareEB;
   font-size: 2rem;
-  font-weight: bold;
   line-height: 1.15;
   color: #1e3354;
   margin: 39.7px 0 9px 0;

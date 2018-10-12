@@ -1,21 +1,62 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import "./UserNav.css";
 
 const UserNav = () => (
-  <div className="col-2 p-3">
-    <h4> 마이 페이지 </h4>
-    <Link to="/reservations">
-      <li>예약관리</li>
-    </Link>
-    <Link to="/likedesigner">
-      <li>찜한 막내</li>
-    </Link>
-    <Link to="/userInfo">
-      <li>회원정보관리</li>
-    </Link>
-    <Link to="/coupon">
-      <li>추천인/쿠폰</li>
-    </Link>
+  <div className="un_bg">
+    <div className="un_header">마이페이지</div>
+    <div className="un_navBack">
+      <NavLink
+        to="/reservations"
+        className="un_navItem"
+        activeStyle={{
+          color: "#1f3354",
+          borderBottom: "solid 1.8px #1f3354"
+        }}
+      >
+        예약관리
+      </NavLink>
+      <NavLink
+        to="/likedesigner"
+        className="un_navItem"
+        activeStyle={{
+          color: "#1f3354",
+          borderBottom: "solid 1.8px #1f3354"
+        }}
+      >
+        찜한 막내
+      </NavLink>
+      <NavLink
+        to="/userInfo"
+        className="un_navItem"
+        activeStyle={{
+          color: "#1f3354",
+          borderBottom: "solid 1.8px #1f3354"
+        }}
+      >
+        회원정보관리
+      </NavLink>
+      <NavLink
+        to="/coupon"
+        className="un_navItem"
+        activeStyle={{
+          color: "#1f3354",
+          borderBottom: "solid 1.8px #1f3354"
+        }}
+      >
+        추천인/쿠폰
+      </NavLink>
+      <NavLink
+        to="/messege"
+        className="un_navItem"
+        activeStyle={{
+          color: "#1f3354",
+          borderBottom: "solid 1.8px #1f3354"
+        }}
+      >
+        메세지
+      </NavLink>
+    </div>
   </div>
 );
 

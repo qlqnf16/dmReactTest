@@ -1,4 +1,5 @@
 .mi_content {
+  font-family: NanumSqaureR;
   font-size: 1.2rem;
   line-height: 1.68;
   letter-spacing: 0.6px;
@@ -7,8 +8,8 @@
 }
 
 .mi_subtitle {
+  font-family: NanumSqaureEB;
   font-size: 1.6rem;
-  font-weight: bold;
   line-height: 1.13;
   letter-spacing: 0.8px;
   color: #dd6866;
