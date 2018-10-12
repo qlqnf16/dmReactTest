@@ -22,6 +22,7 @@ class DesignerList extends Component {
         recruits: data,
         madeRequest: true
       });
+      console.log(data);
     }
   }
 
@@ -77,17 +78,19 @@ class DesignerList extends Component {
     let recruits = null;
     if (this.state.recruits.length) {
       console.log(this.state.recruits);
-      recruits = this.state.recruits.map(recruit => (
-        <DesignerCard
-          id={recruit._id}
-          title={recruit.title}
-          name={recruit._designer && recruit._designer.name}
-          // shop={recruit._designer && recruit._designer.locations[0].shop}
-          shop="TODO"
-          test={recruit.portfolios}
-          key={recruit._id}
-        />
-      ));
+      recruits = this.state.recruits.map(recruit => {
+        return (
+          <DesignerCard
+            id={recruit._id}
+            title={recruit.title}
+            name={recruit._designer && recruit._designer.name}
+            // shop={recruit._designer && recruit._designer.locations[0].shop}
+            shop="TODO"
+            test={recruit.portfolios}
+            key={recruit._id}
+          />
+        );
+      });
     }
     return (
       <div className="container-fluid dl">
@@ -101,13 +104,7 @@ class DesignerList extends Component {
             checked={!this.state.gender ? 'male' : this.state.gender}
           />
           <div className="col-md-9">
-            <CardDeck className="m-5">
-              {recruits}
-              {recruits}
-              {recruits}
-              {recruits}
-              {recruits}
-            </CardDeck>
+            <CardDeck className="m-5">{recruits}</CardDeck>
           </div>
         </div>
       </div>

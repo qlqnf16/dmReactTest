@@ -23,6 +23,7 @@ class DesginerDetail extends Component {
         `http://52.79.227.227:3030/recruits/${this.props.match.params.id}`
       );
       this.setState({ recruit: data, madeRequest: true });
+      console.log(this.state.recruit);
     }
     // firebase.auth().onAuthStateChanged(() => {
     //   this.offHandler();
