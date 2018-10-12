@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import CancelReasonModal from '../../components/UI/ReservationModals/CancelReasonModal';
 import ReviewModal from '../../components/UI/ReservationModals/ReviewModal';
+import { connect } from 'react-redux';
 
 import ReservationCard from '../../components/DesignerReservations/ReservationCard';
 
@@ -28,23 +29,27 @@ class DesignerReservations extends Component {
   componentDidMount = async () => {
     if (!this.state.madeRequest) {
       // 일단은 더미유저 아이디를 가져와서 사용. 이후 현재 로그인 유저의 아이디로 요청을 보내면 됨.
-      const users = (await axios.get(`http://52.79.227.227:3030/users`)).data;
       const { data } = await axios.get(
-        `http://52.79.227.227:3030/users/${users[0]._id}/reservations/all`
+        `http://52.79.227.227:3030/users/${
+          this.props.userData._id
+        }/reservations`
+      );
+      const reservations = data.filter(
+        d => d._designer._id === this.props.userData._id
       );
       this.setState({
-        reservations: data,
+        reservations,
         madeRequest: true
       });
     }
   };
 
   cancelReservationHandler = async reservationId => {
-    console.log(reservationId);
+    console.log(this.props);
     const users = (await axios.get(`http://52.79.227.227:3030/users`)).data;
     await axios.patch(
       `http://52.79.227.227:3030/users/${
-        users[0]._id
+        this.props.userData._id
       }/reservations/${reservationId}`
     );
     const { data } = await axios.get(
@@ -116,5 +121,8 @@ class DesignerReservations extends Component {
     );
   }
 }
+const mapStateToProps = ({ authentication: { userData } }) => {
+  return { userData };
+};
 
-export default DesignerReservations;
+export default connect(mapStateToProps)(DesignerReservations);

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Form, Button } from 'reactstrap';
+import { Form } from 'reactstrap';
 import axios from 'axios';
 import fd from 'form-data';
 import InfoForm from '../components/InfoForm/InfoForm';

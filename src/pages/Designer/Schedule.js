@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Container, Form } from 'reactstrap';
 import ScheduleBox from '../../components/DesignerSchedule/ScheduleBox/ScheduleBox';
 import axios from 'axios';
+import firebase from '../../config/Firebase';
 import { connect } from 'react-redux';
 class Schedule extends Component {
   state = {
@@ -56,6 +57,7 @@ class Schedule extends Component {
 
   totalSubmitHandler = async recruitData => {
     console.log(recruitData);
+    // 유저에 리크루트 없으면 생성
     if (!this.props.userData._recruit) {
       console.log('최초 생성');
       const res = await axios.post(
@@ -63,6 +65,13 @@ class Schedule extends Component {
         recruitData
       );
       console.log(res);
+      //firebase에 _recruit 추가
+      await firebase
+        .database()
+        .ref('users/' + this.props.userData.uid)
+        .update({
+          _recruit: res.data._id
+        });
       await this.state.newCards.forEach(async newCard => {
         await axios.post(
           `http://52.79.227.227:3030/recruits/${
@@ -77,7 +86,6 @@ class Schedule extends Component {
         }/cards`
       );
       this.setState({ cards: data, newCards: [] });
-      await alert('생성되었습니다');
     } else {
       console.log('정보 수정');
 

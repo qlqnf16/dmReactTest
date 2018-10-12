@@ -72,11 +72,14 @@ class ReservationConfirm extends Component {
       }
     );
   }
-  reservationSubmit = () => {
-    axios.post(
+  //TODO : _user 저장 안되는거 수정...
+  reservationSubmit = async () => {
+    await axios.post(
       `http://52.79.227.227:3030/users/${this.props.userData._id}/reservations`,
       this.state.reservationData
     );
+    console.log(this.state.reservationData);
+    await alert('성공적으로 예약되었습니다');
   };
 
   render() {

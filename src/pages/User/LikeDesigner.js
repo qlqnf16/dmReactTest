@@ -27,7 +27,7 @@ class LikeDesigner extends Component {
           id={recruit._id}
           title={recruit.title}
           name={recruit._designer.name}
-          shop={recruit._designer.locations[0].shop}
+          // shop={recruit._designer.locations[0].shop}
           test={recruit.portfolios}
           key={recruit._id}
         />
