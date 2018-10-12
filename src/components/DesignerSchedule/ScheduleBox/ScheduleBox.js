@@ -142,6 +142,7 @@ class ScheduleBox extends Component {
       designerName: this.props.userData,
       _cards: this.state.cards,
       _reviews: [],
+      portfolios: [],
       requireTime: this.props.requireTime
     };
     if (this.state.cutTime && this.state.permTime && this.state.dyeTime) {

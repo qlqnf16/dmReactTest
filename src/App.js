@@ -79,7 +79,7 @@ class App extends Component {
             userData['_tickets'] = data._tickets;
             userData['_reservations'] = data._reservations;
             console.log(userData);
-            this.props.login(userData);
+            await this.props.login(userData);
           });
       } else {
         // logout 하면 landing page로 이동

@@ -2,6 +2,7 @@ import React from 'react';
 import Moment from 'react-moment';
 
 const ReservationCard = props => {
+  console.log(props);
   let since = '';
   let until = '';
   let services = '';
@@ -52,7 +53,14 @@ const ReservationCard = props => {
         예약 취소
       </button>
     );
-    type = <Moment to={props.reservation.date}>{new Date()}</Moment>;
+    type = (
+      <div className="rc_type">
+        D-
+        <Moment unit="days" diff={new Date()}>
+          {props.reservation.date}
+        </Moment>
+      </div>
+    );
     let date = new Date(props.reservation.date);
     if (new Date().getDate() === date.getDate()) {
       type = 'D-day';
@@ -89,7 +97,8 @@ const ReservationCard = props => {
     <div className="col-3">
       <div className="card p-3 m-1">
         <h5 className="small text-right">{type}</h5>
-        <h5>이름 : {props.reservation._user.name}</h5>
+        {/* <h5>이름 : {props.reservation._user.name}</h5> */}
+        <h5>이름 : </h5>
         <div className="row">
           <div className="col-md-8">
             <h5 className="small">
