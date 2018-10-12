@@ -5,7 +5,7 @@ import Moment from 'react-moment';
 
 class ReservationForm extends Component {
   state = {
-    point: 0,
+    point: this.props.userData.point,
     finalPrice: this.props.price
   };
 
@@ -18,9 +18,15 @@ class ReservationForm extends Component {
 
   pointSubmit = () => {
     if (this.state.point % 1000 === 0) {
-      this.setState({
-        finalPrice: this.props.price - Number(this.state.point)
-      });
+      console.log(this.state.point);
+      console.log(this.props.userData.point);
+      if (this.state.point > this.props.userData.point) {
+        alert('보유 포인트보다 많이 사용할 수 없습니다');
+      } else {
+        this.setState({
+          finalPrice: this.props.price - Number(this.state.point)
+        });
+      }
     } else {
       alert('1,000 point 단위로 사용 가능합니다.');
     }
@@ -133,7 +139,8 @@ class ReservationForm extends Component {
                 적용
               </button>
               <span className="font-weight-light">
-                1,000 point 단위로 사용 가능합니다.
+                1,000 point 단위로 사용 가능합니다. 보유포인트 :{' '}
+                {this.props.userData.point}원
               </span>
             </div>
           </div>

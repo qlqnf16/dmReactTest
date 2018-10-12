@@ -3,6 +3,7 @@ import axios from 'axios';
 import UserNav from '../../components/Navigation/UserNav/UserNav';
 import ReservationCards from '../../components/UserReservation/ReservationCards/ReservationCards';
 import CancelReasonModal from '../../components/UI/ReservationModals/CancelReasonModal';
+import CancelModal from '../../components/UI/ReservationModals/CancelModal';
 import ReviewModal from '../../components/UI/ReservationModals/ReviewModal';
 import { connect } from 'react-redux';
 import './UserCss.css';
@@ -13,11 +14,13 @@ class Reservations extends Component {
     this.state = {
       reservations: null,
       madeRequest: false,
+      cancelReasonModal: false,
       cancelModal: false,
       reviewModal: false,
       reservationId: null
     };
-    this.cancelModalToggle = this.cancelModalToggle.bind(this);
+    this.cancelReasonModalToggle = this.cancelReasonModalToggle.bind(this);
+    this.cancelHandler = this.cancelHandler.bind(this);
     this.reviewModalToggle = this.reviewModalToggle.bind(this);
   }
 
@@ -25,6 +28,11 @@ class Reservations extends Component {
     this.setState({
       reviewModal: !this.state.reviewModal,
       reservationId
+    });
+  };
+  cancelReasonModalToggle = () => {
+    this.setState({
+      cancelReasonModal: !this.state.cancelReasonModal
     });
   };
   cancelModalToggle = () => {
@@ -46,10 +54,13 @@ class Reservations extends Component {
       });
     }
   };
-  // TODO : 예약 취소 모달 후 '취소하시겠습니까' 묻는 과정 추가
+
+  cancelHandler = () => {
+    this.setState({
+      cancelModal: !this.state.cancelModal
+    });
+  };
   cancelReservationHandler = async reservationId => {
-    console.log(reservationId);
-    // const users = (await axios.get(`http://52.79.227.227:3030/users`)).data;
     await axios.patch(
       `http://52.79.227.227:3030/users/${
         this.props.userData._id
@@ -90,14 +101,19 @@ class Reservations extends Component {
           <ReservationCards
             futureReservations={futureReservations}
             previousReservations={previousReservations}
-            cancelHandler={this.cancelReservationHandler}
-            cancelModalToggle={this.cancelModalToggle}
+            cancelHandler={this.cancelHandler}
+            cancelReasonModalToggle={this.cancelReasonModalToggle}
             reviewModalToggle={this.reviewModalToggle}
           />
         </div>
         <CancelReasonModal
+          isOpen={this.state.cancelReasonModal}
+          toggle={this.cancelReasonModalToggle}
+        />
+        <CancelModal
           isOpen={this.state.cancelModal}
           toggle={this.cancelModalToggle}
+          cancelReservationHandler={this.cancelReservationHandler}
         />
         <ReviewModal
           isOpen={this.state.reviewModal}

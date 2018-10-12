@@ -40,7 +40,7 @@ const ReservationCard = props => {
     button = (
       <div
         className="rc_button rc_canceled"
-        onClick={() => props.cancelModalToggle()}
+        onClick={() => props.cancelReasonModalToggle()}
       >
         취소 사유 보기
       </div>

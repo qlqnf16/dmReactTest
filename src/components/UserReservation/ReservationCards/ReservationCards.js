@@ -36,7 +36,7 @@ const Reservations = props => (
               reservation={reservation}
               type={'finish'}
               key={key}
-              cancelModalToggle={props.cancelModalToggle}
+              cancelReasonModalToggle={props.cancelReasonModalToggle}
               reviewModalToggle={props.reviewModalToggle}
             />
           ))}

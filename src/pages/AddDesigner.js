@@ -130,9 +130,6 @@ class AddDesigner extends Component {
         }
       }
     );
-    // console.log(res);
-
-    console.log(res);
     alert('성공적으로 신청되었습니다');
     await firebase
       .database()
