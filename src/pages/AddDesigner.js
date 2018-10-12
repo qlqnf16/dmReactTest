@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Form, Button } from 'reactstrap';
+import axios from 'axios';
+import fd from 'form-data';
 import InfoForm from '../components/InfoForm/InfoForm';
 import { connect } from 'react-redux';
 import firebase from '../config/Firebase';
@@ -116,7 +118,21 @@ class AddDesigner extends Component {
 
     if (Object.values(firebaseUserData).includes(undefined))
       return alert('채워지지 않은 정보가 있습니다');
+    const formData = new fd();
+    formData.append('cert_mh', this.state.certFile1);
+    formData.append('cert_jg', this.state.certFile2);
+    axios.post(
+      `http://localhost:3030/firebase/upload?uid=${this.props.userData.uid}`,
+      formData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }
+    );
+    // console.log(res);
 
+    console.log(res);
     alert('성공적으로 신청되었습니다');
     await firebase
       .database()
