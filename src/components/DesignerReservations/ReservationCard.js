@@ -97,8 +97,8 @@ const ReservationCard = props => {
     <div className="col-3">
       <div className="card p-3 m-1">
         <h5 className="small text-right">{type}</h5>
-        {/* <h5>이름 : {props.reservation._user.name}</h5> */}
-        <h5>이름 : </h5>
+        <h5>이름 : {props.reservation._user.name}</h5>
+        {/* <h5>이름 : </h5> */}
         <div className="row">
           <div className="col-md-8">
             <h5 className="small">

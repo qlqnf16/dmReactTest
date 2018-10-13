@@ -17,7 +17,9 @@ class ReservationConfirm extends Component {
       },
       services: this.props.location.state.serviceFormat,
       _user: this.props.userData._id,
+      userName: this.props.userData.name,
       _designer: this.props.location.state.recruit._designer._id,
+      designerName: this.props.location.state.recruit.designerName,
       _card: this.props.location.state.cardData._id,
       date: this.props.location.state.cardData.date
     }
@@ -72,7 +74,6 @@ class ReservationConfirm extends Component {
       }
     );
   }
-  //TODO : _user 저장 안되는거 수정...
   reservationSubmit = async () => {
     await axios.post(
       `http://52.79.227.227:3030/users/${this.props.userData._id}/reservations`,

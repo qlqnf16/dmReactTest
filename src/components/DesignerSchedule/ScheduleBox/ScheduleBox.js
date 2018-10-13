@@ -139,7 +139,7 @@ class ScheduleBox extends Component {
       title: this.state.title,
       requirement: this.state.requirement,
       _designer: this.props.userData._id,
-      designerName: this.props.userData,
+      designerName: this.props.userData.name,
       _cards: this.state.cards,
       _reviews: [],
       portfolios: [],

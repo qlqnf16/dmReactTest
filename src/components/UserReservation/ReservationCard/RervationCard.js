@@ -102,7 +102,7 @@ const ReservationCard = props => {
       <div className={`rc_back ${props.type}`}>
         <div className="d-flex justify-content-between">
           <div className="rc_content">
-            {props.reservation._designer.name}
+            {props.reservation.designerName}
             이정민
           </div>
           {type}
