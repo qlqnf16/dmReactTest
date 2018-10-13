@@ -38,7 +38,7 @@ const ReservationCard = props => {
     button = (
       <button
         className="col-md-6 btn btn-danger"
-        onClick={() => props.cancelModalToggle()}
+        onClick={() => props.cancelReasonModalToggle()}
       >
         취소 사유 보기
       </button>
@@ -48,7 +48,7 @@ const ReservationCard = props => {
     button = (
       <button
         className="col-md-6 btn btn-light"
-        onClick={() => props.cancelHandler(props.reservation._id)}
+        onClick={() => props.cancelModalToggle(props.reservation)}
       >
         예약 취소
       </button>
@@ -76,20 +76,13 @@ const ReservationCard = props => {
       button = (
         <button
           className="col-md-6 btn btn-success"
-          onClick={() => props.reviewModalToggle()}
+          onClick={() => props.showReviewModalToggle(props.reservation)}
         >
           리뷰 보기
         </button>
       );
     } else {
-      button = (
-        <button
-          className="col-md-6 btn btn-light"
-          onClick={() => props.reviewModalToggle()}
-        >
-          리뷰 등록 전
-        </button>
-      );
+      button = <button className="col-md-6 btn btn-light">리뷰 등록 전</button>;
     }
     type = '완료';
   }

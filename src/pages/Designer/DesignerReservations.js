@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import CancelReasonModal from '../../components/UI/ReservationModals/CancelReasonModal';
-import ReviewModal from '../../components/UI/ReservationModals/ReviewModal';
+import CancelModal from '../../components/UI/ReservationModals/CancelModal';
+import ShowReviewModal from '../../components/UI/ReservationModals/ShowReviewModal';
 import { connect } from 'react-redux';
 
 import ReservationCard from '../../components/DesignerReservations/ReservationCard';
@@ -9,22 +10,37 @@ import ReservationCard from '../../components/DesignerReservations/ReservationCa
 class DesignerReservations extends Component {
   constructor(props) {
     super(props);
-    this.state = { cancelModal: false, reviewModal: false };
+    this.state = {
+      reservations: null,
+      madeRequest: false,
+      cancelModal: false,
+      showReviewModal: false,
+      cancelReasonModal: false,
+      reservation: null
+    };
 
     this.cancelModalToggle = this.cancelModalToggle.bind(this);
-    this.reviewModalToggle = this.reviewModalToggle.bind(this);
+    this.cancelReasonModalToggle = this.cancelReasonModalToggle.bind(this);
+    this.showReviewModalToggle = this.showReviewModalToggle.bind(this);
   }
 
-  reviewModalToggle() {
+  showReviewModalToggle = reservation => {
     this.setState({
-      reviewModal: !this.state.reviewModal
+      showReviewModal: !this.state.showReviewModal,
+      reservation
     });
-  }
-  cancelModalToggle() {
+  };
+  cancelModalToggle = reservation => {
     this.setState({
-      cancelModal: !this.state.cancelModal
+      cancelModal: !this.state.cancelModal,
+      reservation
     });
-  }
+  };
+  cancelReasonModalToggle = () => {
+    this.setState({
+      cancelReasonModal: !this.state.cancelReasonModal
+    });
+  };
 
   componentDidMount = async () => {
     if (!this.state.madeRequest) {
@@ -43,20 +59,35 @@ class DesignerReservations extends Component {
       });
     }
   };
+  cancelHandler = reservation => {
+    this.setState({
+      cancelModal: !this.state.cancelModal,
+      reservation
+    });
+  };
 
-  cancelReservationHandler = async reservationId => {
+  cancelReservationHandler = async () => {
     console.log(this.props);
-    const users = (await axios.get(`http://52.79.227.227:3030/users`)).data;
     await axios.patch(
       `http://52.79.227.227:3030/users/${
         this.props.userData._id
-      }/reservations/${reservationId}`
+      }/reservations/${this.state.reservation._id}`,
+      {
+        isCanceled: true
+      }
     );
+    await this.cancelHandler();
+    await this.reloadData();
+  };
+  reloadData = async () => {
     const { data } = await axios.get(
-      `http://52.79.227.227:3030/users/${users[0]._id}/reservations`
+      `http://52.79.227.227:3030/users/${this.props.userData._id}/reservations`
+    );
+    const reservations = data.filter(
+      d => d._designer._id === this.props.userData._id
     );
     this.setState({
-      reservations: data,
+      reservations,
       madeRequest: true
     });
   };
@@ -88,7 +119,6 @@ class DesignerReservations extends Component {
                 reservation={futureReservation}
                 cancelHandler={this.cancelReservationHandler}
                 cancelModalToggle={this.cancelModalToggle}
-                reviewModalToggle={this.reviewModalToggle}
                 key={key}
               />
             ))}
@@ -101,21 +131,26 @@ class DesignerReservations extends Component {
               <ReservationCard
                 type={'finish'}
                 reservation={previousReservation}
-                cancelHandler={this.cancelReservationHandler}
-                cancelModalToggle={this.cancelModalToggle}
-                reviewModalToggle={this.reviewModalToggle}
+                cancelReasonModalToggle={this.cancelReasonModalToggle}
+                showReviewModalToggle={this.showReviewModalToggle}
                 key={key}
               />
             ))}
           </div>
         </div>
         <CancelReasonModal
+          isOpen={this.state.cancelReasonModal}
+          toggle={this.cancelReasonModalToggle}
+        />
+        <CancelModal
           isOpen={this.state.cancelModal}
           toggle={this.cancelModalToggle}
+          cancelReservationHandler={this.cancelReservationHandler}
         />
-        <ReviewModal
-          isOpen={this.state.reviewModal}
-          toggle={this.reviewModalToggle}
+        <ShowReviewModal
+          isOpen={this.state.showReviewModal}
+          toggle={this.showReviewModalToggle}
+          reservation={this.state.reservation}
         />
       </div>
     );
