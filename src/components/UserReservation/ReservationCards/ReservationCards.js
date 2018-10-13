@@ -38,6 +38,7 @@ const Reservations = props => (
               key={key}
               cancelReasonModalToggle={props.cancelReasonModalToggle}
               reviewModalToggle={props.reviewModalToggle}
+              showReviewModalToggle={props.showReviewModalToggle}
             />
           ))}
         </div>

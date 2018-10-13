@@ -79,7 +79,7 @@ class ReservationConfirm extends Component {
       this.state.reservationData
     );
     console.log(this.state.reservationData);
-    await alert('성공적으로 예약되었습니다');
+    alert('성공적으로 예약되었습니다');
   };
 
   render() {

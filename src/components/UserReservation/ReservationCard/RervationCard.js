@@ -50,7 +50,7 @@ const ReservationCard = props => {
     button = (
       <div
         className="rc_button"
-        onClick={() => props.cancelHandler(props.reservation._id)}
+        onClick={() => props.cancelHandler(props.reservation)}
       >
         예약취소
       </div>
@@ -76,7 +76,10 @@ const ReservationCard = props => {
   } else if (props.type === 'finish') {
     if (props.reservation._review) {
       button = (
-        <div className="rc_button" onClick={() => props.reviewModalToggle()}>
+        <div
+          className="rc_button"
+          onClick={() => props.showReviewModalToggle(props.reservation)}
+        >
           내 리뷰 보기
         </div>
       );
@@ -84,7 +87,7 @@ const ReservationCard = props => {
       button = (
         <div
           className="rc_button review"
-          onClick={() => props.reviewModalToggle(props.reservation._id)}
+          onClick={() => props.reviewModalToggle(props.reservation)}
         >
           리뷰 등록
         </div>

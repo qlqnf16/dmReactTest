@@ -7,6 +7,7 @@ import CancelModal from '../../components/UI/ReservationModals/CancelModal';
 import ReviewModal from '../../components/UI/ReservationModals/ReviewModal';
 import { connect } from 'react-redux';
 import './UserCss.css';
+import ShowReviewModal from '../../components/UI/ReservationModals/ShowReviewModal';
 
 class Reservations extends Component {
   constructor(props) {
@@ -17,17 +18,18 @@ class Reservations extends Component {
       cancelReasonModal: false,
       cancelModal: false,
       reviewModal: false,
-      reservationId: null
+      showReviewModal: false,
+      reservation: null
     };
     this.cancelReasonModalToggle = this.cancelReasonModalToggle.bind(this);
     this.cancelHandler = this.cancelHandler.bind(this);
     this.reviewModalToggle = this.reviewModalToggle.bind(this);
   }
 
-  reviewModalToggle = reservationId => {
+  reviewModalToggle = reservation => {
     this.setState({
       reviewModal: !this.state.reviewModal,
-      reservationId
+      reservation
     });
   };
   cancelReasonModalToggle = () => {
@@ -38,6 +40,13 @@ class Reservations extends Component {
   cancelModalToggle = () => {
     this.setState({
       cancelModal: !this.state.cancelModal
+    });
+  };
+
+  showReviewModalToggle = reservation => {
+    this.setState({
+      showReviewModal: !this.state.showReviewModal,
+      reservation
     });
   };
 
@@ -55,24 +64,27 @@ class Reservations extends Component {
     }
   };
 
-  cancelHandler = () => {
+  cancelHandler = reservation => {
     this.setState({
-      cancelModal: !this.state.cancelModal
+      cancelModal: !this.state.cancelModal,
+      reservation
     });
   };
-  cancelReservationHandler = async reservationId => {
+  cancelReservationHandler = async () => {
     await axios.patch(
       `http://52.79.227.227:3030/users/${
         this.props.userData._id
-      }/reservations/${reservationId}`,
+      }/reservations/${this.state.reservation._id}`,
       {
         isCanceled: true
       }
     );
+    await this.reloadData();
+    await this.cancelHandler();
+  };
+  reloadData = async () => {
     const { data } = await axios.get(
-      `http://52.79.227.227:3030/users/${
-        this.this.props.userData._id
-      }/reservations`
+      `http://52.79.227.227:3030/users/${this.props.userData._id}/reservations`
     );
     this.setState({
       reservations: data,
@@ -104,11 +116,17 @@ class Reservations extends Component {
             cancelHandler={this.cancelHandler}
             cancelReasonModalToggle={this.cancelReasonModalToggle}
             reviewModalToggle={this.reviewModalToggle}
+            showReviewModalToggle={this.showReviewModalToggle}
           />
         </div>
         <CancelReasonModal
           isOpen={this.state.cancelReasonModal}
           toggle={this.cancelReasonModalToggle}
+        />
+        <ShowReviewModal
+          isOpen={this.state.showReviewModal}
+          toggle={this.showReviewModalToggle}
+          reservation={this.state.reservation}
         />
         <CancelModal
           isOpen={this.state.cancelModal}
@@ -118,7 +136,9 @@ class Reservations extends Component {
         <ReviewModal
           isOpen={this.state.reviewModal}
           toggle={this.reviewModalToggle}
-          reservationId={this.state.reservationId}
+          reservation={this.state.reservation}
+          reviewModalToggle={this.reviewModalToggle}
+          reloadData={this.reloadData}
         />
       </div>
     );

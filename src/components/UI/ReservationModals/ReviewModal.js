@@ -11,7 +11,7 @@ import {
   FormGroup
 } from 'reactstrap';
 
-class CancelReasonModal extends Component {
+class ReviewModal extends Component {
   state = {
     content: null,
     score: null
@@ -29,7 +29,7 @@ class CancelReasonModal extends Component {
       content: this.state.content,
       score: this.state.score,
       _user: this.props.userData._id,
-      _reservation: this.props.reservationId
+      _reservation: this.props.reservation._id
     };
 
     if (Object.values(reviewData).includes(null))
@@ -37,18 +37,15 @@ class CancelReasonModal extends Component {
 
     // review 생성
     const res = await axios.post(
-      `http://52.79.227.227:3030/recruits/${this.props.userData._id}/reviews`,
+      `http://52.79.227.227:3030/recruits/${
+        this.props.reservation._designer._recruit._id
+      }/reviews`,
       reviewData
-    );
-    // reservation에 _review 넣기
-    await axios.patch(
-      `http://52.79.227.227:3030/users/${this.props.userData._id}/reservation/${
-        this.props.reservationId
-      }`,
-      { _review: res.data._id }
     );
 
     await alert('성공적으로 등록되었습니다');
+    await this.props.reviewModalToggle();
+    await this.props.reloadData();
   };
   render() {
     return (
@@ -71,8 +68,8 @@ class CancelReasonModal extends Component {
             <div className="col-9">
               <input
                 type="range"
-                name="count"
-                id="count"
+                name="score"
+                id="score"
                 min="0"
                 max="5"
                 step="0.5"
@@ -94,4 +91,4 @@ const mapStateToProps = ({ authentication: { userData } }) => {
   return { userData };
 };
 
-export default connect(mapStateToProps)(CancelReasonModal);
+export default connect(mapStateToProps)(ReviewModal);
