@@ -9,7 +9,10 @@ export const facebookLogin = async () => {
     await firebase.auth().signInWithPopup(provider);
     const currentUser = firebase.auth().currentUser;
     const { displayName, uid, email } = currentUser;
-    const DBUserData = { _uid: uid };
+    const DBUserData = {
+      _uid: uid,
+      name: displayName
+    };
 
     const Users = await axios.get('http://52.79.227.227:3030/users');
     let newUser = true;
@@ -51,7 +54,10 @@ export const googleLogin = async () => {
     const currentUser = firebase.auth().currentUser;
     const { displayName, uid, email } = currentUser;
 
-    const DBUserData = { _uid: uid };
+    const DBUserData = {
+      _uid: uid,
+      name: displayName
+    };
 
     const Users = await axios.get('http://52.79.227.227:3030/users');
     let newUser = true;
@@ -106,7 +112,10 @@ export const kakao_login_success = async (response, a) => {
     // 넘겨받은 토큰으로 커스텀 로그인
     await firebase.auth().signInWithCustomToken(customToken);
 
-    const DBUserData = { _uid: data.uuid };
+    const DBUserData = {
+      _uid: data.uuid,
+      name: data.properties.nickname
+    };
 
     const Users = await axios.get('http://52.79.227.227:3030/users');
     let newUser = true;

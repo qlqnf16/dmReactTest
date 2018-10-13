@@ -17,9 +17,7 @@ class ReservationConfirm extends Component {
       },
       services: this.props.location.state.serviceFormat,
       _user: this.props.userData._id,
-      userName: this.props.userData.name,
       _designer: this.props.location.state.recruit._designer._id,
-      designerName: this.props.location.state.recruit.designerName,
       _card: this.props.location.state.cardData._id,
       date: this.props.location.state.cardData.date
     }
