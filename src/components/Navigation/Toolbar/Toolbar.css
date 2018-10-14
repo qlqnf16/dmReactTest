@@ -1,5 +1,5 @@
 .toolbar {
-  height: 106px;
+  margin: 19px 0;
   width: 100%;
   background-color: white;
 }
@@ -10,4 +10,14 @@
 
 .tricolor {
   height: 77px;
+}
+
+.collapse,
+.collapsing {
+  text-align: center;
+}
+
+.navbar-light .navbar-toggler {
+  border: none;
+  font-size: 2rem;
 }
