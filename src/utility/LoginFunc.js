@@ -34,7 +34,9 @@ export const facebookLogin = async () => {
         name: displayName,
         uid,
         email,
-        _id: res.data._id
+        _id: res.data._id,
+        joinedDate: new Date().getTime(),
+        penalty: 0
       };
 
       await firebase
@@ -78,7 +80,9 @@ export const googleLogin = async () => {
         name: displayName,
         uid,
         email,
-        _id: res.data._id
+        _id: res.data._id,
+        joinedDate: new Date().getTime(),
+        penalty: 0
       };
 
       await firebase
@@ -134,7 +138,9 @@ export const kakao_login_success = async (response, a) => {
       const firebaseUserData = {
         name: data.properties.nickname,
         uid: data.uuid,
-        _id: response.data._id
+        _id: response.data._id,
+        joinedDate: new Date().getTime(),
+        penalty: 0
       };
 
       await firebase

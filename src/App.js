@@ -23,7 +23,9 @@ import {
   DesignerTicket,
   Schedule,
   WhyDreamary,
-  InfoDetail
+  InfoDetail,
+  AdminUserList,
+  AdminDesignerList
 } from './pages';
 import Toolbar from './components/Navigation/Toolbar/Toolbar';
 import Footer from './components/UI/Footer/Footer';
@@ -63,6 +65,7 @@ class App extends Component {
     firebase.auth().onAuthStateChanged(user => {
       console.log(this.props);
       if (user) {
+        console.log(user);
         firebase
           .database()
           .ref('/users/' + firebase.auth().currentUser.uid)
@@ -235,6 +238,16 @@ class App extends Component {
           <Route
             path="/designer/whyDreamary"
             component={this.props.userData.isD ? WhyDreamary : WrongAccess}
+          />
+          <Route
+            path="/admin/userList"
+            component={this.props.userData.isD ? AdminUserList : WrongAccess}
+          />
+          <Route
+            path="/admin/designerList"
+            component={
+              this.props.userData.isD ? AdminDesignerList : WrongAccess
+            }
           />
           <Footer />
         </Fragment>

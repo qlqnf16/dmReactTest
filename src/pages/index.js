@@ -26,3 +26,7 @@ export { default as MyTicket } from './User/MyTicket';
 export { default as LikeDesigner } from './User/LikeDesigner';
 export { default as Reservations } from './User/Reservations';
 export { default as UserInfo } from './User/UserInfo';
+
+// 관리자
+export { default as AdminUserList } from './Admin/UserList';
+export { default as AdminDesignerList } from './Admin/DesignerList';
