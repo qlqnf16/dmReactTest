@@ -26,7 +26,11 @@ import {
   InfoDetail,
   AdminUserList,
   AdminDesignerList,
-  AdminReservationList
+  AdminReservationList,
+  TermsOfUse,
+  InfoPolicy,
+  FAQ,
+  QnA
 } from './pages';
 import Toolbar from './components/Navigation/Toolbar/Toolbar';
 import Footer from './components/UI/Footer/Footer';
@@ -116,6 +120,10 @@ class App extends Component {
           <Toolbar />
           <Route path="/" exact component={Landing} />
           <Route path="/about" component={About} />
+          <Route path="/QnA" component={QnA} />
+          <Route path="/TermsOfUse" component={TermsOfUse} />
+          <Route path="/FAQ" component={FAQ} />
+          <Route path="/InfoPolicy" component={InfoPolicy} />
           <Route path="/designerList" component={DesignerList} />
           <Route path="/designerDetail/:id" component={DesignerDetail} />
           <Route

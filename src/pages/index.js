@@ -31,3 +31,9 @@ export { default as UserInfo } from './User/UserInfo';
 export { default as AdminUserList } from './Admin/UserList';
 export { default as AdminDesignerList } from './Admin/DesignerList';
 export { default as AdminReservationList } from './Admin/ReservationList';
+
+// Ask
+export { default as FAQ } from './Ask/FAQ';
+export { default as InfoPolicy } from './Ask/InfoPolicy';
+export { default as QnA } from './Ask/QnA';
+export { default as TermsOfUse } from './Ask/TermsOfUse';

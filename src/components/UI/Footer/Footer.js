@@ -1,5 +1,6 @@
 import React from 'react';
 import './Footer.css';
+import { Link } from 'react-router-dom';
 
 const Footer = () => (
   <div className="background">
@@ -25,13 +26,21 @@ const Footer = () => (
       </div>
       <div style={{ marginRight: '7%', whiteSpace: 'nowrap' }}>
         <div className="title">POLICIES</div>
-        <div className="content">개인정보취급방침</div>
-        <div className="content">결제서비스약관</div>
+        <Link to="/infoPolicy">
+          <div className="content">개인정보취급방침</div>
+        </Link>
+        <Link to="/termsofuse">
+          <div className="content">이용약관</div>
+        </Link>
       </div>
       <div>
         <div className="title">SUPPORT</div>
-        <div className="content">FAQ</div>
-        <div className="content">관리자문의</div>
+        <Link to="/FAQ">
+          <div className="content">FAQ</div>
+        </Link>
+        <Link to="/QnA">
+          <div className="content">관리자문의</div>
+        </Link>
       </div>
     </div>
   </div>
