@@ -14,8 +14,9 @@ class UserList extends Component {
       .database()
       .ref(`/users`)
       .on('value', async res => {
+        const users = Object.values(res.val()).filter(user => !user.isD);
         await this.setState({
-          users: Object.values(res.val()),
+          users,
           madeRequest: true
         });
       });

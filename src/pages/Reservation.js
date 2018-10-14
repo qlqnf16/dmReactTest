@@ -19,7 +19,8 @@ class ReservationConfirm extends Component {
       _user: this.props.userData._id,
       _designer: this.props.location.state.recruit._designer._id,
       _card: this.props.location.state.cardData._id,
-      date: this.props.location.state.cardData.date
+      date: this.props.location.state.cardData.date,
+      reservedDate: new Date().getTime()
     }
   };
   componentDidMount = () => {

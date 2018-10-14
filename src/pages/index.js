@@ -30,3 +30,4 @@ export { default as UserInfo } from './User/UserInfo';
 // 관리자
 export { default as AdminUserList } from './Admin/UserList';
 export { default as AdminDesignerList } from './Admin/DesignerList';
+export { default as AdminReservationList } from './Admin/ReservationList';

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import firebase from '../../config/Firebase';
-import Moment from 'react-moment';
 import Designer from '../../components/Admin/Designer';
 
 class DesignerList extends Component {
@@ -15,7 +14,7 @@ class DesignerList extends Component {
       .ref(`/users`)
       .on('value', async res => {
         const designers = Object.values(res.val()).filter(
-          (user, key) => user.isD === true
+          user => user.isD === true
         );
 
         await this.setState({

@@ -25,7 +25,8 @@ import {
   WhyDreamary,
   InfoDetail,
   AdminUserList,
-  AdminDesignerList
+  AdminDesignerList,
+  AdminReservationList
 } from './pages';
 import Toolbar from './components/Navigation/Toolbar/Toolbar';
 import Footer from './components/UI/Footer/Footer';
@@ -247,6 +248,12 @@ class App extends Component {
             path="/admin/designerList"
             component={
               this.props.userData.isD ? AdminDesignerList : WrongAccess
+            }
+          />
+          <Route
+            path="/admin/reservationList"
+            component={
+              this.props.userData.isD ? AdminReservationList : WrongAccess
             }
           />
           <Footer />
