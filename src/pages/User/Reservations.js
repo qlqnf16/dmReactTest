@@ -31,9 +31,10 @@ class Reservations extends Component {
       reservation
     });
   };
-  cancelReasonModalToggle = () => {
+  cancelReasonModalToggle = reservation => {
     this.setState({
-      cancelReasonModal: !this.state.cancelReasonModal
+      cancelReasonModal: !this.state.cancelReasonModal,
+      reservation
     });
   };
   cancelModalToggle = reservation => {
@@ -104,6 +105,7 @@ class Reservations extends Component {
         <CancelReasonModal
           isOpen={this.state.cancelReasonModal}
           toggle={this.cancelReasonModalToggle}
+          reservation={this.state.reservation}
         />
         <ShowReviewModal
           isOpen={this.state.showReviewModal}

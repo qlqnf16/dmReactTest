@@ -101,7 +101,7 @@ class ReservationConfirm extends Component {
           <h1>2단계 예약하기 </h1>
         </div>
         <ReservationForm
-          d_name={recruit.designerName}
+          d_name={recruit._designer.name}
           startTime={startTimeFormat}
           finishTime={finishTimeFormat}
           shop={cardData.shop}
