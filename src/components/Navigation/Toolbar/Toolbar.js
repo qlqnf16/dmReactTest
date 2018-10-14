@@ -62,6 +62,11 @@ class Toolbar extends Component {
           <NavbarBrand tag={Link} to={"/"}>
             <img className="logo" src={logo} alt="Main Logo" />
           </NavbarBrand>
+          <img
+            className="tricolor d-block d-lg-none"
+            src={tricolor}
+            alt="tricolor"
+          />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <Navitems

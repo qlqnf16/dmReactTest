@@ -8,6 +8,12 @@
   height: 38.9px;
 }
 
+@media screen and (max-width: 992px) {
+  .logo {
+    margin-right: 40px;
+  }
+}
+
 .tricolor {
   height: 77px;
 }
