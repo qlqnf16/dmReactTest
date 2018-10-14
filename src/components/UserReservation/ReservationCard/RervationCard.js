@@ -50,7 +50,7 @@ const ReservationCard = props => {
     button = (
       <div
         className="rc_button"
-        onClick={() => props.cancelHandler(props.reservation)}
+        onClick={() => props.cancelModalToggle(props.reservation)}
       >
         예약취소
       </div>

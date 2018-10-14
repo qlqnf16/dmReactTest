@@ -20,7 +20,7 @@ const DetailContent = props => {
           <span
             style={{
               color: '#dd6866',
-              fontFamily: 'NanumSquareEB;'
+              fontFamily: 'NanumSquareEB'
             }}
           >
             ★

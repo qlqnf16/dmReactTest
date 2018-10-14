@@ -44,7 +44,7 @@ class ReviewModal extends Component {
     );
 
     await alert('성공적으로 등록되었습니다');
-    await this.props.reviewModalToggle();
+    await this.props.toggle();
     await this.props.reloadData();
   };
   render() {
