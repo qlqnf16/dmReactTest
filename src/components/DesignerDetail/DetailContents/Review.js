@@ -1,24 +1,11 @@
 import React from 'react';
 import StarRatings from 'react-star-ratings';
 import './Review.css';
+import Moment from 'react-moment';
 
 const Review = props => {
-  const time = new Date(props.date * 1000);
-  const month = [
-    '01',
-    '02',
-    '03',
-    '04',
-    '05',
-    '06',
-    '07',
-    '08',
-    '09',
-    '10',
-    '11',
-    '12'
-  ];
-  console.log(time);
+  const review = props.review;
+  console.log(review);
 
   return (
     <div className="r_box">
@@ -27,11 +14,10 @@ const Review = props => {
           className="r_content"
           style={{ fontFamily: 'NanumSquareEB', margin: '0 6.8px 0 0' }}
         >
-          이름이
-          {props.name}
+          {review._user.name}
         </div>
         <StarRatings
-          rating={props.star}
+          rating={review.score}
           starDimension="13px"
           starSpacing="1px"
           starRatedColor="#dd6866"
@@ -39,10 +25,11 @@ const Review = props => {
         />
       </div>
       <div className="r_content">
-        {`${time.getFullYear()}/${month[time.getMonth()]}/${time.getDate()}`}
+        <Moment format="YYYY/MM/DD">{review.createdAt}</Moment>
+        {/* {`${time.getFullYear()}/${month[time.getMonth()]}/${time.getDate()}`} */}
       </div>
       <div className="r_content" style={{ marginTop: '22px' }}>
-        {props.content}
+        {review.content}
       </div>
     </div>
   );

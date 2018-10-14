@@ -79,17 +79,7 @@ class DesignerList extends Component {
     if (this.state.recruits.length) {
       console.log(this.state.recruits);
       recruits = this.state.recruits.map(recruit => {
-        return (
-          <DesignerCard
-            id={recruit._id}
-            title={recruit.title}
-            name={recruit._designer && recruit._designer.name}
-            // shop={recruit._designer && recruit._designer.locations[0].shop}
-            shop="TODO"
-            test={recruit.portfolios}
-            key={recruit._id}
-          />
-        );
+        return <DesignerCard key={recruit._id} recruit={recruit} />;
       });
     }
     return (

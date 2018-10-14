@@ -34,13 +34,13 @@ class DesginerDetail extends Component {
     // });
 
     //TODO : Db에 uid와 연동 되면 불러와서 정보 채우기
-    // await firebase
-    //   .database()
-    //   .ref('/users/' + this.state.recruit._designer._uid)
-    //   .on('value', async res => {
-    //     console.log(res.val());
-    //     this.setState({ designerData:res.val()})
-    //   });
+    await firebase
+      .database()
+      .ref('/users/' + this.state.recruit._designer._uid)
+      .on('value', async res => {
+        console.log(res.val());
+        this.setState({ designerData: res.val() });
+      });
   };
 
   loginToggleHandler = () => {
