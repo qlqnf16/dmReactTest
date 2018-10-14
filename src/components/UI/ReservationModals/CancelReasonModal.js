@@ -48,6 +48,9 @@ const CancelReasonModal = props => {
               {since} ~ {until}
             </p>
             <p>서비스 : {services}</p>
+            <p>
+              취소자 : {props.reservation.cancelByUser ? '고객' : '디자이너'}
+            </p>
           </div>
           <h2>서비스 취소 사유</h2>
           <p>{props.reservation.cancelReason}</p>

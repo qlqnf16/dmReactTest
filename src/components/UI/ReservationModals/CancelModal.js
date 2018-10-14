@@ -30,7 +30,8 @@ class CancelModal extends Component {
       }/reservations/${this.props.reservation._id}`,
       {
         isCanceled: true,
-        cancelReason: this.state.cancelReason
+        cancelReason: this.state.cancelReason,
+        cancelByUser: true
       }
     );
 
