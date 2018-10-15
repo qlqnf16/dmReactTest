@@ -12,7 +12,7 @@ import {
   FormGroup
 } from 'reactstrap';
 
-class CancelModal extends Component {
+class CompleteModal extends Component {
   inputChangeHandler = event => {
     const target = event.target;
     const value = target.value;
@@ -21,23 +21,25 @@ class CancelModal extends Component {
     this.setState({ [name]: value });
   };
 
-  cancelReasonSubmit = async () => {
-    if (!this.state.cancelReason) return alert('채워지지 않은 정보가 있습니다');
-    // TODO : cancelReason POST하는거 추가, 취소한 사람 정보도 넣어야함
+  completeSubmit = async () => {
     await axios.patch(
       `http://52.79.227.227:3030/users/${
         this.props.userData._id
       }/reservations/${this.props.reservation._id}`,
       {
-        isCanceled: true,
-        cancelReason: this.state.cancelReason,
-        cancelByUser: true
+        isDone: true
       }
     );
 
-    await alert('성공적으로 취소되었습니다');
+    await alert('성공적으로 완료되었습니다');
     await this.props.toggle();
     await this.props.reloadData();
+  };
+
+  noShowSubmit = async () => {
+    //TODO : DB에 넣기 추가
+    await alert('신고가 완료되었습니다');
+    await this.props.toggle();
   };
 
   render() {
@@ -89,26 +91,21 @@ class CancelModal extends Component {
               </p>
               <p>서비스 : {services}</p>
             </div>
-            <FormGroup row>
-              <div className="col-3">사유</div>
-              <div className="col-9">
-                <input
-                  type="text"
-                  name="cancelReason"
-                  id="cancelReason"
-                  onChange={this.inputChangeHandler}
-                />
-              </div>
-            </FormGroup>
+            <div onClick={this.completeSubmit} className="btn btn-light">
+              서비스완료
+            </div>
+            <div onClick={this.noShowSubmit} className="btn btn-light">
+              노쇼 신고
+            </div>
           </ModalBody>
-          <ModalFooter>
+          {/* <ModalFooter>
             <Button color="primary" onClick={this.cancelReasonSubmit}>
               작성
             </Button>
             <Button color="warning" onClick={this.props.toggle}>
               취소
             </Button>
-          </ModalFooter>
+          </ModalFooter> */}
         </Modal>
       );
     } else {
@@ -120,4 +117,4 @@ const mapStateToProps = ({ authentication: { userData } }) => {
   return { userData };
 };
 
-export default connect(mapStateToProps)(CancelModal);
+export default connect(mapStateToProps)(CompleteModal);

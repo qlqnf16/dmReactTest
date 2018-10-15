@@ -33,12 +33,11 @@ const ReservationCard = props => {
 
   let button = null;
   let type = null;
-  let addButton = null;
   if (props.reservation.isCanceled) {
     button = (
       <button
         className="col-md-6 btn btn-danger"
-        onClick={() => props.cancelReasonModalToggle()}
+        onClick={() => props.cancelReasonModalToggle(props.reservation)}
       >
         취소 사유 보기
       </button>
@@ -62,6 +61,7 @@ const ReservationCard = props => {
       </div>
     );
     let date = new Date(props.reservation.date);
+<<<<<<< HEAD
     if (new Date().getDate() === date.getDate()) {
       type = "D-day";
       addButton = (
@@ -69,6 +69,17 @@ const ReservationCard = props => {
           <button className="small"> 서비스 완료 </button>
           <button className="small"> 노쇼 신고</button>
         </div>
+=======
+    if (new Date().getDate() !== date.getDate()) {
+      type = 'D-day';
+      button = (
+        <button
+          className="col-md-6 btn btn-light"
+          onClick={() => props.completeModalToggle(props.reservation)}
+        >
+          서비스 완료
+        </button>
+>>>>>>> bfd391b77973c8a3f2d1a50d34766defe6ec4f49
       );
     }
   } else if (props.type === "finish") {
@@ -105,7 +116,6 @@ const ReservationCard = props => {
             </h5>
             <h5 className="small">종류 : {services}</h5>
           </div>
-          {addButton}
         </div>
         <div className="row">
           {button}

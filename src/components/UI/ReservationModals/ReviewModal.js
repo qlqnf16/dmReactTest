@@ -1,6 +1,13 @@
+<<<<<<< HEAD
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
+=======
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import axios from 'axios';
+import Moment from 'react-moment';
+>>>>>>> bfd391b77973c8a3f2d1a50d34766defe6ec4f49
 
 import {
   Button,
@@ -48,43 +55,90 @@ class ReviewModal extends Component {
     await this.props.reloadData();
   };
   render() {
-    return (
-      <Modal isOpen={this.props.isOpen} toggle={this.props.toggle}>
-        <ModalHeader toggle={this.props.toggle}>리뷰 등록</ModalHeader>
-        <ModalBody>
-          <FormGroup row>
-            <div className="col-3">내용</div>
-            <div className="col-9">
-              <input
-                type="text"
-                name="content"
-                id="content"
-                onChange={this.inputChangeHandler}
-              />
+    if (this.props.reservation) {
+      let since = '';
+      let until = '';
+      let services = '';
+      if (this.props.reservation.time) {
+        since = `${parseInt(this.props.reservation.time.since / 60, 10)}:${
+          this.props.reservation.time.since % 60 === 0 ? '00' : '30'
+        }`;
+        until = `${parseInt(this.props.reservation.time.until / 60, 10)}:${
+          this.props.reservation.time.until % 60 === 0 ? '00' : '30'
+        }`;
+        Object.keys(this.props.reservation.services).forEach(service => {
+          switch (service) {
+            case 'cut':
+              services += '/ 컷트 ';
+              break;
+            case 'perm':
+              services += '/ 펌 ';
+              break;
+            case 'dye':
+              services += '/ 염색 ';
+              break;
+            default:
+              break;
+          }
+        });
+        services = services.substring(1);
+      }
+      return (
+        <Modal isOpen={this.props.isOpen} toggle={this.props.toggle}>
+          <ModalHeader toggle={this.props.toggle}>리뷰 등록</ModalHeader>
+          <ModalBody>
+            <div>
+              <h2>서비스 정보</h2>
+              <p>
+                막내 :{' '}
+                {this.props.reservation._designer &&
+                  this.props.reservation._designer.name}
+              </p>
+              <p>
+                날짜/시간 :{' '}
+                <Moment format="YYYY/MM/DD">
+                  {this.props.reservation.date}
+                </Moment>{' '}
+                {since} ~ {until}
+              </p>
+              <p>서비스 : {services}</p>
             </div>
-          </FormGroup>
-          <FormGroup row>
-            <div className="col-3">평점</div>
-            <div className="col-9">
-              <input
-                type="range"
-                name="score"
-                id="score"
-                min="0"
-                max="5"
-                step="0.5"
-                onChange={this.inputChangeHandler}
-              />
-            </div>
-          </FormGroup>
-        </ModalBody>
-        <ModalFooter>
-          <Button color="primary" onClick={this.reviewSubmit}>
-            작성
-          </Button>
-        </ModalFooter>
-      </Modal>
-    );
+            <FormGroup row>
+              <div className="col-3">평점</div>
+              <div className="col-9">
+                <input
+                  type="range"
+                  name="score"
+                  id="score"
+                  min="0"
+                  max="5"
+                  step="0.5"
+                  onChange={this.inputChangeHandler}
+                />
+              </div>
+            </FormGroup>
+            <FormGroup row>
+              <div className="col-3">내용</div>
+              <div className="col-9">
+                <input
+                  type="text"
+                  name="content"
+                  id="content"
+                  onChange={this.inputChangeHandler}
+                />
+              </div>
+            </FormGroup>
+          </ModalBody>
+          <ModalFooter>
+            <Button color="primary" onClick={this.reviewSubmit}>
+              작성
+            </Button>
+          </ModalFooter>
+        </Modal>
+      );
+    } else {
+      return <div />;
+    }
   }
 }
 const mapStateToProps = ({ authentication: { userData } }) => {

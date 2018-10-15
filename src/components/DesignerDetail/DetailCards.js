@@ -13,9 +13,10 @@ class DetailCards extends Component {
     let rightCards = [];
     if (this.props.recruit._cards) {
       console.log(this.props.recruit._cards);
+      let count = 0;
       this.props.recruit._cards.forEach((card, key) => {
         if (card.reservable) {
-          key % 2
+          count % 2
             ? rightCards.push(
                 <DetailCard
                   key={key}
@@ -30,6 +31,7 @@ class DetailCards extends Component {
                   recruit={this.props.recruit}
                 />
               );
+          count++;
         }
       });
     }

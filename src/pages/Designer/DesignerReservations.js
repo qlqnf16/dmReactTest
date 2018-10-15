@@ -3,6 +3,7 @@ import axios from 'axios';
 import CancelReasonModal from '../../components/UI/ReservationModals/CancelReasonModal';
 import CancelModal from '../../components/UI/ReservationModals/CancelModal';
 import ShowReviewModal from '../../components/UI/ReservationModals/ShowReviewModal';
+import CompleteModal from '../../components/UI/ReservationModals/CompleteModal';
 import { connect } from 'react-redux';
 
 import ReservationCard from '../../components/DesignerReservations/ReservationCard';
@@ -16,6 +17,7 @@ class DesignerReservations extends Component {
       cancelModal: false,
       showReviewModal: false,
       cancelReasonModal: false,
+      completeModal: false,
       reservation: null
     };
 
@@ -36,9 +38,16 @@ class DesignerReservations extends Component {
       reservation
     });
   };
-  cancelReasonModalToggle = () => {
+  completeModalToggle = reservation => {
     this.setState({
-      cancelReasonModal: !this.state.cancelReasonModal
+      completeModal: !this.state.completeModal,
+      reservation
+    });
+  };
+  cancelReasonModalToggle = reservation => {
+    this.setState({
+      cancelReasonModal: !this.state.cancelReasonModal,
+      reservation
     });
   };
 
@@ -98,11 +107,15 @@ class DesignerReservations extends Component {
     if (this.state.reservations) {
       futureReservations = this.state.reservations.filter(
         reservation =>
-          reservation.date > new Date().getTime() && !reservation.isCanceled
+          reservation.date > new Date().getTime() &&
+          !reservation.isCanceled &&
+          !reservation.isDone
       );
       previousReservations = this.state.reservations.filter(
         reservation =>
-          reservation.date <= new Date().getTime() || reservation.isCanceled
+          reservation.date <= new Date().getTime() ||
+          reservation.isCanceled ||
+          reservation.isDone
       );
     }
     console.log(futureReservations);
@@ -119,6 +132,7 @@ class DesignerReservations extends Component {
                 reservation={futureReservation}
                 cancelHandler={this.cancelReservationHandler}
                 cancelModalToggle={this.cancelModalToggle}
+                completeModalToggle={this.completeModalToggle}
                 key={key}
               />
             ))}
@@ -141,16 +155,25 @@ class DesignerReservations extends Component {
         <CancelReasonModal
           isOpen={this.state.cancelReasonModal}
           toggle={this.cancelReasonModalToggle}
+          reservation={this.state.reservation}
         />
         <CancelModal
           isOpen={this.state.cancelModal}
           toggle={this.cancelModalToggle}
+          reservation={this.state.reservation}
           cancelReservationHandler={this.cancelReservationHandler}
+          reloadData={this.reloadData}
         />
         <ShowReviewModal
           isOpen={this.state.showReviewModal}
           toggle={this.showReviewModalToggle}
           reservation={this.state.reservation}
+        />
+        <CompleteModal
+          isOpen={this.state.completeModal}
+          toggle={this.completeModalToggle}
+          reservation={this.state.reservation}
+          reloadData={this.reloadData}
         />
       </div>
     );

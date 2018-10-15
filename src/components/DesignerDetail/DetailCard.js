@@ -51,10 +51,12 @@ class DetailCard extends Component {
     let addData = null;
     let must = [];
     let no = [];
-    if (this.props.cardData) {
+    if (this.props.cardData.must) {
       Object.entries(this.props.cardData.must).forEach(entry => {
         if (entry[1] === true) must.push(entry[0]);
       });
+    }
+    if (this.props.cardData.no) {
       Object.entries(this.props.cardData.no).forEach(entry => {
         if (entry[1] === true) no.push(entry[0]);
       });
