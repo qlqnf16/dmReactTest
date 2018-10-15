@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import firebase from '../../config/Firebase';
-import Moment from 'react-moment';
 import User from '../../components/Admin/User';
+import AdminNav from '../../components/Navigation/AdminNav/AdminNav';
 
 class UserList extends Component {
   state = {
@@ -35,6 +35,7 @@ class UserList extends Component {
 
       return (
         <div>
+          <AdminNav />
           <h1>일반 회원 관리</h1>
           <table className="table text-center">
             <thead>

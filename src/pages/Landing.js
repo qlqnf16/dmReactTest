@@ -25,6 +25,27 @@ class Landing extends Component {
       alert('로그인부터 하세요');
     }
   }
+  admin() {
+    if (true) {
+      firebase
+        .database()
+        .ref('users/' + firebase.auth().currentUser.uid)
+        .update({ isAdmin: true });
+      this.props.history.push('/admin/userlist');
+    } else {
+      alert('로그인부터 하세요');
+    }
+  }
+  noAdmin() {
+    if (true) {
+      firebase
+        .database()
+        .ref('users/' + firebase.auth().currentUser.uid)
+        .update({ isAdmin: false });
+    } else {
+      alert('로그인부터 하세요');
+    }
+  }
 
   render() {
     return (
@@ -38,13 +59,19 @@ class Landing extends Component {
         <div className="btn btn-warning" onClick={() => this.noCertification()}>
           등록 해제
         </div>
+        <div className="ml-5 btn btn-primary" onClick={() => this.admin()}>
+          관리자 임시 등록
+        </div>
+        <div className="btn btn-warning" onClick={() => this.noAdmin()}>
+          등록 해제
+        </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = state => {
-  return { userData: state.userData };
+const mapStateToProps = ({ authentication: { userData } }) => {
+  return { userData };
 };
 
 export default connect(mapStateToProps)(Landing);

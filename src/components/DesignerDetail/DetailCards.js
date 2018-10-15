@@ -3,8 +3,12 @@ import DetailCard from './DetailCard';
 class DetailCards extends Component {
   state = { click: false };
 
-  addData = () => {
-    this.setState({ click: !this.state.click });
+  addData = key => {
+    console.log(key);
+    this.setState({
+      click: !this.state.click,
+      selectedCard: key
+    });
   };
 
   render() {
@@ -20,15 +24,25 @@ class DetailCards extends Component {
             ? rightCards.push(
                 <DetailCard
                   key={key}
+                  number={key}
                   cardData={card}
                   recruit={this.props.recruit}
+                  selectedCard={this.state.selectedCard}
+                  click={this.state.click}
+                  addData={() => this.addData(key)}
+                  loginToggle={this.props.loginToggle}
                 />
               )
             : leftCards.push(
                 <DetailCard
                   key={key}
+                  number={key}
                   cardData={card}
                   recruit={this.props.recruit}
+                  selectedCard={this.state.selectedCard}
+                  click={this.state.click}
+                  addData={() => this.addData(key)}
+                  loginToggle={this.props.loginToggle}
                 />
               );
           count++;
@@ -36,10 +50,10 @@ class DetailCards extends Component {
       });
     }
     return (
-      <div className="col-3 align-items-start">
-        <div className="border row">
-          <div className="col-6 m-0 p-0">{leftCards}</div>
-          <div className="col-6 m-0 p-0">{rightCards}</div>
+      <div className="col-12 col-md-5 align-items-start p-4">
+        <div className="row mx-4">
+          <div className="col-6 m-0 p-2">{leftCards}</div>
+          <div className="col-6 m-0 p-2">{rightCards}</div>
         </div>
       </div>
     );

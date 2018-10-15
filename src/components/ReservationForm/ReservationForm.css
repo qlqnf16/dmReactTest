@@ -36,6 +36,7 @@
   justify-content: flex-end;
   border-bottom: solid 1px rgba(245, 177, 173, 0.5);
   border-right: solid 1px rgba(245, 177, 173, 0.5);
+  font-size: 1.3rem;
 }
 
 .rf-tableBody {
@@ -46,6 +47,7 @@
   display: flex;
   align-items: center;
   border-bottom: solid 1px rgba(245, 177, 173, 0.5);
+  font-size: 1.3rem;
 }
 
 .rf-tableTop {
@@ -54,17 +56,17 @@
 }
 
 .rf-button {
-  width: 38.7px;
+  width: 3.87rem;
   height: 25.8px;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.1);
   border: solid 1px #dd6866;
   background-color: #ffffff;
-  margin-right: 15.5px;
+  /* margin-right: 1.55rem; */
   cursor: pointer;
 }
 
 .rf-input {
-  width: 135.9px;
+  width: 13rem;
   height: 25.8px;
   border: solid 1px rgba(0, 0, 0, 0.1);
   margin-right: 9.5px;

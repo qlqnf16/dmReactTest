@@ -3,6 +3,8 @@ import DesignerCard from "../components/DesignerCard/DesignerCard";
 import Filter from "../components/DesignerCard/Filter/Filter";
 import { CardDeck } from "reactstrap";
 import axios from "axios";
+import step1 from "../assets/images/step1.png";
+
 import "./PageCss.css";
 
 class DesignerList extends Component {
@@ -84,8 +86,8 @@ class DesignerList extends Component {
     }
     return (
       <div className="container-fluid dl">
-        <div className="m-5 text-center">
-          <h1>1단계 : 막내 찾기(이미지)</h1>
+        <div className="my-5 text-center">
+          <img style={{ width: "100%" }} src={step1} />
         </div>
         <div className="row">
           <Filter
@@ -93,11 +95,8 @@ class DesignerList extends Component {
             filterChangeHandler={e => this.filterChangeHandler(e)}
             checked={!this.state.gender ? "male" : this.state.gender}
           />
-          <div className="col-12 col-md-9">
-            <CardDeck>
-              {recruits}
-
-              {/* 여기부터 fake data */}
+          <div className="col-md-9">
+            <CardDeck className="m-5">
               {recruits}
               {recruits}
               {recruits}

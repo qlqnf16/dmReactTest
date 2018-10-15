@@ -5,6 +5,19 @@
   align-items: center;
 }
 
+@media screen and (max-width: 992px) {
+  .container-fluid.ad {
+    width: 75%;
+    align-items: center;
+  }
+}
+@media screen and (max-width: 600px) {
+  .container-fluid.ad {
+    width: 90%;
+    align-items: center;
+  }
+}
+
 .ad_button {
   width: 100%;
   height: 39px;
@@ -19,6 +32,14 @@
   letter-spacing: 0.14rem;
   font-family: NanumSquareEB;
 }
+.ad_title {
+  font-size: 2.3rem;
+  font-weight: bold;
+  text-align: left;
+  color: #4c91ba;
+  margin-bottom: 2.8rem;
+  margin-left: 27%;
+}
 
 /* DesignerList.js */
 
@@ -30,15 +51,15 @@
 /* Reservation.js */
 
 .r_button {
-  width: 10.9%;
-  height: 46.2px;
+  width: 15vw;
+  height: 7vh;
   border-radius: 5px;
   background-color: #dd6866;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
-  font-size: 1.7rem;
+  font-size: 1.7vw;
   letter-spacing: 0.17rem;
   margin: 54.1px auto 0 auto;
   cursor: pointer;
@@ -73,9 +94,9 @@
   font-family: NanumSquareEB;
 }
 
-.rc_button {
+.rcf_button {
   width: 10%;
-  height: 26px;
+  height: 2.3rem;
   border-radius: 5px;
   border: solid 1px #dd6866;
   background-color: white;

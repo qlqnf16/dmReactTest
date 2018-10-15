@@ -1,6 +1,7 @@
-import React, { Component, Fragment } from "react";
-import { Route, withRouter } from "react-router-dom";
-import Moment from "react-moment";
+import React, { Component, Fragment } from 'react';
+import { Route, withRouter } from 'react-router-dom';
+import Spinner from './assets/images/loading_spinner.gif';
+import Moment from 'react-moment';
 import {
   Landing,
   WrongAccess,
@@ -108,9 +109,11 @@ class App extends Component {
     // firebase에서 불러오기 전
     if (!this.state.madeRequest) {
       return (
-        <div className="h1">
-          <p>Wait...</p>
-          <Moment className="h5">{new Date()}</Moment>
+        <div
+          style={{ height: '100vh', width: '100%' }}
+          className="d-flex justify-content-center align-items-center"
+        >
+          <img style={{ height: '20%' }} src={Spinner} />
         </div>
       );
 

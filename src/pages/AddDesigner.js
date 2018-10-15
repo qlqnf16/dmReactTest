@@ -146,6 +146,18 @@ class AddDesigner extends Component {
     return (
       <div className="container-fluid ad">
         <Form className="m-5">
+          <div className="ad_title">
+            <p
+              style={{
+                fontWeight: 'normal',
+                fontSize: '1.3rem',
+                marginBottom: '0.5rem'
+              }}
+            >
+              예비디자이너 등록
+            </p>
+            드리머리 막내가 되어 <br /> 모델을 구해보세요
+          </div>
           <InfoForm
             state={this.state}
             checked={!this.state.gender ? 'male' : this.state.gender}

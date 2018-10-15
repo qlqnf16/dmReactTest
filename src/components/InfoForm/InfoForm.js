@@ -145,7 +145,11 @@ class InfoForm extends Component {
           </div>
         </FormGroup>
         <FormGroup row>
-          <div className="col-3 if_head">디자이너까지 남은 기간</div>
+          <div className="col-3 if_head">
+            디자이너까지
+            <br />
+            남은 기간
+          </div>
           <div className="col-9 if_makeFlex">
             <input
               type="number"
@@ -241,9 +245,19 @@ class InfoForm extends Component {
           <div className="col-9">
             <ImgPreview url={this.props.certImg1} />
             <ImgPreview url={this.props.certImg2} />
-            <div className="d-flex">
-              <input type="file" name="cert1" onChange={this.props.imgChange} />
-              <input type="file" name="cert2" onChange={this.props.imgChange} />
+            <div className="row">
+              <input
+                className="col-6"
+                type="file"
+                name="cert1"
+                onChange={this.props.imgChange}
+              />
+              <input
+                className="col-6"
+                type="file"
+                name="cert2"
+                onChange={this.props.imgChange}
+              />
             </div>
             <div className="if_detail" style={{ marginTop: '8.3px' }}>
               취득한것만 올려주시면 됩니다. 드리머리 막내 승인 여부에 사용되며

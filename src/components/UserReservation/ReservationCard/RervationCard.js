@@ -35,7 +35,6 @@ const ReservationCard = props => {
   // type따라 버튼 변경
   let button = null;
   let type = null;
-  let addButton = null;
   if (props.reservation.isCanceled) {
     button = (
       <div
@@ -66,10 +65,14 @@ const ReservationCard = props => {
     let date = new Date(props.reservation.date);
     if (new Date().getDate() === date.getDate()) {
       type = <div className="rc_type">'D-day';</div>;
-      addButton = (
-        <div className="col-md-4">
-          <button className="small"> 서비스 완료 </button>
-          <button className="small"> 노쇼 신고</button>
+      button = (
+        <div
+          className="rc_button review"
+          onClick={() => {
+            alert('서비스 완료 전입니다');
+          }}
+        >
+          리뷰등록
         </div>
       );
     }
@@ -99,7 +102,7 @@ const ReservationCard = props => {
   // return
   if (props.reservation) {
     return (
-      <div className={`rc_back ${props.type}`}>
+      <div className={`rc_back ${props.type} my-2`}>
         <div className="d-flex justify-content-between">
           <div className="rc_content">
             {props.reservation.designerName}
