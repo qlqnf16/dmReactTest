@@ -2,7 +2,7 @@
   font-size: 1.5rem;
   letter-spacing: 0.08rem;
   line-height: 1.2;
-  color: #1f3354;
+  color: #1f3354 !important;
   text-decoration: none;
   margin-right: 48px;
   font-family: "Jua", sans-serif;
