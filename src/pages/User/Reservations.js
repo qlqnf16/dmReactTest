@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import UserNav from '../../components/Navigation/UserNav/UserNav';
-import ReservationCards from '../../components/UserReservation/ReservationCards/ReservationCards';
-import CancelReasonModal from '../../components/UI/ReservationModals/CancelReasonModal';
-import CancelModal from '../../components/UI/ReservationModals/CancelModal';
-import ReviewModal from '../../components/UI/ReservationModals/ReviewModal';
-import { connect } from 'react-redux';
-import './UserCss.css';
-import ShowReviewModal from '../../components/UI/ReservationModals/ShowReviewModal';
+import React, { Component } from "react";
+import axios from "axios";
+import UserNav from "../../components/Navigation/UserNav/UserNav";
+import ReservationCards from "../../components/UserReservation/ReservationCards/ReservationCards";
+import CancelReasonModal from "../../components/UI/ReservationModals/CancelReasonModal";
+import CancelModal from "../../components/UI/ReservationModals/CancelModal";
+import ReviewModal from "../../components/UI/ReservationModals/ReviewModal";
+import { connect } from "react-redux";
+import "./UserCss.css";
+import ShowReviewModal from "../../components/UI/ReservationModals/ShowReviewModal";
 
 class Reservations extends Component {
   constructor(props) {
@@ -91,7 +91,7 @@ class Reservations extends Component {
 
     return (
       <div className="container-fluid u">
-        <div className="d-flex">
+        <div className="d-flex" style={{ minHeight: "70vh" }}>
           <UserNav />
           <ReservationCards
             futureReservations={futureReservations}
