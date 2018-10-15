@@ -44,7 +44,7 @@ class Navitems extends Component {
                 </NavLink>
               </DropdownItem>
               <DropdownItem>
-                <NavLink onClick={this.logout}>LogOut</NavLink>
+                <NavLink onClick={this.logout}>로그아웃</NavLink>
               </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
