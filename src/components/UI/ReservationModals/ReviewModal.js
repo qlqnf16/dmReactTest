@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import axios from 'axios';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import axios from "axios";
 
 import {
   Button,
@@ -9,7 +9,7 @@ import {
   ModalBody,
   ModalFooter,
   FormGroup
-} from 'reactstrap';
+} from "reactstrap";
 
 class ReviewModal extends Component {
   state = {
@@ -33,7 +33,7 @@ class ReviewModal extends Component {
     };
 
     if (Object.values(reviewData).includes(null))
-      return alert('채워지지 않은 정보가 있습니다');
+      return alert("채워지지 않은 정보가 있습니다");
 
     // review 생성
     const res = await axios.post(
@@ -43,7 +43,7 @@ class ReviewModal extends Component {
       reviewData
     );
 
-    await alert('성공적으로 등록되었습니다');
+    await alert("성공적으로 등록되었습니다");
     await this.props.toggle();
     await this.props.reloadData();
   };
