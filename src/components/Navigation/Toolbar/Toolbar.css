@@ -3,6 +3,7 @@
   width: 100%;
   background-color: white;
   border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+  padding-right: 0 !important;
 }
 
 .logo {

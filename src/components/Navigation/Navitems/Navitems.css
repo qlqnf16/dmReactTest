@@ -1,4 +1,4 @@
-.navitem {
+.nav-link {
   font-size: 1.5rem;
   letter-spacing: 0.08rem;
   line-height: 1.2;
@@ -9,5 +9,12 @@
 }
 
 .dropdownMenu {
-  width: 100%;
+  width: 132px;
+  height: 70px;
+  border: solid 1px #f5b1ad !important;
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  font-size: 1.5rem !important;
+  line-height: 1.2 !important;
+  margin-right: 60px !important;
+  font-family: "Jua", sans-serif;
 }
