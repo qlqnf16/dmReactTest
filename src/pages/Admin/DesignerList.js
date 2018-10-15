@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import firebase from '../../config/Firebase';
 import Designer from '../../components/Admin/Designer';
+import AdminNav from '../../components/Navigation/AdminNav/AdminNav';
 
 class DesignerList extends Component {
   state = {
@@ -37,6 +38,7 @@ class DesignerList extends Component {
 
       return (
         <div>
+          <AdminNav />
           <h1>디자이너 관리</h1>
           <table className="table text-center">
             <thead>

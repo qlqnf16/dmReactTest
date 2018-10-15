@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import Moment from 'react-moment';
+import AdminNav from '../../components/Navigation/AdminNav/AdminNav';
 
 class DesignerList extends Component {
   state = {
@@ -24,12 +25,12 @@ class DesignerList extends Component {
   render() {
     if (this.state.madeRequest) {
       const reservations = this.state.reservations.map((reservation, key) => (
-        <tr>
+        <tr key={key}>
           <td>{Object.keys(reservation.services)}</td>
           <td>{reservation._designer.name}</td>
           <td>{reservation._user.name}</td>
           <td>
-            <Moment format="YYYY/MM/DD">{reservation.reservedDate}</Moment>{' '}
+            <Moment format="YYYY/MM/DD">{reservation.createdAt}</Moment>{' '}
           </td>
           <td>
             <Moment format="YYYY/MM/DD">{reservation.date}</Moment>
@@ -45,6 +46,7 @@ class DesignerList extends Component {
       ));
       return (
         <div>
+          <AdminNav />
           <h1>디자이너 관리</h1>
           <table className="table text-center">
             <thead>
