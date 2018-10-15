@@ -1,0 +1,21 @@
+.hover-effect:hover {
+  text-decoration: none;
+}
+
+.shop-name {
+  font-size: 1.2rem;
+}
+
+.card-title,
+.card-subtitle {
+  line-height: 1.7rem;
+}
+
+.star-ratings {
+  transform: translateY(-1.8px);
+  margin-right: 6px;
+}
+
+.carousel-inner {
+  border-radius: 5px;
+}
