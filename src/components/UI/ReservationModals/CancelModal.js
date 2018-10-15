@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import Moment from 'react-moment';
+import './Modal.css';
 
 import {
   Button,
@@ -71,44 +72,44 @@ class CancelModal extends Component {
       }
       return (
         <Modal isOpen={this.props.isOpen} toggle={this.props.toggle}>
-          <ModalHeader toggle={this.props.toggle}>예약 취소</ModalHeader>
-          <ModalBody>
-            <div>
-              <h2>취소할 서비스 정보</h2>
+          <ModalBody className="m-4">
+            <p className="m_title">취소할 서비스 정보</p>
+            <div className="m_content mb-5">
               <p>
-                막내 :{' '}
+                <span style={{ fontWeight: 'bold' }}>막내 :</span>{' '}
                 {this.props.reservation._designer &&
                   this.props.reservation._designer.name}
               </p>
               <p>
-                날짜/시간 :{' '}
+                <span style={{ fontWeight: 'bold' }}>날짜/시간 :</span>{' '}
                 <Moment format="YYYY/MM/DD">
                   {this.props.reservation.date}
                 </Moment>{' '}
                 {since} ~ {until}
               </p>
-              <p>서비스 : {services}</p>
+              <p>
+                <span style={{ fontWeight: 'bold' }}>서비스 :</span> {services}
+              </p>
             </div>
-            <FormGroup row>
-              <div className="col-3">사유</div>
-              <div className="col-9">
-                <input
-                  type="text"
-                  name="cancelReason"
-                  id="cancelReason"
-                  onChange={this.inputChangeHandler}
-                />
+            <p className="m_title">서비스 취소 사유</p>
+            <textarea
+              className="m_input"
+              name="cancelReason"
+              id="cancelReason"
+              onChange={this.inputChangeHandler}
+            />
+            <div className="text-center">
+              <div
+                className="m_button m_button_red btn"
+                onClick={this.cancelReasonSubmit}
+              >
+                예약취소
               </div>
-            </FormGroup>
+              <div className="m_button btn" onClick={this.props.toggle}>
+                취소
+              </div>
+            </div>
           </ModalBody>
-          <ModalFooter>
-            <Button color="primary" onClick={this.cancelReasonSubmit}>
-              작성
-            </Button>
-            <Button color="warning" onClick={this.props.toggle}>
-              취소
-            </Button>
-          </ModalFooter>
         </Modal>
       );
     } else {

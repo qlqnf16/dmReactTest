@@ -1,0 +1,38 @@
+.m_title {
+  font-size: 1.9rem;
+  font-weight: bold;
+  line-height: 1.16;
+  letter-spacing: 1px;
+  text-align: left;
+  color: #dd6866;
+}
+.m_content {
+  font-size: 1.3rem;
+  color: #1f3354;
+  margin-bottom: 1rem;
+}
+.m_input {
+  width: 95%;
+  height: 15rem;
+  border-radius: 5px;
+  border: solid 1px rgba(0, 0, 0, 0.1);
+  margin-bottom: 3rem;
+  font-size: 1.4rem;
+}
+.m_button {
+  width: 25%;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.1);
+  margin: 0 1rem;
+  font-size: 1.4rem !important;
+  font-weight: bold !important;
+  color: #656565;
+}
+.m_button.m_button_red {
+  background-color: #dd6866;
+  color: white;
+}
+.m_button.m_button_green {
+  background-color: #66ce82;
+  color: white;
+}
