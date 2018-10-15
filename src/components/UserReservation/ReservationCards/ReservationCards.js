@@ -19,13 +19,7 @@ const Reservations = props => (
               type={'soon'}
               cancelModalToggle={props.cancelModalToggle}
             />
-            <ReservationDetail
-              // requirement={'요구사항을 막 적으면 되는것 같다'}
-              // requireTime={'3박 4일'}
-              requirement={reservation._designer._recruit.requirement}
-              requireTime={reservation.time}
-              reservation={reservation}
-            />
+            <ReservationDetail reservation={reservation} />
           </div>
         ))}
       </div>

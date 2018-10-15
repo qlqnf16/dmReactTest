@@ -94,7 +94,13 @@ class DesignerList extends Component {
             checked={!this.state.gender ? 'male' : this.state.gender}
           />
           <div className="col-md-9">
-            <CardDeck className="m-5">{recruits}</CardDeck>
+            <CardDeck className="m-5">
+              {recruits}
+              {recruits}
+              {recruits}
+              {recruits}
+              {recruits}
+            </CardDeck>
           </div>
         </div>
       </div>

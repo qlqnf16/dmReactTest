@@ -1,0 +1,25 @@
+.dcard {
+  border-radius: 5px;
+  border: solid 1px #c1e4eb;
+  margin-bottom: 1rem;
+  color: #1f3354;
+}
+.dcard_selected {
+  border: solid 3px #f5b1ad;
+}
+
+.dcard_date {
+  font-family: 'Nanum Square';
+  font-weight: bold;
+  font-size: 1.8rem;
+}
+.dcard_services {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+.dcard_must {
+  color: #4c91ba;
+}
+.dcard_no {
+  color: #dd6866;
+}

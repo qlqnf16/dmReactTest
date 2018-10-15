@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 import CardAdd from './CardAdd';
 import Moment from 'react-moment';
 import moment from 'moment';
+import './DetailCard.css';
 
 class DetailCard extends Component {
   state = {
     click: false
   };
 
-  addData = () => {
-    this.setState({ click: !this.state.click });
+  addData = async () => {
+    await this.props.addData();
+    await this.setState({ click: !this.state.click });
   };
 
   dayOfWeek = date => {
@@ -46,6 +48,19 @@ class DetailCard extends Component {
     }
   };
 
+  genderFormat = type => {
+    switch (type) {
+      case 'both':
+        return '남자,여자';
+      case 'male':
+        return '남자';
+      case 'female':
+        return '여자';
+      default:
+        break;
+    }
+  };
+
   render() {
     console.log(this.props.recruit);
     let addData = null;
@@ -61,8 +76,9 @@ class DetailCard extends Component {
         if (entry[1] === true) no.push(entry[0]);
       });
     }
-    if (this.state.click) {
-      console.log(this.props.cardData);
+    let dcard = 'dcard ';
+    console.log(this.props.selectedCard === this.props.number);
+    if (this.state.click && this.props.selectedCard === this.props.number) {
       addData = (
         <CardAdd
           cardData={this.props.cardData}
@@ -75,24 +91,37 @@ class DetailCard extends Component {
           recruit={this.props.recruit}
         />
       );
+      dcard += 'dcard_selected';
     }
     const mustParse = must.map(m => this.typeParse(m));
     const noParse = no.map(m => this.typeParse(m));
 
     return (
-      <div className="border">
-        <div className="m-1" onClick={() => this.addData()}>
-          <h4>
+      <div className={dcard}>
+        <div className="p-4" onClick={this.addData}>
+          <p className="dcard_date">
             <Moment format="MM/DD">
               {this.props.cardData && this.props.cardData.date}
             </Moment>{' '}
             ({this.dayOfWeek(this.props.cardData.date)})
-          </h4>
-          <h5 className="small">
-            필수 : {mustParse} | 불가 : {noParse}
+          </p>
+          <h5 className=" dcard_services">
+            <span className="dcard_must">
+              필수 : <span style={{ fontWeight: 'normal' }}>{mustParse}</span>
+            </span>{' '}
+            |{' '}
+            <span className="dcard_no">
+              불가 : <span style={{ fontWeight: 'normal' }}>{noParse}</span>
+            </span>
           </h5>
-          <h5 className="small">모델 : {this.props.cardData.requireGender}</h5>
-          <h5 className="small">헤어샵 : {this.props.cardData.shop}</h5>
+          <h5>
+            <span style={{ fontWeight: 'bold' }}>모델</span> :{' '}
+            {this.genderFormat(this.props.cardData.requireGender)}
+          </h5>
+          <h5>
+            <span style={{ fontWeight: 'bold' }}>헤어샵</span> :{' '}
+            {this.props.cardData.shop}
+          </h5>
         </div>
         {addData}
       </div>

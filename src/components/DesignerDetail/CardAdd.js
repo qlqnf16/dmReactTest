@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import './CardAdd.css';
 
 class CardAdd extends Component {
   state = {
@@ -66,8 +67,8 @@ class CardAdd extends Component {
     console.log(Times);
     let timeButtons = null;
     timeButtons = Times.map((time, key) => {
-      let classN = 'btn btn-sm btn-light col-md-6';
-      if (time === this.state.time) classN += ' btn-outline-primary';
+      let classN = 'toggle_button time_button col-6 my-1';
+      if (time === this.state.time) classN += ' toggle_on';
       let timeFormat = `${parseInt(time / 60, 10)} : ${
         time % 60 === 0 ? '00' : '30'
       }`;
@@ -80,34 +81,31 @@ class CardAdd extends Component {
 
     let cutButton = '';
     let cutClick = null;
-    if (this.props.must.some(e => e === 'cut'))
-      cutButton = 'btn btn-primary btn-sm col-md-4';
-    else if (this.props.no.some(e => e === 'cut'))
-      cutButton = 'btn btn-warning btn-sm col-md-4';
+    if (this.props.must.some(e => e === 'cut')) cutButton = 'must_button';
+    else if (this.props.no.some(e => e === 'cut')) cutButton = 'no_button';
     else {
-      cutButton = 'btn btn-light btn-sm col-md-4';
+      cutButton = 'toggle_button col-4';
       cutClick = () => this.toggle('cut');
-      if (this.state.cut) cutButton += ' btn-outline-primary';
+      if (this.state.cut) cutButton += ' toggle_on';
     }
     let permButton = '';
     let permClick = null;
     if (this.props.must.some(e => e === 'perm'))
-      permButton = 'small bg-primary col-md-4';
+      permButton = 'must_button col-4';
     else if (this.props.no.some(e => e === 'perm'))
-      permButton = 'small bg-secondary col-md-4';
+      permButton = 'no_button col-4';
     else {
-      permButton = 'btn btn-light btn-sm col-md-4';
+      permButton = 'btn btn-light btn-sm col-4';
       permClick = () => this.toggle('perm');
       if (this.state.cut) permButton += ' btn-outline-primary';
     }
     let dyeButton = '';
     let dyeClick = null;
-    if (this.props.must.some(e => e === 'dye'))
-      dyeButton = 'small bg-primary col-md-4';
+    if (this.props.must.some(e => e === 'dye')) dyeButton = 'must_button col-4';
     else if (this.props.no.some(e => e === 'dye'))
-      dyeButton = 'small bg-secondary col-md-4';
+      dyeButton = 'no_button col-4 ';
     else {
-      dyeButton = 'btn btn-light btn-sm col-md-4';
+      dyeButton = 'btn btn-light btn-sm col-4';
       dyeClick = () => this.toggle('dye');
       if (this.state.cut) dyeButton += ' btn-outline-primary';
     }
@@ -139,8 +137,8 @@ class CardAdd extends Component {
 
     console.log(this.props);
     return (
-      <div>
-        <div className="row">
+      <div className="">
+        <div className="border-top border-bottom py-3 row m-2 ">
           <div onClick={cutClick} className={cutButton}>
             컷트
           </div>
@@ -151,17 +149,10 @@ class CardAdd extends Component {
             펌
           </div>
         </div>
-        <h5 className="small row">{timeButtons}</h5>
-        <h5 className="small">예상 소요시간</h5>
-        <h5 className="small">
-          {parseInt(time / 60, 10)}
-          시간 {time % 60}분
-        </h5>
-        <h5 className="small">{price}원</h5>
-        <div className="btn btn-danger">
+        <div className=" py-3 row m-2">{timeButtons}</div>
+        <div className="submit_button">
           <Link
-            className="text-white"
-            // to={`/reservation/${this.props.id}`}
+            className="link" // to={`/reservation/${this.props.id}`}
             to={{
               pathname: `/reservation/${this.props.id}`,
               state: {
@@ -175,7 +166,19 @@ class CardAdd extends Component {
               }
             }}
           >
-            예약하기
+            <div className="row p-3" style={{ alignItems: 'flex-end' }}>
+              <div className="col-7">
+                <p className="time">예상 소요시간</p>
+                <p className="time" style={{ fontWeight: 'bold' }}>
+                  {parseInt(time / 60, 10)}
+                  시간 {time % 60}분
+                </p>
+                <p className="price mb-0">{price}원</p>
+              </div>
+              <div className="col-5 p-0 reservation">
+                <div className="pr-2">예약하기</div>
+              </div>
+            </div>
           </Link>
         </div>
       </div>

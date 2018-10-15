@@ -8,7 +8,7 @@ const DetailContent = props => {
   const recruit = props.recruit;
   console.log(props);
   return (
-    <div className="col-6">
+    <div className="col-12 col-md-7">
       <BasicInfo recruit={recruit} designerData={props.designerData} />
       <MoreInfo recruit={recruit} designerData={props.designerData} />
       <div>
