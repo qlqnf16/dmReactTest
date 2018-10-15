@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Route, withRouter } from 'react-router-dom';
 import Spinner from './assets/images/loading_spinner.gif';
-import Moment from 'react-moment';
 import {
   Landing,
   WrongAccess,
@@ -32,15 +31,15 @@ import {
   InfoPolicy,
   FAQ,
   QnA
-} from "./pages";
-import Toolbar from "./components/Navigation/Toolbar/Toolbar";
-import Footer from "./components/UI/Footer/Footer";
-import firebase from "./config/Firebase";
+} from './pages';
+import Toolbar from './components/Navigation/Toolbar/Toolbar';
+import Footer from './components/UI/Footer/Footer';
+import firebase from './config/Firebase';
 
-import { connect } from "react-redux";
-import * as actions from "./modules";
-import axios from "axios";
-import "./App.css";
+import { connect } from 'react-redux';
+import * as actions from './modules';
+import axios from 'axios';
+import './App.css';
 console.log(actions);
 class App extends Component {
   state = {
@@ -75,8 +74,8 @@ class App extends Component {
         console.log(user);
         firebase
           .database()
-          .ref("/users/" + firebase.auth().currentUser.uid)
-          .on("value", async res => {
+          .ref('/users/' + firebase.auth().currentUser.uid)
+          .on('value', async res => {
             this.setState({ madeRequest: true });
 
             // redux;
@@ -85,16 +84,16 @@ class App extends Component {
               `http://52.79.227.227:3030/users/` + userData._id
             );
             console.log(data);
-            userData["point"] = data.point;
-            userData["_recruit"] = data._recruit;
-            userData["_tickets"] = data._tickets;
-            userData["_reservations"] = data._reservations;
+            userData['point'] = data.point;
+            userData['_recruit'] = data._recruit;
+            userData['_tickets'] = data._tickets;
+            userData['_reservations'] = data._reservations;
             console.log(userData);
             await this.props.login(userData);
           });
       } else {
         // logout 하면 landing page로 이동
-        this.props.history.push("/");
+        this.props.history.push('/');
         this.setState({ madeRequest: true });
 
         // redux
@@ -104,7 +103,7 @@ class App extends Component {
   }
 
   render() {
-    console.log("app rendering");
+    console.log('app rendering');
 
     // firebase에서 불러오기 전
     if (!this.state.madeRequest) {
@@ -113,7 +112,7 @@ class App extends Component {
           style={{ height: '100vh', width: '100%' }}
           className="d-flex justify-content-center align-items-center"
         >
-          <img style={{ height: '20%' }} src={Spinner} />
+          <img alt="alt" style={{ height: '20%' }} src={Spinner} />
         </div>
       );
 
@@ -122,7 +121,7 @@ class App extends Component {
       return (
         <Fragment>
           <Toolbar />
-          <div class="app-content">
+          <div className="app-content">
             <Route path="/" exact component={Landing} />
             <Route path="/about" component={About} />
             <Route path="/QnA" component={QnA} />

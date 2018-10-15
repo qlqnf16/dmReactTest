@@ -103,7 +103,7 @@ class ReservationConfirm extends Component {
     return (
       <div className="container-fluid mb-5">
         <div className="my-5 text-center">
-          <img style={{ width: '100%' }} src={step2} />
+          <img alt="alt" style={{ width: '100%' }} src={step2} />
         </div>
         <ReservationForm
           d_name={recruit._designer.name}

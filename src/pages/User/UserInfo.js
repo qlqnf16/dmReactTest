@@ -2,15 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import firebase from '../../config/Firebase';
 import UserNav from '../../components/Navigation/UserNav/UserNav';
-import {
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Button,
-  Container,
-  Col
-} from 'reactstrap';
+import { Form, FormGroup } from 'reactstrap';
 
 class UserInfo extends Component {
   state = {

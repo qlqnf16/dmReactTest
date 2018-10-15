@@ -16,7 +16,12 @@ const MoreInfo = props => (
     <div className="row" style={{ margin: '13.3px 0 0 0' }}>
       {props.designerData &&
         props.recruit.portfolios.map(portfolio => (
-          <img src={portfolio} className="col-4" style={{ padding: '0' }} />
+          <img
+            alt="alt"
+            src={portfolio}
+            className="col-4"
+            style={{ padding: '0' }}
+          />
         ))}
     </div>
   </div>
