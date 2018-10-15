@@ -11,9 +11,14 @@ class ReservationConfirm extends Component {
     return (
       <div className="container-fluid text-center mb-4">
         <div className="my-5 text-center">
-          <img style={{ width: '100%' }} src={step3} />
+          <img alt="alt" style={{ width: '100%' }} src={step3} />
         </div>
-        <img style={{ width: '6.6rem' }} className="m-4" src={check} />
+        <img
+          alt="alt"
+          style={{ width: '6.6rem' }}
+          className="m-4"
+          src={check}
+        />
         <div className="rc_h1">예약이 완료되었습니다.</div>
         <div className="rc_h2">
           예약번호: {this.props.match.params.reservation_id}

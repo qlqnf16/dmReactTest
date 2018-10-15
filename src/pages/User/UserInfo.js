@@ -2,15 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import firebase from '../../config/Firebase';
 import UserNav from '../../components/Navigation/UserNav/UserNav';
-import {
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Button,
-  Container,
-  Col
-} from 'reactstrap';
+import { Form, FormGroup } from 'reactstrap';
 
 class UserInfo extends Component {
   state = {
@@ -95,7 +87,7 @@ class UserInfo extends Component {
               <div className="uif_container">
                 <p className="uif_title">회원정보 수정</p>
                 <FormGroup row>
-                  <div className="col-2 if_head">성명</div>
+                  <div className="col-2 if_head uif_head ">성명</div>
                   <div className="col-10 d-flex justify-content-left">
                     <input
                       onChange={e => this.inputChangeHandler(e)}
@@ -107,7 +99,7 @@ class UserInfo extends Component {
                     />
                     <label
                       className={
-                        this.props.checked === 'male'
+                        this.state.gender === 'male'
                           ? 'if_gradio active'
                           : 'if_gradio'
                       }
@@ -124,7 +116,7 @@ class UserInfo extends Component {
                     </label>
                     <label
                       className={
-                        this.props.checked === 'female'
+                        this.state.gender === 'female'
                           ? 'if_gradio active'
                           : 'if_gradio'
                       }
@@ -164,7 +156,7 @@ class UserInfo extends Component {
                 </label>
               </div> */}
                 <FormGroup row>
-                  <div className="col-2 if_head">이메일 주소</div>
+                  <div className="col-2 if_head uif_head">이메일 주소</div>
                   <div className="col-10">
                     <input
                       type="email"
@@ -177,20 +169,20 @@ class UserInfo extends Component {
                   </div>
                 </FormGroup>
                 <FormGroup row>
-                  <div className="col-2 if_head">생년월일</div>
+                  <div className="col-2 if_head uif_head">생년월일</div>
                   <div className="col-10">
-                    <div className="d-flex justify-content-left">
-                      <select>
+                    <div className="row m-0">
+                      <select className="col-md-2 col-4">
                         <option>4월</option>
                         <option>10월</option>
                         <option>12월</option>
                       </select>
-                      <select>
+                      <select className="col-md-2 col-4">
                         <option>21일</option>
                         <option>27일</option>
                         <option>10일</option>
                       </select>
-                      <select>
+                      <select className="col-md-2 col-4">
                         <option>1994</option>
                         <option>1995</option>
                         <option>1996</option>
@@ -203,13 +195,16 @@ class UserInfo extends Component {
               onChange={e => this.inputChangeHandler(e)}
               value={this.state.birthday}
             /> */}
-                    <div className="if_detail" style={{ marginTop: '8.3px' }}>
+                    <div
+                      className="if_detail"
+                      style={{ marginTop: '1rem', marginBottom: '1rem' }}
+                    >
                       이 정보는 통계 목적으로 사용되며 외부에 공개되지 않습니다.
                     </div>
                   </div>
                 </FormGroup>
                 <FormGroup row>
-                  <div className="col-2 if_head">전화번호</div>
+                  <div className="col-2 if_head uif_head">전화번호</div>
                   <div className="col-9">
                     <input
                       type="number"
@@ -221,7 +216,7 @@ class UserInfo extends Component {
                     />
                   </div>
                   <div
-                    className="btn btn-light col-1"
+                    className="btn uif_button uif_phone col-1"
                     onClick={() => this.phoneCert()}
                   >
                     인증
@@ -229,18 +224,22 @@ class UserInfo extends Component {
                 </FormGroup>
 
                 <div className="text-center">
-                  <Button onClick={this.submitHandler} className="m-5">
-                    Submit
-                  </Button>
-                  <div onClick={() => this.certification()} className="btn m-5">
-                    임시인증
+                  <div onClick={this.submitHandler} className=" btn uif_button">
+                    <span
+                      style={{
+                        fontWeight: 'bold',
+                        fontSize: '1.4rem'
+                      }}
+                    >
+                      저장하기
+                    </span>
                   </div>
-                  <div
-                    onClick={() => this.noCertification()}
-                    className="btn m-5"
-                  >
-                    인증해제
-                  </div>
+                </div>
+                <div onClick={() => this.certification()} className="btn m-5">
+                  임시인증
+                </div>
+                <div onClick={() => this.noCertification()} className="btn m-5">
+                  인증해제
                 </div>
               </div>
             </Form>

@@ -189,7 +189,7 @@ class CardAdd extends Component {
               <div className="col-7 m-0">
                 <p className="time">
                   예상 소요시간
-                  <img className="question" src={questionMark} />
+                  <img alt="alt" className="question" src={questionMark} />
                 </p>
                 <p className="time" style={{ fontWeight: 'bold' }}>
                   {parseInt(time / 60, 10)}
@@ -198,6 +198,7 @@ class CardAdd extends Component {
                 <p className="price mb-0">
                   {price}원
                   <img
+                    alt="alt"
                     className="question"
                     style={{ marginBottom: '0.8rem' }}
                     src={questionMark}

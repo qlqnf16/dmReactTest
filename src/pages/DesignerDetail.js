@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Button } from 'reactstrap';
 import firebase from 'firebase';
 import axios from 'axios';
 import step2 from '../assets/images/step2.png';
@@ -64,7 +63,7 @@ class DesginerDetail extends Component {
     return (
       <div className="container-fluid">
         <div className="text-center my-5">
-          <img style={{ width: '100%' }} src={step2} />
+          <img alt="alt" style={{ width: '100%' }} src={step2} />
         </div>
         <div className="row align-items-start">
           {loading}

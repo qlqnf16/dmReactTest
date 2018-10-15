@@ -13,12 +13,7 @@
 
 .u_container {
   width: 82.7%;
-  margin: 26.6px 34.5px 52.6px 144.5px;
-}
-.uif_container {
-  width: 82.7%;
-  /* margin: 26.6px 34.5px 52.6px 144.5px; */
-  margin-top: 3rem;
+  margin: 5% 10% 0% 15%;
 }
 
 .u_title {
@@ -32,10 +27,36 @@
   font-weight: bold;
 }
 
+.uif_container {
+  width: 82.7%;
+  /* margin: 26.6px 34.5px 52.6px 144.5px; */
+  margin-top: 3rem;
+}
 .uif_title {
   font-size: 1.5rem;
   font-weight: bold;
   color: #1f3354;
   margin-top: 3rem;
   margin-bottom: 3rem;
+}
+
+.uif_head {
+  line-height: 2.5;
+  margin-bottom: 1rem;
+}
+.uif_button {
+  width: 10rem;
+  height: 4rem;
+  border-radius: 6px;
+  background-color: #dd6866;
+  color: white;
+  text-align: center;
+  padding-top: 0.8rem !important;
+  margin-top: 5rem;
+}
+.uif_button.uif_phone {
+  margin-top: 0;
+  background-color: #4c91ba;
+  height: 3rem;
+  margin-left: -1rem;
 }

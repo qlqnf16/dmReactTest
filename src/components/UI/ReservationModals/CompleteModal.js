@@ -3,14 +3,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import Moment from 'react-moment';
 
-import {
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  FormGroup
-} from 'reactstrap';
+import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 
 class CompleteModal extends Component {
   inputChangeHandler = event => {

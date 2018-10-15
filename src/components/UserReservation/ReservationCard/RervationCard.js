@@ -129,6 +129,7 @@ const ReservationCard = props => {
             }
           >
             <img
+              alt="alt"
               src={props.type === 'soon' ? calendar_o : calendar_x}
               className="rc_icon"
             />{' '}
@@ -143,6 +144,7 @@ const ReservationCard = props => {
             }
           >
             <img
+              alt="alt"
               src={props.type === 'soon' ? place_o : place_x}
               className="rc_icon"
             />{' '}
@@ -154,6 +156,7 @@ const ReservationCard = props => {
             }
           >
             <img
+              alt="alt"
               src={props.type === 'soon' ? scissors_o : scissors_x}
               className="rc_icon"
             />{' '}
