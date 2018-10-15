@@ -62,18 +62,16 @@ class DesginerDetail extends Component {
       );
     }
     return (
-      <div>
-        <div>
-          <div className="text-center my-5">
-            <img style={{ width: '100%' }} src={step2} />
-          </div>
-          <div className="row align-items-start">
-            {loading}
-            <DetailCards
-              recruit={this.state.recruit}
-              loginToggle={this.loginToggleHandler}
-            />
-          </div>
+      <div className="container-fluid">
+        <div className="text-center my-5">
+          <img style={{ width: '100%' }} src={step2} />
+        </div>
+        <div className="row align-items-start">
+          {loading}
+          <DetailCards
+            recruit={this.state.recruit}
+            loginToggle={this.loginToggleHandler}
+          />
         </div>
         <MyModal
           showLogin={this.state.showLogin}

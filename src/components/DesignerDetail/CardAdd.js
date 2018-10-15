@@ -100,18 +100,18 @@ class CardAdd extends Component {
     if (this.props.must.some(e => e === 'perm')) permButton = 'must_button';
     else if (this.props.no.some(e => e === 'perm')) permButton = 'no_button';
     else {
-      permButton = 'btn btn-light btn-sm';
+      permButton = 'toggle_button';
       permClick = () => this.toggle('perm');
-      if (this.state.cut) permButton += ' btn-outline-primary';
+      if (this.state.cut) permButton += ' toggle_on';
     }
     let dyeButton = '';
     let dyeClick = null;
     if (this.props.must.some(e => e === 'dye')) dyeButton = 'must_button';
     else if (this.props.no.some(e => e === 'dye')) dyeButton = 'no_button ';
     else {
-      dyeButton = 'btn btn-light btn-sm';
+      dyeButton = 'toggle_button';
       dyeClick = () => this.toggle('dye');
-      if (this.state.cut) dyeButton += ' btn-outline-primary';
+      if (this.state.cut) dyeButton += ' toggle_on';
     }
 
     let price = 0;
@@ -186,7 +186,7 @@ class CardAdd extends Component {
             }
           >
             <div className="row p-3" style={{ alignItems: 'flex-end' }}>
-              <div className="col-7">
+              <div className="col-7 m-0">
                 <p className="time">
                   예상 소요시간
                   <img className="question" src={questionMark} />

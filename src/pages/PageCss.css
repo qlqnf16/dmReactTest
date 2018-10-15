@@ -30,15 +30,15 @@
 /* Reservation.js */
 
 .r_button {
-  width: 10.9%;
-  height: 46.2px;
+  width: 15vw;
+  height: 7vh;
   border-radius: 5px;
   background-color: #dd6866;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
-  font-size: 1.7rem;
+  font-size: 1.7vw;
   letter-spacing: 0.17rem;
   margin: 54.1px auto 0 auto;
   cursor: pointer;
@@ -73,9 +73,9 @@
   font-family: NanumSquareEB;
 }
 
-.rc_button {
+.rcf_button {
   width: 10%;
-  height: 26px;
+  height: 2.3rem;
   border-radius: 5px;
   border: solid 1px #dd6866;
   background-color: white;

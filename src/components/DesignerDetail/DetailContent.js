@@ -9,7 +9,7 @@ const DetailContent = props => {
   console.log(props);
   return (
     <React.Fragment>
-      <div className="col-12 col-md-8 row">
+      <div className="col-12 col-md-7 row">
         <div className="col-md-2">
           <div>사진</div>
         </div>

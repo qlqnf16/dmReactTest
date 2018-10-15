@@ -35,7 +35,7 @@ class ReservationForm extends Component {
   render() {
     console.log(this.props.userData);
     return (
-      <div className="container rf">
+      <div className="container-fluid rf">
         <div className="row rf-title d-flex justify-content-between">
           <div className="rf-title-text1">예약/결제</div>
           {/* {예약번호: {this.props.match.params.card_id}} */}
@@ -63,17 +63,19 @@ class ReservationForm extends Component {
           </div>
           <div className="row">
             <div className="col-2 text-right rf-tableHead">휴대폰 번호</div>
-            <div className="col-10 rf-tableBody">
-              {typeof this.props.userData.phoneNumber === 'undefined'
-                ? null
-                : `${this.props.userData.phoneNumber.slice(
-                    0,
-                    3
-                  )}-${this.props.userData.phoneNumber.slice(
-                    3,
-                    7
-                  )}-${this.props.userData.phoneNumber.slice(7, 10)}`}
-              <span className="ml-5 font-weight-light">
+            <div className="col-10 rf-tableBody row mx-0">
+              <span className="col-12 col-md-2 p-1">
+                {typeof this.props.userData.phoneNumber === 'undefined'
+                  ? null
+                  : `${this.props.userData.phoneNumber.slice(
+                      0,
+                      3
+                    )}-${this.props.userData.phoneNumber.slice(
+                      3,
+                      7
+                    )}-${this.props.userData.phoneNumber.slice(7, 10)}`}
+              </span>
+              <span className=" font-weight-light col-12 col-md-7 p-1">
                 예약 정보는 휴대폰 번호로 전송됩니다
               </span>
             </div>
@@ -125,20 +127,23 @@ class ReservationForm extends Component {
           </div>
           <div className="row">
             <div className="col-2 text-right rf-tableHead">Point</div>
-            <div className="col-10 rf-tableBody">
+            <div className="col-10 rf-tableBody row m-0">
               <input
                 onChange={this.handleInputChange}
                 type="number"
                 name="point"
                 id="point"
-                className="rf-input"
+                className="rf-input col-8 col-md-3 mx-0"
                 value={this.state.point}
                 step="1000"
               />
-              <button onClick={this.pointSubmit} className="rf-button">
+              <button
+                onClick={this.pointSubmit}
+                className="rf-button col-3 col-md-1"
+              >
                 적용
               </button>
-              <span className="font-weight-light">
+              <span className="font-weight-light col-12 col-md-7">
                 1,000 point 단위로 사용 가능합니다. 보유포인트 :{' '}
                 {this.props.userData.point}원
               </span>

@@ -112,7 +112,7 @@ class App extends Component {
           style={{ height: '100vh', width: '100%' }}
           className="d-flex justify-content-center align-items-center"
         >
-          <img src={Spinner} />
+          <img style={{ height: '20%' }} src={Spinner} />
         </div>
       );
 

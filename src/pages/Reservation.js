@@ -4,6 +4,8 @@ import { Button } from 'reactstrap';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import ReservationForm from '../components/ReservationForm/ReservationForm';
+import step2 from '../assets/images/step2.png';
+
 import './PageCss.css';
 
 class ReservationConfirm extends Component {
@@ -73,11 +75,14 @@ class ReservationConfirm extends Component {
     );
   }
   reservationSubmit = async () => {
-    await axios.post(
+    const { data } = await axios.post(
       `http://52.79.227.227:3030/users/${this.props.userData._id}/reservations`,
       this.state.reservationData
     );
-    console.log(this.state.reservationData);
+    this.setState({
+      reservationId: data._id
+    });
+    console.log(data);
     alert('성공적으로 예약되었습니다');
   };
 
@@ -96,9 +101,9 @@ class ReservationConfirm extends Component {
     console.log(recruit);
     console.log(cardData);
     return (
-      <div className="mb-5">
-        <div className="m-5 text-center">
-          <h1>2단계 예약하기 </h1>
+      <div className="container-fluid mb-5">
+        <div className="my-5 text-center">
+          <img style={{ width: '100%' }} src={step2} />
         </div>
         <ReservationForm
           d_name={recruit._designer.name}
@@ -108,8 +113,9 @@ class ReservationConfirm extends Component {
           service={this.props.location.state.service}
           price={this.props.location.state.price}
           date={cardData.date}
-          // changeInput={e => this.handleInputChange(e)}
         />
+        {/* // changeInput=
+        {e => this.handleInputChange(e)} */}
         <div>
           <div
             className="r_button"
@@ -121,7 +127,7 @@ class ReservationConfirm extends Component {
           </div>
           <Link
             to={{
-              pathname: `/reservationConfirm/${'reservation_id'}`,
+              pathname: `/reservationConfirm/${this.state.reservationId}`,
               state: {
                 userName: this.props.userData.name,
                 designerName: '디자이너 이름'
