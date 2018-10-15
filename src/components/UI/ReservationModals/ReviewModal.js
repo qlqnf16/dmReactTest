@@ -1,13 +1,7 @@
-<<<<<<< HEAD
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
-=======
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import axios from 'axios';
-import Moment from 'react-moment';
->>>>>>> bfd391b77973c8a3f2d1a50d34766defe6ec4f49
+import Moment from "react-moment";
 
 import {
   Button,
@@ -56,26 +50,26 @@ class ReviewModal extends Component {
   };
   render() {
     if (this.props.reservation) {
-      let since = '';
-      let until = '';
-      let services = '';
+      let since = "";
+      let until = "";
+      let services = "";
       if (this.props.reservation.time) {
         since = `${parseInt(this.props.reservation.time.since / 60, 10)}:${
-          this.props.reservation.time.since % 60 === 0 ? '00' : '30'
+          this.props.reservation.time.since % 60 === 0 ? "00" : "30"
         }`;
         until = `${parseInt(this.props.reservation.time.until / 60, 10)}:${
-          this.props.reservation.time.until % 60 === 0 ? '00' : '30'
+          this.props.reservation.time.until % 60 === 0 ? "00" : "30"
         }`;
         Object.keys(this.props.reservation.services).forEach(service => {
           switch (service) {
-            case 'cut':
-              services += '/ 컷트 ';
+            case "cut":
+              services += "/ 컷트 ";
               break;
-            case 'perm':
-              services += '/ 펌 ';
+            case "perm":
+              services += "/ 펌 ";
               break;
-            case 'dye':
-              services += '/ 염색 ';
+            case "dye":
+              services += "/ 염색 ";
               break;
             default:
               break;
@@ -90,15 +84,15 @@ class ReviewModal extends Component {
             <div>
               <h2>서비스 정보</h2>
               <p>
-                막내 :{' '}
+                막내 :{" "}
                 {this.props.reservation._designer &&
                   this.props.reservation._designer.name}
               </p>
               <p>
-                날짜/시간 :{' '}
+                날짜/시간 :{" "}
                 <Moment format="YYYY/MM/DD">
                   {this.props.reservation.date}
-                </Moment>{' '}
+                </Moment>{" "}
                 {since} ~ {until}
               </p>
               <p>서비스 : {services}</p>

@@ -61,17 +61,8 @@ const ReservationCard = props => {
       </div>
     );
     let date = new Date(props.reservation.date);
-<<<<<<< HEAD
-    if (new Date().getDate() === date.getDate()) {
-      type = "D-day";
-      addButton = (
-        <div className="col-md-4">
-          <button className="small"> 서비스 완료 </button>
-          <button className="small"> 노쇼 신고</button>
-        </div>
-=======
     if (new Date().getDate() !== date.getDate()) {
-      type = 'D-day';
+      type = "D-day";
       button = (
         <button
           className="col-md-6 btn btn-light"
@@ -79,7 +70,6 @@ const ReservationCard = props => {
         >
           서비스 완료
         </button>
->>>>>>> bfd391b77973c8a3f2d1a50d34766defe6ec4f49
       );
     }
   } else if (props.type === "finish") {

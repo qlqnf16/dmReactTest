@@ -1,6 +1,6 @@
-import React, { Component, Fragment } from 'react';
-import { Route, withRouter } from 'react-router-dom';
-import Moment from 'react-moment';
+import React, { Component, Fragment } from "react";
+import { Route, withRouter } from "react-router-dom";
+import Moment from "react-moment";
 import {
   Landing,
   WrongAccess,
@@ -31,14 +31,15 @@ import {
   InfoPolicy,
   FAQ,
   QnA
-} from './pages';
-import Toolbar from './components/Navigation/Toolbar/Toolbar';
-import Footer from './components/UI/Footer/Footer';
-import firebase from './config/Firebase';
+} from "./pages";
+import Toolbar from "./components/Navigation/Toolbar/Toolbar";
+import Footer from "./components/UI/Footer/Footer";
+import firebase from "./config/Firebase";
 
-import { connect } from 'react-redux';
-import * as actions from './modules';
-import axios from 'axios';
+import { connect } from "react-redux";
+import * as actions from "./modules";
+import axios from "axios";
+import "./App.css";
 console.log(actions);
 class App extends Component {
   state = {
@@ -73,8 +74,8 @@ class App extends Component {
         console.log(user);
         firebase
           .database()
-          .ref('/users/' + firebase.auth().currentUser.uid)
-          .on('value', async res => {
+          .ref("/users/" + firebase.auth().currentUser.uid)
+          .on("value", async res => {
             this.setState({ madeRequest: true });
 
             // redux;
@@ -83,16 +84,16 @@ class App extends Component {
               `http://52.79.227.227:3030/users/` + userData._id
             );
             console.log(data);
-            userData['point'] = data.point;
-            userData['_recruit'] = data._recruit;
-            userData['_tickets'] = data._tickets;
-            userData['_reservations'] = data._reservations;
+            userData["point"] = data.point;
+            userData["_recruit"] = data._recruit;
+            userData["_tickets"] = data._tickets;
+            userData["_reservations"] = data._reservations;
             console.log(userData);
             await this.props.login(userData);
           });
       } else {
         // logout 하면 landing page로 이동
-        this.props.history.push('/');
+        this.props.history.push("/");
         this.setState({ madeRequest: true });
 
         // redux
@@ -102,7 +103,7 @@ class App extends Component {
   }
 
   render() {
-    console.log('app rendering');
+    console.log("app rendering");
 
     // firebase에서 불러오기 전
     if (!this.state.madeRequest) {
@@ -118,152 +119,154 @@ class App extends Component {
       return (
         <Fragment>
           <Toolbar />
-          <Route path="/" exact component={Landing} />
-          <Route path="/about" component={About} />
-          <Route path="/QnA" component={QnA} />
-          <Route path="/TermsOfUse" component={TermsOfUse} />
-          <Route path="/FAQ" component={FAQ} />
-          <Route path="/InfoPolicy" component={InfoPolicy} />
-          <Route path="/designerList" component={DesignerList} />
-          <Route path="/designerDetail/:id" component={DesignerDetail} />
-          <Route
-            path="/reservationConfirm/:reservation_id"
-            component={ReservationConfirm}
-          />
+          <div class="app-content">
+            <Route path="/" exact component={Landing} />
+            <Route path="/about" component={About} />
+            <Route path="/QnA" component={QnA} />
+            <Route path="/TermsOfUse" component={TermsOfUse} />
+            <Route path="/FAQ" component={FAQ} />
+            <Route path="/InfoPolicy" component={InfoPolicy} />
+            <Route path="/designerList" component={DesignerList} />
+            <Route path="/designerDetail/:id" component={DesignerDetail} />
+            <Route
+              path="/reservationConfirm/:reservation_id"
+              component={ReservationConfirm}
+            />
 
-          {/* 비로그인 상태에서 url로 접근시 WrongAccess 렌더링 */}
-          <Route
-            path="/message"
-            component={
-              this.props.userData.uid
-                ? this.props.userData.isRegister
-                  ? Message
-                  : UserInfo
-                : WrongAccess
-            }
-          />
-          <Route
-            path="/chat"
-            component={
-              this.props.userData.uid
-                ? this.props.userData.isRegister
-                  ? Chat
-                  : UserInfo
-                : WrongAccess
-            }
-          />
-          <Route
-            path="/reservation/:card_id"
-            component={
-              this.props.userData.uid
-                ? this.props.userData.isRegister
-                  ? Reservation
-                  : UserInfo
-                : WrongAccess
-            }
-          />
-          <Route
-            path="/addDesigner"
-            component={
-              this.props.userData.uid
-                ? this.props.userData.isRegister
-                  ? AddDesigner
-                  : UserInfo
-                : WrongAccess
-            }
-          />
-          <Route
-            path="/coupon"
-            component={
-              this.props.userData.uid
-                ? this.props.userData.isRegister
-                  ? Coupon
-                  : UserInfo
-                : WrongAccess
-            }
-          />
-          <Route
-            path="/likedesigner"
-            component={
-              this.props.userData.uid
-                ? this.props.userData.isRegister
-                  ? LikeDesigner
-                  : UserInfo
-                : WrongAccess
-            }
-          />
-          <Route
-            path="/myTicket"
-            component={
-              this.props.userData.uid
-                ? this.props.userData.isRegister
-                  ? MyTicket
-                  : UserInfo
-                : WrongAccess
-            }
-          />
-          <Route
-            path="/reservations"
-            component={
-              this.props.userData.uid
-                ? this.props.userData.isRegister
-                  ? Reservations
-                  : UserInfo
-                : WrongAccess
-            }
-          />
-          <Route
-            path="/userInfo"
-            component={this.props.userData.uid ? UserInfo : WrongAccess}
-          />
-          <Route
-            path="/infoDetail"
-            component={this.props.userData.uid ? InfoDetail : WrongAccess}
-          />
+            {/* 비로그인 상태에서 url로 접근시 WrongAccess 렌더링 */}
+            <Route
+              path="/message"
+              component={
+                this.props.userData.uid
+                  ? this.props.userData.isRegister
+                    ? Message
+                    : UserInfo
+                  : WrongAccess
+              }
+            />
+            <Route
+              path="/chat"
+              component={
+                this.props.userData.uid
+                  ? this.props.userData.isRegister
+                    ? Chat
+                    : UserInfo
+                  : WrongAccess
+              }
+            />
+            <Route
+              path="/reservation/:card_id"
+              component={
+                this.props.userData.uid
+                  ? this.props.userData.isRegister
+                    ? Reservation
+                    : UserInfo
+                  : WrongAccess
+              }
+            />
+            <Route
+              path="/addDesigner"
+              component={
+                this.props.userData.uid
+                  ? this.props.userData.isRegister
+                    ? AddDesigner
+                    : UserInfo
+                  : WrongAccess
+              }
+            />
+            <Route
+              path="/coupon"
+              component={
+                this.props.userData.uid
+                  ? this.props.userData.isRegister
+                    ? Coupon
+                    : UserInfo
+                  : WrongAccess
+              }
+            />
+            <Route
+              path="/likedesigner"
+              component={
+                this.props.userData.uid
+                  ? this.props.userData.isRegister
+                    ? LikeDesigner
+                    : UserInfo
+                  : WrongAccess
+              }
+            />
+            <Route
+              path="/myTicket"
+              component={
+                this.props.userData.uid
+                  ? this.props.userData.isRegister
+                    ? MyTicket
+                    : UserInfo
+                  : WrongAccess
+              }
+            />
+            <Route
+              path="/reservations"
+              component={
+                this.props.userData.uid
+                  ? this.props.userData.isRegister
+                    ? Reservations
+                    : UserInfo
+                  : WrongAccess
+              }
+            />
+            <Route
+              path="/userInfo"
+              component={this.props.userData.uid ? UserInfo : WrongAccess}
+            />
+            <Route
+              path="/infoDetail"
+              component={this.props.userData.uid ? InfoDetail : WrongAccess}
+            />
 
-          {/* 디자이너 아닌 user가 url로 접근시 WrongAccess 렌더링  */}
-          <Route
-            path="/designer/coupon"
-            component={this.props.userData.isD ? DesignerCoupon : WrongAccess}
-          />
-          <Route
-            path="/designer/info"
-            component={this.props.userData.isD ? DesignerInfo : WrongAccess}
-          />
-          <Route
-            path="/designer/reservations"
-            component={
-              this.props.userData.isD ? DesignerReservations : WrongAccess
-            }
-          />
-          <Route
-            path="/designer/ticket"
-            component={this.props.userData.isD ? DesignerTicket : WrongAccess}
-          />
-          <Route
-            path="/designer/schedule"
-            component={this.props.userData.isD ? Schedule : WrongAccess}
-          />
-          <Route
-            path="/designer/whyDreamary"
-            component={this.props.userData.isD ? WhyDreamary : WrongAccess}
-          />
-          <Route
-            path="/admin/userList"
-            component={this.props.userData.isD ? AdminUserList : WrongAccess}
-          />
-          <Route
-            path="/admin/designerList"
-            component={
-              this.props.userData.isD ? AdminDesignerList : WrongAccess
-            }
-          />
-          <Route
-            path="/admin/reservationList"
-            component={
-              this.props.userData.isD ? AdminReservationList : WrongAccess
-            }
-          />
+            {/* 디자이너 아닌 user가 url로 접근시 WrongAccess 렌더링  */}
+            <Route
+              path="/designer/coupon"
+              component={this.props.userData.isD ? DesignerCoupon : WrongAccess}
+            />
+            <Route
+              path="/designer/info"
+              component={this.props.userData.isD ? DesignerInfo : WrongAccess}
+            />
+            <Route
+              path="/designer/reservations"
+              component={
+                this.props.userData.isD ? DesignerReservations : WrongAccess
+              }
+            />
+            <Route
+              path="/designer/ticket"
+              component={this.props.userData.isD ? DesignerTicket : WrongAccess}
+            />
+            <Route
+              path="/designer/schedule"
+              component={this.props.userData.isD ? Schedule : WrongAccess}
+            />
+            <Route
+              path="/designer/whyDreamary"
+              component={this.props.userData.isD ? WhyDreamary : WrongAccess}
+            />
+            <Route
+              path="/admin/userList"
+              component={this.props.userData.isD ? AdminUserList : WrongAccess}
+            />
+            <Route
+              path="/admin/designerList"
+              component={
+                this.props.userData.isD ? AdminDesignerList : WrongAccess
+              }
+            />
+            <Route
+              path="/admin/reservationList"
+              component={
+                this.props.userData.isD ? AdminReservationList : WrongAccess
+              }
+            />
+          </div>
           <Footer />
         </Fragment>
       );
