@@ -16,6 +16,7 @@
   color: white;
   background-color: #dd6866;
   /* font-family: NanumSquareEB; */
+  font-weight: bold;
   font-size: 1.6rem;
   line-height: 1.13;
   letter-spacing: 0.08rem;
@@ -40,4 +41,10 @@
   display: block;
   width: fit-content;
   padding-bottom: 4.5px;
+  font-weight: bold;
+}
+.un_navItem:hover {
+  color: #1f3354;
+  border-bottom: solid 1.8px #1f3354;
+  text-decoration: none;
 }

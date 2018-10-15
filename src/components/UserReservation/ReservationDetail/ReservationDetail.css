@@ -1,18 +1,16 @@
 .rd_back {
-  position: relative;
-  background: white;
-  border: solid 1px #c1e4eb;
-  margin-left: 70px;
-  padding: 27.1px 0 5.1px 0;
+  padding: 3rem;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .rd_title {
-  /* font-family: NanumSquareEB; */
   font-size: 1.4rem;
   line-height: 1.14;
   letter-spacing: 0.07rem;
   color: #dd6866;
   margin-bottom: 9px;
+  font-weight: bold;
 }
 
 .rd_content {
