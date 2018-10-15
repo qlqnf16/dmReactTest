@@ -86,38 +86,73 @@ class UserInfo extends Component {
 
   render() {
     return (
-      <div className="container">
-        <div className="row mt-5">
+      <div className="container-fluid u">
+        <div className="d-flex">
           <UserNav />
-          <Container className="col-10">
-            <h1>This is UserInfo</h1>
-            <Form className="m-5">
-              <FormGroup row>
-                <Label for="exampleEmail" sm={2}>
-                  성명
-                </Label>
-                <Col sm={10}>
-                  <Input
-                    onChange={e => this.inputChangeHandler(e)}
-                    type="text"
-                    name="name"
-                    id="name"
-                    value={this.state.name}
-                  />
-                </Col>
-              </FormGroup>
-              <div>
+          <div className="u_bg">
+            <Form className="u_container">
+              <div className="u_title">회원정보관리</div>
+              <div className="uif_container">
+                <p className="uif_title">회원정보 수정</p>
+                <FormGroup row>
+                  <div className="col-2 if_head">성명</div>
+                  <div className="col-10 d-flex justify-content-left">
+                    <input
+                      onChange={e => this.inputChangeHandler(e)}
+                      type="text"
+                      name="name"
+                      id="name"
+                      value={this.state.name}
+                      className="if_input"
+                    />
+                    <label
+                      className={
+                        this.props.checked === 'male'
+                          ? 'if_gradio active'
+                          : 'if_gradio'
+                      }
+                    >
+                      <input
+                        type="radio"
+                        id="male"
+                        name="gender"
+                        value="male"
+                        onChange={e => this.inputChangeHandler(e)}
+                        className="genderRadio"
+                      />
+                      남
+                    </label>
+                    <label
+                      className={
+                        this.props.checked === 'female'
+                          ? 'if_gradio active'
+                          : 'if_gradio'
+                      }
+                    >
+                      <input
+                        type="radio"
+                        id="female"
+                        name="gender"
+                        value="female"
+                        onChange={e => this.inputChangeHandler(e)}
+                        className="genderRadio"
+                      />
+                      여
+                    </label>
+                  </div>
+                </FormGroup>
+                {/* <div>
                 <label>
                   <input
                     type="radio"
                     id="male"
                     name="gender"
                     value="male"
-                    onChange={e => this.inputChangeHandler(e)} // className="genderRadio"
+                    onChange={e => this.inputChangeHandler(e)}
                   />
-                  남
+                  남 // className="genderRadio"
                 </label>
-                <label>
+                <label>s
                   <input
                     type="radio"
                     id="female"
@@ -127,67 +162,89 @@ class UserInfo extends Component {
                   />
                   여
                 </label>
-              </div>
-              <FormGroup row>
-                <Label for="exampleEmail" sm={2}>
-                  이메일 주소
-                </Label>
-                <Col sm={10}>
-                  <Input
-                    onChange={e => this.inputChangeHandler(e)}
-                    type="email"
-                    name="email"
-                    id="email"
-                    value={this.state.email}
-                  />
-                </Col>
-              </FormGroup>
-              <FormGroup row>
-                <Label for="exampleEmail" sm={2}>
-                  생년월일
-                </Label>
-                <Col sm={10}>
-                  <Input
-                    onChange={e => this.inputChangeHandler(e)}
-                    type="date"
-                    name="birthday"
-                    value={this.state.birthday}
-                  />
-                </Col>
-              </FormGroup>
-              <FormGroup row>
-                <Label for="exampleEmail" sm={2}>
-                  전화번호
-                </Label>
-                <Col sm={8}>
-                  <Input
-                    onChange={e => this.inputChangeHandler(e)}
-                    type="text"
-                    name="phoneNumber"
-                    id="phoneNumber"
-                    value={this.state.phoneNumber}
-                  />
-                </Col>
-                <div
-                  className="btn btn-light col-sm-2"
-                  onClick={() => this.phoneCert()}
-                >
-                  인증
-                </div>
-              </FormGroup>
-              <div className="text-center">
-                <Button onClick={this.submitHandler} className="m-5">
-                  Submit
-                </Button>
-                <div onClick={() => this.certification()} className="btn m-5">
-                  임시인증
-                </div>
-                <div onClick={() => this.noCertification()} className="btn m-5">
-                  인증해제
+              </div> */}
+                <FormGroup row>
+                  <div className="col-2 if_head">이메일 주소</div>
+                  <div className="col-10">
+                    <input
+                      type="email"
+                      name="email"
+                      id="email"
+                      onChange={e => this.inputChangeHandler(e)}
+                      value={this.state.email}
+                      className="if_input"
+                    />
+                  </div>
+                </FormGroup>
+                <FormGroup row>
+                  <div className="col-2 if_head">생년월일</div>
+                  <div className="col-10">
+                    <div className="d-flex justify-content-left">
+                      <select>
+                        <option>4월</option>
+                        <option>10월</option>
+                        <option>12월</option>
+                      </select>
+                      <select>
+                        <option>21일</option>
+                        <option>27일</option>
+                        <option>10일</option>
+                      </select>
+                      <select>
+                        <option>1994</option>
+                        <option>1995</option>
+                        <option>1996</option>
+                      </select>
+                    </div>
+                    {/* <input
+              type="date"
+              name="birthday"
+              id="birthday"
+              onChange={e => this.inputChangeHandler(e)}
+              value={this.state.birthday}
+            /> */}
+                    <div className="if_detail" style={{ marginTop: '8.3px' }}>
+                      이 정보는 통계 목적으로 사용되며 외부에 공개되지 않습니다.
+                    </div>
+                  </div>
+                </FormGroup>
+                <FormGroup row>
+                  <div className="col-2 if_head">전화번호</div>
+                  <div className="col-9">
+                    <input
+                      type="number"
+                      name="phoneNumber"
+                      id="phoneNumber"
+                      onChange={e => this.inputChangeHandler(e)}
+                      value={this.state.phoneNumber}
+                      className="if_input"
+                    />
+                  </div>
+                  <div
+                    className="btn btn-light col-1"
+                    onClick={() => this.phoneCert()}
+                  >
+                    인증
+                  </div>
+                </FormGroup>
+
+                <div className="text-center">
+                  <Button onClick={this.submitHandler} className="m-5">
+                    Submit
+                  </Button>
+                  <div onClick={() => this.certification()} className="btn m-5">
+                    임시인증
+                  </div>
+                  <div
+                    onClick={() => this.noCertification()}
+                    className="btn m-5"
+                  >
+                    인증해제
+                  </div>
                 </div>
               </div>
             </Form>
-          </Container>
+          </div>
         </div>
       </div>
     );
