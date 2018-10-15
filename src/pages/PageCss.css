@@ -5,6 +5,19 @@
   align-items: center;
 }
 
+@media screen and (max-width: 992px) {
+  .container-fluid.ad {
+    width: 75%;
+    align-items: center;
+  }
+}
+@media screen and (max-width: 600px) {
+  .container-fluid.ad {
+    width: 90%;
+    align-items: center;
+  }
+}
+
 .ad_button {
   width: 100%;
   height: 39px;
@@ -18,6 +31,14 @@
   font-size: 1.4rem;
   letter-spacing: 0.14rem;
   font-family: NanumSquareEB;
+}
+.ad_title {
+  font-size: 2.3rem;
+  font-weight: bold;
+  text-align: left;
+  color: #4c91ba;
+  margin-bottom: 2.8rem;
+  margin-left: 27%;
 }
 
 /* DesignerList.js */
