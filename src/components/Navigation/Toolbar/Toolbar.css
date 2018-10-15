@@ -2,6 +2,7 @@
   margin: 19px 0;
   width: 100%;
   background-color: white;
+  border-bottom: solid 1px rgba(0, 0, 0, 0.1);
 }
 
 .logo {
@@ -29,3 +30,5 @@
   border: none;
   font-size: 2rem;
 }
+
+/* todo: 툴바 내부에 드롭다운 조정 */

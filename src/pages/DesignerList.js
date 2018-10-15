@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import DesignerCard from '../components/DesignerCard/DesignerCard';
-import Filter from '../components/DesignerCard/Filter/Filter';
-import { CardDeck } from 'reactstrap';
-import axios from 'axios';
-import step1 from '../assets/images/step1.png';
+import React, { Component } from "react";
+import DesignerCard from "../components/DesignerCard/DesignerCard";
+import Filter from "../components/DesignerCard/Filter/Filter";
+import { CardDeck } from "reactstrap";
+import axios from "axios";
+import step1 from "../assets/images/step1.png";
 
-import './PageCss.css';
+import "./PageCss.css";
 
 class DesignerList extends Component {
   constructor() {
@@ -19,7 +19,7 @@ class DesignerList extends Component {
 
   async componentDidMount() {
     if (!this.state.madeRequest) {
-      const { data } = await axios.get('http://52.79.227.227:3030/recruits');
+      const { data } = await axios.get("http://52.79.227.227:3030/recruits");
       this.setState({
         recruits: data,
         madeRequest: true
@@ -29,26 +29,26 @@ class DesignerList extends Component {
   }
 
   getFilteredCards = async () => {
-    let must = '';
-    let no = '';
-    if (this.state.cut && this.state.cut === '100') {
-      must += 'cut=1&';
-    } else if (this.state.cut === '0') {
-      no += 'cut=2&';
+    let must = "";
+    let no = "";
+    if (this.state.cut && this.state.cut === "100") {
+      must += "cut=1&";
+    } else if (this.state.cut === "0") {
+      no += "cut=2&";
     }
-    if (this.state.perm && this.state.perm === '100') {
-      must += 'perm=1&';
-    } else if (this.state.perm === '0') {
-      no += 'perm=2&';
+    if (this.state.perm && this.state.perm === "100") {
+      must += "perm=1&";
+    } else if (this.state.perm === "0") {
+      no += "perm=2&";
     }
-    if (this.state.dye && this.state.dye === '100') {
-      must += 'dye=1&';
-    } else if (this.state.dye === '0') {
-      no += 'dye=2&';
+    if (this.state.dye && this.state.dye === "100") {
+      must += "dye=1&";
+    } else if (this.state.dye === "0") {
+      no += "dye=2&";
     }
     console.log(must, no);
     const { data } = await axios.get(
-      'http://52.79.227.227:3030/cards?' + must + no
+      "http://52.79.227.227:3030/cards?" + must + no
     );
     console.log(data);
     let recruits = data.map(d => d._recruit);
@@ -87,13 +87,13 @@ class DesignerList extends Component {
     return (
       <div className="container-fluid dl">
         <div className="my-5 text-center">
-          <img style={{ width: '100%' }} src={step1} />
+          <img style={{ width: "100%" }} src={step1} />
         </div>
         <div className="row">
           <Filter
             getFilteredCards={this.getFilteredCards}
             filterChangeHandler={e => this.filterChangeHandler(e)}
-            checked={!this.state.gender ? 'male' : this.state.gender}
+            checked={!this.state.gender ? "male" : this.state.gender}
           />
           <div className="col-md-9">
             <CardDeck className="m-5">
