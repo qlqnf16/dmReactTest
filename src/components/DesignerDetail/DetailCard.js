@@ -89,6 +89,7 @@ class DetailCard extends Component {
           time={this.props.cardData.requireTime}
           id={this.props.cardData._id}
           recruit={this.props.recruit}
+          loginToggle={this.props.loginToggle}
         />
       );
       dcard += 'dcard_selected';

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Button } from 'reactstrap';
 import firebase from 'firebase';
 import axios from 'axios';
+import step2 from '../assets/images/step2.png';
 
 import DetailContent from '../components/DesignerDetail/DetailContent';
 import DetailCards from '../components/DesignerDetail/DetailCards';
@@ -62,19 +63,17 @@ class DesginerDetail extends Component {
     }
     return (
       <div>
-        <div className="container">
-          <h1 className="text-center m-5 ">2단계 : 예약하기(이미지로)</h1>
+        <div>
+          <div className="text-center my-5">
+            <img style={{ width: '100%' }} src={step2} />
+          </div>
           <div className="row align-items-start">
             {loading}
-            <DetailCards recruit={this.state.recruit} />
+            <DetailCards
+              recruit={this.state.recruit}
+              loginToggle={this.loginToggleHandler}
+            />
           </div>
-
-          <Button
-            onClick={this.loginToggleHandler}
-            className="btn-light float-right"
-          >
-            예약하기
-          </Button>
         </div>
         <MyModal
           showLogin={this.state.showLogin}

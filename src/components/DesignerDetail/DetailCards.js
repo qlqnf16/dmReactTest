@@ -30,6 +30,7 @@ class DetailCards extends Component {
                   selectedCard={this.state.selectedCard}
                   click={this.state.click}
                   addData={() => this.addData(key)}
+                  loginToggle={this.props.loginToggle}
                 />
               )
             : leftCards.push(
@@ -41,6 +42,7 @@ class DetailCards extends Component {
                   selectedCard={this.state.selectedCard}
                   click={this.state.click}
                   addData={() => this.addData(key)}
+                  loginToggle={this.props.loginToggle}
                 />
               );
           count++;
@@ -48,8 +50,8 @@ class DetailCards extends Component {
       });
     }
     return (
-      <div className="col-12 col-md-5 align-items-start">
-        <div className="row">
+      <div className="col-12 col-md-4 align-items-start p-4">
+        <div className="row ml-4">
           <div className="col-6 m-0 p-2">{leftCards}</div>
           <div className="col-6 m-0 p-2">{rightCards}</div>
         </div>

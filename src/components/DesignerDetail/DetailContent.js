@@ -8,28 +8,30 @@ const DetailContent = props => {
   const recruit = props.recruit;
   console.log(props);
   return (
-    <div className="col-12 col-md-7">
-      <BasicInfo recruit={recruit} designerData={props.designerData} />
-      <MoreInfo recruit={recruit} designerData={props.designerData} />
-      <div>
-        <div className="dc_title">막내리뷰</div>
-        <div className="dc__reviews">
-          <span
-            style={{
-              color: '#dd6866',
-              fontFamily: 'NanumSquareEB'
-            }}
-          >
-            ★{recruit.score}
-          </span>
-          <span style={{ color: '#b2b2b2' }}> | </span>
-          리뷰 {recruit._reviews.length}
+    <React.Fragment>
+      <div className="col-12 col-md-8 row">
+        <div className="col-md-2">
+          <div>사진</div>
         </div>
-        {recruit._reviews.map((review, key) => (
-          <Review key={key} review={review} />
-        ))}
+        <div className="col-md-10">
+          <BasicInfo recruit={recruit} designerData={props.designerData} />
+          <MoreInfo recruit={recruit} designerData={props.designerData} />
+          <div>
+            <div className="dc_title">막내리뷰</div>
+            <div className="dc__reviews">
+              <span style={{ color: '#dd6866', fontFamily: 'NanumSquareEB' }}>
+                ★{recruit.score}
+              </span>
+              <span style={{ color: '#b2b2b2' }}> | </span>
+              리뷰 {recruit._reviews.length}
+            </div>
+            {recruit._reviews.map((review, key) => (
+              <Review key={key} review={review} />
+            ))}
+          </div>
+        </div>
       </div>
-    </div>
+    </React.Fragment>
   );
 };
 
