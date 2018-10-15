@@ -15,6 +15,11 @@
   width: 82.7%;
   margin: 26.6px 34.5px 52.6px 144.5px;
 }
+.uif_container {
+  width: 82.7%;
+  /* margin: 26.6px 34.5px 52.6px 144.5px; */
+  margin-top: 3rem;
+}
 
 .u_title {
   /* font-family: NanumSquareEB; */
@@ -25,4 +30,12 @@
   border-bottom: solid 2px rgba(0, 0, 0, 0.1);
   padding: 1rem 0;
   font-weight: bold;
+}
+
+.uif_title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #1f3354;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
 }
