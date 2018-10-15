@@ -3,7 +3,7 @@ import "./Filter.css";
 
 const Filter = props => (
   <div
-    style={{ minHeight: 200 }}
+    style={{ height: 200 }}
     className="col-12 col-md-3 form-row d-flex align-items-baseline"
   >
     <div className="col-md-5">
@@ -64,10 +64,20 @@ const Filter = props => (
         className="d-flex justify-content-between"
         style={{ marginTop: "15px" }}
       >
-        <div>싫어요</div>
-        <div>상관없어요</div>
-        <div>받을래요</div>
+        <div>
+          싫어요
+          <div style={{ fontSize: "2rem" }}>😟👎</div>
+        </div>
+        <div>
+          상관없어요
+          <div style={{ fontSize: "2rem" }}>😐💬</div>
+        </div>
+        <div>
+          받을래요
+          <div style={{ fontSize: "2rem" }}>😀👍</div>
+        </div>
       </div>
+      <div className="d-flex justify-content-between" />
       <div className="form-group">
         <input
           onChange={props.filterChangeHandler}
