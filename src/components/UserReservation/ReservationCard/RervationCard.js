@@ -1,6 +1,12 @@
 import React from 'react';
 import Moment from 'react-moment';
 import './ReservationCard.css';
+import calendar_o from '../../../assets/images/calendar_o.png';
+import calendar_x from '../../../assets/images/calendar_x.png';
+import place_o from '../../../assets/images/place_o.png';
+import place_x from '../../../assets/images/place_x.png';
+import scissors_o from '../../../assets/images/scissors_o.png';
+import scissors_x from '../../../assets/images/scissors_x.png';
 
 const ReservationCard = props => {
   // 시간 parse
@@ -38,13 +44,13 @@ const ReservationCard = props => {
   if (props.reservation.isCanceled) {
     button = (
       <div
-        className="rc_button rc_canceled"
+        className="rc_button canceled"
         onClick={() => props.cancelReasonModalToggle(props.reservation)}
       >
         취소 사유 보기
       </div>
     );
-    type = <div className="rc_type cancel">취소</div>;
+    type = <div className="rc_type canceled">취소</div>;
   } else if (props.type === 'soon') {
     button = (
       <div
@@ -102,34 +108,72 @@ const ReservationCard = props => {
   // return
   if (props.reservation) {
     return (
-      <div className={`rc_back ${props.type} my-2`}>
-        <div className="d-flex justify-content-between">
-          <div className="rc_content">
-            {props.reservation.designerName}
-            이정민
+      <div className={`col-12 col-md-6 col-lg-4 my-2 mx-0 px-2`}>
+        <div className={`${props.type} rc_back`}>
+          <div className="d-flex justify-content-between">
+            <div
+              className={
+                props.type === 'soon' ? 'rc_content' : 'rc_content rc_off'
+              }
+              style={{ fontWeight: 'bold' }}
+            >
+              {props.reservation._designer.name}
+            </div>
+            {type}
           </div>
-          {type}
-        </div>
 
-        <div className="rc_content rc_title">타이틀이 디비에 없네</div>
-        <div className="rc_content">
-          <Moment unix format="YYYY/MM/DD">
-            {props.reservation.date / 1000}
-          </Moment>{' '}
-          {since} ~ {until}
-        </div>
-        <div className="rc_content">
-          {props.reservation._card && props.reservation._card.shop}
-        </div>
-        <div className="rc_content">{services}</div>
-        <div className="d-flex justify-content-between">
-          {button}
-          <div className="rc_button" style={{ marginLeft: '22px' }}>
-            더보기
+          <div className="rc_content rc_title">타이틀이 디비에 없네</div>
+          <div
+            className={
+              props.type === 'soon' ? 'rc_content' : 'rc_content rc_off'
+            }
+          >
+            <img
+              src={props.type === 'soon' ? calendar_o : calendar_x}
+              className="rc_icon"
+            />{' '}
+            <Moment unix format="YYYY/MM/DD">
+              {props.reservation.date / 1000}
+            </Moment>{' '}
+            {since} ~ {until}
           </div>
-        </div>
-        <div className="rc_content rc_rnumber">
-          예약번호: {props.reservation._id}
+          <div
+            className={
+              props.type === 'soon' ? 'rc_content' : 'rc_content rc_off'
+            }
+          >
+            <img
+              src={props.type === 'soon' ? place_o : place_x}
+              className="rc_icon"
+            />{' '}
+            {props.reservation._card && props.reservation._card.shop}
+          </div>
+          <div
+            className={
+              props.type === 'soon' ? 'rc_content' : 'rc_content rc_off'
+            }
+          >
+            <img
+              src={props.type === 'soon' ? scissors_o : scissors_x}
+              className="rc_icon"
+            />{' '}
+            {services}
+          </div>
+          <div className="d-flex justify-content-between">
+            {button}
+            <div className="rc_button" style={{ marginLeft: '22px' }}>
+              더보기
+            </div>
+          </div>
+          <div
+            className={
+              props.type === 'soon'
+                ? 'rc_content rc_rnumber'
+                : 'rc_content rc_off rc_rnumber'
+            }
+          >
+            예약번호: {props.reservation._id}
+          </div>
         </div>
       </div>
     );
