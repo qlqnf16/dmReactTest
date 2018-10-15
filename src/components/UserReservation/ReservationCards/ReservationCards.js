@@ -24,6 +24,7 @@ const Reservations = props => (
               // requireTime={'3박 4일'}
               requirement={reservation._designer._recruit.requirement}
               requireTime={reservation.time}
+              reservation={reservation}
             />
           </div>
         ))}

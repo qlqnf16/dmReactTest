@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import firebase from '../../config/Firebase';
-import Moment from 'react-moment';
 import User from '../../components/Admin/User';
 import AdminNav from '../../components/Navigation/AdminNav/AdminNav';
 
