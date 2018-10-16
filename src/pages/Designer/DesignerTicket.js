@@ -21,20 +21,24 @@ class DesignerTicket extends Component {
 
   render() {
     return (
-      <div className="container">
-        <h1 className="mt-5">이용권 관리</h1>
-        <div className="row">
-          <div className="col-4 py-2">
-            <TicketCounter
-              count={this.state.tickets.reduce(
-                (accu, pres) => (!pres.expiredAt ? accu + 1 : accu),
-                0
-              )}
-            />
-            <TicketPurchaseButton />
-          </div>
-          <div className="col-8">
-            <TicketBox tickets={this.state.tickets} />
+      <div className="container-fluid d">
+        <div className="d_bg">
+          <div className="d_container">
+            <h1 className="mt-5">이용권 관리</h1>
+            <div className="row">
+              <div className="col-4 py-2">
+                <TicketCounter
+                  count={this.state.tickets.reduce(
+                    (accu, pres) => (!pres.expiredAt ? accu + 1 : accu),
+                    0
+                  )}
+                />
+                <TicketPurchaseButton />
+              </div>
+              <div className="col-8">
+                <TicketBox tickets={this.state.tickets} />
+              </div>
+            </div>
           </div>
         </div>
       </div>

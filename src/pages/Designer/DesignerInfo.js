@@ -128,36 +128,40 @@ class DesignerInfo extends Component {
 
   render() {
     return (
-      <Container>
-        <h1 className="mt-5">회원정보 수정</h1>
-        <Form className="m-5">
-          <InfoForm
-            state={this.state}
-            certImg1={this.state.certImg1}
-            certFile1={this.state.certFile1}
-            certImg2={this.state.certImg2}
-            certFile2={this.state.certFile2}
-            imgChange={e => this.handleImgChange(e)}
-            changeInput={e => this.handleInputChange(e)}
-          />
-          <InfoFormExtended
-            state={this.state}
-            profileImg={this.state.profileImg}
-            profileFile={this.state.profileFile}
-            portfolioImg={this.state.portfolioImg}
-            portfolioFile={this.state.portfolioFile}
-            num={this.state.num}
-            imgChange={e => this.handleImgChange(e)}
-            deletePortfolio={e => this.deletePortfolio(e)}
-            changeInput={e => this.handleInputChange(e)}
-          />
-          <div className="text-center">
-            <Button className="m-5" onClick={this.submitHandler}>
-              등록하기
-            </Button>
+      <div className="container-fluid d">
+        <div className="d_bg">
+          <div className="d_container">
+            <h1 className="mt-5">회원정보 수정</h1>
+            <Form className="m-5">
+              <InfoForm
+                state={this.state}
+                certImg1={this.state.certImg1}
+                certFile1={this.state.certFile1}
+                certImg2={this.state.certImg2}
+                certFile2={this.state.certFile2}
+                imgChange={e => this.handleImgChange(e)}
+                changeInput={e => this.handleInputChange(e)}
+              />
+              <InfoFormExtended
+                state={this.state}
+                profileImg={this.state.profileImg}
+                profileFile={this.state.profileFile}
+                portfolioImg={this.state.portfolioImg}
+                portfolioFile={this.state.portfolioFile}
+                num={this.state.num}
+                imgChange={e => this.handleImgChange(e)}
+                deletePortfolio={e => this.deletePortfolio(e)}
+                changeInput={e => this.handleInputChange(e)}
+              />
+              <div className="text-center">
+                <Button className="m-5" onClick={this.submitHandler}>
+                  등록하기
+                </Button>
+              </div>
+            </Form>
           </div>
-        </Form>
-      </Container>
+        </div>
+      </div>
     );
   }
 }
