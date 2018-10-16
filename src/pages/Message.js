@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import ChatPreview from '../components/Message/chatPreview';
+import './PageCss.css';
 
 class Message extends Component {
   render() {
     return (
-      <div className="container">
-        <h1 className="m-5">메세지 창이랍니다</h1>
-        <div className="row">
-          <h5 className="col-md-2">전체메시지</h5>
-          <div className="col-md-10">
-            <ChatPreview />
-            <ChatPreview />
+      <div className="container-fluid me pt-2">
+        <div className="me_bg">
+          <div className="u_title">메시지</div>
+          <div className="row" style={{ marginTop: '4%' }}>
+            <div className="col-md-2 me_title">전체메시지</div>
+            <div className="col-md-10">
+              <ChatPreview />
+              <ChatPreview />
+            </div>
           </div>
         </div>
       </div>
