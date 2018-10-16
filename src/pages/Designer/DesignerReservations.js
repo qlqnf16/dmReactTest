@@ -122,7 +122,7 @@ class DesignerReservations extends Component {
 
     return (
       <div className="container-fluid d">
-        <div className="d_bg d_info">
+        <div className="d_bg">
           <div className="d_container">
             <div style={{ color: '#4c91ba' }} className="u_title ">
               예약 관리

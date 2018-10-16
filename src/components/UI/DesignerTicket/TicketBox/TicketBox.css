@@ -1,0 +1,34 @@
+.ticket_box_back {
+  padding: 3rem;
+  min-height: 85vh !important;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-left: -2rem !important;
+}
+.ticket_box_table {
+  font-size: 1.3rem;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.65);
+  font-weight: bold;
+  margin: 0 14% !important;
+
+  /* border-bottom: solid 1px rgba(0, 0, 0, 0.5); */
+}
+.ticket_box_table_header {
+  border-bottom: solid 1px rgba(0, 0, 0, 0.5);
+  padding: 1rem 0;
+}
+.ticket_box_row {
+  font-size: 1.3rem;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.65);
+  margin: 0 14% !important;
+  padding-left: 1rem !important;
+}
+.ticket_box_row_header {
+  border-bottom: solid 1px rgba(0, 0, 0, 0.1);
+  padding: 2rem 0 1.5rem 0;
+}
+.ticket_box_line {
+  line-height: 4rem;
+}

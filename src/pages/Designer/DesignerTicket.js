@@ -24,9 +24,12 @@ class DesignerTicket extends Component {
       <div className="container-fluid d">
         <div className="d_bg">
           <div className="d_container">
-            <h1 className="mt-5">이용권 관리</h1>
+            <div style={{ color: '#4c91ba' }} className="u_title ">
+              이용권 관리
+            </div>
+            <div className="dr_title mb-2">보유 이용권</div>
             <div className="row">
-              <div className="col-4 py-2">
+              <div className="col-md-4 col-12 py-2 mx-auto">
                 <TicketCounter
                   count={this.state.tickets.reduce(
                     (accu, pres) => (!pres.expiredAt ? accu + 1 : accu),
@@ -35,9 +38,7 @@ class DesignerTicket extends Component {
                 />
                 <TicketPurchaseButton />
               </div>
-              <div className="col-8">
-                <TicketBox tickets={this.state.tickets} />
-              </div>
+              <TicketBox tickets={this.state.tickets} />
             </div>
           </div>
         </div>
