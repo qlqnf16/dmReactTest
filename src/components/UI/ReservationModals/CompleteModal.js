@@ -65,29 +65,40 @@ class CompleteModal extends Component {
         services = services.substring(1);
       }
       return (
-        <Modal centered isOpen={this.props.isOpen} toggle={this.props.toggle}>
-          <ModalHeader toggle={this.props.toggle}>예약 취소</ModalHeader>
-          <ModalBody>
-            <div>
-              <h2>취소할 서비스 정보</h2>
+        <Modal
+          style={{ maxWidth: '20%' }}
+          centered
+          isOpen={this.props.isOpen}
+          toggle={this.props.toggle}
+        >
+          <ModalBody className="m-4">
+            <p className="m_title">
+              {this.props.reservation._user &&
+                this.props.reservation._user.name}
+            </p>
+            <div className="m_content mb-5">
               <p>
-                막내 :{' '}
-                {this.props.reservation._designer &&
-                  this.props.reservation._designer.name}
-              </p>
-              <p>
-                날짜/시간 :{' '}
+                <span style={{ fontWeight: 'bold' }}>날짜/시간 :</span>{' '}
                 <Moment format="YYYY/MM/DD">
                   {this.props.reservation.date}
                 </Moment>{' '}
                 {since} ~ {until}
               </p>
-              <p>서비스 : {services}</p>
+              <p>
+                <span style={{ fontWeight: 'bold' }}>서비스 :</span> {services}
+              </p>
             </div>
-            <div onClick={this.completeSubmit} className="btn btn-light">
+
+            <div
+              onClick={this.completeSubmit}
+              className="m_button m_button_finish m_button_green"
+            >
               서비스완료
             </div>
-            <div onClick={this.noShowSubmit} className="btn btn-light">
+            <div
+              onClick={this.noShowSubmit}
+              className="m_button m_button_report "
+            >
               노쇼 신고
             </div>
           </ModalBody>

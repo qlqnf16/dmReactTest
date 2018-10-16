@@ -121,60 +121,66 @@ class DesignerReservations extends Component {
     console.log(previousReservations);
 
     return (
-      <div className="container">
-        <h1 className="u_title ">예약 관리</h1>
-        <div className="mb-5 pb-5">
-          <div className="dr_title mb-2">다가오는 예약</div>
-          <div className="row">
-            {futureReservations.map((futureReservation, key) => (
-              <ReservationCard
-                type={'soon'}
-                reservation={futureReservation}
-                cancelHandler={this.cancelReservationHandler}
-                cancelModalToggle={this.cancelModalToggle}
-                completeModalToggle={this.completeModalToggle}
-                key={key}
-              />
-            ))}
+      <div className="container-fluid d">
+        <div className="d_bg">
+          <div className="d_container">
+            <div style={{ color: '#4c91ba' }} className="u_title ">
+              예약 관리
+            </div>
+            <div className="mb-5 pb-5">
+              <div className="dr_title mb-2">다가오는 예약</div>
+              <div className="row">
+                {futureReservations.map((futureReservation, key) => (
+                  <ReservationCard
+                    type={'soon'}
+                    reservation={futureReservation}
+                    cancelHandler={this.cancelReservationHandler}
+                    cancelModalToggle={this.cancelModalToggle}
+                    completeModalToggle={this.completeModalToggle}
+                    key={key}
+                  />
+                ))}
+              </div>
+            </div>
+            <div className=" dr_finish mb-5">
+              <div className="dr_title">지난 예약</div>
+              <div className="row">
+                {previousReservations.map((previousReservation, key) => (
+                  <ReservationCard
+                    type={'finish'}
+                    reservation={previousReservation}
+                    cancelReasonModalToggle={this.cancelReasonModalToggle}
+                    showReviewModalToggle={this.showReviewModalToggle}
+                    key={key}
+                  />
+                ))}
+              </div>
+            </div>
+            <CancelReasonModal
+              isOpen={this.state.cancelReasonModal}
+              toggle={this.cancelReasonModalToggle}
+              reservation={this.state.reservation}
+            />
+            <CancelModal
+              isOpen={this.state.cancelModal}
+              toggle={this.cancelModalToggle}
+              reservation={this.state.reservation}
+              cancelReservationHandler={this.cancelReservationHandler}
+              reloadData={this.reloadData}
+            />
+            <ShowReviewModal
+              isOpen={this.state.showReviewModal}
+              toggle={this.showReviewModalToggle}
+              reservation={this.state.reservation}
+            />
+            <CompleteModal
+              isOpen={this.state.completeModal}
+              toggle={this.completeModalToggle}
+              reservation={this.state.reservation}
+              reloadData={this.reloadData}
+            />
           </div>
         </div>
-        <div className=" dr_finish mb-5">
-          <div className="dr_title">지난 예약</div>
-          <div className="row">
-            {previousReservations.map((previousReservation, key) => (
-              <ReservationCard
-                type={'finish'}
-                reservation={previousReservation}
-                cancelReasonModalToggle={this.cancelReasonModalToggle}
-                showReviewModalToggle={this.showReviewModalToggle}
-                key={key}
-              />
-            ))}
-          </div>
-        </div>
-        <CancelReasonModal
-          isOpen={this.state.cancelReasonModal}
-          toggle={this.cancelReasonModalToggle}
-          reservation={this.state.reservation}
-        />
-        <CancelModal
-          isOpen={this.state.cancelModal}
-          toggle={this.cancelModalToggle}
-          reservation={this.state.reservation}
-          cancelReservationHandler={this.cancelReservationHandler}
-          reloadData={this.reloadData}
-        />
-        <ShowReviewModal
-          isOpen={this.state.showReviewModal}
-          toggle={this.showReviewModalToggle}
-          reservation={this.state.reservation}
-        />
-        <CompleteModal
-          isOpen={this.state.completeModal}
-          toggle={this.completeModalToggle}
-          reservation={this.state.reservation}
-          reloadData={this.reloadData}
-        />
       </div>
     );
   }
