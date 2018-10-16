@@ -160,6 +160,7 @@ class DesignerReservations extends Component {
               isOpen={this.state.cancelReasonModal}
               toggle={this.cancelReasonModalToggle}
               reservation={this.state.reservation}
+              isD={true}
             />
             <CancelModal
               isOpen={this.state.cancelModal}
@@ -167,17 +168,20 @@ class DesignerReservations extends Component {
               reservation={this.state.reservation}
               cancelReservationHandler={this.cancelReservationHandler}
               reloadData={this.reloadData}
+              isD={true}
             />
             <ShowReviewModal
               isOpen={this.state.showReviewModal}
               toggle={this.showReviewModalToggle}
               reservation={this.state.reservation}
+              isD={true}
             />
             <CompleteModal
               isOpen={this.state.completeModal}
               toggle={this.completeModalToggle}
               reservation={this.state.reservation}
               reloadData={this.reloadData}
+              isD={true}
             />
           </div>
         </div>

@@ -2,13 +2,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import Moment from 'react-moment';
+import StarRatings from 'react-star-ratings';
 
 import { Modal, ModalBody } from 'reactstrap';
 
 class ReviewModal extends Component {
   state = {
     content: null,
-    score: null
+    score: 0.0001
+  };
+
+  changeRating = score => {
+    this.setState({ score });
   };
   inputChangeHandler = event => {
     const target = event.target;
@@ -18,6 +23,10 @@ class ReviewModal extends Component {
     this.setState({ [name]: value });
   };
 
+  toggle = () => {
+    this.setState({ score: 0 });
+    this.props.toggle();
+  };
   reviewSubmit = async () => {
     const reviewData = {
       content: this.state.content,
@@ -39,7 +48,7 @@ class ReviewModal extends Component {
 
     await alert('성공적으로 등록되었습니다');
     await this.props.toggle();
-    await this.props.reloadData();
+    await this.reloadData();
   };
   render() {
     if (this.props.reservation) {
@@ -71,7 +80,7 @@ class ReviewModal extends Component {
         services = services.substring(1);
       }
       return (
-        <Modal centered isOpen={this.props.isOpen} toggle={this.props.toggle}>
+        <Modal isOpen={this.props.isOpen} toggle={this.toggle}>
           <ModalBody className="m-4">
             <p className="m_title">예약 정보</p>
             <div className="m_content mb-5">
@@ -92,9 +101,17 @@ class ReviewModal extends Component {
               </p>
             </div>
             <div className="row">
-              <p className="m_title col-3">리뷰</p>
-              <div className="col-9">
-                <input
+              <p className="m_title col-2">리뷰</p>
+              <div className="col-9 m-0">
+                <StarRatings
+                  rating={this.state.score}
+                  starRatedColor="#dd6866"
+                  starEmptycolor="#ffffff"
+                  changeRating={this.changeRating}
+                  starDimension="2rem"
+                  starSpacing="1px"
+                />
+                {/* <input
                   type="range"
                   name="score"
                   id="score"
@@ -102,7 +119,7 @@ class ReviewModal extends Component {
                   max="5"
                   step="0.5"
                   onChange={this.inputChangeHandler}
-                />
+                /> */}
               </div>
             </div>
             <textarea

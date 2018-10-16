@@ -69,7 +69,7 @@ const ReservationCard = props => {
       </div>
     );
     let date = new Date(props.reservation.date);
-    if (new Date().getDate() !== date.getDate()) {
+    if (new Date().getDate() === date.getDate()) {
       dDay = true;
       type = <div className="rc_type">D-day</div>;
       button = (

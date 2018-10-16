@@ -35,11 +35,18 @@ const CancelReasonModal = props => {
     return (
       <Modal centered isOpen={props.isOpen} toggle={props.toggle}>
         <ModalBody className="m-4">
-          <p className="m_title">취소된 서비스 정보</p>
+          <p className={props.isD ? 'm_title m_designer' : 'm_title'}>
+            취소된 서비스 정보
+          </p>
           <div className="m_content mb-5">
             <p>
-              <span style={{ fontWeight: 'bold' }}>막내 :</span>{' '}
-              {props.reservation._designer && props.reservation._designer.name}
+              <span style={{ fontWeight: 'bold' }}>
+                {props.isD ? '고객' : '막내'} :
+              </span>{' '}
+              {props.isD
+                ? props.reservation._user && props.reservation._user.name
+                : props.reservation._designer &&
+                  props.reservation._designer.name}
             </p>
             <p>
               <span style={{ fontWeight: 'bold' }}>날짜/시간 :</span>{' '}
@@ -50,12 +57,21 @@ const CancelReasonModal = props => {
               <span style={{ fontWeight: 'bold' }}>서비스 :</span> {services}
             </p>
           </div>
-          <p className="m_title">서비스 취소 사유</p>
+          <p className={props.isD ? 'm_title m_designer' : 'm_title'}>
+            서비스 취소 사유
+          </p>
           <div className="m_input p-3" name="cancelReason" id="cancelReason">
             {props.reservation.cancelReason}
           </div>
           <div className="text-center">
-            <div className="m_button btn m_button_red" onClick={props.toggle}>
+            <div
+              className={
+                props.isD
+                  ? 'm_button btn m_button_blue'
+                  : 'm_button btn m_button_red'
+              }
+              onClick={props.toggle}
+            >
               확인
             </div>
           </div>

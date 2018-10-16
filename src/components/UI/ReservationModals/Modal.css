@@ -32,6 +32,10 @@
   background-color: #dd6866;
   color: white;
 }
+.m_button.m_button_blue {
+  background-color: #4c91ba;
+  color: white;
+}
 .m_button.m_button_green {
   background-color: #66ce82;
   color: white;
@@ -52,4 +56,8 @@
   text-align: center;
   line-height: 4rem;
   margin: 1rem 0.4rem;
+}
+
+.m_title.m_designer {
+  color: #4c91ba;
 }

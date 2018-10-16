@@ -73,12 +73,19 @@ class CancelModal extends Component {
       return (
         <Modal centered isOpen={this.props.isOpen} toggle={this.props.toggle}>
           <ModalBody className="m-4">
-            <p className="m_title">취소할 서비스 정보</p>
+            <p className={this.props.isD ? 'm_title m_designer' : 'm_title'}>
+              취소할 서비스 정보
+            </p>
             <div className="m_content mb-5">
               <p>
-                <span style={{ fontWeight: 'bold' }}>막내 :</span>{' '}
-                {this.props.reservation._designer &&
-                  this.props.reservation._designer.name}
+                <span style={{ fontWeight: 'bold' }}>
+                  {this.props.isD ? '고객' : '막내'} :
+                </span>{' '}
+                {this.props.isD
+                  ? this.props.reservation._user &&
+                    this.props.reservation._user.name
+                  : this.props.reservation._designer &&
+                    this.props.reservation._designer.name}
               </p>
               <p>
                 <span style={{ fontWeight: 'bold' }}>날짜/시간 :</span>{' '}
@@ -91,7 +98,9 @@ class CancelModal extends Component {
                 <span style={{ fontWeight: 'bold' }}>서비스 :</span> {services}
               </p>
             </div>
-            <p className="m_title">서비스 취소 사유</p>
+            <p className={this.props.isD ? 'm_title m_designer' : 'm_title'}>
+              서비스 취소 사유
+            </p>
             <textarea
               className="m_input"
               name="cancelReason"
@@ -101,7 +110,11 @@ class CancelModal extends Component {
             />
             <div className="text-center">
               <div
-                className="m_button m_button_red btn"
+                className={
+                  this.props.isD
+                    ? 'm_button m_button_blue btn'
+                    : 'm_button m_button_red btn'
+                }
                 onClick={this.cancelReasonSubmit}
               >
                 예약취소

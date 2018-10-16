@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import Moment from 'react-moment';
+import StarRatings from 'react-star-ratings';
 
 const ShowReviewModal = props => {
   if (props.reservation) {
@@ -35,11 +36,18 @@ const ShowReviewModal = props => {
     return (
       <Modal centered isOpen={props.isOpen} toggle={props.toggle}>
         <ModalBody className="m-4">
-          <p className="m_title">내가 쓴 리뷰</p>
+          <p className={props.isD ? 'm_title m_designer' : 'm_title'}>
+            {props.isD ? '리뷰 보기' : '내가 쓴 리뷰'}
+          </p>
           <div className="m_content mb-5">
             <p>
-              <span style={{ fontWeight: 'bold' }}>막내 :</span>{' '}
-              {props.reservation._designer && props.reservation._designer.name}
+              <span style={{ fontWeight: 'bold' }}>
+                {props.isD ? '고객' : '막내'} :
+              </span>{' '}
+              {props.isD
+                ? props.reservation._user && props.reservation._user.name
+                : props.reservation._designer &&
+                  props.reservation._designer.name}
             </p>
             <p>
               <span style={{ fontWeight: 'bold' }}>날짜/시간 :</span>{' '}
@@ -53,6 +61,15 @@ const ShowReviewModal = props => {
               {props.reservation._review && props.reservation._review.createdAt}
             </Moment>
             <p>
+              <StarRatings
+                rating={
+                  props.reservation._review && props.reservation._review.score
+                }
+                starDimension="1.4rem"
+                starSpacing="1px"
+                starRatedColor="#dd6866"
+                starEmptycolor="#ffffff"
+              />
               {props.reservation._review && props.reservation._review.score}
             </p>
             <p className="m_input p-3">
@@ -60,7 +77,14 @@ const ShowReviewModal = props => {
             </p>
           </div>
           <div className="text-center">
-            <div className="m_button m_button_red btn" onClick={props.toggle}>
+            <div
+              className={
+                props.isD
+                  ? 'm_button btn m_button_blue'
+                  : 'm_button btn m_button_red'
+              }
+              onClick={props.toggle}
+            >
               확인
             </div>
           </div>
