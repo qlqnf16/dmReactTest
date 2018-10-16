@@ -1,6 +1,6 @@
 .un_bg {
   width: 10%;
-  height: 293px;
+  height: fit-content;
   position: relative;
   z-index: 4;
   border-bottom-left-radius: 10px;
@@ -42,6 +42,7 @@
   width: fit-content;
   padding-bottom: 4.5px;
   font-weight: bold;
+  border-bottom: solid 1.8px transparent;
 }
 .un_navItem:hover {
   color: #1f3354;
