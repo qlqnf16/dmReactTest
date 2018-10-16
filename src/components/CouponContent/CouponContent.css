@@ -1,0 +1,52 @@
+.cc_bg {
+  width: 87.6%;
+  height: 467px;
+  margin: 5% auto 10% auto;
+  border-radius: 5px;
+  background-image: linear-gradient(
+    138deg,
+    #fffae3,
+    #ffefe3 52%,
+    #ffeee3 59%,
+    #ffe8e3
+  );
+  color: #1f3354;
+  text-align: center;
+  padding: 9.2% 0;
+}
+.cc_1 {
+  font-family: 'Jua', sans-serif;
+  font-size: 4rem;
+  line-height: 1.23;
+  letter-spacing: 0.02rem;
+  margin-bottom: 3.1%;
+}
+.cc_2 {
+  /* font-family: NanumSquareR; */
+  font-size: 5.1rem;
+  line-height: 1.14;
+  letter-spacing: 0.26rem;
+  margin-bottom: 3.1%;
+}
+.cc_3 {
+  font-family: NanumSquareR;
+  font-size: 1.7rem;
+  line-height: 1.12;
+  letter-spacing: 0.17rem;
+  margin-bottom: 3.1%;
+}
+.cc_ticket {
+  width: 23%;
+  position: relative;
+  z-index: 1;
+}
+.cc_num {
+  top: -6.5rem;
+  position: relative;
+  z-index: 5;
+  /* font-family: NanumSquareEB; */
+  font-size: 2.8rem;
+  line-height: 1.14;
+  letter-spacing: 0.14rem;
+  color: #dd6866;
+}
