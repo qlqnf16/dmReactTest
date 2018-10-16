@@ -3,14 +3,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import Moment from 'react-moment';
 
-import {
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  FormGroup
-} from 'reactstrap';
+import { Modal, ModalBody } from 'reactstrap';
 
 class ReviewModal extends Component {
   state = {

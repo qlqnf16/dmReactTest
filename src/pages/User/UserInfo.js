@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import firebase from '../../config/Firebase';
 import UserNav from '../../components/Navigation/UserNav/UserNav';
 import { Form, FormGroup } from 'reactstrap';
+import check_sm from '../../assets/images/check_sm.png';
 
 class UserInfo extends Component {
   state = {
@@ -77,6 +78,25 @@ class UserInfo extends Component {
   }
 
   render() {
+    let isRegister = '';
+    if (!this.props.userData.isRegister) {
+      isRegister = (
+        <div
+          className="btn uif_button uif_phone col-1"
+          onClick={() => this.phoneCert()}
+        >
+          인증
+        </div>
+      );
+    } else {
+      isRegister = (
+        <div className="uif_registered col-1">
+          <img style={{ width: '1.4rem' }} src={check_sm} alt="alt" />
+          인증됨
+        </div>
+      );
+    }
+
     return (
       <div className="container-fluid u">
         <div className="d-flex">
@@ -207,7 +227,7 @@ class UserInfo extends Component {
                   <div className="col-2 if_head uif_head">전화번호</div>
                   <div className="col-9">
                     <input
-                      type="number"
+                      type="tel"
                       name="phoneNumber"
                       id="phoneNumber"
                       onChange={e => this.inputChangeHandler(e)}
@@ -215,22 +235,12 @@ class UserInfo extends Component {
                       className="if_input"
                     />
                   </div>
-                  <div
-                    className="btn uif_button uif_phone col-1"
-                    onClick={() => this.phoneCert()}
-                  >
-                    인증
-                  </div>
+                  {isRegister}
                 </FormGroup>
 
                 <div className="text-center">
                   <div onClick={this.submitHandler} className=" btn uif_button">
-                    <span
-                      style={{
-                        fontWeight: 'bold',
-                        fontSize: '1.4rem'
-                      }}
-                    >
+                    <span style={{ fontWeight: 'bold', fontSize: '1.4rem' }}>
                       저장하기
                     </span>
                   </div>
