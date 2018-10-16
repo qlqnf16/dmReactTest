@@ -34,32 +34,32 @@ const CancelReasonModal = props => {
     }
     return (
       <Modal isOpen={props.isOpen} toggle={props.toggle}>
-        <ModalHeader toggle={props.toggle}>취소 사유</ModalHeader>
-        <ModalBody>
-          <div>
-            <h2>취소할 서비스 정보</h2>
+        <ModalBody className="m-4">
+          <p className="m_title">취소된 서비스 정보</p>
+          <div className="m_content mb-5">
             <p>
-              막내 :{' '}
+              <span style={{ fontWeight: 'bold' }}>막내 :</span>{' '}
               {props.reservation._designer && props.reservation._designer.name}
             </p>
             <p>
-              날짜/시간 :{' '}
+              <span style={{ fontWeight: 'bold' }}>날짜/시간 :</span>{' '}
               <Moment format="YYYY/MM/DD">{props.reservation.date}</Moment>{' '}
               {since} ~ {until}
             </p>
-            <p>서비스 : {services}</p>
             <p>
-              취소자 : {props.reservation.cancelByUser ? '고객' : '디자이너'}
+              <span style={{ fontWeight: 'bold' }}>서비스 :</span> {services}
             </p>
           </div>
-          <h2>서비스 취소 사유</h2>
-          <p>{props.reservation.cancelReason}</p>
+          <p className="m_title">서비스 취소 사유</p>
+          <div className="m_input p-3" name="cancelReason" id="cancelReason">
+            {props.reservation.cancelReason}
+          </div>
+          <div className="text-center">
+            <div className="m_button btn m_button_red" onClick={props.toggle}>
+              확인
+            </div>
+          </div>
         </ModalBody>
-        <ModalFooter>
-          <Button color="primary" onClick={props.toggle}>
-            확인
-          </Button>
-        </ModalFooter>
       </Modal>
     );
   } else {

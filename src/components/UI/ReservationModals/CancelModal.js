@@ -96,6 +96,7 @@ class CancelModal extends Component {
               className="m_input"
               name="cancelReason"
               id="cancelReason"
+              placeholder="서비스를 취소하는 사유를 적어주세요"
               onChange={this.inputChangeHandler}
             />
             <div className="text-center">
