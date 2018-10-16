@@ -33,7 +33,7 @@ const CancelReasonModal = props => {
       services = services.substring(1);
     }
     return (
-      <Modal isOpen={props.isOpen} toggle={props.toggle}>
+      <Modal centered isOpen={props.isOpen} toggle={props.toggle}>
         <ModalBody className="m-4">
           <p className="m_title">취소된 서비스 정보</p>
           <div className="m_content mb-5">

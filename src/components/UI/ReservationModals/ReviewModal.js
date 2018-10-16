@@ -71,7 +71,7 @@ class ReviewModal extends Component {
         services = services.substring(1);
       }
       return (
-        <Modal isOpen={this.props.isOpen} toggle={this.props.toggle}>
+        <Modal centered isOpen={this.props.isOpen} toggle={this.props.toggle}>
           <ModalBody className="m-4">
             <p className="m_title">예약 정보</p>
             <div className="m_content mb-5">

@@ -65,7 +65,7 @@ class CompleteModal extends Component {
         services = services.substring(1);
       }
       return (
-        <Modal isOpen={this.props.isOpen} toggle={this.props.toggle}>
+        <Modal centered isOpen={this.props.isOpen} toggle={this.props.toggle}>
           <ModalHeader toggle={this.props.toggle}>예약 취소</ModalHeader>
           <ModalBody>
             <div>

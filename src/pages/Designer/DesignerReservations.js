@@ -5,7 +5,7 @@ import CancelModal from '../../components/UI/ReservationModals/CancelModal';
 import ShowReviewModal from '../../components/UI/ReservationModals/ShowReviewModal';
 import CompleteModal from '../../components/UI/ReservationModals/CompleteModal';
 import { connect } from 'react-redux';
-
+import './Designer.css';
 import ReservationCard from '../../components/DesignerReservations/ReservationCard';
 
 class DesignerReservations extends Component {
@@ -118,13 +118,13 @@ class DesignerReservations extends Component {
           reservation.isDone
       );
     }
-    console.log(futureReservations);
+    console.log(previousReservations);
 
     return (
       <div className="container">
-        <h1 className="my-5">예약 관리</h1>
-        <div className="m-4">
-          <h4>다가오는 예약</h4>
+        <h1 className="u_title ">예약 관리</h1>
+        <div className="mb-5 pb-5">
+          <div className="dr_title mb-2">다가오는 예약</div>
           <div className="row">
             {futureReservations.map((futureReservation, key) => (
               <ReservationCard
@@ -138,8 +138,8 @@ class DesignerReservations extends Component {
             ))}
           </div>
         </div>
-        <div className="m-4">
-          <h4>완료된 예약</h4>
+        <div className=" dr_finish mb-5">
+          <div className="dr_title">지난 예약</div>
           <div className="row">
             {previousReservations.map((previousReservation, key) => (
               <ReservationCard

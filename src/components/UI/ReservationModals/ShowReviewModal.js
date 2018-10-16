@@ -33,7 +33,7 @@ const ShowReviewModal = props => {
     }
     console.log(props.reservation._review);
     return (
-      <Modal isOpen={props.isOpen} toggle={props.toggle}>
+      <Modal centered isOpen={props.isOpen} toggle={props.toggle}>
         <ModalBody className="m-4">
           <p className="m_title">내가 쓴 리뷰</p>
           <div className="m_content mb-5">

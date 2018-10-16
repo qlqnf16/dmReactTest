@@ -1,0 +1,19 @@
+.rc_back.drc_soon {
+  border-radius: 5px;
+  box-shadow: 1px 2px 15px 0 rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.96);
+}
+.rc_back.drc_finish {
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.03);
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.drc_title {
+  font-size: 2rem;
+  font-weight: bold;
+}
+.drc_title.drc_off {
+  color: rgba(0, 0, 0, 0.5);
+  margin-bottom: 10.6px;
+}

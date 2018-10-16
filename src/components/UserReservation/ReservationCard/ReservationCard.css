@@ -22,6 +22,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  font-weight: bold;
 }
 .rc_button.review {
   background-color: #66ce82;

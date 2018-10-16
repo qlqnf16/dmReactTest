@@ -1,0 +1,13 @@
+.dr_title {
+  font-size: 1.7rem;
+  line-height: 1.13;
+  letter-spacing: 0.8px;
+  color: #1f3354;
+  font-weight: bold;
+  margin-top: 5rem;
+}
+
+.dr_finish {
+  border-top: solid 2px rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
+}
