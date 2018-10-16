@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import firebase from '../config/Firebase';
 import { connect } from 'react-redux';
+import landing from '../assets/images/landing.jpeg';
 
 class Landing extends Component {
   // 디자이너 등록 임시 토글
@@ -50,20 +51,58 @@ class Landing extends Component {
   render() {
     return (
       <div>
+        <div
+          style={{
+            display: 'inline-block',
+            marginTop: '20px',
+            marginBottom: '20px'
+          }}
+        >
+          <span
+            style={{
+              fontSize: '15px',
+              fontWeight: 'bold',
+              marginRight: '20px'
+            }}
+          >
+            디자이너 권한
+          </span>
+          <div
+            className="btn btn-lg btn-primary"
+            onClick={() => this.certification()}
+          >
+            등록
+          </div>
+          <div
+            className="btn btn-lg btn-warning"
+            onClick={() => this.noCertification()}
+          >
+            해제
+          </div>
+        </div>
+        <div style={{ display: 'inline' }}>
+          <span
+            style={{
+              fontSize: '15px',
+              fontWeight: 'bold',
+              marginRight: '20px',
+              marginLeft: '20px'
+            }}
+          >
+            관리자 권한
+          </span>
+          <div className="btn btn-lg btn-success" onClick={() => this.admin()}>
+            등록
+          </div>
+          <div
+            className="btn btn-lg btn-warning"
+            onClick={() => this.noAdmin()}
+          >
+            해제
+          </div>
+        </div>
         <div>
-          <h1>This is Landing</h1>
-        </div>
-        <div className="btn btn-primary" onClick={() => this.certification()}>
-          디자이너 임시 등록
-        </div>
-        <div className="btn btn-warning" onClick={() => this.noCertification()}>
-          등록 해제
-        </div>
-        <div className="ml-5 btn btn-primary" onClick={() => this.admin()}>
-          관리자 임시 등록
-        </div>
-        <div className="btn btn-warning" onClick={() => this.noAdmin()}>
-          등록 해제
+          <img src={landing} alt="landing" />
         </div>
       </div>
     );
