@@ -5,7 +5,7 @@
   color: #1f3354 !important;
   text-decoration: none;
   margin-right: 48px;
-  font-family: "Jua", sans-serif;
+  font-family: 'Jua', sans-serif;
 }
 
 .dropdownMenu {
@@ -16,5 +16,9 @@
   font-size: 1.5rem !important;
   line-height: 1.2 !important;
   margin-right: 60px !important;
-  font-family: "Jua", sans-serif;
+  font-family: 'Jua', sans-serif;
+}
+.message_img {
+  width: 3.6rem;
+  padding-top: 0 !important;
 }
