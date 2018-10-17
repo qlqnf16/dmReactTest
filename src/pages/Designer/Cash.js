@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import CashWant from '../../components/DesignerCash/Want';
+import CashList from '../../components/DesignerCash/List';
 
 class Cash extends Component {
   state = {
@@ -15,6 +16,8 @@ class Cash extends Component {
   };
 
   render() {
+    const component =
+      this.state.select === 'Want' ? <CashWant /> : <CashList />;
     return (
       <div className="container-fluid me pt-2">
         <div className="me_bg">
@@ -40,7 +43,7 @@ class Cash extends Component {
             </span>
           </div>
           <div className="row" style={{ marginTop: '2%' }}>
-            <CashWant />
+            {component}
           </div>
         </div>
       </div>
