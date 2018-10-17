@@ -91,7 +91,7 @@ class Navitems extends Component {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to={'/designer/coupon'} className="">
+            <NavLink tag={Link} to={'/designer/cash'} className="">
               적립금 : 10000캐쉬
             </NavLink>
           </NavItem>
