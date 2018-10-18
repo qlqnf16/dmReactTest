@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 import { FormGroup, Label, Input, Button } from 'reactstrap';
+import Calendar from 'rc-calendar';
+import koKR from 'rc-calendar/lib/locale/ko_KR';
+import 'rc-calendar/assets/index.css';
+import moment from 'moment';
 
 class Schedule extends Component {
   timeSelector = () => {
@@ -48,15 +52,42 @@ class Schedule extends Component {
   };
 
   render() {
+    console.log(moment().add(1, 'month'));
+    const disabledDate = current => {
+      if (!current) {
+        return false;
+      }
+      const nowTime = moment();
+      const oneMonthAfter = moment().add(1, 'month');
+      nowTime.hour(0);
+      nowTime.minute(0);
+      nowTime.second(0);
+      oneMonthAfter.hour(0);
+      oneMonthAfter.minute(0);
+      oneMonthAfter.second(0);
+      return (
+        current.valueOf() < nowTime.valueOf() ||
+        current.valueOf() > oneMonthAfter.valueOf()
+      );
+    };
     return (
       <div>
         <div className="row">
           <FormGroup className="col-6">
-            <Input
+            {/* <Input
               type="date"
               name="date"
               placeholder="date placeholder"
               onChange={this.props.datePick}
+            /> */}
+            <Calendar
+              name="date"
+              type="date"
+              onChange={this.props.datePick}
+              disabledDate={disabledDate}
+              showDateInput="false"
+              locale={koKR}
+              style={{ color: '#1f3354' }}
             />
           </FormGroup>
           <div className="col-6">

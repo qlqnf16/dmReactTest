@@ -8,6 +8,7 @@
     "firebase": "^5.5.0",
     "form-data": "^2.3.2",
     "moment": "^2.22.2",
+    "rc-calendar": "^9.7.10",
     "react": "^16.5.1",
     "react-dom": "^16.5.1",
     "react-firebaseui": "^3.0.7",
