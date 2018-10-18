@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import './PageCss.css';
+import ChatBox from '../components/Message/ChatBox';
 
 class Chat extends Component {
   render() {
@@ -14,7 +15,10 @@ class Chat extends Component {
                 전체메시지
               </Link>
             </div>
-            <div className="col-md-10">채팅내용을 쓰세용</div>
+            <div className="col-md-8">
+              <ChatBox />
+            </div>
+            <div className="col-md-2" />
           </div>
         </div>
       </div>
