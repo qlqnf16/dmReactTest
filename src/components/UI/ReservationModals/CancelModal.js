@@ -4,14 +4,7 @@ import axios from 'axios';
 import Moment from 'react-moment';
 import './Modal.css';
 
-import {
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  FormGroup
-} from 'reactstrap';
+import { Modal, ModalBody } from 'reactstrap';
 
 class CancelModal extends Component {
   inputChangeHandler = event => {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Form, Button } from 'reactstrap';
+import { Form } from 'reactstrap';
 import InfoForm from '../../components/InfoForm/InfoForm';
 import InfoFormExtended from '../../components/InfoForm/InfoFormExtended';
 import { connect } from 'react-redux';

@@ -51,7 +51,7 @@ class DetailCard extends Component {
   genderFormat = type => {
     switch (type) {
       case 'both':
-        return '남자,여자';
+        return '남자, 여자';
       case 'male':
         return '남자';
       case 'female':
@@ -94,8 +94,10 @@ class DetailCard extends Component {
       );
       dcard += 'dcard_selected';
     }
-    const mustParse = must.map(m => this.typeParse(m));
-    const noParse = no.map(m => this.typeParse(m));
+    let mustParse = must.map(m => this.typeParse(m));
+    let noParse = no.map(m => this.typeParse(m));
+    if (!mustParse.length) mustParse = '없음';
+    if (!noParse.length) noParse = '없음';
 
     return (
       <div className={dcard}>

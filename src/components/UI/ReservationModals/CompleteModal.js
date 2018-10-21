@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import Moment from 'react-moment';
 
-import { Modal, ModalHeader, ModalBody } from 'reactstrap';
+import { Modal, ModalBody } from 'reactstrap';
 
 class CompleteModal extends Component {
   inputChangeHandler = event => {

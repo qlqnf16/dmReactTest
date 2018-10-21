@@ -51,7 +51,7 @@ class Navitems extends Component {
           </UncontrolledDropdown>
           <NavItem>
             <NavLink tag={Link} to={'/message'} className=" message_img">
-              <img src={message_x} style={{ width: '100%' }} />
+              <img alt="alt" src={message_x} style={{ width: '100%' }} />
             </NavLink>
           </NavItem>
         </Fragment>
@@ -97,7 +97,7 @@ class Navitems extends Component {
           </NavItem>
           <NavItem>
             <NavLink tag={Link} to={'/message'} className=" message_img">
-              <img src={message_x} style={{ width: '100%' }} />
+              <img alt="alt" src={message_x} style={{ width: '100%' }} />
             </NavLink>
           </NavItem>
           <NavItem>

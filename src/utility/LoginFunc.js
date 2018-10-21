@@ -99,7 +99,7 @@ export const googleLogin = async () => {
 
 export const kakao_login_success = async (response, a) => {
   // 카카오톡 로그인으로 카카오톡 토큰 발급
-  const userToken = response.response.access_token;
+  const userToken = { userToken: response.response.access_token };
   console.log(userToken);
 
   try {

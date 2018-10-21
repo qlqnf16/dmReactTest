@@ -1,6 +1,7 @@
 import React from 'react';
 import Moment from 'react-moment';
 import './ReservationCard.css';
+import { Link } from 'react-router-dom';
 import calendar_o from '../../../assets/images/calendar_o.png';
 import calendar_x from '../../../assets/images/calendar_x.png';
 import place_o from '../../../assets/images/place_o.png';
@@ -107,6 +108,7 @@ const ReservationCard = props => {
 
   // return
   if (props.reservation) {
+    console.log(props.reservation);
     return (
       <div className={`col-12 col-md-6 col-lg-4 my-2 mx-0 px-2`}>
         <div className={`${props.type} rc_back`}>
@@ -164,9 +166,17 @@ const ReservationCard = props => {
           </div>
           <div className="d-flex justify-content-between">
             {button}
-            <div className="rc_button" style={{ marginLeft: '22px' }}>
-              더보기
-            </div>
+            <Link
+              to={`/designerdetail/${props.reservation._designer._recruit._id}`}
+              className="rc_button"
+              style={{
+                color: '#1f3354',
+                textDecoration: 'none',
+                marginLeft: '22px'
+              }}
+            >
+              <div>더보기</div>
+            </Link>
           </div>
           <div
             className={

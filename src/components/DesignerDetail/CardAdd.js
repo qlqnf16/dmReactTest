@@ -111,7 +111,7 @@ class CardAdd extends Component {
     else {
       dyeButton = 'toggle_button';
       dyeClick = () => this.toggle('dye');
-      if (this.state.cut) dyeButton += ' toggle_on';
+      if (this.state.dye) dyeButton += ' toggle_on';
     }
 
     let price = 0;
@@ -136,7 +136,6 @@ class CardAdd extends Component {
       service += '/ 염색';
       serviceFormat['dye'] = this.props.price.dye;
     }
-
     service = service.substring(1);
 
     console.log(this.props);
