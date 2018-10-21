@@ -1,5 +1,6 @@
 import React from 'react';
 import Moment from 'react-moment';
+import { Link } from 'react-router-dom';
 import './ReservationCard.css';
 import calendar_o from '../../assets/images/calendar_o.png';
 import calendar_x from '../../assets/images/calendar_x.png';
@@ -9,7 +10,6 @@ import scissors_o from '../../assets/images/scissors_o.png';
 import scissors_x from '../../assets/images/scissors_x.png';
 
 const ReservationCard = props => {
-  console.log(props);
   let since = '';
   let until = '';
   let services = '';
@@ -156,9 +156,17 @@ const ReservationCard = props => {
         </div> */}
         <div className="mt-4 d-flex justify-content-between">
           {button}
-          <div className="rc_button" style={{ marginLeft: '1.3rem' }}>
-            더보기
-          </div>
+          <Link
+            to={`/designerdetail/${props.reservation._designer._recruit._id}`}
+            className="rc_button"
+            style={{
+              color: '#1f3354',
+              textDecoration: 'none',
+              marginLeft: '22px'
+            }}
+          >
+            <div>더보기</div>
+          </Link>
         </div>
       </div>
     </div>

@@ -32,9 +32,21 @@ class InfoForm extends Component {
         day.splice(28, 3);
       }
     }
-    let m = month.map(m => <option value={m}>{m}월</option>);
-    let d = day.map(d => <option value={d}>{d}일</option>);
-    let y = year.map(y => <option value={y}>{y}년</option>);
+    let m = month.map((m, key) => (
+      <option key={key} value={m}>
+        {m}월
+      </option>
+    ));
+    let d = day.map((d, key) => (
+      <option key={key} value={d}>
+        {d}일
+      </option>
+    ));
+    let y = year.map((y, key) => (
+      <option key={key} value={y}>
+        {y}년
+      </option>
+    ));
 
     let calendar = (
       <div className="row m-0">
