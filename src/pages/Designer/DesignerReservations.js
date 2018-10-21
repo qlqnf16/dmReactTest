@@ -20,10 +20,6 @@ class DesignerReservations extends Component {
       completeModal: false,
       reservation: null
     };
-
-    this.cancelModalToggle = this.cancelModalToggle.bind(this);
-    this.cancelReasonModalToggle = this.cancelReasonModalToggle.bind(this);
-    this.showReviewModalToggle = this.showReviewModalToggle.bind(this);
   }
 
   showReviewModalToggle = reservation => {

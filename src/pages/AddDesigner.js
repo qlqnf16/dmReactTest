@@ -12,18 +12,25 @@ class AddDesigner extends Component {
     super(props);
 
     const userData = this.props.userData;
-
+    const {
+      name,
+      birthday,
+      email,
+      phoneNumber,
+      untilDesigner,
+      career,
+      careerDetail
+    } = this.props.userData;
     this.state = {
-      name: userData.name,
-
-      year: userData.birthday.year,
-      month: userData.birthday.month,
-      day: userData.birthday.day,
-      email: userData.email,
-      phoneNumber: userData.phoneNumber,
-      untilDesigner: userData.untilDesigner,
-      career: userData.career,
-      careerDetail: userData.careerDetail,
+      name,
+      email,
+      phoneNumber,
+      untilDesigner,
+      career,
+      careerDetail,
+      year: birthday.year,
+      month: birthday.month,
+      day: birthday.day,
       certImg1: null,
       certFile1: null,
       certImg2: null,

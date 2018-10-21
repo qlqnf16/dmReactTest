@@ -9,17 +9,25 @@ class DesignerInfo extends Component {
   constructor(props) {
     super(props);
 
-    const userData = this.props.userData;
+    const {
+      name,
+      birthday,
+      email,
+      phoneNumber,
+      untilDesigner,
+      career,
+      careerDetail
+    } = this.props.userData;
     this.state = {
-      name: userData.name,
-      year: userData.birthday.year,
-      month: userData.birthday.month,
-      day: userData.birthday.day,
-      email: userData.email,
-      phoneNumber: userData.phoneNumber,
-      untilDesigner: userData.untilDesigner,
-      career: userData.career,
-      careerDetail: userData.careerDetail,
+      name,
+      year: birthday.year,
+      month: birthday.month,
+      day: birthday.day,
+      email,
+      phoneNumber,
+      untilDesigner,
+      career,
+      careerDetail,
       profileImg: null,
       profileFile: null,
       certImg1: null,

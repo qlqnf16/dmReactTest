@@ -6,16 +6,20 @@ import { Form, FormGroup } from 'reactstrap';
 import check_sm from '../../assets/images/check_sm.png';
 
 class UserInfo extends Component {
-  state = {
-    name: this.props.userData.name,
-    email: this.props.userData.email,
-    birthday: this.props.userData.birthday,
-    phoneNumber: this.props.userData.phoneNumber,
-    gender: this.props.userData.gender,
-    year: this.props.userData.birthday.year,
-    month: this.props.userData.birthday.month,
-    day: this.props.userData.birthday.day
-  };
+  constructor(props) {
+    super(props);
+    const { name, email, birthday, phoneNumber, gender } = this.props.userData;
+    this.state = {
+      name,
+      email,
+      birthday,
+      phoneNumber,
+      gender,
+      year: birthday.year,
+      month: birthday.month,
+      day: birthday.day
+    };
+  }
 
   inputChangeHandler = event => {
     const target = event.target;
@@ -35,14 +39,6 @@ class UserInfo extends Component {
       phoneNumber,
       gender
     };
-    //   name: this.state.name,
-    //   birthday: {
-    //     year: this.state.year
-    //   },
-    //   email: this.state.email,
-    //   phoneNumber: this.state.phoneNumber,
-    //   gender: this.state.gender
-    // };
     if (!this.props.userData.isRegister)
       return alert('휴대폰 인증을 진행해주세요');
     await firebase
