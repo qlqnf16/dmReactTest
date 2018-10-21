@@ -5,6 +5,12 @@
   position: relative;
 }
 
+@media screen and (max-width: 770px) {
+  .urc_bg {
+    padding: 1rem;
+  }
+}
+
 .urc_bg2 {
   padding: 50px 57.5px 0 16.5px;
 }

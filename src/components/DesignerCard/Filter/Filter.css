@@ -64,3 +64,9 @@ select {
   margin-top: 10.8px;
   font-family: NanumSquare;
 }
+
+@media screen and (min-width: 770px) {
+  .filter-responsive {
+    height: 200px;
+  }
+}

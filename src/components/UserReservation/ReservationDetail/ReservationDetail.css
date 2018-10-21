@@ -1,9 +1,15 @@
 .rd_back {
   padding: 3rem;
-  background-size: contain;
+  padding-left: 9rem !important;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
 }
 
+@media screen and (max-width: 992px) {
+  .rd_back {
+    padding-left: 6rem !important;
+  }
+}
 .rd_title {
   font-size: 1.4rem;
   line-height: 1.14;
