@@ -24,9 +24,6 @@
   .modal_button {
     width: 50vw;
   }
-  .modal_b {
-    /* width: 100%; */
-  }
 }
 .modal_footer {
   margin: 1rem 2rem 0 2rem;
@@ -46,6 +43,19 @@ input[id='termsOfUse']:checked + label {
   background-color: #4c91ba;
 }
 input[id='termsOfUse'] {
+  display: none;
+}
+input[id='infoPolicy'] + label {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #bcbcbc;
+  cursor: pointer;
+}
+input[id='infoPolicy']:checked + label {
+  background-color: #4c91ba;
+}
+input[id='infoPolicy'] {
   display: none;
 }
 .modal_check {

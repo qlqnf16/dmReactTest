@@ -37,7 +37,9 @@ class MyModal extends Component {
       text: '아직 드리머리 회원이 아니신가요?',
       subText: ' 후, 맞춤 헤어 서비스를 받아보세요',
       subTitle: null,
-      isLogin: true
+      isLogin: true,
+      infoPolicy: true,
+      termsOfUse: true
     });
   };
   changeToSignUp = () => {
@@ -46,8 +48,39 @@ class MyModal extends Component {
       text: '이미 드리머리 계정이 있나요? ',
       subText: null,
       subTitle: '간단한 회원가입으로 서비스를 이용해보세요',
-      isLogin: false
+      isLogin: false,
+      infoPolicy: false,
+      termsOfUse: false
     });
+  };
+
+  checkboxHandler = event => {
+    const target = event.target;
+    const name = target.name;
+    this.setState({
+      [name]: target.checked
+    });
+  };
+
+  login = (type, props) => {
+    if (this.state.infoPolicy && this.state.termsOfUse) {
+      switch (type) {
+        case 'google':
+          LoginFunc.googleLogin();
+          break;
+        case 'facebook':
+          LoginFunc.facebookLogin();
+          break;
+        case 'kakao':
+          props.onClick();
+          break;
+
+        default:
+          break;
+      }
+    } else {
+      alert('필수 체크');
+    }
   };
 
   render() {
@@ -84,7 +117,7 @@ class MyModal extends Component {
             </div>
 
             {/* Modal Button */}
-            <div className="btn modal_b" onClick={LoginFunc.googleLogin}>
+            <div className="btn modal_b" onClick={() => this.login('google')}>
               <img
                 src={
                   this.state.isLogin ? googleLoginButton : googleSignUpButton
@@ -93,7 +126,7 @@ class MyModal extends Component {
                 className="modal_button"
               />
             </div>
-            <div className="btn modal_b" onClick={LoginFunc.facebookLogin}>
+            <div className="btn modal_b" onClick={() => this.login('facebook')}>
               <img
                 src={
                   this.state.isLogin
@@ -105,12 +138,27 @@ class MyModal extends Component {
               />
             </div>
             <KakaoLogin
-              className="btn modal_b"
               jsKey={KaKaoKey}
               onSuccess={LoginFunc.kakao_login_success}
-              onFailure={LoginFunc.kakao_login_success}
+              onFailure={LoginFunc.kakao_login_fail}
               getProfile={true}
-              buttonText={kakaoButton}
+              render={props => (
+                <div
+                  className="btn modal_b"
+                  onClick={e => {
+                    e.preventDefault();
+                    this.login('kakao', props);
+                  }}
+                >
+                  <img
+                    src={
+                      this.state.isLogin ? kakaoLoginButton : kakaoSignUpButton
+                    }
+                    alt="alt"
+                    className="modal_button"
+                  />
+                </div>
+              )}
             />
 
             {/* Modal check */}
@@ -121,7 +169,7 @@ class MyModal extends Component {
                     type="checkbox"
                     id="termsOfUse"
                     name="termsOfUse"
-                    value="termsOfUse"
+                    onChange={this.checkboxHandler}
                   />
                   <label for="termsOfUse" />
                 </div>
@@ -140,11 +188,11 @@ class MyModal extends Component {
                 <div>
                   <input
                     type="checkbox"
-                    id="termsOfUse"
-                    name="termsOfUse"
-                    value="termsOfUse"
+                    id="infoPolicy"
+                    name="infoPolicy"
+                    onChange={this.checkboxHandler}
                   />
-                  <label for="termsOfUse" />
+                  <label for="infoPolicy" />
                 </div>
                 <div
                   style={{
