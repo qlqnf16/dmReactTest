@@ -21,7 +21,6 @@ export { default as AddDesigner } from './AddDesigner';
 
 // 손님 서비스
 export { default as Coupon } from './User/Coupon';
-export { default as InfoDetail } from './User/InfoDetail';
 export { default as MyTicket } from './User/MyTicket';
 export { default as LikeDesigner } from './User/LikeDesigner';
 export { default as Reservations } from './User/Reservations';

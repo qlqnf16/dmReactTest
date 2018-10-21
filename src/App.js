@@ -23,7 +23,6 @@ import {
   DesignerTicket,
   Schedule,
   WhyDreamary,
-  InfoDetail,
   AdminUserList,
   AdminDesignerList,
   AdminReservationList,
@@ -220,11 +219,6 @@ class App extends Component {
               path="/userInfo"
               component={this.props.userData.uid ? UserInfo : WrongAccess}
             />
-            <Route
-              path="/infoDetail"
-              component={this.props.userData.uid ? InfoDetail : WrongAccess}
-            />
-
             {/* 디자이너 아닌 user가 url로 접근시 WrongAccess 렌더링  */}
             <Route
               path="/designer/coupon"
