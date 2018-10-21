@@ -48,7 +48,7 @@ class InfoForm extends Component {
                 name="gender"
                 value="female"
                 onChange={this.props.changeInput}
-                className="genderRadio"
+                className="genderRadio if_input"
               />
               여
             </label>
@@ -70,21 +70,21 @@ class InfoForm extends Component {
         <FormGroup row>
           <div className="col-3 if_head">생년월일</div>
           <div className="col-9">
-            <div className="d-flex justify-content-left">
-              <select>
+            <div className="row m-0">
+              <select className="if_input col-lg-2 col-md-3">
+                <option>1994</option>
+                <option>1995</option>
+                <option>1996</option>
+              </select>
+              <select className="if_input col-lg-2 col-md-3">
                 <option>4월</option>
                 <option>10월</option>
                 <option>12월</option>
               </select>
-              <select>
+              <select className="if_input col-lg-2 col-md-3">
                 <option>21일</option>
                 <option>27일</option>
                 <option>10일</option>
-              </select>
-              <select>
-                <option>1994</option>
-                <option>1995</option>
-                <option>1996</option>
               </select>
             </div>
             {/* <input
@@ -103,7 +103,7 @@ class InfoForm extends Component {
           <div className="col-3 if_head">전화번호</div>
           <div className="col-9">
             <input
-              type="number"
+              type="tel"
               name="phoneNumber"
               id="phoneNumber"
               onChange={this.props.changeInput}
@@ -115,24 +115,30 @@ class InfoForm extends Component {
         <FormGroup row>
           <div className="col-3 if_head">지역/샵주소</div>
           <div className="col-9 d-flex justify-content-left">
-            <input
-              type="text"
+            <select
+              name="city"
+              id="city"
+              className="if_input"
+              style={{ width: '27%' }}
+              onChange={this.props.changeInput}
+            >
+              <option>-도/시</option>
+              <option>서울</option>
+              <option>경기</option>
+              <option>인천</option>
+            </select>
+            <select
               name="region"
               id="region"
-              placeholder="지역"
-              onChange={this.props.changeInput}
               className="if_input"
               style={{ width: '27%' }}
-            />
-            <input
-              type="text"
-              name="shopName"
-              id="shopName"
-              placeholder="샵이름"
               onChange={this.props.changeInput}
-              className="if_input"
-              style={{ width: '27%' }}
-            />
+            >
+              <option>-시/구-</option>
+              <option>강남구</option>
+              <option>강서구</option>
+              <option>성북구</option>
+            </select>
             <input
               type="text"
               name="shop"
@@ -145,11 +151,7 @@ class InfoForm extends Component {
           </div>
         </FormGroup>
         <FormGroup row>
-          <div className="col-3 if_head">
-            디자이너까지
-            <br />
-            남은 기간
-          </div>
+          <div className="col-3 if_head">디자이너까지 남은 기간</div>
           <div className="col-9 if_makeFlex">
             <input
               type="number"
@@ -242,18 +244,18 @@ class InfoForm extends Component {
         </FormGroup>
         <FormGroup row>
           <div className="col-3 if_head">면허증/자격증</div>
-          <div className="col-9">
+          <div className="col-9 pt-3">
             <ImgPreview url={this.props.certImg1} />
             <ImgPreview url={this.props.certImg2} />
             <div className="row">
               <input
-                className="col-6"
+                className="col-12 col-md-6"
                 type="file"
                 name="cert1"
                 onChange={this.props.imgChange}
               />
               <input
-                className="col-6"
+                className="col-12 col-md-6"
                 type="file"
                 name="cert2"
                 onChange={this.props.imgChange}

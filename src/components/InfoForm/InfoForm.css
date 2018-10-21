@@ -48,7 +48,8 @@
   letter-spacing: 0.13rem;
   color: #1f3354;
   text-align: right;
-  font-family: NanumSquareEB;
+  font-weight: bold;
+  line-height: 3;
 }
 
 .if_file .abel {

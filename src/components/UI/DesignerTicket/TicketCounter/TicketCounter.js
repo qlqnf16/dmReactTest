@@ -1,10 +1,12 @@
 import React from 'react';
+import './TicketCounter.css';
+import Ticket from '../../../../assets/images/ticket.png';
 
 const TicketCounter = props => (
-  <div className="border">
-    <h5> 보유 이용권</h5>
-    {/* <img /> 티켓이미지 */}
-    <span>{props.count}개</span>
+  <div className="tc_box">
+    <img src={Ticket} className="tc_ticket" />
+    <p className="tc_text">1개월 이용권</p>
+    <div className="tc_number">2018/10/01~ 2018/10/31</div>
   </div>
 );
 

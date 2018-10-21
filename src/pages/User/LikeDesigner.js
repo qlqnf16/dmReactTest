@@ -34,12 +34,12 @@ class LikeDesigner extends Component {
       ));
     }
     return (
-      <div className="container">
-        <div className="row mt-5">
+      <div className="container-fluid u">
+        <div className="d-flex" style={{ minHeight: '70vh' }}>
           <UserNav />
-          <div className="col-10">
-            <h1>찜한 막내</h1>
-            <div>
+          <div className="u_bg">
+            <div className="u_container">
+              <div className="u_title">찜한막내</div>
               <h3>찜한 막내 모아보기</h3>
               <CardDeck className="m-5">
                 {recruits}

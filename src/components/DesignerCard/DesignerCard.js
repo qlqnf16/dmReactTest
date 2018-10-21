@@ -17,7 +17,7 @@ const DesginerCard = props => {
   console.log(recruit);
   if (recruit) {
     return (
-      <Col className="m-0 p-1 " xs="3">
+      <Col className="m-0 p-1 " xs="12" sm="6" md="4" lg="3">
         <Link to={`/designerdetail/${recruit._id}`} className="hover-effect">
           <Card className="m-0 border-0" style={{ textDecoration: 'none' }}>
             <CardHeader className="p-0">

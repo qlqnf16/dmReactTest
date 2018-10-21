@@ -7,6 +7,7 @@ export { default as Reservation } from './Reservation';
 export { default as ReservationConfirm } from './ReservationConfirm';
 export { default as Message } from './Message';
 export { default as Chat } from './Chat';
+export { default as AddDesigner } from './AddDesigner';
 
 // 디자이너 서비스
 export { default as WhyDreamary } from './Designer/WhyDreamary';
@@ -17,7 +18,7 @@ export { default as Schedule } from './Designer/Schedule';
 export { default as DesignerTicket } from './Designer/DesignerTicket';
 export { default as DesignerInfo } from './Designer/DesignerInfo';
 export { default as DesignerCoupon } from './Designer/DesignerCoupon';
-export { default as AddDesigner } from './AddDesigner';
+export { default as Cash } from './Designer/Cash';
 
 // 손님 서비스
 export { default as Coupon } from './User/Coupon';

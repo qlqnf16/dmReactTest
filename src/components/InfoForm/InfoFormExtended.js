@@ -7,35 +7,49 @@ class InfoFormExtended extends Component {
     return (
       <Fragment>
         <FormGroup row>
-          <Label for="profile" sm={2}>
-            프로필 사진
-          </Label>
-          <Col sm={10}>
-            <div>
-              <ImgPreview url={this.props.profileImg} />
-            </div>
+          <div className="col-3 if_head">프로필 사진</div>
+          <div className="col-9 pt-3">
+            <ImgPreview url={this.props.profileImg} />
             <input
               type="file"
               name="profileImg"
               onChange={this.props.imgChange}
             />
-          </Col>
+          </div>
         </FormGroup>
         <FormGroup row>
-          <Label for="profileDetail" sm={2}>
-            자기소개
-          </Label>
-          <Col sm={10}>
-            <Input
-              type="textarea"
+          <div className="col-3 if_head">자기소개</div>
+          <div className="col-9">
+            <textarea
               name="introduce"
               id="introduce"
               onChange={this.props.changeInput}
               value={this.props.state.introduce}
+              className="if_input"
+              style={{ height: '7rem' }}
             />
-          </Col>
+          </div>
         </FormGroup>
         <FormGroup row>
+          <div className="col-3 if_head">포트폴리오</div>
+          <div className="col-9 pt-3">
+            {this.props.num > 0
+              ? this.props.portfolioImg.map((url, i) => (
+                  <ImgPreview
+                    url={url}
+                    key={i}
+                    deletePortfolio={this.props.deletePortfolio}
+                  />
+                ))
+              : null}
+            <input
+              type="file"
+              name="portfolio"
+              onChange={this.props.imgChange}
+            />
+          </div>
+        </FormGroup>
+        {/* <FormGroup row>
           <Label for="portfolio" sm={2}>
             포트폴리오
           </Label>
@@ -57,7 +71,7 @@ class InfoFormExtended extends Component {
               onChange={this.props.imgChange}
             />
           </Col>
-        </FormGroup>
+        </FormGroup> */}
       </Fragment>
     );
   }

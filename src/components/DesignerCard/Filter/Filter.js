@@ -1,16 +1,16 @@
-import React from "react";
-import "./Filter.css";
+import React from 'react';
+import './Filter.css';
 
 const Filter = props => (
   <div
-    style={{ height: 200 }}
-    className="col-12 col-md-3 form-row d-flex align-items-baseline"
+    // style={{ height: 200 }}
+    className="col-12 col-md-3 form-row d-flex align-items-baseline filter-responsive"
   >
     <div className="col-md-5">
       <div className="filterTitle">성별</div>
       <div className="d-inline">
         <label
-          className={props.checked === "male" ? "gradio active" : "gradio"}
+          className={props.checked === 'male' ? 'gradio active' : 'gradio'}
         >
           <input
             type="radio"
@@ -23,7 +23,7 @@ const Filter = props => (
           남
         </label>
         <label
-          className={props.checked === "female" ? "gradio active" : "gradio"}
+          className={props.checked === 'female' ? 'gradio active' : 'gradio'}
         >
           <input
             type="radio"
@@ -31,7 +31,7 @@ const Filter = props => (
             name="gender"
             value="female"
             onChange={props.filterChangeHandler}
-            checked={props.checked === "female"}
+            checked={props.checked === 'female'}
             className="genderRadio"
           />
           여
@@ -62,19 +62,19 @@ const Filter = props => (
     <div className="col-md-11 m-auto">
       <div
         className="d-flex justify-content-between"
-        style={{ marginTop: "15px" }}
+        style={{ marginTop: '15px' }}
       >
         <div>
           싫어요
-          <div style={{ fontSize: "2rem" }}>😟👎</div>
+          <div style={{ fontSize: '2rem' }}>😟👎</div>
         </div>
         <div>
           상관없어요
-          <div style={{ fontSize: "2rem" }}>😐💬</div>
+          <div style={{ fontSize: '2rem' }}>😐💬</div>
         </div>
         <div>
           받을래요
-          <div style={{ fontSize: "2rem" }}>😀👍</div>
+          <div style={{ fontSize: '2rem' }}>😀👍</div>
         </div>
       </div>
       <div className="d-flex justify-content-between" />

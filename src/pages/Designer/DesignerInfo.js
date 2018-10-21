@@ -131,8 +131,10 @@ class DesignerInfo extends Component {
       <div className="container-fluid d">
         <div className="d_bg">
           <div className="d_container">
-            <h1 className="mt-5">회원정보 수정</h1>
-            <Form className="m-5">
+            <div style={{ color: '#4c91ba' }} className="u_title ">
+              회원정보 수정
+            </div>
+            <Form className="m-5 d_info">
               <InfoForm
                 state={this.state}
                 certImg1={this.state.certImg1}
@@ -141,6 +143,7 @@ class DesignerInfo extends Component {
                 certFile2={this.state.certFile2}
                 imgChange={e => this.handleImgChange(e)}
                 changeInput={e => this.handleInputChange(e)}
+                checked={!this.state.gender ? 'male' : this.state.gender}
               />
               <InfoFormExtended
                 state={this.state}
@@ -154,9 +157,9 @@ class DesignerInfo extends Component {
                 changeInput={e => this.handleInputChange(e)}
               />
               <div className="text-center">
-                <Button className="m-5" onClick={this.submitHandler}>
+                <div className="btn dif_button" onClick={this.submitHandler}>
                   등록하기
-                </Button>
+                </div>
               </div>
             </Form>
           </div>

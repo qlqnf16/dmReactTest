@@ -28,3 +28,17 @@
   margin: 0;
   padding: 3rem 0 2rem 5rem;
 }
+.d_info {
+  padding-right: 15%;
+}
+.dif_button {
+  border-radius: 6px;
+  background-color: #4c91ba;
+  width: 12rem;
+  height: 5rem;
+  color: white;
+  line-height: 4rem !important;
+  font-size: 1.4rem !important;
+  font-weight: bold !important;
+  margin: 4rem 0 4rem 14rem;
+}

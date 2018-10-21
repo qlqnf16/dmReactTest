@@ -3,6 +3,7 @@ import Schedule from './Schedule/Schedule';
 import ScheduleCard from './ScheduleCard/ScheduleCard';
 import TextInfo from '../TextInfo';
 import axios from 'axios';
+import moment from 'moment';
 
 import { connect } from 'react-redux';
 
@@ -47,12 +48,12 @@ class ScheduleBox extends Component {
   };
 
   timeDefault = event => {
-    this.setState({ time: 1 });
-    const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
-
-    this.setState({ [name]: value });
+    // const target = event.target;
+    // const value = target.type === 'checkbox' ? target.checked : target.value;
+    // const name = target.name;
+    const time = event._d.getTime();
+    // this.setState({ [name]: value });
+    this.setState({ time: 1, date: time });
   };
   sinces = [];
   untils = [];

@@ -11,6 +11,7 @@ import {
   Reservation,
   ReservationConfirm,
   Message,
+  Cash,
   Chat,
   Coupon,
   LikeDesigner,
@@ -246,6 +247,12 @@ class App extends Component {
               path="/designer/whyDreamary"
               component={this.props.userData.isD ? WhyDreamary : WrongAccess}
             />
+            <Route
+              path="/designer/cash"
+              component={this.props.userData.isD ? Cash : WrongAccess}
+            />
+
+            {/* TODO: admin */}
             <Route
               path="/admin/userList"
               component={this.props.userData.isD ? AdminUserList : WrongAccess}

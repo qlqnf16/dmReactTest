@@ -1,0 +1,19 @@
+.tc_button {
+  margin: 0 auto;
+  align-items: center;
+  text-align: center;
+  margin-top: 30vh;
+}
+.tc_button_purchase {
+  border-radius: 5px;
+  background-color: #4c91ba;
+  width: 10rem;
+  color: white;
+}
+
+@media screen and (max-width: 800px) {
+  .tc_button {
+    margin-top: 5vh;
+    margin-bottom: 5rem;
+  }
+}
