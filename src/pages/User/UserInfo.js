@@ -11,7 +11,10 @@ class UserInfo extends Component {
     email: this.props.userData.email,
     birthday: this.props.userData.birthday,
     phoneNumber: this.props.userData.phoneNumber,
-    gender: this.props.userData.gender
+    gender: this.props.userData.gender,
+    year: this.props.userData.birthday.year,
+    month: this.props.userData.birthday.month,
+    day: this.props.userData.birthday.day
   };
 
   inputChangeHandler = event => {
@@ -24,19 +27,29 @@ class UserInfo extends Component {
 
   submitHandler = async () => {
     const { uid } = firebase.auth().currentUser;
+    const { name, year, month, day, email, phoneNumber, gender } = this.state;
     const firebaseUserData = {
-      name: this.state.name,
-      birthday: this.state.birthday,
-      email: this.state.email,
-      phoneNumber: this.state.phoneNumber,
-      gender: this.state.gender
+      name,
+      birthday: { year, month, day },
+      email,
+      phoneNumber,
+      gender
     };
+    //   name: this.state.name,
+    //   birthday: {
+    //     year: this.state.year
+    //   },
+    //   email: this.state.email,
+    //   phoneNumber: this.state.phoneNumber,
+    //   gender: this.state.gender
+    // };
     if (!this.props.userData.isRegister)
       return alert('휴대폰 인증을 진행해주세요');
     await firebase
       .database()
       .ref('users/' + uid)
       .update(firebaseUserData);
+    await alert('저장되었습니다!');
   };
 
   phoneCert() {
@@ -96,6 +109,57 @@ class UserInfo extends Component {
         </div>
       );
     }
+    // 달력 만들기
+    let month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+    let day = [];
+    let year = [];
+    for (let i = 1; i < 32; i++) {
+      day.push(i);
+    }
+    for (let i = 2018; i > 1920; i--) {
+      year.push(i);
+    }
+    if (['4', '6', '9', '11'].includes(this.state.month)) {
+      day.pop();
+    } else if (this.state.month === '2') {
+      if (Number(this.state.year) % 4 === 0) {
+        day.splice(29, 2);
+      } else {
+        day.splice(28, 3);
+      }
+    }
+    let m = month.map(m => <option value={m}>{m}월</option>);
+    let d = day.map(d => <option value={d}>{d}일</option>);
+    let y = year.map(y => <option value={y}>{y}년</option>);
+
+    let calendar = (
+      <div className="row m-0">
+        <select
+          className="col-md-2 col-4"
+          name="year"
+          value={this.state.year}
+          onChange={e => this.inputChangeHandler(e)}
+        >
+          {y}
+        </select>
+        <select
+          className="col-md-2 col-4"
+          name="month"
+          value={this.state.month}
+          onChange={e => this.inputChangeHandler(e)}
+        >
+          {m}
+        </select>
+        <select
+          className="col-md-2 col-4"
+          name="day"
+          value={this.state.day}
+          onChange={e => this.inputChangeHandler(e)}
+        >
+          {d}
+        </select>
+      </div>
+    );
 
     return (
       <div className="container-fluid u">
@@ -191,23 +255,7 @@ class UserInfo extends Component {
                 <FormGroup row>
                   <div className="col-2 if_head uif_head">생년월일</div>
                   <div className="col-10">
-                    <div className="row m-0">
-                      <select className="col-md-2 col-4">
-                        <option>4월</option>
-                        <option>10월</option>
-                        <option>12월</option>
-                      </select>
-                      <select className="col-md-2 col-4">
-                        <option>21일</option>
-                        <option>27일</option>
-                        <option>10일</option>
-                      </select>
-                      <select className="col-md-2 col-4">
-                        <option>1994</option>
-                        <option>1995</option>
-                        <option>1996</option>
-                      </select>
-                    </div>
+                    {calendar}
                     {/* <input
               type="date"
               name="birthday"

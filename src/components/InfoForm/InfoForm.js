@@ -4,9 +4,66 @@ import ImgPreview from './ImgPreview';
 import './InfoForm.css';
 
 class InfoForm extends Component {
+  // state = {
+  //   year: this.props.state.birthday.year,
+  //   month: this.props.state.birthday.month,
+  //   day: this.props.state.birthday.day
+  // };
   render() {
     const userData = this.props.state;
     console.log(userData);
+
+    // 달력 만들기
+    let month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+    let day = [];
+    let year = [];
+    for (let i = 1; i < 32; i++) {
+      day.push(i);
+    }
+    for (let i = 2018; i > 1920; i--) {
+      year.push(i);
+    }
+    if (['4', '6', '9', '11'].includes(this.props.state.month)) {
+      day.pop();
+    } else if (this.props.state.month === '2') {
+      if (Number(this.props.state.year) % 4 === 0) {
+        day.splice(29, 2);
+      } else {
+        day.splice(28, 3);
+      }
+    }
+    let m = month.map(m => <option value={m}>{m}월</option>);
+    let d = day.map(d => <option value={d}>{d}일</option>);
+    let y = year.map(y => <option value={y}>{y}년</option>);
+
+    let calendar = (
+      <div className="row m-0">
+        <select
+          className="if_input col-lg-2 col-md-3"
+          name="year"
+          value={this.props.state.year}
+          onChange={this.props.changeInput}
+        >
+          {y}
+        </select>
+        <select
+          className="if_input col-lg-2 col-md-3"
+          name="month"
+          value={this.props.state.month}
+          onChange={this.props.changeInput}
+        >
+          {m}
+        </select>
+        <select
+          className="if_input col-lg-2 col-md-3"
+          name="day"
+          value={this.props.state.day}
+          onChange={this.props.changeInput}
+        >
+          {d}
+        </select>
+      </div>
+    );
     return (
       <Fragment>
         <FormGroup row>
@@ -70,23 +127,7 @@ class InfoForm extends Component {
         <FormGroup row>
           <div className="col-3 if_head">생년월일</div>
           <div className="col-9">
-            <div className="row m-0">
-              <select className="if_input col-lg-2 col-md-3">
-                <option>1994</option>
-                <option>1995</option>
-                <option>1996</option>
-              </select>
-              <select className="if_input col-lg-2 col-md-3">
-                <option>4월</option>
-                <option>10월</option>
-                <option>12월</option>
-              </select>
-              <select className="if_input col-lg-2 col-md-3">
-                <option>21일</option>
-                <option>27일</option>
-                <option>10일</option>
-              </select>
-            </div>
+            {calendar}
             {/* <input
               type="date"
               name="birthday"

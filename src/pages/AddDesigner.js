@@ -15,7 +15,10 @@ class AddDesigner extends Component {
 
     this.state = {
       name: userData.name,
-      birthday: userData.birthday,
+
+      year: userData.birthday.year,
+      month: userData.birthday.month,
+      day: userData.birthday.day,
       email: userData.email,
       phoneNumber: userData.phoneNumber,
       untilDesigner: userData.untilDesigner,
@@ -96,7 +99,9 @@ class AddDesigner extends Component {
   submitHandler = async () => {
     const {
       name,
-      birthday,
+      year,
+      month,
+      day,
       email,
       phoneNumber,
       untilDesigner,
@@ -106,14 +111,12 @@ class AddDesigner extends Component {
 
     const firebaseUserData = {
       name,
-      birthday,
+      birthday: { year, month, day },
       email,
       phoneNumber,
       untilDesigner,
       career,
-      careerDetail,
-      // 임시로. 일단 신청하면 디자이너 되도록
-      isD: true
+      careerDetail
     };
 
     if (Object.values(firebaseUserData).includes(undefined))

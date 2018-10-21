@@ -36,11 +36,20 @@ class User extends Component {
 
   render() {
     const user = this.props.user;
+    console.log(user.birthday);
     return (
       <tr key={this.props.key}>
         <th scope="row">{user.name}</th>
         <td>{user.email}</td>
-        <td>{user.birthday}</td>
+        <td>
+          {user.birthday
+            ? user.birthday.year +
+              '/' +
+              user.birthday.month +
+              '/' +
+              user.birthday.day
+            : null}
+        </td>
         <td>{user.gender}</td>
         <td>{user.phoneNumber}</td>
         <td>
