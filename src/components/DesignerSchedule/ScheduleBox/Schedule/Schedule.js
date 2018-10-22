@@ -4,6 +4,7 @@ import Calendar from 'rc-calendar';
 import koKR from 'rc-calendar/lib/locale/ko_KR';
 import 'rc-calendar/assets/index.css';
 import moment from 'moment';
+import './Schedule.css';
 
 class Schedule extends Component {
   timeSelector = () => {
@@ -16,7 +17,7 @@ class Schedule extends Component {
             name="since"
             id={i}
             onChange={this.props.changeInput}
-            className="col-5"
+            className="col-4"
           >
             <option value={600}>10:00</option>
             <option value={660}>11:00</option>
@@ -28,13 +29,13 @@ class Schedule extends Component {
             <option value="1020">17:00</option>
             <option value="1080">18:00</option>
           </Input>
-          ~
+          <span className="col-2">~</span>
           <Input
             type="select"
             name="until"
             id={i}
             onChange={this.props.changeInput}
-            className="col-5"
+            className="col-4"
           >
             <option value="660">11:00</option>
             <option value="720">12:00</option>
@@ -90,31 +91,72 @@ class Schedule extends Component {
               style={{ color: '#1f3354' }}
             />
           </FormGroup>
-          <div className="col-6">
+          <div
+            className="col-6"
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center'
+            }}
+          >
             <FormGroup row>
-              <Label sm={2}>시간</Label>
-              <div className="col-10">
+              <Label
+                sm={5}
+                style={{
+                  textAlign: 'right',
+                  fontSize: '1.1rem',
+                  fontWeight: 'bold',
+                  color: '#1f3354'
+                }}
+              >
+                서비스 시간
+              </Label>
+              <div className="col-7">
                 {this.timeSelector()}
-                <Button color="light" onClick={this.props.timeAdd}>
+                <Button
+                  color="light"
+                  onClick={this.props.timeAdd}
+                  style={{ fontSize: '1.1rem', background: 'none', border: 0 }}
+                >
                   + 시간 추가
                 </Button>
               </div>
             </FormGroup>
             <FormGroup row>
-              <Label sm={2}>장소</Label>
+              <Label
+                sm={5}
+                style={{
+                  textAlign: 'right',
+                  fontSize: '1.1rem',
+                  fontWeight: 'bold',
+                  color: '#1f3354'
+                }}
+              >
+                장소
+              </Label>
               <Input
                 name="shop"
                 id="shop"
                 onChange={this.props.changeInput}
                 type="select"
-                className="col-8"
+                className="col-7"
               >
                 <option>박준뷰티랩 청담본점</option>
                 <option>머리샵 일산웨스턴돔점</option>
               </Input>
             </FormGroup>
             <div>
-              <p>꼭 해야하는 시술 (필수)</p>
+              <Label
+                sm={5}
+                style={{
+                  textAlign: 'right',
+                  fontSize: '1.1rem',
+                  fontWeight: 'bold',
+                  color: '#1f3354'
+                }}
+              >
+                필수 서비스
+              </Label>
               <FormGroup check inline>
                 <Label check>
                   <Input
@@ -150,7 +192,17 @@ class Schedule extends Component {
               </FormGroup>
             </div>
             <div>
-              <p>시술 불가한 서비스 (선택)</p>
+              <Label
+                sm={5}
+                style={{
+                  textAlign: 'right',
+                  fontSize: '1.1rem',
+                  fontWeight: 'bold',
+                  color: '#1f3354'
+                }}
+              >
+                불가 서비스
+              </Label>
               <FormGroup check inline>
                 <Label check>
                   <Input
@@ -186,7 +238,17 @@ class Schedule extends Component {
               </FormGroup>
             </div>
             <div>
-              <p>모델 성별</p>
+              <Label
+                sm={5}
+                style={{
+                  textAlign: 'right',
+                  fontSize: '1.1rem',
+                  fontWeight: 'bold',
+                  color: '#1f3354'
+                }}
+              >
+                모델 성별
+              </Label>
               <FormGroup check inline>
                 <Label check>
                   <Input
@@ -210,8 +272,17 @@ class Schedule extends Component {
             </div>
             <div
               onClick={this.props.cardAddHandler}
-              className="btn btn-light"
+              className="btn btn-light w-100"
               color="light"
+              style={{
+                height: 28,
+                lineHeight: '20px',
+                borderRadius: 5,
+                backgroundColor: '#4c91ba',
+                color: 'white',
+                fontSize: '1.1rem',
+                fontWeight: 'bold'
+              }}
             >
               등록하기
             </div>
