@@ -80,7 +80,7 @@ class ScheduleBox extends Component {
       }
     } else {
       if (target.name === 'must') {
-        target.id = target.id.toLowerCase()
+        target.id = target.id.toLowerCase();
         this.setState({
           must: {
             ...this.state.must,
@@ -176,17 +176,19 @@ class ScheduleBox extends Component {
             date={this.state.date}
           />
         </div>
-        <div className="col-6 row mt-5">
-          {this.state.cards.map((card, key) => (
-            <ScheduleCard
-              cancelCardHandler={this.props.cancelCardHandler}
-              card={card}
-              key={key}
-            />
-          ))}
-          {this.props.newCards.map((newCard, key) => (
-            <ScheduleCard card={newCard} key={key} />
-          ))}
+        <div className="col-6 mt-5">
+          <div className="bg-light row" style={{padding: '1.5rem'}}>
+            {this.state.cards.map((card, key) => (
+              <ScheduleCard
+                cancelCardHandler={this.props.cancelCardHandler}
+                card={card}
+                key={key}
+              />
+            ))}
+            {this.props.newCards.map((newCard, key) => (
+              <ScheduleCard card={newCard} key={key} />
+            ))}
+          </div>
         </div>
       </div>
     );

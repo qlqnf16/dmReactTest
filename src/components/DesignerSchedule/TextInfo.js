@@ -15,7 +15,7 @@ const styles = {
   },
   saveButtonStyle: {
     position: 'absolute',
-    top: '-10%',
+    top: '-5%',
     left: '180%',
     width: '89.3px',
     height: '21px',
