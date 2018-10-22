@@ -1,9 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import { Modal, ModalBody } from 'reactstrap';
+import { connect } from 'react-redux';
+
 import KakaoLogin from 'react-kakao-login';
 import KaKaoKey from '../../../config/Kakao';
 
-import { connect } from 'react-redux';
 import * as actions from '../../../modules';
 import * as LoginFunc from '../../../utility/LoginFunc';
 
@@ -84,17 +85,59 @@ class MyModal extends Component {
   };
 
   render() {
-    const kakaoButton = (
-      <img
-        src={this.state.isLogin ? kakaoLoginButton : kakaoSignUpButton}
-        alt="alt"
-        className="modal_button"
-      />
-    );
     let subTitle = null;
     if (!this.state.isLogin) {
       subTitle = <div className="modal_subtitle">{this.state.subTitle}</div>;
     }
+
+    let check = null;
+    if (!this.state.isLogin)
+      check = (
+        <div className="modal_check">
+          <div className="row justify-content-start modal_checkbox">
+            <div>
+              <input
+                type="checkbox"
+                id="termsOfUse"
+                name="termsOfUse"
+                onChange={this.checkboxHandler}
+              />
+              <label htmlFor="termsOfUse" />
+            </div>
+            <div
+              style={{
+                fontSize: '1.1rem',
+                color: '#1f3354',
+                lineHeight: '2',
+                marginLeft: '0.5rem'
+              }}
+            >
+              이용약관에 동의합니다(필수)
+            </div>
+          </div>
+          <div className="row justify-content-start modal_checkbox">
+            <div>
+              <input
+                type="checkbox"
+                id="infoPolicy"
+                name="infoPolicy"
+                onChange={this.checkboxHandler}
+              />
+              <label htmlFor="infoPolicy" />
+            </div>
+            <div
+              style={{
+                fontSize: '1.1rem',
+                color: '#1f3354',
+                lineHeight: '2',
+                marginLeft: '0.5rem'
+              }}
+            >
+              개인정보 수집, 이용에 동의합니다(필수)
+            </div>
+          </div>
+        </div>
+      );
     return (
       <div>
         <Modal
@@ -162,50 +205,7 @@ class MyModal extends Component {
             />
 
             {/* Modal check */}
-            <div className="modal_check">
-              <div className="row justify-content-start modal_checkbox">
-                <div>
-                  <input
-                    type="checkbox"
-                    id="termsOfUse"
-                    name="termsOfUse"
-                    onChange={this.checkboxHandler}
-                  />
-                  <label for="termsOfUse" />
-                </div>
-                <div
-                  style={{
-                    fontSize: '1.1rem',
-                    color: '#1f3354',
-                    lineHeight: '2',
-                    marginLeft: '0.5rem'
-                  }}
-                >
-                  이용약관에 동의합니다(필수)
-                </div>
-              </div>
-              <div className="row justify-content-start modal_checkbox">
-                <div>
-                  <input
-                    type="checkbox"
-                    id="infoPolicy"
-                    name="infoPolicy"
-                    onChange={this.checkboxHandler}
-                  />
-                  <label for="infoPolicy" />
-                </div>
-                <div
-                  style={{
-                    fontSize: '1.1rem',
-                    color: '#1f3354',
-                    lineHeight: '2',
-                    marginLeft: '0.5rem'
-                  }}
-                >
-                  개인정보 수집, 이용에 동의합니다(필수)
-                </div>
-              </div>
-            </div>
+            {check}
 
             {/* Modal footer */}
             <div className="modal_footer">

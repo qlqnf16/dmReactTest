@@ -175,7 +175,7 @@ class InfoForm extends Component {
               style={{ width: '27%' }}
               onChange={this.props.changeInput}
             >
-              <option>-도/시</option>
+              <option>-도/시-</option>
               <option>서울</option>
               <option>경기</option>
               <option>인천</option>
