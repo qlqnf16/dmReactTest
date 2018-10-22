@@ -1,11 +1,11 @@
 .nav-link {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   letter-spacing: 0.08rem;
   line-height: 1.2;
   color: #1f3354 !important;
   text-decoration: none;
   margin-right: 48px;
-  font-family: 'Jua', sans-serif;
+  font-weight: bold;
 }
 
 .dropdownMenu {
@@ -16,7 +16,6 @@
   font-size: 1.5rem !important;
   line-height: 1.2 !important;
   margin-right: 60px !important;
-  font-family: 'Jua', sans-serif;
 }
 .message_img {
   width: 3.6rem;
