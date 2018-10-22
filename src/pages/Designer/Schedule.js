@@ -27,7 +27,7 @@ class Schedule extends Component {
     }
   };
 
-  handleInputChange(e) {
+  handleInputChange = e => {
     console.log('Adsfasd');
     const target = e.target;
     const value = target.value;
@@ -36,7 +36,7 @@ class Schedule extends Component {
     this.setState({
       [name]: value
     });
-  }
+  };
 
   cancelCardHandler = async (cardId, recruitId) => {
     await axios.delete(
@@ -119,18 +119,18 @@ class Schedule extends Component {
       <div className="container-fluid d">
         <div className="d_bg">
           <div className="d_container">
-            <h1 className="mt-5">스케줄 등록</h1>
-            <Form>
-              <ScheduleBox
-                cards={this.state.cards}
-                requireTime={this.state.requireTime}
-                newCards={this.state.newCards}
-                cancelCardHandler={this.cancelCardHandler}
-                cardAddHandler={this.cardAddHandler}
-                totalSubmitHandler={this.totalSubmitHandler}
-              />
-              {/* // changeInput= {e => this.handleInputChange(e)} */}
-            </Form>
+            <div style={{ color: '#4c91ba' }} className="u_title ">
+              스케줄 등록
+            </div>
+            <ScheduleBox
+              cards={this.state.cards}
+              requireTime={this.state.requireTime}
+              newCards={this.state.newCards}
+              cancelCardHandler={this.cancelCardHandler}
+              cardAddHandler={this.cardAddHandler}
+              totalSubmitHandler={this.totalSubmitHandler}
+            />
+            {/* // changeInput= {e => this.handleInputChange(e)} */}
           </div>
         </div>
       </div>

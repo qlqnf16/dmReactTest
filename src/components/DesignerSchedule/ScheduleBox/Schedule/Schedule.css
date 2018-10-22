@@ -2,3 +2,53 @@
 .rc-calendar-footer {
   display: none;
 }
+.schedule_border {
+  border: solid 1px #c1e4eb;
+  border-radius: 5px;
+  padding: 2rem;
+}
+.length_price {
+  border-bottom: dotted 1.5px #4c91ba;
+  padding: 0.3rem 0;
+  color: #1f3354
+}
+.length_input {
+  width: 8rem;
+  height: 80%;
+}
+
+input[id='male'] + label,
+input[id='female'] + label,
+input[id='cut'] + label,
+input[id='perm'] + label,
+input[id='dye'] + label,
+input[id='Cut'] + label,
+input[id='Perm'] + label,
+input[id='Dye'] + label {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border: 2px solid #bcbcbc;
+  cursor: pointer;
+  
+}
+input[id='male']:checked + label,
+input[id='female']:checked + label,
+input[id='cut']:checked + label,
+input[id='perm']:checked + label,
+input[id='dye']:checked + label,
+input[id='Cut']:checked + label,
+input[id='Perm']:checked + label,
+input[id='Dye']:checked + label {
+  background-color: #4c91ba;
+}
+input[id='male'],
+input[id='female'],
+input[id='cut'],
+input[id='perm'],
+input[id='dye'],
+input[id='Cut'],
+input[id='Perm'],
+input[id='Dye'] {
+  display: none;
+}

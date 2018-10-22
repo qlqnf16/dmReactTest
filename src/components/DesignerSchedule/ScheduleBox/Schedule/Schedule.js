@@ -29,7 +29,7 @@ class Schedule extends Component {
             <option value="1020">17:00</option>
             <option value="1080">18:00</option>
           </Input>
-          <span className="col-2">~</span>
+          <span className="col-2" style={{lineHeight: '2.3'}}>~</span>
           <Input
             type="select"
             name="until"
@@ -72,7 +72,7 @@ class Schedule extends Component {
       );
     };
     return (
-      <div>
+      <div className="schedule_border">
         <div className="row">
           <FormGroup className="col-6">
             {/* <Input
@@ -88,7 +88,7 @@ class Schedule extends Component {
               disabledDate={disabledDate}
               showDateInput="false"
               locale={koKR}
-              style={{ color: '#1f3354' }}
+              style={{ color: '#1f3354', width: '90%' }}
             />
           </FormGroup>
           <div
@@ -96,11 +96,14 @@ class Schedule extends Component {
             style={{
               display: 'flex',
               flexDirection: 'column',
-              justifyContent: 'center'
+              justifyContent: 'center',
+              padding: '0',
+              marginLeft: '-4rem',
+              marginTop: '-2.5rem'
             }}
           >
-            <FormGroup row>
-              <Label
+          <div className="row">
+          <Label
                 sm={5}
                 style={{
                   textAlign: 'right',
@@ -109,20 +112,13 @@ class Schedule extends Component {
                   color: '#1f3354'
                 }}
               >
-                서비스 시간
+                날짜
               </Label>
-              <div className="col-7">
-                {this.timeSelector()}
-                <Button
-                  color="light"
-                  onClick={this.props.timeAdd}
-                  style={{ fontSize: '1.1rem', background: 'none', border: 0 }}
-                >
-                  + 시간 추가
-                </Button>
+              <div style={{lineHeight: '2.3', color: '#1f3354',fontSize: '1.1rem'}}>
+                {moment(this.props.date).format('YYYY/MM/DD')}
               </div>
-            </FormGroup>
-            <FormGroup row>
+          </div>
+          <FormGroup row>
               <Label
                 sm={5}
                 style={{
@@ -145,6 +141,54 @@ class Schedule extends Component {
                 <option>머리샵 일산웨스턴돔점</option>
               </Input>
             </FormGroup>
+            <FormGroup row>
+              <Label
+                sm={5}
+                style={{
+                  textAlign: 'right',
+                  fontSize: '1.1rem',
+                  fontWeight: 'bold',
+                  color: '#1f3354'
+                }}
+              >
+                서비스 가능 시간
+              </Label>
+              <div className="col-7">
+                {this.timeSelector()}
+                <Button
+                  color="light"
+                  onClick={this.props.timeAdd}
+                  style={{ fontSize: '1.1rem', background: 'none', border: 0, marginLeft: '-2rem' }}
+                >
+                  + 시간 추가
+                </Button>
+              </div>
+            </FormGroup>
+            <FormGroup row>
+              <Label
+                sm={5}
+                style={{
+                  textAlign: 'right',
+                  fontSize: '1.1rem',
+                  fontWeight: 'bold',
+                  color: '#1f3354'
+                }}
+              >
+                사진촬영 여부
+              </Label>
+              <Input
+                name="picture"
+                id="picture"
+                onChange={this.props.changeInput}
+                type="select"
+                className="col-7"
+              >
+                <option>적극응원</option>
+                <option>히든응원</option>
+                <option>매너응원</option>
+                <option>사진촬영x</option>
+              </Input>
+            </FormGroup>
             <div>
               <Label
                 sm={5}
@@ -158,37 +202,38 @@ class Schedule extends Component {
                 필수 서비스
               </Label>
               <FormGroup check inline>
-                <Label check>
-                  <Input
+                <div >
+                  <input
                     type="checkbox"
                     name="must"
                     id="cut"
                     onChange={this.props.changeInput}
-                  />{' '}
+                  />
+                  <label className="mb-0" for="cut"/>{' '}
                   커트
-                </Label>
+                </div>
               </FormGroup>
               <FormGroup check inline>
-                <Label check>
-                  <Input
+                <div >
+                  <input
                     type="checkbox"
                     name="must"
                     id="perm"
                     onChange={this.props.changeInput}
-                  />{' '}
+                  /><label className="mb-0" for="perm"/>{' '}
                   펌
-                </Label>
+                </div>
               </FormGroup>
               <FormGroup check inline>
-                <Label check>
-                  <Input
+                <div >
+                  <input
                     type="checkbox"
                     name="must"
                     id="dye"
                     onChange={this.props.changeInput}
-                  />{' '}
+                  /><label className="mb-0" for="dye"/>{' '}
                   염색
-                </Label>
+                </div>
               </FormGroup>
             </div>
             <div>
@@ -204,37 +249,37 @@ class Schedule extends Component {
                 불가 서비스
               </Label>
               <FormGroup check inline>
-                <Label check>
-                  <Input
+                <div >
+                  <input
                     type="checkbox"
                     name="no"
-                    id="cut"
+                    id="Cut"
                     onChange={this.props.changeInput}
-                  />{' '}
+                  /><label className="mb-0" for="Cut"/>{' '}
                   커트
-                </Label>
+                </div>
               </FormGroup>
               <FormGroup check inline>
-                <Label check>
-                  <Input
+                <div >
+                  <input
                     type="checkbox"
                     name="no"
-                    id="perm"
+                    id="Perm"
                     onChange={this.props.changeInput}
-                  />{' '}
+                  /><label className="mb-0" for="Perm"/>{' '}
                   펌
-                </Label>
+                </div>
               </FormGroup>
               <FormGroup check inline>
-                <Label check>
-                  <Input
+                <div >
+                  <input
                     type="checkbox"
                     name="no"
-                    id="dye"
+                    id="Dye"
                     onChange={this.props.changeInput}
-                  />{' '}
+                  /><label className="mb-0" for="Dye"/>{' '}
                   염색
-                </Label>
+                </div>
               </FormGroup>
             </div>
             <div>
@@ -244,48 +289,109 @@ class Schedule extends Component {
                   textAlign: 'right',
                   fontSize: '1.1rem',
                   fontWeight: 'bold',
-                  color: '#1f3354'
+                  color: '#1f3354',
+                  marginTop: '1rem'
                 }}
               >
                 모델 성별
               </Label>
               <FormGroup check inline>
-                <Label check>
-                  <Input
+                <div >
+                  <input
                     type="checkbox"
                     name="male"
+                    id="male"
                     onChange={this.props.changeInput}
-                  />{' '}
+                  /><label className="mb-0" for="male"/>{' '}
                   남자
-                </Label>
+                </div>
               </FormGroup>
               <FormGroup check inline>
-                <Label check>
-                  <Input
+                <div >
+                  <input
                     type="checkbox"
                     name="female"
+                    id="female"
                     onChange={this.props.changeInput}
-                  />{' '}
+                  /><label className="mb-0" for="female"/>{' '}
                   여자
-                </Label>
+                </div>
               </FormGroup>
             </div>
-            <div
-              onClick={this.props.cardAddHandler}
-              className="btn btn-light w-100"
-              color="light"
-              style={{
-                height: 28,
-                lineHeight: '20px',
-                borderRadius: 5,
-                backgroundColor: '#4c91ba',
-                color: 'white',
-                fontSize: '1.1rem',
-                fontWeight: 'bold'
-              }}
-            >
-              등록하기
+          </div>
+        </div>
+        <div style={{ color: '#1f3354' }}>
+          구체적인 가격을 표기하지 않은 경우 소비자에게는 ‘미정’이라는 문구와
+          함께 드리머리의 평균가 예상금액으로 표시됩니다. 하지만 이 경우
+          매칭률이 현저히 저하될 수 있으므로 예상금액을 표기하는 것을
+          권고드립니다.
+        </div>
+        <div
+          className="p-3 mx-auto"
+          style={{ color: '#4c91ba', fontSize: '1.1rem' }}
+        >
+          <div className="row">
+            <div className="col-4 text-center font-weight-bold"> 펌</div>
+            <div className="col-4" />
+
+            <div className="col-4 text-center font-weight-bold"> 염색</div>
+          </div>
+          <div className="length_price row">
+            <div className="col-4 text-right">
+              기본 <input className="length_input" />
             </div>
+            <div className="col-4" />
+            <div className="col-4 text-left" style={{ paddingLeft: '3.8rem' }}>
+              기본 <input className="length_input" />
+            </div>
+          </div>
+          <div className="length_price row">
+            <div className="col-4 text-right">
+              턱아래 <input className="length_input" />
+            </div>
+            <div className="col-4" />
+
+            <div className="col-4 text-left" style={{ paddingLeft: '2.7rem' }}>
+              턱아래 <input className="length_input" />
+            </div>
+          </div>
+          <div className="length_price row">
+            <div className="col-4 text-right">
+              어깨아래 <input className="length_input" />
+            </div>
+            <div className="col-4" />
+
+            <div className="col-4 text-left">
+              어깨아래 <input className="length_input" />
+            </div>
+          </div>
+          <div className="length_price row">
+            <div className="col-4 text-right">
+              가슴아래 <input className="length_input" />
+            </div>
+            <div className="col-4" />
+
+            <div className="col-4 text-left">
+              가슴아래 <input className="length_input" />
+            </div>
+          </div>
+
+          <div
+            onClick={this.props.cardAddHandler}
+            className="btn btn-light w-50 "
+            style={{
+              height: 28,
+              lineHeight: '20px',
+              borderRadius: 5,
+              backgroundColor: '#4c91ba',
+              color: 'white',
+              fontSize: '1.1rem',
+              fontWeight: 'bold',
+              marginLeft: '25%',
+              marginTop: '2rem'
+            }}
+          >
+            등록하기
           </div>
         </div>
       </div>

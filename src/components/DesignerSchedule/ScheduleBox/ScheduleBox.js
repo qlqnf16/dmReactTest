@@ -80,6 +80,7 @@ class ScheduleBox extends Component {
       }
     } else {
       if (target.name === 'must') {
+        target.id = target.id.toLowerCase()
         this.setState({
           must: {
             ...this.state.must,
@@ -172,6 +173,7 @@ class ScheduleBox extends Component {
             cardAddHandler={() => this.props.cardAddHandler(cardData)}
             card={this.props.cards[0]}
             changeInput={e => this.handleInputChange(e)}
+            date={this.state.date}
           />
         </div>
         <div className="col-6 row mt-5">
