@@ -4,11 +4,19 @@ import firebase from '../../config/Firebase';
 import UserNav from '../../components/Navigation/UserNav/UserNav';
 import { Form, FormGroup } from 'reactstrap';
 import check_sm from '../../assets/images/check_sm.png';
+import axios from 'axios';
 
 class UserInfo extends Component {
   constructor(props) {
     super(props);
-    const { name, email, birthday, phoneNumber, gender } = this.props.userData;
+    const {
+      name,
+      email,
+      birthday,
+      phoneNumber,
+      gender,
+      recommendationCode
+    } = this.props.userData;
     this.state = {
       name,
       email,
@@ -17,7 +25,8 @@ class UserInfo extends Component {
       gender,
       year: birthday && birthday.year,
       month: birthday && birthday.month,
-      day: birthday && birthday.day
+      day: birthday && birthday.day,
+      recommendationCode
     };
   }
 
@@ -31,8 +40,17 @@ class UserInfo extends Component {
 
   submitHandler = async () => {
     const { uid } = firebase.auth().currentUser;
-    const { name, year, month, day, email, phoneNumber, gender } = this.state;
-    const firebaseUserData = {
+    const {
+      name,
+      year,
+      month,
+      day,
+      email,
+      phoneNumber,
+      gender,
+      recommendationCode
+    } = this.state;
+    let firebaseUserData = {
       name,
       birthday: { year, month, day },
       email,
@@ -41,6 +59,42 @@ class UserInfo extends Component {
     };
     if (!this.props.userData.isRegister)
       return alert('휴대폰 인증을 진행해주세요');
+
+    if (recommendationCode) {
+      let count = 0;
+      let result = null;
+      await firebase
+        .database()
+        .ref('users/' + recommendationCode)
+        .on('value', res => {
+          result = res;
+        });
+      if (!result) {
+        alert('no');
+      } else {
+        let { recommendation, _id } = result.val();
+        if (recommendation) count = recommendation;
+        firebaseUserData = { ...firebaseUserData, recommendationCode };
+        count += 1;
+
+        // TODO : 추천 3회면 포인트 추가해주기
+        if (count === 3) {
+          count = 0;
+          // await axios.patch(
+          //   `http://52.79.227.227:3030/users/${_id}`,
+          //   {
+          //     point: 더하기(백에서 하는게 나을듯)
+          //   }
+          // );
+        }
+
+        await firebase
+          .database()
+          .ref('users/' + recommendationCode)
+          .update({ recommendation: count });
+        console.log(firebaseUserData);
+      }
+    }
     await firebase
       .database()
       .ref('users/' + uid)
@@ -291,6 +345,19 @@ class UserInfo extends Component {
                     />
                   </div>
                   {isRegister}
+                </FormGroup>
+                <FormGroup row>
+                  <div className="col-2 if_head uif_head ">추천인 코드</div>
+                  <div className="col-10 d-flex justify-content-left">
+                    <input
+                      onChange={e => this.inputChangeHandler(e)}
+                      type="text"
+                      name="recommendationCode"
+                      id="recommendationCode"
+                      value={this.state.recommendationCode}
+                      className="if_input"
+                    />
+                  </div>
                 </FormGroup>
 
                 <div className="text-center">
