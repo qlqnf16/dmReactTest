@@ -11,7 +11,7 @@ class AddDesigner extends Component {
   constructor(props) {
     super(props);
 
-    const {
+    let {
       name,
       birthday,
       email,
@@ -19,11 +19,9 @@ class AddDesigner extends Component {
       untilDesigner,
       career,
       careerDetail,
-      fullAddress,
-      extraAddress,
-      sido,
-      sigungu
+      addresses
     } = this.props.userData;
+    if (!addresses) addresses = [];
     this.state = {
       name,
       email,
@@ -31,21 +29,32 @@ class AddDesigner extends Component {
       untilDesigner,
       career,
       careerDetail,
-      year: birthday.year,
-      month: birthday.month,
-      day: birthday.day,
-      fullAddress,
-      extraAddress,
-      sido,
-      sigungu,
+      year: birthday && birthday.year,
+      month: birthday && birthday.month,
+      day: birthday && birthday.day,
       certImg1: null,
       certFile1: null,
       certImg2: null,
-      certFile2: null
+      certFile2: null,
+      addressNum: addresses.length + 1,
+      addresses
     };
-    // this.onFormSubmit = this.onFormSubmit.bind(this)
-    // this.fileUpload = this.fileUpload.bind(this)
   }
+
+  addressAddHandler = () => {
+    this.setState({
+      addressNum: this.state.addressNum + 1
+    });
+  };
+
+  addressRemoveHandler = i => {
+    let addresses = this.state.addresses;
+    addresses.splice(i, 1);
+    this.setState({
+      addressNum: this.state.addressNum - 1,
+      addresses
+    });
+  };
 
   handleImgChange = e => {
     let file = e.target.files[0];
@@ -105,27 +114,22 @@ class AddDesigner extends Component {
         this.careerMonth = Number(value);
       }
       this.setState({ career: this.careerYear * 12 + this.careerMonth });
+    } else if (target.name === 'extraAddress') {
+      let addresses = this.state.addresses;
+      let address = addresses[target.id];
+      addresses[target.id] = { ...address, extraAddress: target.value };
+      this.setState({ addresses });
     } else {
       this.setState({ [name]: value });
     }
   }
 
-  handleAddress = data => {
-    let fullAddress = data.address;
-    let extraAddress = '';
-
-    if (data.addressType === 'R') {
-      if (data.bname !== '') {
-        extraAddress += data.bname;
-      }
-      if (data.buildingName !== '') {
-        extraAddress +=
-          extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName;
-      }
-      fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
-    }
+  handleAddress = (data, fullAddress, num) => {
     const { sido, sigungu } = data;
-    this.setState({ sido, sigungu, fullAddress });
+    const address = { sido, sigungu, fullAddress };
+    let addresses = this.state.addresses;
+    addresses[num] = address;
+    this.setState({ addresses });
   };
 
   submitHandler = async () => {
@@ -139,10 +143,7 @@ class AddDesigner extends Component {
       untilDesigner,
       career,
       careerDetail,
-      fullAddress,
-      extraAddress,
-      sido,
-      sigungu
+      addresses
     } = this.state;
 
     const firebaseUserData = {
@@ -153,33 +154,35 @@ class AddDesigner extends Component {
       untilDesigner,
       career,
       careerDetail,
-      fullAddress,
-      extraAddress,
-      sido,
-      sigungu
+      addresses
     };
 
-    if (Object.values(firebaseUserData).includes(undefined))
+    if (
+      Object.values(firebaseUserData).includes(undefined) ||
+      addresses.length === 0
+    )
       return alert('채워지지 않은 정보가 있습니다');
-    const formData = new fd();
-    formData.append('cert_mh', this.state.certFile1);
-    formData.append('cert_jg', this.state.certFile2);
-    axios.post(
-      `http://localhost:3030/firebase/upload?uid=${this.props.userData.uid}`,
-      formData,
-      {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      }
-    );
     alert('성공적으로 신청되었습니다');
     await firebase
       .database()
       .ref('users/' + this.props.userData.uid)
       .update(firebaseUserData);
 
-    await this.props.history.push('/designer/whydreamary');
+    // TODO: 첨부 안했을때 오류가 나는듯...?
+    // const formData = new fd();
+    // formData.append('cert_mh', this.state.certFile1);
+    // formData.append('cert_jg', this.state.certFile2);
+    // await axios.post(
+    //   `http://localhost:3030/firebase/upload?uid=${this.props.userData.uid}`,
+    //   formData,
+    //   {
+    //     headers: {
+    //       'Content-Type': 'multipart/form-data'
+    //     }
+    //   }
+    // );
+
+    // await this.props.history.push('/designer/whydreamary');
   };
 
   // TODO : shouldComponentUpdate 로 렌더링 안되게 하기
@@ -211,6 +214,8 @@ class AddDesigner extends Component {
             imgChange={e => this.handleImgChange(e)}
             changeInput={e => this.handleInputChange(e)}
             handleAddress={this.handleAddress}
+            addressAddHandler={this.addressAddHandler}
+            addressRemoveHandler={this.addressRemoveHandler}
           />
           <div className="text-center">
             <div className="ad_button" onClick={this.submitHandler}>

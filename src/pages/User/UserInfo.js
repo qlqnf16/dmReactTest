@@ -15,9 +15,9 @@ class UserInfo extends Component {
       birthday,
       phoneNumber,
       gender,
-      year: birthday.year,
-      month: birthday.month,
-      day: birthday.day
+      year: birthday && birthday.year,
+      month: birthday && birthday.month,
+      day: birthday && birthday.day
     };
   }
 

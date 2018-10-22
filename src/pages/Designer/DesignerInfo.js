@@ -9,7 +9,7 @@ class DesignerInfo extends Component {
   constructor(props) {
     super(props);
 
-    const {
+    let {
       name,
       birthday,
       email,
@@ -17,25 +17,20 @@ class DesignerInfo extends Component {
       untilDesigner,
       career,
       careerDetail,
-      fullAddress,
-      extraAddress,
-      sido,
-      sigungu
+      addresses
     } = this.props.userData;
+    if (!addresses) addresses = [];
     this.state = {
       name,
-      year: birthday.year,
-      month: birthday.month,
-      day: birthday.day,
+      year: birthday && birthday.year,
+      month: birthday && birthday.month,
+      day: birthday && birthday.day,
       email,
       phoneNumber,
       untilDesigner,
       career,
       careerDetail,
-      fullAddress,
-      extraAddress,
-      sido,
-      sigungu,
+      addresses,
       profileImg: null,
       profileFile: null,
       certImg1: null,
@@ -44,26 +39,31 @@ class DesignerInfo extends Component {
       certFile2: null,
       portfolioImg: [],
       portfolioFile: [],
-      num: 0
+      num: 0,
+      addressNum: addresses.length + 1
     };
   }
 
-  handleAddress = data => {
-    let fullAddress = data.address;
-    let extraAddress = '';
+  addressAddHandler = () => {
+    this.setState({
+      addressNum: this.state.addressNum + 1
+    });
+  };
+  addressRemoveHandler = i => {
+    let addresses = this.state.addresses;
+    addresses.splice(i, 1);
+    this.setState({
+      addressNum: this.state.addressNum - 1,
+      addresses
+    });
+  };
 
-    if (data.addressType === 'R') {
-      if (data.bname !== '') {
-        extraAddress += data.bname;
-      }
-      if (data.buildingName !== '') {
-        extraAddress +=
-          extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName;
-      }
-      fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
-    }
+  handleAddress = (data, fullAddress, num) => {
     const { sido, sigungu } = data;
-    this.setState({ sido, sigungu, fullAddress });
+    const address = { sido, sigungu, fullAddress };
+    let addresses = this.state.addresses;
+    addresses[num] = address;
+    this.setState({ addresses });
   };
 
   handleImgChange = e => {
@@ -123,6 +123,11 @@ class DesignerInfo extends Component {
         this.careerMonth = Number(value);
       }
       this.setState({ career: this.careerYear * 12 + this.careerMonth });
+    } else if (target.name === 'extraAddress') {
+      let addresses = this.state.addresses;
+      let address = addresses[target.id];
+      addresses[target.id] = { ...address, extraAddress: target.value };
+      this.setState({ addresses });
     } else {
       this.setState({ [name]: value });
     }
@@ -139,10 +144,7 @@ class DesignerInfo extends Component {
       untilDesigner,
       career,
       careerDetail,
-      fullAddress,
-      extraAddress,
-      sido,
-      sigungu,
+      addresses,
       introduce
     } = this.state;
 
@@ -154,14 +156,14 @@ class DesignerInfo extends Component {
       untilDesigner,
       career,
       careerDetail,
-      fullAddress,
-      extraAddress,
-      sido,
-      sigungu,
+      addresses,
       introduce
     };
 
-    if (Object.values(firebaseUserData).includes(undefined))
+    if (
+      Object.values(firebaseUserData).includes(undefined) ||
+      addresses.length === 0
+    )
       return alert('채워지지 않은 정보가 있습니다');
     await firebase
       .database()
@@ -189,6 +191,8 @@ class DesignerInfo extends Component {
                 changeInput={e => this.handleInputChange(e)}
                 checked={!this.state.gender ? 'male' : this.state.gender}
                 handleAddress={this.handleAddress}
+                addressAddHandler={this.addressAddHandler}
+                addressRemoveHandler={this.addressRemoveHandler}
               />
               <InfoFormExtended
                 state={this.state}

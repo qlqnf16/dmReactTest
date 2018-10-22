@@ -11,13 +11,61 @@ class InfoForm extends Component {
   //   day: this.props.state.birthday.day
   // };
   state = {
-    addressModal: false
+    addressModal: false,
+    addressNum: 0
   };
 
-  addressModalToggle = () => {
+  addressModalToggle = i => {
+    console.log('모달 토글');
     this.setState({
-      addressModal: !this.state.addressModal
+      addressModal: !this.state.addressModal,
+      addressNum: i
     });
+  };
+
+  addressSelector = () => {
+    let addressSelector = [];
+    for (let i = 0; i < this.props.state.addressNum; i++) {
+      addressSelector.push(
+        <div className="row" key={i}>
+          <div className="col-2 btn" onClick={() => this.addressModalToggle(i)}>
+            주소 검색
+          </div>
+          <input
+            type="text"
+            name="address"
+            id={i}
+            placeholder="샵 주소"
+            className="if_input col-4"
+            value={
+              this.props.state.addresses[i] &&
+              this.props.state.addresses[i].fullAddress
+            }
+            style={{ marginRight: '0' }}
+          />
+          <input
+            type="text"
+            name="extraAddress"
+            id={i}
+            placeholder="샵 상세주소"
+            value={
+              this.props.state.addresses[i] &&
+              this.props.state.addresses[i].extraAddress
+            }
+            onChange={this.props.changeInput}
+            className="if_input col-4"
+            style={{ marginRight: '0' }}
+          />
+          <div
+            className="col-2"
+            onClick={() => this.props.addressRemoveHandler(i)}
+          >
+            -
+          </div>
+        </div>
+      );
+    }
+    return addressSelector;
   };
 
   handleAddress = data => {
@@ -34,10 +82,9 @@ class InfoForm extends Component {
       }
       fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
     }
-    this.props.handleAddress(data);
-    document.getElementById('address').value = fullAddress;
-    document.getElementById('extraAddress').focus();
-    this.addressModalToggle();
+    this.props.handleAddress(data, fullAddress, this.state.addressNum);
+    // document.getElementByName('address').value = fullAddress;
+    this.addressModalToggle(this.state.addressNum);
   };
   render() {
     const userData = this.props.state;
@@ -197,27 +244,11 @@ class InfoForm extends Component {
         </FormGroup>
         <FormGroup row>
           <div className="col-3 if_head">지역/샵주소</div>
-          <div className="col-9 d-flex justify-content-left">
-            <div onClick={() => this.addressModalToggle()}>주소 검색</div>
-            <input
-              type="text"
-              name="address"
-              id="address"
-              placeholder="샵 주소"
-              className="if_input"
-              value={this.props.state.fullAddress}
-              style={{ marginRight: '0' }}
-            />
-            <input
-              type="text"
-              name="extraAddress"
-              id="extraAddress"
-              placeholder="샵 상세주소"
-              value={this.props.state.extraAddress}
-              onChange={this.props.changeInput}
-              className="if_input"
-              style={{ marginRight: '0' }}
-            />
+          <div className="col-9 ">
+            {this.addressSelector()}
+            <div className="btn" onClick={() => this.props.addressAddHandler()}>
+              주소 추가
+            </div>
           </div>
         </FormGroup>
         <FormGroup row>
@@ -340,7 +371,7 @@ class InfoForm extends Component {
         <Modal
           centered
           isOpen={this.state.addressModal}
-          toggle={this.addressModalToggle}
+          toggle={() => this.addressModalToggle(this.state.addressNum)}
         >
           <DaumPostcode onComplete={this.handleAddress} autoClose={true} />
         </Modal>

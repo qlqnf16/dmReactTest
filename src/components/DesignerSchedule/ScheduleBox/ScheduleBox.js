@@ -3,7 +3,6 @@ import Schedule from './Schedule/Schedule';
 import ScheduleCard from './ScheduleCard/ScheduleCard';
 import TextInfo from '../TextInfo';
 import axios from 'axios';
-import moment from 'moment';
 
 import { connect } from 'react-redux';
 
