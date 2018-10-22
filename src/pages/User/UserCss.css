@@ -70,3 +70,7 @@
   margin: 0.5rem 0 0 0rem;
   padding: 0 !important;
 }
+.coupon_input {
+  border-top: solid 2px rgba(0, 0, 0, 0.1);
+  padding-top: 4rem;
+}
