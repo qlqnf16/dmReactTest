@@ -60,7 +60,7 @@ class UserInfo extends Component {
     if (!this.props.userData.isRegister)
       return alert('휴대폰 인증을 진행해주세요');
 
-    if (recommendationCode) {
+    if (recommendationCode && !this.props.userData.recommendationCode) {
       let count = 0;
       let result = null;
       await firebase
@@ -70,7 +70,7 @@ class UserInfo extends Component {
           result = res;
         });
       if (!result) {
-        alert('no');
+        alert('유효하지 않은 추천인 코드 입니다.');
       } else {
         let { recommendation, _id } = result.val();
         if (recommendation) count = recommendation;
@@ -350,7 +350,11 @@ class UserInfo extends Component {
                   <div className="col-2 if_head uif_head ">추천인 코드</div>
                   <div className="col-10 d-flex justify-content-left">
                     <input
-                      onChange={e => this.inputChangeHandler(e)}
+                      onChange={
+                        this.state.recommendationCode
+                          ? null
+                          : e => this.inputChangeHandler(e)
+                      }
                       type="text"
                       name="recommendationCode"
                       id="recommendationCode"

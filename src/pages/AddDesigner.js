@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form } from 'reactstrap';
+import { Form, FormGroup } from 'reactstrap';
 import axios from 'axios';
 import fd from 'form-data';
 import InfoForm from '../components/InfoForm/InfoForm';
@@ -19,7 +19,8 @@ class AddDesigner extends Component {
       untilDesigner,
       career,
       careerDetail,
-      addresses
+      addresses,
+      designerRecommendationCode
     } = this.props.userData;
     if (!addresses) addresses = [];
     this.state = {
@@ -37,7 +38,8 @@ class AddDesigner extends Component {
       certImg2: null,
       certFile2: null,
       addressNum: addresses.length + 1,
-      addresses
+      addresses,
+      designerRecommendationCode
     };
   }
 
@@ -143,10 +145,11 @@ class AddDesigner extends Component {
       untilDesigner,
       career,
       careerDetail,
-      addresses
+      addresses,
+      designerRecommendationCode
     } = this.state;
 
-    const firebaseUserData = {
+    let firebaseUserData = {
       name,
       birthday: { year, month, day },
       email,
@@ -162,11 +165,51 @@ class AddDesigner extends Component {
       addresses.length === 0
     )
       return alert('채워지지 않은 정보가 있습니다');
-    alert('성공적으로 신청되었습니다');
+
+    if (
+      designerRecommendationCode &&
+      !this.props.userData.designerRecommendationCode
+    ) {
+      let count = 0;
+      let result = null;
+      await firebase
+        .database()
+        .ref('users/' + designerRecommendationCode)
+        .on('value', res => {
+          result = res;
+        });
+      if (!result) {
+        alert('유효하지 않은 추천인 코드 입니다.');
+      } else {
+        let { designerRecommendation, _id } = result.val();
+        if (designerRecommendation) count = designerRecommendation;
+        firebaseUserData = { ...firebaseUserData, designerRecommendationCode };
+        count += 1;
+
+        // TODO : 추천2회면 티켓 추가
+        // TODO : 본인은 추천 안되게.
+        if (count === 2) {
+          count = 0;
+          // await axios.patch(
+          //   `http://52.79.227.227:3030/users/${_id}`,
+          //   {
+          //     ticket: 더하기(백에서 하는게 나을듯)
+          //   }
+          // );
+        }
+
+        await firebase
+          .database()
+          .ref('users/' + designerRecommendationCode)
+          .update({ designerRecommendation: count });
+      }
+    }
+
     await firebase
       .database()
       .ref('users/' + this.props.userData.uid)
       .update(firebaseUserData);
+    alert('성공적으로 신청되었습니다');
 
     // TODO: 첨부 안했을때 오류가 나는듯...?
     // const formData = new fd();
@@ -217,6 +260,23 @@ class AddDesigner extends Component {
             addressAddHandler={this.addressAddHandler}
             addressRemoveHandler={this.addressRemoveHandler}
           />
+          <FormGroup row>
+            <div className="col-3 if_head">추천인 코드</div>
+            <div className="col-9 d-flex justify-content-left">
+              <input
+                type="text"
+                name="designerRecommendationCode"
+                id="designerRecommendationCode"
+                value={this.state.designerRecommendationCode}
+                onChange={
+                  this.props.userData.designerRecommendationCode
+                    ? null
+                    : e => this.handleInputChange(e)
+                }
+                className="if_input"
+              />
+            </div>
+          </FormGroup>
           <div className="text-center">
             <div className="ad_button" onClick={this.submitHandler}>
               막내 등록하기
