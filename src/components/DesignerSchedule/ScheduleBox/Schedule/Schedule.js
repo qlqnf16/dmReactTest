@@ -4,6 +4,7 @@ import Calendar from 'rc-calendar';
 import koKR from 'rc-calendar/lib/locale/ko_KR';
 import 'rc-calendar/assets/index.css';
 import moment from 'moment';
+import './Schedule.css';
 
 class Schedule extends Component {
   timeSelector = () => {
@@ -90,7 +91,14 @@ class Schedule extends Component {
               style={{ color: '#1f3354' }}
             />
           </FormGroup>
-          <div className="col-6">
+          <div
+            className="col-6"
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center'
+            }}
+          >
             <FormGroup row>
               <Label
                 sm={5}
