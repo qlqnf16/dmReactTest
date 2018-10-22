@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from 'react';
-import { FormGroup } from 'reactstrap';
+import { FormGroup, Modal, ModalBody } from 'reactstrap';
 import ImgPreview from './ImgPreview';
 import './InfoForm.css';
+import DaumPostcode from 'react-daum-postcode';
 
 class InfoForm extends Component {
   // state = {
@@ -9,6 +10,35 @@ class InfoForm extends Component {
   //   month: this.props.state.birthday.month,
   //   day: this.props.state.birthday.day
   // };
+  state = {
+    addressModal: false
+  };
+
+  addressModalToggle = () => {
+    this.setState({
+      addressModal: !this.state.addressModal
+    });
+  };
+
+  handleAddress = data => {
+    let fullAddress = data.address;
+    let extraAddress = '';
+
+    if (data.addressType === 'R') {
+      if (data.bname !== '') {
+        extraAddress += data.bname;
+      }
+      if (data.buildingName !== '') {
+        extraAddress +=
+          extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName;
+      }
+      fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
+    }
+    this.props.handleAddress(data);
+    document.getElementById('address').value = fullAddress;
+    document.getElementById('extraAddress').focus();
+    this.addressModalToggle();
+  };
   render() {
     const userData = this.props.state;
     console.log(userData);
@@ -168,35 +198,22 @@ class InfoForm extends Component {
         <FormGroup row>
           <div className="col-3 if_head">지역/샵주소</div>
           <div className="col-9 d-flex justify-content-left">
-            <select
-              name="city"
-              id="city"
-              className="if_input"
-              style={{ width: '27%' }}
-              onChange={this.props.changeInput}
-            >
-              <option>-도/시-</option>
-              <option>서울</option>
-              <option>경기</option>
-              <option>인천</option>
-            </select>
-            <select
-              name="region"
-              id="region"
-              className="if_input"
-              style={{ width: '27%' }}
-              onChange={this.props.changeInput}
-            >
-              <option>-시/구-</option>
-              <option>강남구</option>
-              <option>강서구</option>
-              <option>성북구</option>
-            </select>
+            <div onClick={() => this.addressModalToggle()}>주소 검색</div>
             <input
               type="text"
-              name="shop"
-              id="shop"
+              name="address"
+              id="address"
+              placeholder="샵 주소"
+              className="if_input"
+              value={this.props.state.fullAddress}
+              style={{ marginRight: '0' }}
+            />
+            <input
+              type="text"
+              name="extraAddress"
+              id="extraAddress"
               placeholder="샵 상세주소"
+              value={this.props.state.extraAddress}
               onChange={this.props.changeInput}
               className="if_input"
               style={{ marginRight: '0' }}
@@ -320,6 +337,13 @@ class InfoForm extends Component {
             </div>
           </div>
         </FormGroup>
+        <Modal
+          centered
+          isOpen={this.state.addressModal}
+          toggle={this.addressModalToggle}
+        >
+          <DaumPostcode onComplete={this.handleAddress} autoClose={true} />
+        </Modal>
       </Fragment>
     );
   }

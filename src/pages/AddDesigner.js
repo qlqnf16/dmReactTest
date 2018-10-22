@@ -11,7 +11,6 @@ class AddDesigner extends Component {
   constructor(props) {
     super(props);
 
-    const userData = this.props.userData;
     const {
       name,
       birthday,
@@ -19,7 +18,11 @@ class AddDesigner extends Component {
       phoneNumber,
       untilDesigner,
       career,
-      careerDetail
+      careerDetail,
+      fullAddress,
+      extraAddress,
+      sido,
+      sigungu
     } = this.props.userData;
     this.state = {
       name,
@@ -31,6 +34,10 @@ class AddDesigner extends Component {
       year: birthday.year,
       month: birthday.month,
       day: birthday.day,
+      fullAddress,
+      extraAddress,
+      sido,
+      sigungu,
       certImg1: null,
       certFile1: null,
       certImg2: null,
@@ -103,6 +110,24 @@ class AddDesigner extends Component {
     }
   }
 
+  handleAddress = data => {
+    let fullAddress = data.address;
+    let extraAddress = '';
+
+    if (data.addressType === 'R') {
+      if (data.bname !== '') {
+        extraAddress += data.bname;
+      }
+      if (data.buildingName !== '') {
+        extraAddress +=
+          extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName;
+      }
+      fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
+    }
+    const { sido, sigungu } = data;
+    this.setState({ sido, sigungu, fullAddress });
+  };
+
   submitHandler = async () => {
     const {
       name,
@@ -113,7 +138,11 @@ class AddDesigner extends Component {
       phoneNumber,
       untilDesigner,
       career,
-      careerDetail
+      careerDetail,
+      fullAddress,
+      extraAddress,
+      sido,
+      sigungu
     } = this.state;
 
     const firebaseUserData = {
@@ -123,7 +152,11 @@ class AddDesigner extends Component {
       phoneNumber,
       untilDesigner,
       career,
-      careerDetail
+      careerDetail,
+      fullAddress,
+      extraAddress,
+      sido,
+      sigungu
     };
 
     if (Object.values(firebaseUserData).includes(undefined))
@@ -177,6 +210,7 @@ class AddDesigner extends Component {
             certFile2={this.state.certFile2}
             imgChange={e => this.handleImgChange(e)}
             changeInput={e => this.handleInputChange(e)}
+            handleAddress={this.handleAddress}
           />
           <div className="text-center">
             <div className="ad_button" onClick={this.submitHandler}>

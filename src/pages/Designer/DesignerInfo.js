@@ -16,7 +16,11 @@ class DesignerInfo extends Component {
       phoneNumber,
       untilDesigner,
       career,
-      careerDetail
+      careerDetail,
+      fullAddress,
+      extraAddress,
+      sido,
+      sigungu
     } = this.props.userData;
     this.state = {
       name,
@@ -28,6 +32,10 @@ class DesignerInfo extends Component {
       untilDesigner,
       career,
       careerDetail,
+      fullAddress,
+      extraAddress,
+      sido,
+      sigungu,
       profileImg: null,
       profileFile: null,
       certImg1: null,
@@ -38,9 +46,25 @@ class DesignerInfo extends Component {
       portfolioFile: [],
       num: 0
     };
-    // this.onFormSubmit = this.onFormSubmit.bind(this)
-    // this.fileUpload = this.fileUpload.bind(this)
   }
+
+  handleAddress = data => {
+    let fullAddress = data.address;
+    let extraAddress = '';
+
+    if (data.addressType === 'R') {
+      if (data.bname !== '') {
+        extraAddress += data.bname;
+      }
+      if (data.buildingName !== '') {
+        extraAddress +=
+          extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName;
+      }
+      fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
+    }
+    const { sido, sigungu } = data;
+    this.setState({ sido, sigungu, fullAddress });
+  };
 
   handleImgChange = e => {
     let file = e.target.files[0];
@@ -115,6 +139,10 @@ class DesignerInfo extends Component {
       untilDesigner,
       career,
       careerDetail,
+      fullAddress,
+      extraAddress,
+      sido,
+      sigungu,
       introduce
     } = this.state;
 
@@ -126,6 +154,10 @@ class DesignerInfo extends Component {
       untilDesigner,
       career,
       careerDetail,
+      fullAddress,
+      extraAddress,
+      sido,
+      sigungu,
       introduce
     };
 
@@ -156,6 +188,7 @@ class DesignerInfo extends Component {
                 imgChange={e => this.handleImgChange(e)}
                 changeInput={e => this.handleInputChange(e)}
                 checked={!this.state.gender ? 'male' : this.state.gender}
+                handleAddress={this.handleAddress}
               />
               <InfoFormExtended
                 state={this.state}
