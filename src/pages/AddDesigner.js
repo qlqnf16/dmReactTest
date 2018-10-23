@@ -212,18 +212,18 @@ class AddDesigner extends Component {
     alert('성공적으로 신청되었습니다');
 
     // TODO: 첨부 안했을때 오류가 나는듯...?
-    // const formData = new fd();
-    // formData.append('cert_mh', this.state.certFile1);
-    // formData.append('cert_jg', this.state.certFile2);
-    // await axios.post(
-    //   `http://localhost:3030/firebase/upload?uid=${this.props.userData.uid}`,
-    //   formData,
-    //   {
-    //     headers: {
-    //       'Content-Type': 'multipart/form-data'
-    //     }
-    //   }
-    // );
+    const formData = new fd();
+    formData.append('cert_mh', this.state.certFile1);
+    formData.append('cert_jg', this.state.certFile2);
+    await axios.post(
+      `http://localhost:3030/firebase/upload?uid=${this.props.userData.uid}`,
+      formData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }
+    );
 
     // await this.props.history.push('/designer/whydreamary');
   };
