@@ -57,7 +57,6 @@ class Schedule extends Component {
   };
 
   render() {
-    const a = [];
     console.log(moment().add(1, 'month'));
     const disabledDate = current => {
       if (!current) {
@@ -93,6 +92,7 @@ class Schedule extends Component {
               disabledDate={disabledDate}
               showDateInput="false"
               locale={koKR}
+              defaultValue={null}
               style={{ color: '#1f3354', width: '90%' }}
             />
           </FormGroup>
@@ -148,7 +148,7 @@ class Schedule extends Component {
                 type="select"
                 className="col-7"
               >
-                {a.map((address, key) => (
+                {this.props.addresses.map((address, key) => (
                   <option key={key}>{address.extraAddress}</option>
                 ))}
                 <option>머리샵 일산웨스턴돔점</option>
@@ -175,8 +175,7 @@ class Schedule extends Component {
                   style={{
                     fontSize: '1.1rem',
                     background: 'none',
-                    border: 0,
-                    marginLeft: '-2rem'
+                    border: 0
                   }}
                 >
                   + 시간 추가

@@ -47,6 +47,14 @@ class Schedule extends Component {
   };
 
   cardAddHandler = async cardData => {
+    console.log(cardData);
+    if (
+      Object.values(cardData).includes(undefined) ||
+      Object.values(cardData).includes('null') ||
+      Object.values(cardData).includes(NaN) ||
+      cardData.ableTimes.length === 0
+    )
+      return alert('채워지지 않은 정보가 있습니다');
     let newCards = this.state.newCards;
     let nCards = [];
     newCards.push(cardData);
