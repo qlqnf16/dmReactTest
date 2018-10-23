@@ -115,6 +115,8 @@ class ScheduleBox extends Component {
     }
   }
 
+  cardSort = (c1, c2) => c1.date - c2.date;
+
   render() {
     const date = Math.floor(this.state.date / 86400000) * 86400000;
     let requireGender = '';
@@ -193,18 +195,19 @@ class ScheduleBox extends Component {
             changeInput={e => this.handleInputChange(e)}
             date={this.state.date}
             addresses={this.props.userData.addresses}
+            dates={this.props.dates}
           />
         </div>
         <div className="col-6 mt-5">
           <div className="bg-light row" style={{ padding: '1.5rem' }}>
-            {this.state.cards.map((card, key) => (
+            {this.state.cards.sort(this.cardSort).map((card, key) => (
               <ScheduleCard
                 cancelCardHandler={this.props.cancelCardHandler}
                 card={card}
                 key={key}
               />
             ))}
-            {this.props.newCards.map((newCard, key) => (
+            {this.props.newCards.sort(this.cardSort).map((newCard, key) => (
               <ScheduleCard card={newCard} key={key} />
             ))}
           </div>

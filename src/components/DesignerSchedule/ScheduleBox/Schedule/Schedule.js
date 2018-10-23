@@ -73,9 +73,16 @@ class Schedule extends Component {
       oneMonthAfter.hour(0);
       oneMonthAfter.minute(0);
       oneMonthAfter.second(0);
+      current
+        .hour(0)
+        .minute(0)
+        .second(0)
+        .millisecond(0);
+      current.add(9, 'hour');
       return (
         current.valueOf() < nowTime.valueOf() ||
-        current.valueOf() > oneMonthAfter.valueOf()
+        current.valueOf() > oneMonthAfter.valueOf() ||
+        this.props.dates.includes(current.valueOf())
       );
     };
     return (

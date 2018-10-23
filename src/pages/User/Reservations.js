@@ -76,6 +76,7 @@ class Reservations extends Component {
   };
 
   reservationSort = (r1, r2) => r1.date - r2.date;
+
   render() {
     let futureReservations = [];
     let previousReservations = [];

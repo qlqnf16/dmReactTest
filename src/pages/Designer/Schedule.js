@@ -28,7 +28,6 @@ class Schedule extends Component {
   };
 
   handleInputChange = e => {
-    console.log('Adsfasd');
     const target = e.target;
     const value = target.value;
     const name = target.name;
@@ -123,6 +122,8 @@ class Schedule extends Component {
   };
 
   render() {
+    const dates = this.state.cards.map(card => card.date);
+
     return (
       <div className="container-fluid d">
         <div className="d_bg">
@@ -137,6 +138,7 @@ class Schedule extends Component {
               cancelCardHandler={this.cancelCardHandler}
               cardAddHandler={this.cardAddHandler}
               totalSubmitHandler={this.totalSubmitHandler}
+              dates={dates}
             />
             {/* // changeInput= {e => this.handleInputChange(e)} */}
           </div>
