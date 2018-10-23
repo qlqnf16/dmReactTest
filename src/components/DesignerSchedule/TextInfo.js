@@ -1,5 +1,6 @@
 import React from 'react';
 import { FormGroup, Label, Input } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 const styles = {
   labelStyle: {
@@ -39,13 +40,13 @@ const TextInfo = props => (
     >
       <div style={{ textAlign: 'center' }}>저장</div>
     </div>
-    <div
-      onClick={props.totalSubmitHandler}
+    <Link
+      to={`/designerdetail/${props.id}`}
       className="btn btn-success text-right d-inline"
       style={styles.saveButtonStyle}
     >
       <div style={{ textAlign: 'center' }}>내 카드 확인</div>
-    </div>
+    </Link>
     <FormGroup>
       <Label for="title" style={styles.labelStyle}>
         제목

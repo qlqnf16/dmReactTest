@@ -34,7 +34,10 @@ class DesignerCoupon extends Component {
                   id="coupon"
                   className="if_input"
                 />
-                <div className="btn" onClick={() => this.couponSubmit()}>
+                <div
+                  className=" coupon_button"
+                  onClick={() => this.couponSubmit()}
+                >
                   적용
                 </div>
               </div>

@@ -65,7 +65,7 @@ const ReservationCard = props => {
       <div className="rc_type">
         D-
         <Moment unit="days" diff={new Date()}>
-          {props.reservation.date}
+          {props.reservation.date + 86400000}
         </Moment>
       </div>
     );

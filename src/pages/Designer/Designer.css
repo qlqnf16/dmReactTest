@@ -42,3 +42,16 @@
   font-weight: bold !important;
   margin: 4rem 0 4rem 14rem;
 }
+.coupon_button {
+  border: solid 1px #4c91ba;
+  color: #4c91ba;
+  border-radius: 5px;
+  background-color: #ffffff;
+  padding: 0;
+  width: 8rem;
+  text-align: center;
+  line-height: 2.4;
+  height: 3rem;
+  font-size: 1.2rem;
+  margin-top: 0.2rem;
+}

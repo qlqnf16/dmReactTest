@@ -60,11 +60,13 @@ const ReservationCard = props => {
         예약 취소
       </button>
     );
+    console.log(new Date());
+    console.log(props.reservation.date);
     type = (
       <div className="rc_type">
         D-
         <Moment unit="days" diff={new Date()}>
-          {props.reservation.date}
+          {props.reservation.date + 86400000}
         </Moment>
       </div>
     );

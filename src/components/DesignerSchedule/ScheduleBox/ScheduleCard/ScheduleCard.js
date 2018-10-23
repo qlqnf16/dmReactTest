@@ -114,10 +114,7 @@ const ScheduleCard = props => {
             {props.cancelCardHandler ? (
               <div
                 onClick={() =>
-                  props.cancelCardHandler(
-                    props.card._id,
-                    props.card._recruit._id
-                  )
+                  props.cancelCardHandler(props.card._id, props.card._recruit)
                 }
               >
                 <img src={Delete} alt="alt" className="delete_button" />

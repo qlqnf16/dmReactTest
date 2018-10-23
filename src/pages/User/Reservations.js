@@ -75,6 +75,7 @@ class Reservations extends Component {
     });
   };
 
+  reservationSort = (r1, r2) => r1.date - r2.date;
   render() {
     let futureReservations = [];
     let previousReservations = [];
@@ -85,10 +86,12 @@ class Reservations extends Component {
           !reservation.isCanceled &&
           !reservation.isDone
       );
+      futureReservations.sort(this.reservationSort);
       previousReservations = this.state.reservations.filter(
         reservation =>
           reservation.date <= new Date().getTime() || reservation.isCanceled
       );
+      previousReservations.sort(this.reservationSort);
     }
 
     return (

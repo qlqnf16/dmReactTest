@@ -35,7 +35,11 @@ class Coupon extends Component {
                     id="coupon"
                     className="if_input"
                   />
-                  <div className="btn" onClick={() => this.couponSubmit()}>
+                  <div
+                    className="coupon_button"
+                    style={{ border: 'solid 1px #dd6866', color: '#dd6866' }}
+                    onClick={() => this.couponSubmit()}
+                  >
                     적용
                   </div>
                 </div>

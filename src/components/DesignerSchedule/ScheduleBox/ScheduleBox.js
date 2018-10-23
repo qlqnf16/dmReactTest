@@ -88,6 +88,7 @@ class ScheduleBox extends Component {
           }
         });
       } else if (target.name === 'no') {
+        target.id = target.id.toLowerCase();
         this.setState({
           no: {
             ...this.state.no,
@@ -101,7 +102,7 @@ class ScheduleBox extends Component {
   }
 
   render() {
-    const date = new Date(this.state.date);
+    const date = Math.floor(this.state.date / 86400000) * 86400000;
     let requireGender = '';
 
     if (this.state.male && this.state.female) {
@@ -124,7 +125,7 @@ class ScheduleBox extends Component {
       must: this.state.must,
       no: this.state.no,
       reservable: true,
-      date: date.getTime(),
+      date,
       shop: this.state.shop,
       requireGender: requireGender,
 
@@ -164,6 +165,7 @@ class ScheduleBox extends Component {
             totalSubmitHandler={() =>
               this.props.totalSubmitHandler(recruitData)
             }
+            id={this.props.userData._recruit}
           />
           <Schedule
             datePick={e => this.timeDefault(e)}
@@ -177,7 +179,7 @@ class ScheduleBox extends Component {
           />
         </div>
         <div className="col-6 mt-5">
-          <div className="bg-light row" style={{padding: '1.5rem'}}>
+          <div className="bg-light row" style={{ padding: '1.5rem' }}>
             {this.state.cards.map((card, key) => (
               <ScheduleCard
                 cancelCardHandler={this.props.cancelCardHandler}

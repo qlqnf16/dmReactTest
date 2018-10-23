@@ -102,7 +102,7 @@ class CardAdd extends Component {
     else {
       permButton = 'toggle_button';
       permClick = () => this.toggle('perm');
-      if (this.state.cut) permButton += ' toggle_on';
+      if (this.state.perm) permButton += ' toggle_on';
     }
     let dyeButton = '';
     let dyeClick = null;
