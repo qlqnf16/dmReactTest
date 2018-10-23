@@ -2,7 +2,7 @@ html {
   font-size: 10px;
 }
 
-@media screen and (max-width: 990px) {
+/* @media screen and (max-width: 990px) {
   html {
     font-size: 8px;
   }
@@ -21,7 +21,7 @@ html {
   html {
     font-size: 3px;
   }
-}
+} */
 
 body {
   margin: 0;
