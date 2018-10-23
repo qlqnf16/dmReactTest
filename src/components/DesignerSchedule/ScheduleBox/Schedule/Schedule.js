@@ -5,6 +5,9 @@ import koKR from 'rc-calendar/lib/locale/ko_KR';
 import 'rc-calendar/assets/index.css';
 import moment from 'moment';
 import './Schedule.css';
+import questionMark from '../../../../assets/images/question_navy.png';
+import womanBack from '../../../../assets/images/woman_back.png';
+import ReactTooltip from 'react-tooltip';
 
 class Schedule extends Component {
   timeSelector = () => {
@@ -192,6 +195,49 @@ class Schedule extends Component {
                   color: '#1f3354'
                 }}
               >
+                <img
+                  alt="alt"
+                  className="question"
+                  src={questionMark}
+                  data-tip
+                  data-for="pic"
+                />
+                <ReactTooltip
+                  id="pic"
+                  place="left"
+                  type="light"
+                  effect="solid"
+                  delayHide={500}
+                  className="card_tooltip tooltip_time"
+                >
+                  <div className="mb-2" style={{ color: '#1f3354' }}>
+                    ✓ 적극응원
+                  </div>
+                  <div className="mb-3 tooltip_text">
+                    사진을 촬영하며, 미래에 홍보용으로 사용될 수 있습니다.
+                  </div>
+
+                  <div className="mb-2" style={{ color: '#1f3354' }}>
+                    ✓ 히든응원{' '}
+                  </div>
+                  <div className="mb-3 tooltip_text">
+                    사진을 촬영하나 얼굴은 모자이크 처리합니다.
+                  </div>
+
+                  <div className="mb-2" style={{ color: '#1f3354' }}>
+                    ✓ 매너응원
+                  </div>
+                  <div className="mb-3 tooltip_text">
+                    사진을 촬영하나 개인소장/실습 증명용으로만 사용됩니다.
+                  </div>
+
+                  <div className="mb-2" style={{ color: '#1f3354' }}>
+                    ✓ 사진촬영x
+                  </div>
+                  <div className="mb-3 tooltip_text">
+                    사진을 촬영하지 않습니다.
+                  </div>
+                </ReactTooltip>
                 사진촬영 여부
               </Label>
               <Input
@@ -346,11 +392,17 @@ class Schedule extends Component {
         </div>
         <div
           className="p-3 mx-auto"
-          style={{ color: '#4c91ba', fontSize: '1.1rem' }}
+          style={{
+            color: '#4c91ba',
+            fontSize: '1.1rem',
+            backgroundColor: 'transparent'
+          }}
         >
           <div className="row">
             <div className="col-4 text-center font-weight-bold"> 펌</div>
-            <div className="col-4" />
+            <div className="col-4">
+              <img src={womanBack} alt="alt" className="woman_back" />
+            </div>
 
             <div className="col-4 text-center font-weight-bold"> 염색</div>
           </div>
