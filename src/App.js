@@ -36,18 +36,37 @@ import {
 import { MobileLanding } from './mobilePages';
 import Toolbar from './components/Navigation/Toolbar/Toolbar';
 import Footer from './components/UI/Footer/Footer';
+import MobileNavigationBar from './mobilePages/components/NavigationBar/NavigationBar';
+import MobileSideDrawer from './mobilePages/components/NavigationBar/SideDrawer';
+import MobileBackdrop from './mobilePages/components/NavigationBar/Backdrop';
 import firebase from './config/Firebase';
 
 import { connect } from 'react-redux';
 import * as actions from './modules';
 import axios from 'axios';
 import './App.css';
+import SideDrawer from './mobilePages/components/NavigationBar/SideDrawer';
 console.log(actions);
 class App extends Component {
   state = {
     madeRequest: false,
-    width: window.innerWidth
+    width: window.innerWidth, // mobile version 만들기 위함
+    sideDrawerOpen: false // mobile version sideDrawer
   };
+
+  /////////// mobile version sideDrawer methods
+
+  drawerToggleClickHandler = () => {
+    this.setState(prevState => {
+      return { sideDrawerOpen: !prevState.sideDrawerOpen };
+    });
+  };
+
+  backdropClickHandler = () => {
+    this.setState({ sideDrawerOpen: false });
+  };
+
+  ////////////////////////////
 
   componentDidMount = () => {
     if (!this.state.madeRequest) {
@@ -280,9 +299,19 @@ class App extends Component {
       );
     } else {
       // 시작 화면이 500px 보다 작을 경우에 모바일 페이지를 렌더링할 것임.
+      let backdrop;
+
+      if (this.state.sideDrawerOpen) {
+        backdrop = <MobileBackdrop click={this.backdropClickHandler} />;
+      }
       return (
         <Fragment>
           <div className="app-content">
+            <MobileNavigationBar
+              drawerClickHandler={this.drawerToggleClickHandler}
+            />
+            <MobileSideDrawer show={this.state.sideDrawerOpen} />
+            {backdrop}
             {/* mobile landing */}
             <Route path="/" component={MobileLanding} />
           </div>

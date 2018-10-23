@@ -1,0 +1,12 @@
+.mobile-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.mobile-logo {
+  height: 30px;
+  margin-right: 14px;
+}
+.mobile-tricolor {
+  height: 50px;
+}
