@@ -6,6 +6,7 @@ import 'rc-calendar/assets/index.css';
 import moment from 'moment';
 import './Schedule.css';
 import questionMark from '../../../../assets/images/question_navy.png';
+import womanBack from '../../../../assets/images/woman_back.png';
 import ReactTooltip from 'react-tooltip';
 
 class Schedule extends Component {
@@ -391,11 +392,17 @@ class Schedule extends Component {
         </div>
         <div
           className="p-3 mx-auto"
-          style={{ color: '#4c91ba', fontSize: '1.1rem' }}
+          style={{
+            color: '#4c91ba',
+            fontSize: '1.1rem',
+            backgroundColor: 'transparent'
+          }}
         >
           <div className="row">
             <div className="col-4 text-center font-weight-bold"> 펌</div>
-            <div className="col-4" />
+            <div className="col-4">
+              <img src={womanBack} alt="alt" className="woman_back" />
+            </div>
 
             <div className="col-4 text-center font-weight-bold"> 염색</div>
           </div>

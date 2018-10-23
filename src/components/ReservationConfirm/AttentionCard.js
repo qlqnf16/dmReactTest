@@ -1,5 +1,6 @@
 import React from 'react';
 import './AttentionCard.css';
+import womanBack from '../../assets/images/woman_back.png';
 
 const AttentionCard = props => {
   let service = props.service;
@@ -32,7 +33,13 @@ const AttentionCard = props => {
           >
             <div className="row">
               <div className="col-4 text-center font-weight-bold"> 펌</div>
-              <div className="col-4" />
+              <div className="col-4">
+                <img
+                  src={womanBack}
+                  alt="alt"
+                  className="reservation_woman_back"
+                />
+              </div>
 
               <div className="col-4 text-center font-weight-bold"> 염색</div>
             </div>
@@ -110,7 +117,14 @@ const AttentionCard = props => {
             style={{ color: '#4c91ba', fontSize: '1.1rem' }}
           >
             <div className="row">
-              <div className="col-6" />
+              <div className="col-6">
+                <img
+                  src={womanBack}
+                  alt="alt"
+                  className="reservation_woman_back"
+                  style={{ width: '50%' }}
+                />
+              </div>
 
               <div className="col-6 text-center font-weight-bold">
                 {' '}

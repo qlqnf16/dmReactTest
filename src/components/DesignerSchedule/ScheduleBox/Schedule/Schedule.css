@@ -10,11 +10,17 @@
 .length_price {
   border-bottom: dotted 1.5px #4c91ba;
   padding: 0.3rem 0;
-  color: #1f3354
+  color: #1f3354;
 }
 .length_input {
   width: 8rem;
   height: 80%;
+}
+
+@media screen and (max-width: 1200px) {
+  .length_input {
+    height: 50%;
+  }
 }
 
 input[id='male'] + label,
@@ -30,7 +36,6 @@ input[id='Dye'] + label {
   height: 15px;
   border: 2px solid #bcbcbc;
   cursor: pointer;
-  
 }
 input[id='male']:checked + label,
 input[id='female']:checked + label,
@@ -51,4 +56,12 @@ input[id='Cut'],
 input[id='Perm'],
 input[id='Dye'] {
   display: none;
+}
+
+.woman_back {
+  height: 16rem;
+  position: absolute;
+  width: 60%;
+  left: 20%;
+  top: -50%;
 }
