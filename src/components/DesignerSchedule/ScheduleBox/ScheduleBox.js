@@ -17,6 +17,8 @@ class ScheduleBox extends Component {
       no: {},
       sinces: [],
       untils: [],
+      perm_price: {},
+      dye_price: {},
       title: '',
       requirement: '',
       requireTime: {},
@@ -56,6 +58,8 @@ class ScheduleBox extends Component {
   };
   sinces = [];
   untils = [];
+  perm_price = {};
+  dye_price = {};
   handleInputChange(event) {
     const target = event.target;
     const name = target.name;
@@ -74,6 +78,16 @@ class ScheduleBox extends Component {
       } else if (target.id === 'time') {
         const value = Number(target.value);
         this.setState({ [name]: value });
+      } else if (target.name === 'perm_price') {
+        this.perm_price[target.id] = Number(target.value);
+        this.setState({
+          perm_price: this.perm_price
+        });
+      } else if (target.name === 'dye_price') {
+        this.dye_price[target.id] = Number(target.value);
+        this.setState({
+          dye_price: this.dye_price
+        });
       } else {
         const value = target.value;
         this.setState({ [name]: value });
@@ -127,9 +141,11 @@ class ScheduleBox extends Component {
       reservable: true,
       date,
       shop: this.state.shop,
-      requireGender: requireGender,
-
-      ableTimes: ableTimes,
+      requireGender,
+      // TODO: Back DB 추가하고 넣기
+      // perm_price: this.state.perm_price,
+      // dye_price: this.state.dye_price,
+      ableTimes,
       // 선택폼 없음
       region: '성북구',
       price: { cut: 3000, perm: 20000, dye: 30000 }
@@ -176,6 +192,7 @@ class ScheduleBox extends Component {
             card={this.props.cards[0]}
             changeInput={e => this.handleInputChange(e)}
             date={this.state.date}
+            addresses={this.props.userData.addresses}
           />
         </div>
         <div className="col-6 mt-5">

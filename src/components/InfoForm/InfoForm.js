@@ -27,16 +27,20 @@ class InfoForm extends Component {
     let addressSelector = [];
     for (let i = 0; i < this.props.state.addressNum; i++) {
       addressSelector.push(
-        <div className="row" key={i}>
-          <div className="col-2 btn" onClick={() => this.addressModalToggle(i)}>
-            주소 검색
+        <div className="d-flex my-2" key={i}>
+          <div
+            className=" address_button"
+            style={{}}
+            onClick={() => this.addressModalToggle(i)}
+          >
+            검색
           </div>
           <input
             type="text"
             name="address"
             id={i}
             placeholder="샵 주소"
-            className="if_input col-4"
+            className="if_input "
             value={
               this.props.state.addresses[i] &&
               this.props.state.addresses[i].fullAddress
@@ -47,17 +51,23 @@ class InfoForm extends Component {
             type="text"
             name="extraAddress"
             id={i}
-            placeholder="샵 상세주소"
+            placeholder="샵 상세주소(ex. 준오헤어 청담점)"
             value={
               this.props.state.addresses[i] &&
               this.props.state.addresses[i].extraAddress
             }
             onChange={this.props.changeInput}
-            className="if_input col-4"
+            className="if_input "
             style={{ marginRight: '0' }}
           />
           <div
-            className="col-2"
+            className="address_button"
+            style={{
+              width: '6rem',
+              color: 'red',
+              marginLeft: '1rem',
+              marginRight: '0'
+            }}
             onClick={() => this.props.addressRemoveHandler(i)}
           >
             -
@@ -246,7 +256,11 @@ class InfoForm extends Component {
           <div className="col-3 if_head">지역/샵주소</div>
           <div className="col-9 ">
             {this.addressSelector()}
-            <div className="btn" onClick={() => this.props.addressAddHandler()}>
+            <div
+              className="address_button"
+              style={{ width: '10rem', marginLeft: '3rem' }}
+              onClick={() => this.props.addressAddHandler()}
+            >
               주소 추가
             </div>
           </div>

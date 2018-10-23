@@ -11,16 +11,17 @@ class Schedule extends Component {
     let timeSelector = [];
     for (let i = 0; i < this.props.time; i++) {
       timeSelector.push(
-        <div className="row" key={i}>
+        <div className="d-flex" key={i}>
           <Input
             type="select"
             name="since"
             id={i}
             onChange={this.props.changeInput}
-            className="col-4"
+            className=""
           >
-            <option value={600}>10:00</option>
-            <option value={660}>11:00</option>
+            <option value="null">-시작시간-</option>
+            <option value="600">10:00</option>
+            <option value="660">11:00</option>
             <option value="720">12:00</option>
             <option value="780">13:00</option>
             <option value="840">14:00</option>
@@ -29,14 +30,17 @@ class Schedule extends Component {
             <option value="1020">17:00</option>
             <option value="1080">18:00</option>
           </Input>
-          <span className="col-2" style={{lineHeight: '2.3'}}>~</span>
+          <span className="mx-2" style={{ lineHeight: '2.3' }}>
+            ~
+          </span>
           <Input
             type="select"
             name="until"
             id={i}
             onChange={this.props.changeInput}
-            className="col-4"
+            className=""
           >
+            <option value="null">-종료시간-</option>
             <option value="660">11:00</option>
             <option value="720">12:00</option>
             <option value="780">13:00</option>
@@ -53,6 +57,7 @@ class Schedule extends Component {
   };
 
   render() {
+    const a = [];
     console.log(moment().add(1, 'month'));
     const disabledDate = current => {
       if (!current) {
@@ -102,8 +107,8 @@ class Schedule extends Component {
               marginTop: '-2.5rem'
             }}
           >
-          <div className="row">
-          <Label
+            <div className="row">
+              <Label
                 sm={5}
                 style={{
                   textAlign: 'right',
@@ -114,11 +119,17 @@ class Schedule extends Component {
               >
                 날짜
               </Label>
-              <div style={{lineHeight: '2.3', color: '#1f3354',fontSize: '1.1rem'}}>
+              <div
+                style={{
+                  lineHeight: '2.3',
+                  color: '#1f3354',
+                  fontSize: '1.1rem'
+                }}
+              >
                 {moment(this.props.date).format('YYYY/MM/DD')}
               </div>
-          </div>
-          <FormGroup row>
+            </div>
+            <FormGroup row>
               <Label
                 sm={5}
                 style={{
@@ -137,8 +148,11 @@ class Schedule extends Component {
                 type="select"
                 className="col-7"
               >
-                <option>박준뷰티랩 청담본점</option>
+                {a.map((address, key) => (
+                  <option key={key}>{address.extraAddress}</option>
+                ))}
                 <option>머리샵 일산웨스턴돔점</option>
+                <option>머리샵 일산웨스턴돔점2</option>
               </Input>
             </FormGroup>
             <FormGroup row>
@@ -153,12 +167,17 @@ class Schedule extends Component {
               >
                 서비스 가능 시간
               </Label>
-              <div className="col-7">
+              <div className="col-7 p-0">
                 {this.timeSelector()}
                 <Button
                   color="light"
                   onClick={this.props.timeAdd}
-                  style={{ fontSize: '1.1rem', background: 'none', border: 0, marginLeft: '-2rem' }}
+                  style={{
+                    fontSize: '1.1rem',
+                    background: 'none',
+                    border: 0,
+                    marginLeft: '-2rem'
+                  }}
                 >
                   + 시간 추가
                 </Button>
@@ -183,6 +202,7 @@ class Schedule extends Component {
                 type="select"
                 className="col-7"
               >
+                <option value="null">-종류-</option>
                 <option>적극응원</option>
                 <option>히든응원</option>
                 <option>매너응원</option>
@@ -202,37 +222,36 @@ class Schedule extends Component {
                 필수 서비스
               </Label>
               <FormGroup check inline>
-                <div >
+                <div>
                   <input
                     type="checkbox"
                     name="must"
                     id="cut"
                     onChange={this.props.changeInput}
                   />
-                  <label className="mb-0" for="cut"/>{' '}
-                  커트
+                  <label className="mb-0" for="cut" /> 커트
                 </div>
               </FormGroup>
               <FormGroup check inline>
-                <div >
+                <div>
                   <input
                     type="checkbox"
                     name="must"
                     id="perm"
                     onChange={this.props.changeInput}
-                  /><label className="mb-0" for="perm"/>{' '}
-                  펌
+                  />
+                  <label className="mb-0" for="perm" /> 펌
                 </div>
               </FormGroup>
               <FormGroup check inline>
-                <div >
+                <div>
                   <input
                     type="checkbox"
                     name="must"
                     id="dye"
                     onChange={this.props.changeInput}
-                  /><label className="mb-0" for="dye"/>{' '}
-                  염색
+                  />
+                  <label className="mb-0" for="dye" /> 염색
                 </div>
               </FormGroup>
             </div>
@@ -249,36 +268,36 @@ class Schedule extends Component {
                 불가 서비스
               </Label>
               <FormGroup check inline>
-                <div >
+                <div>
                   <input
                     type="checkbox"
                     name="no"
                     id="Cut"
                     onChange={this.props.changeInput}
-                  /><label className="mb-0" for="Cut"/>{' '}
-                  커트
+                  />
+                  <label className="mb-0" for="Cut" /> 커트
                 </div>
               </FormGroup>
               <FormGroup check inline>
-                <div >
+                <div>
                   <input
                     type="checkbox"
                     name="no"
                     id="Perm"
                     onChange={this.props.changeInput}
-                  /><label className="mb-0" for="Perm"/>{' '}
-                  펌
+                  />
+                  <label className="mb-0" for="Perm" /> 펌
                 </div>
               </FormGroup>
               <FormGroup check inline>
-                <div >
+                <div>
                   <input
                     type="checkbox"
                     name="no"
                     id="Dye"
                     onChange={this.props.changeInput}
-                  /><label className="mb-0" for="Dye"/>{' '}
-                  염색
+                  />
+                  <label className="mb-0" for="Dye" /> 염색
                 </div>
               </FormGroup>
             </div>
@@ -296,25 +315,25 @@ class Schedule extends Component {
                 모델 성별
               </Label>
               <FormGroup check inline>
-                <div >
+                <div>
                   <input
                     type="checkbox"
                     name="male"
                     id="male"
                     onChange={this.props.changeInput}
-                  /><label className="mb-0" for="male"/>{' '}
-                  남자
+                  />
+                  <label className="mb-0" for="male" /> 남자
                 </div>
               </FormGroup>
               <FormGroup check inline>
-                <div >
+                <div>
                   <input
                     type="checkbox"
                     name="female"
                     id="female"
                     onChange={this.props.changeInput}
-                  /><label className="mb-0" for="female"/>{' '}
-                  여자
+                  />
+                  <label className="mb-0" for="female" /> 여자
                 </div>
               </FormGroup>
             </div>
@@ -338,41 +357,105 @@ class Schedule extends Component {
           </div>
           <div className="length_price row">
             <div className="col-4 text-right">
-              기본 <input className="length_input" />
+              기본{' '}
+              <input
+                type="number"
+                step="1000"
+                onChange={this.props.changeInput}
+                name="perm_price"
+                id="normal"
+                className="length_input"
+              />
             </div>
             <div className="col-4" />
             <div className="col-4 text-left" style={{ paddingLeft: '3.8rem' }}>
-              기본 <input className="length_input" />
+              기본{' '}
+              <input
+                type="number"
+                step="1000"
+                onChange={this.props.changeInput}
+                name="dye_price"
+                id="normal"
+                className="length_input"
+              />
             </div>
           </div>
           <div className="length_price row">
             <div className="col-4 text-right">
-              턱아래 <input className="length_input" />
+              턱아래{' '}
+              <input
+                type="number"
+                step="1000"
+                onChange={this.props.changeInput}
+                name="perm_price"
+                id="chin"
+                className="length_input"
+              />
             </div>
             <div className="col-4" />
 
             <div className="col-4 text-left" style={{ paddingLeft: '2.7rem' }}>
-              턱아래 <input className="length_input" />
+              턱아래{' '}
+              <input
+                type="number"
+                step="1000"
+                onChange={this.props.changeInput}
+                name="dye_price"
+                id="chin"
+                className="length_input"
+              />
             </div>
           </div>
           <div className="length_price row">
             <div className="col-4 text-right">
-              어깨아래 <input className="length_input" />
+              어깨아래{' '}
+              <input
+                type="number"
+                step="1000"
+                onChange={this.props.changeInput}
+                name="perm_price"
+                id="shoulder"
+                className="length_input"
+              />
             </div>
             <div className="col-4" />
 
             <div className="col-4 text-left">
-              어깨아래 <input className="length_input" />
+              어깨아래{' '}
+              <input
+                type="number"
+                step="1000"
+                onChange={this.props.changeInput}
+                name="dye_price"
+                id="shoulder"
+                className="length_input"
+              />
             </div>
           </div>
           <div className="length_price row">
             <div className="col-4 text-right">
-              가슴아래 <input className="length_input" />
+              가슴아래{' '}
+              <input
+                type="number"
+                step="1000"
+                onChange={this.props.changeInput}
+                name="perm_price"
+                id="chest"
+                className="length_input"
+              />
             </div>
             <div className="col-4" />
 
             <div className="col-4 text-left">
-              가슴아래 <input className="length_input" />
+              가슴아래{' '}
+              <input
+                type="number"
+                step="1000"
+                onChange={this.props.changeInput}
+                name="dye_price"
+                id="chest"
+                className="length_input"
+              />
             </div>
           </div>
 
