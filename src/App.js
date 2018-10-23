@@ -32,6 +32,8 @@ import {
   FAQ,
   QnA
 } from './pages';
+// mobile page
+import { MobileLanding } from './mobilePages';
 import Toolbar from './components/Navigation/Toolbar/Toolbar';
 import Footer from './components/UI/Footer/Footer';
 import firebase from './config/Firebase';
@@ -43,7 +45,8 @@ import './App.css';
 console.log(actions);
 class App extends Component {
   state = {
-    madeRequest: false
+    madeRequest: false,
+    width: window.innerWidth
   };
 
   componentDidMount = () => {
@@ -103,6 +106,8 @@ class App extends Component {
   }
 
   render() {
+    const { width } = this.state;
+    const isMobile = width <= 500;
     console.log('app rendering');
 
     // firebase에서 불러오기 전
@@ -117,7 +122,7 @@ class App extends Component {
       );
 
       // firebase database에서 호출 후,
-    } else {
+    } else if (!isMobile) {
       return (
         <Fragment>
           <Toolbar />
@@ -271,6 +276,16 @@ class App extends Component {
             />
           </div>
           <Footer />
+        </Fragment>
+      );
+    } else {
+      // 시작 화면이 500px 보다 작을 경우에 모바일 페이지를 렌더링할 것임.
+      return (
+        <Fragment>
+          <div className="app-content">
+            {/* mobile landing */}
+            <Route path="/" component={MobileLanding} />
+          </div>
         </Fragment>
       );
     }
