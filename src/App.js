@@ -33,7 +33,7 @@ import {
   QnA
 } from './pages';
 // mobile page
-import { MobileLanding } from './mobilePages';
+import { MobileLanding, MobileCustomerMyPage } from './mobilePages';
 import Toolbar from './components/Navigation/Toolbar/Toolbar';
 import Footer from './components/UI/Footer/Footer';
 import MobileNavigationBar from './mobilePages/components/NavigationBar/NavigationBar';
@@ -298,7 +298,9 @@ class App extends Component {
         </Fragment>
       );
     } else {
+      // -----------------------------------
       // 시작 화면이 500px 보다 작을 경우에 모바일 페이지를 렌더링할 것임.
+      // -----------------------------------
       let backdrop;
 
       if (this.state.sideDrawerOpen) {
@@ -312,8 +314,13 @@ class App extends Component {
             />
             <MobileSideDrawer show={this.state.sideDrawerOpen} />
             {backdrop}
-            {/* mobile landing */}
-            <Route path="/" component={MobileLanding} />
+            {/* ------------------------------- */}
+            {/* mobile router */}
+            {/* ------------------------------- */}
+            {/* landing */}
+            <Route path="/" exact component={MobileLanding} />
+            {/* customer my page (for testing MyPageNavigationBar) */}
+            <Route path="/mypage" component={MobileCustomerMyPage} />
           </div>
         </Fragment>
       );

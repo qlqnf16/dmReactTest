@@ -1,0 +1,9 @@
+.mobile-sub-menu {
+  height: 29px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 10px;
+  box-shadow: 5px 5px 7px 0 rgba(0, 0, 0, 0.1);
+}
