@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import './CardAdd.css';
 import questionMark from '../../assets/images/question_yellow.png';
 import { connect } from 'react-redux';
+import ReactTooltip from 'react-tooltip';
+
 class CardAdd extends Component {
   state = {
     cut: false,
@@ -186,26 +188,103 @@ class CardAdd extends Component {
           >
             <div className="row p-3" style={{ alignItems: 'flex-end' }}>
               <div className="col-7 m-0">
-                <p className="time">
+                <p className="time mb-1">
                   예상 소요시간
-                  <img alt="alt" className="question" src={questionMark} />
+                  <img
+                    alt="alt"
+                    className="question"
+                    src={questionMark}
+                    data-tip
+                    data-for="pic"
+                  />
+                  <ReactTooltip
+                    id="pic"
+                    place="left"
+                    type="light"
+                    effect="solid"
+                    delayHide={500}
+                    className="card_tooltip tooltip_pic"
+                  >
+                    <div className="mb-2 tooltip_title">✓ 적극응원</div>
+                    <div className="mb-3 tooltip_text">
+                      사진을 촬영하며, 미래에 홍보용으로 사용될 수 있습니다.
+                    </div>
+
+                    <div className="mb-2 tooltip_title">✓ 히든응원 </div>
+                    <div className="mb-3 tooltip_text">
+                      사진을 촬영하나 얼굴은 모자이크 처리합니다.
+                    </div>
+
+                    <div className="mb-2 tooltip_title">✓ 매너응원</div>
+                    <div className="mb-3 tooltip_text">
+                      사진을 촬영하나 개인소장/실습 증명용으로만 사용됩니다.
+                    </div>
+
+                    <div className="mb-2 tooltip_title">✓ 사진촬영x</div>
+                    <div className="mb-3 tooltip_text">
+                      사진을 촬영하지 않습니다.
+                    </div>
+                  </ReactTooltip>
                 </p>
                 <p className="time" style={{ fontWeight: 'bold' }}>
                   {parseInt(time / 60, 10)}
                   시간 {time % 60}분
                 </p>
-                <p className="price mb-0">
-                  {price}원
+                <p className="time mb-1">
+                  예상 금액
+                  <img
+                    alt="alt"
+                    className="question"
+                    src={questionMark}
+                    data-tip
+                    data-for="addPrice"
+                  />
+                  <ReactTooltip
+                    id="addPrice"
+                    place="left"
+                    type="light"
+                    effect="solid"
+                    delayHide={500}
+                    className="card_tooltip tooltip_pic"
+                  >
+                    <div className="tooltip_text">
+                      재료비는 현장 사정에 따라 달라질 수 있으므로 별도로 현금
+                      지참해주세요 :)
+                    </div>
+                  </ReactTooltip>
+                </p>
+                <p className="time" style={{ fontWeight: 'bold' }}>
+                  {parseInt(time / 60, 10)}
+                  12345원
+                </p>
+              </div>
+              <div className="col-5 p-0 reservation">
+                <p className="price mb-2 mr-2">
+                  5000원
                   <img
                     alt="alt"
                     className="question"
                     style={{ marginBottom: '0.8rem' }}
                     src={questionMark}
+                    data-tip
+                    data-for="price"
                   />
+                  <ReactTooltip
+                    id="price"
+                    place="right"
+                    type="light"
+                    effect="solid"
+                    delayHide={500}
+                    className="card_tooltip"
+                  >
+                    <p>이 금액은</p>
+                    <p>✓ 예비헤어디자이너 응원비</p>
+                    <p>✓ 소외계층을 위한 소셜이벤트</p>
+                    <p>✓ 드리머리의 생존 </p>
+                    <p>을 위하여 사용됩니다.</p>
+                  </ReactTooltip>
                 </p>
-              </div>
-              <div className="col-5 p-0 reservation">
-                <div className="pr-2">예약하기</div>
+                <div className="pr-2 mr-2">예약하기</div>
               </div>
             </div>
           </Link>

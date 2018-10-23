@@ -91,11 +91,6 @@ class Navitems extends Component {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to={'/designer/cash'} className="">
-              적립금 : 10000캐쉬
-            </NavLink>
-          </NavItem>
-          <NavItem>
             <NavLink tag={Link} to={'/message'} className=" message_img">
               <img alt="alt" src={message_x} style={{ width: '100%' }} />
             </NavLink>

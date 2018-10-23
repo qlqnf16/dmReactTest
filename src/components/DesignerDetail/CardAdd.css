@@ -47,7 +47,7 @@
   color: #ffffdf;
 }
 .time {
-  font-size: 1rem;
+  font-size: 1.1rem;
   line-height: 0.7;
 }
 .price {
@@ -65,4 +65,23 @@
   height: 1rem;
   width: 1rem;
   margin-left: 0.5rem;
+}
+.card_tooltip {
+  border-radius: 5px;
+  border: solid 1px #dd6866;
+  background-color: #ffffff;
+  color: #1f3354;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-align: left;
+  padding: 1.5rem;
+}
+.card_tooltip.tooltip_pic {
+  width: 150px;
+}
+.tooltip_text {
+  line-height: 1.5;
+}
+.tooltip_title {
+  color: #dd6866;
 }
