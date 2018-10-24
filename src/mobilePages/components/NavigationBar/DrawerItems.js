@@ -12,14 +12,23 @@ const DrawerItems = props => {
   if (props.userData.uid && !props.userData.isD) {
     return (
       <nav className={drawerClasses}>
-        <div className="mobile-drawer-items">
-          <img className="mobile-drawer-logo" src={logo} alt="logo" />
-        </div>
+        <Link to="/">
+          <div className="mobile-drawer-items" onClick={props.click}>
+            <img className="mobile-drawer-logo" src={logo} alt="logo" />
+          </div>
+        </Link>
         <div className="mobile-drawer-items mobile-drawer-login">
           반갑습니다 {props.userData.name}님
         </div>
         <div className="mobile-drawer-items mobile-drawer-gray">마이페이지</div>
-        <div className="mobile-drawer-items mobile-drawer-gray">메세지</div>
+        <Link to="/message">
+          <div
+            className="mobile-drawer-items mobile-drawer-gray"
+            onClick={props.click}
+          >
+            메세지
+          </div>
+        </Link>
         <div
           className="mobile-drawer-items mobile-drawer-gray"
           onClick={props.logout}
@@ -31,20 +40,37 @@ const DrawerItems = props => {
             막내찾기
           </div>
         </Link>
-        <div className="mobile-drawer-items">막내등록</div>
-        <div className="mobile-drawer-items">드리머리소개</div>
+        <Link to="/addDesigner">
+          <div className="mobile-drawer-items" onClick={props.click}>
+            막내등록
+          </div>
+        </Link>
+        <Link to="/about">
+          <div className="mobile-drawer-items" onClick={props.click}>
+            드리머리소개
+          </div>
+        </Link>
       </nav>
     );
   } else if (props.userData.uid && props.userData.isD) {
     return (
       <nav className={drawerClasses}>
-        <div className="mobile-drawer-items">
-          <img className="mobile-drawer-logo" src={logo} alt="logo" />
-        </div>
+        <Link to="/">
+          <div className="mobile-drawer-items" onClick={props.click}>
+            <img className="mobile-drawer-logo" src={logo} alt="logo" />
+          </div>
+        </Link>
         <div className="mobile-drawer-items mobile-drawer-login">
           반갑습니다 {props.userData.name}님
         </div>
-        <div className="mobile-drawer-items mobile-drawer-gray">메세지</div>
+        <Link to="/message">
+          <div
+            className="mobile-drawer-items mobile-drawer-gray"
+            onClick={props.click}
+          >
+            메세지
+          </div>
+        </Link>
         <div
           className="mobile-drawer-items mobile-drawer-gray"
           onClick={props.logout}
@@ -62,18 +88,38 @@ const DrawerItems = props => {
   } else if (!props.userData.uid) {
     return (
       <nav className={drawerClasses}>
-        <div className="mobile-drawer-items">
-          <img className="mobile-drawer-logo" src={logo} alt="logo" />
-        </div>
+        <Link to="/">
+          <div className="mobile-drawer-items" onClick={props.click}>
+            <img className="mobile-drawer-logo" src={logo} alt="logo" />
+          </div>
+        </Link>
         <div
           className="mobile-drawer-items mobile-drawer-login"
           onClick={props.loginToggleHandler}
         >
           로그인
         </div>
-        <div className="mobile-drawer-items mobile-drawer-gray">막내찾기</div>
-        <div className="mobile-drawer-items mobile-drawer-gray">막내등록</div>
-        <div className="mobile-drawer-items">드리머리소개</div>
+        <Link to="/designerlist">
+          <div
+            className="mobile-drawer-items mobile-drawer-gray"
+            onClick={props.click}
+          >
+            막내찾기
+          </div>
+        </Link>
+        <Link to="/addDesigner">
+          <div
+            className="mobile-drawer-items mobile-drawer-gray"
+            onClick={props.click}
+          >
+            막내등록
+          </div>
+        </Link>
+        <Link to="/about">
+          <div className="mobile-drawer-items" onClick={props.click}>
+            드리머리소개
+          </div>
+        </Link>
         <div
           className="mobile-drawer-items"
           onClick={props.signUpToggleHandler}
