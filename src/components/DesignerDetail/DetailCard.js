@@ -98,8 +98,8 @@ class DetailCard extends Component {
       );
       dcard += 'dcard_selected';
     }
-    let mustParse = must.map(m => this.typeParse(m));
-    let noParse = no.map(m => this.typeParse(m));
+    let mustParse = String(must.map(m => this.typeParse(m)));
+    let noParse = String(no.map(m => this.typeParse(m)));
     if (!mustParse.length) mustParse = '없음';
     if (!noParse.length) noParse = '없음';
 

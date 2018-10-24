@@ -196,6 +196,8 @@ class ScheduleBox extends Component {
             date={this.state.date}
             addresses={this.props.userData.addresses}
             dates={this.props.dates}
+            sinces={this.state.sinces}
+            untils={this.state.untils}
           />
         </div>
         <div className="col-6 mt-5">

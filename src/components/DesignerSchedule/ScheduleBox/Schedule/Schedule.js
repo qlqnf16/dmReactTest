@@ -13,6 +13,31 @@ class Schedule extends Component {
   timeSelector = () => {
     let timeSelector = [];
     for (let i = 0; i < this.props.time; i++) {
+      let times = [];
+      let startTime = 600;
+      if (i > 0) {
+        startTime = this.props.untils[i - 1];
+      }
+      for (let j = startTime; j < 1200; j = j + 60) {
+        times.push(j);
+      }
+      let ts = times.map((time, key) => (
+        <option key={key} value={time}>
+          {time / 60}
+          :00
+        </option>
+      ));
+      let finishTimes = [];
+      for (let j = this.props.sinces[i]; j < 1200; j = j + 60) {
+        finishTimes.push(j);
+      }
+      let finishts = finishTimes.map((ftime, key) => (
+        <option key={key} value={ftime}>
+          {ftime / 60}
+          :00
+        </option>
+      ));
+      console.log(times);
       timeSelector.push(
         <div className="d-flex" key={i}>
           <Input
@@ -23,15 +48,7 @@ class Schedule extends Component {
             className=""
           >
             <option value="null">-시작시간-</option>
-            <option value="600">10:00</option>
-            <option value="660">11:00</option>
-            <option value="720">12:00</option>
-            <option value="780">13:00</option>
-            <option value="840">14:00</option>
-            <option value="900">15:00</option>
-            <option value="960">16:00</option>
-            <option value="1020">17:00</option>
-            <option value="1080">18:00</option>
+            {ts}
           </Input>
           <span className="mx-2" style={{ lineHeight: '2.3' }}>
             ~
@@ -44,14 +61,7 @@ class Schedule extends Component {
             className=""
           >
             <option value="null">-종료시간-</option>
-            <option value="660">11:00</option>
-            <option value="720">12:00</option>
-            <option value="780">13:00</option>
-            <option value="840">14:00</option>
-            <option value="900">15:00</option>
-            <option value="960">16:00</option>
-            <option value="1020">17:00</option>
-            <option value="1080">18:00</option>
+            {finishts}
           </Input>
         </div>
       );

@@ -16,7 +16,8 @@ class CancelModal extends Component {
   };
 
   cancelReasonSubmit = async () => {
-    if (!this.state.cancelReason) return alert('채워지지 않은 정보가 있습니다');
+    if (!this.state.cancelReason || this.state.cancelReason === '')
+      return alert('채워지지 않은 정보가 있습니다');
     // TODO : cancelReason POST하는거 추가, 취소한 사람 정보도 넣어야함
     await axios.patch(
       `http://52.79.227.227:3030/users/${
@@ -25,7 +26,7 @@ class CancelModal extends Component {
       {
         isCanceled: true,
         cancelReason: this.state.cancelReason,
-        cancelByUser: true
+        cancelByUser: !this.props.isD
       }
     );
 

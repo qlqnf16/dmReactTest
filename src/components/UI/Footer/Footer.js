@@ -33,7 +33,7 @@ const Footer = () => (
           <div className="content">이용약관</div>
         </Link>
       </div>
-      <div>
+      <div style={{ whiteSpace: 'nowrap' }}>
         <div className="title">SUPPORT</div>
         <Link to="/FAQ">
           <div className="content">FAQ</div>

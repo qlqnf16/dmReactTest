@@ -3,13 +3,17 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import Moment from 'react-moment';
 import StarRatings from 'react-star-ratings';
+import ImgPreview from '../../../components/InfoForm/ImgPreview';
 
 import { Modal, ModalBody } from 'reactstrap';
 
 class ReviewModal extends Component {
   state = {
     content: null,
-    score: 0.0001
+    score: 0.0001,
+    reviewImg: [],
+    reviewImgFile: [],
+    num: 0
   };
 
   changeRating = score => {
@@ -21,6 +25,21 @@ class ReviewModal extends Component {
     const name = target.name;
 
     this.setState({ [name]: value });
+  };
+
+  handleImgChange = e => {
+    let file = e.target.files[0];
+    this.state.reviewImg.push(URL.createObjectURL(file));
+    this.state.reviewImgFile.push(file);
+    this.setState({ num: this.state.num + 1 });
+    console.log(this.state);
+  };
+
+  deleteImg = e => {
+    let foundFile = this.state.reviewImg.findIndex(url => url === e.target.src);
+    this.state.reviewImg.splice(foundFile, 1);
+    this.state.reviewImgFile.splice(foundFile, 1);
+    this.setState({ num: this.state.num - 1 });
   };
 
   toggle = () => {
@@ -35,10 +54,12 @@ class ReviewModal extends Component {
       _reservation: this.props.reservation._id
     };
 
-    if (Object.values(reviewData).includes(null))
+    if (Object.values(reviewData).includes(null) || this.state.content === '')
       return alert('채워지지 않은 정보가 있습니다');
 
     // review 생성
+    // TODO: 오류가 나서 넘어가진 않는데... 리뷰가 생성되긴 한다...
+    // TODO: 리뷰사진을 저장해야하는데...
     await axios.post(
       `http://52.79.227.227:3030/recruits/${
         this.props.reservation._designer._recruit._id
@@ -129,11 +150,22 @@ class ReviewModal extends Component {
               onChange={this.inputChangeHandler}
             />
             <div className="text-center row">
+              <div className="col-12">
+                {this.state.num > 0
+                  ? this.state.reviewImg.map((url, i) => (
+                      <ImgPreview
+                        url={url}
+                        key={i}
+                        deletePortfolio={this.deleteImg}
+                      />
+                    ))
+                  : null}
+              </div>
               <input
                 className="col-8"
                 type="file"
-                name="portfolio"
-                // onChange={this.props.imgChange}
+                name="reviewImg"
+                onChange={e => this.handleImgChange(e)}
               />
               <div
                 className="m_button m_button_green btn col-3"

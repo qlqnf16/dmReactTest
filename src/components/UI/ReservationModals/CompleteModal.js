@@ -31,6 +31,18 @@ class CompleteModal extends Component {
 
   noShowSubmit = async () => {
     //TODO : DB에 넣기 추가
+
+    await axios.patch(
+      `http://52.79.227.227:3030/users/${
+        this.props.userData._id
+      }/reservations/${this.props.reservation._id}`,
+      {
+        isCanceled: true,
+        cancelReason: '노쇼',
+        cancelByUser: true
+      }
+    );
+
     await alert('신고가 완료되었습니다');
     await this.props.toggle();
   };

@@ -55,7 +55,7 @@ class DesignerList extends Component {
 
     let uniqueRecruits = [];
     const counter = {};
-    recruits.forEach((recruit, i) => {
+    recruits.forEach(recruit => {
       if (!counter[recruit._id]) {
         uniqueRecruits.push(recruit);
         counter[recruit._id] = true;
