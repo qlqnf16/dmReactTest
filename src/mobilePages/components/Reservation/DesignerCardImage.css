@@ -1,0 +1,9 @@
+/* indicator customizing */
+.carousel-indicators {
+  bottom: 2px !important;
+}
+.carousel-indicators li {
+  width: 6px !important;
+  height: 6px !important;
+  border-radius: 50%;
+}

@@ -8,6 +8,7 @@ const styles = {
   headerStyle: {
     width: '100%',
     height: '40px',
+    // todo: bgColor should changed with isDesigner boolean.
     backgroundColor: '#dd6866',
     textAlign: 'center',
     lineHeight: '40px',
