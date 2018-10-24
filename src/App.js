@@ -33,7 +33,19 @@ import {
   QnA
 } from './pages';
 // mobile page
-import { MobileLanding, MobileCustomerMyPage } from './mobilePages';
+import {
+  M_Landing,
+  M_About,
+  M_AddDesigner,
+  M_Chat,
+  M_DesignerDetail,
+  M_Message,
+  M_Reservation,
+  M_ReservationConfirm,
+  M_WrongAccess,
+  M_CustomerMyPage,
+  M_DesignerList
+} from './mobilePages';
 import Toolbar from './components/Navigation/Toolbar/Toolbar';
 import Footer from './components/UI/Footer/Footer';
 import MobileNavigationBar from './mobilePages/components/NavigationBar/NavigationBar';
@@ -312,15 +324,29 @@ class App extends Component {
             <MobileNavigationBar
               drawerClickHandler={this.drawerToggleClickHandler}
             />
-            <MobileSideDrawer show={this.state.sideDrawerOpen} />
+            <MobileSideDrawer
+              click={this.backdropClickHandler}
+              show={this.state.sideDrawerOpen}
+            />
             {backdrop}
             {/* ------------------------------- */}
             {/* mobile router */}
             {/* ------------------------------- */}
             {/* landing */}
-            <Route path="/" exact component={MobileLanding} />
+            <Route path="/" exact component={M_Landing} />
+            <Route path="/about" component={M_About} />
+            <Route path="/designerlist" component={M_DesignerList} />
+            <Route path="/designerDetail/:id" component={M_DesignerDetail} />
+            <Route
+              path="/reservationConfirm/:reservation_id"
+              component={M_ReservationConfirm}
+            />
+            <Route path="/reservaiton/:card_id" component={M_Reservation} />
+            <Route path="/addDesigner" component={M_AddDesigner} />
+            <Route path="/message" component={M_Message} />
+            <Route path="/chat" component={M_Chat} />
             {/* customer my page (for testing MyPageNavigationBar) */}
-            <Route path="/mypage" component={MobileCustomerMyPage} />
+            <Route path="/mypage" component={M_CustomerMyPage} />
           </div>
         </Fragment>
       );

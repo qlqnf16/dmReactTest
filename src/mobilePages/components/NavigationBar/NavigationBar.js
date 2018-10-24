@@ -1,5 +1,5 @@
 // Mobile Navigation Bar
-import React, { Component } from 'react';
+import React from 'react';
 import DrawerToggleButton from './DrawerToggleButton';
 import logo from '../../../assets/images/logo.png';
 import tricolor from '../../../assets/images/tricolor.gif';

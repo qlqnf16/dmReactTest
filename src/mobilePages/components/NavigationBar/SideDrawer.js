@@ -1,24 +1,56 @@
-import React from 'react';
-import logo from '../../../assets/images/logo.png';
+import React, { Component, Fragment } from 'react';
 import './SideDrawer.css';
+import MyModal from '../../../components/UI/MyModal/MyModal';
+import DrawerItems from './DrawerItems';
+import { connect } from 'react-redux';
+import firebase from '../../../config/Firebase';
 
-const SideDrawer = props => {
-  let drawerClasses = 'side-drawer';
-  if (props.show) {
-    drawerClasses = 'side-drawer open';
+class SideDrawer extends Component {
+  state = {
+    showLogin: false,
+    showSignUp: false
+  };
+
+  loginToggleHandler = () => {
+    this.setState({ showLogin: !this.state.showLogin });
+  };
+
+  signUpToggleHandler = () => {
+    this.setState({ showSignUp: !this.state.showSignUp });
+  };
+
+  logout = () => {
+    firebase.auth().signOut();
+  };
+
+  render() {
+    return (
+      <Fragment>
+        <DrawerItems
+          click={this.props.click}
+          show={this.props.show}
+          loginToggleHandler={this.loginToggleHandler}
+          signUpToggleHandler={this.signUpToggleHandler}
+          logout={this.logout}
+          userData={this.props.userData}
+        />
+        <MyModal
+          showLogin={this.state.showLogin}
+          off={this.loginToggleHandler}
+          type="login"
+        />
+        <MyModal
+          showLogin={this.state.showSignUp}
+          off={this.signUpToggleHandler}
+          type="signUp"
+        />
+      </Fragment>
+    );
   }
-  return (
-    <nav className={drawerClasses}>
-      <div className="mobile-drawer-items">
-        <img className="mobile-drawer-logo" src={logo} alt="logo" />
-      </div>
-      <div className="mobile-drawer-items mobile-drawer-login">로그인</div>
-      <div className="mobile-drawer-items mobile-drawer-gray">막내찾기</div>
-      <div className="mobile-drawer-items mobile-drawer-gray">막내등록</div>
-      <div className="mobile-drawer-items">드리머리소개</div>
-      <div className="mobile-drawer-items">회원가입</div>
-    </nav>
-  );
+}
+
+const mapStateToProps = ({ authentication: { userData } }) => {
+  return { userData };
 };
 
-export default SideDrawer;
+export default connect(mapStateToProps)(SideDrawer);
