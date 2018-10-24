@@ -7,6 +7,7 @@
   font-size: 1.2rem;
   font-weight: bold;
   line-height: 1.8;
+  cursor: pointer;
 }
 .no_button {
   border-radius: 5px;
@@ -17,6 +18,7 @@
   font-weight: bold;
   line-height: 1.8;
   color: rgba(119, 119, 119, 0.2);
+  cursor: pointer;
 }
 .toggle_button {
   border-radius: 5px;
@@ -26,6 +28,7 @@
   font-size: 1.2rem;
   font-weight: bold;
   line-height: 1.8;
+  cursor: pointer;
 }
 
 .toggle_on,
@@ -34,12 +37,14 @@
 }
 .time_button {
   height: 2.3rem;
+  cursor: pointer;
 }
 .submit_button {
   box-shadow: 0 0 10px 0 rgba(119, 119, 119, 0.2);
   border: solid 3px #dd6866;
   background-color: #dd6866;
   color: #ffffdf;
+  cursor: pointer;
 }
 .link,
 .link:hover {

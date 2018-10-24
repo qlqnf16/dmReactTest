@@ -46,7 +46,7 @@ const UserNav = () => (
       >
         추천인/쿠폰
       </NavLink>
-      <NavLink
+      {/* <NavLink
         to="/message"
         className="un_navItem"
         activeStyle={{
@@ -55,7 +55,7 @@ const UserNav = () => (
         }}
       >
         메세지
-      </NavLink>
+      </NavLink> */}
     </div>
   </div>
 );

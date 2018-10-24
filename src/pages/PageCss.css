@@ -30,7 +30,8 @@
   color: white;
   font-size: 1.4rem;
   letter-spacing: 0.14rem;
-  font-family: NanumSquareEB;
+  font-weight: bold;
+  cursor: pointer;
 }
 .ad_title {
   font-size: 2.3rem;
@@ -88,6 +89,7 @@
   letter-spacing: 0.17rem;
   margin: 54.1px auto 0 auto;
   cursor: pointer;
+  cursor: pointer;
 }
 
 /* ReservationConfirm.js */
@@ -128,6 +130,7 @@
   color: #dd6866;
   font-size: 1.5rem;
   padding: 5px 14.5px;
+  cursor: pointer;
 }
 .chat_box {
   border-radius: 5px;
@@ -176,6 +179,7 @@
   font-size: 1.2rem;
   font-weight: bold;
   padding-top: 0.8rem;
+  cursor: pointer;
 }
 .chat_attach {
   width: 1rem;

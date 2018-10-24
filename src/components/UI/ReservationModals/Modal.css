@@ -27,6 +27,7 @@
   font-size: 1.4rem !important;
   font-weight: bold !important;
   color: #656565;
+  cursor: pointer;
 }
 .m_button.m_button_red {
   background-color: #dd6866;

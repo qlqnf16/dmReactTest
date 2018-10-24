@@ -41,6 +41,7 @@
   font-size: 1.4rem !important;
   font-weight: bold !important;
   margin: 4rem 0 4rem 14rem;
+  cursor: pointer;
 }
 .coupon_button {
   border: solid 1px #4c91ba;
@@ -54,4 +55,5 @@
   height: 3rem;
   font-size: 1.2rem;
   margin-top: 0.2rem;
+  cursor: pointer;
 }

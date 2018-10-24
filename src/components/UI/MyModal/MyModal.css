@@ -16,6 +16,7 @@
 }
 .modal_button {
   width: 100%;
+  cursor: pointer;
 }
 .modal_b {
   width: 75%;

@@ -188,44 +188,7 @@ class CardAdd extends Component {
           >
             <div className="row p-3" style={{ alignItems: 'flex-end' }}>
               <div className="col-7 m-0">
-                <p className="time mb-1">
-                  예상 소요시간
-                  <img
-                    alt="alt"
-                    className="question"
-                    src={questionMark}
-                    data-tip
-                    data-for="pic"
-                  />
-                  <ReactTooltip
-                    id="pic"
-                    place="left"
-                    type="light"
-                    effect="solid"
-                    delayHide={500}
-                    className="card_tooltip tooltip_pic"
-                  >
-                    <div className="mb-2 tooltip_title">✓ 적극응원</div>
-                    <div className="mb-3 tooltip_text">
-                      사진을 촬영하며, 미래에 홍보용으로 사용될 수 있습니다.
-                    </div>
-
-                    <div className="mb-2 tooltip_title">✓ 히든응원 </div>
-                    <div className="mb-3 tooltip_text">
-                      사진을 촬영하나 얼굴은 모자이크 처리합니다.
-                    </div>
-
-                    <div className="mb-2 tooltip_title">✓ 매너응원</div>
-                    <div className="mb-3 tooltip_text">
-                      사진을 촬영하나 개인소장/실습 증명용으로만 사용됩니다.
-                    </div>
-
-                    <div className="mb-2 tooltip_title">✓ 사진촬영x</div>
-                    <div className="mb-3 tooltip_text">
-                      사진을 촬영하지 않습니다.
-                    </div>
-                  </ReactTooltip>
-                </p>
+                <p className="time mb-2">예상 소요시간</p>
                 <p className="time" style={{ fontWeight: 'bold' }}>
                   {parseInt(time / 60, 10)}
                   시간 {time % 60}분

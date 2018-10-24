@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Container, Form } from 'reactstrap';
 import ScheduleBox from '../../components/DesignerSchedule/ScheduleBox/ScheduleBox';
 import axios from 'axios';
 import firebase from '../../config/Firebase';
@@ -96,8 +95,7 @@ class Schedule extends Component {
     } else {
       console.log('정보 수정');
 
-      //TODO : 특정부분 그대로 하고 새로고침...
-      const res = await axios.patch(
+      await axios.patch(
         `http://52.79.227.227:3030/recruits/${this.props.userData._recruit}`,
         recruitData
       );
