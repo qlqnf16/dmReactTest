@@ -1,6 +1,7 @@
 import React from 'react';
+import StarRatings from 'react-star-ratings';
 
-const DesignerCardContent = () => {
+const DesignerCardContent = props => {
   const {
     containerStyle,
     locationStyle,
@@ -8,12 +9,25 @@ const DesignerCardContent = () => {
     nameStyle,
     starStyle
   } = styles;
+
+  const recruit = props.recruit;
+  console.log(recruit);
   return (
     <div style={containerStyle}>
-      <h5 style={locationStyle}>박준뷰티랩 청담본점</h5>
-      <h3 style={titleStyle}>막내는 나야 나! 나야 나!</h3>
+      <h5 style={locationStyle}>샵 이름 넣기</h5>
+      <h3 style={titleStyle}>{recruit.title}</h3>
       <h6 style={nameStyle}>
-        이태훈 <span style={starStyle}>★★★★★</span>
+        {recruit._designer.name}{' '}
+        <span style={starStyle}>
+          <StarRatings
+            rating={recruit.score}
+            starDimension="1.1rem"
+            starSpacing="1px"
+            starRatedColor="#dd6866"
+            starEmptycolor="#ffffff"
+          />
+        </span>
+        <span style={{ color: 'gray' }}>({recruit.score})</span>
       </h6>
     </div>
   );

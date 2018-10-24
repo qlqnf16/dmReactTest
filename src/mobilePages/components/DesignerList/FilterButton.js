@@ -1,7 +1,14 @@
 import React from 'react';
 
-const FilterButton = () => {
-  return <div style={buttonStyle}>필터검색</div>;
+const FilterButton = props => {
+  return (
+    <div
+      onClick={() => props.getFilteredCards()}
+      style={props.on ? buttonStyleOn : buttonStyle}
+    >
+      필터검색
+    </div>
+  );
 };
 
 const buttonStyle = {
@@ -17,6 +24,11 @@ const buttonStyle = {
   lineHeight: '33px',
   margin: '2% 0 4% 0'
   // todo: click시 색상과 글자 색 반전되도록
+};
+const buttonStyleOn = {
+  ...buttonStyle,
+  color: 'white',
+  backgroundColor: '#dd6866'
 };
 
 export default FilterButton;
