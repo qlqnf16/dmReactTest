@@ -17,10 +17,17 @@ const DrawerItems = props => {
             <img className="mobile-drawer-logo" src={logo} alt="logo" />
           </div>
         </Link>
-        <div className="mobile-drawer-items mobile-drawer-login">
+        <div
+          className="mobile-drawer-items mobile-drawer-login"
+          onClick={props.click}
+        >
           반갑습니다 {props.userData.name}님
         </div>
-        <div className="mobile-drawer-items mobile-drawer-gray">마이페이지</div>
+        <Link to="reservations">
+          <div className="mobile-drawer-items mobile-drawer-gray">
+            마이페이지
+          </div>
+        </Link>
         <Link to="/message">
           <div
             className="mobile-drawer-items mobile-drawer-gray"
