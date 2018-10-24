@@ -12,3 +12,10 @@ export { default as M_Message } from './views/Message';
 export { default as M_Reservation } from './views/Reservation';
 export { default as M_ReservationConfirm } from './views/ReservationConfirm';
 export { default as M_WrongAccess } from './views/WrongAccess';
+
+// CustomerPage
+export { default as M_Coupon } from './views/CustomerMyPage/Coupon';
+export { default as M_LikeDesigner } from './views/CustomerMyPage/Favorites';
+export { default as M_Reservations } from './views/CustomerMyPage/Reservations';
+export { default as M_UserInfo } from './views/CustomerMyPage/UserInfo';
+export { default as M_MyTicket } from './views/CustomerMyPage/Tickets';

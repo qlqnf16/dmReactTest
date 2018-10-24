@@ -44,7 +44,12 @@ import {
   M_ReservationConfirm,
   M_WrongAccess,
   M_CustomerMyPage,
-  M_DesignerList
+  M_DesignerList,
+  M_Coupon,
+  M_LikeDesigner,
+  M_MyTicket,
+  M_Reservations,
+  M_UserInfo
 } from './mobilePages';
 import Toolbar from './components/Navigation/Toolbar/Toolbar';
 import Footer from './components/UI/Footer/Footer';
@@ -341,10 +346,92 @@ class App extends Component {
               path="/reservationConfirm/:reservation_id"
               component={M_ReservationConfirm}
             />
-            <Route path="/reservaiton/:card_id" component={M_Reservation} />
-            <Route path="/addDesigner" component={M_AddDesigner} />
-            <Route path="/message" component={M_Message} />
-            <Route path="/chat" component={M_Chat} />
+
+            <Route
+              path="/message"
+              component={
+                this.props.userData.uid
+                  ? this.props.userData.isRegister
+                    ? M_Message
+                    : M_UserInfo
+                  : WrongAccess
+              }
+            />
+            <Route
+              path="/chat"
+              component={
+                this.props.userData.uid
+                  ? this.props.userData.isRegister
+                    ? M_Chat
+                    : M_UserInfo
+                  : M_WrongAccess
+              }
+            />
+            <Route
+              path="/reservation/:card_id"
+              component={
+                this.props.userData.uid
+                  ? this.props.userData.isRegister
+                    ? M_Reservation
+                    : M_UserInfo
+                  : M_WrongAccess
+              }
+            />
+            <Route
+              path="/addDesigner"
+              component={
+                this.props.userData.uid
+                  ? this.props.userData.isRegister
+                    ? M_AddDesigner
+                    : M_UserInfo
+                  : M_WrongAccess
+              }
+            />
+            <Route
+              path="/coupon"
+              component={
+                this.props.userData.uid
+                  ? this.props.userData.isRegister
+                    ? M_Coupon
+                    : M_UserInfo
+                  : M_WrongAccess
+              }
+            />
+            <Route
+              path="/likedesigner"
+              component={
+                this.props.userData.uid
+                  ? this.props.userData.isRegister
+                    ? M_LikeDesigner
+                    : M_UserInfo
+                  : M_WrongAccess
+              }
+            />
+            <Route
+              path="/myTicket"
+              component={
+                this.props.userData.uid
+                  ? this.props.userData.isRegister
+                    ? M_MyTicket
+                    : M_UserInfo
+                  : M_WrongAccess
+              }
+            />
+            <Route
+              path="/reservations"
+              component={
+                this.props.userData.uid
+                  ? this.props.userData.isRegister
+                    ? M_Reservations
+                    : M_UserInfo
+                  : M_WrongAccess
+              }
+            />
+            <Route
+              path="/userInfo"
+              component={this.props.userData.uid ? M_UserInfo : M_WrongAccess}
+            />
+
             {/* customer my page (for testing MyPageNavigationBar) */}
             <Route path="/mypage" component={M_CustomerMyPage} />
           </div>
