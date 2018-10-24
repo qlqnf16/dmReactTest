@@ -29,7 +29,7 @@ class DesignerTicket extends Component {
             </div>
             <div className="dr_title mb-2">보유 이용권</div>
             <div className="row">
-              <div className="col-md-4 col-12 py-2 mx-auto">
+              <div className="col-4 py-2 mx-auto">
                 <TicketCounter
                   count={this.state.tickets.reduce(
                     (accu, pres) => (!pres.expiredAt ? accu + 1 : accu),

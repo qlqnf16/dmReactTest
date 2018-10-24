@@ -4,9 +4,9 @@ import './Filter.css';
 const Filter = props => (
   <div
     // style={{ height: 200 }}
-    className="col-12 col-md-3 form-row d-flex align-items-baseline filter-responsive"
+    className="col-3 form-row d-flex align-items-baseline filter-responsive"
   >
-    <div className="col-md-5">
+    <div className="col-5">
       <div className="filterTitle">성별</div>
       <div className="d-inline">
         <label
@@ -38,12 +38,12 @@ const Filter = props => (
         </label>
       </div>
     </div>
-    <div className="col-md-7">
+    <div className="col-7">
       <div className="filterTitle">날짜</div>
       <input type="date" className="form-control" placeholder="날짜" />
     </div>
-    <div className="col-md-12 filterTitle">지역</div>
-    <div className="col-md-6">
+    <div className="col-12 filterTitle">지역</div>
+    <div className="col-6">
       <select>
         <option>서울</option>
         <option>경기</option>
@@ -51,15 +51,15 @@ const Filter = props => (
         <option>광주</option>
       </select>
     </div>
-    <div className="col-md-6">
+    <div className="col-6">
       <select>
         <option>성북구</option>
         <option>동대문구</option>
         <option>강남구</option>
       </select>
     </div>
-    <div className="col-md-12 filterTitle">서비스</div>
-    <div className="col-md-11 m-auto">
+    <div className="col-12 filterTitle">서비스</div>
+    <div className="col-11 m-auto">
       <div
         className="d-flex justify-content-between"
         style={{ marginTop: '15px' }}
@@ -117,7 +117,7 @@ const Filter = props => (
     </div>
     <div
       onClick={() => props.getFilteredCards()}
-      className="col-md-12 filterButton"
+      className="col-12 filterButton"
     >
       검색하기
     </div>

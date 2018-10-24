@@ -168,7 +168,7 @@ class App extends Component {
       return (
         <Fragment>
           <Toolbar />
-          <div className="app-content">
+          <div className="app-content web">
             <Route path="/" exact component={Landing} />
             <Route path="/about" component={About} />
             <Route path="/QnA" component={QnA} />

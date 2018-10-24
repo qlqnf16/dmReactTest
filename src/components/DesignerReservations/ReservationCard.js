@@ -99,7 +99,7 @@ const ReservationCard = props => {
     type = <div className="rc_type rc_finish">완료</div>;
   }
   return (
-    <div className="col-lg-3 col-md-4 col-sm-6 col-12 my-2 px-2">
+    <div className="col-3 my-2 px-2">
       <div className={`drc_${dDay ? 'dDay' : props.type} rc_back p-4`}>
         <div className="text-right">{type}</div>
         <div
@@ -142,20 +142,6 @@ const ReservationCard = props => {
           />{' '}
           {services}
         </div>
-        {/* <div className="row">
-          <div className="col-md-8">
-            <h5 className="small">
-              <Moment unix format="YYYY/MM/DD">
-                {props.reservation.date / 1000}
-              </Moment>{' '}
-              {since} ~ {until}
-            </h5>
-            <h5 className="small">
-              장소 : {props.reservation._card && props.reservation._card.shop}
-            </h5>
-            <h5 className="small">종류 : {services}</h5>
-          </div>
-        </div> */}
         <div className="mt-4 d-flex justify-content-between">
           {button}
           <Link

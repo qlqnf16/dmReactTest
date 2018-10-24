@@ -119,7 +119,7 @@ class Schedule extends Component {
           >
             <div className="row">
               <Label
-                sm={5}
+                xs={5}
                 style={{
                   textAlign: 'right',
                   fontSize: '1.1rem',
@@ -141,7 +141,7 @@ class Schedule extends Component {
             </div>
             <FormGroup row>
               <Label
-                sm={5}
+                xs={5}
                 style={{
                   textAlign: 'right',
                   fontSize: '1.1rem',
@@ -167,7 +167,7 @@ class Schedule extends Component {
             </FormGroup>
             <FormGroup row>
               <Label
-                sm={5}
+                xs={5}
                 style={{
                   textAlign: 'right',
                   fontSize: '1.1rem',
@@ -194,7 +194,7 @@ class Schedule extends Component {
             </FormGroup>
             <FormGroup row>
               <Label
-                sm={5}
+                xs={5}
                 style={{
                   textAlign: 'right',
                   fontSize: '1.1rem',
@@ -263,7 +263,7 @@ class Schedule extends Component {
             </FormGroup>
             <div>
               <Label
-                sm={5}
+                xs={5}
                 style={{
                   textAlign: 'right',
                   fontSize: '1.1rem',
@@ -309,7 +309,7 @@ class Schedule extends Component {
             </div>
             <div>
               <Label
-                sm={5}
+                xs={5}
                 style={{
                   textAlign: 'right',
                   fontSize: '1.1rem',
@@ -355,7 +355,7 @@ class Schedule extends Component {
             </div>
             <div>
               <Label
-                sm={5}
+                xs={5}
                 style={{
                   textAlign: 'right',
                   fontSize: '1.1rem',

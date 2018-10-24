@@ -75,7 +75,7 @@ const TextInfo = props => (
     <FormGroup>
       <p style={styles.labelStyle}>예상 시술 소요 시간</p>
       <div className="row">
-        <div className="col-md-4">
+        <div className="col-4">
           <Label for="cut" style={styles.labelStyle}>
             컷트
           </Label>
@@ -94,7 +94,7 @@ const TextInfo = props => (
             <option value="150">2시간 30분</option>
           </Input>
         </div>
-        <div className="col-md-4">
+        <div className="col-4">
           <Label for="perm" style={styles.labelStyle}>
             펌
           </Label>
@@ -113,7 +113,7 @@ const TextInfo = props => (
             <option value="150">2시간 30분</option>
           </Input>
         </div>
-        <div className="col-md-4">
+        <div className="col-4">
           <Label for="dye" style={styles.labelStyle}>
             염색
           </Label>

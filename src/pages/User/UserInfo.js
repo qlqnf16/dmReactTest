@@ -196,7 +196,7 @@ class UserInfo extends Component {
     let calendar = (
       <div className="row m-0">
         <select
-          className="col-md-2 col-4"
+          className="col-2 col-4"
           name="year"
           value={this.state.year}
           onChange={e => this.inputChangeHandler(e)}
@@ -204,7 +204,7 @@ class UserInfo extends Component {
           {y}
         </select>
         <select
-          className="col-md-2 col-4"
+          className="col-2 col-4"
           name="month"
           value={this.state.month}
           onChange={e => this.inputChangeHandler(e)}
@@ -212,7 +212,7 @@ class UserInfo extends Component {
           {m}
         </select>
         <select
-          className="col-md-2 col-4"
+          className="col-2 col-4"
           name="day"
           value={this.state.day}
           onChange={e => this.inputChangeHandler(e)}

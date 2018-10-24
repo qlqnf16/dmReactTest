@@ -10,15 +10,15 @@ class Chat extends Component {
         <div className="me_bg">
           <div className="u_title">메시지</div>
           <div className="row" style={{ marginTop: '4%' }}>
-            <div className="col-md-2 me_title">
+            <div className="col-2 me_title">
               <Link to="/message" className="cp_link">
                 전체메시지
               </Link>
             </div>
-            <div className="col-md-8">
+            <div className="col-8">
               <ChatBox />
             </div>
-            <div className="col-md-2" />
+            <div className="col-2" />
           </div>
         </div>
       </div>

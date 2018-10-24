@@ -35,7 +35,7 @@ const ReservationDetail = props => {
 
   return (
     <div
-      className="col-lg-8 col-12 col-md-6 rd_back"
+      className="col-8 rd_back"
       style={{
         backgroundImage: `url(${spch_bubble})`
       }}

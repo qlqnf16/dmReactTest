@@ -90,7 +90,7 @@ const ScheduleCard = props => {
   mustParse = mustParse.substring(1);
   noParse = noParse.substring(1);
   return (
-    <div className="col-md-6 p-0">
+    <div className="col-6 p-0">
       <div className="schedule_card " style={{ color: '#1f3354' }}>
         <div className="d-flex">
           <div

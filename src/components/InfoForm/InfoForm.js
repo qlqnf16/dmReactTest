@@ -138,7 +138,7 @@ class InfoForm extends Component {
     let calendar = (
       <div className="row m-0">
         <select
-          className="if_input col-lg-2 col-md-3"
+          className="if_input col-2"
           name="year"
           value={this.props.state.year}
           onChange={this.props.changeInput}
@@ -146,7 +146,7 @@ class InfoForm extends Component {
           {y}
         </select>
         <select
-          className="if_input col-lg-2 col-md-3"
+          className="if_input col-2"
           name="month"
           value={this.props.state.month}
           onChange={this.props.changeInput}
@@ -154,7 +154,7 @@ class InfoForm extends Component {
           {m}
         </select>
         <select
-          className="if_input col-lg-2 col-md-3"
+          className="if_input col-2"
           name="day"
           value={this.props.state.day}
           onChange={this.props.changeInput}
@@ -364,13 +364,13 @@ class InfoForm extends Component {
             <ImgPreview url={this.props.certImg2} />
             <div className="row">
               <input
-                className="col-12 col-md-6"
+                className="col-6"
                 type="file"
                 name="cert1"
                 onChange={this.props.imgChange}
               />
               <input
-                className="col-12 col-md-6"
+                className="col-6"
                 type="file"
                 name="cert2"
                 onChange={this.props.imgChange}

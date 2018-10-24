@@ -95,7 +95,7 @@ class DesignerList extends Component {
             filterChangeHandler={e => this.filterChangeHandler(e)}
             checked={!this.state.gender ? 'male' : this.state.gender}
           />
-          <div className="col-md-9">
+          <div className="col-9">
             <CardDeck className="m-5">
               {recruits}
               {recruits}
