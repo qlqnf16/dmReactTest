@@ -48,14 +48,6 @@
 .cash_form_body {
   padding-right: 10rem !important;
 }
-@media screen and (max-width: 990px) {
-  .cash_form_body {
-    padding: 5rem !important;
-  }
-  .cash_want_content {
-    min-height: 40vh;
-  }
-}
 
 input[id='read'] + label {
   display: inline-block;

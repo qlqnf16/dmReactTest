@@ -12,10 +12,3 @@
   color: white;
   cursor: pointer;
 }
-
-@media screen and (max-width: 800px) {
-  .tc_button {
-    margin-top: 5vh;
-    margin-bottom: 5rem;
-  }
-}

@@ -21,11 +21,6 @@
 .modal_b {
   width: 75%;
 }
-@media screen and (max-width: 575px) {
-  .modal_button {
-    width: 50vw;
-  }
-}
 .modal_footer {
   margin: 1rem 2rem 0 2rem;
   border-top: solid 1px rgba(0, 0, 0, 0.1);
@@ -66,12 +61,4 @@ input[id='infoPolicy'] {
 }
 .modal_checkbox {
   width: 75%;
-}
-@media screen and (max-width: 575px) {
-  .modal_check {
-    width: 100%;
-  }
-  .modal_checkbox {
-    width: 100%;
-  }
 }

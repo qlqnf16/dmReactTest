@@ -17,12 +17,6 @@
   height: 80%;
 }
 
-@media screen and (max-width: 1200px) {
-  .length_input {
-    height: 50%;
-  }
-}
-
 input[id='male'] + label,
 input[id='female'] + label,
 input[id='cut'] + label,
