@@ -4,9 +4,10 @@ const Header = () => {
   const { containerStyle, titleStyle, contentStyle } = styles;
   return (
     <div style={containerStyle}>
-      <h2 style={titleStyle}>1단계: 예디 찾기</h2>
+      <h2 style={titleStyle}>2단계: 예약하기</h2>
       <p style={contentStyle}>
-        원하는 지역, 스타일, 시간대에 <br /> 서비스가 가능한 예디들 한 눈에 보기
+        가장 마음에 드는 예디 선택 후 <br /> 알맞은 날짜와 시간 정해서 예약 및
+        결제하기
       </p>
     </div>
   );
@@ -18,7 +19,7 @@ const styles = {
     height: '120px',
     padding: '8% 15%',
     backgroundImage:
-      'linear-gradient(to right, #fffae3, #fef8e1 10%, #fef4df 20%, #fdf0dd 30%, #fcecda 40%, #fce7d7 50%, #fbe3d5 60%, #faded2 70%, #f9d9cf 80%, #f9d4cc 90%, #f8cfc9)'
+      'linear-gradient(to right, #f8cfc9, #f5cfcb 10%, #f0d1ce 20%, #ecd2d1 30%, #e7d3d4 40%, #e1d4d7 50%, #dcd6db 60%, #d6d7de 70%, #d0d9e2 80%, #cadae6 90%, #c4dbe9)'
   },
   titleStyle: {
     fontWeight: 'bold',

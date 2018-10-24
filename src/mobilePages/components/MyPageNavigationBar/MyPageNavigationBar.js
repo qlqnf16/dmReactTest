@@ -16,7 +16,7 @@ class MyPageNavigationBar extends Component {
             <MyPageNavigationItems active>예약관리</MyPageNavigationItems>
           </Link>
           <Link to="/likedesigner">
-            <MyPageNavigationItems>찜한막내</MyPageNavigationItems>
+            <MyPageNavigationItems>찜한예디</MyPageNavigationItems>
           </Link>
           <Link to="userInfo">
             <MyPageNavigationItems>회원정보관리</MyPageNavigationItems>

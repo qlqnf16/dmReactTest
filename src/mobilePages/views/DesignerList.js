@@ -4,6 +4,7 @@ import FilterButton from '../components/DesignerList/FilterButton';
 import Filter from '../components/DesignerList/Filter';
 import DesignerCardList from '../components/DesignerList/DesignerCardList';
 import axios from 'axios';
+import './Pages.css';
 
 class DesignerList extends Component {
   state = {
@@ -75,7 +76,7 @@ class DesignerList extends Component {
 
   render() {
     return (
-      <div style={containerStyle}>
+      <div className="m_containerStyle">
         <Header />
         <FilterButton
           getFilteredCards={this.getFilteredCards}
@@ -90,12 +91,5 @@ class DesignerList extends Component {
     );
   }
 }
-
-const containerStyle = {
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'center',
-  alignItems: 'center'
-};
 
 export default DesignerList;

@@ -245,7 +245,7 @@ class AddDesigner extends Component {
             >
               예비디자이너 등록
             </p>
-            드리머리 막내가 되어 <br /> 모델을 구해보세요
+            드리머리 예디가 되어 <br /> 모델을 구해보세요
           </div>
           <InfoForm
             state={this.state}
@@ -279,7 +279,7 @@ class AddDesigner extends Component {
           </FormGroup>
           <div className="text-center">
             <div className="ad_button" onClick={this.submitHandler}>
-              막내 등록하기
+              예디 등록하기
             </div>
           </div>
         </Form>

@@ -44,12 +44,12 @@ const DrawerItems = props => {
         </div>
         <Link to="/designerlist">
           <div className="mobile-drawer-items" onClick={props.click}>
-            막내찾기
+            예디찾기
           </div>
         </Link>
         <Link to="/addDesigner">
           <div className="mobile-drawer-items" onClick={props.click}>
-            막내등록
+            예디등록
           </div>
         </Link>
         <Link to="/about">
@@ -135,7 +135,7 @@ const DrawerItems = props => {
             className="mobile-drawer-items mobile-drawer-gray"
             onClick={props.click}
           >
-            막내찾기
+            예디찾기
           </div>
         </Link>
         <Link to="/addDesigner">
@@ -143,7 +143,7 @@ const DrawerItems = props => {
             className="mobile-drawer-items mobile-drawer-gray"
             onClick={props.click}
           >
-            막내등록
+            예디등록
           </div>
         </Link>
         <Link to="/about">

@@ -39,8 +39,8 @@ class LikeDesigner extends Component {
           <UserNav />
           <div className="u_bg">
             <div className="u_container">
-              <div className="u_title">찜한막내</div>
-              <h3>찜한 막내 모아보기</h3>
+              <div className="u_title">찜한예디</div>
+              <h3>찜한 예디 모아보기</h3>
               <CardDeck className="m-5">
                 {recruits}
                 {recruits}

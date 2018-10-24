@@ -26,12 +26,12 @@ class Navitems extends Component {
         <Fragment>
           <NavItem>
             <NavLink tag={Link} to={'/designerList'} className="">
-              막내찾기
+              예디찾기
             </NavLink>
           </NavItem>
           <NavItem>
             <NavLink tag={Link} to={'/addDesigner'} className="">
-              막내등록
+              예디등록
             </NavLink>
           </NavItem>
           <UncontrolledDropdown nav inNavbar>
@@ -123,12 +123,12 @@ class Navitems extends Component {
           </NavItem>
           <NavItem>
             <NavLink tag={Link} to={'/designerList'} className="">
-              막내찾기
+              예디찾기
             </NavLink>
           </NavItem>
           <NavItem>
             <NavLink onClick={this.props.showLogin} className="">
-              막내등록
+              예디등록
             </NavLink>
           </NavItem>
         </Fragment>

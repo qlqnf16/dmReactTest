@@ -85,7 +85,7 @@ class ReservationForm extends Component {
           <div className="rf-tableTitle">예약정보</div>
           <div className="row">
             <div className="col-2  text-right rf-tableHead rf-tableTop">
-              막내 이름
+              예디 이름
             </div>
             <div className="col-10 rf-tableBody rf-tableTop">
               {this.props.d_name}

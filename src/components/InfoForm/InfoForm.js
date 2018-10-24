@@ -377,7 +377,7 @@ class InfoForm extends Component {
               />
             </div>
             <div className="if_detail" style={{ marginTop: '8.3px' }}>
-              취득한것만 올려주시면 됩니다. 드리머리 막내 승인 여부에 사용되며
+              취득한것만 올려주시면 됩니다. 드리머리 예디 승인 여부에 사용되며
               외부에 공개되지 않습니다.
             </div>
           </div>

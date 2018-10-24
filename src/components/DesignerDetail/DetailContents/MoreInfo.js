@@ -3,7 +3,7 @@ import './MoreInfo.css';
 
 const MoreInfo = props => (
   <div>
-    <div className="dc_title">막내정보</div>
+    <div className="dc_title">예디정보</div>
     <div className="mi_subtitle" style={{ marginTop: '27.8px' }}>
       경력 및 이력
     </div>

@@ -73,7 +73,7 @@ class CancelModal extends Component {
             <div className="m_content mb-5">
               <p>
                 <span style={{ fontWeight: 'bold' }}>
-                  {this.props.isD ? '고객' : '막내'} :
+                  {this.props.isD ? '고객' : '예디'} :
                 </span>{' '}
                 {this.props.isD
                   ? this.props.reservation._user &&

@@ -106,7 +106,7 @@ class ReviewModal extends Component {
             <p className="m_title">예약 정보</p>
             <div className="m_content mb-5">
               <p>
-                <span style={{ fontWeight: 'bold' }}>막내 :</span>{' '}
+                <span style={{ fontWeight: 'bold' }}>예디 :</span>{' '}
                 {this.props.reservation._designer &&
                   this.props.reservation._designer.name}
               </p>

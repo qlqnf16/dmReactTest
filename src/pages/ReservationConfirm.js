@@ -26,7 +26,7 @@ class ReservationConfirm extends Component {
         <div className="rc_h3">
           {this.props.location.state.userName}
           님께 최선을 다해서 노력하는{' '}
-          {this.props.location.state.recruit._designer.name} 막내! 예쁘게
+          {this.props.location.state.recruit._designer.name} 예디! 예쁘게
           봐주세요~ ^.^
         </div>
         <AttentionCard

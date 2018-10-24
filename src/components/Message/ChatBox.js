@@ -11,7 +11,7 @@ const ChatBox = props => (
       </div>
       <div className="col-8 px-0">
         <div style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>
-          이태훈 막내
+          이태훈 예디
         </div>
         <div> 서비스날짜: 2018/09/14 10:30~15:00</div>
       </div>

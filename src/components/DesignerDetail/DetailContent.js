@@ -27,7 +27,7 @@ const DetailContent = props => {
           <BasicInfo recruit={recruit} designerData={props.designerData} />
           <MoreInfo recruit={recruit} designerData={props.designerData} />
           <div>
-            <div className="dc_title">막내리뷰</div>
+            <div className="dc_title">예디리뷰</div>
             <div className="dc__reviews">
               <span style={{ color: '#dd6866', fontFamily: 'NanumSquareEB' }}>
                 ★{recruit.score}
