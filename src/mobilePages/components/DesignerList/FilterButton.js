@@ -6,7 +6,7 @@ const FilterButton = props => {
       onClick={() => props.getFilteredCards()}
       style={props.on ? buttonStyleOn : buttonStyle}
     >
-      필터검색
+      {props.on ? '검색하기' : '필터검색'}
     </div>
   );
 };
