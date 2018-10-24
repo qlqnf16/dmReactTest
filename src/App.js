@@ -49,7 +49,13 @@ import {
   M_LikeDesigner,
   M_MyTicket,
   M_Reservations,
-  M_UserInfo
+  M_UserInfo,
+  M_DesignerCoupon,
+  M_DesignerInfo,
+  M_DesignerReservations,
+  M_DesignerTicket,
+  M_Schedule,
+  M_WhyDreamary
 } from './mobilePages';
 import Toolbar from './components/Navigation/Toolbar/Toolbar';
 import Footer from './components/UI/Footer/Footer';
@@ -346,7 +352,7 @@ class App extends Component {
               path="/reservationConfirm/:reservation_id"
               component={M_ReservationConfirm}
             />
-
+            {/* 로그인 했을 때만 */}
             <Route
               path="/message"
               component={
@@ -430,6 +436,42 @@ class App extends Component {
             <Route
               path="/userInfo"
               component={this.props.userData.uid ? M_UserInfo : M_WrongAccess}
+            />
+
+            {/* 디자이너에게만 */}
+            <Route
+              path="/designer/coupon"
+              component={
+                this.props.userData.isD ? M_DesignerCoupon : M_WrongAccess
+              }
+            />
+            <Route
+              path="/designer/info"
+              component={
+                this.props.userData.isD ? M_DesignerInfo : M_WrongAccess
+              }
+            />
+            <Route
+              path="/designer/reservations"
+              component={
+                this.props.userData.isD ? M_DesignerReservations : M_WrongAccess
+              }
+            />
+            <Route
+              path="/designer/ticket"
+              component={
+                this.props.userData.isD ? M_DesignerTicket : M_WrongAccess
+              }
+            />
+            <Route
+              path="/designer/schedule"
+              component={this.props.userData.isD ? M_Schedule : M_WrongAccess}
+            />
+            <Route
+              path="/designer/whyDreamary"
+              component={
+                this.props.userData.isD ? M_WhyDreamary : M_WrongAccess
+              }
             />
 
             {/* customer my page (for testing MyPageNavigationBar) */}

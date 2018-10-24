@@ -13,9 +13,19 @@ export { default as M_Reservation } from './views/Reservation';
 export { default as M_ReservationConfirm } from './views/ReservationConfirm';
 export { default as M_WrongAccess } from './views/WrongAccess';
 
-// CustomerPage
+// CustomerPages
 export { default as M_Coupon } from './views/CustomerMyPage/Coupon';
 export { default as M_LikeDesigner } from './views/CustomerMyPage/Favorites';
 export { default as M_Reservations } from './views/CustomerMyPage/Reservations';
 export { default as M_UserInfo } from './views/CustomerMyPage/UserInfo';
 export { default as M_MyTicket } from './views/CustomerMyPage/Tickets';
+
+// DesignerPages
+export { default as M_DesignerCoupon } from './views/DesignerMyPage/Coupons';
+export { default as M_Schedule } from './views/DesignerMyPage/Schedules';
+export { default as M_DesignerTicket } from './views/DesignerMyPage/Tickets';
+export { default as M_WhyDreamary } from './views/DesignerMyPage/WhyDreamary';
+export { default as M_DesignerInfo } from './views/DesignerMyPage/DesignerInfo';
+export {
+  default as M_DesignerReservations
+} from './views/DesignerMyPage/Reservations';

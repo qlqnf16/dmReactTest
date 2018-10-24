@@ -77,15 +77,39 @@ const DrawerItems = props => {
         >
           로그아웃
         </div>
-        <div className="mobile-drawer-items">왜?</div>
-        <div className="mobile-drawer-items">예약관리</div>
-        <div className="mobile-drawer-items">스케줄등록</div>
-        <div className="mobile-drawer-items">이용권관리</div>
-        <div className="mobile-drawer-items">회원정보관리</div>
-        <div className="mobile-drawer-items">추천인/쿠폰</div>
+        <Link to="/designer/whydreamary">
+          <div className="mobile-drawer-items" onClick={props.click}>
+            왜?
+          </div>
+        </Link>
+        <Link to="/designer/reservations">
+          <div className="mobile-drawer-items" onClick={props.click}>
+            예약관리
+          </div>
+        </Link>
+        <Link to="/designer/schedule">
+          <div className="mobile-drawer-items" onClick={props.click}>
+            스케줄등록
+          </div>
+        </Link>
+        <Link to="/designer/ticket">
+          <div className="mobile-drawer-items" onClick={props.click}>
+            이용권관리
+          </div>
+        </Link>
+        <Link to="/designer/info">
+          <div className="mobile-drawer-items" onClick={props.click}>
+            회원정보관리
+          </div>
+        </Link>
+        <Link to="/designer/coupon">
+          <div className="mobile-drawer-items" onClick={props.click}>
+            추천인/쿠폰
+          </div>
+        </Link>
       </nav>
     );
-  } else if (!props.userData.uid) {
+  } else {
     return (
       <nav className={drawerClasses}>
         <Link to="/">
@@ -128,8 +152,6 @@ const DrawerItems = props => {
         </div>
       </nav>
     );
-  } else {
-    return <div />;
   }
 };
 
