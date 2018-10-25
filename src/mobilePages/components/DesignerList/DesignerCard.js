@@ -1,10 +1,11 @@
 import React from 'react';
-import DesignerCardImage from './DesignerCardImage';
-import DesignerCardContent from './DesignerCardContent';
 import { Link } from 'react-router-dom';
 
+import DesignerCardImage from './DesignerCardImage';
+import DesignerCardContent from './DesignerCardContent';
+
 const DesignerCard = props => {
-  const { containerStyle, imageStyle, contentStyle } = styles;
+  const { containerStyle, imageStyle } = styles;
   return (
     <div style={containerStyle}>
       <Link to={`designerdetail/${props.recruit._id}`}>

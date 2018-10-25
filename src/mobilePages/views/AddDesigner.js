@@ -9,7 +9,7 @@ import InfoForm from '../components/InfoForm/InfoForm';
 class AddDesigner extends Component {
   constructor(props) {
     super(props);
-
+    // redux에서 유저 정보 추출 후, state에 담기
     let {
       name,
       birthday,
@@ -43,51 +43,40 @@ class AddDesigner extends Component {
   }
 
   addressAddHandler = () => {
-    this.setState({
-      addressNum: this.state.addressNum + 1
-    });
+    this.setState({ addressNum: this.state.addressNum + 1 });
   };
 
   addressRemoveHandler = i => {
-    let addresses = this.state.addresses;
+    let { addresses } = this.state;
     addresses.splice(i, 1);
-    this.setState({
-      addressNum: this.state.addressNum - 1,
-      addresses
-    });
+    this.setState({ addressNum: this.state.addressNum - 1, addresses });
   };
 
   handleAddress = (data, fullAddress, num) => {
     const { sido, sigungu } = data;
     const address = { sido, sigungu, fullAddress };
-    let addresses = this.state.addresses;
+    let { addresses } = this.state;
     addresses[num] = address;
     this.setState({ addresses });
   };
 
   handleInputChange = e => {
-    const target = e.target;
-    const value = target.value;
-    const name = target.name;
+    const { value, name, id } = e.target;
 
-    if (target.id === 'dYear' || target.id === 'dMonth') {
-      if (target.id === 'dYear') {
-        this.dYear = Number(value);
-      } else if (target.id === 'dMonth') {
-        this.dMonth = Number(value);
-      }
+    if (id === 'dYear' || id === 'dMonth') {
+      if (id === 'dYear') this.dYear = Number(value);
+      else if (id === 'dMonth') this.dMonth = Number(value);
+
       this.setState({ untilDesigner: this.dYear * 12 + this.dMonth });
-    } else if (target.id === 'careerYear' || target.id === 'careerMonth') {
-      if (target.id === 'careerYear') {
-        this.careerYear = Number(value);
-      } else if (target.id === 'careerMonth') {
-        this.careerMonth = Number(value);
-      }
+    } else if (id === 'careerYear' || id === 'careerMonth') {
+      if (id === 'careerYear') this.careerYear = Number(value);
+      else if (id === 'careerMonth') this.careerMonth = Number(value);
+
       this.setState({ career: this.careerYear * 12 + this.careerMonth });
-    } else if (target.name === 'extraAddress') {
-      let addresses = this.state.addresses;
-      let address = addresses[target.id];
-      addresses[target.id] = { ...address, extraAddress: target.value };
+    } else if (name === 'extraAddress') {
+      let { addresses } = this.state;
+      let address = addresses[id];
+      addresses[id] = { ...address, extraAddress: value };
       this.setState({ addresses });
     } else {
       this.setState({ [name]: value });
@@ -138,9 +127,8 @@ class AddDesigner extends Component {
         .on('value', res => {
           result = res;
         });
-      if (!result) {
-        alert('유효하지 않은 추천인 코드 입니다.');
-      } else {
+      if (!result) alert('유효하지 않은 추천인 코드 입니다.');
+      else {
         let { designerRecommendation, _id } = result.val();
         if (designerRecommendation) count = designerRecommendation;
         firebaseUserData = { ...firebaseUserData, designerRecommendationCode };
@@ -178,11 +166,7 @@ class AddDesigner extends Component {
     await axios.post(
       `http://localhost:3030/firebase/upload?uid=${this.props.userData.uid}`,
       formData,
-      {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      }
+      { headers: { 'Content-Type': 'multipart/form-data' } }
     );
 
     // await this.props.history.push('/designer/whydreamary');

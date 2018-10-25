@@ -6,6 +6,22 @@ const Filter = props => {
     <div style={props.on ? null : filterOff}>
       <input
         onChange={props.filterChangeHandler}
+        type="radio"
+        name="gender"
+        id="male"
+        value="male"
+      />
+      <label for="male">남</label>
+      <input
+        onChange={props.filterChangeHandler}
+        type="radio"
+        name="gender"
+        id="female"
+        value="female"
+      />
+      <label for="female">여</label>
+      <input
+        onChange={props.filterChangeHandler}
         name="cut"
         type="range"
         className="custom-range"

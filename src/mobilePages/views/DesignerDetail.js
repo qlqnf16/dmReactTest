@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import firebase from 'firebase';
 import axios from 'axios';
+
 import Header from '../components/DesignerDetail/Header';
 
 class DesignerDetail extends Component {
@@ -33,6 +35,9 @@ class DesignerDetail extends Component {
       <div className="m_containerStyle">
         <Header />
         {this.state.recruit.title}
+        <Link to={{ pathname: `/reservation/${this.props.id}`, state: {} }}>
+          <div>결제 페이지로</div>
+        </Link>
       </div>
     );
   }

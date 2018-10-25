@@ -1,24 +1,19 @@
 import React from 'react';
+
 import DesignerCard from './DesignerCard';
 
-const DesignerCardList = props => {
-  return (
-    <div style={containerStyle}>
-      {props.recruits.map((recruit, key) => (
-        <DesignerCard recruit={recruit} key={key} />
-      ))}
+const DesignerCardList = props => (
+  <div style={containerStyle}>
+    {props.recruits.map((recruit, key) => (
+      <DesignerCard recruit={recruit} key={key} />
+    ))}
 
-      {/* 보기 좋게 X2  */}
-      {props.recruits.map((recruit, key) => (
-        <DesignerCard recruit={recruit} key={key} />
-      ))}
-      {/* <DesignerCard />
-      <DesignerCard />
-      <DesignerCard />
-      <DesignerCard /> */}
-    </div>
-  );
-};
+    {/* 보기 좋게 X2  */}
+    {props.recruits.map((recruit, key) => (
+      <DesignerCard recruit={recruit} key={key} />
+    ))}
+  </div>
+);
 
 const containerStyle = {
   width: '85%',

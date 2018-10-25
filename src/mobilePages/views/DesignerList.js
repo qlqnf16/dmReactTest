@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+
 import Header from '../components/DesignerList/Header';
 import FilterButton from '../components/DesignerList/FilterButton';
 import Filter from '../components/DesignerList/Filter';
 import DesignerCardList from '../components/DesignerList/DesignerCardList';
-import axios from 'axios';
+
 import './Pages.css';
 
 class DesignerList extends Component {
@@ -13,16 +15,13 @@ class DesignerList extends Component {
     filterOn: false
   };
 
-  async componentDidMount() {
+  componentDidMount = async () => {
     if (!this.state.madeRequest) {
       const { data } = await axios.get('http://52.79.227.227:3030/recruits');
-      this.setState({
-        recruits: data,
-        madeRequest: true
-      });
+      this.setState({ recruits: data, madeRequest: true });
       console.log(data);
     }
-  }
+  };
 
   filterToggle = () => {
     this.setState({ filterOn: !this.state.filterOn });
@@ -37,25 +36,21 @@ class DesignerList extends Component {
   };
 
   getFilteredCards = async () => {
-    let must = '';
-    let no = '';
-    if (this.state.cut && this.state.cut === '100') {
-      must += 'cut=1&';
-    } else if (this.state.cut === '0') {
-      no += 'cut=2&';
-    }
-    if (this.state.perm && this.state.perm === '100') {
-      must += 'perm=1&';
-    } else if (this.state.perm === '0') {
-      no += 'perm=2&';
-    }
-    if (this.state.dye && this.state.dye === '100') {
-      must += 'dye=1&';
-    } else if (this.state.dye === '0') {
-      no += 'dye=2&';
-    }
+    let must,
+      no,
+      gender = '';
+
+    if (this.state.gender) gender = `gender=${this.state.gender}`;
+
+    if (this.state.cut === '100') must += 'cut=1&';
+    else if (this.state.cut === '0') no += 'cut=2&';
+    if (this.state.perm === '100') must += 'perm=1&';
+    else if (this.state.perm === '0') no += 'perm=2&';
+    if (this.state.dye === '100') must += 'dye=1&';
+    else if (this.state.dye === '0') no += 'dye=2&';
+
     const { data } = await axios.get(
-      'http://52.79.227.227:3030/cards?' + must + no
+      'http://52.79.227.227:3030/cards?' + must + no + gender
     );
     let recruits = data.map(d => d._recruit);
 
@@ -68,9 +63,7 @@ class DesignerList extends Component {
       }
     });
 
-    this.setState({
-      recruits: uniqueRecruits
-    });
+    this.setState({ recruits: uniqueRecruits });
     this.filterToggle();
   };
 
