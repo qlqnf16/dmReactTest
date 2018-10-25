@@ -3,6 +3,7 @@ import DesignerCard from "../components/DesignerCard/DesignerCard";
 import Filter from "../components/DesignerCard/Filter/Filter";
 import { CardDeck } from "reactstrap";
 import axios from "axios";
+import firebase from "../config/Firebase";
 import step1 from "../assets/images/step1.png";
 
 import "./PageCss.css";
@@ -17,7 +18,7 @@ class DesignerList extends Component {
     };
   }
 
-  async componentDidMount() {
+  componentDidMount = async () => {
     if (!this.state.madeRequest) {
       const { data } = await axios.get("http://52.79.227.227:3030/recruits");
       this.setState({
@@ -26,7 +27,27 @@ class DesignerList extends Component {
       });
       console.log(data);
     }
-  }
+
+    //시도
+    await firebase
+      .database()
+      .ref(`/users`)
+      .on("value", async res => {
+        const filterAddresses = [];
+        let filterSido = [];
+        Object.values(res.val()).forEach(user => {
+          if (user.addresses && user.addresses !== undefined) {
+            user.addresses.forEach(address => {
+              filterSido.push(address.sido);
+            });
+            filterAddresses.push(user.addresses);
+          }
+        });
+        filterSido = new Set(filterSido);
+        filterSido = [...filterSido].sort();
+        await this.setState({ filterAddresses, filterSido, madeRequest: true });
+      });
+  };
 
   getFilteredCards = async () => {
     let must = "";
@@ -71,6 +92,7 @@ class DesignerList extends Component {
   };
 
   render() {
+    console.log(this.state.sido);
     let recruits = null;
     if (this.state.recruits.length) {
       console.log(this.state.recruits);
@@ -88,6 +110,7 @@ class DesignerList extends Component {
             getFilteredCards={this.getFilteredCards}
             filterChangeHandler={e => this.filterChangeHandler(e)}
             checked={!this.state.gender ? "male" : this.state.gender}
+            state={this.state}
           />
           <div className="col-9">
             <CardDeck className="m-5">
