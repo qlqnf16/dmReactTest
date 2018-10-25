@@ -168,6 +168,7 @@ class Schedule extends Component {
                 type="select"
                 className="col-7"
               >
+                <option value="null">-헤어샵-</option>
                 {this.props.addresses.map((address, key) => (
                   <option key={key}>{address.extraAddress}</option>
                 ))}
@@ -430,7 +431,7 @@ class Schedule extends Component {
                 type="number"
                 step="1000"
                 onChange={this.props.changeInput}
-                name="perm_price"
+                name="permPrice"
                 id="normal"
                 className="length_input"
               />
@@ -442,7 +443,7 @@ class Schedule extends Component {
                 type="number"
                 step="1000"
                 onChange={this.props.changeInput}
-                name="dye_price"
+                name="dyePrice"
                 id="normal"
                 className="length_input"
               />
@@ -455,7 +456,7 @@ class Schedule extends Component {
                 type="number"
                 step="1000"
                 onChange={this.props.changeInput}
-                name="perm_price"
+                name="permPrice"
                 id="chin"
                 className="length_input"
               />
@@ -468,7 +469,7 @@ class Schedule extends Component {
                 type="number"
                 step="1000"
                 onChange={this.props.changeInput}
-                name="dye_price"
+                name="dyePrice"
                 id="chin"
                 className="length_input"
               />
@@ -481,7 +482,7 @@ class Schedule extends Component {
                 type="number"
                 step="1000"
                 onChange={this.props.changeInput}
-                name="perm_price"
+                name="permPrice"
                 id="shoulder"
                 className="length_input"
               />
@@ -494,7 +495,7 @@ class Schedule extends Component {
                 type="number"
                 step="1000"
                 onChange={this.props.changeInput}
-                name="dye_price"
+                name="dyePrice"
                 id="shoulder"
                 className="length_input"
               />
@@ -507,7 +508,7 @@ class Schedule extends Component {
                 type="number"
                 step="1000"
                 onChange={this.props.changeInput}
-                name="perm_price"
+                name="permPrice"
                 id="chest"
                 className="length_input"
               />
@@ -520,7 +521,7 @@ class Schedule extends Component {
                 type="number"
                 step="1000"
                 onChange={this.props.changeInput}
-                name="dye_price"
+                name="dyePrice"
                 id="chest"
                 className="length_input"
               />

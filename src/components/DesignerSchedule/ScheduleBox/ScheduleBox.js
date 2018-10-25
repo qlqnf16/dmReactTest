@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import Schedule from "./Schedule/Schedule";
-import ScheduleCard from "./ScheduleCard/ScheduleCard";
-import TextInfo from "../TextInfo";
-import axios from "axios";
+import React, { Component } from 'react';
+import Schedule from './Schedule/Schedule';
+import ScheduleCard from './ScheduleCard/ScheduleCard';
+import TextInfo from '../TextInfo';
+import axios from 'axios';
 
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 
 class ScheduleBox extends Component {
   constructor(props) {
@@ -17,10 +17,10 @@ class ScheduleBox extends Component {
       no: {},
       sinces: [],
       untils: [],
-      perm_price: {},
-      dye_price: {},
-      title: "",
-      requirement: "",
+      permPrice: {},
+      dyePrice: {},
+      title: '',
+      requirement: '',
       requireTime: {},
       madeRequest: false
     };
@@ -58,42 +58,42 @@ class ScheduleBox extends Component {
   };
   sinces = [];
   untils = [];
-  perm_price = {};
-  dye_price = {};
+  permPrice = {};
+  dyePrice = {};
   handleInputChange(event) {
     const target = event.target;
     const name = target.name;
-    if (target.type !== "checkbox") {
-      if (target.name === "since") {
+    if (target.type !== 'checkbox') {
+      if (target.name === 'since') {
         console.log(typeof target.value);
         this.sinces[target.id] = Number(target.value);
         this.setState({
           sinces: this.sinces
         });
-      } else if (target.name === "until") {
+      } else if (target.name === 'until') {
         this.untils[target.id] = Number(target.value);
         this.setState({
           untils: this.untils
         });
-      } else if (target.id === "time") {
+      } else if (target.id === 'time') {
         const value = Number(target.value);
         this.setState({ [name]: value });
-      } else if (target.name === "perm_price") {
-        this.perm_price[target.id] = Number(target.value);
+      } else if (target.name === 'permPrice') {
+        this.permPrice[target.id] = Number(target.value);
         this.setState({
-          perm_price: this.perm_price
+          permPrice: this.permPrice
         });
-      } else if (target.name === "dye_price") {
-        this.dye_price[target.id] = Number(target.value);
+      } else if (target.name === 'dyePrice') {
+        this.dyePrice[target.id] = Number(target.value);
         this.setState({
-          dye_price: this.dye_price
+          dyePrice: this.dyePrice
         });
       } else {
         const value = target.value;
         this.setState({ [name]: value });
       }
     } else {
-      if (target.name === "must") {
+      if (target.name === 'must') {
         target.id = target.id.toLowerCase();
         this.setState({
           must: {
@@ -101,7 +101,7 @@ class ScheduleBox extends Component {
             [target.id]: target.checked
           }
         });
-      } else if (target.name === "no") {
+      } else if (target.name === 'no') {
         target.id = target.id.toLowerCase();
         this.setState({
           no: {
@@ -119,14 +119,14 @@ class ScheduleBox extends Component {
 
   render() {
     const date = Math.floor(this.state.date / 86400000) * 86400000;
-    let requireGender = "";
+    let requireGender = undefined;
 
     if (this.state.male && this.state.female) {
-      requireGender = "both";
+      requireGender = 'both';
     } else if (this.state.male) {
-      requireGender = "male";
-    } else {
-      requireGender = "female";
+      requireGender = 'male';
+    } else if (this.state.female) {
+      requireGender = 'female';
     }
 
     let ableTimes = [];
@@ -145,8 +145,8 @@ class ScheduleBox extends Component {
       shop: this.state.shop,
       requireGender,
       // TODO: Back DB 추가하고 넣기
-      // perm_price: this.state.perm_price,
-      // dye_price: this.state.dye_price,
+      permPrice: this.state.permPrice,
+      dyePrice: this.state.dyePrice,
       ableTimes
       // 선택폼 없음
       // region: '성북구',
@@ -171,7 +171,7 @@ class ScheduleBox extends Component {
         perm: this.state.permTime,
         dye: this.state.dyeTime
       };
-      recruitData["requireTime"] = requireTime;
+      recruitData['requireTime'] = requireTime;
     }
     console.log(recruitData);
     return (
@@ -201,7 +201,7 @@ class ScheduleBox extends Component {
           />
         </div>
         <div className="col-6 mt-5">
-          <div className="bg-light row" style={{ padding: "1.5rem" }}>
+          <div className="bg-light row" style={{ padding: '1.5rem' }}>
             {this.state.cards.sort(this.cardSort).map((card, key) => (
               <ScheduleCard
                 cancelCardHandler={this.props.cancelCardHandler}
