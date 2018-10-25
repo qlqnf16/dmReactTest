@@ -21,14 +21,18 @@ class DesignerList extends Component {
   componentDidMount = async () => {
     if (!this.state.madeRequest) {
       const { data } = await axios.get("http://52.79.227.227:3030/recruits");
+      data.sort((a, b) => {
+        if (a.score < b.score) return 1;
+        else if (a.score > b.score) return -1;
+        else return 0;
+      });
       this.setState({
         recruits: data,
         madeRequest: true
       });
-      console.log(data);
     }
 
-    //시도
+    //시/도
     await firebase
       .database()
       .ref(`/users`)
@@ -96,9 +100,20 @@ class DesignerList extends Component {
     let recruits = null;
     if (this.state.recruits.length) {
       console.log(this.state.recruits);
-      recruits = this.state.recruits.map(recruit => {
-        return <DesignerCard key={recruit._id} recruit={recruit} />;
+      recruits = this.state.recruits.map(recruit => (
+        <DesignerCard key={recruit._id} recruit={recruit} />
+      ));
+    }
+
+    let sigungu = [];
+    if (this.state.filterAddresses) {
+      this.state.filterAddresses.forEach(address => {
+        address.forEach(ad => {
+          if (ad.sido === this.state.sido) sigungu.push(ad.sigungu);
+        });
       });
+      sigungu = new Set(sigungu);
+      sigungu = [...sigungu].sort();
     }
     return (
       <div className="container-fluid dl">
@@ -111,6 +126,7 @@ class DesignerList extends Component {
             filterChangeHandler={e => this.filterChangeHandler(e)}
             checked={!this.state.gender ? "male" : this.state.gender}
             state={this.state}
+            sigungu={sigungu}
           />
           <div className="col-9">
             <CardDeck className="m-5">

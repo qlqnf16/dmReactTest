@@ -2,16 +2,6 @@ import React from "react";
 import "./Filter.css";
 
 const Filter = props => {
-  let sigungu = [];
-  if (props.state.filterAddresses) {
-    props.state.filterAddresses.forEach(address => {
-      address.forEach(ad => {
-        if (ad.sido === props.state.sido) sigungu.push(ad.sigungu);
-      });
-    });
-    sigungu = new Set(sigungu);
-    sigungu = [...sigungu].sort();
-  }
   return (
     <div
       // style={{ height: 200 }}
@@ -56,6 +46,7 @@ const Filter = props => {
       <div className="col-12 filterTitle">지역</div>
       <div className="col-6">
         <select name="sido" onChange={props.filterChangeHandler}>
+          <option value="null">-도/시-</option>
           {props.state.filterSido &&
             props.state.filterSido.map((sd, key) => (
               <option key={key} value={sd}>
@@ -65,15 +56,13 @@ const Filter = props => {
         </select>
       </div>
       <div className="col-6">
-        <select>
-          {sigungu.map((sgg, key) => (
+        <select name="sigungu" onChange={props.filterChangeHandler}>
+          <option value="null">-시/군/구-</option>
+          {props.sigungu.map((sgg, key) => (
             <option key={key} value={sgg}>
               {sgg}
             </option>
           ))}
-          {/* <option>성북구</option>
-          <option>동대문구</option>
-          <option>강남구</option> */}
         </select>
       </div>
       <div className="col-12 filterTitle">서비스</div>

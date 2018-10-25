@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import firebase from '../../config/Firebase';
 
 import Header from '../components/DesignerList/Header';
 import FilterButton from '../components/DesignerList/FilterButton';
@@ -18,9 +19,34 @@ class DesignerList extends Component {
   componentDidMount = async () => {
     if (!this.state.madeRequest) {
       const { data } = await axios.get('http://52.79.227.227:3030/recruits');
+      data.sort((a, b) => {
+        if (a.score < b.score) return 1;
+        else if (a.score > b.score) return -1;
+        else return 0;
+      });
       this.setState({ recruits: data, madeRequest: true });
       console.log(data);
     }
+
+    // 시/도
+    await firebase
+      .database()
+      .ref(`/users`)
+      .on('value', async res => {
+        const filterAddresses = [];
+        let filterSido = [];
+        Object.values(res.val()).forEach(user => {
+          if (user.addresses && user.addresses !== undefined) {
+            user.addresses.forEach(address => {
+              filterSido.push(address.sido);
+            });
+            filterAddresses.push(user.addresses);
+          }
+        });
+        filterSido = new Set(filterSido);
+        filterSido = [...filterSido].sort();
+        await this.setState({ filterAddresses, filterSido, madeRequest: true });
+      });
   };
 
   filterToggle = () => {
@@ -68,6 +94,16 @@ class DesignerList extends Component {
   };
 
   render() {
+    let sigungu = [];
+    if (this.state.filterAddresses) {
+      this.state.filterAddresses.forEach(address => {
+        address.forEach(ad => {
+          if (ad.sido === this.state.sido) sigungu.push(ad.sigungu);
+        });
+      });
+      sigungu = new Set(sigungu);
+      sigungu = [...sigungu].sort();
+    }
     return (
       <div className="m_containerStyle">
         <Header />
@@ -78,6 +114,8 @@ class DesignerList extends Component {
         <Filter
           on={this.state.filterOn}
           filterChangeHandler={this.filterChangeHandler}
+          state={this.state}
+          sigungu={sigungu}
         />
         <DesignerCardList recruits={this.state.recruits} />
       </div>

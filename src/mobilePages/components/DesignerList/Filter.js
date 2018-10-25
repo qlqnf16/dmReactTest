@@ -20,6 +20,26 @@ const Filter = props => {
         value="female"
       />
       <label for="female">여</label>
+      <label>날짜</label>
+      <input type="date" onChange={props.filterChangeHandler} name="date" />
+      <div>지역</div>
+      <select name="sido" onChange={props.filterChangeHandler}>
+        <option value="null">-도/시-</option>
+        {props.state.filterSido &&
+          props.state.filterSido.map((sd, key) => (
+            <option key={key} value={sd}>
+              {sd}
+            </option>
+          ))}
+      </select>
+      <select name="sigungu" onChange={props.filterChangeHandler}>
+        <option value="null">-시/군/구-</option>
+        {props.sigungu.map((sgg, key) => (
+          <option key={key} value={sgg}>
+            {sgg}
+          </option>
+        ))}
+      </select>
       <input
         onChange={props.filterChangeHandler}
         name="cut"
