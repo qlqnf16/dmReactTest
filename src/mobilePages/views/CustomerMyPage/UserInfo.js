@@ -1,10 +1,10 @@
-import React, { Component, Fragment } from 'react';
-import { connect } from 'react-redux';
-import firebase from '../../../config/Firebase';
-import axios from 'axios';
+import React, { Component, Fragment } from "react";
+import { connect } from "react-redux";
+import firebase from "../../../config/Firebase";
+import axios from "axios";
 
-import MyPageNavigationBar from '../../components/MyPageNavigationBar/MyPageNavigationBar';
-import UserInfoForm from '../../components/CustomerMypage/UserInfo/UserInfoForm';
+import MyPageNavigationBar from "../../components/MyPageNavigationBar/MyPageNavigationBar";
+import UserInfoForm from "../../components/CustomerMypage/UserInfo/UserInfoForm";
 
 class UserInfo extends Component {
   constructor(props) {
@@ -57,7 +57,7 @@ class UserInfo extends Component {
       gender
     };
     if (!this.props.userData.isRegister)
-      return alert('휴대폰 인증을 진행해주세요');
+      return alert("휴대폰 인증을 진행해주세요");
 
     // 추천인 로직
     // 전에 추천인을 입력한 적이 없고, 추천인을 작성했을 때,
@@ -68,12 +68,12 @@ class UserInfo extends Component {
       // 유효한 추천인 코드인지 확인
       await firebase
         .database()
-        .ref('users/' + recommendationCode)
-        .on('value', res => {
+        .ref("users/" + recommendationCode)
+        .on("value", res => {
           result = res;
         });
       // 유효하지 않은 추천인 코드일 때,
-      if (!result) alert('유효하지 않은 추천인 코드 입니다.');
+      if (!result) alert("유효하지 않은 추천인 코드 입니다.");
       // 유효한 추천인 코드일 때,
       else {
         let { recommendation, _id } = result.val();
@@ -82,29 +82,24 @@ class UserInfo extends Component {
         count += 1;
 
         // TODO : 추천 3회면 포인트 추가해주기
-        if (count === 3) {
-          count = 0;
-          // await axios.patch(
-          //   `http://52.79.227.227:3030/users/${_id}`,
-          //   {
-          //     point: 더하기(백에서 하는게 나을듯)
-          //   }
-          // );
-        }
+        // if (count === 3) {
+        //   count = 0;
+        await axios.patch(`http://52.79.227.227:3030/users/${_id}/addpoint`);
+        // }
 
         // 추천받은 횟수 저장
         await firebase
           .database()
-          .ref('users/' + recommendationCode)
+          .ref("users/" + recommendationCode)
           .update({ recommendation: count });
       }
     }
     // 최종 유저정보 저장
     await firebase
       .database()
-      .ref('users/' + uid)
+      .ref("users/" + uid)
       .update(firebaseUserData);
-    await alert('저장되었습니다!');
+    await alert("저장되었습니다!");
   };
 
   render() {

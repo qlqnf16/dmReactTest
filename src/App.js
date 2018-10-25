@@ -28,6 +28,9 @@ import {
   AdminDesignerList,
   AdminWaitingList,
   AdminReservationList,
+  AdminMakeCoupon,
+  AdminNoShow,
+  AdminQnA,
   TermsOfUse,
   InfoPolicy,
   FAQ,
@@ -322,6 +325,20 @@ class App extends Component {
               component={
                 this.props.userData.isD ? AdminReservationList : WrongAccess
               }
+            />
+            <Route
+              path="/admin/makecoupon"
+              component={
+                this.props.userData.isD ? AdminMakeCoupon : WrongAccess
+              }
+            />
+            <Route
+              path="/admin/noshow"
+              component={this.props.userData.isD ? AdminNoShow : WrongAccess}
+            />
+            <Route
+              path="/admin/qna"
+              component={this.props.userData.isD ? AdminQnA : WrongAccess}
             />
           </div>
           <Footer />

@@ -78,15 +78,10 @@ class UserInfo extends Component {
         count += 1;
 
         // TODO : 추천 3회면 포인트 추가해주기
-        if (count === 3) {
-          count = 0;
-          // await axios.patch(
-          //   `http://52.79.227.227:3030/users/${_id}`,
-          //   {
-          //     point: 더하기(백에서 하는게 나을듯)
-          //   }
-          // );
-        }
+        // if (count === 3) {
+        //   count = 0;
+        await axios.patch(`http://52.79.227.227:3030/users/${_id}/addpoint`);
+        // }
 
         await firebase
           .database()

@@ -58,7 +58,6 @@ class ReviewModal extends Component {
       return alert('채워지지 않은 정보가 있습니다');
 
     // review 생성
-    // TODO: 오류가 나서 넘어가진 않는데... 리뷰가 생성되긴 한다...
     // TODO: 리뷰사진을 저장해야하는데...
     await axios.post(
       `http://52.79.227.227:3030/recruits/${
@@ -69,7 +68,7 @@ class ReviewModal extends Component {
 
     await alert('성공적으로 등록되었습니다');
     await this.props.toggle();
-    await this.reloadData();
+    await this.props.reloadData();
   };
   render() {
     if (this.props.reservation) {
