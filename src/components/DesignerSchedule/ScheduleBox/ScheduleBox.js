@@ -136,7 +136,10 @@ class ScheduleBox extends Component {
         ableTimes.push(ableTime);
       }
     });
-
+    let region;
+    this.props.userData.addresses.forEach(address => {
+      if (address.extraAddress === this.state.shop) region = address.sigungu;
+    });
     const cardData = {
       must: this.state.must,
       no: this.state.no,
@@ -144,15 +147,12 @@ class ScheduleBox extends Component {
       date,
       shop: this.state.shop,
       requireGender,
-      // TODO: Back DB 추가하고 넣기
       permPrice: this.state.permPrice,
       dyePrice: this.state.dyePrice,
-      ableTimes
-      // 선택폼 없음
-      // region: '성북구',
-      // price: { cut: 3000, perm: 20000, dye: 30000 }
+      ableTimes,
+      region
     };
-    console.log(this.state);
+    console.log(cardData);
     let requireTime = null;
 
     const recruitData = {
