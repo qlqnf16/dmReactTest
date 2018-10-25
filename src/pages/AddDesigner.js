@@ -43,6 +43,11 @@ class AddDesigner extends Component {
     };
   }
 
+  componentDidMount = async () => {
+    if (this.props.userData.isApproval === false && !this.props.userData.isD)
+      await alert("예비디자이너 승인 대기중입니다.");
+  };
+
   addressAddHandler = () => {
     this.setState({
       addressNum: this.state.addressNum + 1
@@ -232,7 +237,6 @@ class AddDesigner extends Component {
   // TODO : shouldComponentUpdate 로 렌더링 안되게 하기
 
   render() {
-    console.log(this.props.userData);
     return (
       <div className="container-fluid ad">
         <Form className="m-5">

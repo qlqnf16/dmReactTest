@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
-import firebase from '../../config/Firebase';
-import CouponContent from '../../components/CouponContent/CouponContent';
-import { FormGroup } from 'reactstrap';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import firebase from "../../config/Firebase";
+import CouponContent from "../../components/CouponContent/CouponContent";
+import { FormGroup } from "reactstrap";
 
 class DesignerCoupon extends Component {
   inputChangeHandler = event => {
@@ -20,7 +21,7 @@ class DesignerCoupon extends Component {
       <div className="container-fluid d">
         <div className="d_bg">
           <div className="d_container">
-            <div className="u_title" style={{ color: '#4c91ba' }}>
+            <div className="u_title" style={{ color: "#4c91ba" }}>
               추천인/쿠폰
             </div>
             <div className="uif_title ">쿠폰 입력</div>
@@ -42,7 +43,13 @@ class DesignerCoupon extends Component {
                 </div>
               </div>
             </FormGroup>
-            <div className="uif_title">추천인 코드</div>
+            <div className="uif_title d-flex">
+              추천인 코드{" "}
+              <span className="mr-5 ml-auto">
+                내 추천으로 가입한 예디 :{" "}
+                {this.props.userData.designerRecommendation}명
+              </span>
+            </div>
             <CouponContent
               couponNumber={firebase.auth().currentUser.uid}
               isD={true}
@@ -53,4 +60,7 @@ class DesignerCoupon extends Component {
     );
   }
 }
-export default DesignerCoupon;
+const mapStateToProps = ({ authentication: { userData } }) => {
+  return { userData };
+};
+export default connect(mapStateToProps)(DesignerCoupon);
