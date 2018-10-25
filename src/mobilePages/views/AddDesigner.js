@@ -42,16 +42,15 @@ class AddDesigner extends Component {
     };
   }
 
+  // 주소 입력받기
   addressAddHandler = () => {
     this.setState({ addressNum: this.state.addressNum + 1 });
   };
-
   addressRemoveHandler = i => {
     let { addresses } = this.state;
     addresses.splice(i, 1);
     this.setState({ addressNum: this.state.addressNum - 1, addresses });
   };
-
   handleAddress = (data, fullAddress, num) => {
     const { sido, sigungu } = data;
     const address = { sido, sigungu, fullAddress };
@@ -60,6 +59,7 @@ class AddDesigner extends Component {
     this.setState({ addresses });
   };
 
+  // input
   handleInputChange = e => {
     const { value, name, id } = e.target;
 
@@ -77,12 +77,32 @@ class AddDesigner extends Component {
       let { addresses } = this.state;
       let address = addresses[id];
       addresses[id] = { ...address, extraAddress: value };
+
       this.setState({ addresses });
     } else {
       this.setState({ [name]: value });
     }
   };
 
+  // image입력받기
+  handleImgChange = e => {
+    let file = e.target.files[0];
+    switch (e.target.name) {
+      case 'cert1':
+        this.setState({ certImg1: URL.createObjectURL(file) });
+        this.setState({ certFile1: file });
+        break;
+      case 'cert2':
+        this.setState({ certImg2: URL.createObjectURL(file) });
+        this.setState({ certFile2: file });
+        break;
+      default:
+        console.log('something wrong in [DesignerInfo.js]');
+    }
+    console.log(this.state);
+  };
+
+  // 최종 제출
   submitHandler = async () => {
     const {
       name,
@@ -115,19 +135,26 @@ class AddDesigner extends Component {
     )
       return alert('채워지지 않은 정보가 있습니다');
 
+    // 추천인 로직
+    // 전에 추천인을 입력한 적이 없고, 추천인을 작성했을 때,
     if (
       designerRecommendationCode &&
       !this.props.userData.designerRecommendationCode
     ) {
       let count = 0;
       let result = null;
+
+      // 유효한 추천인 코드인지 확인
       await firebase
         .database()
         .ref('users/' + designerRecommendationCode)
         .on('value', res => {
           result = res;
         });
+
+      // 유효하지 않은 추천인 코드일 때,
       if (!result) alert('유효하지 않은 추천인 코드 입니다.');
+      // 유효한 추천인 코드일 때,
       else {
         let { designerRecommendation, _id } = result.val();
         if (designerRecommendation) count = designerRecommendation;
@@ -146,13 +173,14 @@ class AddDesigner extends Component {
           // );
         }
 
+        // 추천받은 횟수 저장
         await firebase
           .database()
           .ref('users/' + designerRecommendationCode)
           .update({ designerRecommendation: count });
       }
     }
-
+    // 최종 유저정보 저장
     await firebase
       .database()
       .ref('users/' + this.props.userData.uid)
@@ -160,6 +188,7 @@ class AddDesigner extends Component {
     alert('성공적으로 신청되었습니다');
 
     // TODO: 첨부 안했을때 오류가 나는듯...?
+    // img 업로드
     const formData = new fd();
     formData.append('cert_mh', this.state.certFile1);
     formData.append('cert_jg', this.state.certFile2);
@@ -181,6 +210,19 @@ class AddDesigner extends Component {
           handleAddress={this.handleAddress}
           addressAddHandler={this.addressAddHandler}
           addressRemoveHandler={this.addressRemoveHandler}
+          handleImgChange={e => this.handleImgChange(e)}
+        />
+        추천인 코드{' '}
+        <input
+          type="text"
+          name="designerRecommendationCode"
+          id="designerRecommendationCode"
+          value={this.state.designerRecommendationCode}
+          onChange={
+            this.props.userData.designerRecommendationCode
+              ? null
+              : e => this.handleInputChange(e)
+          }
         />
         <div onClick={this.submitHandler}>예디 등록하기</div>
       </div>

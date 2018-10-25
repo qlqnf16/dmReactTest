@@ -1,24 +1,24 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import './CardAdd.css';
-import questionMark from '../../assets/images/question_yellow.png';
-import { connect } from 'react-redux';
-import ReactTooltip from 'react-tooltip';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import "./CardAdd.css";
+import questionMark from "../../assets/images/question_yellow.png";
+import { connect } from "react-redux";
+import ReactTooltip from "react-tooltip";
 
 class CardAdd extends Component {
   state = {
     cut: false,
     perm: false,
     dye: false,
-    time: ''
+    time: ""
   };
 
   componentDidMount = () => {
-    if (this.props.must.some(e => e === 'cut')) {
+    if (this.props.must.some(e => e === "cut")) {
       this.setState({ cut: true });
     }
-    if (this.props.must.some(e => e === 'perm')) this.setState({ perm: true });
-    if (this.props.must.some(e => e === 'dye')) this.setState({ dye: true });
+    if (this.props.must.some(e => e === "perm")) this.setState({ perm: true });
+    if (this.props.must.some(e => e === "dye")) this.setState({ dye: true });
   };
 
   shouldComponentUpdate = (nextProps, nextState) => {
@@ -31,13 +31,13 @@ class CardAdd extends Component {
 
   toggle = type => {
     switch (type) {
-      case 'cut':
+      case "cut":
         this.setState({ cut: !this.state.cut });
         break;
-      case 'perm':
+      case "perm":
         this.setState({ perm: !this.state.perm });
         break;
-      case 'dye':
+      case "dye":
         this.setState({ dye: !this.state.dye });
         break;
       default:
@@ -70,10 +70,10 @@ class CardAdd extends Component {
     console.log(Times);
     let timeButtons = null;
     timeButtons = Times.map((time, key) => {
-      let classN = 'toggle_button time_button';
-      if (time === this.state.time) classN += ' toggle_on';
+      let classN = "toggle_button time_button";
+      if (time === this.state.time) classN += " toggle_on";
       let timeFormat = `${parseInt(time / 60, 10)} : ${
-        time % 60 === 0 ? '00' : '30'
+        time % 60 === 0 ? "00" : "30"
       }`;
       return (
         <div className="col-6 p-1">
@@ -88,55 +88,55 @@ class CardAdd extends Component {
       );
     });
 
-    let cutButton = '';
+    let cutButton = "";
     let cutClick = null;
-    if (this.props.must.some(e => e === 'cut')) cutButton = 'must_button';
-    else if (this.props.no.some(e => e === 'cut')) cutButton = 'no_button';
+    if (this.props.must.some(e => e === "cut")) cutButton = "must_button";
+    else if (this.props.no.some(e => e === "cut")) cutButton = "no_button";
     else {
-      cutButton = 'toggle_button';
-      cutClick = () => this.toggle('cut');
-      if (this.state.cut) cutButton += ' toggle_on';
+      cutButton = "toggle_button";
+      cutClick = () => this.toggle("cut");
+      if (this.state.cut) cutButton += " toggle_on";
     }
-    let permButton = '';
+    let permButton = "";
     let permClick = null;
-    if (this.props.must.some(e => e === 'perm')) permButton = 'must_button';
-    else if (this.props.no.some(e => e === 'perm')) permButton = 'no_button';
+    if (this.props.must.some(e => e === "perm")) permButton = "must_button";
+    else if (this.props.no.some(e => e === "perm")) permButton = "no_button";
     else {
-      permButton = 'toggle_button';
-      permClick = () => this.toggle('perm');
-      if (this.state.perm) permButton += ' toggle_on';
+      permButton = "toggle_button";
+      permClick = () => this.toggle("perm");
+      if (this.state.perm) permButton += " toggle_on";
     }
-    let dyeButton = '';
+    let dyeButton = "";
     let dyeClick = null;
-    if (this.props.must.some(e => e === 'dye')) dyeButton = 'must_button';
-    else if (this.props.no.some(e => e === 'dye')) dyeButton = 'no_button ';
+    if (this.props.must.some(e => e === "dye")) dyeButton = "must_button";
+    else if (this.props.no.some(e => e === "dye")) dyeButton = "no_button ";
     else {
-      dyeButton = 'toggle_button';
-      dyeClick = () => this.toggle('dye');
-      if (this.state.dye) dyeButton += ' toggle_on';
+      dyeButton = "toggle_button";
+      dyeClick = () => this.toggle("dye");
+      if (this.state.dye) dyeButton += " toggle_on";
     }
 
     let price = 0;
-    let service = '';
+    let service = "";
     let serviceFormat = {};
     let time = 0;
     if (this.state.cut) {
       price += this.props.price.cut;
       time += this.props.recruit.requireTime.cut;
-      service += '/ 컷트 ';
-      serviceFormat['cut'] = this.props.price.cut;
+      service += "/ 컷트 ";
+      serviceFormat["cut"] = this.props.price.cut;
     }
     if (this.state.perm) {
       price += this.props.price.perm;
       time += this.props.recruit.requireTime.perm;
-      service += '/ 펌';
-      serviceFormat['perm'] = this.props.price.perm;
+      service += "/ 펌";
+      serviceFormat["perm"] = this.props.price.perm;
     }
     if (this.state.dye) {
       price += this.props.price.dye;
       time += this.props.recruit.requireTime.dye;
-      service += '/ 염색';
-      serviceFormat['dye'] = this.props.price.dye;
+      service += "/ 염색";
+      serviceFormat["dye"] = this.props.price.dye;
     }
     service = service.substring(1);
 
@@ -170,9 +170,7 @@ class CardAdd extends Component {
             to={
               this.props.userData.name
                 ? {
-                    pathname: `/reservation/${
-                      this.props.id // to={`/reservation/${this.props.id}`}
-                    }`,
+                    pathname: `/reservation/${this.props.id}`,
                     state: {
                       price,
                       time,
@@ -186,10 +184,10 @@ class CardAdd extends Component {
                 : {}
             }
           >
-            <div className="row p-3" style={{ alignItems: 'flex-end' }}>
+            <div className="row p-3" style={{ alignItems: "flex-end" }}>
               <div className="col-7 m-0">
                 <p className="time mb-2">예상 소요시간</p>
-                <p className="time" style={{ fontWeight: 'bold' }}>
+                <p className="time" style={{ fontWeight: "bold" }}>
                   {parseInt(time / 60, 10)}
                   시간 {time % 60}분
                 </p>
@@ -216,7 +214,7 @@ class CardAdd extends Component {
                     </div>
                   </ReactTooltip>
                 </p>
-                <p className="time" style={{ fontWeight: 'bold' }}>
+                <p className="time" style={{ fontWeight: "bold" }}>
                   {parseInt(time / 60, 10)}
                   12345원
                 </p>
@@ -227,7 +225,7 @@ class CardAdd extends Component {
                   <img
                     alt="alt"
                     className="question"
-                    style={{ marginBottom: '0.8rem' }}
+                    style={{ marginBottom: "0.8rem" }}
                     src={questionMark}
                     data-tip
                     data-for="price"

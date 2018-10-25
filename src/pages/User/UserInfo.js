@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import firebase from '../../config/Firebase';
-import UserNav from '../../components/Navigation/UserNav/UserNav';
-import { Form, FormGroup } from 'reactstrap';
-import check_sm from '../../assets/images/check_sm.png';
-import axios from 'axios';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import firebase from "../../config/Firebase";
+import UserNav from "../../components/Navigation/UserNav/UserNav";
+import { Form, FormGroup } from "reactstrap";
+import check_sm from "../../assets/images/check_sm.png";
+import axios from "axios";
 
 class UserInfo extends Component {
   constructor(props) {
@@ -58,19 +58,19 @@ class UserInfo extends Component {
       gender
     };
     if (!this.props.userData.isRegister)
-      return alert('휴대폰 인증을 진행해주세요');
+      return alert("휴대폰 인증을 진행해주세요");
 
     if (recommendationCode && !this.props.userData.recommendationCode) {
       let count = 0;
       let result = null;
       await firebase
         .database()
-        .ref('users/' + recommendationCode)
-        .on('value', res => {
+        .ref("users/" + recommendationCode)
+        .on("value", res => {
           result = res;
         });
       if (!result) {
-        alert('유효하지 않은 추천인 코드 입니다.');
+        alert("유효하지 않은 추천인 코드 입니다.");
       } else {
         let { recommendation, _id } = result.val();
         if (recommendation) count = recommendation;
@@ -90,25 +90,25 @@ class UserInfo extends Component {
 
         await firebase
           .database()
-          .ref('users/' + recommendationCode)
+          .ref("users/" + recommendationCode)
           .update({ recommendation: count });
         console.log(firebaseUserData);
       }
     }
     await firebase
       .database()
-      .ref('users/' + uid)
+      .ref("users/" + uid)
       .update(firebaseUserData);
-    await alert('저장되었습니다!');
+    await alert("저장되었습니다!");
   };
 
   phoneCert() {
-    console.log('Asdfafds');
+    console.log("Asdfafds");
     const { IMP } = window;
-    IMP.init('imp38067773');
+    IMP.init("imp38067773");
     IMP.certification(
       {
-        merchant_uid: 'merchant_' + new Date().getTime(),
+        merchant_uid: "merchant_" + new Date().getTime(),
         popup: true
       },
       function(rsp) {
@@ -118,8 +118,8 @@ class UserInfo extends Component {
           console.log(rsp.merchant_uid);
         } else {
           // 인증취소 또는 인증실패
-          var msg = '인증에 실패하였습니다.';
-          msg += '에러내용 : ' + rsp.error_msg;
+          var msg = "인증에 실패하였습니다.";
+          msg += "에러내용 : " + rsp.error_msg;
 
           alert(msg);
         }
@@ -130,18 +130,18 @@ class UserInfo extends Component {
   certification() {
     firebase
       .database()
-      .ref('users/' + firebase.auth().currentUser.uid)
+      .ref("users/" + firebase.auth().currentUser.uid)
       .update({ isRegister: true });
   }
   noCertification() {
     firebase
       .database()
-      .ref('users/' + firebase.auth().currentUser.uid)
+      .ref("users/" + firebase.auth().currentUser.uid)
       .update({ isRegister: false });
   }
 
   render() {
-    let isRegister = '';
+    let isRegister = "";
     if (!this.props.userData.isRegister) {
       isRegister = (
         <div
@@ -154,7 +154,7 @@ class UserInfo extends Component {
     } else {
       isRegister = (
         <div className="uif_registered col-1">
-          <img style={{ width: '1.4rem' }} src={check_sm} alt="alt" />
+          <img style={{ width: "1.4rem" }} src={check_sm} alt="alt" />
           인증됨
         </div>
       );
@@ -169,9 +169,9 @@ class UserInfo extends Component {
     for (let i = 2018; i > 1920; i--) {
       year.push(i);
     }
-    if (['4', '6', '9', '11'].includes(this.state.month)) {
+    if (["4", "6", "9", "11"].includes(this.state.month)) {
       day.pop();
-    } else if (this.state.month === '2') {
+    } else if (this.state.month === "2") {
       if (Number(this.state.year) % 4 === 0) {
         day.splice(29, 2);
       } else {
@@ -244,9 +244,9 @@ class UserInfo extends Component {
                     />
                     <label
                       className={
-                        this.state.gender === 'male'
-                          ? 'if_gradio active'
-                          : 'if_gradio'
+                        this.state.gender === "male"
+                          ? "if_gradio active"
+                          : "if_gradio"
                       }
                     >
                       <input
@@ -261,9 +261,9 @@ class UserInfo extends Component {
                     </label>
                     <label
                       className={
-                        this.state.gender === 'female'
-                          ? 'if_gradio active'
-                          : 'if_gradio'
+                        this.state.gender === "female"
+                          ? "if_gradio active"
+                          : "if_gradio"
                       }
                     >
                       <input
@@ -278,28 +278,6 @@ class UserInfo extends Component {
                     </label>
                   </div>
                 </FormGroup>
-                {/* <div>
-                <label>
-                  <input
-                    type="radio"
-                    id="male"
-                    name="gender"
-                    value="male"
-                    onChange={e => this.inputChangeHandler(e)}
-                  />
-                  남 // className="genderRadio"
-                </label>
-                <label>s
-                  <input
-                    type="radio"
-                    id="female"
-                    name="gender"
-                    value="female"
-                    onChange={e => this.inputChangeHandler(e)}
-                  />
-                  여
-                </label>
-              </div> */}
                 <FormGroup row>
                   <div className="col-2 if_head uif_head">이메일 주소</div>
                   <div className="col-10">
@@ -317,16 +295,9 @@ class UserInfo extends Component {
                   <div className="col-2 if_head uif_head">생년월일</div>
                   <div className="col-10">
                     {calendar}
-                    {/* <input
-              type="date"
-              name="birthday"
-              id="birthday"
-              onChange={e => this.inputChangeHandler(e)}
-              value={this.state.birthday}
-            /> */}
                     <div
                       className="if_detail"
-                      style={{ marginTop: '1rem', marginBottom: '1rem' }}
+                      style={{ marginTop: "1rem", marginBottom: "1rem" }}
                     >
                       이 정보는 통계 목적으로 사용되며 외부에 공개되지 않습니다.
                     </div>
@@ -366,7 +337,7 @@ class UserInfo extends Component {
 
                 <div className="text-center">
                   <div onClick={this.submitHandler} className=" btn uif_button">
-                    <span style={{ fontWeight: 'bold', fontSize: '1.4rem' }}>
+                    <span style={{ fontWeight: "bold", fontSize: "1.4rem" }}>
                       저장하기
                     </span>
                   </div>

@@ -59,6 +59,7 @@ class UserInfo extends Component {
     if (!this.props.userData.isRegister)
       return alert('휴대폰 인증을 진행해주세요');
 
+    // 추천인 로직
     // 전에 추천인을 입력한 적이 없고, 추천인을 작성했을 때,
     if (recommendationCode && !this.props.userData.recommendationCode) {
       let count = 0;

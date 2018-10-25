@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { Modal } from 'reactstrap';
 import DaumPostcode from 'react-daum-postcode';
+import ImgPreview from './ImgPreview';
 
 class InfoForm extends Component {
   constructor(props) {
@@ -111,7 +112,7 @@ class InfoForm extends Component {
     ));
 
     let calendar = (
-      <div className="row m-0">
+      <div>
         <select
           name="year"
           value={userData.year}
@@ -216,8 +217,18 @@ class InfoForm extends Component {
             value={userData.careerDetail}
           />
           <div>면허증/자격증</div>
-          <input type="file" name="cert1" />
-          <input type="file" name="cert2" />
+          <ImgPreview url={userData.certImg1} />
+          <ImgPreview url={userData.certImg2} />
+          <input
+            type="file"
+            name="cert1"
+            onChange={this.props.handleImgChange}
+          />
+          <input
+            type="file"
+            name="cert2"
+            onChange={this.props.handleImgChange}
+          />
         </div>
         <Modal
           centered
