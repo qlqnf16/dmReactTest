@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import { Form, FormGroup } from 'reactstrap';
-import axios from 'axios';
-import fd from 'form-data';
-import InfoForm from '../components/InfoForm/InfoForm';
-import { connect } from 'react-redux';
-import firebase from '../config/Firebase';
-import './PageCss.css';
+import React, { Component } from "react";
+import { Form, FormGroup } from "reactstrap";
+import axios from "axios";
+import fd from "form-data";
+import InfoForm from "../components/InfoForm/InfoForm";
+import { connect } from "react-redux";
+import firebase from "../config/Firebase";
+import "./PageCss.css";
 
 class AddDesigner extends Component {
   constructor(props) {
@@ -61,16 +61,16 @@ class AddDesigner extends Component {
   handleImgChange = e => {
     let file = e.target.files[0];
     switch (e.target.name) {
-      case 'cert1':
+      case "cert1":
         this.setState({ certImg1: URL.createObjectURL(file) });
         this.setState({ certFile1: file });
         break;
-      case 'cert2':
+      case "cert2":
         this.setState({ certImg2: URL.createObjectURL(file) });
         this.setState({ certFile2: file });
         break;
       default:
-        console.log('something wrong in [AddDesigner.js]');
+        console.log("something wrong in [AddDesigner.js]");
     }
     console.log(this.state);
   };
@@ -102,21 +102,21 @@ class AddDesigner extends Component {
     const value = target.value;
     const name = target.name;
 
-    if (target.id === 'dYear' || target.id === 'dMonth') {
-      if (target.id === 'dYear') {
+    if (target.id === "dYear" || target.id === "dMonth") {
+      if (target.id === "dYear") {
         this.dYear = Number(value);
-      } else if (target.id === 'dMonth') {
+      } else if (target.id === "dMonth") {
         this.dMonth = Number(value);
       }
       this.setState({ untilDesigner: this.dYear * 12 + this.dMonth });
-    } else if (target.id === 'careerYear' || target.id === 'careerMonth') {
-      if (target.id === 'careerYear') {
+    } else if (target.id === "careerYear" || target.id === "careerMonth") {
+      if (target.id === "careerYear") {
         this.careerYear = Number(value);
-      } else if (target.id === 'careerMonth') {
+      } else if (target.id === "careerMonth") {
         this.careerMonth = Number(value);
       }
       this.setState({ career: this.careerYear * 12 + this.careerMonth });
-    } else if (target.name === 'extraAddress') {
+    } else if (target.name === "extraAddress") {
       let addresses = this.state.addresses;
       let address = addresses[target.id];
       addresses[target.id] = { ...address, extraAddress: target.value };
@@ -157,14 +157,15 @@ class AddDesigner extends Component {
       untilDesigner,
       career,
       careerDetail,
-      addresses
+      addresses,
+      isApproval: false
     };
 
     if (
       Object.values(firebaseUserData).includes(undefined) ||
       addresses.length === 0
     )
-      return alert('채워지지 않은 정보가 있습니다');
+      return alert("채워지지 않은 정보가 있습니다");
 
     if (
       designerRecommendationCode &&
@@ -174,12 +175,12 @@ class AddDesigner extends Component {
       let result = null;
       await firebase
         .database()
-        .ref('users/' + designerRecommendationCode)
-        .on('value', res => {
+        .ref("users/" + designerRecommendationCode)
+        .on("value", res => {
           result = res;
         });
       if (!result) {
-        alert('유효하지 않은 추천인 코드 입니다.');
+        alert("유효하지 않은 추천인 코드 입니다.");
       } else {
         let { designerRecommendation, _id } = result.val();
         if (designerRecommendation) count = designerRecommendation;
@@ -200,27 +201,27 @@ class AddDesigner extends Component {
 
         await firebase
           .database()
-          .ref('users/' + designerRecommendationCode)
+          .ref("users/" + designerRecommendationCode)
           .update({ designerRecommendation: count });
       }
     }
 
     await firebase
       .database()
-      .ref('users/' + this.props.userData.uid)
+      .ref("users/" + this.props.userData.uid)
       .update(firebaseUserData);
-    alert('성공적으로 신청되었습니다');
+    alert("성공적으로 신청되었습니다");
 
     // TODO: 첨부 안했을때 오류가 나는듯...?
     const formData = new fd();
-    formData.append('cert_mh', this.state.certFile1);
-    formData.append('cert_jg', this.state.certFile2);
+    formData.append("cert_mh", this.state.certFile1);
+    formData.append("cert_jg", this.state.certFile2);
     await axios.post(
       `http://localhost:3030/firebase/upload?uid=${this.props.userData.uid}`,
       formData,
       {
         headers: {
-          'Content-Type': 'multipart/form-data'
+          "Content-Type": "multipart/form-data"
         }
       }
     );
@@ -238,9 +239,9 @@ class AddDesigner extends Component {
           <div className="ad_title">
             <p
               style={{
-                fontWeight: 'normal',
-                fontSize: '1.3rem',
-                marginBottom: '0.5rem'
+                fontWeight: "normal",
+                fontSize: "1.3rem",
+                marginBottom: "0.5rem"
               }}
             >
               예비디자이너 등록
@@ -249,7 +250,7 @@ class AddDesigner extends Component {
           </div>
           <InfoForm
             state={this.state}
-            checked={!this.state.gender ? 'male' : this.state.gender}
+            checked={!this.state.gender ? "male" : this.state.gender}
             certImg1={this.state.certImg1}
             certFile1={this.state.certFile1}
             certImg2={this.state.certImg2}

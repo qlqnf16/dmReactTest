@@ -126,7 +126,8 @@ class AddDesigner extends Component {
       untilDesigner,
       career,
       careerDetail,
-      addresses
+      addresses,
+      isApproval: false
     };
 
     if (

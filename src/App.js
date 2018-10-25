@@ -26,6 +26,7 @@ import {
   WhyDreamary,
   AdminUserList,
   AdminDesignerList,
+  AdminWaitingList,
   AdminReservationList,
   TermsOfUse,
   InfoPolicy,
@@ -308,6 +309,12 @@ class App extends Component {
               path="/admin/designerList"
               component={
                 this.props.userData.isD ? AdminDesignerList : WrongAccess
+              }
+            />
+            <Route
+              path="/admin/waitingList"
+              component={
+                this.props.userData.isD ? AdminWaitingList : WrongAccess
               }
             />
             <Route
