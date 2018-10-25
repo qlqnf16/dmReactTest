@@ -43,6 +43,7 @@ class CompleteModal extends Component {
 
     await alert('신고가 완료되었습니다');
     await this.props.toggle();
+    await this.props.reloadData();
   };
 
   render() {

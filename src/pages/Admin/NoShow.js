@@ -17,9 +17,7 @@ class NoShow extends Component {
         `http://52.79.227.227:3030/users/5bc213a5f4376e579d2c18f6/reservations/all`
       );
 
-      const filteredData = data.filter(
-        d => d.cancelReason === '아니 상우야 잘하자'
-      );
+      const filteredData = data.filter(d => d.cancelReason === '노쇼dreamary');
       this.setState({
         filteredData,
         madeRequest: true
@@ -84,7 +82,7 @@ class NoShow extends Component {
       return (
         <div>
           <AdminNav />
-          <h1>디자이너 관리</h1>
+          <h1>노쇼 관리</h1>
           <table className="table text-center">
             <thead>
               <tr>

@@ -104,16 +104,14 @@ class DesignerReservations extends Component {
     if (this.state.reservations) {
       futureReservations = this.state.reservations.filter(
         reservation =>
-          reservation.date > new Date().getTime() &&
-          !reservation.isCanceled &&
-          !reservation.isDone
+          // reservation.date > new Date().getTime() &&
+          !reservation.isCanceled && !reservation.isDone
       );
       futureReservations.sort(this.reservationSort);
       previousReservations = this.state.reservations.filter(
         reservation =>
-          reservation.date <= new Date().getTime() ||
-          reservation.isCanceled ||
-          reservation.isDone
+          // reservation.date <= new Date().getTime() ||
+          reservation.isCanceled || reservation.isDone
       );
       previousReservations.sort(this.reservationSort);
     }

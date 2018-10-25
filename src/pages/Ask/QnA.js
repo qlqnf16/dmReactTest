@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AskNav from '../../components/Navigation/AskNav/AskNav';
 import { FormGroup } from 'reactstrap';
+import { connect } from 'react-redux';
 import axios from 'axios';
 class QnA extends Component {
   inputChangeHandler = event => {
@@ -14,7 +15,12 @@ class QnA extends Component {
   qnaSubmit = () => {
     console.log(this.state);
     // TODO : DB에 qna 추가
-    // axios.post('http://52.79.227.227:3030/qna', this.state );
+    const inquirie = {
+      ...this.state,
+      _user: this.props.userData._id
+    };
+    axios.post('http://52.79.227.227:3030/inquiries', inquirie);
+    alert('성공적으로 제출되었습니다.');
   };
 
   render() {
@@ -78,4 +84,8 @@ class QnA extends Component {
   }
 }
 
-export default QnA;
+const mapStateToProps = ({ authentication: { userData } }) => {
+  return { userData };
+};
+
+export default connect(mapStateToProps)(QnA);

@@ -50,6 +50,12 @@ class Navitems extends Component {
             </DropdownMenu>
           </UncontrolledDropdown>
           <NavItem>
+            <NavLink>
+              포인트 : {this.props.userData.point}
+              point
+            </NavLink>
+          </NavItem>
+          <NavItem>
             <NavLink tag={Link} to={'/message'} className=" message_img">
               <img alt="alt" src={message_x} style={{ width: '100%' }} />
             </NavLink>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import AdminNav from '../../components/Navigation/AdminNav/AdminNav';
 
 class AdminQnA extends Component {
@@ -8,16 +9,14 @@ class AdminQnA extends Component {
   };
 
   componentDidMount = async () => {
-    // if (!this.state.madeRequest) {
-    // 	const { data } = await axios.get(
-    // 		`http://52.79.227.227:3030/users/5bc213a5f4376e579d2c18f6/reservations/all`
-    // 	);
-    // 	this.setState({
-    // 		QnAs: data,
-    // 		madeRequest: true
-    // 	});
-    // 	console.log(data);
-    // }
+    if (!this.state.madeRequest) {
+      const { data } = await axios.get(`http://52.79.227.227:3030/inquiries`);
+      this.setState({
+        QnAs: data,
+        madeRequest: true
+      });
+      console.log(data);
+    }
   };
 
   render() {
