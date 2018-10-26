@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
+import firebase from '../../../config/Firebase';
 import Moment from 'react-moment';
 import './Modal.css';
 
@@ -18,7 +19,6 @@ class CancelModal extends Component {
   cancelReasonSubmit = async () => {
     if (!this.state.cancelReason || this.state.cancelReason === '')
       return alert('채워지지 않은 정보가 있습니다');
-    // TODO : cancelReason POST하는거 추가, 취소한 사람 정보도 넣어야함
     await axios.patch(
       `http://52.79.227.227:3030/users/${
         this.props.userData._id
@@ -29,6 +29,17 @@ class CancelModal extends Component {
         cancelByUser: !this.props.isD
       }
     );
+
+    // TODO : isToday 써먹기
+    if (this.props.isToday) {
+      console.log('당일취소');
+      await firebase
+        .database()
+        .ref('users/' + this.props.userData.uid)
+        .update({
+          penalty: Number(this.props.userData.penalty) + 1
+        });
+    }
 
     await alert('성공적으로 취소되었습니다');
     await this.props.toggle();

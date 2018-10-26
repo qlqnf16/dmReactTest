@@ -78,7 +78,7 @@ const ReservationCard = props => {
             className="rc_button canceled"
             onClick={() => {
               alert('당일 취소는 경고 1회 누적됩니다.');
-              props.cancelModalToggle(props.reservation);
+              props.cancelModalToggle(props.reservation, true);
             }}
           >
             예약취소

@@ -19,7 +19,8 @@ class Reservations extends Component {
       cancelModal: false,
       reviewModal: false,
       showReviewModal: false,
-      reservation: null
+      reservation: null,
+      isToday: false
     };
   }
 
@@ -35,11 +36,13 @@ class Reservations extends Component {
       reservation
     });
   };
-  cancelModalToggle = reservation => {
+  cancelModalToggle = (reservation, isToday) => {
     this.setState({
       cancelModal: !this.state.cancelModal,
       reservation
     });
+    if (isToday) this.setState({ isToday: true });
+    console.log(this.state.isToday);
   };
 
   showReviewModalToggle = reservation => {
@@ -121,6 +124,7 @@ class Reservations extends Component {
           toggle={this.cancelModalToggle}
           reservation={this.state.reservation}
           reloadData={this.reloadData}
+          isToday={this.state.isToday}
         />
         <ReviewModal
           isOpen={this.state.reviewModal}
