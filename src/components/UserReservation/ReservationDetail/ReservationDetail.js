@@ -46,7 +46,7 @@ const ReservationDetail = props => {
           {reservation._designer._recruit.requirement}
         </div>
         <div className="rd_title">예상 시술 소요시간</div>
-        <div className="rd_content">
+        <div className="rd_content" style={{ marginBottom: 0 }}>
           {services} : 총 {timeFormat}
         </div>
       </div>

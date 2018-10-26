@@ -132,7 +132,7 @@ const ReservationCard = props => {
   // return
   if (props.reservation) {
     return (
-      <div className={`col-4 my-2 mx-0 px-2`}>
+      <div>
         <div className={`${props.type} rc_back`}>
           <div className="d-flex justify-content-between">
             <div

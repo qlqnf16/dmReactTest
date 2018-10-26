@@ -15,17 +15,9 @@ const BasicInfo = props => {
         <div className="bi_name">{designer && designer.name}</div>
         <div className="bi_title">{recruit.title}</div>
         <div className="bi_shop">준오헤어 청담점/서울 | 헤어웰 수내점/경기</div>
-        {/* <div className="bi_introduce">
-          안녕하세요, 준오헤어 인턴 태훈입니다! 남자 여자 커트 종류 상관없이
-          모델 받고 있습니다.
-          <br />
-          제품은 실제 저희 매장에서 사용하고 있는 제품으로 합니다. 탈색머리 2번
-          이상 하신분은
-          <br />
-          어려우며 여자분 기장은 최소 어깨 아래기장 입니다. 충분한 상담 후
-          커트/펌/컬러 진행합니다.
-        </div> */}
-        <div className="bi_introduce">{designer && designer.introduce}</div>
+        <div className="bi_introduce">
+          <pre className="bi_introduce">{designer && designer.introduce}</pre>
+        </div>
       </div>
       <div className="bi_box">
         <div className="bi_boxTitle">요청사항</div>

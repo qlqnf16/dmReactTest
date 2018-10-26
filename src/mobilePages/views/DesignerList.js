@@ -107,15 +107,15 @@ class DesignerList extends Component {
     return (
       <div className="m_containerStyle">
         <Header />
-        <FilterButton
-          getFilteredCards={this.getFilteredCards}
-          on={this.state.filterOn}
-        />
         <Filter
           on={this.state.filterOn}
           filterChangeHandler={this.filterChangeHandler}
           state={this.state}
           sigungu={sigungu}
+        />
+        <FilterButton
+          getFilteredCards={this.getFilteredCards}
+          on={this.state.filterOn}
         />
         <DesignerCardList recruits={this.state.recruits} />
       </div>

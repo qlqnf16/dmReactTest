@@ -172,8 +172,6 @@ class Schedule extends Component {
                 {this.props.addresses.map((address, key) => (
                   <option key={key}>{address.extraAddress}</option>
                 ))}
-                <option>머리샵 일산웨스턴돔점</option>
-                <option>머리샵 일산웨스턴돔점2</option>
               </Input>
             </FormGroup>
             <FormGroup row>
@@ -200,6 +198,17 @@ class Schedule extends Component {
                   }}
                 >
                   + 시간 추가
+                </Button>
+                <Button
+                  color="light"
+                  onClick={this.props.timeDelete}
+                  style={{
+                    fontSize: '1.1rem',
+                    background: 'none',
+                    border: 0
+                  }}
+                >
+                  - 시간 지우기
                 </Button>
               </div>
             </FormGroup>

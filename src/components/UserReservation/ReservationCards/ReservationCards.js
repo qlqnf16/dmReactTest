@@ -10,19 +10,20 @@ const Reservations = props => (
       <div className="urc_bg">
         <div className="urc_title">다가오는 예약</div>
         {props.futureReservations.map((reservation, key) => (
-          <div className="row urc_cardback" key={key}>
+          <div className="urc_cardback" key={key}>
             <ReservationCard
               reservation={reservation}
               type={'soon'}
               cancelModalToggle={props.cancelModalToggle}
             />
+            <div />
             <ReservationDetail reservation={reservation} />
           </div>
         ))}
       </div>
       <div className="urc_bg2">
         <div className="urc_title">지난 예약</div>
-        <div className="urc_cardback2 row m-0">
+        <div className="urc_cardback2">
           {props.previousReservations.map((reservation, key) => (
             <ReservationCard
               reservation={reservation}
