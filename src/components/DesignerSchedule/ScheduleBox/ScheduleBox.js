@@ -60,7 +60,7 @@ class ScheduleBox extends Component {
   untils = [];
   permPrice = {};
   dyePrice = {};
-  handleInputChange(event) {
+  handleInputChange = event => {
     const target = event.target;
     const name = target.name;
     if (target.type !== 'checkbox') {
@@ -77,7 +77,12 @@ class ScheduleBox extends Component {
         });
       } else if (target.id === 'time') {
         const value = Number(target.value);
-        this.setState({ [name]: value });
+        console.log(name, value);
+        let requireTime = {
+          ...this.state.requireTime,
+          [name]: value
+        };
+        this.setState({ requireTime });
       } else if (target.name === 'permPrice') {
         this.permPrice[target.id] = Number(target.value);
         this.setState({
@@ -113,7 +118,7 @@ class ScheduleBox extends Component {
         this.setState({ [name]: target.checked });
       }
     }
-  }
+  };
 
   cardSort = (c1, c2) => c1.date - c2.date;
 
@@ -163,7 +168,7 @@ class ScheduleBox extends Component {
       _cards: this.state.cards,
       _reviews: [],
       portfolios: [],
-      requireTime: this.props.requireTime
+      requireTime: this.state.requireTime
     };
     if (this.state.cutTime && this.state.permTime && this.state.dyeTime) {
       requireTime = {

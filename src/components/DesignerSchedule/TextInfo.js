@@ -80,14 +80,14 @@ const TextInfo = props => (
             컷트
           </Label>
           <Input
-            name="cutTime"
+            name="cut"
             id="time"
-            onChange={props.changeInput}
+            onChange={e => props.changeInput(e)}
             type="select"
             value={props.state.requireTime && props.state.requireTime.cut}
             style={styles.selectStyle}
           >
-            <option value>--컷트--</option>
+            <option value="null">--컷트--</option>
             <option value="60">1시간</option>
             <option value="90">1시간 30분</option>
             <option value="120">2시간</option>
@@ -100,13 +100,13 @@ const TextInfo = props => (
           </Label>
           <Input
             type="select"
-            name="permTime"
+            name="perm"
             id="time"
-            onChange={props.changeInput}
+            onChange={e => props.changeInput(e)}
             value={props.state.requireTime && props.state.requireTime.perm}
             style={styles.selectStyle}
           >
-            <option value>--펌--</option>
+            <option value="null">--펌--</option>
             <option value="60">1시간</option>
             <option value="90">1시간 30분</option>
             <option value="120">2시간</option>
@@ -119,13 +119,13 @@ const TextInfo = props => (
           </Label>
           <Input
             type="select"
-            name="dyeTime"
+            name="dye"
             id="time"
-            onChange={props.changeInput}
+            onChange={e => props.changeInput(e)}
             value={props.state.requireTime && props.state.requireTime.dye}
             style={styles.selectStyle}
           >
-            <option value>--염색--</option>
+            <option value="null">--염색--</option>
             <option value="60">1시간</option>
             <option value="90">1시간 30분</option>
             <option value="120">2시간</option>

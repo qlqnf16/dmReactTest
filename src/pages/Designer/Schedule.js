@@ -63,6 +63,14 @@ class Schedule extends Component {
 
   totalSubmitHandler = async recruitData => {
     console.log(recruitData);
+    //안 채워진 정보 검증
+    if (
+      Object.values(recruitData).includes('') ||
+      Object.values(recruitData).includes(null) ||
+      Object.values(recruitData.requireTime).length !== 3 ||
+      Object.values(recruitData.requireTime).includes('null')
+    )
+      return alert('채워지지 않은 정보가 있습니다');
     // 유저에 리크루트 없으면 생성
     if (!this.props.userData._recruit) {
       console.log('최초 생성');
@@ -92,6 +100,8 @@ class Schedule extends Component {
         }/cards`
       );
       this.setState({ cards: data, newCards: [] });
+
+      // 유저가 이미 리크루트 있으면 수정
     } else {
       console.log('정보 수정');
 
@@ -115,7 +125,7 @@ class Schedule extends Component {
       console.log(data);
     }
     // TODO : 더 좋은 방법 찾기
-    window.location.reload();
+    // window.location.reload();
     alert(' 성공적으로 저장되었습니다! ');
   };
 
