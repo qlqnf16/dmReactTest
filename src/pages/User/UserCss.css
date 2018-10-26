@@ -53,6 +53,7 @@
   text-align: center;
   padding-top: 0.8rem !important;
   margin-top: 5rem;
+  cursor: pointer;
 }
 .uif_button.uif_phone {
   background-color: white;
@@ -62,6 +63,7 @@
   margin-left: -1rem;
   border: solid 1px #dd6866;
   font-size: 1.3rem !important;
+  line-height: 1;
 }
 
 .uif_registered {
@@ -69,4 +71,8 @@
   color: #4c91ba;
   margin: 0.5rem 0 0 0rem;
   padding: 0 !important;
+}
+.coupon_input {
+  border-top: solid 2px rgba(0, 0, 0, 0.1);
+  padding-top: 4rem;
 }

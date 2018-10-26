@@ -64,3 +64,7 @@ select {
   margin-top: 10.8px;
   font-family: NanumSquare;
 }
+
+.filter-responsive {
+  height: 200px;
+}

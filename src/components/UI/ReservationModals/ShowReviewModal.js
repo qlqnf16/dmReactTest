@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Modal, ModalBody } from 'reactstrap';
 import Moment from 'react-moment';
 import StarRatings from 'react-star-ratings';
 
@@ -42,7 +42,7 @@ const ShowReviewModal = props => {
           <div className="m_content mb-5">
             <p>
               <span style={{ fontWeight: 'bold' }}>
-                {props.isD ? '고객' : '막내'} :
+                {props.isD ? '고객' : '예디'} :
               </span>{' '}
               {props.isD
                 ? props.reservation._user && props.reservation._user.name

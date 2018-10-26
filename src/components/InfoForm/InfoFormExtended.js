@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { FormGroup, Label, Input, Col } from 'reactstrap';
+import { FormGroup } from 'reactstrap';
 import ImgPreview from './ImgPreview';
 
 class InfoFormExtended extends Component {
@@ -50,10 +50,10 @@ class InfoFormExtended extends Component {
           </div>
         </FormGroup>
         {/* <FormGroup row>
-          <Label for="portfolio" sm={2}>
+          <Label for="portfolio" xs={2}>
             포트폴리오
           </Label>
-          <Col sm={10}>
+          <Col xs={10}>
             <div>
               {this.props.num > 0
                 ? this.props.portfolioImg.map((url, i) => (

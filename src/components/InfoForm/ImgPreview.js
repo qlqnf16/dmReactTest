@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const ImgPreview = props => {
   let image = null;
@@ -9,6 +9,7 @@ const ImgPreview = props => {
         className="col-4"
         onClick={props.deletePortfolio}
         alt={props.url}
+        style={props.style}
       />
     );
   }

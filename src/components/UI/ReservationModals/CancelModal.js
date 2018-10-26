@@ -4,14 +4,7 @@ import axios from 'axios';
 import Moment from 'react-moment';
 import './Modal.css';
 
-import {
-  Button,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  FormGroup
-} from 'reactstrap';
+import { Modal, ModalBody } from 'reactstrap';
 
 class CancelModal extends Component {
   inputChangeHandler = event => {
@@ -23,7 +16,8 @@ class CancelModal extends Component {
   };
 
   cancelReasonSubmit = async () => {
-    if (!this.state.cancelReason) return alert('채워지지 않은 정보가 있습니다');
+    if (!this.state.cancelReason || this.state.cancelReason === '')
+      return alert('채워지지 않은 정보가 있습니다');
     // TODO : cancelReason POST하는거 추가, 취소한 사람 정보도 넣어야함
     await axios.patch(
       `http://52.79.227.227:3030/users/${
@@ -32,7 +26,7 @@ class CancelModal extends Component {
       {
         isCanceled: true,
         cancelReason: this.state.cancelReason,
-        cancelByUser: true
+        cancelByUser: !this.props.isD
       }
     );
 
@@ -79,7 +73,7 @@ class CancelModal extends Component {
             <div className="m_content mb-5">
               <p>
                 <span style={{ fontWeight: 'bold' }}>
-                  {this.props.isD ? '고객' : '막내'} :
+                  {this.props.isD ? '고객' : '예디'} :
                 </span>{' '}
                 {this.props.isD
                   ? this.props.reservation._user &&

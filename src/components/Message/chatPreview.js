@@ -11,7 +11,7 @@ const Message = () => (
       />
     </div>
     <div style={{ width: '12%' }} className="font-weight-bold">
-      이태훈 막내
+      이태훈 예디
     </div>
     <div style={{ width: '72.5%' }}>
       <Link to="/chat" className="cp_link">

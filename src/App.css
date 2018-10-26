@@ -34,3 +34,6 @@
 .app-content {
   min-height: 70vh;
 }
+.web {
+  min-width: 1280px;
+}

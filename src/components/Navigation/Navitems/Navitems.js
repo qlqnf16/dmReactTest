@@ -26,12 +26,12 @@ class Navitems extends Component {
         <Fragment>
           <NavItem>
             <NavLink tag={Link} to={'/designerList'} className="">
-              막내찾기
+              예디찾기
             </NavLink>
           </NavItem>
           <NavItem>
             <NavLink tag={Link} to={'/addDesigner'} className="">
-              막내등록
+              예디등록
             </NavLink>
           </NavItem>
           <UncontrolledDropdown nav inNavbar>
@@ -50,8 +50,14 @@ class Navitems extends Component {
             </DropdownMenu>
           </UncontrolledDropdown>
           <NavItem>
+            <NavLink>
+              포인트 : {this.props.userData.point}
+              point
+            </NavLink>
+          </NavItem>
+          <NavItem>
             <NavLink tag={Link} to={'/message'} className=" message_img">
-              <img src={message_x} style={{ width: '100%' }} />
+              <img alt="alt" src={message_x} style={{ width: '100%' }} />
             </NavLink>
           </NavItem>
         </Fragment>
@@ -91,13 +97,8 @@ class Navitems extends Component {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to={'/designer/cash'} className="">
-              적립금 : 10000캐쉬
-            </NavLink>
-          </NavItem>
-          <NavItem>
             <NavLink tag={Link} to={'/message'} className=" message_img">
-              <img src={message_x} style={{ width: '100%' }} />
+              <img alt="alt" src={message_x} style={{ width: '100%' }} />
             </NavLink>
           </NavItem>
           <NavItem>
@@ -128,12 +129,12 @@ class Navitems extends Component {
           </NavItem>
           <NavItem>
             <NavLink tag={Link} to={'/designerList'} className="">
-              막내찾기
+              예디찾기
             </NavLink>
           </NavItem>
           <NavItem>
             <NavLink onClick={this.props.showLogin} className="">
-              막내등록
+              예디등록
             </NavLink>
           </NavItem>
         </Fragment>

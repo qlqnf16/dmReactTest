@@ -1,6 +1,7 @@
 import React from 'react';
 import Moment from 'react-moment';
 import './ReservationCard.css';
+import { Link } from 'react-router-dom';
 import calendar_o from '../../../assets/images/calendar_o.png';
 import calendar_x from '../../../assets/images/calendar_x.png';
 import place_o from '../../../assets/images/place_o.png';
@@ -64,23 +65,46 @@ const ReservationCard = props => {
       <div className="rc_type">
         D-
         <Moment unit="days" diff={new Date()}>
-          {props.reservation.date}
+          {props.reservation.date + 86400000}
         </Moment>
       </div>
     );
     let date = new Date(props.reservation.date);
-    if (new Date().getDate() === date.getDate()) {
-      type = <div className="rc_type">'D-day';</div>;
-      button = (
-        <div
-          className="rc_button review"
-          onClick={() => {
-            alert('서비스 완료 전입니다');
-          }}
-        >
-          리뷰등록
-        </div>
-      );
+    if (new Date().getDate() === date.getDate() || new Date() >= date) {
+      if (new Date().getDate() === date.getDate()) {
+        type = <div className="rc_type">D-day</div>;
+        button = (
+          <div
+            className="rc_button canceled"
+            onClick={() => {
+              alert('당일 취소는 경고 1회 누적됩니다.');
+              props.cancelModalToggle(props.reservation);
+            }}
+          >
+            예약취소
+          </div>
+        );
+      } else {
+        type = (
+          <div className="rc_type">
+            D+
+            <Moment unit="days" diff={props.reservation.date - 86400000}>
+              {new Date()}
+            </Moment>
+          </div>
+        );
+
+        button = (
+          <div
+            className="rc_button review"
+            onClick={() => {
+              alert('서비스 완료 전입니다');
+            }}
+          >
+            완료 대기중
+          </div>
+        );
+      }
     }
   } else if (props.type === 'finish') {
     if (props.reservation._review) {
@@ -108,7 +132,7 @@ const ReservationCard = props => {
   // return
   if (props.reservation) {
     return (
-      <div className={`col-12 col-md-6 col-lg-4 my-2 mx-0 px-2`}>
+      <div className={`col-4 my-2 mx-0 px-2`}>
         <div className={`${props.type} rc_back`}>
           <div className="d-flex justify-content-between">
             <div
@@ -164,9 +188,17 @@ const ReservationCard = props => {
           </div>
           <div className="d-flex justify-content-between">
             {button}
-            <div className="rc_button" style={{ marginLeft: '22px' }}>
-              더보기
-            </div>
+            <Link
+              to={`/designerdetail/${props.reservation._designer._recruit._id}`}
+              className="rc_button"
+              style={{
+                color: '#1f3354',
+                textDecoration: 'none',
+                marginLeft: '22px'
+              }}
+            >
+              <div>더보기</div>
+            </Link>
           </div>
           <div
             className={

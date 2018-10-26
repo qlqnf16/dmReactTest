@@ -4,7 +4,7 @@ import spch_bubble_ticket from '../../../../assets/images/spch_bubble_ticket.png
 import './TicketBox.css';
 const TicketBox = props => (
   <div
-    className="col-12 col-md-8 table text-center ticket_box_back"
+    className="col-8 table text-center ticket_box_back"
     style={{ backgroundImage: `url(${spch_bubble_ticket})` }}
   >
     <div className="ticket_box_table">

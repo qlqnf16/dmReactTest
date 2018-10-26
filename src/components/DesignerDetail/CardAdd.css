@@ -7,6 +7,7 @@
   font-size: 1.2rem;
   font-weight: bold;
   line-height: 1.8;
+  cursor: pointer;
 }
 .no_button {
   border-radius: 5px;
@@ -17,6 +18,7 @@
   font-weight: bold;
   line-height: 1.8;
   color: rgba(119, 119, 119, 0.2);
+  cursor: pointer;
 }
 .toggle_button {
   border-radius: 5px;
@@ -26,6 +28,7 @@
   font-size: 1.2rem;
   font-weight: bold;
   line-height: 1.8;
+  cursor: pointer;
 }
 
 .toggle_on,
@@ -34,12 +37,14 @@
 }
 .time_button {
   height: 2.3rem;
+  cursor: pointer;
 }
 .submit_button {
   box-shadow: 0 0 10px 0 rgba(119, 119, 119, 0.2);
   border: solid 3px #dd6866;
   background-color: #dd6866;
   color: #ffffdf;
+  cursor: pointer;
 }
 .link,
 .link:hover {
@@ -47,7 +52,7 @@
   color: #ffffdf;
 }
 .time {
-  font-size: 1rem;
+  font-size: 1.1rem;
   line-height: 0.7;
 }
 .price {
@@ -65,4 +70,23 @@
   height: 1rem;
   width: 1rem;
   margin-left: 0.5rem;
+}
+.card_tooltip {
+  border-radius: 5px;
+  border: solid 1px #dd6866;
+  background-color: #ffffff;
+  color: #1f3354;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-align: left;
+  padding: 1.5rem;
+}
+.card_tooltip.tooltip_pic {
+  width: 150px;
+}
+.tooltip_text {
+  line-height: 1.5;
+}
+.tooltip_title {
+  color: #dd6866;
 }

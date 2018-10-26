@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import CardAdd from './CardAdd';
 import Moment from 'react-moment';
 import moment from 'moment';
+import ReactTooltip from 'react-tooltip';
+
+import questionMark from '../../assets/images/question_navy.png';
+
 import './DetailCard.css';
 
 class DetailCard extends Component {
@@ -51,7 +55,7 @@ class DetailCard extends Component {
   genderFormat = type => {
     switch (type) {
       case 'both':
-        return '남자,여자';
+        return '남자, 여자';
       case 'male':
         return '남자';
       case 'female':
@@ -94,8 +98,10 @@ class DetailCard extends Component {
       );
       dcard += 'dcard_selected';
     }
-    const mustParse = must.map(m => this.typeParse(m));
-    const noParse = no.map(m => this.typeParse(m));
+    let mustParse = String(must.map(m => this.typeParse(m)));
+    let noParse = String(no.map(m => this.typeParse(m)));
+    if (!mustParse.length) mustParse = '없음';
+    if (!noParse.length) noParse = '없음';
 
     return (
       <div className={dcard}>
@@ -122,6 +128,47 @@ class DetailCard extends Component {
           <h5>
             <span style={{ fontWeight: 'bold' }}>헤어샵</span> :{' '}
             {this.props.cardData.shop}
+          </h5>
+          <h5 className="m-0">
+            <span style={{ fontWeight: 'bold' }}>조건</span> : 적극응원
+            <img
+              alt="alt"
+              className="question"
+              src={questionMark}
+              data-tip
+              data-for="pic"
+              style={{
+                height: '1.2rem',
+                width: '1.2rem',
+                marginBottom: '0.2rem'
+              }}
+            />
+            <ReactTooltip
+              id="pic"
+              place="left"
+              type="light"
+              effect="solid"
+              delayHide={500}
+              className="card_tooltip tooltip_pic"
+            >
+              <div className="mb-2 tooltip_title">✓ 적극응원</div>
+              <div className="mb-3 tooltip_text">
+                사진을 촬영하며, 미래에 홍보용으로 사용될 수 있습니다.
+              </div>
+
+              <div className="mb-2 tooltip_title">✓ 히든응원 </div>
+              <div className="mb-3 tooltip_text">
+                사진을 촬영하나 얼굴은 모자이크 처리합니다.
+              </div>
+
+              <div className="mb-2 tooltip_title">✓ 매너응원</div>
+              <div className="mb-3 tooltip_text">
+                사진을 촬영하나 개인소장/실습 증명용으로만 사용됩니다.
+              </div>
+
+              <div className="mb-2 tooltip_title">✓ 사진촬영x</div>
+              <div className="mb-3 tooltip_text">사진을 촬영하지 않습니다.</div>
+            </ReactTooltip>
           </h5>
         </div>
         {addData}

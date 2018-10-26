@@ -64,7 +64,7 @@ class ReservationForm extends Component {
           <div className="row">
             <div className="col-2 text-right rf-tableHead">휴대폰 번호</div>
             <div className="col-10 rf-tableBody row mx-0">
-              <span className="col-12 col-md-2 p-1">
+              <span className="col-2 p-1">
                 {typeof this.props.userData.phoneNumber === 'undefined'
                   ? null
                   : `${this.props.userData.phoneNumber.slice(
@@ -75,7 +75,7 @@ class ReservationForm extends Component {
                       7
                     )}-${this.props.userData.phoneNumber.slice(7, 10)}`}
               </span>
-              <span className=" font-weight-light col-12 col-md-7 p-1">
+              <span className=" font-weight-light col-7 p-1">
                 예약 정보는 휴대폰 번호로 전송됩니다
               </span>
             </div>
@@ -85,7 +85,7 @@ class ReservationForm extends Component {
           <div className="rf-tableTitle">예약정보</div>
           <div className="row">
             <div className="col-2  text-right rf-tableHead rf-tableTop">
-              막내 이름
+              예디 이름
             </div>
             <div className="col-10 rf-tableBody rf-tableTop">
               {this.props.d_name}
@@ -133,17 +133,14 @@ class ReservationForm extends Component {
                 type="number"
                 name="point"
                 id="point"
-                className="rf-input col-8 col-md-3 mx-0"
+                className="rf-input col-3 mx-0"
                 value={this.state.point}
                 step="1000"
               />
-              <button
-                onClick={this.pointSubmit}
-                className="rf-button col-3 col-md-1"
-              >
+              <button onClick={this.pointSubmit} className="rf-button col-1">
                 적용
               </button>
-              <span className="font-weight-light col-12 col-md-7">
+              <span className="font-weight-light col-7">
                 1,000 point 단위로 사용 가능합니다. 보유포인트 :{' '}
                 {this.props.userData.point}원
               </span>

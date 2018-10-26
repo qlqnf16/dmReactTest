@@ -25,10 +25,14 @@ class ReservationConfirm extends Component {
         </div>
         <div className="rc_h3">
           {this.props.location.state.userName}
-          님께 최선을 다해서 노력하는 {this.props.location.state.userName} 막내!
-          예쁘게 봐주세요~ ^.^
+          님께 최선을 다해서 노력하는{' '}
+          {this.props.location.state.recruit._designer.name} 예디! 예쁘게
+          봐주세요~ ^.^
         </div>
-        <AttentionCard />
+        <AttentionCard
+          cardData={this.props.location.state.cardData}
+          service={this.props.location.state.service}
+        />
         <div className="d-block">
           <Link
             to="/reservations"

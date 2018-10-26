@@ -1,9 +1,9 @@
 .rd_back {
   padding: 3rem;
-  background-size: contain;
+  padding-left: 9rem !important;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
 }
-
 .rd_title {
   font-size: 1.4rem;
   line-height: 1.14;

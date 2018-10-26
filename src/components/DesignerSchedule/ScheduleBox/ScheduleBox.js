@@ -17,6 +17,8 @@ class ScheduleBox extends Component {
       no: {},
       sinces: [],
       untils: [],
+      permPrice: {},
+      dyePrice: {},
       title: '',
       requirement: '',
       requireTime: {},
@@ -47,15 +49,17 @@ class ScheduleBox extends Component {
   };
 
   timeDefault = event => {
-    this.setState({ time: 1 });
-    const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
-
-    this.setState({ [name]: value });
+    // const target = event.target;
+    // const value = target.type === 'checkbox' ? target.checked : target.value;
+    // const name = target.name;
+    const time = event._d.getTime();
+    // this.setState({ [name]: value });
+    this.setState({ time: 1, date: time });
   };
   sinces = [];
   untils = [];
+  permPrice = {};
+  dyePrice = {};
   handleInputChange(event) {
     const target = event.target;
     const name = target.name;
@@ -74,12 +78,23 @@ class ScheduleBox extends Component {
       } else if (target.id === 'time') {
         const value = Number(target.value);
         this.setState({ [name]: value });
+      } else if (target.name === 'permPrice') {
+        this.permPrice[target.id] = Number(target.value);
+        this.setState({
+          permPrice: this.permPrice
+        });
+      } else if (target.name === 'dyePrice') {
+        this.dyePrice[target.id] = Number(target.value);
+        this.setState({
+          dyePrice: this.dyePrice
+        });
       } else {
         const value = target.value;
         this.setState({ [name]: value });
       }
     } else {
       if (target.name === 'must') {
+        target.id = target.id.toLowerCase();
         this.setState({
           must: {
             ...this.state.must,
@@ -87,6 +102,7 @@ class ScheduleBox extends Component {
           }
         });
       } else if (target.name === 'no') {
+        target.id = target.id.toLowerCase();
         this.setState({
           no: {
             ...this.state.no,
@@ -99,15 +115,17 @@ class ScheduleBox extends Component {
     }
   }
 
+  cardSort = (c1, c2) => c1.date - c2.date;
+
   render() {
-    const date = new Date(this.state.date);
-    let requireGender = '';
+    const date = Math.floor(this.state.date / 86400000) * 86400000;
+    let requireGender = undefined;
 
     if (this.state.male && this.state.female) {
       requireGender = 'both';
     } else if (this.state.male) {
       requireGender = 'male';
-    } else {
+    } else if (this.state.female) {
       requireGender = 'female';
     }
 
@@ -118,21 +136,23 @@ class ScheduleBox extends Component {
         ableTimes.push(ableTime);
       }
     });
-
+    let region;
+    this.props.userData.addresses.forEach(address => {
+      if (address.extraAddress === this.state.shop) region = address.sigungu;
+    });
     const cardData = {
       must: this.state.must,
       no: this.state.no,
       reservable: true,
-      date: date.getTime(),
+      date,
       shop: this.state.shop,
-      requireGender: requireGender,
-
-      ableTimes: ableTimes,
-      // 선택폼 없음
-      region: '성북구',
-      price: { cut: 3000, perm: 20000, dye: 30000 }
+      requireGender,
+      permPrice: this.state.permPrice,
+      dyePrice: this.state.dyePrice,
+      ableTimes,
+      region
     };
-    console.log(this.state);
+    console.log(cardData);
     let requireTime = null;
 
     const recruitData = {
@@ -163,6 +183,7 @@ class ScheduleBox extends Component {
             totalSubmitHandler={() =>
               this.props.totalSubmitHandler(recruitData)
             }
+            id={this.props.userData._recruit}
           />
           <Schedule
             datePick={e => this.timeDefault(e)}
@@ -172,19 +193,26 @@ class ScheduleBox extends Component {
             cardAddHandler={() => this.props.cardAddHandler(cardData)}
             card={this.props.cards[0]}
             changeInput={e => this.handleInputChange(e)}
+            date={this.state.date}
+            addresses={this.props.userData.addresses}
+            dates={this.props.dates}
+            sinces={this.state.sinces}
+            untils={this.state.untils}
           />
         </div>
-        <div className="col-6 row mt-5">
-          {this.state.cards.map((card, key) => (
-            <ScheduleCard
-              cancelCardHandler={this.props.cancelCardHandler}
-              card={card}
-              key={key}
-            />
-          ))}
-          {this.props.newCards.map((newCard, key) => (
-            <ScheduleCard card={newCard} key={key} />
-          ))}
+        <div className="col-6 mt-5">
+          <div className="bg-light row" style={{ padding: '1.5rem' }}>
+            {this.state.cards.sort(this.cardSort).map((card, key) => (
+              <ScheduleCard
+                cancelCardHandler={this.props.cancelCardHandler}
+                card={card}
+                key={key}
+              />
+            ))}
+            {this.props.newCards.sort(this.cardSort).map((newCard, key) => (
+              <ScheduleCard card={newCard} key={key} />
+            ))}
+          </div>
         </div>
       </div>
     );

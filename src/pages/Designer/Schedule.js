@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Container, Form } from 'reactstrap';
 import ScheduleBox from '../../components/DesignerSchedule/ScheduleBox/ScheduleBox';
 import axios from 'axios';
 import firebase from '../../config/Firebase';
@@ -27,8 +26,7 @@ class Schedule extends Component {
     }
   };
 
-  handleInputChange(e) {
-    console.log('Adsfasd');
+  handleInputChange = e => {
     const target = e.target;
     const value = target.value;
     const name = target.name;
@@ -36,7 +34,7 @@ class Schedule extends Component {
     this.setState({
       [name]: value
     });
-  }
+  };
 
   cancelCardHandler = async (cardId, recruitId) => {
     await axios.delete(
@@ -47,6 +45,14 @@ class Schedule extends Component {
   };
 
   cardAddHandler = async cardData => {
+    console.log(cardData);
+    if (
+      Object.values(cardData).includes(undefined) ||
+      Object.values(cardData).includes('null') ||
+      Object.values(cardData).includes(NaN) ||
+      cardData.ableTimes.length === 0
+    )
+      return alert('채워지지 않은 정보가 있습니다');
     let newCards = this.state.newCards;
     let nCards = [];
     newCards.push(cardData);
@@ -89,8 +95,7 @@ class Schedule extends Component {
     } else {
       console.log('정보 수정');
 
-      //TODO : 특정부분 그대로 하고 새로고침...
-      const res = await axios.patch(
+      await axios.patch(
         `http://52.79.227.227:3030/recruits/${this.props.userData._recruit}`,
         recruitData
       );
@@ -115,22 +120,25 @@ class Schedule extends Component {
   };
 
   render() {
+    const dates = this.state.cards.map(card => card.date);
+
     return (
       <div className="container-fluid d">
         <div className="d_bg">
           <div className="d_container">
-            <h1 className="mt-5">스케줄 등록</h1>
-            <Form>
-              <ScheduleBox
-                cards={this.state.cards}
-                requireTime={this.state.requireTime}
-                newCards={this.state.newCards}
-                cancelCardHandler={this.cancelCardHandler}
-                cardAddHandler={this.cardAddHandler}
-                totalSubmitHandler={this.totalSubmitHandler}
-              />
-              {/* // changeInput= {e => this.handleInputChange(e)} */}
-            </Form>
+            <div style={{ color: '#4c91ba' }} className="u_title ">
+              스케줄 등록
+            </div>
+            <ScheduleBox
+              cards={this.state.cards}
+              requireTime={this.state.requireTime}
+              newCards={this.state.newCards}
+              cancelCardHandler={this.cancelCardHandler}
+              cardAddHandler={this.cardAddHandler}
+              totalSubmitHandler={this.totalSubmitHandler}
+              dates={dates}
+            />
+            {/* // changeInput= {e => this.handleInputChange(e)} */}
           </div>
         </div>
       </div>

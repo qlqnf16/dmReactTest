@@ -1,6 +1,8 @@
 import React from 'react';
 import Moment from 'react-moment';
 import moment from 'moment';
+import './ScheduleCard.css';
+import Delete from '../../../../assets/images/delete.png';
 
 const ScheduleCard = props => {
   const dayOfWeek = date => {
@@ -17,7 +19,7 @@ const ScheduleCard = props => {
         return '금';
       case 6:
         return '토';
-      case 7:
+      case 0:
         return '일';
       default:
         break;
@@ -32,6 +34,18 @@ const ScheduleCard = props => {
         return '/ 펌 ';
       case 'dye':
         return '/ 염색 ';
+      default:
+        break;
+    }
+  };
+  const genderFormat = type => {
+    switch (type) {
+      case 'both':
+        return '남자, 여자';
+      case 'male':
+        return '남자';
+      case 'female':
+        return '여자';
       default:
         break;
     }
@@ -76,37 +90,57 @@ const ScheduleCard = props => {
   mustParse = mustParse.substring(1);
   noParse = noParse.substring(1);
   return (
-    <div className="border col-md-6">
-      <div className="row">
-        <div className="col-5">
-          <Moment format="MM/DD">{props.card && props.card.date}</Moment> (
-          {dayOfWeek(props.card.date)})
-        </div>
-        <div className="col-7">
-          {ableTimes.map((ableTime, key) => (
-            <p key={key} className="small my-1">
-              {ableTime}
-            </p>
-          ))}
-        </div>
-      </div>
-      <p className="my-1">
-        필수: {mustParse} | 불가 : {noParse}
-      </p>
-      <p className="my-1">{props.card.requireGender}</p>
-      <p className="my-1">{props.card.shop}</p>
-      <div className="my-1">
-        {props.cancelCardHandler ? (
+    <div className="col-6 p-0">
+      <div className="schedule_card " style={{ color: '#1f3354' }}>
+        <div className="d-flex">
           <div
-            onClick={() =>
-              props.cancelCardHandler(props.card._id, props.card._recruit._id)
-            }
-            className="btn btn-danger"
+            className=""
+            style={{ color: '#1f3354', fontWeight: 'bold', fontSize: '1.5rem' }}
           >
-            삭제
+            <Moment format="MM/DD">{props.card && props.card.date}</Moment> (
+            {dayOfWeek(props.card.date)})
           </div>
-        ) : null}
-        <div className="btn btn-primary">수정</div>
+          <div className="" style={{ color: '#1f3354', fontSize: '1.3rem' }}>
+            {ableTimes.map((ableTime, key) => (
+              <p key={key} className="small m-1">
+                {ableTime}
+              </p>
+            ))}
+          </div>
+          <div
+            className="m-1 ml-auto"
+            style={{ width: '1.6rem', height: '1.6rem' }}
+          >
+            {props.cancelCardHandler ? (
+              <div
+                onClick={() =>
+                  props.cancelCardHandler(props.card._id, props.card._recruit)
+                }
+              >
+                <img src={Delete} alt="alt" className="delete_button" />
+              </div>
+            ) : null}
+          </div>
+        </div>
+        <div style={{ fontSize: '1.3rem', fontWeight: 'bold' }}>
+          <span className="dcard_must">
+            필수 : <span style={{ fontWeight: 'normal' }}>{mustParse}</span>
+          </span>{' '}
+          |{' '}
+          <span className="dcard_no">
+            불가 : <span style={{ fontWeight: 'normal' }}>{noParse}</span>
+          </span>
+        </div>
+        <div style={{ fontSize: '1.2rem', margin: '0.5rem 0' }}>
+          <span style={{ fontWeight: 'bold' }}>모델: </span>{' '}
+          {genderFormat(props.card.requireGender)}
+        </div>
+        <div style={{ fontSize: '1.2rem', margin: '0.5rem 0' }}>
+          <span style={{ fontWeight: 'bold' }}>헤어샵: </span> {props.card.shop}
+        </div>
+        <div style={{ fontSize: '1.2rem', margin: '0.5rem 0' }}>
+          <span style={{ fontWeight: 'bold' }}>사진촬영여부: </span> 적극응원
+        </div>
       </div>
     </div>
   );

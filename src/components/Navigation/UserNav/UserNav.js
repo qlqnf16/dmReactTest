@@ -24,7 +24,7 @@ const UserNav = () => (
           borderBottom: 'solid 1.8px #1f3354'
         }}
       >
-        찜한 막내
+        찜한 예디
       </NavLink>
       <NavLink
         to="/userInfo"
@@ -46,7 +46,7 @@ const UserNav = () => (
       >
         추천인/쿠폰
       </NavLink>
-      <NavLink
+      {/* <NavLink
         to="/message"
         className="un_navItem"
         activeStyle={{
@@ -55,7 +55,7 @@ const UserNav = () => (
         }}
       >
         메세지
-      </NavLink>
+      </NavLink> */}
     </div>
   </div>
 );

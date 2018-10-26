@@ -35,12 +35,12 @@ const ReservationDetail = props => {
 
   return (
     <div
-      className="col-lg-8 col-12 col-md-12 rd_back"
+      className="col-8 rd_back"
       style={{
         backgroundImage: `url(${spch_bubble})`
       }}
     >
-      <div style={{ marginLeft: '6rem' }}>
+      <div>
         <div className="rd_title">요청사항</div>
         <div className="rd_content">
           {reservation._designer._recruit.requirement}

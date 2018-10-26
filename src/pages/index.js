@@ -22,7 +22,6 @@ export { default as Cash } from './Designer/Cash';
 
 // 손님 서비스
 export { default as Coupon } from './User/Coupon';
-export { default as InfoDetail } from './User/InfoDetail';
 export { default as MyTicket } from './User/MyTicket';
 export { default as LikeDesigner } from './User/LikeDesigner';
 export { default as Reservations } from './User/Reservations';
@@ -31,7 +30,11 @@ export { default as UserInfo } from './User/UserInfo';
 // 관리자
 export { default as AdminUserList } from './Admin/UserList';
 export { default as AdminDesignerList } from './Admin/DesignerList';
+export { default as AdminWaitingList } from './Admin/WaitingList';
 export { default as AdminReservationList } from './Admin/ReservationList';
+export { default as AdminNoShow } from './Admin/NoShow';
+export { default as AdminMakeCoupon } from './Admin/MakeCoupon';
+export { default as AdminQnA } from './Admin/AdminQnA';
 
 // Ask
 export { default as FAQ } from './Ask/FAQ';

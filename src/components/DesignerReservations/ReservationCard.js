@@ -1,5 +1,6 @@
 import React from 'react';
 import Moment from 'react-moment';
+import { Link } from 'react-router-dom';
 import './ReservationCard.css';
 import calendar_o from '../../assets/images/calendar_o.png';
 import calendar_x from '../../assets/images/calendar_x.png';
@@ -9,7 +10,6 @@ import scissors_o from '../../assets/images/scissors_o.png';
 import scissors_x from '../../assets/images/scissors_x.png';
 
 const ReservationCard = props => {
-  console.log(props);
   let since = '';
   let until = '';
   let services = '';
@@ -60,18 +60,30 @@ const ReservationCard = props => {
         예약 취소
       </button>
     );
+    console.log(new Date());
+    console.log(props.reservation.date);
     type = (
       <div className="rc_type">
         D-
         <Moment unit="days" diff={new Date()}>
-          {props.reservation.date}
+          {props.reservation.date + 86400000}
         </Moment>
       </div>
     );
     let date = new Date(props.reservation.date);
-    if (new Date().getDate() === date.getDate()) {
+    if (new Date() >= date || new Date().getDate() === date.getDate()) {
       dDay = true;
-      type = <div className="rc_type">D-day</div>;
+      if (new Date().getDate() === date.getDate()) {
+        type = <div className="rc_type">D-day</div>;
+      } else
+        type = (
+          <div className="rc_type">
+            D+
+            <Moment unit="days" diff={props.reservation.date - 86400000}>
+              {new Date()}
+            </Moment>
+          </div>
+        );
       button = (
         <button
           className="rc_button review"
@@ -97,7 +109,7 @@ const ReservationCard = props => {
     type = <div className="rc_type rc_finish">완료</div>;
   }
   return (
-    <div className="col-lg-3 col-md-4 col-sm-6 col-12 my-2 px-2">
+    <div className="col-3 my-2 px-2">
       <div className={`drc_${dDay ? 'dDay' : props.type} rc_back p-4`}>
         <div className="text-right">{type}</div>
         <div
@@ -140,25 +152,19 @@ const ReservationCard = props => {
           />{' '}
           {services}
         </div>
-        {/* <div className="row">
-          <div className="col-md-8">
-            <h5 className="small">
-              <Moment unix format="YYYY/MM/DD">
-                {props.reservation.date / 1000}
-              </Moment>{' '}
-              {since} ~ {until}
-            </h5>
-            <h5 className="small">
-              장소 : {props.reservation._card && props.reservation._card.shop}
-            </h5>
-            <h5 className="small">종류 : {services}</h5>
-          </div>
-        </div> */}
         <div className="mt-4 d-flex justify-content-between">
           {button}
-          <div className="rc_button" style={{ marginLeft: '1.3rem' }}>
-            더보기
-          </div>
+          <Link
+            to={`/designerdetail/${props.reservation._designer._recruit._id}`}
+            className="rc_button"
+            style={{
+              color: '#1f3354',
+              textDecoration: 'none',
+              marginLeft: '22px'
+            }}
+          >
+            <div>더보기</div>
+          </Link>
         </div>
       </div>
     </div>

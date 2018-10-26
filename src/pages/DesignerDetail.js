@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import firebase from 'firebase';
-import axios from 'axios';
-import step2 from '../assets/images/step2.png';
+import React, { Component } from "react";
+import firebase from "firebase";
+import axios from "axios";
+import step2 from "../assets/images/step2.png";
 
-import DetailContent from '../components/DesignerDetail/DetailContent';
-import DetailCards from '../components/DesignerDetail/DetailCards';
-import MyModal from '../components/UI/MyModal/MyModal';
+import DetailContent from "../components/DesignerDetail/DetailContent";
+import DetailCards from "../components/DesignerDetail/DetailCards";
+import MyModal from "../components/UI/MyModal/MyModal";
 
 class DesginerDetail extends Component {
   state = {
@@ -33,11 +33,10 @@ class DesginerDetail extends Component {
     //   });
     // });
 
-    //TODO : Db에 uid와 연동 되면 불러와서 정보 채우기
     await firebase
       .database()
-      .ref('/users/' + this.state.recruit._designer._uid)
-      .on('value', async res => {
+      .ref("/users/" + this.state.recruit._designer._uid)
+      .on("value", async res => {
         console.log(res.val());
         this.setState({ designerData: res.val() });
       });
@@ -63,7 +62,7 @@ class DesginerDetail extends Component {
     return (
       <div className="container-fluid">
         <div className="text-center my-5">
-          <img alt="alt" style={{ width: '100%' }} src={step2} />
+          <img alt="alt" style={{ width: "100%" }} src={step2} />
         </div>
         <div className="row align-items-start">
           {loading}

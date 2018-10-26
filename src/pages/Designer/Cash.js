@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import CashWant from '../../components/DesignerCash/Want';
 import CashList from '../../components/DesignerCash/List';
 

@@ -5,7 +5,7 @@ class Want extends Component {
   render() {
     return (
       <Fragment>
-        <div className="col-lg-5 ">
+        <div className="col-5 ">
           <div className="cash_want_table">
             <div className="cash_want_title">출금 금액</div>
             <div className="cash_want_content">
@@ -42,7 +42,7 @@ class Want extends Component {
             <div className="cash_want_final">수고하셨습니다!</div>
           </div>
         </div>
-        <div className="col-lg-7 cash_form_body">
+        <div className="col-7 cash_form_body">
           <div style={{ marginTop: '1rem' }} className="cash_want_title">
             신청 정보
           </div>
@@ -115,8 +115,8 @@ class Want extends Component {
               </div>
             </FormGroup>
             <div className="row mt-5">
-              <div className="col-md-2" />
-              <div className="col-md-10 col-12 ">
+              <div className="col-2" />
+              <div className="col-10 ">
                 <div className="row mx-0">
                   <div>
                     <input type="checkbox" id="read" name="read" value="read" />

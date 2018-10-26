@@ -130,7 +130,9 @@ class ReservationConfirm extends Component {
               pathname: `/reservationConfirm/${this.state.reservationId}`,
               state: {
                 userName: this.props.userData.name,
-                designerName: '디자이너 이름'
+                recruit,
+                cardData,
+                service: this.props.location.state.service
               }
             }}
           >

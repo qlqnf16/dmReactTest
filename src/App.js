@@ -24,28 +24,76 @@ import {
   DesignerTicket,
   Schedule,
   WhyDreamary,
-  InfoDetail,
   AdminUserList,
   AdminDesignerList,
+  AdminWaitingList,
   AdminReservationList,
+  AdminMakeCoupon,
+  AdminNoShow,
+  AdminQnA,
   TermsOfUse,
   InfoPolicy,
   FAQ,
   QnA
 } from './pages';
+// mobile page
+import {
+  M_Landing,
+  M_About,
+  M_AddDesigner,
+  M_Chat,
+  M_DesignerDetail,
+  M_Message,
+  M_Reservation,
+  M_ReservationConfirm,
+  M_WrongAccess,
+  M_CustomerMyPage,
+  M_DesignerList,
+  M_Coupon,
+  M_LikeDesigner,
+  M_MyTicket,
+  M_Reservations,
+  M_UserInfo,
+  M_DesignerCoupon,
+  M_DesignerInfo,
+  M_DesignerReservations,
+  M_DesignerTicket,
+  M_Schedule,
+  M_WhyDreamary
+} from './mobilePages';
 import Toolbar from './components/Navigation/Toolbar/Toolbar';
 import Footer from './components/UI/Footer/Footer';
+import MobileNavigationBar from './mobilePages/components/NavigationBar/NavigationBar';
+import MobileSideDrawer from './mobilePages/components/NavigationBar/SideDrawer';
+import MobileBackdrop from './mobilePages/components/NavigationBar/Backdrop';
 import firebase from './config/Firebase';
 
 import { connect } from 'react-redux';
 import * as actions from './modules';
 import axios from 'axios';
 import './App.css';
+import SideDrawer from './mobilePages/components/NavigationBar/SideDrawer';
 console.log(actions);
 class App extends Component {
   state = {
-    madeRequest: false
+    madeRequest: false,
+    width: window.innerWidth, // mobile version 만들기 위함
+    sideDrawerOpen: false // mobile version sideDrawer
   };
+
+  /////////// mobile version sideDrawer methods
+
+  drawerToggleClickHandler = () => {
+    this.setState(prevState => {
+      return { sideDrawerOpen: !prevState.sideDrawerOpen };
+    });
+  };
+
+  backdropClickHandler = () => {
+    this.setState({ sideDrawerOpen: false });
+  };
+
+  ////////////////////////////
 
   componentDidMount = () => {
     if (!this.state.madeRequest) {
@@ -104,6 +152,8 @@ class App extends Component {
   }
 
   render() {
+    const { width } = this.state;
+    const isMobile = width <= 500;
     console.log('app rendering');
 
     // firebase에서 불러오기 전
@@ -118,11 +168,11 @@ class App extends Component {
       );
 
       // firebase database에서 호출 후,
-    } else {
+    } else if (!isMobile) {
       return (
         <Fragment>
           <Toolbar />
-          <div className="app-content">
+          <div className="app-content web">
             <Route path="/" exact component={Landing} />
             <Route path="/about" component={About} />
             <Route path="/QnA" component={QnA} />
@@ -221,11 +271,6 @@ class App extends Component {
               path="/userInfo"
               component={this.props.userData.uid ? UserInfo : WrongAccess}
             />
-            <Route
-              path="/infoDetail"
-              component={this.props.userData.uid ? InfoDetail : WrongAccess}
-            />
-
             {/* 디자이너 아닌 user가 url로 접근시 WrongAccess 렌더링  */}
             <Route
               path="/designer/coupon"
@@ -270,13 +315,192 @@ class App extends Component {
               }
             />
             <Route
+              path="/admin/waitingList"
+              component={
+                this.props.userData.isD ? AdminWaitingList : WrongAccess
+              }
+            />
+            <Route
               path="/admin/reservationList"
               component={
                 this.props.userData.isD ? AdminReservationList : WrongAccess
               }
             />
+            <Route
+              path="/admin/makecoupon"
+              component={
+                this.props.userData.isD ? AdminMakeCoupon : WrongAccess
+              }
+            />
+            <Route
+              path="/admin/noshow"
+              component={this.props.userData.isD ? AdminNoShow : WrongAccess}
+            />
+            <Route
+              path="/admin/qna"
+              component={this.props.userData.isD ? AdminQnA : WrongAccess}
+            />
           </div>
           <Footer />
+        </Fragment>
+      );
+    } else {
+      // -----------------------------------
+      // 시작 화면이 500px 보다 작을 경우에 모바일 페이지를 렌더링할 것임.
+      // -----------------------------------
+      let backdrop;
+
+      if (this.state.sideDrawerOpen) {
+        backdrop = <MobileBackdrop click={this.backdropClickHandler} />;
+      }
+      return (
+        <Fragment>
+          <div className="app-content">
+            <MobileNavigationBar
+              drawerClickHandler={this.drawerToggleClickHandler}
+            />
+            <MobileSideDrawer
+              click={this.backdropClickHandler}
+              show={this.state.sideDrawerOpen}
+            />
+            {backdrop}
+            {/* ------------------------------- */}
+            {/* mobile router */}
+            {/* ------------------------------- */}
+            {/* landing */}
+            <Route path="/" exact component={M_Landing} />
+            <Route path="/about" component={M_About} />
+            <Route path="/designerlist" component={M_DesignerList} />
+            <Route path="/designerDetail/:id" component={M_DesignerDetail} />
+            <Route
+              path="/reservationConfirm/:reservation_id"
+              component={M_ReservationConfirm}
+            />
+            {/* 로그인 했을 때만 */}
+            <Route
+              path="/message"
+              component={
+                this.props.userData.uid
+                  ? this.props.userData.isRegister
+                    ? M_Message
+                    : M_UserInfo
+                  : WrongAccess
+              }
+            />
+            <Route
+              path="/chat"
+              component={
+                this.props.userData.uid
+                  ? this.props.userData.isRegister
+                    ? M_Chat
+                    : M_UserInfo
+                  : M_WrongAccess
+              }
+            />
+            <Route
+              path="/reservation/:card_id"
+              component={
+                this.props.userData.uid
+                  ? this.props.userData.isRegister
+                    ? M_Reservation
+                    : M_UserInfo
+                  : M_WrongAccess
+              }
+            />
+            <Route
+              path="/addDesigner"
+              component={
+                this.props.userData.uid
+                  ? this.props.userData.isRegister
+                    ? M_AddDesigner
+                    : M_UserInfo
+                  : M_WrongAccess
+              }
+            />
+            <Route
+              path="/coupon"
+              component={
+                this.props.userData.uid
+                  ? this.props.userData.isRegister
+                    ? M_Coupon
+                    : M_UserInfo
+                  : M_WrongAccess
+              }
+            />
+            <Route
+              path="/likedesigner"
+              component={
+                this.props.userData.uid
+                  ? this.props.userData.isRegister
+                    ? M_LikeDesigner
+                    : M_UserInfo
+                  : M_WrongAccess
+              }
+            />
+            <Route
+              path="/myTicket"
+              component={
+                this.props.userData.uid
+                  ? this.props.userData.isRegister
+                    ? M_MyTicket
+                    : M_UserInfo
+                  : M_WrongAccess
+              }
+            />
+            <Route
+              path="/reservations"
+              component={
+                this.props.userData.uid
+                  ? this.props.userData.isRegister
+                    ? M_Reservations
+                    : M_UserInfo
+                  : M_WrongAccess
+              }
+            />
+            <Route
+              path="/userInfo"
+              component={this.props.userData.uid ? M_UserInfo : M_WrongAccess}
+            />
+
+            {/* 디자이너에게만 */}
+            <Route
+              path="/designer/coupon"
+              component={
+                this.props.userData.isD ? M_DesignerCoupon : M_WrongAccess
+              }
+            />
+            <Route
+              path="/designer/info"
+              component={
+                this.props.userData.isD ? M_DesignerInfo : M_WrongAccess
+              }
+            />
+            <Route
+              path="/designer/reservations"
+              component={
+                this.props.userData.isD ? M_DesignerReservations : M_WrongAccess
+              }
+            />
+            <Route
+              path="/designer/ticket"
+              component={
+                this.props.userData.isD ? M_DesignerTicket : M_WrongAccess
+              }
+            />
+            <Route
+              path="/designer/schedule"
+              component={this.props.userData.isD ? M_Schedule : M_WrongAccess}
+            />
+            <Route
+              path="/designer/whyDreamary"
+              component={
+                this.props.userData.isD ? M_WhyDreamary : M_WrongAccess
+              }
+            />
+
+            {/* customer my page (for testing MyPageNavigationBar) */}
+            <Route path="/mypage" component={M_CustomerMyPage} />
+          </div>
         </Fragment>
       );
     }

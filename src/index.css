@@ -2,27 +2,6 @@ html {
   font-size: 10px;
 }
 
-@media screen and (max-width: 990px) {
-  html {
-    font-size: 8px;
-  }
-}
-@media screen and (max-width: 850px) {
-  html {
-    font-size: 6px;
-  }
-}
-@media screen and (max-width: 650px) {
-  html {
-    font-size: 5px;
-  }
-}
-@media screen and (max-width: 450px) {
-  html {
-    font-size: 3px;
-  }
-}
-
 body {
   margin: 0;
   padding: 0;

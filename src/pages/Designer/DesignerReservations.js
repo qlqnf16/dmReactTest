@@ -20,10 +20,6 @@ class DesignerReservations extends Component {
       completeModal: false,
       reservation: null
     };
-
-    this.cancelModalToggle = this.cancelModalToggle.bind(this);
-    this.cancelReasonModalToggle = this.cancelReasonModalToggle.bind(this);
-    this.showReviewModalToggle = this.showReviewModalToggle.bind(this);
   }
 
   showReviewModalToggle = reservation => {
@@ -101,22 +97,23 @@ class DesignerReservations extends Component {
     });
   };
 
+  reservationSort = (r1, r2) => r1.date - r2.date;
   render() {
     let futureReservations = [];
     let previousReservations = [];
     if (this.state.reservations) {
       futureReservations = this.state.reservations.filter(
         reservation =>
-          reservation.date > new Date().getTime() &&
-          !reservation.isCanceled &&
-          !reservation.isDone
+          // reservation.date > new Date().getTime() &&
+          !reservation.isCanceled && !reservation.isDone
       );
+      futureReservations.sort(this.reservationSort);
       previousReservations = this.state.reservations.filter(
         reservation =>
-          reservation.date <= new Date().getTime() ||
-          reservation.isCanceled ||
-          reservation.isDone
+          // reservation.date <= new Date().getTime() ||
+          reservation.isCanceled || reservation.isDone
       );
+      previousReservations.sort(this.reservationSort);
     }
     console.log(previousReservations);
 

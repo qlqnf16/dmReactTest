@@ -1,23 +1,41 @@
 import React, { Component } from 'react';
-import { Container, Form, Button } from 'reactstrap';
+import { Form, FormGroup } from 'reactstrap';
 import InfoForm from '../../components/InfoForm/InfoForm';
 import InfoFormExtended from '../../components/InfoForm/InfoFormExtended';
 import { connect } from 'react-redux';
 import firebase from '../../config/Firebase';
+import fd from 'form-data';
+import axios from 'axios';
 
 class DesignerInfo extends Component {
   constructor(props) {
     super(props);
 
-    const userData = this.props.userData;
+    let {
+      name,
+      birthday,
+      email,
+      phoneNumber,
+      untilDesigner,
+      career,
+      careerDetail,
+      addresses,
+      introduce,
+      designerRecommendationCode
+    } = this.props.userData;
+    if (!addresses) addresses = [];
     this.state = {
-      name: userData.name,
-      birthday: userData.birthday,
-      email: userData.email,
-      phoneNumber: userData.phoneNumber,
-      untilDesigner: userData.untilDesigner,
-      career: userData.career,
-      careerDetail: userData.careerDetail,
+      name,
+      year: birthday && birthday.year,
+      month: birthday && birthday.month,
+      day: birthday && birthday.day,
+      email,
+      phoneNumber,
+      untilDesigner,
+      career,
+      careerDetail,
+      addresses,
+      introduce,
       profileImg: null,
       profileFile: null,
       certImg1: null,
@@ -26,11 +44,33 @@ class DesignerInfo extends Component {
       certFile2: null,
       portfolioImg: [],
       portfolioFile: [],
-      num: 0
+      num: 0,
+      addressNum: addresses.length + 1,
+      designerRecommendationCode
     };
-    // this.onFormSubmit = this.onFormSubmit.bind(this)
-    // this.fileUpload = this.fileUpload.bind(this)
   }
+
+  addressAddHandler = () => {
+    this.setState({
+      addressNum: this.state.addressNum + 1
+    });
+  };
+  addressRemoveHandler = i => {
+    let addresses = this.state.addresses;
+    addresses.splice(i, 1);
+    this.setState({
+      addressNum: this.state.addressNum - 1,
+      addresses
+    });
+  };
+
+  handleAddress = (data, fullAddress, num) => {
+    const { sido, sigungu } = data;
+    const address = { sido, sigungu, fullAddress };
+    let addresses = this.state.addresses;
+    addresses[num] = address;
+    this.setState({ addresses });
+  };
 
   handleImgChange = e => {
     let file = e.target.files[0];
@@ -89,6 +129,11 @@ class DesignerInfo extends Component {
         this.careerMonth = Number(value);
       }
       this.setState({ career: this.careerYear * 12 + this.careerMonth });
+    } else if (target.name === 'extraAddress') {
+      let addresses = this.state.addresses;
+      let address = addresses[target.id];
+      addresses[target.id] = { ...address, extraAddress: target.value };
+      this.setState({ addresses });
     } else {
       this.setState({ [name]: value });
     }
@@ -97,33 +142,94 @@ class DesignerInfo extends Component {
   submitHandler = async () => {
     const {
       name,
-      birthday,
+      year,
+      month,
+      day,
       email,
       phoneNumber,
       untilDesigner,
       career,
       careerDetail,
-      introduce
+      addresses,
+      introduce,
+      designerRecommendationCode
     } = this.state;
 
-    const firebaseUserData = {
+    let firebaseUserData = {
       name,
-      birthday,
+      birthday: { year, month, day },
       email,
       phoneNumber,
       untilDesigner,
       career,
       careerDetail,
+      addresses,
       introduce
     };
 
-    if (Object.values(firebaseUserData).includes(undefined))
+    if (
+      Object.values(firebaseUserData).includes(undefined) ||
+      addresses.length === 0
+    )
       return alert('채워지지 않은 정보가 있습니다');
+    if (
+      designerRecommendationCode &&
+      !this.props.userData.designerRecommendationCode
+    ) {
+      let count = 0;
+      let result = null;
+      await firebase
+        .database()
+        .ref('users/' + designerRecommendationCode)
+        .on('value', res => {
+          result = res;
+        });
+      if (!result) {
+        alert('유효하지 않은 추천인 코드 입니다.');
+      } else {
+        let { designerRecommendation, _id } = result.val();
+        if (designerRecommendation) count = designerRecommendation;
+        firebaseUserData = { ...firebaseUserData, designerRecommendationCode };
+        count += 1;
+
+        // TODO : 추천2회면 티켓 추가
+        if (count === 2) {
+          count = 0;
+          // await axios.patch(
+          //   `http://52.79.227.227:3030/users/${_id}`,
+          //   {
+          //     ticket: 더하기(백에서 하는게 나을듯)
+          //   }
+          // );
+        }
+
+        await firebase
+          .database()
+          .ref('users/' + designerRecommendationCode)
+          .update({ designerRecommendation: count });
+      }
+    }
+
     await firebase
       .database()
       .ref('users/' + this.props.userData.uid)
       .update(firebaseUserData);
     alert('성공적으로 신청되었습니다');
+
+    const formData = new fd();
+    formData.append('cert_mh', this.state.certFile1);
+    formData.append('cert_jg', this.state.certFile2);
+    formData.append('profile', this.state.profileFile);
+    formData.append('portfolio', this.state.portfolioFile);
+    await axios.post(
+      `http://localhost:3030/firebase/upload?uid=${this.props.userData.uid}`,
+      formData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }
+    );
   };
 
   render() {
@@ -144,6 +250,9 @@ class DesignerInfo extends Component {
                 imgChange={e => this.handleImgChange(e)}
                 changeInput={e => this.handleInputChange(e)}
                 checked={!this.state.gender ? 'male' : this.state.gender}
+                handleAddress={this.handleAddress}
+                addressAddHandler={this.addressAddHandler}
+                addressRemoveHandler={this.addressRemoveHandler}
               />
               <InfoFormExtended
                 state={this.state}
@@ -156,6 +265,23 @@ class DesignerInfo extends Component {
                 deletePortfolio={e => this.deletePortfolio(e)}
                 changeInput={e => this.handleInputChange(e)}
               />
+              <FormGroup row>
+                <div className="col-3 if_head">추천인 코드</div>
+                <div className="col-9 d-flex justify-content-left">
+                  <input
+                    type="text"
+                    name="designerRecommendationCode"
+                    id="designerRecommendationCode"
+                    value={this.state.designerRecommendationCode}
+                    onChange={
+                      this.props.userData.designerRecommendationCode
+                        ? null
+                        : e => this.handleInputChange(e)
+                    }
+                    className="if_input"
+                  />
+                </div>
+              </FormGroup>
               <div className="text-center">
                 <div className="btn dif_button" onClick={this.submitHandler}>
                   등록하기

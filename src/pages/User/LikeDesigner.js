@@ -23,14 +23,7 @@ class LikeDesigner extends Component {
     let recruits = null;
     if (this.state.recruits.length) {
       recruits = this.state.recruits.map(recruit => (
-        <DesignerCard
-          id={recruit._id}
-          title={recruit.title}
-          name={recruit._designer.name}
-          // shop={recruit._designer.locations[0].shop}
-          test={recruit.portfolios}
-          key={recruit._id}
-        />
+        <DesignerCard key={recruit._id} recruit={recruit} />
       ));
     }
     return (
@@ -39,12 +32,9 @@ class LikeDesigner extends Component {
           <UserNav />
           <div className="u_bg">
             <div className="u_container">
-              <div className="u_title">찜한막내</div>
-              <h3>찜한 막내 모아보기</h3>
+              <div className="u_title">찜한 예디</div>
+              <div className="uif_title">찜한 예디 모아보기</div>
               <CardDeck className="m-5">
-                {recruits}
-                {recruits}
-                {recruits}
                 {recruits}
                 {recruits}
               </CardDeck>
