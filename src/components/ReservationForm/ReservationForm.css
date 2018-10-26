@@ -7,7 +7,6 @@
   border-bottom: 2px solid #1f3354;
   margin-bottom: 50px;
   margin-top: 36px;
-  font-family: NanumSquareEB;
 }
 
 .rf-title-text1 {
@@ -22,12 +21,10 @@
   color: #1e3354;
   font-size: 1.5rem;
   margin-top: 32.5px;
-  font-family: NanumSquareEB;
 }
 
 .rf-tableHead {
   color: #dd6866;
-  font-family: NanumSquareEB;
   background-color: rgba(245, 177, 173, 0.1);
   height: 40px;
   margin: auto;

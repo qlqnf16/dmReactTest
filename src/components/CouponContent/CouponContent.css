@@ -21,20 +21,18 @@
   margin-bottom: 3.1%;
 }
 .cc_2 {
-  /* font-family: NanumSquareR; */
   font-size: 5.1rem;
   line-height: 1.14;
   letter-spacing: 0.26rem;
   margin-bottom: 3.1%;
 }
 .cc_3 {
-  font-family: NanumSquareR;
   font-size: 1.7rem;
   line-height: 1.12;
   letter-spacing: 0.17rem;
   margin-bottom: 3.1%;
 }
-.cc_ticket {
+.cc_coupon {
   width: 23%;
   position: relative;
   z-index: 1;
@@ -43,12 +41,15 @@
   top: -6.5rem;
   position: relative;
   z-index: 5;
-  /* font-family: NanumSquareEB; */
   font-size: 2.8rem;
   line-height: 1.14;
   letter-spacing: 0.14rem;
   color: #dd6866;
   font-weight: bold;
+  margin: auto;
+}
+.cc_num.d {
+  color: #4c91ba;
 }
 .cc_bg_designer {
   width: 87.6%;

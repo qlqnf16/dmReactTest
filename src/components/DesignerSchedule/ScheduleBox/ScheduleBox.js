@@ -48,6 +48,10 @@ class ScheduleBox extends Component {
     this.setState({ time: this.state.time + 1 });
   };
 
+  timeDeleteHandler = () => {
+    this.setState({ time: this.state.time - 1 });
+  };
+
   timeDefault = event => {
     // const target = event.target;
     // const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -194,6 +198,7 @@ class ScheduleBox extends Component {
             datePick={e => this.timeDefault(e)}
             time={this.state.time}
             timeAdd={this.timeAddHandler}
+            timeDelete={this.timeDeleteHandler}
             submit={this.submit}
             cardAddHandler={() => this.props.cardAddHandler(cardData)}
             card={this.props.cards[0]}
