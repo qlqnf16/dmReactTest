@@ -203,6 +203,7 @@ class AddDesigner extends Component {
   };
 
   render() {
+    const { containerStyle, labelStyle, inputTextStyle, buttonStyle } = styles;
     return (
       <div className="m_containerStyle">
         <InfoForm
@@ -213,23 +214,63 @@ class AddDesigner extends Component {
           addressRemoveHandler={this.addressRemoveHandler}
           handleImgChange={e => this.handleImgChange(e)}
         />
-        추천인 코드{' '}
-        <input
-          type="text"
-          name="designerRecommendationCode"
-          id="designerRecommendationCode"
-          value={this.state.designerRecommendationCode}
-          onChange={
-            this.props.userData.designerRecommendationCode
-              ? null
-              : e => this.handleInputChange(e)
-          }
-        />
-        <div onClick={this.submitHandler}>예디 등록하기</div>
+        <div style={containerStyle}>
+          <div style={labelStyle}>추천인 코드 </div>
+          <input
+            style={inputTextStyle}
+            type="text"
+            name="designerRecommendationCode"
+            id="designerRecommendationCode"
+            value={this.state.designerRecommendationCode}
+            onChange={
+              this.props.userData.designerRecommendationCode
+                ? null
+                : e => this.handleInputChange(e)
+            }
+          />
+          <div style={buttonStyle} onClick={this.submitHandler}>
+            예디 등록하기
+          </div>
+        </div>
       </div>
     );
   }
 }
+
+const styles = {
+  containerStyle: {
+    width: '85%',
+    display: 'flex',
+    flexDirection: 'column',
+    textAlign: 'left'
+  },
+  labelStyle: {
+    fontSize: '1.1rem',
+    fontWeight: 'bold',
+    color: '#1e3354',
+    marginTop: '1.5rem',
+    marginBottom: '0.2rem'
+  },
+  inputTextStyle: {
+    fontSize: '1.3rem',
+    color: '#1f3354',
+    padding: '0.7rem',
+    borderRadius: '5px',
+    border: 'solid 1px rgba(0, 0, 0, 0.1)'
+  },
+  buttonStyle: {
+    height: '3.9rem',
+    color: 'white',
+    fontSize: '1.4rem',
+    fontWeight: 'bold',
+    marginTop: '4rem',
+    marginBottom: '4rem',
+    borderRadius: 6,
+    backgroundColor: '#4c91ba',
+    textAlign: 'center',
+    lineHeight: '3.9rem'
+  }
+};
 
 const mapStateToProps = ({ authentication: { userData } }) => {
   return { userData };
