@@ -45,7 +45,7 @@ class InfoForm extends Component {
               this.props.state.addresses[i] &&
               this.props.state.addresses[i].fullAddress
             }
-            style={{ marginRight: '0' }}
+            style={{ marginRight: '3px' }}
           />
           <input
             type="text"
@@ -63,10 +63,11 @@ class InfoForm extends Component {
           <div
             className="address_button"
             style={{
-              width: '6rem',
-              color: 'red',
-              marginLeft: '1rem',
-              marginRight: '0'
+              border: 'none',
+              width: '3rem',
+              color: '#4c91ba',
+              marginRight: '0',
+              cursor: 'pointer'
             }}
             onClick={() => this.props.addressRemoveHandler(i)}
           >
@@ -257,11 +258,14 @@ class InfoForm extends Component {
           <div className="col-9 ">
             {this.addressSelector()}
             <div
-              className="address_button"
-              style={{ width: '10rem', marginLeft: '3rem' }}
+              style={{
+                fontSize: '1.3rem',
+                Color: '#1f3354',
+                cursor: 'pointer'
+              }}
               onClick={() => this.props.addressAddHandler()}
             >
-              주소 추가
+              +샵 추가하기
             </div>
           </div>
         </FormGroup>
