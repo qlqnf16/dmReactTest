@@ -372,7 +372,8 @@ const styles = {
     fontSize: '1.3rem',
     height: 134,
     borderRadius: 5,
-    border: 'solid 1px rgba(0, 0, 0, 0.1)'
+    border: 'solid 1px rgba(0, 0, 0, 0.1)',
+    padding: '1rem'
   },
   defaultInputFileDisplayNone: {
     display: 'none'

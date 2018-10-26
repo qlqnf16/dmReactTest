@@ -263,7 +263,7 @@ const styles = {
     color: 'white',
     fontSize: '1.4rem',
     fontWeight: 'bold',
-    marginTop: '4rem',
+    marginTop: '2.5rem',
     marginBottom: '4rem',
     borderRadius: 6,
     backgroundColor: '#4c91ba',
