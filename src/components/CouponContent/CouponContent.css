@@ -34,7 +34,7 @@
   letter-spacing: 0.17rem;
   margin-bottom: 3.1%;
 }
-.cc_ticket {
+.cc_coupon {
   width: 23%;
   position: relative;
   z-index: 1;
@@ -49,6 +49,10 @@
   letter-spacing: 0.14rem;
   color: #dd6866;
   font-weight: bold;
+  margin: auto;
+}
+.cc_num.d {
+  color: #4c91ba;
 }
 .cc_bg_designer {
   width: 87.6%;
