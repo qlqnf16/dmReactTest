@@ -82,7 +82,6 @@
 /* ReservationConfirm.js */
 
 .rc_h1 {
-  font-family: NanumSquareR;
   font-size: 3.8rem;
   line-height: 1.13;
   letter-spacing: 0.19rem;
@@ -95,7 +94,6 @@
   letter-spacing: 0.1rem;
   color: #4c91ba;
   margin-top: 9px;
-  font-family: NanumSquareEB;
 }
 
 .rc_h3 {
@@ -105,7 +103,6 @@
   color: #1e3354;
   margin-top: 40.3px;
   margin-bottom: 62px;
-  font-family: NanumSquareEB;
 }
 
 .rcf_button {

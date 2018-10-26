@@ -61,7 +61,17 @@ const TextInfo = props => (
     </FormGroup>
     <FormGroup>
       <Label for="requirement" style={styles.labelStyle}>
-        요청사항
+        요청사항{' '}
+        <span
+          style={{
+            color: '#1f3354',
+            fontSize: '1rem',
+            fontWeight: 'normal',
+            marginLeft: '8px'
+          }}
+        >
+          모델들에게 필요한 부분을 자세하게 설명해주세요
+        </span>
       </Label>
       <Input
         value={props.state.requirement}
@@ -73,7 +83,19 @@ const TextInfo = props => (
       />
     </FormGroup>
     <FormGroup>
-      <p style={styles.labelStyle}>예상 시술 소요 시간</p>
+      <p style={styles.labelStyle}>
+        예상 시술 소요 시간
+        <span
+          style={{
+            color: '#1f3354',
+            fontSize: '1rem',
+            fontWeight: 'normal',
+            marginLeft: '8px'
+          }}
+        >
+          예약에 관련된 부분인 만큼 최대한 정확하게 입력해주세요 :)
+        </span>
+      </p>
       <div className="row">
         <div className="col-4">
           <Label for="cut" style={styles.labelStyle}>
