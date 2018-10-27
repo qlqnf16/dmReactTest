@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './chatPreview.css';
 
-const Message = () => (
+const Message = props => (
   <div className="cp_bg">
     <div style={{ width: '3.3%' }}>
       <img
@@ -11,10 +11,13 @@ const Message = () => (
       />
     </div>
     <div style={{ width: '12%' }} className="font-weight-bold">
-      이태훈 예디
+      {props.name}
     </div>
     <div style={{ width: '72.5%' }}>
-      <Link to="/chat" className="cp_link">
+      <Link
+        to={`/chat?r=${props.reservationId}&n=${props.name}`}
+        className="cp_link"
+      >
         <div className="cp_content">
           귀찮게 말걸지 마세요 ㅡㅡ!귀찮게 말걸지 마세요 ㅡㅡ! 귀찮게 말걸지
           마세요 ㅡㅡ!귀찮게 말걸지 마세요 ㅡㅡ! 귀찮게 말걸지 마세요 ㅡㅡ!
