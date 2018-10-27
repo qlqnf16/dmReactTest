@@ -10,6 +10,7 @@ const Message = props => (
         style={{ borderRadius: '50%', width: '100%' }}
       />
     </div>
+
     <div style={{ width: '12%' }} className="font-weight-bold">
       {props.name}
     </div>
@@ -19,8 +20,7 @@ const Message = props => (
         className="cp_link"
       >
         <div className="cp_content">
-          귀찮게 말걸지 마세요 ㅡㅡ!귀찮게 말걸지 마세요 ㅡㅡ! 귀찮게 말걸지
-          마세요 ㅡㅡ!귀찮게 말걸지 마세요 ㅡㅡ! 귀찮게 말걸지 마세요 ㅡㅡ!
+          {(props.latest && props.latest.content) || '메세지가 없습니다!'}
         </div>
       </Link>
     </div>

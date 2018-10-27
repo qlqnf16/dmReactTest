@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import './PageCss.css';
 import ChatBox from '../components/Message/ChatBox';
 
-const socket = io('http://localhost:3001'); // 실제 chat 서버 주소
+const socket = io('http://54.180.92.115:3000'); // 실제 chat 서버 주소
 
 class Chat extends Component {
   constructor(props) {
