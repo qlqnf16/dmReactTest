@@ -45,19 +45,24 @@ const AttentionCard = props => {
             </div>
             <div className="length_price row">
               <div className="col-4 text-right">
-                기본 <span className="ml-3">10000원</span>
+                기본{' '}
+                <span className="ml-3">
+                  {props.cardData.permPrice.noraml}원
+                </span>
               </div>
               <div className="col-4" />
               <div
                 className="col-4 text-left"
                 style={{ paddingLeft: '3.8rem' }}
               >
-                기본 <span className="ml-3">10000원</span>
+                기본{' '}
+                <span className="ml-3">{props.cardData.dyePrice.noraml}원</span>
               </div>
             </div>
             <div className="length_price row">
               <div className="col-4 text-right">
-                턱아래 <span className="ml-3">10000원</span>
+                턱아래{' '}
+                <span className="ml-3">{props.cardData.permPrice.chin}원</span>
               </div>
               <div className="col-4" />
 
@@ -65,27 +70,36 @@ const AttentionCard = props => {
                 className="col-4 text-left"
                 style={{ paddingLeft: '2.7rem' }}
               >
-                턱아래 <span className="ml-3">10000원</span>
+                턱아래{' '}
+                <span className="ml-3">{props.cardData.dyePrice.chin}원</span>
               </div>
             </div>
             <div className="length_price row">
               <div className="col-4 text-right">
-                어깨아래 <span className="ml-3">10000원</span>
+                어깨아래{' '}
+                <span className="ml-3">
+                  {props.cardData.permPrice.shoulder}원
+                </span>
               </div>
               <div className="col-4" />
 
               <div className="col-4 text-left">
-                어깨아래 <span className="ml-3">10000원</span>
+                어깨아래{' '}
+                <span className="ml-3">
+                  {props.cardData.dyePrice.shoulder}원
+                </span>
               </div>
             </div>
             <div className="length_price row">
               <div className="col-4 text-right">
-                가슴아래 <span className="ml-3">10000원</span>
+                가슴아래{' '}
+                <span className="ml-3">{props.cardData.permPrice.chest}원</span>
               </div>
               <div className="col-4" />
 
               <div className="col-4 text-left">
-                가슴아래 <span className="ml-3">10000원</span>
+                가슴아래{' '}
+                <span className="ml-3">{props.cardData.dyePrice.chest}원</span>
               </div>
             </div>
           </div>
@@ -106,7 +120,12 @@ const AttentionCard = props => {
           }}
         >
           <p className="m-0">서비스 예상 금액</p>
-          <p className="m-0">30000원(+기장)</p>
+          <p className="m-0">
+            {isPerm
+              ? props.cardData.permPrice.normal
+              : props.cardData.dyePrice.normal}
+            원(+기장)
+          </p>
           <p className="m-0" style={{ color: '#1f3354', fontWeight: 'normal' }}>
             기장별 추가금액 안내
           </p>
@@ -137,7 +156,13 @@ const AttentionCard = props => {
                 className="col-6 text-left"
                 style={{ paddingLeft: '3.8rem' }}
               >
-                기본 <span className="ml-3">10000원</span>
+                기본{' '}
+                <span className="ml-3">
+                  {isPerm
+                    ? props.cardData.permPrice.normal
+                    : props.cardData.dyePrice.normal}
+                  원
+                </span>
               </div>
             </div>
             <div className="length_price row">
@@ -147,21 +172,39 @@ const AttentionCard = props => {
                 className="col-6 text-left"
                 style={{ paddingLeft: '2.7rem' }}
               >
-                턱아래 <span className="ml-3">10000원</span>
+                턱아래{' '}
+                <span className="ml-3">
+                  {isPerm
+                    ? props.cardData.permPrice.chin
+                    : props.cardData.dyePrice.chin}
+                  원
+                </span>
               </div>
             </div>
             <div className="length_price row">
               <div className="col-6" />
 
               <div className="col-6 text-left">
-                어깨아래 <span className="ml-3">10000원</span>
+                어깨아래{' '}
+                <span className="ml-3">
+                  {isPerm
+                    ? props.cardData.permPrice.shoulder
+                    : props.cardData.dyePrice.shoulder}
+                  원
+                </span>
               </div>
             </div>
             <div className="length_price row">
               <div className="col-6" />
 
               <div className="col-6 text-left">
-                가슴아래 <span className="ml-3">10000원</span>
+                가슴아래{' '}
+                <span className="ml-3">
+                  {isPerm
+                    ? props.cardData.permPrice.chest
+                    : props.cardData.dyePrice.chest}
+                  원
+                </span>
               </div>
             </div>
           </div>
