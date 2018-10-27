@@ -287,8 +287,6 @@ class InfoForm extends Component {
             value={userData.careerDetail}
           />
 
-          {/* todo: 면허증이나 자격증이 추가되면 그 미리보기가 칸을 차지하게 하기 */}
-
           <div style={labelStyle}>면허증/자격증</div>
           <div style={fileAttachingContainerStyle}>
             <label style={{ width: '47%', marginRight: '6%' }} for="cert1">

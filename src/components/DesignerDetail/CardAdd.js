@@ -121,22 +121,27 @@ class CardAdd extends Component {
     let serviceFormat = {};
     let time = 0;
     if (this.state.cut) {
-      price += this.props.price.cut;
       time += this.props.recruit.requireTime.cut;
       service += '/ 컷트 ';
-      serviceFormat['cut'] = this.props.price.cut;
+      serviceFormat['cut'] = true;
     }
     if (this.state.perm) {
-      price += this.props.price.perm;
+      price +=
+        this.props.cardData.permPrice && this.props.cardData.permPrice.normal
+          ? this.props.cardData.permPrice.normal
+          : 30000;
       time += this.props.recruit.requireTime.perm;
       service += '/ 펌';
-      serviceFormat['perm'] = this.props.price.perm;
+      serviceFormat['perm'] = true;
     }
     if (this.state.dye) {
-      price += this.props.price.dye;
+      price +=
+        this.props.cardData.dyePrice && this.props.cardData.dyePrice.normal
+          ? this.props.cardData.dyePrice.normal
+          : 30000;
       time += this.props.recruit.requireTime.dye;
       service += '/ 염색';
-      serviceFormat['dye'] = this.props.price.dye;
+      serviceFormat['dye'] = true;
     }
     service = service.substring(1);
 
@@ -192,7 +197,7 @@ class CardAdd extends Component {
                   시간 {time % 60}분
                 </p>
                 <p className="time mb-1">
-                  예상 금액
+                  예상 추가 금액
                   <img
                     alt="alt"
                     className="question"
@@ -215,8 +220,7 @@ class CardAdd extends Component {
                   </ReactTooltip>
                 </p>
                 <p className="time" style={{ fontWeight: 'bold' }}>
-                  {parseInt(time / 60, 10)}
-                  12345원
+                  {price}원
                 </p>
               </div>
               <div className="col-5 p-0 reservation">

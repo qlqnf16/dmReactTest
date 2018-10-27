@@ -5,8 +5,8 @@ import Moment from 'react-moment';
 
 class ReservationForm extends Component {
   state = {
-    point: this.props.userData.point,
-    finalPrice: this.props.price
+    point: 0,
+    finalPrice: 5000
   };
 
   handleInputChange = e => {
@@ -24,7 +24,7 @@ class ReservationForm extends Component {
         alert('보유 포인트보다 많이 사용할 수 없습니다');
       } else {
         this.setState({
-          finalPrice: this.props.price - Number(this.state.point)
+          finalPrice: 5000 - Number(this.state.point)
         });
       }
     } else {
@@ -73,7 +73,7 @@ class ReservationForm extends Component {
                     )}-${this.props.userData.phoneNumber.slice(
                       3,
                       7
-                    )}-${this.props.userData.phoneNumber.slice(7, 10)}`}
+                    )}-${this.props.userData.phoneNumber.slice(7, 11)}`}
               </span>
               <span className=" font-weight-light col-7 p-1">
                 예약 정보는 휴대폰 번호로 전송됩니다
@@ -122,7 +122,7 @@ class ReservationForm extends Component {
               className="col-10 rf-tableBody rf-tableTop"
               style={{ fontFamily: 'NanumSquareEB' }}
             >
-              {this.props.price}원
+              5,000원
             </div>
           </div>
           <div className="row">
