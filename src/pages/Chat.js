@@ -1,10 +1,73 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import io from 'socket.io-client';
+import deparam from 'deparam';
+import { connect } from 'react-redux';
 import './PageCss.css';
 import ChatBox from '../components/Message/ChatBox';
 
+const socket = io('http://localhost:3001'); // 실제 chat 서버 주소
+
 class Chat extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      messages: null,
+      textfield: ''
+    };
+
+    socket.on('newMessage', params => {
+      this.setState({
+        messages: this.state.messages.concat({
+          content: params.content,
+          from: params.from,
+          to: params.to,
+          createdAt: params.createdAt
+        }),
+        textfield: ''
+      });
+    });
+  }
+
+  componentDidMount() {
+    if (!this.state.messages) {
+      const params = deparam(this.props.location.search.slice(1));
+
+      socket.emit('join', {
+        reservationId: params.r
+      });
+      socket.emit(
+        'getMessages',
+        {
+          reservationId: params.r
+        },
+        messages => {
+          this.setState({ messages });
+          console.log(messages);
+        }
+      );
+    }
+  }
+
+  sendMessageHandler = msg => {
+    const params = deparam(this.props.location.search.slice(1));
+    socket.emit('createMessage', {
+      content: msg,
+      from: this.props.userData.name,
+      to: params.n,
+      reservationId: params.r
+    });
+  };
+
+  changeHandler = event => {
+    this.setState({
+      textfield: event.target.value
+    });
+  };
+
   render() {
+    const params = deparam(this.props.location.search.slice(1));
     return (
       <div className="container-fluid me pt-2">
         <div className="me_bg">
@@ -16,7 +79,15 @@ class Chat extends Component {
               </Link>
             </div>
             <div className="col-8">
-              <ChatBox />
+              <ChatBox
+                messages={this.state.messages}
+                sendMessage={() =>
+                  this.sendMessageHandler(this.state.textfield)
+                }
+                name={params.n}
+                change={this.changeHandler}
+                textfield={this.state.textfield}
+              />
             </div>
             <div className="col-2" />
           </div>
@@ -25,5 +96,8 @@ class Chat extends Component {
     );
   }
 }
+const mapStateToProps = ({ authentication: { userData } }) => {
+  return { userData };
+};
 
-export default Chat;
+export default connect(mapStateToProps)(Chat);
