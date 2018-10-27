@@ -5,8 +5,8 @@ const ImgPreview = props => {
   if (props.url) {
     image = (
       <img
+        style={props.style}
         src={props.url}
-        className="col-4"
         onClick={props.deletePortfolio}
         alt={props.url}
       />
