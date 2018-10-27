@@ -93,7 +93,8 @@ class InfoForm extends Component {
       textareaStyle,
       defaultInputFileDisplayNone,
       fileAttachingContainerStyle,
-      fileAttachingInputStyle
+      fileAttachingInputStyle,
+      ImgPreviewStyle
     } = styles;
 
     let month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
@@ -161,6 +162,26 @@ class InfoForm extends Component {
         </select>
       </div>
     );
+
+    let cert1, cert2;
+    if (userData.certImg1)
+      cert1 = <ImgPreview style={ImgPreviewStyle} url={userData.certImg1} />;
+    else
+      cert1 = (
+        <Fragment>
+          <span>미용사 면허증</span>
+          <span style={{ fontSize: '2rem' }}>+</span>
+        </Fragment>
+      );
+    if (userData.certImg2)
+      cert2 = <ImgPreview style={ImgPreviewStyle} url={userData.certImg2} />;
+    else
+      cert2 = (
+        <Fragment>
+          <span>미용사 자격증</span>
+          <span style={{ fontSize: '2rem' }}>+</span>
+        </Fragment>
+      );
 
     return (
       <Fragment>
@@ -269,8 +290,6 @@ class InfoForm extends Component {
           {/* todo: 면허증이나 자격증이 추가되면 그 미리보기가 칸을 차지하게 하기 */}
 
           <div style={labelStyle}>면허증/자격증</div>
-          <ImgPreview url={userData.certImg1} />
-          <ImgPreview url={userData.certImg2} />
           <div style={fileAttachingContainerStyle}>
             <label style={{ width: '47%', marginRight: '6%' }} for="cert1">
               <input
@@ -280,10 +299,7 @@ class InfoForm extends Component {
                 name="cert1"
                 onChange={this.props.handleImgChange}
               />
-              <div style={fileAttachingInputStyle}>
-                <span>미용사 면허증</span>
-                <span style={{ fontSize: '2rem' }}>+</span>
-              </div>
+              <div style={fileAttachingInputStyle}>{cert1}</div>
             </label>
             <label style={{ width: '47%' }} for="cert2">
               <input
@@ -293,10 +309,7 @@ class InfoForm extends Component {
                 name="cert2"
                 onChange={this.props.handleImgChange}
               />
-              <div style={fileAttachingInputStyle}>
-                <span>미용사 자격증</span>
-                <span style={{ fontSize: '2rem' }}>+</span>
-              </div>
+              <div style={fileAttachingInputStyle}>{cert2}</div>
             </label>
           </div>
           <div style={{ fontSize: '1.1rem', color: '#1f3354' }}>
@@ -392,6 +405,10 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center'
+  },
+  ImgPreviewStyle: {
+    maxWidth: '100%',
+    maxHeight: '100%'
   }
 };
 
