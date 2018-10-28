@@ -16,8 +16,7 @@ const DetailContent = props => {
               width: 80,
               height: 80,
               borderRadius: '50%',
-              backgroundImage:
-                "url('https://scontent-icn1-1.xx.fbcdn.net/v/t1.0-1/p320x320/41919264_1877230375677448_1271242630931415040_n.jpg?_nc_cat=109&oh=ae32b92623fca50f7b7eddd0d84cf4b7&oe=5C6297D7')",
+              backgroundImage: `url(${props.designerData.profile})`,
               backgroundSize: 'cover',
               margin: '0 auto'
             }}
