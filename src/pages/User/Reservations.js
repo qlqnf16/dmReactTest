@@ -30,12 +30,14 @@ class Reservations extends Component {
       reservation
     });
   };
+
   cancelReasonModalToggle = reservation => {
     this.setState({
       cancelReasonModal: !this.state.cancelReasonModal,
       reservation
     });
   };
+
   cancelModalToggle = (reservation, isToday) => {
     this.setState({
       cancelModal: !this.state.cancelModal,

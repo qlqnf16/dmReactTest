@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import Moment from 'react-moment';
 import StarRatings from 'react-star-ratings';
+import fd from 'form-data';
 import ImgPreview from '../../../components/InfoForm/ImgPreview';
 
 import { Modal, ModalBody } from 'reactstrap';
@@ -46,6 +47,7 @@ class ReviewModal extends Component {
     this.setState({ score: 0 });
     this.props.toggle();
   };
+
   reviewSubmit = async () => {
     const reviewData = {
       content: this.state.content,
@@ -59,17 +61,35 @@ class ReviewModal extends Component {
 
     // review 생성
     // TODO: 리뷰사진을 저장해야하는데...
-    await axios.post(
+    const { data } = await axios.post(
       `http://52.79.227.227:3030/recruits/${
         this.props.reservation._designer._recruit._id
       }/reviews`,
       reviewData
     );
 
+    // 사진 업로드
+    const formData = new fd();
+    this.state.reviewImgFile.forEach((p, index) => {
+      formData.append(`review${index}`, p);
+    });
+    await axios.patch(
+      `http://52.79.227.227:3030/recruits/${
+        this.props.reservation._designer._recruit._id
+      }/reviews/${data._id}/images`,
+      formData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }
+    );
+
     await alert('성공적으로 등록되었습니다');
     await this.props.toggle();
     await this.props.reloadData();
   };
+
   render() {
     if (this.props.reservation) {
       let since = '';
