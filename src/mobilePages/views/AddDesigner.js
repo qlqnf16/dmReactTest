@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import fd from 'form-data';
@@ -203,41 +203,69 @@ class AddDesigner extends Component {
   };
 
   render() {
-    const { containerStyle, labelStyle, inputTextStyle, buttonStyle } = styles;
+    const {
+      subtitleStyle,
+      titleStyle,
+      containerStyle,
+      labelStyle,
+      inputTextStyle,
+      buttonStyle
+    } = styles;
     return (
-      <div className="m_containerStyle">
-        <InfoForm
-          state={this.state}
-          changeInput={e => this.handleInputChange(e)}
-          handleAddress={this.handleAddress}
-          addressAddHandler={this.addressAddHandler}
-          addressRemoveHandler={this.addressRemoveHandler}
-          handleImgChange={e => this.handleImgChange(e)}
-        />
-        <div style={containerStyle}>
-          <div style={labelStyle}>추천인 코드 </div>
-          <input
-            style={inputTextStyle}
-            type="text"
-            name="designerRecommendationCode"
-            id="designerRecommendationCode"
-            value={this.state.designerRecommendationCode}
-            onChange={
-              this.props.userData.designerRecommendationCode
-                ? null
-                : e => this.handleInputChange(e)
-            }
+      <Fragment>
+        <div className="m_containerStyle">
+          <div style={containerStyle}>
+            <div style={subtitleStyle}>예비 디자이너 등록</div>
+            <div style={titleStyle}>
+              드리머리 막내가 되어
+              <br />
+              모델을 구해보세요
+            </div>
+          </div>
+          <InfoForm
+            state={this.state}
+            changeInput={e => this.handleInputChange(e)}
+            handleAddress={this.handleAddress}
+            addressAddHandler={this.addressAddHandler}
+            addressRemoveHandler={this.addressRemoveHandler}
+            handleImgChange={e => this.handleImgChange(e)}
           />
-          <div style={buttonStyle} onClick={this.submitHandler}>
-            예디 등록하기
+          <div style={containerStyle}>
+            <div style={labelStyle}>추천인 코드 </div>
+            <input
+              style={inputTextStyle}
+              type="text"
+              name="designerRecommendationCode"
+              id="designerRecommendationCode"
+              value={this.state.designerRecommendationCode}
+              onChange={
+                this.props.userData.designerRecommendationCode
+                  ? null
+                  : e => this.handleInputChange(e)
+              }
+            />
+            <div style={buttonStyle} onClick={this.submitHandler}>
+              예디 등록하기
+            </div>
           </div>
         </div>
-      </div>
+      </Fragment>
     );
   }
 }
 
 const styles = {
+  subtitleStyle: {
+    fontSize: '1.3rem',
+    color: '#4c91ba',
+    marginTop: '5%'
+  },
+  titleStyle: {
+    fontSize: '2.3rem',
+    fontWeight: 'bold',
+    color: '#4c91ba',
+    marginBottom: '5%'
+  },
   containerStyle: {
     width: '85%',
     display: 'flex',
