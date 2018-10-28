@@ -19,8 +19,8 @@ const styles = {
     color: 'rgba(0, 0, 0, 0.2)',
     fontSize: '1rem',
     fontWeight: 'bold',
-    paddingBottom: '1.9%',
-    transform: 'translateY(4px)'
+    paddingBottom: '5px',
+    transform: 'translateY(4.5px)'
   },
   activeStyle: {
     color: '#1f3354',
