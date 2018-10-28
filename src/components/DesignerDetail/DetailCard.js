@@ -94,6 +94,7 @@ class DetailCard extends Component {
           id={this.props.cardData._id}
           recruit={this.props.recruit}
           loginToggle={this.props.loginToggle}
+          submitReservation={this.props.submitReservation}
         />
       );
       dcard += 'dcard_selected';

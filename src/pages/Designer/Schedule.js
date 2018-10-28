@@ -36,12 +36,18 @@ class Schedule extends Component {
     });
   };
 
+  reloadCardData = async () => {
+    const { data } = await axios.get(
+      `http://52.79.227.227:3030/recruits/${this.props.userData._recruit}`
+    );
+    await this.setState({ cards: data._cards, madeRequest: true });
+  };
+
   cancelCardHandler = async (cardId, recruitId) => {
     await axios.delete(
       `http://52.79.227.227:3030/recruits/${recruitId}/cards/${cardId}`
     );
-    const { data } = await axios.get(`http://52.79.227.227:3030/cards`);
-    this.setState({ cards: data, madeRequest: true });
+    await this.reloadCardData();
   };
 
   cardAddHandler = async cardData => {
@@ -94,12 +100,8 @@ class Schedule extends Component {
           newCard
         );
       });
-      const { data } = await axios.get(
-        `http://52.79.227.227:3030/recruits/${
-          this.props.userData._recruit
-        }/cards`
-      );
-      this.setState({ cards: data, newCards: [] });
+      await this.reloadCardData();
+      await this.setState({ newCards: [] });
 
       // 유저가 이미 리크루트 있으면 수정
     } else {
@@ -119,11 +121,7 @@ class Schedule extends Component {
         );
         await console.log('하나 성공');
       });
-      const { data } = await axios.get(
-        `http://52.79.227.227:3030/recruits/${this.props.userData._recruit}`
-      );
-      await this.setState({ cards: data._cards, newCards: [] });
-      await console.log(data);
+      await this.reloadCardData();
     }
     // TODO : 더 좋은 방법 찾기
     // window.location.reload();

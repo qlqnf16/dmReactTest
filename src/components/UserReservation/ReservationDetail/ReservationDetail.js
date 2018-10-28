@@ -16,22 +16,24 @@ const ReservationDetail = props => {
 
   // services 포맷
   let services = '';
-  Object.keys(reservation.services).forEach(service => {
-    switch (service) {
-      case 'cut':
-        services += '/ 컷트 ';
-        break;
-      case 'perm':
-        services += '/ 펌 ';
-        break;
-      case 'dye':
-        services += '/ 염색 ';
-        break;
-      default:
-        break;
-    }
-    services = services.substring(1);
-  });
+  if (reservation.services) {
+    Object.keys(reservation.services).forEach(service => {
+      switch (service) {
+        case 'cut':
+          services += '/ 컷트 ';
+          break;
+        case 'perm':
+          services += '/ 펌 ';
+          break;
+        case 'dye':
+          services += '/ 염색 ';
+          break;
+        default:
+          break;
+      }
+      services = services.substring(1);
+    });
+  }
 
   return (
     <div

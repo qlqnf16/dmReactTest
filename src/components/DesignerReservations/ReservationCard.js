@@ -20,24 +20,25 @@ const ReservationCard = props => {
     until = `${parseInt(props.reservation.time.until / 60, 10)}:${
       props.reservation.time.until % 60 === 0 ? '00' : '30'
     }`;
-    Object.keys(props.reservation.services).forEach(service => {
-      switch (service) {
-        case 'cut':
-          services += '/ 컷트 ';
-          break;
-        case 'perm':
-          services += '/ 펌 ';
-          break;
-        case 'dye':
-          services += '/ 염색 ';
-          break;
-        default:
-          break;
-      }
-    });
-    services = services.substring(1);
+    if (props.reservation.services) {
+      Object.keys(props.reservation.services).forEach(service => {
+        switch (service) {
+          case 'cut':
+            services += '/ 컷트 ';
+            break;
+          case 'perm':
+            services += '/ 펌 ';
+            break;
+          case 'dye':
+            services += '/ 염색 ';
+            break;
+          default:
+            break;
+        }
+      });
+      services = services.substring(1);
+    }
   }
-
   let button = null;
   let type = null;
   let dDay = false;

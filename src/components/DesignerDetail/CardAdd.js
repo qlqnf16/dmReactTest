@@ -168,9 +168,22 @@ class CardAdd extends Component {
         <div className=" py-3 row m-2">{timeButtons}</div>
         <div
           className="submit_button"
-          onClick={!this.props.userData.name ? this.props.loginToggle : null}
+          onClick={
+            !this.props.userData.name
+              ? this.props.loginToggle
+              : () =>
+                  this.props.submitReservation(
+                    price,
+                    time,
+                    service,
+                    serviceFormat,
+                    this.state.time,
+                    this.props.recruit,
+                    this.props.cardData
+                  )
+          }
         >
-          <Link
+          {/* <Link
             className="link"
             to={
               this.props.userData.name
@@ -188,71 +201,71 @@ class CardAdd extends Component {
                   }
                 : {}
             }
-          >
-            <div className="row p-3" style={{ alignItems: 'flex-end' }}>
-              <div className="col-7 m-0">
-                <p className="time mb-2">예상 소요시간</p>
-                <p className="time" style={{ fontWeight: 'bold' }}>
-                  {parseInt(time / 60, 10)}
-                  시간 {time % 60}분
-                </p>
-                <p className="time mb-1">
-                  예상 추가 금액
-                  <img
-                    alt="alt"
-                    className="question"
-                    src={questionMark}
-                    data-tip
-                    data-for="addPrice"
-                  />
-                  <ReactTooltip
-                    id="addPrice"
-                    place="left"
-                    type="light"
-                    effect="solid"
-                    delayHide={500}
-                    className="card_tooltip tooltip_pic"
-                  >
-                    <div className="tooltip_text">
-                      재료비는 현장 사정에 따라 달라질 수 있으므로 별도로 현금
-                      지참해주세요 :)
-                    </div>
-                  </ReactTooltip>
-                </p>
-                <p className="time" style={{ fontWeight: 'bold' }}>
-                  {price}원
-                </p>
-              </div>
-              <div className="col-5 p-0 reservation">
-                <p className="price mb-2 mr-2">
-                  5000원
-                  <img
-                    alt="alt"
-                    className="question"
-                    style={{ marginBottom: '0.8rem' }}
-                    src={questionMark}
-                    data-tip
-                    data-for="price"
-                  />
-                  <ReactTooltip
-                    id="price"
-                    place="right"
-                    type="light"
-                    effect="solid"
-                    delayHide={500}
-                    className="card_tooltip"
-                  >
-                    <p>이 금액은</p>
-                    <p>✓ 예비헤어디자이너 응원비</p>
-                    <p>✓ 소외계층을 위한 소셜이벤트</p>
-                    <p>✓ 드리머리의 생존 </p>
-                    <p>을 위하여 사용됩니다.</p>
-                  </ReactTooltip>
-                </p>
-                <div className="pr-2 mr-2">예약하기</div>
-              </div>
+          > */}
+          <div className="row p-3" style={{ alignItems: 'flex-end' }}>
+            <div className="col-7 m-0">
+              <p className="time mb-2">예상 소요시간</p>
+              <p className="time" style={{ fontWeight: 'bold' }}>
+                {parseInt(time / 60, 10)}
+                시간 {time % 60}분
+              </p>
+              <p className="time mb-1">
+                예상 추가 금액
+                <img
+                  alt="alt"
+                  className="question"
+                  src={questionMark}
+                  data-tip
+                  data-for="addPrice"
+                />
+                <ReactTooltip
+                  id="addPrice"
+                  place="left"
+                  type="light"
+                  effect="solid"
+                  delayHide={500}
+                  className="card_tooltip tooltip_pic"
+                >
+                  <div className="tooltip_text">
+                    재료비는 현장 사정에 따라 달라질 수 있으므로 별도로 현금
+                    지참해주세요 :)
+                  </div>
+                </ReactTooltip>
+              </p>
+              <p className="time" style={{ fontWeight: 'bold' }}>
+                {price}원
+              </p>
             </div>
-          </Link>
+            <div className="col-5 p-0 reservation">
+              <p className="price mb-2 mr-2">
+                5000원
+                <img
+                  alt="alt"
+                  className="question"
+                  style={{ marginBottom: '0.8rem' }}
+                  src={questionMark}
+                  data-tip
+                  data-for="price"
+                />
+                <ReactTooltip
+                  id="price"
+                  place="right"
+                  type="light"
+                  effect="solid"
+                  delayHide={500}
+                  className="card_tooltip"
+                >
+                  <p>이 금액은</p>
+                  <p>✓ 예비헤어디자이너 응원비</p>
+                  <p>✓ 소외계층을 위한 소셜이벤트</p>
+                  <p>✓ 드리머리의 생존 </p>
+                  <p>을 위하여 사용됩니다.</p>
+                </ReactTooltip>
+              </p>
+              <div className="pr-2 mr-2">예약하기</div>
+            </div>
+          </div>
+          {/* </Link> */}
         </div>
       </div>
     );

@@ -17,8 +17,9 @@ class DetailCards extends Component {
     let rightCards = [];
     if (this.props.recruit._cards) {
       console.log(this.props.recruit._cards);
+      const cards = this.props.recruit._cards.sort((a, b) => a.date - b.date);
       let count = 0;
-      this.props.recruit._cards.forEach((card, key) => {
+      cards.forEach((card, key) => {
         if (card.reservable) {
           count % 2
             ? rightCards.push(
@@ -31,6 +32,7 @@ class DetailCards extends Component {
                   click={this.state.click}
                   addData={() => this.addData(key)}
                   loginToggle={this.props.loginToggle}
+                  submitReservation={this.props.submitReservation}
                 />
               )
             : leftCards.push(
@@ -43,6 +45,7 @@ class DetailCards extends Component {
                   click={this.state.click}
                   addData={() => this.addData(key)}
                   loginToggle={this.props.loginToggle}
+                  submitReservation={this.props.submitReservation}
                 />
               );
           count++;

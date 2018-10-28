@@ -8,7 +8,7 @@ import step2 from '../assets/images/step2.png';
 
 import './PageCss.css';
 
-class ReservationConfirm extends Component {
+class Reservation extends Component {
   state = {
     point: 0,
     reservationData: {
@@ -50,7 +50,7 @@ class ReservationConfirm extends Component {
         pay_method: 'card',
         merchant_uid: 'merchant_' + new Date().getTime(),
         name: '주문명:결제테스트',
-        amount: kind,
+        amount: 100,
         buyer_email: 'user@email.com',
         buyer_name: '유저이름',
         buyer_tel: '010-1234-5678',
@@ -58,7 +58,7 @@ class ReservationConfirm extends Component {
         buyer_postcode: '123-456',
         m_redirect_url: 'http://localhost:3000'
       },
-      function(rsp) {
+      async rsp => {
         if (rsp.success) {
           var msg = '결제가 완료되었습니다.';
           msg += '고유ID : ' + rsp.imp_uid;
@@ -66,6 +66,22 @@ class ReservationConfirm extends Component {
           msg += '결제 금액 : ' + rsp.paid_amount;
           msg += '카드 승인번호 : ' + rsp.apply_num;
           alert(msg);
+
+          const { data } = await axios.post(
+            `http://52.79.227.227:3030/users/${
+              this.props.userData._id
+            }/reservations`,
+            this.state.reservationData
+          );
+          await this.props.history.push({
+            pathname: `/reservationConfirm/${data._id}`,
+            state: {
+              userName: this.props.userData.name,
+              recruit: this.props.location.state.recruit,
+              cardData: this.props.location.state.cardData,
+              service: this.props.location.state.service
+            }
+          });
         } else {
           var errMsg = '결제에 실패하였습니다.';
           errMsg += ' 에러내용 : ' + rsp.error_msg;
@@ -114,8 +130,6 @@ class ReservationConfirm extends Component {
           price={this.props.location.state.price}
           date={cardData.date}
         />
-        {/* // changeInput=
-        {e => this.handleInputChange(e)} */}
         <div>
           <div
             className="r_button"
@@ -150,4 +164,4 @@ const mapStateToProps = ({ authentication: { userData } }) => {
   return { userData };
 };
 
-export default connect(mapStateToProps)(ReservationConfirm);
+export default connect(mapStateToProps)(Reservation);

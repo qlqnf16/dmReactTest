@@ -59,7 +59,7 @@ class ScheduleBox extends Component {
   };
 
   timeDeleteHandler = () => {
-    this.setState({ time: this.state.time - 1 });
+    if (this.state.time > 1) this.setState({ time: this.state.time - 1 });
   };
 
   timeDefault = event => {
