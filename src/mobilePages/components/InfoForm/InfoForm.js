@@ -142,7 +142,6 @@ class InfoForm extends Component {
           onChange={this.props.changeInput}
         >
           {y}
-          <div>he</div>
         </select>
         <select
           style={calendarStyle}
