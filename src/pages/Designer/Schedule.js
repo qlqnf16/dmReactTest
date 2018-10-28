@@ -92,14 +92,14 @@ class Schedule extends Component {
         .update({
           _recruit: res.data._id
         });
-      await this.state.newCards.forEach(async newCard => {
+      for (const newCard of this.state.newCards) {
         await axios.post(
           `http://52.79.227.227:3030/recruits/${
             this.props.userData._recruit
           }/cards`,
           newCard
         );
-      });
+      }
       await this.reloadCardData();
       await this.setState({ newCards: [] });
 
@@ -112,15 +112,16 @@ class Schedule extends Component {
         recruitData
       );
       console.log(this.state.newCards);
-      this.state.newCards.forEach(async newCard => {
+      for (const newCard of this.state.newCards) {
+        console.log(`시작`);
         await axios.post(
           `http://52.79.227.227:3030/recruits/${
             this.props.userData._recruit
           }/cards`,
           newCard
         );
-        await console.log('하나 성공');
-      });
+        console.log(`끝`);
+      }
       await this.reloadCardData();
     }
     // TODO : 더 좋은 방법 찾기
