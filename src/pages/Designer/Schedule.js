@@ -22,7 +22,7 @@ class Schedule extends Component {
         newCards: [],
         requireTime: data.requireTime
       });
-      console.log(this.state.recruitData);
+      console.log(this.state.cards);
     }
   };
 
@@ -109,7 +109,7 @@ class Schedule extends Component {
         `http://52.79.227.227:3030/recruits/${this.props.userData._recruit}`,
         recruitData
       );
-      console.log(this.state.cards);
+      console.log(this.state.newCards);
       this.state.newCards.forEach(async newCard => {
         await axios.post(
           `http://52.79.227.227:3030/recruits/${
@@ -117,12 +117,13 @@ class Schedule extends Component {
           }/cards`,
           newCard
         );
+        await console.log('하나 성공');
       });
       const { data } = await axios.get(
         `http://52.79.227.227:3030/recruits/${this.props.userData._recruit}`
       );
-      this.setState({ cards: data._cards, newCards: [] });
-      console.log(data);
+      await this.setState({ cards: data._cards, newCards: [] });
+      await console.log(data);
     }
     // TODO : 더 좋은 방법 찾기
     // window.location.reload();

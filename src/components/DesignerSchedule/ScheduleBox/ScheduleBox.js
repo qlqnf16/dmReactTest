@@ -17,8 +17,18 @@ class ScheduleBox extends Component {
       no: {},
       sinces: [],
       untils: [],
-      permPrice: {},
-      dyePrice: {},
+      permPrice: {
+        normal: 30000,
+        chin: 30000,
+        shoulder: 400000,
+        chest: 500000
+      },
+      dyePrice: {
+        normal: 30000,
+        chin: 300000,
+        shoulder: 400000,
+        chest: 500000
+      },
       title: '',
       requirement: '',
       requireTime: {},
