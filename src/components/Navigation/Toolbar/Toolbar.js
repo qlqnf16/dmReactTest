@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav } from "reactstrap";
-import Navitems from "../Navitems/Navitems";
-import MyModal from "../../UI/MyModal/MyModal";
-import firebase from "../../../config/Firebase";
-import { Link } from "react-router-dom";
-import "./Toolbar.css";
-import logo from "../../../assets/images/logo.png";
-import tricolor from "../../../assets/images/tricolor.gif";
+import React, { Component } from 'react';
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav } from 'reactstrap';
+import Navitems from '../Navitems/Navitems';
+import MyModal from '../../UI/MyModal/MyModal';
+import firebase from '../../../config/Firebase';
+import { Link } from 'react-router-dom';
+import './Toolbar.css';
+import logo from '../../../assets/images/logo.png';
+import tricolor from '../../../assets/images/tricolor.gif';
 
 class Toolbar extends Component {
   state = {
@@ -57,16 +57,11 @@ class Toolbar extends Component {
   render() {
     return (
       <div>
-        <Navbar light expand="lg" className="toolbar">
+        <Navbar light expand className="toolbar">
           <NavbarToggler onClick={this.toggle} />
-          <NavbarBrand tag={Link} to={"/"}>
+          <NavbarBrand tag={Link} to={'/'}>
             <img className="logo" src={logo} alt="Main Logo" />
           </NavbarBrand>
-          <img
-            className="tricolor d-block d-lg-none"
-            src={tricolor}
-            alt="tricolor"
-          />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <Navitems
@@ -75,11 +70,7 @@ class Toolbar extends Component {
               />
             </Nav>
           </Collapse>
-          <img
-            className="tricolor d-none d-lg-block"
-            src={tricolor}
-            alt="tricolor"
-          />
+          <img className="tricolor" src={tricolor} alt="tricolor" />
         </Navbar>
         <MyModal
           showLogin={this.state.showLogin}
