@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import AskNav from '../../components/Navigation/AskNav/AskNav';
+import './Ask.css';
 
 class FAQ extends Component {
   state = {
@@ -51,7 +52,7 @@ class FAQ extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container-fluid ask">
         <AskNav />
         <h1>FAQ</h1>
         <button onClick={this.toggleD}>예비 디자이너</button>

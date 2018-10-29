@@ -1,0 +1,20 @@
+.an_container {
+  color: rgba(0, 0, 0, 0.3);
+  border-bottom: solid 2px rgba(0, 0, 0, 0.1);
+  font-size: 1.4rem;
+  font-weight: bold;
+  padding: 1.1rem;
+  margin-bottom: 4.45rem;
+}
+
+.an_navItem {
+  color: rgba(0, 0, 0, 0.3);
+  line-height: 1.14;
+  letter-spacing: 0.7px;
+  margin-right: 61px;
+}
+
+.an_navItem:hover {
+  text-decoration: none;
+  color: #dd6866;
+}
