@@ -133,6 +133,7 @@ class App extends Component {
               `http://52.79.227.227:3030/users/` + userData._id
             );
             console.log(data);
+            userData['expiredAt'] = data.expiredAt;
             userData['point'] = data.point;
             userData['_recruit'] = data._recruit;
             userData['_tickets'] = data._tickets;
