@@ -7,6 +7,12 @@ import check from '../assets/images/check_lg.png';
 import './PageCss.css';
 
 class ReservationConfirm extends Component {
+  showMessage = (reservationId, designerName) => {
+    this.props.history.push({
+      pathname: `/chat`,
+      search: `?r=${reservationId}&n=${designerName}`
+    });
+  };
   render() {
     return (
       <div className="container-fluid text-center mb-4">
@@ -41,9 +47,17 @@ class ReservationConfirm extends Component {
           >
             예약확인/취소
           </Link>
-          <Link to="/message" className="rcf_button">
+          <div
+            onClick={() =>
+              this.showMessage(
+                this.props.match.params.reservation_id,
+                this.props.location.state.recruit._designer.name
+              )
+            }
+            className="rcf_button d-inline"
+          >
             메세지
-          </Link>
+          </div>
         </div>
       </div>
     );
