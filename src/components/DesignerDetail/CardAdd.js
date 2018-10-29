@@ -209,7 +209,7 @@ class CardAdd extends Component {
                 {parseInt(time / 60, 10)}
                 시간 {time % 60}분
               </p>
-              <p className="time mb-1">
+              <div className="time mb-1">
                 예상 추가 금액
                 <img
                   alt="alt"
@@ -231,13 +231,13 @@ class CardAdd extends Component {
                     지참해주세요 :)
                   </div>
                 </ReactTooltip>
-              </p>
-              <p className="time" style={{ fontWeight: 'bold' }}>
+              </div>
+              <div className="time" style={{ fontWeight: 'bold' }}>
                 {price}원
-              </p>
+              </div>
             </div>
             <div className="col-5 p-0 reservation">
-              <p className="price mb-2 mr-2">
+              <div className="price mb-2 mr-2">
                 5000원
                 <img
                   alt="alt"
@@ -261,7 +261,7 @@ class CardAdd extends Component {
                   <p>✓ 드리머리의 생존 </p>
                   <p>을 위하여 사용됩니다.</p>
                 </ReactTooltip>
-              </p>
+              </div>
               <div className="pr-2 mr-2">예약하기</div>
             </div>
           </div>
