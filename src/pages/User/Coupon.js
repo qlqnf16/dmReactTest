@@ -18,12 +18,9 @@ class Coupon extends Component {
   couponSubmit = async () => {
     console.log(this.state.coupon);
 
-    const { data } = axios.patch(
-      `http://52.79.227.227:3030/coupon/${this.state.coupon}`,
-      {
-        user: this.props.userData._id
-      }
-    );
+    axios.patch(`http://52.79.227.227:3030/coupon/${this.state.coupon}`, {
+      user: this.props.userData._id
+    });
     await alert('쿠폰이 적용 되었습니다.');
   };
   render() {

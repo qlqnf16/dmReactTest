@@ -4,17 +4,17 @@ import axios from 'axios';
 
 class MakeCoupon extends Component {
   state = {
-    coupons: {},
+    coupons: [],
     madeRequest: false
   };
 
   reloadCoupon = async () => {
-    const { data } = await axios.get(`http://52.79.227.227:3030/쿠폰디비`);
+    const { data } = await axios.get(`http://52.79.227.227:3030/coupons`);
     this.setState({ coupons: data, madeRequest: true });
   };
   componentDidMount = async () => {
     if (!this.state.madeRequest) {
-      // this.reloadCoupon()
+      this.reloadCoupon();
     }
   };
 
@@ -27,16 +27,28 @@ class MakeCoupon extends Component {
   };
 
   makeCoupon = async () => {
-    // await axios.post(`http://52.79.227.227:3030/쿠폰디비`, {
-    //   point: this.state.point,
-    //   number: this.state.number
-    // });
-    // await this.setState({ point: 0, number: 0 });
+    await axios.post(`http://52.79.227.227:3030/coupons`, {
+      point: this.state.point,
+      number: this.state.number
+    });
+    await this.setState({ point: 0, number: 0 });
 
     await this.reloadCoupon();
     await alert('생성 완료');
   };
   render() {
+    let coupons;
+    if (this.state.coupons) {
+      coupons = this.state.coupons.map((coupon, key) => (
+        <div key={key} className="row">
+          <div className="col-4">{coupon.point}</div>
+          <div className="col-4">{coupon._id}</div>
+          <div className="col-4">
+            {coupon._user ? coupon._user._id : '미사용'}
+          </div>
+        </div>
+      ));
+    }
     return (
       <div>
         <AdminNav />
@@ -73,11 +85,7 @@ class MakeCoupon extends Component {
               <div className="col-4">번호</div>
               <div className="col-4">상태</div>
             </div>
-            <div className="row">
-              <div className="col-4">1000</div>
-              <div className="col-4">asdfaweasdgf</div>
-              <div className="col-4">사용됨</div>
-            </div>
+            {coupons}
           </div>
         </div>
       </div>
