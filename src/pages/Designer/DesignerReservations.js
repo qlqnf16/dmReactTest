@@ -1,12 +1,13 @@
-import React, { Component } from "react";
-import axios from "axios";
-import CancelReasonModal from "../../components/UI/ReservationModals/CancelReasonModal";
-import CancelModal from "../../components/UI/ReservationModals/CancelModal";
-import ShowReviewModal from "../../components/UI/ReservationModals/ShowReviewModal";
-import CompleteModal from "../../components/UI/ReservationModals/CompleteModal";
-import { connect } from "react-redux";
-import "./Designer.css";
-import ReservationCard from "../../components/DesignerReservations/ReservationCard";
+import React, { Component } from 'react';
+import axios from 'axios';
+import CancelReasonModal from '../../components/UI/ReservationModals/CancelReasonModal';
+import CancelModal from '../../components/UI/ReservationModals/CancelModal';
+import ShowReviewModal from '../../components/UI/ReservationModals/ShowReviewModal';
+import CompleteModal from '../../components/UI/ReservationModals/CompleteModal';
+import { connect } from 'react-redux';
+import './Designer.css';
+import ReservationCard from '../../components/DesignerReservations/ReservationCard';
+import NoContent from '../../components/UI/NoContent/NoContent';
 
 class DesignerReservations extends Component {
   constructor(props) {
@@ -135,23 +136,30 @@ class DesignerReservations extends Component {
       <div className="container-fluid d">
         <div className="d_bg">
           <div className="d_container">
-            <div style={{ color: "#4c91ba" }} className="u_title ">
+            <div style={{ color: '#4c91ba' }} className="u_title ">
               예약 관리
             </div>
             <div className="mb-5 pb-5">
               <div className="dr_title mb-2">다가오는 예약</div>
               <div className="row">
-                {futureReservations.map((futureReservation, key) => (
-                  <ReservationCard
-                    type={"soon"}
-                    reservation={futureReservation}
-                    cancelHandler={this.cancelReservationHandler}
-                    cancelModalToggle={this.cancelModalToggle}
-                    completeModalToggle={this.completeModalToggle}
-                    key={key}
-                    showMessage={this.showMessage}
+                {futureReservations.length > 0 ? (
+                  futureReservations.map((futureReservation, key) => (
+                    <ReservationCard
+                      type={'soon'}
+                      reservation={futureReservation}
+                      cancelHandler={this.cancelReservationHandler}
+                      cancelModalToggle={this.cancelModalToggle}
+                      completeModalToggle={this.completeModalToggle}
+                      key={key}
+                      showMessage={this.showMessage}
+                    />
+                  ))
+                ) : (
+                  <NoContent
+                    link="/designer/schedule"
+                    text="지금 스케줄을 등록하고 모델을 구해보세요!"
                   />
-                ))}
+                )}
               </div>
             </div>
             <div className=" dr_finish mb-5">
@@ -159,7 +167,7 @@ class DesignerReservations extends Component {
               <div className="row">
                 {previousReservations.map((previousReservation, key) => (
                   <ReservationCard
-                    type={"finish"}
+                    type={'finish'}
                     reservation={previousReservation}
                     cancelReasonModalToggle={this.cancelReasonModalToggle}
                     showReviewModalToggle={this.showReviewModalToggle}
