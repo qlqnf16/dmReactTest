@@ -1,5 +1,5 @@
-import React from "react";
-import "./Filter.css";
+import React from 'react';
+import './Filter.css';
 
 const Filter = props => {
   return (
@@ -11,7 +11,7 @@ const Filter = props => {
         <div className="filterTitle">성별</div>
         <div className="d-inline">
           <label
-            className={props.checked === "male" ? "gradio active" : "gradio"}
+            className={props.checked === 'male' ? 'gradio active' : 'gradio'}
           >
             <input
               type="radio"
@@ -24,7 +24,7 @@ const Filter = props => {
             남
           </label>
           <label
-            className={props.checked === "female" ? "gradio active" : "gradio"}
+            className={props.checked === 'female' ? 'gradio active' : 'gradio'}
           >
             <input
               type="radio"
@@ -32,7 +32,7 @@ const Filter = props => {
               name="gender"
               value="female"
               onChange={props.filterChangeHandler}
-              checked={props.checked === "female"}
+              checked={props.checked === 'female'}
               className="genderRadio"
             />
             여
@@ -41,7 +41,14 @@ const Filter = props => {
       </div>
       <div className="col-7">
         <div className="filterTitle">날짜</div>
-        <input type="date" className="form-control" placeholder="날짜" />
+        <input
+          type="date"
+          name="date"
+          id="date"
+          className="form-control"
+          placeholder="날짜"
+          onChange={props.filterChangeHandler}
+        />
       </div>
       <div className="col-12 filterTitle">지역</div>
       <div className="col-6">
@@ -69,19 +76,19 @@ const Filter = props => {
       <div className="col-11 m-auto">
         <div
           className="d-flex justify-content-between"
-          style={{ marginTop: "15px" }}
+          style={{ marginTop: '15px' }}
         >
           <div>
             싫어요
-            <div style={{ fontSize: "2rem" }}>😟👎</div>
+            <div style={{ fontSize: '2rem' }}>😟👎</div>
           </div>
           <div>
             상관없어요
-            <div style={{ fontSize: "2rem" }}>😐💬</div>
+            <div style={{ fontSize: '2rem' }}>😐💬</div>
           </div>
           <div>
             받을래요
-            <div style={{ fontSize: "2rem" }}>😀👍</div>
+            <div style={{ fontSize: '2rem' }}>😀👍</div>
           </div>
         </div>
         <div className="d-flex justify-content-between" />
