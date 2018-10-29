@@ -9,13 +9,6 @@ class ReservationForm extends Component {
     finalPrice: 5000
   };
 
-  handleInputChange = e => {
-    const target = e.target;
-    const value = target.value;
-    const name = target.name;
-    this.setState({ [name]: value });
-  };
-
   pointSubmit = () => {
     if (this.state.point % 1000 === 0) {
       console.log(this.state.point);
@@ -129,15 +122,18 @@ class ReservationForm extends Component {
             <div className="col-2 text-right rf-tableHead">Point</div>
             <div className="col-10 rf-tableBody row m-0">
               <input
-                onChange={this.handleInputChange}
+                onChange={e => this.props.handleInputChange(e)}
                 type="number"
                 name="point"
                 id="point"
                 className="rf-input col-3 mx-0"
-                value={this.state.point}
+                value={this.props.state.point}
                 step="1000"
               />
-              <button onClick={this.pointSubmit} className="rf-button col-1">
+              <button
+                onClick={this.props.pointSubmit}
+                className="rf-button col-1"
+              >
                 적용
               </button>
               <span className="font-weight-light col-7">
@@ -152,7 +148,7 @@ class ReservationForm extends Component {
               className="col-10 rf-tableBody"
               style={{ fontFamily: 'NanumSquareEB', color: '#dd6866' }}
             >
-              {this.state.finalPrice}원
+              {this.props.state.finalPrice}원
             </div>
           </div>
           <div className="row">
@@ -172,7 +168,7 @@ class ReservationForm extends Component {
                 name="payment"
                 style={{ marginRight: '3.5px' }}
               />
-              휴대폰
+              카카오페이
             </div>
           </div>
         </div>

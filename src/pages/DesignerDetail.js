@@ -61,7 +61,7 @@ class DesginerDetail extends Component {
     if (Object.values(serviceFormat).length === 0)
       return alert('받을 서비스를 선택해 주세요');
     await this.props.history.push({
-      pathname: `/reservation/${this.props.id}`,
+      pathname: `/reservation`,
       state: {
         price,
         time,

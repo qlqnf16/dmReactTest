@@ -52,6 +52,10 @@ class Schedule extends Component {
 
   cardAddHandler = async cardData => {
     console.log(cardData);
+    Object.values(cardData.must).forEach(must => {
+      if (Object.values(cardData.no).some(no => no === must))
+        return alert('필수 서비스와 불가 서비스는 같을 수 없습니다');
+    });
     if (
       Object.values(cardData).includes(undefined) ||
       Object.values(cardData).includes('null') ||
@@ -59,6 +63,7 @@ class Schedule extends Component {
       cardData.ableTimes.length === 0
     )
       return alert('채워지지 않은 정보가 있습니다');
+
     let newCards = this.state.newCards;
     let nCards = [];
     newCards.push(cardData);
