@@ -6,7 +6,9 @@ import Moment from 'react-moment';
 const Review = props => {
   const review = props.review;
   console.log(review);
-  const images = review.images && review.images.map(img => <img src={img} />);
+  const images =
+    review.images &&
+    review.images.map(img => <img src={img} className="col-4 w-100 h-100" />);
 
   return (
     <div className="r_box">
@@ -32,7 +34,7 @@ const Review = props => {
       <div className="r_content" style={{ marginTop: '22px' }}>
         {review.content}
       </div>
-      <div>{images}</div>
+      <div className="row">{images}</div>
     </div>
   );
 };
