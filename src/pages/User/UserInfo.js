@@ -62,7 +62,8 @@ class UserInfo extends Component {
       return alert('휴대폰 인증을 진행해주세요');
     if (
       Object.values(firebaseUserData) === undefined ||
-      Object.values(firebaseUserData.birthday) === undefined
+      Object.values(firebaseUserData.birthday) === undefined ||
+      Object.values(firebaseUserData.birthday).includes('null')
     )
       return alert('채워지지 않은 정보가 있습니다');
     if (recommendationCode && !this.props.userData.recommendationCode) {
@@ -200,6 +201,7 @@ class UserInfo extends Component {
           value={this.state.year}
           onChange={e => this.inputChangeHandler(e)}
         >
+          <option value="null">-년도-</option>
           {y}
         </select>
         <select
@@ -208,6 +210,7 @@ class UserInfo extends Component {
           value={this.state.month}
           onChange={e => this.inputChangeHandler(e)}
         >
+          <option value="null">-월-</option>
           {m}
         </select>
         <select
@@ -216,6 +219,7 @@ class UserInfo extends Component {
           value={this.state.day}
           onChange={e => this.inputChangeHandler(e)}
         >
+          <option value="null">-일-</option>
           {d}
         </select>
       </div>

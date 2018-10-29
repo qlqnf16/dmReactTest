@@ -144,6 +144,7 @@ class InfoForm extends Component {
           value={this.props.state.year}
           onChange={this.props.changeInput}
         >
+          <option value="null">-년도-</option>
           {y}
         </select>
         <select
@@ -152,6 +153,7 @@ class InfoForm extends Component {
           value={this.props.state.month}
           onChange={this.props.changeInput}
         >
+          <option value="null">-월-</option>
           {m}
         </select>
         <select
@@ -160,6 +162,7 @@ class InfoForm extends Component {
           value={this.props.state.day}
           onChange={this.props.changeInput}
         >
+          <option value="null">-일-</option>
           {d}
         </select>
       </div>
@@ -310,7 +313,11 @@ class InfoForm extends Component {
               name="dYear"
               id="dYear"
               onChange={this.props.changeInput}
-              value={Math.floor(userData.untilDesigner / 12)}
+              value={
+                Math.floor(userData.untilDesigner / 12)
+                  ? Math.floor(userData.untilDesigner / 12)
+                  : undefined
+              }
               className="if_input"
               style={{ width: '17.7%', textAlign: 'center' }}
               placeholder="0"
@@ -326,7 +333,11 @@ class InfoForm extends Component {
               name="dMonth"
               id="dMonth"
               onChange={this.props.changeInput}
-              value={userData.untilDesigner % 12}
+              value={
+                userData.untilDesigner % 12
+                  ? userData.untilDesigner % 12
+                  : undefined
+              }
               className="if_input"
               style={{ width: '17.7%', textAlign: 'center', marginLeft: '3px' }}
               placeholder="0"
@@ -347,7 +358,11 @@ class InfoForm extends Component {
               name="careerYear"
               id="careerYear"
               onChange={this.props.changeInput}
-              value={Math.floor(userData.career / 12)}
+              value={
+                Math.floor(userData.career / 12)
+                  ? Math.floor(userData.career / 12)
+                  : undefined
+              }
               className="if_input"
               style={{ width: '17.7%', textAlign: 'center' }}
               placeholder="0"
@@ -365,7 +380,7 @@ class InfoForm extends Component {
               onChange={this.props.changeInput}
               className="if_input"
               style={{ width: '17.7%', textAlign: 'center', marginLeft: '3px' }}
-              value={userData.career % 12}
+              value={userData.career % 12 ? userData.career % 12 : undefined}
               placeholder="0"
             />{' '}
             <span

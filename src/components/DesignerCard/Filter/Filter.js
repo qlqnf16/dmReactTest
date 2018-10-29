@@ -55,9 +55,9 @@ const Filter = props => {
         <select name="sido" onChange={props.filterChangeHandler}>
           <option value="null">-도/시-</option>
           {props.state.filterSido &&
-            props.state.filterSido.map((sd, key) => (
-              <option key={key} value={sd}>
-                {sd}
+            props.state.filterSido.map((sido, key) => (
+              <option key={key} value={sido}>
+                {sido}
               </option>
             ))}
         </select>
