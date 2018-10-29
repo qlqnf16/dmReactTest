@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import ScheduleBox from '../../components/DesignerSchedule/ScheduleBox/ScheduleBox';
-import axios from 'axios';
-import firebase from '../../config/Firebase';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import ScheduleBox from "../../components/DesignerSchedule/ScheduleBox/ScheduleBox";
+import axios from "axios";
+import firebase from "../../config/Firebase";
+import { connect } from "react-redux";
 class Schedule extends Component {
   state = {
     cards: [],
@@ -54,15 +54,15 @@ class Schedule extends Component {
     console.log(cardData);
     Object.values(cardData.must).forEach(must => {
       if (Object.values(cardData.no).some(no => no === must))
-        return alert('필수 서비스와 불가 서비스는 같을 수 없습니다');
+        return alert("필수 서비스와 불가 서비스는 같을 수 없습니다");
     });
     if (
       Object.values(cardData).includes(undefined) ||
-      Object.values(cardData).includes('null') ||
+      Object.values(cardData).includes("null") ||
       Object.values(cardData).includes(NaN) ||
       cardData.ableTimes.length === 0
     )
-      return alert('채워지지 않은 정보가 있습니다');
+      return alert("채워지지 않은 정보가 있습니다");
 
     let newCards = this.state.newCards;
     let nCards = [];
@@ -77,32 +77,32 @@ class Schedule extends Component {
     let shops;
     shops = this.props.userData.addresses.map(address => address.extraAddress);
     console.log(shops);
-    recruitData['shops'] = shops;
+    recruitData["shops"] = shops;
     if (
       !this.props.userData.expiredAt ||
       this.props.userData.expiredAt < new Date().getTime()
     )
-      return alert('사용중인 이용권이 없습니다.');
+      return alert("사용중인 이용권이 없습니다.");
     //안 채워진 정보 검증
     if (
-      Object.values(recruitData).includes('') ||
+      Object.values(recruitData).includes("") ||
       Object.values(recruitData).includes(null) ||
       Object.values(recruitData.requireTime).length !== 3 ||
-      Object.values(recruitData.requireTime).includes('null')
+      Object.values(recruitData.requireTime).includes("null")
     )
-      return alert('채워지지 않은 정보가 있습니다');
+      return alert("채워지지 않은 정보가 있습니다");
     // 유저에 리크루트 없으면 생성
     if (!this.props.userData._recruit) {
-      console.log('최초 생성');
+      console.log("최초 생성");
       const res = await axios.post(
-        'http://52.79.227.227:3030/recruits',
+        "http://52.79.227.227:3030/recruits",
         recruitData
       );
       console.log(res);
       //firebase에 _recruit 추가
       await firebase
         .database()
-        .ref('users/' + this.props.userData.uid)
+        .ref("users/" + this.props.userData.uid)
         .update({
           _recruit: res.data._id
         });
@@ -119,7 +119,7 @@ class Schedule extends Component {
 
       // 유저가 이미 리크루트 있으면 수정
     } else {
-      console.log('정보 수정');
+      console.log("정보 수정");
 
       await axios.patch(
         `http://52.79.227.227:3030/recruits/${this.props.userData._recruit}`,
@@ -139,8 +139,8 @@ class Schedule extends Component {
       await this.reloadCardData();
     }
     // TODO : 더 좋은 방법 찾기
-    window.location.reload();
-    alert(' 성공적으로 저장되었습니다! ');
+    // window.location.reload();
+    alert(" 성공적으로 저장되었습니다! ");
   };
 
   render() {
@@ -150,7 +150,7 @@ class Schedule extends Component {
       <div className="container-fluid d">
         <div className="d_bg">
           <div className="d_container">
-            <div style={{ color: '#4c91ba' }} className="u_title ">
+            <div style={{ color: "#4c91ba" }} className="u_title ">
               스케줄 등록
             </div>
             <ScheduleBox
