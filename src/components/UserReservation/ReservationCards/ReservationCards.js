@@ -15,6 +15,7 @@ const Reservations = props => (
               reservation={reservation}
               type={'soon'}
               cancelModalToggle={props.cancelModalToggle}
+              showMessage={props.showMessage}
             />
             <div />
             <ReservationDetail reservation={reservation} />
@@ -32,6 +33,7 @@ const Reservations = props => (
               cancelReasonModalToggle={props.cancelReasonModalToggle}
               reviewModalToggle={props.reviewModalToggle}
               showReviewModalToggle={props.showReviewModalToggle}
+              showMore={props.showMore}
             />
           ))}
         </div>

@@ -1,36 +1,35 @@
-import React from 'react';
-import Moment from 'react-moment';
-import { Link } from 'react-router-dom';
-import './ReservationCard.css';
-import calendar_o from '../../assets/images/calendar_o.png';
-import calendar_x from '../../assets/images/calendar_x.png';
-import place_o from '../../assets/images/place_o.png';
-import place_x from '../../assets/images/place_x.png';
-import scissors_o from '../../assets/images/scissors_o.png';
-import scissors_x from '../../assets/images/scissors_x.png';
+import React from "react";
+import Moment from "react-moment";
+import "./ReservationCard.css";
+import calendar_o from "../../assets/images/calendar_o.png";
+import calendar_x from "../../assets/images/calendar_x.png";
+import place_o from "../../assets/images/place_o.png";
+import place_x from "../../assets/images/place_x.png";
+import scissors_o from "../../assets/images/scissors_o.png";
+import scissors_x from "../../assets/images/scissors_x.png";
 
 const ReservationCard = props => {
-  let since = '';
-  let until = '';
-  let services = '';
+  let since = "";
+  let until = "";
+  let services = "";
   if (props.reservation) {
     since = `${parseInt(props.reservation.time.since / 60, 10)}:${
-      props.reservation.time.since % 60 === 0 ? '00' : '30'
+      props.reservation.time.since % 60 === 0 ? "00" : "30"
     }`;
     until = `${parseInt(props.reservation.time.until / 60, 10)}:${
-      props.reservation.time.until % 60 === 0 ? '00' : '30'
+      props.reservation.time.until % 60 === 0 ? "00" : "30"
     }`;
     if (props.reservation.services) {
       Object.keys(props.reservation.services).forEach(service => {
         switch (service) {
-          case 'cut':
-            services += '/ 컷트 ';
+          case "cut":
+            services += "/ 컷트 ";
             break;
-          case 'perm':
-            services += '/ 펌 ';
+          case "perm":
+            services += "/ 펌 ";
             break;
-          case 'dye':
-            services += '/ 염색 ';
+          case "dye":
+            services += "/ 염색 ";
             break;
           default:
             break;
@@ -52,7 +51,7 @@ const ReservationCard = props => {
       </button>
     );
     type = <div className="rc_type canceled">취소</div>;
-  } else if (props.type === 'soon') {
+  } else if (props.type === "soon") {
     button = (
       <button
         className="rc_button"
@@ -94,7 +93,7 @@ const ReservationCard = props => {
         </button>
       );
     }
-  } else if (props.type === 'finish') {
+  } else if (props.type === "finish") {
     if (props.reservation._review) {
       button = (
         <button
@@ -111,61 +110,65 @@ const ReservationCard = props => {
   }
   return (
     <div className="col-3 my-2 px-2">
-      <div className={`drc_${dDay ? 'dDay' : props.type} rc_back p-4`}>
+      <div className={`drc_${dDay ? "dDay" : props.type} rc_back p-4`}>
         <div className="text-right">{type}</div>
         <div
           className={
-            props.type === 'soon' ? 'rc_content drc_title' : 'drc_title drc_off'
+            props.type === "soon" ? "rc_content drc_title" : "drc_title drc_off"
           }
         >
           {props.reservation._user.name}
         </div>
         <div
-          className={props.type === 'soon' ? 'rc_content' : 'rc_content rc_off'}
+          className={props.type === "soon" ? "rc_content" : "rc_content rc_off"}
         >
           <img
             alt="alt"
-            src={props.type === 'soon' ? calendar_o : calendar_x}
+            src={props.type === "soon" ? calendar_o : calendar_x}
             className="rc_icon"
-          />{' '}
+          />{" "}
           <Moment unix format="YYYY/MM/DD">
             {props.reservation.date / 1000}
-          </Moment>{' '}
+          </Moment>{" "}
           {since} ~ {until}
         </div>
         <div
-          className={props.type === 'soon' ? 'rc_content' : 'rc_content rc_off'}
+          className={props.type === "soon" ? "rc_content" : "rc_content rc_off"}
         >
           <img
             alt="alt"
-            src={props.type === 'soon' ? place_o : place_x}
+            src={props.type === "soon" ? place_o : place_x}
             className="rc_icon"
-          />{' '}
+          />{" "}
           {props.reservation._card && props.reservation._card.shop}
         </div>
         <div
-          className={props.type === 'soon' ? 'rc_content' : 'rc_content rc_off'}
+          className={props.type === "soon" ? "rc_content" : "rc_content rc_off"}
         >
           <img
             alt="alt"
-            src={props.type === 'soon' ? scissors_o : scissors_x}
+            src={props.type === "soon" ? scissors_o : scissors_x}
             className="rc_icon"
-          />{' '}
+          />{" "}
           {services}
         </div>
         <div className="mt-4 d-flex justify-content-between">
           {button}
-          <Link
-            to={`/designerdetail/${props.reservation._designer._recruit._id}`}
+          <div
             className="rc_button"
-            style={{
-              color: '#1f3354',
-              textDecoration: 'none',
-              marginLeft: '22px'
-            }}
+            style={{ color: "#1f3354", marginLeft: "22px" }}
+            onClick={
+              props.type === "soon"
+                ? () =>
+                    props.showMessage(
+                      props.reservation._id,
+                      props.reservation._user.name
+                    )
+                : () => props.showMore(props.reservation._designer._recruit)
+            }
           >
-            <div>더보기</div>
-          </Link>
+            더보기
+          </div>
         </div>
       </div>
     </div>

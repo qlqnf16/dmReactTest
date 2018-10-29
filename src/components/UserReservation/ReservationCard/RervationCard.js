@@ -1,7 +1,6 @@
 import React from 'react';
 import Moment from 'react-moment';
 import './ReservationCard.css';
-import { Link } from 'react-router-dom';
 import calendar_o from '../../../assets/images/calendar_o.png';
 import calendar_x from '../../../assets/images/calendar_x.png';
 import place_o from '../../../assets/images/place_o.png';
@@ -189,17 +188,21 @@ const ReservationCard = props => {
           </div>
           <div className="d-flex justify-content-between">
             {button}
-            <Link
-              to={`/designerdetail/${props.reservation._designer._recruit._id}`}
+            <div
               className="rc_button"
-              style={{
-                color: '#1f3354',
-                textDecoration: 'none',
-                marginLeft: '22px'
-              }}
+              style={{ color: '#1f3354', marginLeft: '22px' }}
+              onClick={
+                props.type === 'soon'
+                  ? () =>
+                      props.showMessage(
+                        props.reservation._id,
+                        props.reservation._designer.name
+                      )
+                  : () => props.showMore(props.reservation._designer._recruit)
+              }
             >
-              <div>더보기</div>
-            </Link>
+              {props.type === 'soon' ? '메시지' : '더보기'}
+            </div>
           </div>
           <div
             className={

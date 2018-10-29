@@ -80,6 +80,19 @@ class Reservations extends Component {
 
   reservationSort = (r1, r2) => r1.date - r2.date;
 
+  showMore = recruit => {
+    this.props.history.push({
+      pathname: `/designerdetail/${recruit._id}`
+    });
+  };
+
+  showMessage = (reservationId, designerName) => {
+    this.props.history.push({
+      pathname: `/chat`,
+      search: `?r=${reservationId}&n=${designerName}`
+    });
+  };
+
   render() {
     let futureReservations = [];
     let previousReservations = [];
@@ -109,6 +122,8 @@ class Reservations extends Component {
             cancelReasonModalToggle={this.cancelReasonModalToggle}
             reviewModalToggle={this.reviewModalToggle}
             showReviewModalToggle={this.showReviewModalToggle}
+            showMore={this.showMore}
+            showMessage={this.showMessage}
           />
         </div>
         <CancelReasonModal
