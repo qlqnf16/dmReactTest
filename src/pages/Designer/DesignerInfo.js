@@ -77,18 +77,23 @@ class DesignerInfo extends Component {
     let file = e.target.files[0];
     switch (e.target.name) {
       case 'cert1':
-        this.setState({ certImg1: URL.createObjectURL(file) });
-        this.setState({ certFile1: file });
+        if (!file) return this.setState({ certImg1: null, certFile1: null });
+        this.setState({ certImg1: URL.createObjectURL(file), certFile1: file });
         break;
       case 'cert2':
-        this.setState({ certImg2: URL.createObjectURL(file) });
-        this.setState({ certFile2: file });
+        if (!file) return this.setState({ certImg2: null, certFile2: null });
+        this.setState({ certImg2: URL.createObjectURL(file), certFile2: file });
         break;
       case 'profileImg':
-        this.setState({ profileImg: URL.createObjectURL(file) });
-        this.setState({ profileFile: file });
+        if (!file)
+          return this.setState({ profileImg: null, profileFile: null });
+        this.setState({
+          profileImg: URL.createObjectURL(file),
+          profileFile: file
+        });
         break;
       case 'portfolio':
+        if (!file) this.setState({ portfolioImg: null, portfolioFile: null });
         this.state.portfolioImg.push(URL.createObjectURL(file));
         this.state.portfolioFile.push(file);
         this.setState({ num: this.state.num + 1 });

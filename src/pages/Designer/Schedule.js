@@ -74,6 +74,10 @@ class Schedule extends Component {
 
   totalSubmitHandler = async recruitData => {
     console.log(recruitData);
+    let shops;
+    shops = this.props.userData.addresses.map(address => address.extraAddress);
+    console.log(shops);
+    recruitData['shops'] = shops;
     if (
       !this.props.userData.expiredAt ||
       this.props.userData.expiredAt < new Date().getTime()

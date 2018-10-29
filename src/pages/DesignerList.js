@@ -59,10 +59,18 @@ class DesignerList extends Component {
 
   getFilteredCards = async () => {
     let must = '';
-    let no = '';
     let gender = '';
+    let no = '';
+    let date = '';
+    let sido = '';
+    let sigungu = '';
 
-    if (this.state.gender) gender = `gender=${this.state.gender}`;
+    if (this.state.sido) sido = `sido=${this.state.sido}&`;
+    if (this.state.sigungu) sigungu = `sigungu=${this.state.sigungu}&`;
+
+    if (this.state.date) date = `date=${new Date(this.state.date).getTime()}&`;
+
+    if (this.state.gender) gender = `gender=${this.state.gender}&`;
 
     if (this.state.cut === '100') must += 'cut=1&';
     else if (this.state.cut === '0') no += 'cut=2&';
@@ -70,16 +78,28 @@ class DesignerList extends Component {
     else if (this.state.perm === '0') no += 'perm=2&';
     if (this.state.dye === '100') must += 'dye=1&';
     else if (this.state.dye === '0') no += 'dye=2&';
-
+    if (no === 'cut=2&perm=2&dye=2&')
+      return alert('받으실 서비스를 선택해주세요');
     const { data } = await axios.get(
-      'http://52.79.227.227:3030/cards?' + must + no + gender
+      'http://52.79.227.227:3030/cards?' +
+        must +
+        no +
+        gender +
+        date +
+        sido +
+        sigungu
     );
+
     let recruits = data.map(d => d._recruit);
 
     let uniqueRecruits = [];
     const counter = {};
     recruits.forEach(recruit => {
-      if (!counter[recruit._id]) {
+      if (
+        !counter[recruit._id] &&
+        recruit._designer.expiredAt &&
+        recruit._designer.expiredAt > new Date().getTime()
+      ) {
         uniqueRecruits.push(recruit);
         counter[recruit._id] = true;
       }
@@ -128,7 +148,7 @@ class DesignerList extends Component {
           <Filter
             getFilteredCards={this.getFilteredCards}
             filterChangeHandler={e => this.filterChangeHandler(e)}
-            checked={!this.state.gender ? 'male' : this.state.gender}
+            checked={this.state.gender}
             state={this.state}
             sigungu={sigungu}
           />

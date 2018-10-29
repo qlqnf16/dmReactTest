@@ -155,9 +155,12 @@ class ScheduleBox extends Component {
         ableTimes.push(ableTime);
       }
     });
-    let region;
+    let sido, sigungu;
     this.props.userData.addresses.forEach(address => {
-      if (address.extraAddress === this.state.shop) region = address.sigungu;
+      if (address.extraAddress === this.state.shop) {
+        sido = address.sido;
+        sigungu = address.sigungu;
+      }
     });
     const cardData = {
       must: this.state.must,
@@ -169,7 +172,8 @@ class ScheduleBox extends Component {
       permPrice: this.state.permPrice,
       dyePrice: this.state.dyePrice,
       ableTimes,
-      region
+      sido,
+      sigungu
     };
     console.log(cardData);
     let requireTime = null;
