@@ -177,7 +177,8 @@ class DesignerInfo extends Component {
         });
 
       // 유효하지 않은 추천인 코드일 때,
-      if (!result) alert('유효하지 않은 추천인 코드 입니다.');
+      if (!result || designerRecommendationCode === this.props.userData.uid)
+        alert('유효하지 않은 추천인 코드 입니다.');
       // 유효한 추천인 코드일 때,
       else {
         let { designerRecommendation, _id } = result.val();
@@ -186,7 +187,6 @@ class DesignerInfo extends Component {
         count += 1;
 
         // TODO : 추천2회면 티켓 추가
-        // TODO : 본인은 추천 안되게
         if (count === 2) {
           count = 0;
           // await axios.patch(
@@ -201,9 +201,7 @@ class DesignerInfo extends Component {
         await firebase
           .database()
           .ref('users/' + designerRecommendationCode)
-          .update({
-            designerRecommendation: count
-          });
+          .update({ designerRecommendation: count });
       }
     }
     // 최종 유저정보 저장

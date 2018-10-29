@@ -184,7 +184,7 @@ class AddDesigner extends Component {
         .on('value', res => {
           result = res;
         });
-      if (!result) {
+      if (!result || designerRecommendationCode === this.props.userData.uid) {
         alert('유효하지 않은 추천인 코드 입니다.');
       } else {
         let { designerRecommendation, _id } = result.val();
@@ -193,7 +193,6 @@ class AddDesigner extends Component {
         count += 1;
 
         // TODO : 추천2회면 티켓 추가
-        // TODO : 본인은 추천 안되게.
         if (count === 2) {
           count = 0;
           // await axios.patch(
@@ -217,7 +216,6 @@ class AddDesigner extends Component {
       .update(firebaseUserData);
     alert('성공적으로 신청되었습니다');
 
-    // TODO: 첨부 안했을때 오류가 나는듯...?
     const formData = new fd();
     formData.append('cert_mh', this.state.certFile1);
     formData.append('cert_jg', this.state.certFile2);

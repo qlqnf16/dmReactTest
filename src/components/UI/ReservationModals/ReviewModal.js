@@ -60,7 +60,6 @@ class ReviewModal extends Component {
       return alert('채워지지 않은 정보가 있습니다');
 
     // review 생성
-    // TODO: 리뷰사진을 저장해야하는데...
     const { data } = await axios.post(
       `http://52.79.227.227:3030/recruits/${
         this.props.reservation._designer._recruit._id

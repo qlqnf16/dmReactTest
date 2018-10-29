@@ -14,7 +14,6 @@ class QnA extends Component {
 
   qnaSubmit = () => {
     console.log(this.state);
-    // TODO : DB에 qna 추가
     const inquirie = {
       ...this.state,
       _user: this.props.userData._id

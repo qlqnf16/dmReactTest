@@ -30,7 +30,6 @@ class CancelModal extends Component {
       }
     );
 
-    // TODO : isToday 써먹기
     if (this.props.isToday) {
       console.log('당일취소');
       await firebase

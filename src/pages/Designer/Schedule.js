@@ -130,7 +130,7 @@ class Schedule extends Component {
       await this.reloadCardData();
     }
     // TODO : 더 좋은 방법 찾기
-    // window.location.reload();
+    window.location.reload();
     alert(' 성공적으로 저장되었습니다! ');
   };
 

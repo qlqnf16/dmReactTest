@@ -74,7 +74,7 @@ class UserInfo extends Component {
         .on('value', res => {
           result = res;
         });
-      if (!result) {
+      if (!result || recommendationCode === this.props.userData.uid) {
         alert('유효하지 않은 추천인 코드 입니다.');
       } else {
         let { recommendation, _id } = result.val();
@@ -82,7 +82,6 @@ class UserInfo extends Component {
         firebaseUserData = { ...firebaseUserData, recommendationCode };
         count += 1;
 
-        // TODO : 추천 3회면 포인트 추가해주기
         // if (count === 3) {
         //   count = 0;
         await axios.patch(`http://52.79.227.227:3030/users/${_id}/addpoint`);

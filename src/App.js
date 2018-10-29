@@ -303,42 +303,45 @@ class App extends Component {
               component={this.props.userData.isD ? Cash : WrongAccess}
             />
 
-            {/* TODO: admin */}
             <Route
               path="/admin/userList"
-              component={this.props.userData.isD ? AdminUserList : WrongAccess}
+              component={
+                this.props.userData.isAdmin ? AdminUserList : WrongAccess
+              }
             />
             <Route
               path="/admin/designerList"
               component={
-                this.props.userData.isD ? AdminDesignerList : WrongAccess
+                this.props.userData.isAdmin ? AdminDesignerList : WrongAccess
               }
             />
             <Route
               path="/admin/waitingList"
               component={
-                this.props.userData.isD ? AdminWaitingList : WrongAccess
+                this.props.userData.isAdmin ? AdminWaitingList : WrongAccess
               }
             />
             <Route
               path="/admin/reservationList"
               component={
-                this.props.userData.isD ? AdminReservationList : WrongAccess
+                this.props.userData.isAdmin ? AdminReservationList : WrongAccess
               }
             />
             <Route
               path="/admin/makecoupon"
               component={
-                this.props.userData.isD ? AdminMakeCoupon : WrongAccess
+                this.props.userData.isAdmin ? AdminMakeCoupon : WrongAccess
               }
             />
             <Route
               path="/admin/noshow"
-              component={this.props.userData.isD ? AdminNoShow : WrongAccess}
+              component={
+                this.props.userData.isAdmin ? AdminNoShow : WrongAccess
+              }
             />
             <Route
               path="/admin/qna"
-              component={this.props.userData.isD ? AdminQnA : WrongAccess}
+              component={this.props.userData.isAdmin ? AdminQnA : WrongAccess}
             />
           </div>
           <Footer />

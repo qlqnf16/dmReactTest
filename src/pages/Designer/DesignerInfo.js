@@ -184,7 +184,7 @@ class DesignerInfo extends Component {
         .on('value', res => {
           result = res;
         });
-      if (!result) {
+      if (!result || designerRecommendationCode === this.props.userData.uid) {
         alert('유효하지 않은 추천인 코드 입니다.');
       } else {
         let { designerRecommendation, _id } = result.val();
