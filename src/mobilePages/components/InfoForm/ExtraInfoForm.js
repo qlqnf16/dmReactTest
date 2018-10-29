@@ -8,6 +8,7 @@ const ExtraInfoForm = props => {
     ImgPreviewStyle,
     defaultInputFileDisplayNone,
     fileAttachingContainerStyle,
+    portfolioContainerStyle,
     fileAttachingInputStyle,
     textareaStyle
   } = styles;
@@ -66,7 +67,20 @@ const ExtraInfoForm = props => {
         />
       </div>
       <div style={labelStyle}>포트폴리오</div>
-      <div style={fileAttachingContainerStyle}>
+      {/* TODO: 포트폴리오 이미지 프리뷰 예쁘게 만들어주세요 */}
+      <div style={portfolioContainerStyle}>
+        {props.state.num > 0
+          ? userData.portfolioImg.map((url, i) => (
+              <div style={fileAttachingInputStyle}>
+                <ImgPreview
+                  style={ImgPreviewStyle}
+                  url={url}
+                  key={i}
+                  deletePortfolio={props.deletePortfolio}
+                />
+              </div>
+            ))
+          : null}
         <label style={{ width: '50%', marginRight: '4%' }} for="portfolio">
           <input
             style={defaultInputFileDisplayNone}
@@ -75,7 +89,10 @@ const ExtraInfoForm = props => {
             name="portfolio"
             onChange={props.handleImgChange}
           />
-          <div style={fileAttachingInputStyle}>{portfolio}</div>
+          <div style={fileAttachingInputStyle}>
+            <span>포트폴리오</span>
+            <span style={{ fontSize: '2rem' }}>+</span>
+          </div>
         </label>
       </div>
     </div>
@@ -108,6 +125,7 @@ const styles = {
     justifyContent: 'flex-start'
   },
   fileAttachingInputStyle: {
+    width: '100%',
     height: 134,
     borderRadius: 5,
     border: 'solid 1px rgba(0, 0, 0, 0.1)',
