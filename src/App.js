@@ -345,6 +345,7 @@ class App extends Component {
               component={this.props.userData.isAdmin ? AdminQnA : WrongAccess}
             />
           </div>
+          <div style={{ height: 200 }} />
           <Footer />
         </Fragment>
       );
