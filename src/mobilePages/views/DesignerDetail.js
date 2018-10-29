@@ -176,13 +176,15 @@ class DesignerDetail extends Component {
               style={{ ...buttonStyle, width: '100%' }}
               onClick={this.toggleModal}
             >
-              결제하기
+              <Link
+                style={{ color: 'white' }}
+                to={{ pathname: `/reservation/${this.props.id}`, state: {} }}
+              >
+                결제하기
+              </Link>
             </div>
           </ModalFooter>
         </Modal>
-        <Link to={{ pathname: `/reservation/${this.props.id}`, state: {} }}>
-          <div>결제 페이지로</div>
-        </Link>
       </div>
     );
   }
