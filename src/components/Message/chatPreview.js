@@ -20,7 +20,8 @@ const Message = props => (
         className="cp_link"
       >
         <div className="cp_content">
-          {(props.latest && props.latest.content) || '메세지가 없습니다!'}
+          {(props.latest && props.latest.content) ||
+            '새로운 대화방이 생성되었습니다. 지금 바로 대화를 시작해보세요!'}
         </div>
       </Link>
     </div>
