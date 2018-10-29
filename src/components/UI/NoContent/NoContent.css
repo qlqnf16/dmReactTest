@@ -1,0 +1,19 @@
+.noContent {
+  width: 100%;
+  margin-left: 10px;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 173.3px;
+  padding: 9.8px;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.03);
+  color: #1f3354;
+  font-size: 1.5rem;
+}
+
+.noContent:hover {
+  text-decoration: none;
+}

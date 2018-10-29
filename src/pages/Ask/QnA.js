@@ -24,10 +24,10 @@ class QnA extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container-fluid ask">
         <AskNav />
-        <h1>관리자 문의</h1>
-        <div className="container">
+        <div className="ask_title">관리자 문의</div>
+        <div style={{ width: '50%', margin: 'auto' }}>
           <FormGroup row>
             <div className="col-3 if_head">성명</div>
             <div className="col-9">
@@ -67,16 +67,23 @@ class QnA extends Component {
           <FormGroup row>
             <div className="col-3 if_head">내용</div>
             <div className="col-9">
-              <input
-                type="content"
+              <textarea
                 name="content"
                 id="content"
                 onChange={this.inputChangeHandler}
                 className="if_input"
+                style={{ height: '262px' }}
               />
             </div>
           </FormGroup>
-          <button onClick={this.qnaSubmit}>제출</button>
+          <FormGroup row>
+            <div className="col-3" />
+            <div className="col-9">
+              <div className="ask_button" onClick={this.qnaSubmit}>
+                제출하기
+              </div>
+            </div>
+          </FormGroup>
         </div>
       </div>
     );

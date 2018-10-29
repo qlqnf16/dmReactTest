@@ -1,34 +1,44 @@
 .ticket_box_back {
   padding: 3rem;
-  min-height: 85vh !important;
   background-size: contain;
   background-repeat: no-repeat;
   margin-left: -2rem !important;
 }
 .ticket_box_table {
+  width: 77%;
+  overflow-x: hidden;
   font-size: 1.3rem;
   text-align: center;
   color: rgba(0, 0, 0, 0.65);
   font-weight: bold;
-  margin: 0 14% !important;
-
-  /* border-bottom: solid 1px rgba(0, 0, 0, 0.5); */
+  margin: 0 8% 0 18% !important;
 }
+
 .ticket_box_table_header {
   border-bottom: solid 1px rgba(0, 0, 0, 0.5);
-  padding: 1rem 0;
+  padding: 1rem 1rem;
+  text-align: center;
 }
+
 .ticket_box_row {
   font-size: 1.3rem;
   text-align: center;
   color: rgba(0, 0, 0, 0.65);
-  margin: 0 14% !important;
   padding-left: 1rem !important;
-}
-.ticket_box_row_header {
+  font-weight: normal;
   border-bottom: solid 1px rgba(0, 0, 0, 0.1);
   padding: 2rem 0 1.5rem 0;
 }
 .ticket_box_line {
   line-height: 4rem;
+}
+
+.ticket_box_table_body {
+  width: 100%;
+  height: 415px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  padding-left: 13px;
+  padding-right: 17px;
+  box-sizing: content-box;
 }

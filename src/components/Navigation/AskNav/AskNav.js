@@ -1,44 +1,41 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import './AskNav.css';
 
 const AskNav = () => (
-  <div>
+  <div className="an_container">
     <NavLink
-      className="m-2 lg"
+      className="an_navItem"
       to="/termsofuse"
       activeStyle={{
-        color: '#1f3354',
-        borderBottom: 'solid 1.8px #1f3354'
+        color: '#dd6866'
       }}
     >
       이용약관
     </NavLink>
     <NavLink
-      className="m-2 lg"
+      className="an_navItem"
       to="/infopolicy"
       activeStyle={{
-        color: '#1f3354',
-        borderBottom: 'solid 1.8px #1f3354'
+        color: '#dd6866'
       }}
     >
       개인정보취급방침
     </NavLink>
     <NavLink
-      className="m-2 lg"
+      className="an_navItem"
       to="/FAQ"
       activeStyle={{
-        color: '#1f3354',
-        borderBottom: 'solid 1.8px #1f3354'
+        color: '#dd6866'
       }}
     >
       FAQ
     </NavLink>
     <NavLink
-      className="m-2 lg"
+      className="an_navItem"
       to="/QnA"
       activeStyle={{
-        color: '#1f3354',
-        borderBottom: 'solid 1.8px #1f3354'
+        color: '#dd6866'
       }}
     >
       관리자 문의

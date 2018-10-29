@@ -17,24 +17,27 @@ const TicketList = props => {
       else ticketState = <div>만료</div>;
     } else ticketPeriod = <div />;
     ticketState = (
-      <div onClick={() => props.ticketActivate(ticket._id)}>사용하기</div>
+      <div
+        onClick={() => props.ticketActivate(ticket._id)}
+        style={{ cursor: 'pointer' }}
+      >
+        사용하기
+      </div>
     );
     return (
-      <div className="ticket_box_row" key={ticket.purchasedAt}>
-        <div className="row ticket_box_row_header">
-          <div className="col-2 ticket_box_line p-0">
-            {ticket.price === 10000 ? '1개월 이용권' : '3개월 이용권'}
-          </div>
-          {/* <div className="col-3">{ticket.purchasedAt}</div> */}
-          <div className="col-3 ticket_box_line">
-            <Moment format="YYYY/MM/DD">{ticket.createdAt}</Moment>
-          </div>
-          <div className="col-2 ticket_box_line item-align-center">
-            <div>{ticket.price}원</div>
-          </div>
-          <div className="col-3">{ticketPeriod}</div>
-          <div className="col-2 ticket_box_line">{ticketState}</div>
+      <div className="ticket_box_row row" key={ticket.purchasedAt}>
+        <div className="col-2 ticket_box_line p-0">
+          {ticket.price === 10000 ? '1개월 이용권' : '3개월 이용권'}
         </div>
+        {/* <div className="col-3">{ticket.purchasedAt}</div> */}
+        <div className="col-3 ticket_box_line">
+          <Moment format="YYYY/MM/DD">{ticket.createdAt}</Moment>
+        </div>
+        <div className="col-2 ticket_box_line item-align-center">
+          <div>{ticket.price}원</div>
+        </div>
+        <div className="col-3">{ticketPeriod}</div>
+        <div className="col-2 ticket_box_line">{ticketState}</div>
       </div>
     );
   });
