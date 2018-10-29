@@ -164,6 +164,39 @@ class InfoForm extends Component {
         </select>
       </div>
     );
+
+    let cert1, cert2;
+    if (this.props.certImg1) {
+      cert1 = (
+        <ImgPreview
+          url={this.props.certImg1}
+          style={{ maxWidth: '100%', maxHeight: '100%' }}
+        />
+      );
+    } else {
+      cert1 = (
+        <Fragment>
+          <span>미용사 면허증</span>
+          <span>+</span>
+        </Fragment>
+      );
+    }
+    if (this.props.certImg2) {
+      cert2 = (
+        <ImgPreview
+          url={this.props.certImg2}
+          style={{ maxWidth: '100%', maxHeight: '100%' }}
+        />
+      );
+    } else {
+      cert2 = (
+        <Fragment>
+          <span>미용사 자격증</span>
+          <span>+</span>
+        </Fragment>
+      );
+    }
+
     return (
       <Fragment>
         <FormGroup row>
@@ -364,21 +397,25 @@ class InfoForm extends Component {
         <FormGroup row>
           <div className="col-3 if_head">면허증/자격증</div>
           <div className="col-9 pt-3">
-            <ImgPreview url={this.props.certImg1} />
-            <ImgPreview url={this.props.certImg2} />
-            <div className="row">
-              <input
-                className="col-6"
-                type="file"
-                name="cert1"
-                onChange={this.props.imgChange}
-              />
-              <input
-                className="col-6"
-                type="file"
-                name="cert2"
-                onChange={this.props.imgChange}
-              />
+            <div className="if_grid">
+              <label>
+                <input
+                  className="d-none"
+                  type="file"
+                  name="cert1"
+                  onChange={this.props.imgChange}
+                />
+                <div className="if_file">{cert1}</div>
+              </label>
+              <label>
+                <input
+                  style={{ display: 'none' }}
+                  type="file"
+                  name="cert2"
+                  onChange={this.props.imgChange}
+                />
+                <div className="if_file">{cert2}</div>
+              </label>
             </div>
             <div className="if_detail" style={{ marginTop: '8.3px' }}>
               취득한것만 올려주시면 됩니다. 드리머리 예디 승인 여부에 사용되며
