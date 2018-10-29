@@ -1,9 +1,10 @@
-import React, { Component } from "react";
-import firebase from "../../config/Firebase";
-import { connect } from "react-redux";
-import UserNav from "../../components/Navigation/UserNav/UserNav";
-import CouponContent from "../../components/CouponContent/CouponContent";
-import { FormGroup } from "reactstrap";
+import React, { Component } from 'react';
+import firebase from '../../config/Firebase';
+import axios from 'axios';
+import { connect } from 'react-redux';
+import UserNav from '../../components/Navigation/UserNav/UserNav';
+import CouponContent from '../../components/CouponContent/CouponContent';
+import { FormGroup } from 'reactstrap';
 
 class Coupon extends Component {
   inputChangeHandler = event => {
@@ -14,13 +15,18 @@ class Coupon extends Component {
     this.setState({ [name]: value });
   };
 
-  couponSubmit = () => {
+  couponSubmit = async () => {
     console.log(this.state.coupon);
+
+    axios.patch(`http://52.79.227.227:3030/coupon/${this.state.coupon}`, {
+      user: this.props.userData._id
+    });
+    await alert('쿠폰이 적용 되었습니다.');
   };
   render() {
     return (
       <div className="container-fluid u">
-        <div className="d-flex" style={{ minHeight: "70vh" }}>
+        <div className="d-flex" style={{ minHeight: '70vh' }}>
           <UserNav />
           <div className="u_bg">
             <div className="u_container">
@@ -38,7 +44,7 @@ class Coupon extends Component {
                   />
                   <div
                     className="coupon_button"
-                    style={{ border: "solid 1px #dd6866", color: "#dd6866" }}
+                    style={{ border: 'solid 1px #dd6866', color: '#dd6866' }}
                     onClick={() => this.couponSubmit()}
                   >
                     적용
@@ -47,7 +53,7 @@ class Coupon extends Component {
               </FormGroup>
 
               <div className="uif_title d-flex">
-                추천인 코드{" "}
+                추천인 코드{' '}
                 <span className="mr-5 ml-auto">
                   내 추천으로 가입한 친구 : {this.props.userData.recommendation}
                   명

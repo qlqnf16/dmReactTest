@@ -21,13 +21,17 @@ class DesignerList extends Component {
   componentDidMount = async () => {
     if (!this.state.madeRequest) {
       const { data } = await axios.get('http://52.79.227.227:3030/recruits');
-      data.sort((a, b) => {
+      const filteredData = data.filter(
+        d =>
+          d._designer.expiredAt && d._designer.expiredAt > new Date().getTime()
+      );
+      filteredData.sort((a, b) => {
         if (a.score < b.score) return 1;
         else if (a.score > b.score) return -1;
         else return 0;
       });
       this.setState({
-        recruits: data,
+        recruits: filteredData,
         madeRequest: true
       });
     }

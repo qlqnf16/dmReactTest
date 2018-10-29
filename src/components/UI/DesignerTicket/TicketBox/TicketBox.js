@@ -16,7 +16,7 @@ const TicketBox = props => (
         <div className="col-2">상태</div>
       </div>
     </div>
-    <TicketList tickets={props.tickets} />
+    <TicketList tickets={props.tickets} ticketActivate={props.ticketActivate} />
   </div>
 );
 

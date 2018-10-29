@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import firebase from '../../config/Firebase';
 import fd from 'form-data';
 import axios from 'axios';
+import { rejects } from 'assert';
 
 class DesignerInfo extends Component {
   constructor(props) {
@@ -169,6 +170,7 @@ class DesignerInfo extends Component {
 
     if (
       Object.values(firebaseUserData).includes(undefined) ||
+      Object.values(firebaseUserData.birthday).includes(undefined) ||
       addresses.length === 0
     )
       return alert('채워지지 않은 정보가 있습니다');
@@ -178,31 +180,32 @@ class DesignerInfo extends Component {
     ) {
       let count = 0;
       let result = null;
-      await firebase
-        .database()
-        .ref('users/' + designerRecommendationCode)
-        .on('value', res => {
-          result = res;
-        });
+      const fbPromise = new Promise(resolve => {
+        firebase
+          .database()
+          .ref('users/' + designerRecommendationCode)
+          .on('value', res => {
+            resolve(res);
+          });
+      });
+
+      result = await fbPromise;
       if (!result || designerRecommendationCode === this.props.userData.uid) {
-        alert('유효하지 않은 추천인 코드 입니다.');
+        await alert('유효하지 않은 추천인 코드 입니다.');
       } else {
         let { designerRecommendation, _id } = result.val();
         if (designerRecommendation) count = designerRecommendation;
         firebaseUserData = { ...firebaseUserData, designerRecommendationCode };
         count += 1;
 
-        // TODO : 추천2회면 티켓 추가
         if (count === 2) {
           count = 0;
-          // await axios.patch(
-          //   `http://52.79.227.227:3030/users/${_id}`,
-          //   {
-          //     ticket: 더하기(백에서 하는게 나을듯)
-          //   }
-          // );
-        }
 
+          await axios.post(`http://52.79.227.227:3030/users/${_id}/tickets`, {
+            price: 10000
+          });
+        }
+        await alert(count);
         await firebase
           .database()
           .ref('users/' + designerRecommendationCode)

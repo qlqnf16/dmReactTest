@@ -178,12 +178,16 @@ class AddDesigner extends Component {
     ) {
       let count = 0;
       let result = null;
-      await firebase
-        .database()
-        .ref('users/' + designerRecommendationCode)
-        .on('value', res => {
-          result = res;
-        });
+      const fbPromise = new Promise(resolve => {
+        firebase
+          .database()
+          .ref('users/' + designerRecommendationCode)
+          .on('value', res => {
+            resolve(res);
+          });
+      });
+
+      result = await fbPromise;
       if (!result || designerRecommendationCode === this.props.userData.uid) {
         alert('유효하지 않은 추천인 코드 입니다.');
       } else {
@@ -192,15 +196,11 @@ class AddDesigner extends Component {
         firebaseUserData = { ...firebaseUserData, designerRecommendationCode };
         count += 1;
 
-        // TODO : 추천2회면 티켓 추가
         if (count === 2) {
           count = 0;
-          // await axios.patch(
-          //   `http://52.79.227.227:3030/users/${_id}`,
-          //   {
-          //     ticket: 더하기(백에서 하는게 나을듯)
-          //   }
-          // );
+          await axios.post(`http://52.79.227.227:3030/users/${_id}/tickets`, {
+            price: 10000
+          });
         }
 
         await firebase
