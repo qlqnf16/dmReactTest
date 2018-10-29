@@ -1,0 +1,26 @@
+/* for fullscreen modal */
+.modal-dialog {
+  margin: 0 !important;
+  height: 100vh !important;
+}
+
+.modal-content {
+  padding: 0 7.5%;
+  padding-top: 5%;
+  height: 100%;
+  text-align: center;
+}
+
+.modal-header,
+.modal-body,
+.modal-footer {
+  padding: 0 !important;
+}
+
+.modal-header {
+  padding-bottom: 1rem !important;
+}
+
+.close {
+  font-size: 3rem !important;
+}

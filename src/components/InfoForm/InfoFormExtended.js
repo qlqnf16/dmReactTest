@@ -4,17 +4,38 @@ import ImgPreview from './ImgPreview';
 
 class InfoFormExtended extends Component {
   render() {
+    let profileImg;
+    if (this.props.profileImg) {
+      profileImg = (
+        <ImgPreview
+          url={this.props.profileImg}
+          style={{ maxWidth: '100%', maxHeight: '100%' }}
+        />
+      );
+    } else {
+      profileImg = (
+        <Fragment>
+          <span>사진 등록</span>
+          <span>+</span>
+        </Fragment>
+      );
+    }
     return (
       <Fragment>
         <FormGroup row>
           <div className="col-3 if_head">프로필 사진</div>
           <div className="col-9 pt-3">
-            <ImgPreview url={this.props.profileImg} />
-            <input
-              type="file"
-              name="profileImg"
-              onChange={this.props.imgChange}
-            />
+            <div className="if_grid three">
+              <label>
+                <input
+                  style={{ display: 'none' }}
+                  type="file"
+                  name="profileImg"
+                  onChange={this.props.imgChange}
+                />
+                <div className="if_file">{profileImg}</div>
+              </label>
+            </div>
           </div>
         </FormGroup>
         <FormGroup row>
@@ -33,20 +54,33 @@ class InfoFormExtended extends Component {
         <FormGroup row>
           <div className="col-3 if_head">포트폴리오</div>
           <div className="col-9 pt-3">
-            {this.props.num > 0
-              ? this.props.portfolioImg.map((url, i) => (
-                  <ImgPreview
-                    url={url}
-                    key={i}
-                    deletePortfolio={this.props.deletePortfolio}
-                  />
-                ))
-              : null}
-            <input
-              type="file"
-              name="portfolio"
-              onChange={this.props.imgChange}
-            />
+            <div className="if_grid three">
+              {this.props.num > 0
+                ? this.props.portfolioImg.map((url, i) => (
+                    <div className="if_file">
+                      <ImgPreview
+                        url={url}
+                        key={i}
+                        deletePortfolio={this.props.deletePortfolio}
+                        style={{ maxWidth: '100%', maxHeight: '100%' }}
+                      />
+                    </div>
+                  ))
+                : null}
+
+              <label>
+                <input
+                  style={{ display: 'none' }}
+                  type="file"
+                  name="portfolio"
+                  onChange={this.props.imgChange}
+                />
+                <div className="if_file">
+                  <span>사진 등록</span>
+                  <span>+</span>
+                </div>
+              </label>
+            </div>
           </div>
         </FormGroup>
         {/* <FormGroup row>
