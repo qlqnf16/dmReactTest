@@ -221,7 +221,10 @@ class ScheduleBox extends Component {
           />
         </div>
         <div className="col-6 mt-5">
-          <div className="bg-light row" style={{ padding: '1.5rem' }}>
+          <div
+            className="bg-light row"
+            style={{ padding: '1.5rem', minHeight: '735px' }}
+          >
             {this.state.cards.sort(this.cardSort).map((card, key) => (
               <ScheduleCard
                 cancelCardHandler={this.props.cancelCardHandler}

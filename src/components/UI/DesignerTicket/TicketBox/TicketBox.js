@@ -23,34 +23,6 @@ const TicketBox = props => (
           tickets={props.tickets}
           ticketActivate={props.ticketActivate}
         />
-        <TicketList
-          tickets={props.tickets}
-          ticketActivate={props.ticketActivate}
-        />
-        <TicketList
-          tickets={props.tickets}
-          ticketActivate={props.ticketActivate}
-        />
-        <TicketList
-          tickets={props.tickets}
-          ticketActivate={props.ticketActivate}
-        />
-        <TicketList
-          tickets={props.tickets}
-          ticketActivate={props.ticketActivate}
-        />
-        <TicketList
-          tickets={props.tickets}
-          ticketActivate={props.ticketActivate}
-        />
-        <TicketList
-          tickets={props.tickets}
-          ticketActivate={props.ticketActivate}
-        />
-        <TicketList
-          tickets={props.tickets}
-          ticketActivate={props.ticketActivate}
-        />
       </div>
     </div>
   </div>
