@@ -1,26 +1,26 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
 import {
   Carousel,
   CarouselItem,
   CarouselControl,
   CarouselIndicators
-} from "reactstrap";
+} from 'reactstrap';
 
 const items = [
   {
-    src: "https://picsum.photos/300/200/?image=2",
-    altText: "Slide 1",
-    caption: "Slide 1"
+    src: 'https://picsum.photos/300/200/?image=2',
+    altText: 'Slide 1',
+    caption: 'Slide 1'
   },
   {
-    src: "https://picsum.photos/300/200/?image=23",
-    altText: "Slide 2",
-    caption: "Slide 2"
+    src: 'https://picsum.photos/300/200/?image=23',
+    altText: 'Slide 2',
+    caption: 'Slide 2'
   },
   {
-    src: "https://picsum.photos/300/200/?image=29",
-    altText: "Slide 3",
-    caption: "Slide 3"
+    src: 'https://picsum.photos/300/200/?image=29',
+    altText: 'Slide 3',
+    caption: 'Slide 3'
   }
 ];
 
@@ -81,14 +81,18 @@ class DesignerCarousel extends Component {
   render() {
     const { activeIndex } = this.state;
 
-    const slides = items.map(item => {
+    const slides = this.props.images.map(image => {
       return (
         <CarouselItem
           onExiting={this.onExiting}
           onExited={this.onExited}
-          key={item.src}
+          key={image}
         >
-          <img src={item.src} alt={item.altText} />
+          <img
+            src={image}
+            alt="alt"
+            style={{ maxWidth: '100%', maxHeight: '100%' }}
+          />
         </CarouselItem>
       );
     });
