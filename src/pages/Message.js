@@ -8,7 +8,7 @@ import ChatPreview from '../components/Message/chatPreview';
 import messageSort from '../utility/messageSortFunc';
 import './PageCss.css';
 
-const socket = io('http://54.180.92.115:3001'); // 실제 chat 서버 주소
+const socket = io('http://54.180.92.115:3030'); // 실제 chat 서버 주소
 
 class Message extends Component {
   constructor(props) {
@@ -31,28 +31,33 @@ class Message extends Component {
       );
       const promises = [];
       data.forEach(reservation => {
+        console.log(reservation);
         socket.emit('join', { reservationId: reservation._id });
         promises.push(
           new Promise((resolve, reject) => {
-            socket.emit(
-              'getMessages',
-              {
-                reservationId: reservation._id
-              },
-              (messages, checkPoints) =>
-                resolve({
-                  id: reservation._id,
-                  messages,
-                  designerName: reservation._designer.name,
-                  userName: reservation._user.name,
-                  checkPoints
-                })
-            );
+            try {
+              socket.emit(
+                'getMessages',
+                {
+                  reservationId: reservation._id
+                },
+                (messages, checkPoints) =>
+                  resolve({
+                    id: reservation._id,
+                    messages,
+                    designerName: reservation._designer.name,
+                    userName: reservation._user.name,
+                    checkPoints
+                  })
+              );
+            } catch (e) {
+              reject(e);
+            }
           })
         );
       });
+      console.log(promises);
       const messages = await Promise.all(promises);
-
       console.log(messages);
       messages.sort(messageSort);
       this.setState({
@@ -69,6 +74,7 @@ class Message extends Component {
         }/reservations`
       );
       const promises = [];
+      console.log(data);
       data.forEach(reservation => {
         socket.emit('join', { reservationId: reservation._id });
         promises.push(
@@ -91,7 +97,6 @@ class Message extends Component {
         );
       });
       const messages = await Promise.all(promises);
-
       console.log(messages);
       messages.sort(messageSort);
       this.setState({
