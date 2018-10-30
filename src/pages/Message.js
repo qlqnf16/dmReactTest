@@ -8,7 +8,7 @@ import ChatPreview from '../components/Message/chatPreview';
 import messageSort from '../utility/messageSortFunc';
 import './PageCss.css';
 
-const socket = io('http://localhost:3001'); // 실제 chat 서버 주소
+const socket = io('http://54.180.92.115:3001'); // 실제 chat 서버 주소
 
 class Message extends Component {
   constructor(props) {
