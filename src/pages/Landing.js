@@ -208,9 +208,13 @@ class Landing extends Component {
               <div className="landing_ctext">
                 드리머리 - 대한민국 최초 예비헤어디자이너 & 대중 연결 플랫폼
               </div>
-              <div className="landing_ctext" style={{ fontSize: '11px' }}>
-                *드리머리에 속해있는 예비헤어디자이너들을 우리는 예디라고
-                부릅니다
+              <div
+                className="landing_ctext"
+                style={{ fontSize: '11px', fontWeight: 'normal' }}
+              >
+                *드리머리에 속해있는 예비헤어디자이너들을 우리는{' '}
+                <span style={{ color: '#fffae3' }}>예디</span>
+                라고 부릅니다
               </div>
             </div>
             {slides}
@@ -328,7 +332,7 @@ class Landing extends Component {
               <img alt="alt" src={qmark2} />
             </div>
           </div>
-          <div className="landing_back e">
+          <div className="landing_back e" style={{ height: '483px' }}>
             <div style={{ width: '63.52%' }}>
               <img alt="alt" src={sponsor} style={{ width: '100%' }} />
             </div>
