@@ -6,6 +6,8 @@ import axios from 'axios';
 // import './DesignerDetail.css'; todo: how to solve modal problem
 
 import Header from '../components/DesignerDetail/Header';
+import Review from '../components/DesignerDetail/Review';
+import DetailCards from '../components/DesignerDetail/DetailCards';
 
 class DesignerDetail extends Component {
   state = {
@@ -39,6 +41,39 @@ class DesignerDetail extends Component {
       });
   };
 
+  timeFormat = time => {
+    return `${parseInt(time / 60, 10)}시간 ${time % 60 === 0 ? '' : '30분'}`;
+  };
+
+  loginToggleHandler = () => {
+    this.setState({ showLogin: !this.state.showLogin });
+  };
+
+  submitReservation = async (
+    price,
+    time,
+    service,
+    serviceFormat,
+    startTime,
+    recruit,
+    cardData
+  ) => {
+    if (Object.values(serviceFormat).length === 0)
+      return alert('받을 서비스를 선택해 주세요');
+    await this.props.history.push({
+      pathname: `/reservation`,
+      state: {
+        price,
+        time,
+        service,
+        serviceFormat,
+        startTime,
+        recruit,
+        cardData
+      }
+    });
+  };
+
   render() {
     const {
       containerStyle,
@@ -54,58 +89,69 @@ class DesignerDetail extends Component {
       designerProfileStyle,
       buttonStyle
     } = styles;
+    const designer = this.state.designerData;
+    const recruit = this.state.recruit;
+
+    let shops = '';
+    if (designer.addresses) {
+      designer.addresses.forEach(address => {
+        shops += `/ ${address.extraAddress}`;
+      });
+      shops = shops.substring(1);
+    }
+
+    const portfolios = [];
+    for (let i = 0; designer[`portfolio${i}`]; i++) {
+      portfolios.push(designer[`portfolio${i}`]);
+    }
     return (
       <div className="m_containerStyle">
         <Header />
         <div style={containerStyle}>
           <div style={designerIntroHeaderStyle}>
             <div style={{ width: '75%' }}>
-              <div style={designerStyle}>일태훈</div>
-              <div style={titleStyle}>{this.state.recruit.title}</div>
-              <div style={occupationStyle}>00헤어 청담본점 / 서울</div>
+              <div style={designerStyle}>{designer.name}</div>
+              <div style={titleStyle}>{recruit.title}</div>
+              <div style={occupationStyle}>{shops}</div>
             </div>
             <div style={{ width: '25%', textAlign: 'right' }}>
-              <img
-                style={designerProfileStyle}
-                src={this.state.designerData.profile}
-              />
+              <img style={designerProfileStyle} src={designer.profile} />
             </div>
           </div>
           <div style={{ ...paragraphStyle, marginTop: '3rem' }}>
-            안녕하세요, ㅇㅇ 인턴 태훈입니다! 남자 여자 커트 종류 상관없이 모델
-            받고 있습니다. 제품은 실제 저희 매장에서 사용하고 있는 제품으로
-            합니다. 탈색 머리 2번 이상 하신분은 어려우며 여자분 기장은 최소 어깨
-            아래기장 입니다. 충분한 상담 후 커트/펌/컬러 진행합니다.
+            {designer.introduce}
           </div>
           <div>
             <div style={labelStyle}>요청사항</div>
-            <div style={paragraphStyle}>
-              커트: 여자분은 최소 어깨 아래기장이면 좋겠습니다. 염색: 머릿결
-              손상이 너무 심하시면 어렵습니다. 양해 부탁드립니다. 그 외 다른
-              부분은 모델분께 맞춰드리겠습니다! :)
-            </div>
+            <div style={paragraphStyle}>{recruit.requirement}</div>
             <div style={labelStyle}>예상 시술 소요시간</div>
             <div style={paragraphStyle}>
-              커트: 1시간 30분 | 염색: 3시간 | 펌: 3시간
+              커트:{' '}
+              {this.timeFormat(recruit.requireTime && recruit.requireTime.cut)}{' '}
+              | 염색:{' '}
+              {this.timeFormat(recruit.requireTime && recruit.requireTime.dye)}{' '}
+              | 펌:{' '}
+              {this.timeFormat(recruit.requireTime && recruit.requireTime.perm)}
             </div>
           </div>
           <div>
             <div style={sectionTitleStyle}>예디정보</div>
             <div>
               <div style={labelStyle}>경력 및 이력</div>
-              <div style={paragraphStyle}>
-                - 서경대학교 미용예술학과 졸 | 2017.03
-              </div>
-              <div style={paragraphStyle}>
-                - 서경대학교 미용예술학과 졸 | 2017.03
-              </div>
-              <div style={paragraphStyle}>
-                - 서경대학교 미용예술학과 졸 | 2017.03
-              </div>
+              <pre style={paragraphStyle}>{designer.careerDetail}</pre>
             </div>
             <div>
               <div style={labelStyle}>포트폴리오</div>
-              <div>image</div>
+              <div>
+                {portfolios.map(portfolio => (
+                  <img
+                    alt="alt"
+                    src={portfolio}
+                    className="col-4"
+                    style={{ padding: '0', width: '100%', height: '100%' }}
+                  />
+                ))}
+              </div>
             </div>
           </div>
           <div>
@@ -115,7 +161,9 @@ class DesignerDetail extends Component {
             <div
               style={{ fontSize: '1.2rem', transform: 'translateX(-0.5rem)' }}
             >
-              <span style={{ ...starStyle, fontSize: '1.2rem' }}>★ 4.3</span>
+              <span style={{ ...starStyle, fontSize: '1.2rem' }}>
+                ★ {recruit.score}
+              </span>
               <span
                 style={{
                   color: '#2b2e34',
@@ -124,21 +172,13 @@ class DesignerDetail extends Component {
                   borderLeft: 'solid 1px #b2b2b2'
                 }}
               >
-                리뷰 8
+                리뷰 {recruit._reviews && recruit._reviews.length}
               </span>
             </div>
-            <div>
-              <div style={reviewAuthorStyle}>
-                양소정
-                <span style={starStyle}>★★★★★</span>
-              </div>
-              <div style={paragraphStyle}>2018/08/27</div>
-              <div style={{ ...paragraphStyle, margin: '1rem 0' }}>
-                생각보다 프로패셔널하게 서비스 받아서 좋았어요! 머리도 이쁘구
-                태훈쌤이 너무 친절하게 잘 해주셔서 너무 좋았습니다. 진짜
-                대만족입니다!! 너무 감사해요ㅎㅎ
-              </div>
-            </div>
+            {recruit._reviews &&
+              recruit._reviews.map((review, key) => (
+                <Review key={key} review={review} />
+              ))}
           </div>
           {/* fixed button 때문에 만들어놓은 임시 div */}
           <div style={{ height: 100 }} />
@@ -163,13 +203,11 @@ class DesignerDetail extends Component {
         >
           <ModalHeader toggle={this.toggleModal} />
           <ModalBody>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            <DetailCards
+              recruit={this.state.recruit}
+              loginToggle={this.loginToggleHandler}
+              submitReservation={this.submitReservation}
+            />
           </ModalBody>
           <ModalFooter>
             <div

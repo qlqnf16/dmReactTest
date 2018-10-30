@@ -8,7 +8,9 @@ const Review = props => {
   console.log(review);
   const images =
     review.images &&
-    review.images.map(img => <img src={img} className="col-4 w-100 h-100" />);
+    review.images.map(img => (
+      <img src={img} alt="img" className="col-4 w-100 h-100" />
+    ));
 
   return (
     <div className="r_box">

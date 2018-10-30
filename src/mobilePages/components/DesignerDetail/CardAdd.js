@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import './CardAdd.css';
-import questionMark from '../../assets/images/question_yellow.png';
+import questionMark from '../../../assets/images/question_yellow.png';
 import { connect } from 'react-redux';
 import ReactTooltip from 'react-tooltip';
 

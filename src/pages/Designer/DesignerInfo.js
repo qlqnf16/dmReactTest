@@ -6,11 +6,15 @@ import { connect } from 'react-redux';
 import firebase from '../../config/Firebase';
 import fd from 'form-data';
 import axios from 'axios';
-import { rejects } from 'assert';
 
 class DesignerInfo extends Component {
   constructor(props) {
     super(props);
+    const portfolios = [];
+    for (let i = 0; this.props.userData[`portfolio${i}`]; i++) {
+      portfolios.push(this.props.userData[`portfolio${i}`]);
+    }
+    console.log(portfolios);
 
     let {
       name,
@@ -22,7 +26,10 @@ class DesignerInfo extends Component {
       careerDetail,
       addresses,
       introduce,
-      designerRecommendationCode
+      designerRecommendationCode,
+      profile,
+      cert_mh,
+      cert_jg
     } = this.props.userData;
     if (!addresses) addresses = [];
     this.state = {
@@ -37,16 +44,17 @@ class DesignerInfo extends Component {
       careerDetail,
       addresses,
       introduce,
-      profileImg: null,
+      profileImg: profile,
       profileFile: null,
-      certImg1: null,
+      certImg1: cert_mh,
       certFile1: null,
-      certImg2: null,
+      certImg2: cert_jg,
       certFile2: null,
-      portfolioImg: [],
+      portfolioImg: portfolios,
       portfolioFile: [],
-      num: 0,
+      num: portfolios.length,
       addressNum: addresses.length + 1,
+      portfoliosNum: portfolios.length,
       designerRecommendationCode
     };
   }
@@ -176,6 +184,7 @@ class DesignerInfo extends Component {
     if (
       Object.values(firebaseUserData).includes(undefined) ||
       Object.values(firebaseUserData.birthday).includes(undefined) ||
+      Object.values(firebaseUserData.birthday).includes('null') ||
       addresses.length === 0
     )
       return alert('채워지지 않은 정보가 있습니다');
@@ -229,7 +238,7 @@ class DesignerInfo extends Component {
     formData.append('cert_jg', this.state.certFile2);
     formData.append('profile', this.state.profileFile);
     this.state.portfolioFile.forEach((p, index) => {
-      formData.append(`portfolio${index}`, p);
+      formData.append(`portfolio${index + this.state.portfoliosNum}`, p);
     });
     await axios.post(
       `http://52.79.227.227:3030/firebase/upload?uid=${

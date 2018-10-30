@@ -20,7 +20,9 @@ class AddDesigner extends Component {
       career,
       careerDetail,
       addresses,
-      designerRecommendationCode
+      designerRecommendationCode,
+      cert_mh,
+      cert_jg
     } = this.props.userData;
     if (!addresses) addresses = [];
     this.state = {
@@ -33,9 +35,9 @@ class AddDesigner extends Component {
       year: birthday && birthday.year,
       month: birthday && birthday.month,
       day: birthday && birthday.day,
-      certImg1: null,
+      certImg1: cert_mh,
       certFile1: null,
-      certImg2: null,
+      certImg2: cert_jg,
       certFile2: null,
       addressNum: addresses.length + 1,
       addresses,
@@ -168,6 +170,8 @@ class AddDesigner extends Component {
 
     if (
       Object.values(firebaseUserData).includes(undefined) ||
+      Object.values(firebaseUserData.birthday).includes(undefined) ||
+      Object.values(firebaseUserData.birthday).includes('null') ||
       addresses.length === 0
     )
       return alert('채워지지 않은 정보가 있습니다');

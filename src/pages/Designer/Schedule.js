@@ -3,6 +3,7 @@ import ScheduleBox from '../../components/DesignerSchedule/ScheduleBox/ScheduleB
 import axios from 'axios';
 import firebase from '../../config/Firebase';
 import { connect } from 'react-redux';
+import Spinner from '../../assets/images/loading_spinner.gif';
 class Schedule extends Component {
   state = {
     cards: [],
@@ -22,7 +23,6 @@ class Schedule extends Component {
         newCards: [],
         requireTime: data.requireTime
       });
-      console.log(this.state.cards);
     }
   };
 
@@ -37,6 +37,7 @@ class Schedule extends Component {
   };
 
   reloadCardData = async () => {
+    await this.setState({ cards: null });
     const { data } = await axios.get(
       `http://52.79.227.227:3030/recruits/${this.props.userData._recruit}`
     );
@@ -51,7 +52,6 @@ class Schedule extends Component {
   };
 
   cardAddHandler = async cardData => {
-    console.log(cardData);
     Object.values(cardData.must).forEach(must => {
       if (Object.values(cardData.no).some(no => no === must))
         return alert('필수 서비스와 불가 서비스는 같을 수 없습니다');
@@ -73,10 +73,8 @@ class Schedule extends Component {
   };
 
   totalSubmitHandler = async recruitData => {
-    console.log(recruitData);
     let shops;
     shops = this.props.userData.addresses.map(address => address.extraAddress);
-    console.log(shops);
     recruitData['shops'] = shops;
     if (
       !this.props.userData.expiredAt ||
@@ -137,36 +135,48 @@ class Schedule extends Component {
         console.log(`끝`);
       }
       await this.reloadCardData();
+      await this.setState({ newCards: [] });
     }
     // TODO : 더 좋은 방법 찾기
-    window.location.reload();
+    // window.location.reload();
     alert(' 성공적으로 저장되었습니다! ');
   };
 
   render() {
-    const dates = this.state.cards.map(card => card.date);
+    if (this.state.cards) {
+      const dates = this.state.cards.map(card => card.date);
 
-    return (
-      <div className="container-fluid d">
-        <div className="d_bg">
-          <div className="d_container">
-            <div style={{ color: '#4c91ba' }} className="u_title ">
-              스케줄 등록
+      return (
+        <div className="container-fluid d">
+          <div className="d_bg">
+            <div className="d_container">
+              <div style={{ color: '#4c91ba' }} className="u_title ">
+                스케줄 등록
+              </div>
+              <ScheduleBox
+                cards={this.state.cards}
+                requireTime={this.state.requireTime}
+                newCards={this.state.newCards}
+                cancelCardHandler={this.cancelCardHandler}
+                cardAddHandler={this.cardAddHandler}
+                totalSubmitHandler={this.totalSubmitHandler}
+                dates={dates}
+              />
+              {/* // changeInput= {e => this.handleInputChange(e)} */}
             </div>
-            <ScheduleBox
-              cards={this.state.cards}
-              requireTime={this.state.requireTime}
-              newCards={this.state.newCards}
-              cancelCardHandler={this.cancelCardHandler}
-              cardAddHandler={this.cardAddHandler}
-              totalSubmitHandler={this.totalSubmitHandler}
-              dates={dates}
-            />
-            {/* // changeInput= {e => this.handleInputChange(e)} */}
           </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div
+          style={{ height: '100vh', width: '100%' }}
+          className="d-flex justify-content-center align-items-center"
+        >
+          <img alt="alt" style={{ height: '20%' }} src={Spinner} />
+        </div>
+      );
+    }
   }
 }
 const mapStateToProps = ({ authentication: { userData } }) => {

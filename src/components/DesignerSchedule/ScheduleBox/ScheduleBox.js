@@ -32,7 +32,8 @@ class ScheduleBox extends Component {
       title: '',
       requirement: '',
       requireTime: {},
-      madeRequest: false
+      madeRequest: false,
+      reviews: []
     };
   }
 
@@ -47,10 +48,12 @@ class ScheduleBox extends Component {
         title: data.title,
         requirement: data.requirement,
         requireTime: data.requireTime,
-        madeRequest: true
+        madeRequest: true,
+        reviews: data._reviews
       });
       console.log(this.state);
       console.log(data._cards);
+      console.log(this.props.userData._recruit);
     }
   };
 
@@ -184,7 +187,7 @@ class ScheduleBox extends Component {
       _designer: this.props.userData._id,
       designerName: this.props.userData.name,
       _cards: this.state.cards,
-      _reviews: [],
+      _reviews: this.state.reviews,
       portfolios: [],
       requireTime: this.state.requireTime
     };
@@ -215,7 +218,6 @@ class ScheduleBox extends Component {
             timeDelete={this.timeDeleteHandler}
             submit={this.submit}
             cardAddHandler={() => this.props.cardAddHandler(cardData)}
-            card={this.props.cards[0]}
             changeInput={e => this.handleInputChange(e)}
             date={this.state.date}
             addresses={this.props.userData.addresses}

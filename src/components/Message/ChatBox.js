@@ -46,6 +46,9 @@ const ChatBox = props => {
             className="if_input rounded"
             onChange={props.change}
             value={props.textfield}
+            onKeyUp={e => {
+              if (e.keyCode === 13) props.sendMessage();
+            }}
           />
         </div>
         <div className="col-1 pr-0">
