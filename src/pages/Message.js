@@ -8,7 +8,7 @@ import ChatPreview from '../components/Message/chatPreview';
 import messageSort from '../utility/messageSortFunc';
 import './PageCss.css';
 
-const socket = io('http://54.180.92.115:3000'); // 실제 chat 서버 주소
+const socket = io('http://localhost:3001'); // 실제 chat 서버 주소
 
 class Message extends Component {
   constructor(props) {
@@ -39,12 +39,13 @@ class Message extends Component {
               {
                 reservationId: reservation._id
               },
-              messages =>
+              (messages, checkPoints) =>
                 resolve({
                   id: reservation._id,
                   messages,
                   designerName: reservation._designer.name,
-                  userName: reservation._user.name
+                  userName: reservation._user.name,
+                  checkPoints
                 })
             );
           })
@@ -77,12 +78,13 @@ class Message extends Component {
               {
                 reservationId: reservation._id
               },
-              messages =>
+              (messages, checkPoints) =>
                 resolve({
                   id: reservation._id,
                   messages,
                   designerName: reservation._designer.name,
-                  userName: reservation._user.name
+                  userName: reservation._user.name,
+                  checkPoints
                 })
             );
           })
@@ -101,17 +103,30 @@ class Message extends Component {
   render() {
     let chats = '로딩중...';
     if (this.state.messages) {
-      chats = this.state.messages.map(message => (
-        <ChatPreview
-          name={
-            message.designerName === this.props.userData.name
-              ? message.userName
-              : message.designerName
-          }
-          latest={message.messages.pop()}
-          reservationId={message.id}
-        />
-      ));
+      chats = this.state.messages.map(message => {
+        const latest = message.messages[message.messages.length - 1];
+        return (
+          <ChatPreview
+            name={
+              message.designerName === this.props.userData.name
+                ? message.userName
+                : message.designerName
+            }
+            latest={latest}
+            reservationId={message.id}
+            redDot={
+              !!(
+                latest &&
+                message.checkPoints &&
+                ((latest.from !== this.props.userData.name &&
+                  !message.checkPoints[this.props.userData.name]) ||
+                  message.checkPoints[this.props.userData.name] <
+                    latest.createdAt)
+              )
+            }
+          />
+        );
+      });
     }
     return (
       <div className="container-fluid me pt-2">

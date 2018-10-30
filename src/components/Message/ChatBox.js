@@ -8,20 +8,26 @@ import axios from 'axios';
 
 class ChatBox extends Component {
   state = {
-    reservationData: {},
-    madeRequest: false
+    // reservationData: {},
+    // madeRequest: false
   };
   componentDidMount = async () => {
-    if (!this.state.madeRequest) {
-      const { data } = await axios.get(
-        `http://52.79.227.227:3030/users/${
-          this.props.userData._id
-        }/reservations/${this.props.reservationId}`
-      );
-      console.log(data);
-      await this.setState({ reservationData: data, madeRequest: true });
-    }
+    // if (!this.state.madeRequest) {
+    //   const { data } = await axios.get(
+    //     `http://52.79.227.227:3030/users/${
+    //       this.props.userData._id
+    //     }/reservations/${this.props.reservationId}`
+    //   );
+    //   console.log(data);
+    //   await this.setState({ reservationData: data, madeRequest: true });
+    // }
   };
+
+  componentWillUnmount() {
+    this.props.socket.emit('leaveChat', {
+      reservationId: this.props.reservationId
+    });
+  }
 
   timeParse = time => {
     const hour = Math.floor(time / 60);
@@ -31,21 +37,30 @@ class ChatBox extends Component {
   };
 
   render() {
-    if (this.state.madeRequest) {
+    if (this.props.madeRequest) {
       let otherName = '';
       if (
-        this.props.userData.name === this.state.reservationData._designer.name
+        this.props.userData.name === this.props.reservationData._designer.name
       )
-        otherName = this.state.reservationData._user.name;
-      else otherName = this.state.reservationData._designer.name;
+        otherName = this.props.reservationData._user.name;
+      else otherName = this.props.reservationData._designer.name;
       let messages = '로딩중';
       if (this.props.messages) {
         messages = this.props.messages.map(message => (
           <div className="d-flex flex-column">
-            <div
-              className={`chat_bubble_${message.from === otherName ? 1 : 2}`}
-            >
-              {message.content}
+            <div>
+              <div
+                className={`chat_bubble_${message.from === otherName ? 1 : 2}`}
+              >
+                {message.content}
+              </div>
+              <div>
+                {(message.from !== otherName &&
+                  !this.props.checkPoints[otherName]) ||
+                this.props.checkPoints[otherName] < message.createdAt
+                  ? 1
+                  : null}
+              </div>
             </div>
             <div className="chat_time">
               <Moment format="YYYY/MM/DD HH:mm:ss">{message.createdAt}</Moment>
@@ -67,10 +82,10 @@ class ChatBox extends Component {
                 {' '}
                 서비스날짜:{' '}
                 <Moment format="YYYY/MM/DD">
-                  {this.state.reservationData.date}
+                  {this.props.reservationData.date}
                 </Moment>{' '}
-                {this.timeParse(this.state.reservationData.time.since)}~
-                {this.timeParse(this.state.reservationData.time.until)}
+                {this.timeParse(this.props.reservationData.time.since)}~
+                {this.timeParse(this.props.reservationData.time.until)}
               </div>
             </div>
             <div className="mr-3 ml-auto ">
