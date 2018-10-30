@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import io from 'socket.io-client';
 import deparam from 'deparam';
+import axios from 'axios';
 import { connect } from 'react-redux';
 import './PageCss.css';
 import ChatBox from '../components/Message/ChatBox';
 
-const socket = io('http://54.180.92.115:3000'); // 실제 chat 서버 주소
+const socket = io('http://localhost:3001'); // 실제 chat 서버 주소
+let names;
 
 class Chat extends Component {
   constructor(props) {
@@ -14,7 +16,10 @@ class Chat extends Component {
 
     this.state = {
       messages: null,
-      textfield: ''
+      textfield: '',
+      checkPoints: {},
+      reservationData: {},
+      madeRequest: false
     };
 
     socket.on('newMessage', params => {
@@ -29,22 +34,58 @@ class Chat extends Component {
         textfield: ''
       });
     });
+
+    socket.on('newCheckPoints', params => {
+      this.setState({ checkPoints: params.checkPoints });
+    });
   }
 
-  componentDidMount() {
+  async componentDidMount() {
+    const params = deparam(this.props.location.search.slice(1));
+    if (!this.state.madeRequest) {
+      const { data } = await axios.get(
+        `http://52.79.227.227:3030/users/${
+          this.props.userData._id
+        }/reservations/${params.r}`
+      );
+      await this.setState({ reservationData: data, madeRequest: true });
+    }
     if (!this.state.messages) {
-      const params = deparam(this.props.location.search.slice(1));
-
       socket.emit('join', {
         reservationId: params.r
       });
+      socket.emit(
+        'joinChat',
+        {
+          reservationId: params.r
+        },
+        () => {
+          const names = [
+            this.props.userData.name,
+            this.state.reservationData._designer.name ===
+            this.props.userData.name
+              ? this.state.reservationData._user.name
+              : this.state.reservationData._designer.name
+          ];
+          socket.emit(
+            'updateCheckpoint',
+            {
+              reservationId: params.r,
+              names
+            },
+            checkPoints => {
+              console.log(checkPoints);
+            }
+          );
+        }
+      );
       socket.emit(
         'getMessages',
         {
           reservationId: params.r
         },
-        messages => {
-          this.setState({ messages });
+        (messages, checkPoints) => {
+          this.setState({ messages, checkPoints });
           console.log(messages);
         }
       );
@@ -53,12 +94,33 @@ class Chat extends Component {
 
   sendMessageHandler = msg => {
     const params = deparam(this.props.location.search.slice(1));
-    socket.emit('createMessage', {
-      content: msg,
-      from: this.props.userData.name,
-      to: params.n,
-      reservationId: params.r
-    });
+    const names = [
+      this.props.userData.name,
+      this.state.reservationData._designer.name === this.props.userData.name
+        ? this.state.reservationData._user.name
+        : this.state.reservationData._designer.name
+    ];
+    socket.emit(
+      'createMessage',
+      {
+        content: msg,
+        from: names[0],
+        to: names[1],
+        reservationId: params.r
+      },
+      () => {
+        socket.emit(
+          'updateCheckpoint',
+          {
+            reservationId: params.r,
+            names
+          },
+          checkPoints => {
+            this.setState({ checkPoints });
+          }
+        );
+      }
+    );
   };
 
   changeHandler = event => {
@@ -85,9 +147,14 @@ class Chat extends Component {
                 sendMessage={() =>
                   this.sendMessageHandler(this.state.textfield)
                 }
+                names={names}
+                socket={socket}
+                checkPoints={this.state.checkPoints}
                 change={this.changeHandler}
                 textfield={this.state.textfield}
                 reservationId={params.r}
+                reservationData={this.state.reservationData}
+                madeRequest={this.state.madeRequest}
               />
             </div>
             <div className="col-2" />
