@@ -43,17 +43,23 @@ class DesignerList extends Component {
       .on('value', async res => {
         const filterAddresses = [];
         let filterSido = [];
-        Object.values(res.val()).forEach(user => {
-          if (user.addresses && user.addresses !== undefined) {
-            user.addresses.forEach(address => {
-              filterSido.push(address.sido);
-            });
-            filterAddresses.push(user.addresses);
-          }
-        });
-        filterSido = new Set(filterSido);
-        filterSido = [...filterSido].sort();
-        await this.setState({ filterAddresses, filterSido, madeRequest: true });
+        if (res.val()) {
+          Object.values(res.val()).forEach(user => {
+            if (user.addresses && user.addresses !== undefined) {
+              user.addresses.forEach(address => {
+                filterSido.push(address.sido);
+              });
+              filterAddresses.push(user.addresses);
+            }
+          });
+          filterSido = new Set(filterSido);
+          filterSido = [...filterSido].sort();
+          await this.setState({
+            filterAddresses,
+            filterSido,
+            madeRequest: true
+          });
+        }
       });
   };
 
