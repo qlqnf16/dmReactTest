@@ -19,12 +19,12 @@ const Footer = () => (
         Copyright ⓒ dreamary Co., Ltd. All rights reserved.
       </div>
     </div>
-    <div className="d-flex">
-      <div style={{ marginRight: '14%' }}>
+    <div className="d-flex justify-content-end">
+      <div style={{ marginRight: '15%' }}>
         <div className="title">COMPANY</div>
         <div className="content">서비스 소개</div>
       </div>
-      <div style={{ marginRight: '7%', whiteSpace: 'nowrap' }}>
+      <div style={{ marginRight: '15%', whiteSpace: 'nowrap' }}>
         <div className="title">POLICIES</div>
         <Link to="/infoPolicy">
           <div className="content">개인정보취급방침</div>

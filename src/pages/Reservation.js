@@ -141,44 +141,46 @@ class Reservation extends Component {
     console.log(recruit);
     console.log(cardData);
     return (
-      <div className="container-fluid mb-5">
-        <div className="my-5 text-center">
+      <div className="mb-5">
+        <div className="mb-5 text-center">
           <img alt="alt" style={{ width: '100%' }} src={step2} />
         </div>
-        <ReservationForm
-          d_name={recruit._designer.name}
-          startTime={startTimeFormat}
-          finishTime={finishTimeFormat}
-          shop={cardData.shop}
-          service={this.props.location.state.service}
-          price={this.props.location.state.price}
-          date={cardData.date}
-          state={this.state}
-          handleInputChange={this.handleInputChange}
-          pointSubmit={this.pointSubmit}
-        />
-        <div>
-          <div
-            className="r_button"
-            onClick={() => this.purchaseHandler(this.state.finalPrice)}
-          >
-            결제하기
+        <div className="container">
+          <ReservationForm
+            d_name={recruit._designer.name}
+            startTime={startTimeFormat}
+            finishTime={finishTimeFormat}
+            shop={cardData.shop}
+            service={this.props.location.state.service}
+            price={this.props.location.state.price}
+            date={cardData.date}
+            state={this.state}
+            handleInputChange={this.handleInputChange}
+            pointSubmit={this.pointSubmit}
+          />
+          <div>
+            <div
+              className="r_button"
+              onClick={() => this.purchaseHandler(this.state.finalPrice)}
+            >
+              결제하기
+            </div>
+            <Link
+              to={{
+                pathname: `/reservationConfirm/${this.state.reservationId}`,
+                state: {
+                  userName: this.props.userData.name,
+                  recruit,
+                  cardData,
+                  service: this.props.location.state.service
+                }
+              }}
+            >
+              <Button onClick={this.reservationSubmit} color="primary">
+                결제 성공한 척 하기
+              </Button>
+            </Link>
           </div>
-          <Link
-            to={{
-              pathname: `/reservationConfirm/${this.state.reservationId}`,
-              state: {
-                userName: this.props.userData.name,
-                recruit,
-                cardData,
-                service: this.props.location.state.service
-              }
-            }}
-          >
-            <Button onClick={this.reservationSubmit} color="primary">
-              결제 성공한 척 하기
-            </Button>
-          </Link>
         </div>
       </div>
     );

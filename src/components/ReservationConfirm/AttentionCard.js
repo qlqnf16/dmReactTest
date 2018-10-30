@@ -29,7 +29,7 @@ const AttentionCard = props => {
         <div>
           <div
             className="p-3 mx-auto"
-            style={{ color: '#4c91ba', fontSize: '1.1rem' }}
+            style={{ color: '#dd6866', fontSize: '1.1rem' }}
           >
             <div className="row">
               <div className="col-4 text-center font-weight-bold"> 펌</div>
@@ -43,7 +43,10 @@ const AttentionCard = props => {
 
               <div className="col-4 text-center font-weight-bold"> 염색</div>
             </div>
-            <div className="length_price row">
+            <div
+              className="length_price row"
+              style={{ borderColor: '#dd6866' }}
+            >
               <div className="col-4 text-right">
                 기본{' '}
                 <span className="ml-3">
@@ -59,7 +62,10 @@ const AttentionCard = props => {
                 <span className="ml-3">{props.cardData.dyePrice.noraml}원</span>
               </div>
             </div>
-            <div className="length_price row">
+            <div
+              className="length_price row"
+              style={{ borderColor: '#dd6866' }}
+            >
               <div className="col-4 text-right">
                 턱아래{' '}
                 <span className="ml-3">{props.cardData.permPrice.chin}원</span>
@@ -74,7 +80,10 @@ const AttentionCard = props => {
                 <span className="ml-3">{props.cardData.dyePrice.chin}원</span>
               </div>
             </div>
-            <div className="length_price row">
+            <div
+              className="length_price row"
+              style={{ borderColor: '#dd6866' }}
+            >
               <div className="col-4 text-right">
                 어깨아래{' '}
                 <span className="ml-3">
@@ -90,7 +99,10 @@ const AttentionCard = props => {
                 </span>
               </div>
             </div>
-            <div className="length_price row">
+            <div
+              className="length_price row"
+              style={{ borderColor: '#dd6866' }}
+            >
               <div className="col-4 text-right">
                 가슴아래{' '}
                 <span className="ml-3">{props.cardData.permPrice.chest}원</span>
@@ -133,7 +145,7 @@ const AttentionCard = props => {
         <div>
           <div
             className="p-3 mx-auto"
-            style={{ color: '#4c91ba', fontSize: '1.1rem' }}
+            style={{ color: '#dd6866', fontSize: '1.1rem' }}
           >
             <div className="row">
               <div className="col-6">
@@ -150,7 +162,10 @@ const AttentionCard = props => {
                 {isPerm ? '펌' : '염색'}
               </div>
             </div>
-            <div className="length_price row">
+            <div
+              className="length_price row"
+              style={{ borderColor: '#dd6866' }}
+            >
               <div className="col-6" />
               <div
                 className="col-6 text-left"
@@ -165,7 +180,10 @@ const AttentionCard = props => {
                 </span>
               </div>
             </div>
-            <div className="length_price row">
+            <div
+              className="length_price row"
+              style={{ borderColor: '#dd6866' }}
+            >
               <div className="col-6" />
 
               <div
@@ -181,7 +199,10 @@ const AttentionCard = props => {
                 </span>
               </div>
             </div>
-            <div className="length_price row">
+            <div
+              className="length_price row"
+              style={{ borderColor: '#dd6866' }}
+            >
               <div className="col-6" />
 
               <div className="col-6 text-left">
@@ -194,7 +215,10 @@ const AttentionCard = props => {
                 </span>
               </div>
             </div>
-            <div className="length_price row">
+            <div
+              className="length_price row"
+              style={{ borderColor: '#dd6866' }}
+            >
               <div className="col-6" />
 
               <div className="col-6 text-left">
@@ -216,7 +240,7 @@ const AttentionCard = props => {
     <div className="ac_back text-left d-flex" style={boxStyle}>
       <div>
         <h3 className="ac_title">※ 유의사항</h3>
-        <div className="ac_content">
+        <div className="ac_body">
           우리 예디는 프로 헤어디자이너가 아닌 예비 헤어디자이너 입니다. <br />
           예디의 레벨에 따라 선생님들의 코칭이 있을수있으니 당황하지 마세요! :)
           <br /> <br />

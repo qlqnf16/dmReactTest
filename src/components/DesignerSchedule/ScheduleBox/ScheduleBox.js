@@ -229,7 +229,9 @@ class ScheduleBox extends Component {
         <div className="col-6 mt-5">
           <div
             className="bg-light row"
-            style={{ padding: '1.5rem', minHeight: '735px' }}
+            style={{
+              padding: '1.5rem'
+            }}
           >
             {this.state.cards.sort(this.cardSort).map((card, key) => (
               <ScheduleCard
