@@ -85,9 +85,9 @@ class Chat extends Component {
                 sendMessage={() =>
                   this.sendMessageHandler(this.state.textfield)
                 }
-                name={params.n}
                 change={this.changeHandler}
                 textfield={this.state.textfield}
+                reservationId={params.r}
               />
             </div>
             <div className="col-2" />

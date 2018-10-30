@@ -61,6 +61,111 @@
   font-weight: bold;
 }
 
+/* Landing.js */
+.landing_imgback {
+  width: 100%;
+  height: 800px;
+  background: transparent;
+  position: absolute;
+  z-index: 100;
+  padding-top: 300px;
+  padding-left: 65px;
+  /* padding: 217.9px 226px; */
+}
+
+.landing_ctitle {
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  text-shadow: 3px 2px 5px rgba(0, 0, 0, 0.5);
+  font-size: 39px;
+  font-weight: bold;
+  line-height: 1.36;
+  letter-spacing: 2px;
+  color: #ffffff;
+  margin-bottom: 35.9px;
+}
+
+.landing_cbutton {
+  width: fit-content;
+  padding: 8.5px 22px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 7px 0 rgba(0, 0, 0, 0.16);
+  border: solid 1px #dd6866;
+  background-color: #dd6866;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8rem;
+  line-height: 1.28;
+  letter-spacing: 0.9px;
+  color: #ffffff;
+  margin-bottom: 246px;
+}
+
+.landing_ctext {
+  font-size: 1.6rem;
+  font-weight: bold;
+  line-height: 1.13;
+  letter-spacing: 0.8px;
+  color: #f8f8f9;
+  margin-bottom: 10px;
+}
+
+.landing_back {
+  width: 100%;
+  height: 683px;
+  background-color: #f8f8f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* padding: 217.9px 226px; */
+}
+
+.landing_back.e {
+  background-color: white;
+}
+
+.landing_back.b {
+  background-color: #393939;
+}
+
+.landing_grid {
+  display: grid;
+  grid-template-columns: 70% 30%;
+}
+
+.landing_title {
+  width: fit-content;
+  font-size: 3.9rem;
+  line-height: 1.23;
+  letter-spacing: 2px;
+  font-family: 'Jua', sans-serif;
+  font-weight: bold;
+  color: #1f3354;
+  margin-bottom: 49.7px;
+}
+
+.landing_content {
+  font-size: 1.7rem;
+  line-height: 1.71;
+  letter-spacing: 0.9px;
+  color: #1f3354;
+}
+
+.landing_imgcontainer {
+  display: flex;
+  align-items: center;
+}
+
+.landing_text {
+  font-size: 1.8rem;
+  line-height: 1.72;
+  letter-spacing: 0.9px;
+  text-align: center;
+  color: #f8f8f9;
+}
+
 /* Reservation.js */
 
 .r_button {
