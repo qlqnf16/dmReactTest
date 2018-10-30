@@ -50,7 +50,6 @@ class DesignerReservations extends Component {
 
   componentDidMount = async () => {
     if (!this.state.madeRequest) {
-      // 일단은 더미유저 아이디를 가져와서 사용. 이후 현재 로그인 유저의 아이디로 요청을 보내면 됨.
       const { data } = await axios.get(
         `http://52.79.227.227:3030/users/${
           this.props.userData._id

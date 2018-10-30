@@ -63,10 +63,11 @@ class InfoForm extends Component {
           <div
             className="address_button"
             style={{
-              border: 'none',
+              // border: 'none',
               width: '3rem',
               color: '#4c91ba',
               marginRight: '0',
+              marginLeft: 1,
               cursor: 'pointer'
             }}
             onClick={() => this.props.addressRemoveHandler(i)}
