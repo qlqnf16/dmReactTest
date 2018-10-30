@@ -86,10 +86,10 @@ class Reservations extends Component {
     });
   };
 
-  showMessage = (reservationId, designerName) => {
+  showMessage = reservationId => {
     this.props.history.push({
       pathname: `/chat`,
-      search: `?r=${reservationId}&n=${designerName}`
+      search: `?r=${reservationId}`
     });
   };
 

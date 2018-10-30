@@ -15,10 +15,7 @@ const Message = props => (
       {props.name}
     </div>
     <div style={{ width: '72.5%' }}>
-      <Link
-        to={`/chat?r=${props.reservationId}&n=${props.name}`}
-        className="cp_link"
-      >
+      <Link to={`/chat?r=${props.reservationId}`} className="cp_link">
         <div className="cp_content">
           {(props.latest && props.latest.content) ||
             '새로운 대화방이 생성되었습니다. 지금 바로 대화를 시작해보세요!'}
