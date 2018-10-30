@@ -62,7 +62,10 @@ class Coupon extends Component {
               <div className="uif_title d-flex">
                 추천인 코드{' '}
                 <span className="mr-5 ml-auto">
-                  내 추천으로 가입한 친구 : {this.props.userData.recommendation}
+                  내 추천으로 가입한 친구 :{' '}
+                  {this.props.userData.recommendation
+                    ? this.props.userData.recommendation
+                    : 0}
                   명
                 </span>
               </div>

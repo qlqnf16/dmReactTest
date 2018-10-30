@@ -106,7 +106,7 @@ class DesignerTicket extends Component {
         this.props.userData._id
       }/tickets/${ticketId}`
     );
-    await alert('적용되었습니다.');
+    alert('적용되었습니다.');
     await this.reloadTicket();
   };
 

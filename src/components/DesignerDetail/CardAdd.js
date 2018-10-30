@@ -10,7 +10,7 @@ class CardAdd extends Component {
     cut: false,
     perm: false,
     dye: false,
-    time: ''
+    time: null
   };
 
   componentDidMount = () => {

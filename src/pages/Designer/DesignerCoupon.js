@@ -61,7 +61,10 @@ class DesignerCoupon extends Component {
               추천인 코드{' '}
               <span className="mr-5 ml-auto">
                 내 추천으로 가입한 예디 :{' '}
-                {this.props.userData.designerRecommendation}명
+                {this.props.userData.designerRecommendation
+                  ? this.props.userData.designerRecommendation
+                  : 0}
+                명
               </span>
             </div>
             <CouponContent
