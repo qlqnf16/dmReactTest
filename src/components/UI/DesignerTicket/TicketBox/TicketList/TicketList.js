@@ -15,15 +15,17 @@ const TicketList = props => {
       if (ticket.expiredAt > new Date().getTime())
         ticketState = <div>사용중</div>;
       else ticketState = <div>만료</div>;
-    } else ticketPeriod = <div />;
-    ticketState = (
-      <div
-        onClick={() => props.ticketActivate(ticket._id)}
-        style={{ cursor: 'pointer' }}
-      >
-        사용하기
-      </div>
-    );
+    } else {
+      ticketPeriod = <div />;
+      ticketState = (
+        <div
+          onClick={() => props.ticketActivate(ticket._id)}
+          style={{ cursor: 'pointer' }}
+        >
+          사용하기
+        </div>
+      );
+    }
     return (
       <div className="ticket_box_row row" key={ticket.purchasedAt}>
         <div className="col-2 ticket_box_line p-0">

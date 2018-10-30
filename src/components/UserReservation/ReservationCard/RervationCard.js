@@ -146,7 +146,9 @@ const ReservationCard = props => {
             {type}
           </div>
 
-          <div className="rc_content rc_title">타이틀이 디비에 없네</div>
+          <div className="rc_content rc_title">
+            {props.reservation._designer._recruit.title}
+          </div>
           <div
             className={
               props.type === 'soon' ? 'rc_content' : 'rc_content rc_off'
@@ -193,11 +195,7 @@ const ReservationCard = props => {
               style={{ color: '#1f3354', marginLeft: '22px' }}
               onClick={
                 props.type === 'soon'
-                  ? () =>
-                      props.showMessage(
-                        props.reservation._id,
-                        props.reservation._designer.name
-                      )
+                  ? () => props.showMessage(props.reservation._id)
                   : () => props.showMore(props.reservation._designer._recruit)
               }
             >

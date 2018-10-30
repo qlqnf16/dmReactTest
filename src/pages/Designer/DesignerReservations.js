@@ -109,7 +109,7 @@ class DesignerReservations extends Component {
   showMessage = (reservationId, userName) => {
     this.props.history.push({
       pathname: `/chat`,
-      search: `?r=${reservationId}&n=${userName}`
+      search: `?r=${reservationId}`
     });
   };
 

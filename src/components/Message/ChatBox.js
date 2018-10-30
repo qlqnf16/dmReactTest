@@ -1,66 +1,120 @@
-import React from 'react';
+import React, { Component } from 'react';
 import attach from '../../assets/images/attach.png';
 import default_people from '../../assets/images/Default_guy-01.jpg';
 import alart from '../../assets/images/alart.png';
+import Moment from 'react-moment';
+import { connect } from 'react-redux';
+import axios from 'axios';
 
-const ChatBox = props => {
-  let messages = '로딩중';
-  if (props.messages) {
-    messages = props.messages.map(message => (
-      <div className="d-flex flex-column">
-        <div className={`chat_bubble_${message.from === props.name ? 1 : 2}`}>
-          {message.content}
-        </div>
-        <div className="chat_time">{message.createdAt}</div>
-      </div>
-    ));
-  }
+class ChatBox extends Component {
+  state = {
+    reservationData: {},
+    madeRequest: false
+  };
+  componentDidMount = async () => {
+    if (!this.state.madeRequest) {
+      const { data } = await axios.get(
+        `http://52.79.227.227:3030/users/${
+          this.props.userData._id
+        }/reservations/${this.props.reservationId}`
+      );
+      console.log(data);
+      await this.setState({ reservationData: data, madeRequest: true });
+    }
+  };
 
-  return (
-    <div className="chat_box">
-      <div className="chat_title row m-0">
-        <div className="col-1 px-0">
-          <img src={default_people} alt="alt" className="chat_profile" />
-        </div>
-        <div className="col-8 px-0">
-          <div style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>
-            {props.name}
-          </div>
-          <div> 서비스날짜: 2018/09/14 10:30~15:00</div>
-        </div>
-        <div className="mr-3 ml-auto ">
-          <div className="chat_report row px-2 pt-2">
-            <div>
-              <img src={alart} alt="alt" style={{ width: '2rem' }} />
+  timeParse = time => {
+    const hour = Math.floor(time / 60);
+    let minute = time % 60;
+    if (minute === 0) minute = '00';
+    return `${hour}:${minute}`;
+  };
+
+  render() {
+    if (this.state.madeRequest) {
+      let otherName = '';
+      if (
+        this.props.userData.name === this.state.reservationData._designer.name
+      )
+        otherName = this.state.reservationData._user.name;
+      else otherName = this.state.reservationData._designer.name;
+      let messages = '로딩중';
+      if (this.props.messages) {
+        messages = this.props.messages.map(message => (
+          <div className="d-flex flex-column">
+            <div
+              className={`chat_bubble_${message.from === otherName ? 1 : 2}`}
+            >
+              {message.content}
             </div>
-            <div style={{ padding: '0.5rem' }}>직거래 신고하기</div>
+            <div className="chat_time">
+              <Moment format="YYYY/MM/DD HH:mm:ss">{message.createdAt}</Moment>
+            </div>
+          </div>
+        ));
+      }
+      return (
+        <div className="chat_box">
+          <div className="chat_title row m-0">
+            <div className="col-1 px-0">
+              <img src={default_people} alt="alt" className="chat_profile" />
+            </div>
+            <div className="col-8 px-0">
+              <div style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>
+                {otherName}
+              </div>
+              <div>
+                {' '}
+                서비스날짜:{' '}
+                <Moment format="YYYY/MM/DD">
+                  {this.state.reservationData.date}
+                </Moment>{' '}
+                {this.timeParse(this.state.reservationData.time.since)}~
+                {this.timeParse(this.state.reservationData.time.until)}
+              </div>
+            </div>
+            <div className="mr-3 ml-auto ">
+              <div className="chat_report row px-2 pt-2">
+                <div>
+                  <img src={alart} alt="alt" style={{ width: '2rem' }} />
+                </div>
+                <div style={{ padding: '0.5rem' }}>직거래 신고하기</div>
+              </div>
+            </div>
+          </div>
+          <div className="chat_content">{messages}</div>
+          <div className="chat_bottom row m-0">
+            <div className="col-9 px-0">
+              <input
+                type="text"
+                placeholder="안전한 거래를 위해 연락처 공개 및 직거래(유도) 시 사이트 이용이 제한될 수 있습니다."
+                className="if_input rounded"
+                onChange={this.props.change}
+                value={this.props.textfield}
+                onKeyUp={e => {
+                  if (e.keyCode === 13) this.props.sendMessage();
+                }}
+              />
+            </div>
+            <div className="col-1 pr-0">
+              <img src={attach} alt="alt" className="chat_attach" />
+            </div>
+            <div className="col-2 pl-0">
+              <div className="chat_button" onClick={this.props.sendMessage}>
+                전송
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div className="chat_content">{messages}</div>
-      <div className="chat_bottom row m-0">
-        <div className="col-9 px-0">
-          <input
-            type="text"
-            placeholder="안전한 거래를 위해 연락처 공개 및 직거래(유도) 시 사이트 이용이 제한될 수 있습니다."
-            className="if_input rounded"
-            onChange={props.change}
-            value={props.textfield}
-            onKeyUp={e => {
-              if (e.keyCode === 13) props.sendMessage();
-            }}
-          />
-        </div>
-        <div className="col-1 pr-0">
-          <img src={attach} alt="alt" className="chat_attach" />
-        </div>
-        <div className="col-2 pl-0">
-          <div className="chat_button" onClick={props.sendMessage}>
-            전송
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+      );
+    } else {
+      return <div />;
+    }
+  }
+}
+
+const mapStateToProps = ({ authentication: { userData } }) => {
+  return { userData };
 };
-export default ChatBox;
+
+export default connect(mapStateToProps)(ChatBox);
