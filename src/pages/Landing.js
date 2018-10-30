@@ -1,9 +1,73 @@
 import React, { Component } from 'react';
 import firebase from '../config/Firebase';
 import { connect } from 'react-redux';
-import landing from '../assets/images/landing.jpeg';
+import './PageCss.css';
+import { Carousel, CarouselItem } from 'reactstrap';
+import landing1 from '../assets/images/landing_slide1.jpg';
+import landing2 from '../assets/images/landing_slide2.jpg';
+import landing3 from '../assets/images/landing_slide3.jpg';
+import icon3 from '../assets/images/DM_Icon-03.png';
+import icon4 from '../assets/images/DM_Icon-04.png';
+import icon5 from '../assets/images/DM_Icon-05.png';
+import howtouse from '../assets/images/howtouse_web.png';
+import qmark1 from '../assets/images/Group2005.png';
+import qmark2 from '../assets/images/Group2006.png';
+import sponsor from '../assets/images/sponsor_logos.png';
+
+const items = [
+  {
+    src: landing1,
+    altText: 'Slide 1',
+    caption: 'Slide 1'
+  },
+  {
+    src: landing2,
+    altText: 'Slide 2',
+    caption: 'Slide 2'
+  },
+  {
+    src: landing3,
+    altText: 'Slide 3',
+    caption: 'Slide 3'
+  }
+];
 
 class Landing extends Component {
+  // 랜딩 Carousel
+  constructor(props) {
+    super(props);
+    this.state = { activeIndex: 0 };
+    this.next = this.next.bind(this);
+    this.previous = this.previous.bind(this);
+    this.onExiting = this.onExiting.bind(this);
+    this.onExited = this.onExited.bind(this);
+  }
+
+  onExiting() {
+    this.animating = true;
+  }
+
+  onExited() {
+    this.animating = false;
+  }
+
+  next() {
+    if (this.animating) return;
+    const nextIndex =
+      this.state.activeIndex === items.length - 1
+        ? 0
+        : this.state.activeIndex + 1;
+    this.setState({ activeIndex: nextIndex });
+  }
+
+  previous() {
+    if (this.animating) return;
+    const nextIndex =
+      this.state.activeIndex === 0
+        ? items.length - 1
+        : this.state.activeIndex - 1;
+    this.setState({ activeIndex: nextIndex });
+  }
   // 디자이너 등록 임시 토글
 
   certification() {
@@ -49,6 +113,20 @@ class Landing extends Component {
   }
 
   render() {
+    const { activeIndex } = this.state;
+
+    const slides = items.map(item => {
+      return (
+        <CarouselItem
+          onExiting={this.onExiting}
+          onExited={this.onExited}
+          key={item.src}
+        >
+          <img src={item.src} alt={item.altText} style={{ width: '1280px' }} />
+        </CarouselItem>
+      );
+    });
+
     return (
       <div>
         <div
@@ -101,8 +179,151 @@ class Landing extends Component {
             해제
           </div>
         </div>
+        {/* 여기부터 랜딩 */}
         <div>
-          <img src={landing} alt="landing" />
+          <Carousel
+            activeIndex={activeIndex}
+            next={this.next}
+            previous={this.previous}
+          >
+            <div
+              className="landing_imgback"
+              style={{ background: 'transparent' }}
+            >
+              <div className="landing_ctitle">
+                승급을 꿈꾸는 예디들의
+                <br />
+                꿈과 가능성에 힘이 되어주세요
+              </div>
+              <div className="landing_cbutton">예디 찾기</div>
+              <div className="landing_ctext">
+                드리머리 - 대한민국 최초 예비헤어디자이너 & 대중 연결 플랫폼
+              </div>
+              <div className="landing_ctext" style={{ fontSize: '11px' }}>
+                *드리머리에 속해있는 예비헤어디자이너들을 우리는 예디라고
+                부릅니다
+              </div>
+            </div>
+            {slides}
+          </Carousel>
+
+          <div className="landing_back">
+            <div className="landing_grid" style={{ width: '63.52%' }}>
+              <div>
+                <div className="landing_title">
+                  드리머리는
+                  <br />
+                  <span style={{ borderBottom: 'solid 5px #dd6866' }}>
+                    합리적인 가격
+                  </span>
+                  을 제시합니다
+                </div>
+                <div className="landing_content">
+                  다듬기만 하는데도 만원이 훌쩍 넘는 가격, 부담되셨죠? <br />
+                  드리머리에서 5,000원에 헤어 서비스를 받아보세요.
+                </div>
+              </div>
+              <div className="landing_imgcontainer justify-content-end">
+                <img alt="alt" src={icon3} style={{ width: '50%' }} />
+              </div>
+            </div>
+          </div>
+          <div className="landing_back e">
+            <div className="landing_grid" style={{ width: '63.52%' }}>
+              <div>
+                <div className="landing_title">
+                  드리머리는
+                  <br />
+                  <span style={{ borderBottom: 'solid 5px #4c91ba' }}>
+                    확실한 실력
+                  </span>
+                  을 보장합니다
+                </div>
+                <div className="landing_content">
+                  드리머리 예디들은 자격증은 물론 수년의 견습경력을 갖췄습니다.
+                  <br />
+                  다른 사람들이 남긴 리뷰와 별점을 보고 내게 맞는 예디를 직접
+                  찾아보세요.
+                </div>
+              </div>
+              <div className="landing_imgcontainer justify-content-end">
+                <img alt="alt" src={icon4} style={{ width: '50%' }} />
+              </div>
+            </div>
+          </div>
+          <div className="landing_back">
+            <div className="landing_grid" style={{ width: '63.52%' }}>
+              <div>
+                <div className="landing_title">
+                  드리머리는
+                  <br />
+                  <span style={{ borderBottom: 'solid 5px #dd6866' }}>
+                    건강한 소비
+                  </span>
+                  를 지향합니다
+                </div>
+                <div className="landing_content">
+                  곧 프로 헤어디자이너로 승급 할 예디들에게 서비스를 받을 수
+                  있는
+                  <br />
+                  마지막 기회입니다. 예디들의 꿈과 가능성에 힘이 되어주세요.
+                </div>
+              </div>
+              <div className="landing_imgcontainer justify-content-end">
+                <img alt="alt" src={icon5} style={{ width: '50%' }} />
+              </div>
+            </div>
+          </div>
+          <div className="landing_back e">
+            <div style={{ width: '63.52%' }}>
+              <div className="landing_title">
+                드리머리는
+                <br />
+                <span style={{ borderBottom: 'solid 5px #4c91ba' }}>
+                  이용이 간편
+                </span>
+                합니다
+              </div>
+              <img src={howtouse} style={{ marginTop: '50px' }} />
+            </div>
+          </div>
+          <div className="landing_back b">
+            <div
+              className="landing_grid"
+              style={{
+                gridTemplateColumns: 'auto auto auto',
+                gridGap: '100px'
+              }}
+            >
+              <img alt="alt" src={qmark1} />
+              <div className="landing_text">
+                드리머리는 예비 전문가가 전문가로 나아가기 위해 필요한 것과
+                문제점을
+                <br />
+                찾고 해결하고자 하는{' '}
+                <span style={{ fontWeight: 'bold', color: '#fffae3' }}>
+                  소셜벤처
+                </span>
+                로, 각 분야 사회 초년생{' '}
+                <span style={{ fontWeight: 'bold', color: '#fffae3' }}>
+                  개개인의 가치를 발굴
+                </span>
+                하고
+                <br />
+                합리적 소비를 꿈꾸는{' '}
+                <span style={{ fontWeight: 'bold', color: '#fffae3' }}>
+                  대중과 연결
+                </span>
+                하는 플랫폼입니다.
+              </div>
+              <img alt="alt" src={qmark2} />
+            </div>
+          </div>
+          <div className="landing_back e">
+            <div style={{ width: '63.52%' }}>
+              <img alt="alt" src={sponsor} style={{ width: '100%' }} />
+            </div>
+          </div>
         </div>
       </div>
     );
