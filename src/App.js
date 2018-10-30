@@ -403,7 +403,7 @@ class App extends Component {
               }
             />
             <Route
-              path="/reservation/:card_id"
+              path="/reservation"
               component={
                 this.props.userData.uid
                   ? this.props.userData.isRegister

@@ -18,10 +18,17 @@ class Coupon extends Component {
   couponSubmit = async () => {
     console.log(this.state.coupon);
 
-    axios.patch(`http://52.79.227.227:3030/coupons/${this.state.coupon}`, {
-      _user: this.props.userData._id
-    });
-    await alert('쿠폰이 적용 되었습니다.');
+    try {
+      await axios.patch(
+        `http://52.79.227.227:3030/coupons/${this.state.coupon}`,
+        {
+          _user: this.props.userData._id
+        }
+      );
+      await alert('쿠폰이 적용 되었습니다.');
+    } catch (err) {
+      alert('유효하지 않은 쿠폰번호 입니다.');
+    }
   };
   render() {
     return (
