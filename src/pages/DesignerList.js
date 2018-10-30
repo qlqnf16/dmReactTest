@@ -140,11 +140,11 @@ class DesignerList extends Component {
       sigungu = [...sigungu].sort();
     }
     return (
-      <div className="container-fluid dl">
-        <div className="my-5 text-center">
+      <div>
+        <div className="mb-5 text-center">
           <img alt="alt" style={{ width: '100%' }} src={step1} />
         </div>
-        <div className="row">
+        <div className="row" style={{ width: '92%', margin: 'auto' }}>
           <Filter
             getFilteredCards={this.getFilteredCards}
             filterChangeHandler={e => this.filterChangeHandler(e)}
@@ -153,7 +153,7 @@ class DesignerList extends Component {
             sigungu={sigungu}
           />
           <div className="col-9">
-            <CardDeck className="m-5">
+            <CardDeck style={{ marginLeft: '1%' }}>
               {recruits}
               {recruits}
               {recruits}

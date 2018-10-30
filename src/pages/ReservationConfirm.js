@@ -15,8 +15,8 @@ class ReservationConfirm extends Component {
   };
   render() {
     return (
-      <div className="container-fluid text-center mb-4">
-        <div className="my-5 text-center">
+      <div className="text-center mb-4">
+        <div className="mb-5 text-center">
           <img alt="alt" style={{ width: '100%' }} src={step3} />
         </div>
         <img

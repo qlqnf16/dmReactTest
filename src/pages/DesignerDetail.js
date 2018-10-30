@@ -85,8 +85,8 @@ class DesginerDetail extends Component {
       );
     }
     return (
-      <div className="container-fluid">
-        <div className="text-center my-5">
+      <div>
+        <div className="text-center mb-5">
           <img alt="alt" style={{ width: '100%' }} src={step2} />
         </div>
         <div className="row align-items-start">
