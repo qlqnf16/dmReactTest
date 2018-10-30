@@ -15,7 +15,7 @@ class MakeCoupon extends Component {
     const coupons = [];
     const designerCoupons = [];
     data.forEach(d => {
-      d.point < 1000000 ? coupons.push(d) : designerCoupons.push(d);
+      !d.forDesigner ? coupons.push(d) : designerCoupons.push(d);
     });
     this.setState({ coupons, designerCoupons, madeRequest: true });
   };
@@ -68,7 +68,7 @@ class MakeCoupon extends Component {
             {coupon._user ? coupon._user._id : '미사용'}
           </div>
           <div className="col-3">
-            <Moment format="YYYY/MM/DD">{coupon.createdAt}</Moment>
+            <Moment format="YYYY/MM/DD HH:mm:ss">{coupon.createdAt}</Moment>
           </div>
         </div>
       ));
@@ -81,7 +81,9 @@ class MakeCoupon extends Component {
               {designerCoupon._user ? designerCoupon._user._id : '미사용'}
             </div>
             <div className="col-3">
-              <Moment format="YYYY/MM/DD">{designerCoupon.createdAt}</Moment>
+              <Moment format="YYYY/MM/DD HH:mm:ss">
+                {designerCoupon.createdAt}
+              </Moment>
             </div>
           </div>
         )
@@ -127,8 +129,8 @@ class MakeCoupon extends Component {
                 onChange={this.inputChangeHandler}
                 className="if_input"
               >
-                <option value="2678400000">1개월</option>
-                <option value="8035200000">3개월</option>
+                <option value="10000">1개월</option>
+                <option value="28000">3개월</option>
               </select>
             </div>
             <div className="col-2 if_head">장수</div>
@@ -144,6 +146,7 @@ class MakeCoupon extends Component {
             <div onClick={this.makeDesignerCoupon} className="btn col-2">
               만들기
             </div>
+            <div className="h2 col-12">디자이너용 쿠폰</div>
             <div className="row col-12">
               <div className="col-3">포인트</div>
               <div className="col-3">번호</div>
@@ -153,6 +156,7 @@ class MakeCoupon extends Component {
             {designerCoupons}
           </div>
           <div className="col-6">
+            <div className="h2">유저용 쿠폰</div>
             <div className="row">
               <div className="col-3">포인트</div>
               <div className="col-3">번호</div>
