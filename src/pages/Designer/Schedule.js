@@ -52,10 +52,21 @@ class Schedule extends Component {
   };
 
   cardAddHandler = async cardData => {
-    Object.values(cardData.must).forEach(must => {
-      if (Object.values(cardData.no).some(no => no === must))
-        return alert('필수 서비스와 불가 서비스는 같을 수 없습니다');
+    let must = cardData.must;
+    let mustList = [];
+    let no = cardData.no;
+    let noList = [];
+    Object.keys(must).forEach(m => {
+      if (must[m]) mustList.push(m);
     });
+    Object.keys(no).forEach(m => {
+      if (no[m]) noList.push(m);
+    });
+    for (let i = 0; i < mustList.length; i++) {
+      if (noList.some(n => mustList[i] === n))
+        return alert('필수 서비스와 불가 서비스는 같을 수 없습니다');
+    }
+
     if (
       Object.values(cardData).includes(undefined) ||
       Object.values(cardData).includes('null') ||

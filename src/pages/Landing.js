@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import firebase from '../config/Firebase';
 import { connect } from 'react-redux';
 import './PageCss.css';
-import { Carousel, CarouselItem } from 'reactstrap';
+import { Carousel, CarouselItem, CarouselCaption } from 'reactstrap';
 import landing1 from '../assets/images/landing_slide1.jpg';
 import landing2 from '../assets/images/landing_slide2.jpg';
 import landing3 from '../assets/images/landing_slide3.jpg';
@@ -18,17 +19,17 @@ const items = [
   {
     src: landing1,
     altText: 'Slide 1',
-    caption: 'Slide 1'
-  },
-  {
-    src: landing2,
-    altText: 'Slide 2',
-    caption: 'Slide 2'
+    caption: `대중이 인정한\n예비헤어디자이너에게\n안심하고 서비스를 받아보세요`
   },
   {
     src: landing3,
+    altText: 'Slide 2',
+    caption: '승급을 꿈꾸는 예디들의\n꿈과 가능성에 힘이 되어주세요'
+  },
+  {
+    src: landing2,
     altText: 'Slide 3',
-    caption: 'Slide 3'
+    caption: '커피 한 잔 가격에\n맞춤 헤어서비스를 받아보세요'
   }
 ];
 
@@ -123,6 +124,16 @@ class Landing extends Component {
           key={item.src}
         >
           <img src={item.src} alt={item.altText} style={{ width: '1280px' }} />
+          <CarouselCaption
+            captionHeader={item.caption.split('\n').map(line => {
+              return (
+                <span>
+                  {line}
+                  <br />
+                </span>
+              );
+            })}
+          />
         </CarouselItem>
       );
     });
@@ -190,18 +201,20 @@ class Landing extends Component {
               className="landing_imgback"
               style={{ background: 'transparent' }}
             >
-              <div className="landing_ctitle">
-                승급을 꿈꾸는 예디들의
-                <br />
-                꿈과 가능성에 힘이 되어주세요
-              </div>
-              <div className="landing_cbutton">예디 찾기</div>
+              <div className="landing_ctitle" />
+              <Link to="/designerList" className="linkdeco">
+                <div className="landing_cbutton">예디 찾기</div>
+              </Link>
               <div className="landing_ctext">
                 드리머리 - 대한민국 최초 예비헤어디자이너 & 대중 연결 플랫폼
               </div>
-              <div className="landing_ctext" style={{ fontSize: '11px' }}>
-                *드리머리에 속해있는 예비헤어디자이너들을 우리는 예디라고
-                부릅니다
+              <div
+                className="landing_ctext"
+                style={{ fontSize: '11px', fontWeight: 'normal' }}
+              >
+                *드리머리에 속해있는 예비헤어디자이너들을 우리는{' '}
+                <span style={{ color: '#fffae3' }}>예디</span>
+                라고 부릅니다
               </div>
             </div>
             {slides}
@@ -319,7 +332,7 @@ class Landing extends Component {
               <img alt="alt" src={qmark2} />
             </div>
           </div>
-          <div className="landing_back e">
+          <div className="landing_back e" style={{ height: '483px' }}>
             <div style={{ width: '63.52%' }}>
               <img alt="alt" src={sponsor} style={{ width: '100%' }} />
             </div>

@@ -58,8 +58,10 @@ class DesginerDetail extends Component {
     recruit,
     cardData
   ) => {
+    console.log(startTime);
     if (Object.values(serviceFormat).length === 0)
       return alert('받을 서비스를 선택해 주세요');
+    if (!startTime) return alert('받을 시간을 선택해 주세요');
     await this.props.history.push({
       pathname: `/reservation`,
       state: {

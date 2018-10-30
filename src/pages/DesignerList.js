@@ -23,7 +23,9 @@ class DesignerList extends Component {
       const { data } = await axios.get('http://52.79.227.227:3030/recruits');
       const filteredData = data.filter(
         d =>
-          d._designer.expiredAt && d._designer.expiredAt > new Date().getTime()
+          d._designer.expiredAt &&
+          d._designer.expiredAt > new Date().getTime() &&
+          d._cards.some(card => card.reservable)
       );
       filteredData.sort((a, b) => {
         if (a.score < b.score) return 1;
