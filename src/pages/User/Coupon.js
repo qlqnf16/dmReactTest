@@ -27,7 +27,8 @@ class Coupon extends Component {
       } = await axios.patch(
         `http://52.79.227.227:3030/coupons/${this.state.coupon}`,
         {
-          _user: this.props.userData._id
+          _user: this.props.userData._id,
+          isD: false
         }
       );
       console.log(point);
