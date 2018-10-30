@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import firebase from '../../config/Firebase';
 import axios from 'axios';
+import { withRouter } from 'react-router-dom';
+import * as actions from '../../modules';
+
 import { connect } from 'react-redux';
 import UserNav from '../../components/Navigation/UserNav/UserNav';
 import CouponContent from '../../components/CouponContent/CouponContent';
@@ -19,12 +22,16 @@ class Coupon extends Component {
     console.log(this.state.coupon);
 
     try {
-      await axios.patch(
+      const {
+        data: { point }
+      } = await axios.patch(
         `http://52.79.227.227:3030/coupons/${this.state.coupon}`,
         {
           _user: this.props.userData._id
         }
       );
+      console.log(point);
+      await this.props.updateRedux('point', point);
       await alert('쿠폰이 적용 되었습니다.');
     } catch (err) {
       alert('유효하지 않은 쿠폰번호 입니다.');
@@ -80,4 +87,9 @@ class Coupon extends Component {
 const mapStateToProps = ({ authentication: { userData } }) => {
   return { userData };
 };
-export default connect(mapStateToProps)(Coupon);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    actions
+  )(Coupon)
+);

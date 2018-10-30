@@ -133,13 +133,12 @@ class App extends Component {
               `http://52.79.227.227:3030/users/` + userData._id
             );
             console.log(data);
-            userData['expiredAt'] = data.expiredAt;
-            userData['point'] = data.point;
-            userData['_recruit'] = data._recruit;
-            userData['_tickets'] = data._tickets;
-            userData['_reservations'] = data._reservations;
             console.log(userData);
             await this.props.login(userData);
+            await this.props.updateRedux('expiredAt', data.expiredAt);
+            await this.props.updateRedux('point', data.point);
+            await this.props.updateRedux('_tickets', data._tickets);
+            await this.props.updateRedux('_reservations', data._reservations);
           });
       } else {
         // logout 하면 landing page로 이동

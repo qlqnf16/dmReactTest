@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ScheduleBox from '../../components/DesignerSchedule/ScheduleBox/ScheduleBox';
 import axios from 'axios';
+
 import firebase from '../../config/Firebase';
 import { connect } from 'react-redux';
 import Spinner from '../../assets/images/loading_spinner.gif';
