@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import * as actions from '../../modules';
 import axios from 'axios';
 import TicketBox from '../../components/UI/DesignerTicket/TicketBox/TicketBox';
 import TicketCounter from '../../components/UI/DesignerTicket/TicketCounter/TicketCounter';
@@ -81,7 +83,10 @@ class DesignerTicket extends Component {
             }/tickets`,
             { price: kind }
           );
-
+          await this.props.updateRedux('_tickets', [
+            ...this.props.userData._tickets,
+            data
+          ]);
           await this.reloadTicket();
 
           alert(msg);
@@ -101,11 +106,12 @@ class DesignerTicket extends Component {
     )
       return alert('아직 사용중인 이용권이 있습니다');
 
-    await axios.patch(
+    const { data } = await axios.patch(
       `http://52.79.227.227:3030/users/${
         this.props.userData._id
       }/tickets/${ticketId}`
     );
+    await this.props.updateRedux('expiredAt', data.expiredAt);
     alert('적용되었습니다.');
     await this.reloadTicket();
   };
@@ -144,4 +150,9 @@ const mapStateToProps = ({ authentication: { userData } }) => {
   return { userData };
 };
 
-export default connect(mapStateToProps)(DesignerTicket);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    actions
+  )(DesignerTicket)
+);

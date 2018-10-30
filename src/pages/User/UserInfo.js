@@ -61,8 +61,7 @@ class UserInfo extends Component {
     if (!this.props.userData.isRegister)
       return alert('휴대폰 인증을 진행해주세요');
     if (
-      Object.values(firebaseUserData) === undefined ||
-      Object.values(firebaseUserData.birthday) === undefined ||
+      Object.values(firebaseUserData).includes(undefined) ||
       Object.values(firebaseUserData.birthday).includes('null')
     )
       return alert('채워지지 않은 정보가 있습니다');

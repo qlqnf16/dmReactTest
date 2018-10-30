@@ -13,6 +13,7 @@ class AddDesigner extends Component {
 
     let {
       name,
+      gender,
       birthday,
       email,
       phoneNumber,
@@ -27,6 +28,7 @@ class AddDesigner extends Component {
     if (!addresses) addresses = [];
     this.state = {
       name,
+      gender,
       email,
       phoneNumber,
       untilDesigner,
@@ -144,6 +146,7 @@ class AddDesigner extends Component {
   submitHandler = async () => {
     const {
       name,
+      gender,
       year,
       month,
       day,
@@ -158,6 +161,7 @@ class AddDesigner extends Component {
 
     let firebaseUserData = {
       name,
+      gender,
       birthday: { year, month, day },
       email,
       phoneNumber,
@@ -167,10 +171,9 @@ class AddDesigner extends Component {
       addresses,
       isApproval: false
     };
-
+    console.log(firebaseUserData);
     if (
       Object.values(firebaseUserData).includes(undefined) ||
-      Object.values(firebaseUserData.birthday).includes(undefined) ||
       Object.values(firebaseUserData.birthday).includes('null') ||
       addresses.length === 0
     )

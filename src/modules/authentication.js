@@ -8,6 +8,7 @@ import firebase from '../config/Firebase';
 
 const LOGIN_SUCCESS = 'authentication/LOGIN_SUCCESS';
 const GET_USER_ID = 'authentication/GET_USER_ID';
+const UPDATE_REDUX = 'authentication/UPDATE_REDUX';
 // const LOGIN_FAIL = 'authentication/LOGIN_FAIL';
 
 const initialState = {
@@ -30,6 +31,11 @@ export default (state = initialState, { type, payload }) => {
     case GET_USER_ID:
       console.log(payload);
       return { ...state, userId: payload };
+    case UPDATE_REDUX:
+      const name = payload.name;
+      const updateData = payload.updateData;
+      console.log(name, updateData);
+      return { ...state, userData: { ...state.userData, [name]: updateData } };
     default:
       return state;
   }
@@ -61,4 +67,7 @@ export const login = userData => dispatch => {
 };
 export const getUserId = _id => dispatch => {
   dispatch({ type: GET_USER_ID, payload: _id });
+};
+export const updateRedux = (name, updateData) => dispatch => {
+  dispatch({ type: UPDATE_REDUX, payload: { name, updateData } });
 };

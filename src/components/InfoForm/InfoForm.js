@@ -397,8 +397,7 @@ class InfoForm extends Component {
             <textarea
               name="careerDetail"
               id="careerDetail"
-              placeholder="줄바꿈을 해야하는데 줄바꿈이 안되네&#13;&#10;
-            운장이가 해주겠지"
+              placeholder="최신순으로 작성해주세요.&#13;&#10;예시)&#13;&#10;- 2018/08 ㅇㅇlevel2 취득&#13;&#10;- 2017/06 미용사 면허증 취득&#13;&#10;- 2017/03 ㅇㅇ대학교 미용예술학과 졸"
               onChange={this.props.changeInput}
               value={userData.careerDetail}
               className="if_input"

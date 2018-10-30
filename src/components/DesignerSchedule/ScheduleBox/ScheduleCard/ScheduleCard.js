@@ -89,6 +89,8 @@ const ScheduleCard = props => {
   });
   mustParse = mustParse.substring(1);
   noParse = noParse.substring(1);
+  if (!mustParse.length) mustParse = '없음';
+  if (!noParse.length) noParse = '없음';
   return (
     <div className="col-6 p-0">
       <div className="schedule_card " style={{ color: '#1f3354' }}>
