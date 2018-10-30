@@ -119,7 +119,7 @@ class App extends Component {
   authListener() {
     firebase.auth().onAuthStateChanged(user => {
       console.log(this.props);
-      if (user) {
+      if (user && firebase.auth().currentUser) {
         console.log(user);
         firebase
           .database()

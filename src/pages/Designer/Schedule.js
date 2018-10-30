@@ -149,8 +149,6 @@ class Schedule extends Component {
       await this.reloadCardData();
       await this.setState({ newCards: [] });
     }
-    // TODO : 더 좋은 방법 찾기
-    // window.location.reload();
     alert(' 성공적으로 저장되었습니다! ');
   };
 

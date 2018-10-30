@@ -110,10 +110,22 @@ const TextInfo = props => (
             style={styles.selectStyle}
           >
             <option value="null">--컷트--</option>
+            <option value="30">30분</option>
             <option value="60">1시간</option>
             <option value="90">1시간 30분</option>
             <option value="120">2시간</option>
             <option value="150">2시간 30분</option>
+            <option value="180">3시간</option>
+            <option value="210">3시간 30분</option>
+            <option value="240">4시간</option>
+            <option value="270">4시간 30분</option>
+            <option value="300">5시간</option>
+            <option value="330">5시간 30분</option>
+            <option value="360">6시간</option>
+            <option value="390">6시간 30분</option>
+            <option value="420">7시간</option>
+            <option value="450">7시간 30분</option>
+            <option value="480">8시간</option>
           </Input>
         </div>
         <div className="col-4">
@@ -129,10 +141,22 @@ const TextInfo = props => (
             style={styles.selectStyle}
           >
             <option value="null">--펌--</option>
+            <option value="30">30분</option>
             <option value="60">1시간</option>
             <option value="90">1시간 30분</option>
             <option value="120">2시간</option>
             <option value="150">2시간 30분</option>
+            <option value="180">3시간</option>
+            <option value="210">3시간 30분</option>
+            <option value="240">4시간</option>
+            <option value="270">4시간 30분</option>
+            <option value="300">5시간</option>
+            <option value="330">5시간 30분</option>
+            <option value="360">6시간</option>
+            <option value="390">6시간 30분</option>
+            <option value="420">7시간</option>
+            <option value="450">7시간 30분</option>
+            <option value="480">8시간</option>
           </Input>
         </div>
         <div className="col-4">
@@ -148,10 +172,22 @@ const TextInfo = props => (
             style={styles.selectStyle}
           >
             <option value="null">--염색--</option>
+            <option value="30">30분</option>
             <option value="60">1시간</option>
             <option value="90">1시간 30분</option>
             <option value="120">2시간</option>
             <option value="150">2시간 30분</option>
+            <option value="180">3시간</option>
+            <option value="210">3시간 30분</option>
+            <option value="240">4시간</option>
+            <option value="270">4시간 30분</option>
+            <option value="300">5시간</option>
+            <option value="330">5시간 30분</option>
+            <option value="360">6시간</option>
+            <option value="390">6시간 30분</option>
+            <option value="420">7시간</option>
+            <option value="450">7시간 30분</option>
+            <option value="480">8시간</option>
           </Input>
         </div>
       </div>

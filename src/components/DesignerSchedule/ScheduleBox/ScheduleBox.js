@@ -20,14 +20,14 @@ class ScheduleBox extends Component {
       permPrice: {
         normal: 30000,
         chin: 30000,
-        shoulder: 400000,
-        chest: 500000
+        shoulder: 30000,
+        chest: 30000
       },
       dyePrice: {
         normal: 30000,
-        chin: 300000,
-        shoulder: 400000,
-        chest: 500000
+        chin: 30000,
+        shoulder: 30000,
+        chest: 30000
       },
       title: '',
       requirement: '',
