@@ -23,7 +23,8 @@ class Chat extends Component {
           content: params.content,
           from: params.from,
           to: params.to,
-          createdAt: params.createdAt
+          createdAt: params.createdAt,
+          checked: params.checked
         }),
         textfield: ''
       });
