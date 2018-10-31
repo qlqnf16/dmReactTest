@@ -503,7 +503,7 @@ class Schedule extends Component {
               />
             </div>
           </div>
-          <div className="length_price row">
+          <div className="length_price row no-border">
             <div className="col-4 text-right">
               가슴아래{' '}
               <input
