@@ -29,14 +29,12 @@ class DesignerDetail extends Component {
         `http://52.79.227.227:3030/recruits/${this.props.match.params.id}`
       );
       this.setState({ recruit: data, madeRequest: true });
-      console.log(this.state.recruit);
     }
 
     await firebase
       .database()
       .ref('/users/' + this.state.recruit._designer._uid)
       .on('value', async res => {
-        console.log(res.val());
         this.setState({ designerData: res.val() });
       });
   };
@@ -146,6 +144,7 @@ class DesignerDetail extends Component {
                 {portfolios.map(portfolio => (
                   <img
                     alt="alt"
+                    key={portfolio}
                     src={portfolio}
                     className="col-4"
                     style={{ padding: '0', width: '100%', height: '100%' }}

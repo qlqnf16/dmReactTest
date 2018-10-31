@@ -15,8 +15,6 @@ class DesignerCoupon extends Component {
   };
 
   couponSubmit = async () => {
-    console.log(this.state.coupon);
-
     try {
       await axios.patch(
         `http://52.79.227.227:3030/coupons/${this.state.coupon}`,

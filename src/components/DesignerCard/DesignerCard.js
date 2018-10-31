@@ -58,7 +58,6 @@ class DesginerCard extends Component {
                     {shops}
                   </span>
                 </CardSubtitle>
-                {/* <CardSubtitle>{recruit.shop}</CardSubtitle> */}
                 <CardTitle>
                   <span
                     style={{
@@ -89,7 +88,6 @@ class DesginerCard extends Component {
                   />
                   <span style={{ color: 'gray' }}>({recruit.score})</span>
                 </CardSubtitle>
-                {/* <Link to={`/designerdetail/${recruit.id}`}>상세 보기</Link> */}
               </CardBody>
             </Card>
           </Link>

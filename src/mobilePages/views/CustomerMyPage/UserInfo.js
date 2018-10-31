@@ -82,10 +82,7 @@ class UserInfo extends Component {
         firebaseUserData = { ...firebaseUserData, recommendationCode };
         count += 1;
 
-        // if (count === 3) {
-        //   count = 0;
         await axios.patch(`http://52.79.227.227:3030/users/${_id}/addpoint`);
-        // }
 
         // 추천받은 횟수 저장
         await firebase
@@ -99,7 +96,7 @@ class UserInfo extends Component {
       .database()
       .ref('users/' + uid)
       .update(firebaseUserData);
-    await alert('저장되었습니다!');
+    alert('저장되었습니다!');
   };
 
   render() {

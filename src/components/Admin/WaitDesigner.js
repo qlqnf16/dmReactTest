@@ -23,7 +23,7 @@ class WaitDesigner extends Component {
         isD: true,
         isApproval: true
       });
-    await alert('승인되었습니다');
+    alert('승인되었습니다');
   };
 
   render() {
@@ -42,16 +42,16 @@ class WaitDesigner extends Component {
         <th scope="row">{designer.name}</th>
         <td>{designer.email}</td>
         <td>
-          {addresses.map(address => (
-            <p>
+          {addresses.map((address, key) => (
+            <p key={key}>
               {address.sido} / {address.sigungu}
             </p>
           ))}
         </td>
 
         <td>
-          {shops.map(shop => (
-            <p>{shop}</p>
+          {shops.map((shop, key) => (
+            <p key={key}>{shop}</p>
           ))}
         </td>
         <td>

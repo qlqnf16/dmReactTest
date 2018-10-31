@@ -29,36 +29,13 @@ export default (state = initialState, { type, payload }) => {
     case LOGIN_SUCCESS:
       return { ...state, userData: payload };
     case GET_USER_ID:
-      console.log(payload);
       return { ...state, userId: payload };
     case UPDATE_REDUX:
       const name = payload.name;
       const updateData = payload.updateData;
-      console.log(name, updateData);
       return { ...state, userData: { ...state.userData, [name]: updateData } };
     default:
       return state;
-  }
-};
-
-export const googleLogin = () => async dispatch => {
-  const provider = new firebaseApp.auth.GoogleAuthProvider();
-
-  try {
-    await firebase.auth().signInWithPopup(provider);
-    const currentUser = firebase.auth().currentUser;
-    const { name, uid, email } = currentUser;
-    const userData = { name, age: null, uid, email, isD: true };
-
-    await firebase
-      .database()
-      .ref('users/' + uid)
-      .set(userData);
-
-    // dispatch({ type: LOGIN_SUCCESS, payload: userData });
-  } catch (error) {
-    console.log(error);
-    // dispatch({ type: LOGIN_FAIL });
   }
 };
 

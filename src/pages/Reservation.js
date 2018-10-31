@@ -50,8 +50,6 @@ class Reservation extends Component {
 
   pointSubmit = () => {
     if (this.state.point % 1000 === 0) {
-      console.log(this.state.point);
-      console.log(this.props.userData.point);
       if (this.state.point > this.props.userData.point) {
         alert('보유 포인트보다 많이 사용할 수 없습니다');
       } else {
@@ -65,7 +63,6 @@ class Reservation extends Component {
   };
 
   purchaseHandler(kind) {
-    console.log('hello', kind);
     const { IMP } = window;
     IMP.init('imp06037656');
     IMP.request_pay(
@@ -84,13 +81,6 @@ class Reservation extends Component {
       },
       async rsp => {
         if (rsp.success) {
-          var msg = '결제가 완료되었습니다.';
-          msg += '고유ID : ' + rsp.imp_uid;
-          msg += '상점 거래ID : ' + rsp.merchant_uid;
-          msg += '결제 금액 : ' + rsp.paid_amount;
-          msg += '카드 승인번호 : ' + rsp.apply_num;
-          alert(msg);
-
           const { data } = await axios.post(
             `http://52.79.227.227:3030/users/${
               this.props.userData._id
@@ -106,6 +96,8 @@ class Reservation extends Component {
               service: this.props.location.state.service
             }
           });
+
+          alert('결제가 완료되었습니다. 결제 금액 : ' + rsp.paid_amount);
         } else {
           var errMsg = '결제에 실패하였습니다.';
           errMsg += ' 에러내용 : ' + rsp.error_msg;
@@ -122,7 +114,6 @@ class Reservation extends Component {
     this.setState({
       reservationId: data._id
     });
-    console.log(data);
     alert('성공적으로 예약되었습니다');
   };
 
@@ -138,8 +129,6 @@ class Reservation extends Component {
 
     const recruit = this.props.location.state.recruit;
     const cardData = this.props.location.state.cardData;
-    console.log(recruit);
-    console.log(cardData);
     return (
       <div className="mb-5">
         <div className="mb-5 text-center">

@@ -5,7 +5,6 @@ import womanBack from '../../assets/images/woman_back.png';
 const AttentionCard = props => {
   let service = props.service;
   service = service.substring(1).split('/ ');
-  console.log(service);
   let priceImage = null;
   let boxStyle = null;
   if (service.includes('펌') && service.includes('염색')) {

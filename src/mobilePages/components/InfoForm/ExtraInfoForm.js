@@ -67,7 +67,6 @@ const ExtraInfoForm = props => {
         />
       </div>
       <div style={labelStyle}>포트폴리오</div>
-      {/* TODO: 포트폴리오 이미지 프리뷰 예쁘게 만들어주세요 */}
       <div style={portfolioContainerStyle}>
         {props.state.num > 0
           ? userData.portfolioImg.map((url, i) => (

@@ -6,7 +6,6 @@ const MoreInfo = props => {
   for (let i = 0; props.designerData[`portfolio${i}`]; i++) {
     portfolios.push(props.designerData[`portfolio${i}`]);
   }
-  console.log(portfolios);
 
   return (
     <div>
@@ -21,12 +20,14 @@ const MoreInfo = props => {
       </div>
       <div className="mi_subtitle">포트폴리오</div>
       <div className="row" style={{ margin: '13.3px 0 0 0' }}>
-        {portfolios.map(portfolio => (
+        {portfolios.map((portfolio, key) => (
           <img
+            key={key}
             alt="alt"
             src={portfolio}
             className="col-4"
             style={{ padding: '0', width: '100%', height: '100%' }}
+            onClick={() => props.showLargeImageToggle(portfolio)}
           />
         ))}
       </div>

@@ -9,7 +9,6 @@ import { connect } from 'react-redux';
 class ScheduleBox extends Component {
   constructor(props) {
     super(props);
-    console.log(props);
     this.state = {
       cards: this.props.cards,
       time: 1,
@@ -42,7 +41,6 @@ class ScheduleBox extends Component {
       const { data } = await axios.get(
         `http://52.79.227.227:3030/recruits/${this.props.userData._recruit}`
       );
-      console.log(data);
       this.setState({
         cards: data._cards,
         title: data.title,
@@ -51,9 +49,6 @@ class ScheduleBox extends Component {
         madeRequest: true,
         reviews: data._reviews
       });
-      console.log(this.state);
-      console.log(data._cards);
-      console.log(this.props.userData._recruit);
     }
   };
 
@@ -66,11 +61,7 @@ class ScheduleBox extends Component {
   };
 
   timeDefault = event => {
-    // const target = event.target;
-    // const value = target.type === 'checkbox' ? target.checked : target.value;
-    // const name = target.name;
     const time = event._d.getTime();
-    // this.setState({ [name]: value });
     this.setState({ time: 1, date: time });
   };
   sinces = [];
@@ -82,7 +73,6 @@ class ScheduleBox extends Component {
     const name = target.name;
     if (target.type !== 'checkbox') {
       if (target.name === 'since') {
-        console.log(typeof target.value);
         this.sinces[target.id] = Number(target.value);
         this.setState({
           sinces: this.sinces
@@ -94,7 +84,6 @@ class ScheduleBox extends Component {
         });
       } else if (target.id === 'time') {
         const value = Number(target.value);
-        console.log(name, value);
         let requireTime = {
           ...this.state.requireTime,
           [name]: value
@@ -178,7 +167,6 @@ class ScheduleBox extends Component {
       sido,
       sigungu
     };
-    console.log(cardData);
     let requireTime = null;
 
     const recruitData = {
@@ -199,7 +187,6 @@ class ScheduleBox extends Component {
       };
       recruitData['requireTime'] = requireTime;
     }
-    console.log(recruitData);
     return (
       <div className="row align-items-start">
         <div className="col-6">

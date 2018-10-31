@@ -31,7 +31,6 @@ class Message extends Component {
       );
       const promises = [];
       data.forEach(reservation => {
-        console.log(reservation);
         socket.emit('join', { reservationId: reservation._id });
         promises.push(
           new Promise((resolve, reject) => {
@@ -56,9 +55,7 @@ class Message extends Component {
           })
         );
       });
-      console.log(promises);
       const messages = await Promise.all(promises);
-      console.log(messages);
       messages.sort(messageSort);
       this.setState({
         messages
@@ -97,7 +94,6 @@ class Message extends Component {
         );
       });
       const messages = await Promise.all(promises);
-      console.log(messages);
       messages.sort(messageSort);
       this.setState({
         messages
@@ -108,10 +104,11 @@ class Message extends Component {
   render() {
     let chats = '로딩중...';
     if (this.state.messages) {
-      chats = this.state.messages.map(message => {
+      chats = this.state.messages.map((message, key) => {
         const latest = message.messages[message.messages.length - 1];
         return (
           <ChatPreview
+            key={key}
             name={
               message.designerName === this.props.userData.name
                 ? message.userName

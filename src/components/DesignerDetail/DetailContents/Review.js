@@ -5,11 +5,10 @@ import Moment from 'react-moment';
 
 const Review = props => {
   const review = props.review;
-  console.log(review);
   const images =
     review.images &&
-    review.images.map(img => (
-      <img src={img} alt="img" className="col-4 w-100 h-100" />
+    review.images.map((img, key) => (
+      <img key={key} src={img} alt="img" className="col-4 w-100 h-100" />
     ));
 
   return (
@@ -31,7 +30,6 @@ const Review = props => {
       </div>
       <div className="r_content">
         <Moment format="YYYY/MM/DD">{review.createdAt}</Moment>
-        {/* {`${time.getFullYear()}/${month[time.getMonth()]}/${time.getDate()}`} */}
       </div>
       <div className="r_content" style={{ marginTop: '22px' }}>
         {review.content}

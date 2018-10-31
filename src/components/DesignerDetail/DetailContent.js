@@ -6,7 +6,6 @@ import MoreInfo from './DetailContents/MoreInfo';
 
 const DetailContent = props => {
   const recruit = props.recruit;
-  console.log(props);
   return (
     <React.Fragment>
       <div className="col-7 row">
@@ -24,7 +23,11 @@ const DetailContent = props => {
         </div>
         <div className="col-9">
           <BasicInfo recruit={recruit} designerData={props.designerData} />
-          <MoreInfo recruit={recruit} designerData={props.designerData} />
+          <MoreInfo
+            recruit={recruit}
+            designerData={props.designerData}
+            showLargeImageToggle={props.showLargeImageToggle}
+          />
           <div>
             <div className="dc_title">예디리뷰</div>
             <div className="dc__reviews">

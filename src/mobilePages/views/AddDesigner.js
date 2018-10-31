@@ -99,7 +99,6 @@ class AddDesigner extends Component {
       default:
         console.log('something wrong in [DesignerInfo.js]');
     }
-    console.log(this.state);
   };
 
   // 최종 제출
@@ -157,7 +156,7 @@ class AddDesigner extends Component {
       result = await fbPromise;
       // 유효하지 않은 추천인 코드일 때,
       if (!result || designerRecommendationCode === this.props.userData.uid)
-        await alert('유효하지 않은 추천인 코드 입니다.');
+        alert('유효하지 않은 추천인 코드 입니다.');
       // 유효한 추천인 코드일 때,
       else {
         let { designerRecommendation, _id } = result.val();
@@ -195,8 +194,6 @@ class AddDesigner extends Component {
       formData,
       { headers: { 'Content-Type': 'multipart/form-data' } }
     );
-
-    // await this.props.history.push('/designer/whydreamary');
   };
 
   render() {

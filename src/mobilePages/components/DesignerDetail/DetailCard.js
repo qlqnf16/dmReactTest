@@ -64,7 +64,6 @@ class DetailCard extends Component {
   };
 
   render() {
-    console.log(this.props.recruit);
     let addData = null;
     let must = [];
     let no = [];
@@ -79,7 +78,6 @@ class DetailCard extends Component {
       });
     }
     let dcard = 'dcard ';
-    console.log(this.props.selectedCard === this.props.number);
     if (this.state.click && this.props.selectedCard === this.props.number) {
       addData = (
         <CardAdd

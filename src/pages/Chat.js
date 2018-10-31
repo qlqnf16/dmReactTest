@@ -73,9 +73,7 @@ class Chat extends Component {
               reservationId: params.r,
               names
             },
-            checkPoints => {
-              console.log(checkPoints);
-            }
+            checkPoints => {}
           );
         }
       );
@@ -86,7 +84,6 @@ class Chat extends Component {
         },
         (messages, checkPoints) => {
           this.setState({ messages, checkPoints });
-          console.log(messages);
         }
       );
     }

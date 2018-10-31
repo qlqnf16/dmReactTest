@@ -4,7 +4,6 @@ import Moment from 'react-moment';
 
 const CancelReasonModal = props => {
   if (props.reservation) {
-    console.log(props.reservation);
     let since = '';
     let until = '';
     let services = '';

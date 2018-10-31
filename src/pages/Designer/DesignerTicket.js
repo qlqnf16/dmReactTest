@@ -52,7 +52,6 @@ class DesignerTicket extends Component {
   };
 
   purchaseHandler = kind => {
-    console.log('hello', kind);
     const { IMP } = window;
     IMP.init('imp06037656');
     IMP.request_pay(
@@ -71,12 +70,6 @@ class DesignerTicket extends Component {
       },
       async rsp => {
         if (rsp.success) {
-          var msg = '결제가 완료되었습니다.';
-          msg += '고유ID : ' + rsp.imp_uid;
-          msg += '상점 거래ID : ' + rsp.merchant_uid;
-          msg += '결제 금액 : ' + rsp.paid_amount;
-          msg += '카드 승인번호 : ' + rsp.apply_num;
-
           const { data } = await axios.post(
             `http://52.79.227.227:3030/users/${
               this.props.userData._id
@@ -88,8 +81,7 @@ class DesignerTicket extends Component {
             data
           ]);
           await this.reloadTicket();
-
-          alert(msg);
+          alert('결제가 완료되었습니다. 결제 금액 : ' + rsp.paid_amount);
         } else {
           var errMsg = '결제에 실패하였습니다.';
           errMsg += ' 에러내용 : ' + rsp.error_msg;

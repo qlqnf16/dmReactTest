@@ -47,8 +47,8 @@ class ChatBox extends Component {
       else otherName = this.props.reservationData._designer.name;
       let messages = '로딩중';
       if (this.props.messages) {
-        messages = this.props.messages.map(message => (
-          <div className="d-flex flex-column">
+        messages = this.props.messages.map((message, key) => (
+          <div key={key} className="d-flex flex-column">
             <div>
               <div
                 className={`chat_bubble_${message.from === otherName ? 1 : 2}`}

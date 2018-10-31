@@ -64,12 +64,12 @@ class DesignerCarousel extends Component {
   render() {
     const { activeIndex } = this.state;
 
-    const slides = this.props.images.map(image => {
+    const slides = this.props.images.map((image, key) => {
       return (
         <CarouselItem
           onExiting={this.onExiting}
           onExited={this.onExited}
-          key={image}
+          key={key}
         >
           <img
             src={image}

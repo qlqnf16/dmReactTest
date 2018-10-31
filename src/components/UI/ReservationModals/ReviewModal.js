@@ -33,7 +33,6 @@ class ReviewModal extends Component {
     this.state.reviewImg.push(URL.createObjectURL(file));
     this.state.reviewImgFile.push(file);
     this.setState({ num: this.state.num + 1 });
-    console.log(this.state);
   };
 
   deleteImg = e => {
@@ -84,7 +83,7 @@ class ReviewModal extends Component {
       }
     );
 
-    await alert('성공적으로 등록되었습니다');
+    alert('성공적으로 등록되었습니다');
     await this.props.toggle();
     await this.props.reloadData();
   };
@@ -150,15 +149,6 @@ class ReviewModal extends Component {
                   starDimension="2rem"
                   starSpacing="1px"
                 />
-                {/* <input
-                  type="range"
-                  name="score"
-                  id="score"
-                  min="0"
-                  max="5"
-                  step="0.5"
-                  onChange={this.inputChangeHandler}
-                /> */}
               </div>
             </div>
             <textarea

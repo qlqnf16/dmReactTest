@@ -32,7 +32,6 @@ const ShowReviewModal = props => {
       });
       services = services.substring(1);
     }
-    console.log(props.reservation._review);
     return (
       <Modal centered isOpen={props.isOpen} toggle={props.toggle}>
         <ModalBody className="m-4">
@@ -77,8 +76,9 @@ const ShowReviewModal = props => {
             </p>
             <div className="row justify-content-center">
               {props.reservation._review &&
-                props.reservation._review.images.map(image => (
+                props.reservation._review.images.map((image, key) => (
                   <img
+                    key={key}
                     alt="alt"
                     src={image}
                     className="col-4"
