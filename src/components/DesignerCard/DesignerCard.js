@@ -43,7 +43,7 @@ class DesginerCard extends Component {
       for (let i = 0; this.state.designerData[`portfolio${i}`]; i++) {
         portfolios.push(this.state.designerData[`portfolio${i}`]);
       }
-      if (!portfolios.length) portfolios = [defaultGuy, defaultGuy];
+      if (!portfolios.length) portfolios = [defaultGuy];
 
       return (
         <Col className="m-0 p-1 " xs="3">

@@ -28,55 +28,38 @@ class DesignerCarousel extends Component {
   constructor(props) {
     super(props);
     this.state = { activeIndex: 0 };
-    this.next = this.next.bind(this);
-    this.previous = this.previous.bind(this);
-    this.goToIndex = this.goToIndex.bind(this);
-    this.onExiting = this.onExiting.bind(this);
-    this.onExited = this.onExited.bind(this);
   }
 
-  // componentWillMount() {
-  //   if (typeof this.props.test === 'object') {
-  //     Object.entries(this.props.test).forEach((t, i) => {
-  //       items[i].src = t[1];
-  //     });
-  //   }
-  // }
-
-  componentDidMount() {
-    // console.log(this.props);
-  }
-
-  onExiting() {
+  onExiting = () => {
     this.animating = true;
-  }
+  };
 
-  onExited() {
+  onExited = () => {
     this.animating = false;
-  }
+  };
 
-  next() {
+  next = images => {
     if (this.animating) return;
     const nextIndex =
-      this.state.activeIndex === items.length - 1
+      this.state.activeIndex === images.length - 1
         ? 0
         : this.state.activeIndex + 1;
     this.setState({ activeIndex: nextIndex });
-  }
+  };
 
-  previous() {
+  previous = images => {
     if (this.animating) return;
     const nextIndex =
       this.state.activeIndex === 0
-        ? items.length - 1
+        ? images.length - 1
         : this.state.activeIndex - 1;
     this.setState({ activeIndex: nextIndex });
-  }
+  };
 
-  goToIndex(newIndex) {
+  goToIndex = newIndex => {
     if (this.animating) return;
     this.setState({ activeIndex: newIndex });
-  }
+  };
 
   render() {
     const { activeIndex } = this.state;
@@ -100,24 +83,24 @@ class DesignerCarousel extends Component {
     return (
       <Carousel
         activeIndex={activeIndex}
-        next={this.next}
-        previous={this.previous}
+        next={() => this.next(this.props.images)}
+        previous={() => this.previous(this.props.images)}
       >
         <CarouselIndicators
           items={this.props.images}
           activeIndex={activeIndex}
-          onClickHandler={this.goToIndex}
+          onClickHandler={() => this.goToIndex()}
         />
         {slides}
         <CarouselControl
           direction="prev"
           directionText="Previous"
-          onClickHandler={this.previous}
+          onClickHandler={() => this.previous(this.props.images)}
         />
         <CarouselControl
           direction="next"
           directionText="Next"
-          onClickHandler={this.next}
+          onClickHandler={() => this.next(this.props.images)}
         />
       </Carousel>
     );

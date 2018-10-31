@@ -161,13 +161,7 @@ class DesignerList extends Component {
             sigungu={sigungu}
           />
           <div className="col-9">
-            <CardDeck style={{ marginLeft: '1%' }}>
-              {recruits}
-              {recruits}
-              {recruits}
-              {recruits}
-              {recruits}
-            </CardDeck>
+            <CardDeck style={{ marginLeft: '1%' }}>{recruits}</CardDeck>
           </div>
         </div>
       </div>
