@@ -499,7 +499,7 @@ class Schedule extends Component {
               <span style={{ ...plus, left: '41%' }}>+</span>
             </div>
           </div>
-          <div className="length_price row">
+          <div className="length_price row no-border">
             <div className="col-4 text-right">
               가슴아래{' '}
               <input
