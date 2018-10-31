@@ -93,6 +93,7 @@ class Chat extends Component {
   }
 
   sendMessageHandler = msg => {
+    if (msg === '') return;
     const params = deparam(this.props.location.search.slice(1));
     const names = [
       this.props.userData.name,
