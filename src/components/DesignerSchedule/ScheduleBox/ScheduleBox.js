@@ -113,11 +113,11 @@ class ScheduleBox extends Component {
           }
         });
       } else if (target.name === 'no') {
-        target.id = target.id.toLowerCase();
+        let id = target.id.toLowerCase();
         this.setState({
           no: {
             ...this.state.no,
-            [target.id]: target.checked
+            [id]: target.checked
           }
         });
       } else {
