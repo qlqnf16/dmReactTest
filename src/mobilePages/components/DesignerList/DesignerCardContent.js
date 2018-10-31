@@ -11,7 +11,6 @@ const DesignerCardContent = props => {
   } = styles;
 
   const recruit = props.recruit;
-  console.log(recruit);
   return (
     <div style={containerStyle}>
       <h5 style={locationStyle}>샵 이름 넣기</h5>

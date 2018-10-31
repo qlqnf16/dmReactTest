@@ -46,16 +46,6 @@ const UserNav = () => (
       >
         추천인/쿠폰
       </NavLink>
-      {/* <NavLink
-        to="/message"
-        className="un_navItem"
-        activeStyle={{
-          color: '#1f3354',
-          borderBottom: 'solid 1.8px #1f3354'
-        }}
-      >
-        메세지
-      </NavLink> */}
     </div>
   </div>
 );

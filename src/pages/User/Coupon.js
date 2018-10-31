@@ -19,8 +19,6 @@ class Coupon extends Component {
   };
 
   couponSubmit = async () => {
-    console.log(this.state.coupon);
-
     try {
       const {
         data: { point }
@@ -31,9 +29,8 @@ class Coupon extends Component {
           isD: false
         }
       );
-      console.log(point);
       await this.props.updateRedux('point', point);
-      await alert('쿠폰이 적용 되었습니다.');
+      alert('쿠폰이 적용 되었습니다.');
     } catch (err) {
       alert('유효하지 않은 쿠폰번호 입니다.');
     }

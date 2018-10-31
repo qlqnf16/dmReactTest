@@ -24,7 +24,7 @@ class CompleteModal extends Component {
       }
     );
 
-    await alert('성공적으로 완료되었습니다');
+    alert('성공적으로 완료되었습니다');
     await this.props.toggle();
     await this.props.reloadData();
   };
@@ -41,7 +41,7 @@ class CompleteModal extends Component {
       }
     );
 
-    await alert('신고가 완료되었습니다');
+    alert('신고가 완료되었습니다');
     await this.props.toggle();
     await this.props.reloadData();
   };
@@ -113,14 +113,6 @@ class CompleteModal extends Component {
               노쇼 신고
             </div>
           </ModalBody>
-          {/* <ModalFooter>
-            <Button color="primary" onClick={this.cancelReasonSubmit}>
-              작성
-            </Button>
-            <Button color="warning" onClick={this.props.toggle}>
-              취소
-            </Button>
-          </ModalFooter> */}
         </Modal>
       );
     } else {

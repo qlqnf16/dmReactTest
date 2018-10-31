@@ -4,7 +4,6 @@ class DetailCards extends Component {
   state = { click: false };
 
   addData = key => {
-    console.log(key);
     this.setState({
       click: !this.state.click,
       selectedCard: key
@@ -12,11 +11,9 @@ class DetailCards extends Component {
   };
 
   render() {
-    console.log(this.props.recruit);
     let leftCards = [];
     let rightCards = [];
     if (this.props.recruit._cards) {
-      console.log(this.props.recruit._cards);
       const cards = this.props.recruit._cards.sort((a, b) => a.date - b.date);
       let count = 0;
       cards.forEach((card, key) => {

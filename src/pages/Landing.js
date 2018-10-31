@@ -125,14 +125,15 @@ class Landing extends Component {
         >
           <img src={item.src} alt={item.altText} style={{ width: '1280px' }} />
           <CarouselCaption
-            captionHeader={item.caption.split('\n').map(line => {
+            captionHeader={item.caption.split('\n').map((line, key) => {
               return (
-                <span>
+                <span key={key}>
                   {line}
                   <br />
                 </span>
               );
             })}
+            captionText=""
           />
         </CarouselItem>
       );

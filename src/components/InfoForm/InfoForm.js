@@ -5,18 +5,12 @@ import './InfoForm.css';
 import DaumPostcode from 'react-daum-postcode';
 
 class InfoForm extends Component {
-  // state = {
-  //   year: this.props.state.birthday.year,
-  //   month: this.props.state.birthday.month,
-  //   day: this.props.state.birthday.day
-  // };
   state = {
     addressModal: false,
     addressNum: 0
   };
 
   addressModalToggle = i => {
-    console.log('모달 토글');
     this.setState({
       addressModal: !this.state.addressModal,
       addressNum: i
@@ -41,11 +35,12 @@ class InfoForm extends Component {
             id={i}
             placeholder="샵 주소"
             className="if_input "
-            value={
+            defaultValue={
               this.props.state.addresses[i] &&
               this.props.state.addresses[i].fullAddress
             }
             style={{ marginRight: '3px' }}
+            readOnly
           />
           <input
             type="text"
@@ -95,12 +90,10 @@ class InfoForm extends Component {
       fullAddress += extraAddress !== '' ? ` (${extraAddress})` : '';
     }
     this.props.handleAddress(data, fullAddress, this.state.addressNum);
-    // document.getElementByName('address').value = fullAddress;
     this.addressModalToggle(this.state.addressNum);
   };
   render() {
     const userData = this.props.state;
-    console.log(userData);
 
     // 달력 만들기
     let month = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
@@ -265,13 +258,6 @@ class InfoForm extends Component {
           <div className="col-3 if_head">생년월일</div>
           <div className="col-9">
             {calendar}
-            {/* <input
-              type="date"
-              name="birthday"
-              id="birthday"
-              onChange={this.props.changeInput}
-              value={userData.birthday}
-            /> */}
             <div className="if_detail" style={{ marginTop: '8.3px' }}>
               이 정보는 통계 목적으로 사용되며 외부에 공개되지 않습니다.
             </div>

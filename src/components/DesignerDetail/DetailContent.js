@@ -6,7 +6,6 @@ import MoreInfo from './DetailContents/MoreInfo';
 
 const DetailContent = props => {
   const recruit = props.recruit;
-  console.log(props);
   return (
     <React.Fragment>
       <div className="col-7 row">

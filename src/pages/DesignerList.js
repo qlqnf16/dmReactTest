@@ -124,14 +124,11 @@ class DesignerList extends Component {
     const name = target.name;
 
     this.setState({ [name]: value });
-    console.log(this.state);
   };
 
   render() {
-    console.log(this.state.sido);
     let recruits = null;
     if (this.state.recruits.length) {
-      console.log(this.state.recruits);
       recruits = this.state.recruits.map(recruit => (
         <DesignerCard key={recruit._id} recruit={recruit} />
       ));

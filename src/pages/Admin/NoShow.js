@@ -22,20 +22,17 @@ class NoShow extends Component {
         filteredData,
         madeRequest: true
       });
-      console.log(data);
     }
   };
 
   penaltySubmit = async uid => {
-    console.log(uid);
-    console.log(this.state.penalty);
     await firebase
       .database()
       .ref('users/' + uid)
       .update({
         penalty: this.state.penalty
       });
-    await alert('수정되었습니다');
+    alert('수정되었습니다');
   };
 
   handleInputChange = e => {

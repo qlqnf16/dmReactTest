@@ -15,7 +15,6 @@ import {
   Chat,
   Coupon,
   LikeDesigner,
-  MyTicket,
   Reservations,
   UserInfo,
   DesignerCoupon,
@@ -72,8 +71,7 @@ import { connect } from 'react-redux';
 import * as actions from './modules';
 import axios from 'axios';
 import './App.css';
-import SideDrawer from './mobilePages/components/NavigationBar/SideDrawer';
-console.log(actions);
+// import SideDrawer from './mobilePages/components/NavigationBar/SideDrawer';
 class App extends Component {
   state = {
     madeRequest: false,
@@ -118,9 +116,7 @@ class App extends Component {
 
   authListener() {
     firebase.auth().onAuthStateChanged(user => {
-      console.log(this.props);
       if (user && firebase.auth().currentUser) {
-        console.log(user);
         firebase
           .database()
           .ref('/users/' + firebase.auth().currentUser.uid)
@@ -132,8 +128,6 @@ class App extends Component {
             const { data } = await axios.get(
               `http://52.79.227.227:3030/users/` + userData._id
             );
-            console.log(data);
-            console.log(userData);
             await this.props.login(userData);
             await this.props.updateRedux('expiredAt', data.expiredAt);
             await this.props.updateRedux('point', data.point);
@@ -154,7 +148,6 @@ class App extends Component {
   render() {
     const { width } = this.state;
     const isMobile = width <= 500;
-    console.log('app rendering');
 
     // firebase에서 불러오기 전
     if (!this.state.madeRequest) {
@@ -243,16 +236,6 @@ class App extends Component {
                 this.props.userData.uid
                   ? this.props.userData.isRegister
                     ? LikeDesigner
-                    : UserInfo
-                  : WrongAccess
-              }
-            />
-            <Route
-              path="/myTicket"
-              component={
-                this.props.userData.uid
-                  ? this.props.userData.isRegister
-                    ? MyTicket
                     : UserInfo
                   : WrongAccess
               }

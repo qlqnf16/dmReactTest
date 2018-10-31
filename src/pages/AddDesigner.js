@@ -49,7 +49,7 @@ class AddDesigner extends Component {
 
   componentDidMount = async () => {
     if (this.props.userData.isApproval === false && !this.props.userData.isD)
-      await alert('예비디자이너 승인 대기중입니다.');
+      alert('예비디자이너 승인 대기중입니다.');
   };
 
   addressAddHandler = () => {
@@ -81,27 +81,8 @@ class AddDesigner extends Component {
       default:
         console.log('something wrong in [AddDesigner.js]');
     }
-    console.log(this.state);
   };
 
-  // onFormSubmit(e){
-  //     e.preventDefault() // Stop form submit
-  //     this.fileUpload(this.state.file).then((response)=>{
-  //     console.log(response.data);
-  //     })
-  // }
-
-  // fileUpload(file){
-  //     const url = 'http://example.com/file-upload';
-  //     const formData = new FormData();
-  //     formData.append('file',file)
-  //     const config = {
-  //         headers: {
-  //             'content-type': 'multipart/form-data'
-  //         }
-  //     }
-  //     return  post(url, formData,config)
-  // }
   dYear = 0;
   dMonth = 0;
   careerYear = 0;
@@ -171,7 +152,6 @@ class AddDesigner extends Component {
       addresses,
       isApproval: false
     };
-    console.log(firebaseUserData);
     if (
       Object.values(firebaseUserData).includes(undefined) ||
       Object.values(firebaseUserData.birthday).includes('null') ||
@@ -237,11 +217,7 @@ class AddDesigner extends Component {
         }
       }
     );
-
-    // await this.props.history.push('/designer/whydreamary');
   };
-
-  // TODO : shouldComponentUpdate 로 렌더링 안되게 하기
 
   render() {
     return (

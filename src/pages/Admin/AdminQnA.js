@@ -15,12 +15,10 @@ class AdminQnA extends Component {
         QnAs: data,
         madeRequest: true
       });
-      console.log(data);
     }
   };
 
   render() {
-    console.log(this.state.users);
     if (this.state.madeRequest) {
       const QnAs = this.state.QnAs.map((QnA, key) => (
         <tr key={key}>

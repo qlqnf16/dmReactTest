@@ -26,7 +26,6 @@ class InfoForm extends Component {
     for (let i = 0; i < this.props.state.addressNum; i++) {
       addressSelector.push(
         <div key={i}>
-          {/* <div onClick={() => this.addressModalToggle(i)}>검색</div> */}
           <input
             onClick={() => this.addressModalToggle(i)}
             style={{ ...inputTextStyle, width: '100%', marginBottom: '2%' }}

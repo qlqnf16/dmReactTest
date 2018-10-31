@@ -23,7 +23,6 @@ class DesginerDetail extends Component {
         `http://52.79.227.227:3030/recruits/${this.props.match.params.id}`
       );
       this.setState({ recruit: data, madeRequest: true });
-      console.log(this.state.recruit);
     }
     // firebase.auth().onAuthStateChanged(() => {
     //   this.offHandler();
@@ -37,7 +36,6 @@ class DesginerDetail extends Component {
       .database()
       .ref('/users/' + this.state.recruit._designer._uid)
       .on('value', async res => {
-        console.log(res.val());
         this.setState({ designerData: res.val() });
       });
   };
@@ -58,7 +56,6 @@ class DesginerDetail extends Component {
     recruit,
     cardData
   ) => {
-    console.log(startTime);
     if (Object.values(serviceFormat).length === 0)
       return alert('받을 서비스를 선택해 주세요');
     if (!startTime) return alert('받을 시간을 선택해 주세요');

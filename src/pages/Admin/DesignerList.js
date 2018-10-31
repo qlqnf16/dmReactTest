@@ -34,7 +34,6 @@ class DesignerList extends Component {
           handleInputChange={this.handleInputChange}
         />
       ));
-      console.log(DesignerList);
 
       return (
         <div>

@@ -13,7 +13,6 @@ class QnA extends Component {
   };
 
   qnaSubmit = () => {
-    console.log(this.state);
     const inquirie = {
       ...this.state,
       _user: this.props.userData._id

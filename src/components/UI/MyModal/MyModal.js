@@ -84,7 +84,7 @@ class MyModal extends Component {
           break;
       }
     } else {
-      alert('필수 체크');
+      alert('필수 항목을 체크해주세요');
     }
   };
 

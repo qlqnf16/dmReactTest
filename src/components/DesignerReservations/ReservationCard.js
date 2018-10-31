@@ -60,8 +60,6 @@ const ReservationCard = props => {
         예약 취소
       </button>
     );
-    console.log(new Date());
-    console.log(props.reservation.date);
     type = (
       <div className="rc_type">
         D-

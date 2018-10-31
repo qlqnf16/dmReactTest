@@ -42,7 +42,7 @@ class MakeCoupon extends Component {
     await this.setState({ point: 0, number: 0 });
 
     await this.reloadCoupon();
-    await alert('생성 완료');
+    alert('생성 완료');
   };
 
   makeDesignerCoupon = async () => {
@@ -54,7 +54,7 @@ class MakeCoupon extends Component {
     await this.setState({ month: 0, DNumber: 0 });
 
     await this.reloadCoupon();
-    await alert('생성 완료');
+    alert('생성 완료');
   };
 
   render() {

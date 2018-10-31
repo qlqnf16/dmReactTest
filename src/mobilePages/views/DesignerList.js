@@ -25,7 +25,6 @@ class DesignerList extends Component {
         else return 0;
       });
       this.setState({ recruits: data, madeRequest: true });
-      console.log(data);
     }
 
     // 시/도

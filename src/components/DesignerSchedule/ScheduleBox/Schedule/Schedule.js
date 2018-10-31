@@ -37,7 +37,6 @@ class Schedule extends Component {
           :00
         </option>
       ));
-      console.log(times);
       timeSelector.push(
         <div className="d-flex" key={i}>
           <Input
@@ -70,7 +69,6 @@ class Schedule extends Component {
   };
 
   render() {
-    console.log(moment().add(1, 'month'));
     const disabledDate = current => {
       if (!current) {
         return false;
@@ -100,12 +98,6 @@ class Schedule extends Component {
       <div className="schedule_border">
         <div className="row">
           <FormGroup className="col-6">
-            {/* <Input
-              type="date"
-              name="date"
-              placeholder="date placeholder"
-              onChange={this.props.datePick}
-            /> */}
             <Calendar
               name="date"
               type="date"
