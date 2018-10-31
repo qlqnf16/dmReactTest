@@ -289,6 +289,7 @@ h3 {
   padding: 1.5rem;
   width: fit-content;
   border-radius: 5px;
+  font-size: 1.3rem;
 }
 .chat_bubble_2 {
   min-width: 110px;
@@ -296,6 +297,7 @@ h3 {
   padding: 1.5rem;
   width: fit-content;
   border-radius: 5px;
+  font-size: 1.3rem;
 }
 .chat_time {
   color: #1f3354;

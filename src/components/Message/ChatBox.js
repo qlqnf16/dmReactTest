@@ -40,11 +40,13 @@ class ChatBox extends Component {
   render() {
     if (this.props.madeRequest) {
       let otherName = '';
+      let otherName2 = '';
       if (
         this.props.userData.name === this.props.reservationData._designer.name
-      )
-        otherName = this.props.reservationData._user.name;
-      else otherName = this.props.reservationData._designer.name;
+      ) {otherName = this.props.reservationData._user.name;
+        otherName2 = '모델';}
+      else {otherName = this.props.reservationData._designer.name;
+      otherName2 = '예디'}
       let messages = '로딩중';
       if (this.props.messages) {
         messages = this.props.messages.map((message, key) => (
@@ -88,7 +90,7 @@ class ChatBox extends Component {
             </div>
             <div className="col-8 px-0">
               <div style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>
-                {otherName} 예디
+                {otherName} {otherName2}
               </div>
               <div>
                 {' '}

@@ -72,6 +72,7 @@ class ScheduleBox extends Component {
   handleInputChange = event => {
     const target = event.target;
     const name = target.name;
+    console.log('inputChange')
     if (target.type !== 'checkbox') {
       if (target.name === 'since') {
         this.sinces[target.id] = Number(target.value);
