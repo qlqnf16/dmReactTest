@@ -122,7 +122,7 @@ class CardAdd extends Component {
     let time = 0;
     if (this.state.cut) {
       time += this.props.recruit.requireTime.cut;
-      service += '/ 컷트 ';
+      service += '/ 커트 ';
       serviceFormat['cut'] = true;
     }
     if (this.state.perm) {

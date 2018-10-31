@@ -99,7 +99,7 @@ const TextInfo = props => (
       <div className="row">
         <div className="col-4">
           <Label for="cut" style={styles.labelStyle}>
-            컷트
+            커트
           </Label>
           <Input
             name="cut"
@@ -109,7 +109,7 @@ const TextInfo = props => (
             value={props.state.requireTime && props.state.requireTime.cut}
             style={styles.selectStyle}
           >
-            <option value="null">--컷트--</option>
+            <option value="null">--커트--</option>
             <option value="30">30분</option>
             <option value="60">1시간</option>
             <option value="90">1시간 30분</option>

@@ -20,7 +20,7 @@ const ReservationDetail = props => {
     Object.keys(reservation.services).forEach(service => {
       switch (service) {
         case 'cut':
-          services += '/ 컷트 ';
+          services += '/ 커트 ';
           break;
         case 'perm':
           services += '/ 펌 ';
