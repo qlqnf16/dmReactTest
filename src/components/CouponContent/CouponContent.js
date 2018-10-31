@@ -23,7 +23,7 @@ const CouponContent = props => {
     <div className={props.isD ? 'cc_bg_designer' : 'cc_bg'}>
       <div className="cc_1">{title}</div>
       <div className="cc_2">
-        친구 추천하고 <strong>쿠폰 받자!</strong>
+        <strong>친구 추천하고 쿠폰 받자!</strong>
       </div>
       <div className="cc_3">
         {content} <br />

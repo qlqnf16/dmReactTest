@@ -91,7 +91,7 @@ class DesignerCarousel extends Component {
           <img
             src={image}
             alt="alt"
-            style={{ maxWidth: '100%', maxHeight: '100%' }}
+            style={{ maxWidth: '100%', height: 200 }}
           />
         </CarouselItem>
       );
@@ -104,7 +104,7 @@ class DesignerCarousel extends Component {
         previous={this.previous}
       >
         <CarouselIndicators
-          items={items}
+          items={this.props.images}
           activeIndex={activeIndex}
           onClickHandler={this.goToIndex}
         />

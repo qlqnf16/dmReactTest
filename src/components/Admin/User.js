@@ -36,7 +36,7 @@ class User extends Component {
 
   render() {
     const user = this.props.user;
-    console.log(user.birthday);
+    console.log(user);
     return (
       <tr key={this.props.key}>
         <th scope="row">{user.name}</th>

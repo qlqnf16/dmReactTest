@@ -53,6 +53,7 @@ class DesignerList extends Component {
                 <th>가입일</th>
                 <th>프로필 사진</th>
                 <th>자격증</th>
+                <th>면허증</th>
                 <th>패널티 관리</th>
               </tr>
             </thead>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import firebase from '../../config/Firebase';
+
 import {
   Col,
   Card,
@@ -11,6 +12,7 @@ import {
 } from 'reactstrap';
 import DesignerCarousel from './DesignerCarousel/DesignerCarousel';
 import StarRatings from 'react-star-ratings';
+import defaultGuy from '../../assets/images/Default_guy-01.jpg';
 import './DesignerCard.css';
 
 class DesginerCard extends Component {
@@ -41,12 +43,7 @@ class DesginerCard extends Component {
       for (let i = 0; this.state.designerData[`portfolio${i}`]; i++) {
         portfolios.push(this.state.designerData[`portfolio${i}`]);
       }
-      if (!portfolios.length)
-        portfolios = [
-          'https://picsum.photos/300/200/?image=2',
-          'https://picsum.photos/300/200/?image=3',
-          'https://picsum.photos/300/200/?image=4'
-        ];
+      if (!portfolios.length) portfolios = [defaultGuy, defaultGuy];
 
       return (
         <Col className="m-0 p-1 " xs="3">

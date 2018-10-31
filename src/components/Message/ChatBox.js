@@ -4,6 +4,7 @@ import default_people from '../../assets/images/Default_guy-01.jpg';
 import alart from '../../assets/images/alart.png';
 import Moment from 'react-moment';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 class ChatBox extends Component {
@@ -89,12 +90,14 @@ class ChatBox extends Component {
               </div>
             </div>
             <div className="mr-3 ml-auto ">
-              <div className="chat_report row px-2 pt-2">
-                <div>
-                  <img src={alart} alt="alt" style={{ width: '2rem' }} />
+              <Link to="/QnA">
+                <div className="chat_report row px-2 pt-2">
+                  <div>
+                    <img src={alart} alt="alt" style={{ width: '2rem' }} />
+                  </div>
+                  <div style={{ padding: '0.5rem' }}>직거래 신고하기</div>
                 </div>
-                <div style={{ padding: '0.5rem' }}>직거래 신고하기</div>
-              </div>
+              </Link>
             </div>
           </div>
           <div className="chat_content">{messages}</div>

@@ -36,12 +36,33 @@ class Designer extends Component {
 
   render() {
     const designer = this.props.designer;
+    let addresses = [];
+    let shops = [];
+    designer.addresses.forEach(address => {
+      let sido = address.sido;
+      let sigungu = address.sigungu;
+      addresses.push({ sido, sigungu });
+
+      shops.push(address.extraAddress);
+    });
+    console.log(designer);
     return (
       <tr key={this.props.key}>
         <th scope="row">{designer.name}</th>
         <td>{designer.email}</td>
-        <td>{designer.region}</td>
-        <td>{designer.shop}</td>
+        <td>
+          {addresses.map(address => (
+            <p>
+              {address.sido} / {address.sigungu}
+            </p>
+          ))}
+        </td>
+
+        <td>
+          {shops.map(shop => (
+            <p>{shop}</p>
+          ))}
+        </td>
         <td>
           {Math.floor(designer.career / 12) === 0
             ? ''
@@ -61,10 +82,13 @@ class Designer extends Component {
           <Moment format="YYYY/MM/DD">{designer.joinedDate}</Moment>
         </td>
         <td>
-          <a href={designer.cert_mh}>프로필</a>
+          <a href={designer.profile}>프로필</a>
         </td>
         <td>
           <a href={designer.cert_jg}>자격증</a>
+        </td>
+        <td>
+          <a href={designer.cert_mh}>면허증</a>
         </td>
         <td>
           <select

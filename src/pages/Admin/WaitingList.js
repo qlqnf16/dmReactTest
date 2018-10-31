@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import firebase from "../../config/Firebase";
-import WaitDesigner from "../../components/Admin/WaitDesigner";
-import AdminNav from "../../components/Navigation/AdminNav/AdminNav";
+import React, { Component } from 'react';
+import firebase from '../../config/Firebase';
+import WaitDesigner from '../../components/Admin/WaitDesigner';
+import AdminNav from '../../components/Navigation/AdminNav/AdminNav';
 
 class WaitingList extends Component {
   state = {
@@ -13,7 +13,7 @@ class WaitingList extends Component {
     await firebase
       .database()
       .ref(`/users`)
-      .on("value", async res => {
+      .on('value', async res => {
         const designers = Object.values(res.val()).filter(
           user => user.isApproval === false
         );
@@ -52,6 +52,7 @@ class WaitingList extends Component {
                 <th>가입일</th>
                 <th>프로필 사진</th>
                 <th>자격증</th>
+                <th>면허증</th>
                 <th>승인</th>
               </tr>
             </thead>
