@@ -115,10 +115,7 @@ class ChatBox extends Component {
                 }}
               />
             </div>
-            <div className="col-1 pr-0">
-              <img src={attach} alt="alt" className="chat_attach" />
-            </div>
-            <div className="col-2 pl-0">
+            <div className="col-3 pr-0">
               <div className="chat_button" onClick={this.props.sendMessage}>
                 전송
               </div>
