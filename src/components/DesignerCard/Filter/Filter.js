@@ -99,7 +99,7 @@ const Filter = props => {
             max="100"
             step="50"
           />
-          <label>컷트</label>
+          <label>커트</label>
         </div>
         <div className="form-group">
           <input
