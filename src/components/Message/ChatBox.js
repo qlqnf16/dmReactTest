@@ -66,9 +66,10 @@ class ChatBox extends Component {
                   {message.content}
                 </div>
                 <div className="chat_new">
-                  {(message.from !== otherName &&
-                    !this.props.checkPoints[otherName]) ||
-                  this.props.checkPoints[otherName] < message.createdAt
+                  {console.log(message.from)}
+                  {message.from !== otherName &&
+                  (!this.props.checkPoints[otherName] ||
+                    this.props.checkPoints[otherName] < message.createdAt)
                     ? 1
                     : null}
                 </div>
