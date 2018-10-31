@@ -6,6 +6,7 @@ import step2 from '../assets/images/step2.png';
 import DetailContent from '../components/DesignerDetail/DetailContent';
 import DetailCards from '../components/DesignerDetail/DetailCards';
 import MyModal from '../components/UI/MyModal/MyModal';
+import ShowLargeImage from '../components/DesignerDetail/ShowLargeImage';
 
 class DesginerDetail extends Component {
   state = {
@@ -13,7 +14,8 @@ class DesginerDetail extends Component {
     showLogin: false,
     LoginChange: false,
     madeRequest: false,
-    designerData: {}
+    designerData: {},
+    showLargeImage: false
   };
 
   componentDidMount = async () => {
@@ -73,6 +75,14 @@ class DesginerDetail extends Component {
     });
   };
 
+  // 사진 크게보기
+  showLargeImageToggle = src => {
+    this.setState({
+      showLargeImage: !this.state.showLargeImage,
+      largeImage: src
+    });
+  };
+
   render() {
     let loading = null;
     if (Object.keys(this.state.recruit).length) {
@@ -80,6 +90,7 @@ class DesginerDetail extends Component {
         <DetailContent
           recruit={this.state.recruit}
           designerData={this.state.designerData}
+          showLargeImageToggle={this.showLargeImageToggle}
         />
       );
     }
@@ -100,6 +111,11 @@ class DesginerDetail extends Component {
           showLogin={this.state.showLogin}
           off={this.loginToggleHandler}
           type="login"
+        />
+        <ShowLargeImage
+          isOpen={this.state.showLargeImage}
+          toggle={this.showLargeImageToggle}
+          src={this.state.largeImage}
         />
       </div>
     );

@@ -27,6 +27,7 @@ const MoreInfo = props => {
             src={portfolio}
             className="col-4"
             style={{ padding: '0', width: '100%', height: '100%' }}
+            onClick={() => props.showLargeImageToggle(portfolio)}
           />
         ))}
       </div>
