@@ -102,7 +102,7 @@ class ChatBox extends Component {
           </div>
           <div className="chat_content">{messages}</div>
           <div className="chat_bottom row m-0">
-            <div className="col-9 px-0">
+            <div className="col-10 px-0">
               <input
                 type="text"
                 placeholder="안전한 거래를 위해 연락처 공개 및 직거래(유도) 시 사이트 이용이 제한될 수 있습니다."
@@ -114,9 +114,9 @@ class ChatBox extends Component {
                 }}
               />
             </div>
-            <div className="col-1 pr-0">
+            {/* <div className="col-1 pr-0">
               <img src={attach} alt="alt" className="chat_attach" />
-            </div>
+            </div> */}
             <div className="col-2 pl-0">
               <div className="chat_button" onClick={this.props.sendMessage}>
                 전송
