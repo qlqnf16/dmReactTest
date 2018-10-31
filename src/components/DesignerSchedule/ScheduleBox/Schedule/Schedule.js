@@ -184,22 +184,14 @@ class Schedule extends Component {
                 <Button
                   color="light"
                   onClick={this.props.timeAdd}
-                  style={{
-                    fontSize: '1.1rem',
-                    background: 'none',
-                    border: 0
-                  }}
+                  style={{ fontSize: '1.1rem', background: 'none', border: 0 }}
                 >
                   + 시간 추가
                 </Button>
                 <Button
                   color="light"
                   onClick={this.props.timeDelete}
-                  style={{
-                    fontSize: '1.1rem',
-                    background: 'none',
-                    border: 0
-                  }}
+                  style={{ fontSize: '1.1rem', background: 'none', border: 0 }}
                 >
                   - 시간 지우기
                 </Button>
@@ -435,7 +427,7 @@ class Schedule extends Component {
                 onChange={this.props.changeInput}
                 name="permPrice"
                 id="normal"
-                className="length_input"
+                className="length_input text-right"
               />
             </div>
             <div className="col-4" />
@@ -447,7 +439,7 @@ class Schedule extends Component {
                 onChange={this.props.changeInput}
                 name="dyePrice"
                 id="normal"
-                className="length_input"
+                className="length_input text-right"
               />
             </div>
           </div>
@@ -460,8 +452,9 @@ class Schedule extends Component {
                 onChange={this.props.changeInput}
                 name="permPrice"
                 id="chin"
-                className="length_input"
+                className="length_input text-right"
               />
+              <span style={plus}>+</span>
             </div>
             <div className="col-4" />
 
@@ -473,8 +466,9 @@ class Schedule extends Component {
                 onChange={this.props.changeInput}
                 name="dyePrice"
                 id="chin"
-                className="length_input"
+                className="length_input text-right"
               />
+              <span style={{ ...plus, left: '41%' }}>+</span>
             </div>
           </div>
           <div className="length_price row">
@@ -486,8 +480,9 @@ class Schedule extends Component {
                 onChange={this.props.changeInput}
                 name="permPrice"
                 id="shoulder"
-                className="length_input"
+                className="length_input text-right"
               />
+              <span style={plus}>+</span>
             </div>
             <div className="col-4" />
 
@@ -499,8 +494,9 @@ class Schedule extends Component {
                 onChange={this.props.changeInput}
                 name="dyePrice"
                 id="shoulder"
-                className="length_input"
+                className="length_input text-right"
               />
+              <span style={{ ...plus, left: '41%' }}>+</span>
             </div>
           </div>
           <div className="length_price row no-border">
@@ -512,8 +508,9 @@ class Schedule extends Component {
                 onChange={this.props.changeInput}
                 name="permPrice"
                 id="chest"
-                className="length_input"
+                className="length_input text-right"
               />
+              <span style={plus}>+</span>
             </div>
             <div className="col-4" />
 
@@ -525,8 +522,9 @@ class Schedule extends Component {
                 onChange={this.props.changeInput}
                 name="dyePrice"
                 id="chest"
-                className="length_input"
+                className="length_input text-right"
               />
+              <span style={{ ...plus, left: '41%' }}>+</span>
             </div>
           </div>
 
@@ -553,4 +551,10 @@ class Schedule extends Component {
   }
 }
 
+const plus = {
+  position: 'absolute',
+  fontSize: '1.5rem',
+  left: '45%',
+  top: '-8%'
+};
 export default Schedule;

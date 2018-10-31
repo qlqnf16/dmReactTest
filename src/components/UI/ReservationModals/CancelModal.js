@@ -59,7 +59,7 @@ class CancelModal extends Component {
         Object.keys(this.props.reservation.services).forEach(service => {
           switch (service) {
             case 'cut':
-              services += '/ 컷트 ';
+              services += '/ 커트 ';
               break;
             case 'perm':
               services += '/ 펌 ';

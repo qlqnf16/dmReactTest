@@ -8,11 +8,12 @@
 }
 
 .ac_title {
-  font-size: 1.7rem;
+  font-size: 4rem;
   line-height: 1.12;
   letter-spacing: 0.09rem;
   color: #dd6866;
   margin-bottom: 2.7rem;
+  font-weight: bold;
 }
 
 .ac_body {
