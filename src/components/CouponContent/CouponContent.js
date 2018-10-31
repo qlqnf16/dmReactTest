@@ -23,7 +23,7 @@ const CouponContent = props => {
     <div className={props.isD ? 'cc_bg_designer' : 'cc_bg'}>
       <div className="cc_1">{title}</div>
       <div className="cc_2">
-        <strong>친구 추천하고 쿠폰 받자!</strong>
+        <strong>친구 추천하고 포인트 받자!</strong>
       </div>
       <div className="cc_3">
         {content} <br />
@@ -32,6 +32,9 @@ const CouponContent = props => {
       <div>
         <img alt="alt" className="cc_coupon" src={img} />
         <div className={numClass}>{props.couponNumber}</div>
+      </div>
+      <div style={{fontSize: '1.3rem'}}>
+        내 추천으로 가입한 친구: {props.recommendationNum ? props.recommendationNum : 0}명
       </div>
     </div>
   );

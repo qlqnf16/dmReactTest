@@ -34,11 +34,11 @@ class DesignerCoupon extends Component {
         <div className="d_bg">
           <div className="d_container">
             <div className="u_title" style={{ color: '#4c91ba' }}>
-              추천인/쿠폰
+              프로모션
             </div>
-            <div className="uif_title ">쿠폰 입력</div>
-            <FormGroup row>
-              <div className="col-2 if_head uif_head ">쿠폰 입력</div>
+            <div className="uif_title ">프로모션 코드/포인트 적립</div>
+            <div className='row' style={{marginTop: '3rem'}}>
+                <div className="col-2 if_head uif_head ">프로모션 코드 입력</div>
               <div className="col-8 d-flex justify-content-left">
                 <input
                   onChange={e => this.inputChangeHandler(e)}
@@ -50,12 +50,19 @@ class DesignerCoupon extends Component {
                 <div
                   className=" coupon_button"
                   onClick={() => this.couponSubmit()}
-                >
-                  적용
+                >적용
                 </div>
               </div>
-            </FormGroup>
-            <div className="uif_title d-flex">
+            </div>
+       <div className='row' style={{marginTop: '4.4rem'}}>
+              <div className="col-2 if_head uif_head" >추천인 코드</div>
+              <div className='col-8'>
+            <CouponContent
+              couponNumber={firebase.auth().currentUser.uid}
+              isD={true}
+              recommendationNum={this.props.userData.designerRecommendation}
+            /> </div>
+                 {/* <div className="uif_title d-flex">
               추천인 코드{' '}
               <span className="mr-5 ml-auto">
                 내 추천으로 가입한 예디 :{' '}
@@ -64,13 +71,10 @@ class DesignerCoupon extends Component {
                   : 0}
                 명
               </span>
-            </div>
-            <CouponContent
-              couponNumber={firebase.auth().currentUser.uid}
-              isD={true}
-            />
+            </div> */}
           </div>
         </div>
+      </div>
       </div>
     );
   }

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Schedule from './Schedule/Schedule';
 import ScheduleCard from './ScheduleCard/ScheduleCard';
 import TextInfo from '../TextInfo';
+import NoContent from '../../UI/NoContent/NoContent'
 import axios from 'axios';
 
 import { connect } from 'react-redux';
@@ -220,6 +221,8 @@ class ScheduleBox extends Component {
               padding: '1.5rem'
             }}
           >
+          {this.state.cards.length === 0 && this.props.newCards.length === 0 
+            ? <NoContent /> : null}
             {this.state.cards.sort(this.cardSort).map((card, key) => (
               <ScheduleCard
                 cancelCardHandler={this.props.cancelCardHandler}

@@ -44,7 +44,7 @@ const UserNav = () => (
           borderBottom: 'solid 1.8px #1f3354'
         }}
       >
-        추천인/쿠폰
+        프로모션
       </NavLink>
     </div>
   </div>
