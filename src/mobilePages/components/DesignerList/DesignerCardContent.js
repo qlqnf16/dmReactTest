@@ -11,11 +11,17 @@ const DesignerCardContent = props => {
   } = styles;
 
   const recruit = props.recruit;
+
+  let shops = '';
+  recruit.shops.forEach(shop => {
+    shops += `/ ${shop}`;
+  });
+  shops = shops.substring(1);
   return (
     <div style={containerStyle}>
-      <h5 style={locationStyle}>샵 이름 넣기</h5>
-      <h3 style={titleStyle}>{recruit.title}</h3>
-      <h6 style={nameStyle}>
+      <div style={locationStyle}>{shops}</div>
+      <div style={titleStyle}>{recruit.title}</div>
+      <div style={nameStyle}>
         {recruit._designer.name}{' '}
         <span style={starStyle}>
           <StarRatings
@@ -27,7 +33,7 @@ const DesignerCardContent = props => {
           />
         </span>
         <span style={{ color: 'gray' }}>({recruit.score})</span>
-      </h6>
+      </div>
     </div>
   );
 };
