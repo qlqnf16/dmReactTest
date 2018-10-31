@@ -16,7 +16,7 @@ const UserNav = () => (
       >
         예약관리
       </NavLink>
-      <NavLink
+      {/* <NavLink
         to="/likedesigner"
         className="un_navItem"
         activeStyle={{
@@ -25,7 +25,7 @@ const UserNav = () => (
         }}
       >
         찜한예디
-      </NavLink>
+      </NavLink> */}
       <NavLink
         to="/userInfo"
         className="un_navItem"

@@ -71,11 +71,7 @@ class DesignerCarousel extends Component {
           onExited={this.onExited}
           key={key}
         >
-          <img
-            src={image}
-            alt="alt"
-            style={{ maxWidth: '100%', height: 200 }}
-          />
+          <img src={image} alt="alt" style={{ width: '100%', height: 200 }} />
         </CarouselItem>
       );
     });

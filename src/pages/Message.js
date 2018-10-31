@@ -29,8 +29,9 @@ class Message extends Component {
           this.props.userData._id
         }/reservations`
       );
+      const filteredData = data.filter(d => !d.isDone && !d.isCanceled);
       const promises = [];
-      data.forEach(reservation => {
+      filteredData.forEach(reservation => {
         socket.emit('join', { reservationId: reservation._id });
         promises.push(
           new Promise((resolve, reject) => {
@@ -70,9 +71,10 @@ class Message extends Component {
           this.props.userData._id
         }/reservations`
       );
+      const filteredData = data.filter(d => !d.isDone && !d.isCanceled);
       const promises = [];
       console.log(data);
-      data.forEach(reservation => {
+      filteredData.forEach(reservation => {
         socket.emit('join', { reservationId: reservation._id });
         promises.push(
           new Promise((resolve, reject) => {

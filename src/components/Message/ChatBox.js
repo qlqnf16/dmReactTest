@@ -48,26 +48,36 @@ class ChatBox extends Component {
       let messages = '로딩중';
       if (this.props.messages) {
         messages = this.props.messages.map((message, key) => (
-          <div key={key} className={`chat_back_${message.from === otherName ? 1 : 2}`}>
-            <div className={`chat_bubbleBack_${message.from === otherName ? 1 : 2}`}>
-              <div className='d-flex'>
-              <div
-                className={`chat_bubble_${message.from === otherName ? 1 : 2}`}
-              >
-                {message.content}
+          <div
+            key={key}
+            className={`chat_back_${message.from === otherName ? 1 : 2}`}
+          >
+            <div
+              className={`chat_bubbleBack_${
+                message.from === otherName ? 1 : 2
+              }`}
+            >
+              <div className="d-flex">
+                <div
+                  className={`chat_bubble_${
+                    message.from === otherName ? 1 : 2
+                  }`}
+                >
+                  {message.content}
+                </div>
+                <div className="chat_new">
+                  {(message.from !== otherName &&
+                    !this.props.checkPoints[otherName]) ||
+                  this.props.checkPoints[otherName] < message.createdAt
+                    ? 1
+                    : null}
+                </div>
               </div>
-              <div className='chat_new'>
-                {(message.from !== otherName &&
-                  !this.props.checkPoints[otherName]) ||
-                this.props.checkPoints[otherName] < message.createdAt
-                  ? 1
-                  : null}</div>
-              </div><div className="chat_time">
-              <Moment format="YYYY/MM/DD HH:mm">{message.createdAt}</Moment>
+              <div className="chat_time">
+                <Moment format="YYYY/MM/DD HH:mm">{message.createdAt}</Moment>
+              </div>
             </div>
-            </div>
-            
-            </div>
+          </div>
         ));
       }
       return (
@@ -103,7 +113,7 @@ class ChatBox extends Component {
           </div>
           <div className="chat_content">{messages}</div>
           <div className="chat_bottom row m-0">
-            <div className="col-9 px-0">
+            <div className="col-10 px-0">
               <input
                 type="text"
                 placeholder="안전한 거래를 위해 연락처 공개 및 직거래(유도) 시 사이트 이용이 제한될 수 있습니다."
@@ -115,7 +125,7 @@ class ChatBox extends Component {
                 }}
               />
             </div>
-            <div className="col-3 pr-0">
+            <div className="col-2 pr-0">
               <div className="chat_button" onClick={this.props.sendMessage}>
                 전송
               </div>
