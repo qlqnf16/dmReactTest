@@ -1,7 +1,5 @@
 .cc_bg {
-  width: 87.6%;
-  height: 467px;
-  margin: 0% auto 10% auto;
+  height: 340px;
   border-radius: 5px;
   background-image: linear-gradient(
     138deg,
@@ -12,22 +10,22 @@
   );
   color: #1f3354;
   text-align: center;
-  padding: 9.2% 0;
+  padding: 9% 0;
 }
 .cc_1 {
-  font-size: 4rem;
+  font-size: 2.7rem;
   line-height: 1.23;
   letter-spacing: 0.02rem;
   margin-bottom: 3.1%;
 }
 .cc_2 {
-  font-size: 5.1rem;
+  font-size: 3.4rem;
   line-height: 1.14;
   letter-spacing: 0.26rem;
   margin-bottom: 3.1%;
 }
 .cc_3 {
-  font-size: 1.7rem;
+  font-size: 1.1rem;
   line-height: 1.12;
   letter-spacing: 0.17rem;
   margin-bottom: 3.1%;
@@ -38,10 +36,10 @@
   z-index: 1;
 }
 .cc_num {
-  top: -6.5rem;
+  top: -4.1rem;
   position: relative;
   z-index: 5;
-  font-size: 2.8rem;
+  font-size: 1.9rem;
   line-height: 1.14;
   letter-spacing: 0.14rem;
   color: #dd6866;
@@ -50,11 +48,10 @@
 }
 .cc_num.d {
   color: #4c91ba;
+  top: -4.9rem;
 }
 .cc_bg_designer {
-  width: 87.6%;
-  height: 55rem;
-  margin: 5% auto;
+  height: 39rem;
   border-radius: 5px;
   background-image: linear-gradient(304deg, #fffae3, #d2e3e8);
   color: #1f3354;

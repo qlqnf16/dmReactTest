@@ -21,7 +21,7 @@ class MyPageNavigationBar extends Component {
             <MyPageNavigationItems>회원정보관리</MyPageNavigationItems>
           </Link>
           <Link to="coupon">
-            <MyPageNavigationItems>추천인/쿠폰</MyPageNavigationItems>
+            <MyPageNavigationItems>프로모션</MyPageNavigationItems>
           </Link>
         </div>
       </div>
