@@ -48,25 +48,26 @@ class ChatBox extends Component {
       let messages = '로딩중';
       if (this.props.messages) {
         messages = this.props.messages.map((message, key) => (
-          <div key={key} className="d-flex flex-column">
-            <div>
+          <div key={key} className={`chat_back_${message.from === otherName ? 1 : 2}`}>
+            <div className={`chat_bubbleBack_${message.from === otherName ? 1 : 2}`}>
+              <div className='d-flex'>
               <div
                 className={`chat_bubble_${message.from === otherName ? 1 : 2}`}
               >
                 {message.content}
               </div>
-              <div>
+              <div className='chat_new'>
                 {(message.from !== otherName &&
                   !this.props.checkPoints[otherName]) ||
                 this.props.checkPoints[otherName] < message.createdAt
                   ? 1
-                  : null}
-              </div>
+                  : null}</div>
+              </div><div className="chat_time">
+              <Moment format="YYYY/MM/DD HH:mm">{message.createdAt}</Moment>
             </div>
-            <div className="chat_time">
-              <Moment format="YYYY/MM/DD HH:mm:ss">{message.createdAt}</Moment>
             </div>
-          </div>
+            
+            </div>
         ));
       }
       return (
@@ -77,7 +78,7 @@ class ChatBox extends Component {
             </div>
             <div className="col-8 px-0">
               <div style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>
-                {otherName}
+                {otherName} 예디
               </div>
               <div>
                 {' '}
