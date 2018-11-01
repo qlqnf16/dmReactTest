@@ -13,6 +13,8 @@ const Footer = () => (
         <br />
         사업자등록번호: 416-88-00896
         <br />
+        고객센터: 070-8095-3282
+        <br />
         help@dreamary.net
       </div>
       <div className="content">
