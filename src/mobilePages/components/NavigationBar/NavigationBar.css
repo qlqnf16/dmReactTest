@@ -1,8 +1,11 @@
 .mobile-navigation {
+  position: fixed;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   min-height: 55px;
+  background-color: white;
 }
 .mobile-logo {
   height: 30px;
