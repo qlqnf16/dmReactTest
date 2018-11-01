@@ -157,30 +157,48 @@ class ReviewModal extends Component {
               id="content"
               onChange={this.inputChangeHandler}
             />
-            <div className="text-center row">
-              <div className="col-12">
+            <div className="text-center">
+              <div style={{width: '100%', display: 'flex', flexWrap: 'wrap'}}>
                 {this.state.num > 0
                   ? this.state.reviewImg.map((url, i) => (
+                    <div style={{width: '50%', padding: '1px'}}>
                       <ImgPreview
                         url={url}
                         key={i}
                         deletePortfolio={this.deleteImg}
+                        style={{width: '100%'}}
                       />
+                      </div>
                     ))
                   : null}
               </div>
-              <input
-                className="col-8"
-                type="file"
-                name="reviewImg"
-                onChange={e => this.handleImgChange(e)}
-              />
+              <div style={{
+                marginTop: '3rem',
+                display: 'grid', 
+                gridTemplateColumns: '78% 20%', 
+                gridGap: '2%'}}>
+              <div>
+                      <label style={{display: 'block'}}>
+                <div className='m_file'>
+                  사진 등록 (선택)
+                </div>
+                <input
+                  style={{display: 'none'}}
+                  type="file"
+                  name="reviewImg"
+                  onChange={e => this.handleImgChange(e)}
+                />
+              </label></div>
               <div
-                className="m_button m_button_green btn col-3"
+                className="m_button m_button_green btn"
+                style={{width: '100%', margin: 0, height: 'fit-content'}}
                 onClick={this.reviewSubmit}
               >
                 리뷰 등록
               </div>
+              
+              </div>
+        
             </div>
           </ModalBody>
         </Modal>

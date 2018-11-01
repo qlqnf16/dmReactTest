@@ -179,6 +179,7 @@ class App extends Component {
                 path="/reservationConfirm/:reservation_id"
                 component={ReservationConfirm}
               />
+              <Route path="/whyDreamary" component={WhyDreamary} />
 
               {/* 비로그인 상태에서 url로 접근시 WrongAccess 렌더링 */}
               <Route
@@ -252,6 +253,10 @@ class App extends Component {
                 }
               />
               <Route
+                path="/designer/whyDreamary"
+                component={this.props.userData.isD ? WhyDreamary : WrongAccess}
+              />
+              <Route
                 path="/userInfo"
                 component={this.props.userData.uid ? UserInfo : WrongAccess}
               />
@@ -282,10 +287,7 @@ class App extends Component {
                 path="/designer/schedule"
                 component={this.props.userData.isD ? Schedule : WrongAccess}
               />
-              <Route
-                path="/designer/whyDreamary"
-                component={this.props.userData.isD ? WhyDreamary : WrongAccess}
-              />
+
               <Route
                 path="/designer/cash"
                 component={this.props.userData.isD ? Cash : WrongAccess}

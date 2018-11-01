@@ -70,14 +70,11 @@ class Reservation extends Component {
         pg: 'danal', // version 1.1.0부터 지원.
         pay_method: 'card',
         merchant_uid: 'merchant_' + new Date().getTime(),
-        name: '주문명:결제테스트',
+        name: '주문명: 예약',
         amount: 100,
-        buyer_email: 'user@email.com',
-        buyer_name: '유저이름',
-        buyer_tel: '010-1234-5678',
-        buyer_addr: '서울특별시 강남구 삼성동',
-        buyer_postcode: '123-456',
-        m_redirect_url: 'http://localhost:3000'
+        buyer_email: this.props.userData.email,
+        buyer_name: this.props.userData.name,
+        buyer_tel: this.props.userData.phoneNumber
       },
       async rsp => {
         if (rsp.success) {

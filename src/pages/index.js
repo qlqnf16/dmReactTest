@@ -8,9 +8,9 @@ export { default as ReservationConfirm } from './ReservationConfirm';
 export { default as Message } from './Message';
 export { default as Chat } from './Chat';
 export { default as AddDesigner } from './AddDesigner';
+export { default as WhyDreamary } from './WhyDreamary';
 
 // 디자이너 서비스
-export { default as WhyDreamary } from './Designer/WhyDreamary';
 export {
   default as DesignerReservations
 } from './Designer/DesignerReservations';
