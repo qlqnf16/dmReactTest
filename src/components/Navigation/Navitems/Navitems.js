@@ -30,7 +30,7 @@ class Navitems extends Component {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to={'/addDesigner'} className="">
+            <NavLink tag={Link} to={'/whyDreamary'} className="">
               예디등록
             </NavLink>
           </NavItem>
@@ -66,11 +66,6 @@ class Navitems extends Component {
     } else if (this.props.userData.uid && this.props.userData.isD) {
       return (
         <Fragment>
-          <NavItem>
-            <NavLink tag={Link} to={'/designer/whydreamary'} className="">
-              왜?
-            </NavLink>
-          </NavItem>
           <NavItem>
             <NavLink tag={Link} to={'/designer/reservations'} className="">
               예약관리

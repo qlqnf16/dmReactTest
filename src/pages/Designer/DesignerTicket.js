@@ -59,14 +59,10 @@ class DesignerTicket extends Component {
         pg: 'danal', // version 1.1.0부터 지원.
         pay_method: 'card',
         merchant_uid: 'merchant_' + new Date().getTime(),
-        name: '주문명:결제테스트',
-        amount: 100,
-        buyer_email: 'user@email.com',
-        buyer_name: '유저이름',
-        buyer_tel: '010-1234-5678',
-        buyer_addr: '서울특별시 강남구 삼성동',
-        buyer_postcode: '123-456',
-        m_redirect_url: 'http://localhost:3000'
+        name: '주문명: 디자이너 이용권',
+        amount: 500,
+        buyer_name: this.props.userData.name,
+        buyer_tel: this.props.userData.phoneNumber
       },
       async rsp => {
         if (rsp.success) {
