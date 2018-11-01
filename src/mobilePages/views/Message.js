@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import axios from 'axios';
-import io from 'socket.io-client';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import axios from "axios";
+import io from "socket.io-client";
+import { connect } from "react-redux";
 
-import ChatPreview from '../components/Message/ChatPreview';
-import messageSort from '../../utility/messageSortFunc';
+import ChatPreview from "../components/Message/ChatPreview";
+import messageSort from "../../utility/messageSortFunc";
 
-const socket = io('http://54.180.92.115:3030');
+const socket = io("http://54.180.92.115:3030");
 
 class Message extends Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class Message extends Component {
       messages: null
     };
 
-    socket.on('newMessage', params => {
+    socket.on("newMessage", params => {
       this.setState({ messages: null });
     });
   }
@@ -27,15 +27,17 @@ class Message extends Component {
           this.props.userData._id
         }/reservations`
       );
-      const filteredData = data.filter(d => !d.isDone && !d.isCanceled);
+      const future = data.filter(d => !d.isDone && !d.isCanceled);
+      const prev = data.filter(d => d.isDone || d.isCanceled);
+      const sortData = future.concat(prev);
       const promises = [];
-      filteredData.forEach(reservation => {
-        socket.emit('join', { reservationId: reservation._id });
+      sortData.forEach(reservation => {
+        socket.emit("join", { reservationId: reservation._id });
         promises.push(
           new Promise((resolve, reject) => {
             try {
               socket.emit(
-                'getMessages',
+                "getMessages",
                 {
                   reservationId: reservation._id
                 },
@@ -45,7 +47,9 @@ class Message extends Component {
                     messages,
                     designerName: reservation._designer.name,
                     userName: reservation._user.name,
-                    checkPoints
+                    checkPoints,
+                    date: reservation.date,
+                    finished: reservation.isDone || reservation.isCanceled
                   })
               );
             } catch (e) {
@@ -69,15 +73,17 @@ class Message extends Component {
           this.props.userData._id
         }/reservations`
       );
-      const filteredData = data.filter(d => !d.isDone && !d.isCanceled);
+      const future = data.filter(d => !d.isDone && !d.isCanceled);
+      const prev = data.filter(d => d.isDone || d.isCanceled);
+      const sortData = future.concat(prev);
       const promises = [];
       console.log(data);
-      filteredData.forEach(reservation => {
-        socket.emit('join', { reservationId: reservation._id });
+      sortData.forEach(reservation => {
+        socket.emit("join", { reservationId: reservation._id });
         promises.push(
           new Promise((resolve, reject) => {
             socket.emit(
-              'getMessages',
+              "getMessages",
               {
                 reservationId: reservation._id
               },
@@ -87,7 +93,9 @@ class Message extends Component {
                   messages,
                   designerName: reservation._designer.name,
                   userName: reservation._user.name,
-                  checkPoints
+                  checkPoints,
+                  date: reservation.date,
+                  finished: reservation.isDone || reservation.isCanceled
                 })
             );
           })
@@ -100,9 +108,12 @@ class Message extends Component {
       });
     }
   }
+  showChat = reservationId => {
+    this.props.history.push(`/chat?r=${reservationId}`);
+  };
 
   render() {
-    let chats = '로딩중...';
+    let chats = "로딩중...";
     if (this.state.messages) {
       chats = this.state.messages.map((message, key) => {
         const latest = message.messages[message.messages.length - 1];
@@ -126,6 +137,9 @@ class Message extends Component {
                     latest.createdAt)
               )
             }
+            finished={message.finished}
+            showChat={this.showChat}
+            date={message.date}
           />
         );
       });

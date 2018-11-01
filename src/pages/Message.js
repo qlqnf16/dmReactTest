@@ -29,9 +29,12 @@ class Message extends Component {
           this.props.userData._id
         }/reservations`
       );
-      const filteredData = data.filter(d => !d.isDone && !d.isCanceled);
+
+      const future = data.filter(d => !d.isDone && !d.isCanceled);
+      const prev = data.filter(d => d.isDone || d.isCanceled);
+      const sortData = future.concat(prev);
       const promises = [];
-      filteredData.forEach(reservation => {
+      sortData.forEach(reservation => {
         socket.emit('join', { reservationId: reservation._id });
         promises.push(
           new Promise((resolve, reject) => {
@@ -47,7 +50,9 @@ class Message extends Component {
                     messages,
                     designerName: reservation._designer.name,
                     userName: reservation._user.name,
-                    checkPoints
+                    checkPoints,
+                    date: reservation.date,
+                    finished: reservation.isDone || reservation.isCanceled
                   })
               );
             } catch (e) {
@@ -71,10 +76,11 @@ class Message extends Component {
           this.props.userData._id
         }/reservations`
       );
-      const filteredData = data.filter(d => !d.isDone && !d.isCanceled);
+      const future = data.filter(d => !d.isDone && !d.isCanceled);
+      const prev = data.filter(d => d.isDone || d.isCanceled);
+      const sortData = future.concat(prev);
       const promises = [];
-      console.log(data);
-      filteredData.forEach(reservation => {
+      sortData.forEach(reservation => {
         socket.emit('join', { reservationId: reservation._id });
         promises.push(
           new Promise((resolve, reject) => {
@@ -89,7 +95,9 @@ class Message extends Component {
                   messages,
                   designerName: reservation._designer.name,
                   userName: reservation._user.name,
-                  checkPoints
+                  checkPoints,
+                  date: reservation.date,
+                  finished: reservation.isDone || reservation.isCanceled
                 })
             );
           })
@@ -102,6 +110,10 @@ class Message extends Component {
       });
     }
   }
+
+  showChat = reservationId => {
+    this.props.history.push(`/chat?r=${reservationId}`);
+  };
 
   render() {
     let chats = '로딩중...';
@@ -128,6 +140,9 @@ class Message extends Component {
                     latest.createdAt)
               )
             }
+            finished={message.finished}
+            showChat={this.showChat}
+            date={message.date}
           />
         );
       });
