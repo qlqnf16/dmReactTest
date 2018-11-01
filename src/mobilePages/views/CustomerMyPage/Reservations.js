@@ -112,7 +112,7 @@ class Reservations extends Component {
     return (
       <div>
         <MyPageNavigationBar />
-        <div>
+        <div className="m_containerStyle">
           <ReservationCards
             futureReservations={futureReservations}
             previousReservations={previousReservations}

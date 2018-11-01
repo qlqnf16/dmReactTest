@@ -131,13 +131,8 @@ class Chat extends Component {
     return (
       <div>
         <div>
-          <div>메시지</div>
           <div>
-            <div>
-              <Link to="/message" className="cp_link">
-                전체메시지
-              </Link>
-            </div>
+            <div />
             <div>
               <ChatBox
                 messages={this.state.messages}

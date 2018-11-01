@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import default_people from '../../../assets/images/Default_guy-01.jpg';
 import alart from '../../../assets/images/alart.png';
 import Moment from 'react-moment';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 
 class ChatBox extends Component {
   state = {
@@ -36,6 +36,14 @@ class ChatBox extends Component {
   };
 
   render() {
+    // todo: scroll always at the bottom
+
+    // document.getElementsByClassName(
+    //   'chat_content'
+    // )[0].scrollTop = document.getElementsByClassName(
+    //   'chat_content'
+    // )[0].scrollHeight;
+
     if (this.props.madeRequest) {
       let otherName = '';
       let otherName2 = '';
@@ -85,12 +93,12 @@ class ChatBox extends Component {
         ));
       }
       return (
-        <div className="chat_box">
-          <div className="chat_title row m-0">
-            <div className="col-1 px-0">
-              <img src={default_people} alt="alt" className="chat_profile" />
-            </div>
-            <div className="col-8 px-0">
+        <div className="chat_box" style={chatBoxStyle}>
+          <div style={chatBoxTitleStyle} className="chat_title row m-0">
+            {/* <div className="col-2 px-0">
+              <Link to="/message">뒤로</Link>
+            </div> */}
+            <div className="col-12 px-0 text-center">
               <div style={{ fontWeight: 'bold', fontSize: '1.5rem' }}>
                 {otherName} {otherName2}
               </div>
@@ -104,7 +112,7 @@ class ChatBox extends Component {
                 {this.timeParse(this.props.reservationData.time.until)}
               </div>
             </div>
-            <div className="mr-3 ml-auto ">
+            {/* <div className="mr-3 ml-auto ">
               <Link to="/QnA">
                 <div className="chat_report row px-2 pt-2">
                   <div>
@@ -113,10 +121,12 @@ class ChatBox extends Component {
                   <div style={{ padding: '0.5rem' }}>직거래 신고하기</div>
                 </div>
               </Link>
-            </div>
+            </div> */}
           </div>
+          <div style={{ height: 65 }} />
           <div className="chat_content">{messages}</div>
-          <div className="chat_bottom row m-0">
+          <div style={{ height: 51 }} />
+          <div style={chatBoxInputStyle} className="chat_bottom row m-0">
             <div className="col-10 px-0">
               <input
                 type="text"
@@ -142,6 +152,26 @@ class ChatBox extends Component {
     }
   }
 }
+
+const styles = {
+  chatBoxStyle: {
+    border: 'none'
+  },
+  chatBoxTitleStyle: {
+    position: 'fixed',
+    backgroundColor: 'white',
+    width: '100%',
+    alignItems: 'center'
+  },
+  chatBoxInputStyle: {
+    position: 'fixed',
+    backgroundColor: 'white',
+    bottom: 0,
+    width: '100%'
+  }
+};
+
+const { chatBoxStyle, chatBoxTitleStyle, chatBoxInputStyle } = styles;
 
 const mapStateToProps = ({ authentication: { userData } }) => {
   return { userData };
