@@ -74,15 +74,15 @@ const ShowReviewModal = props => {
             <p className="m_input p-3">
               {props.reservation._review && props.reservation._review.content}
             </p>
-            <div className="row justify-content-center">
+            <div style={{display: 'grid', gridGap: '5%', gridTemplateColumns: '30% 30% 30%'}}>
               {props.reservation._review &&
                 props.reservation._review.images.map((image, key) => (
                   <img
                     key={key}
                     alt="alt"
                     src={image}
-                    className="col-4"
-                    style={{ padding: '0', width: '100%', height: '100%' }}
+                    // className="col-4"
+                    style={{ width: '100%'}}
                   />
                 ))}
             </div>

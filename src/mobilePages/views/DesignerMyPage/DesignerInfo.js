@@ -6,6 +6,7 @@ import firebase from '../../../config/Firebase';
 
 import InfoForm from '../../components/InfoForm/InfoForm';
 import ExtraInfoForm from '../../components/InfoForm/ExtraInfoForm';
+import DesignerNav from '../../components/NavigationBar/DesignerNav';
 
 class DesignerInfo extends Component {
   constructor(props) {
@@ -233,6 +234,7 @@ class DesignerInfo extends Component {
     } = styles;
     return (
       <div className="m_containerStyle">
+      <DesignerNav />
         <div style={containerStyle}>
           <div style={titleStyle}>회원 정보 관리</div>
           <div style={subtitleStyle}>회원 정보 수정</div>
@@ -280,7 +282,9 @@ const styles = {
     fontWeight: 'bold',
     color: '#4c91ba',
     textAlign: 'left',
-    margin: '33.5px 0'
+    margin: '33.5px 0',
+    paddingBottom: '6.9px',
+    borderBottom: 'solid 1px rgba(0, 0, 0, 0.1)'
   },
   subtitleStyle: {
     fontSize: '1.3rem',
