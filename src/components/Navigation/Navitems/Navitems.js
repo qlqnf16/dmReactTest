@@ -30,7 +30,7 @@ class Navitems extends Component {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to={'/addDesigner'} className="">
+            <NavLink tag={Link} to={'/whyDreamary'} className="">
               예디등록
             </NavLink>
           </NavItem>
@@ -67,7 +67,7 @@ class Navitems extends Component {
       return (
         <Fragment>
           <NavItem>
-            <NavLink tag={Link} to={'/designer/whydreamary'} className="">
+            <NavLink tag={Link} to={'/whyDreamary'} className="">
               왜?
             </NavLink>
           </NavItem>

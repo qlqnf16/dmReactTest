@@ -139,6 +139,7 @@ class DesignerDetail extends Component {
               <pre style={paragraphStyle}>{designer.careerDetail}</pre>
             </div>
             <div>
+              {/* todo: modal(big picture) show when clicked */}
               <div style={labelStyle}>포트폴리오</div>
               <div>
                 {portfolios.map(portfolio => (

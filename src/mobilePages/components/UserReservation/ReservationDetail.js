@@ -35,14 +35,36 @@ const ReservationDetail = props => {
   }
 
   return (
-    <div>
-      <div>요청사항</div>
-      <div>{reservation._designer._recruit.requirement}</div>
-      <div>예상 시술 소요시간</div>
-      <div>
+    <div style={cautionStyle}>
+      <div style={titleStyle}>요청사항</div>
+      <div style={contentStyle}>
+        {reservation._designer._recruit.requirement}
+      </div>
+      <div style={titleStyle}>예상 시술 소요시간</div>
+      <div style={contentStyle}>
         {services} : 총 {timeFormat}
       </div>
     </div>
   );
 };
+const styles = {
+  cautionStyle: {
+    margin: '3rem 0',
+    color: '#2b2e34',
+    fontSize: '1.2rem',
+    padding: '5%',
+    border: 'solid 1px #c1e4eb',
+    borderRadius: 5
+  },
+  titleStyle: {
+    fontSize: '1.4rem',
+    fontWeight: 'bold',
+    color: '#dd6866'
+  },
+  contentStyle: {
+    margin: '10px 0 15px 0'
+  }
+};
+
+const { cautionStyle, titleStyle, contentStyle } = styles;
 export default ReservationDetail;

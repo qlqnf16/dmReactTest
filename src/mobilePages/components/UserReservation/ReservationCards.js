@@ -1,21 +1,24 @@
 import React from 'react';
 import ReservationCard from './ReservationCard';
 import ReservationDetail from './ReservationDetail';
-import NoContent from '../../../components/UI/NoContent/NoContent';
+import NoContent from '../NoContent/NoContent';
+
+const activeCardStyle = {};
 
 const Reservations = props => (
-  <div>
-    <div>예약관리</div>
+  <div style={containerStyle}>
+    <div style={titleStyle}>예약관리</div>
     <div>
-      <div>다가오는 예약</div>
+      <div style={subtitleStyle}>다가오는 예약</div>
       {props.futureReservations.length > 0 ? (
         props.futureReservations.map((reservation, key) => (
-          <div className="row" key={key}>
+          <div key={key}>
             <ReservationCard
               reservation={reservation}
               type={'soon'}
               cancelModalToggle={props.cancelModalToggle}
               showMessage={props.showMessage}
+              active
             />
             <div />
             <ReservationDetail reservation={reservation} />
@@ -29,8 +32,8 @@ const Reservations = props => (
       )}
     </div>
     <div>
-      <div>지난 예약</div>
-      <div className="row">
+      <div style={subtitleStyle}>지난 예약</div>
+      <div>
         {props.previousReservations.map((reservation, key) => (
           <ReservationCard
             reservation={reservation}
@@ -46,5 +49,28 @@ const Reservations = props => (
     </div>
   </div>
 );
+
+const styles = {
+  containerStyle: {
+    width: '85%',
+    display: 'flex',
+    flexDirection: 'column',
+    textAlign: 'left'
+  },
+  titleStyle: {
+    fontSize: '1.5rem',
+    fontWeight: 'bold',
+    color: '#dd6866',
+    textAlign: 'left',
+    margin: '33.5px 0'
+  },
+  subtitleStyle: {
+    fontSize: '1.3rem',
+    fontWeight: 'bold',
+    color: '#1f3354'
+  }
+};
+
+const { containerStyle, titleStyle, subtitleStyle } = styles;
 
 export default Reservations;
