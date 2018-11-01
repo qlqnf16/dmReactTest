@@ -375,6 +375,7 @@ class App extends Component {
                 path="/reservationConfirm/:reservation_id"
                 component={M_ReservationConfirm}
               />
+              <Route path="/whyDreamary" component={M_WhyDreamary} />
               {/* 로그인 했을 때만 */}
               <Route
                 path="/message"
@@ -491,12 +492,6 @@ class App extends Component {
               <Route
                 path="/designer/schedule"
                 component={this.props.userData.isD ? M_Schedule : M_WrongAccess}
-              />
-              <Route
-                path="/designer/whyDreamary"
-                component={
-                  this.props.userData.isD ? M_WhyDreamary : M_WrongAccess
-                }
               />
 
               {/* customer my page (for testing MyPageNavigationBar) */}

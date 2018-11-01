@@ -67,6 +67,11 @@ class Navitems extends Component {
       return (
         <Fragment>
           <NavItem>
+            <NavLink tag={Link} to={'/whyDreamary'} className="">
+              왜?
+            </NavLink>
+          </NavItem>
+          <NavItem>
             <NavLink tag={Link} to={'/designer/reservations'} className="">
               예약관리
             </NavLink>

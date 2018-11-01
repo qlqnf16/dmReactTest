@@ -47,7 +47,7 @@ const DrawerItems = props => {
             예디찾기
           </div>
         </Link>
-        <Link to="/addDesigner">
+        <Link to="/whyDreamary">
           <div className="mobile-drawer-items" onClick={props.click}>
             예디등록
           </div>
@@ -84,7 +84,7 @@ const DrawerItems = props => {
         >
           로그아웃
         </div>
-        <Link to="/designer/whydreamary">
+        <Link to="/whydreamary">
           <div className="mobile-drawer-items" onClick={props.click}>
             왜?
           </div>
