@@ -282,7 +282,9 @@ const styles = {
     fontWeight: 'bold',
     color: '#4c91ba',
     textAlign: 'left',
-    margin: '33.5px 0'
+    margin: '33.5px 0',
+    paddingBottom: '6.9px',
+    borderBottom: 'solid 1px rgba(0, 0, 0, 0.1)'
   },
   subtitleStyle: {
     fontSize: '1.3rem',
