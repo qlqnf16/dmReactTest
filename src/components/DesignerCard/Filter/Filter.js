@@ -3,10 +3,7 @@ import './Filter.css';
 
 const Filter = props => {
   return (
-    <div
-      // style={{ height: 200 }}
-      className="col-3 form-row d-flex align-items-baseline filter-responsive"
-    >
+    <div className="col-3 form-row d-flex align-items-baseline filter-responsive">
       <div className="col-5">
         <div className="filterTitle">성별</div>
         <div className="d-inline">
@@ -102,7 +99,7 @@ const Filter = props => {
             max="100"
             step="50"
           />
-          <label>컷트</label>
+          <label>커트</label>
         </div>
         <div className="form-group">
           <input

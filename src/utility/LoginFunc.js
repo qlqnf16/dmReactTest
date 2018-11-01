@@ -18,7 +18,6 @@ export const facebookLogin = async () => {
     let newUser = true;
     Users.data.some(user => {
       if (user._uid === uid) {
-        console.log('이미 있는 유저입니다');
         newUser = false;
       }
       return user._uid === uid;
@@ -44,9 +43,7 @@ export const facebookLogin = async () => {
         .ref('users/' + uid)
         .update(firebaseUserData);
     }
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 };
 
 export const googleLogin = async () => {
@@ -65,7 +62,6 @@ export const googleLogin = async () => {
     let newUser = true;
     Users.data.some(user => {
       if (user._uid === uid) {
-        console.log('이미 있는 유저입니다');
         newUser = false;
       }
       return user._uid === uid;
@@ -90,17 +86,12 @@ export const googleLogin = async () => {
         .ref('users/' + uid)
         .update(firebaseUserData);
     }
-
-    // await props.getUserId(res.data._id);
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 };
 
 export const kakao_login_success = async (response, a) => {
   // 카카오톡 로그인으로 카카오톡 토큰 발급
   const userToken = { userToken: response.response.access_token };
-  console.log(userToken);
 
   try {
     // 카카오톡 토큰을 node 서버에 전달
@@ -125,7 +116,6 @@ export const kakao_login_success = async (response, a) => {
     let newUser = true;
     Users.data.some(user => {
       if (user._uid === data.uuid) {
-        console.log('이미 있는 유저입니다');
         newUser = false;
       }
       return user._uid === data.uuid;
@@ -148,11 +138,7 @@ export const kakao_login_success = async (response, a) => {
         .ref('users/' + data.uuid)
         .update(firebaseUserData);
     }
-  } catch (error) {
-    console.log(error);
-  }
+  } catch (error) {}
 };
 
-export const kakao_login_fail = error => {
-  console.log(error);
-};
+export const kakao_login_fail = () => {};

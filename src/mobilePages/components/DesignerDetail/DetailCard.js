@@ -13,7 +13,7 @@ class DetailCard extends Component {
 
   addData = async () => {
     await this.props.addData();
-    await this.setState({ click: !this.state.click });
+    this.setState({ click: !this.state.click });
   };
 
   dayOfWeek = date => {
@@ -40,7 +40,7 @@ class DetailCard extends Component {
   typeParse = type => {
     switch (type) {
       case 'cut':
-        return '컷트';
+        return '커트';
       case 'perm':
         return '펌';
       case 'dye':
@@ -64,7 +64,6 @@ class DetailCard extends Component {
   };
 
   render() {
-    console.log(this.props.recruit);
     let addData = null;
     let must = [];
     let no = [];
@@ -79,7 +78,8 @@ class DetailCard extends Component {
       });
     }
     let dcard = 'dcard ';
-    console.log(this.props.selectedCard === this.props.number);
+
+    // 클릭했을 때, 카드 확장
     if (this.state.click && this.props.selectedCard === this.props.number) {
       addData = (
         <CardAdd
@@ -97,6 +97,7 @@ class DetailCard extends Component {
       );
       dcard += 'dcard_selected';
     }
+
     let mustParse = String(must.map(m => this.typeParse(m)));
     let noParse = String(no.map(m => this.typeParse(m)));
     if (!mustParse.length) mustParse = '없음';
@@ -112,7 +113,7 @@ class DetailCard extends Component {
             ({this.dayOfWeek(this.props.cardData.date)})
           </p>
           <h5>
-            <span>필수 :{mustParse}</span> | <span>불가 :{noParse}</span>
+            <span>필수 : {mustParse}</span> | <span>불가 : {noParse}</span>
           </h5>
           <h5>모델 : {this.genderFormat(this.props.cardData.requireGender)}</h5>
           <h5>헤어샵 : {this.props.cardData.shop}</h5>

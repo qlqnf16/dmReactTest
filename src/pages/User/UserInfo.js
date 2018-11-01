@@ -15,7 +15,8 @@ class UserInfo extends Component {
       birthday,
       phoneNumber,
       gender,
-      recommendationCode
+      recommendationCode,
+      isRegister
     } = this.props.userData;
     this.state = {
       name,
@@ -26,9 +27,26 @@ class UserInfo extends Component {
       year: birthday && birthday.year,
       month: birthday && birthday.month,
       day: birthday && birthday.day,
-      recommendationCode
+      recommendationCode,
+      isRegister
     };
   }
+
+  componentDidMount = async () => {
+    // iamport 사용하기 위한 inline script 작성
+    let links = [
+      'https://code.jquery.com/jquery-1.12.4.min.js',
+      'https://cdn.iamport.kr/js/iamport.payment-1.1.5.js'
+    ];
+
+    for (let link of links) {
+      const script = document.createElement('script');
+
+      script.src = link;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  };
 
   inputChangeHandler = event => {
     const target = event.target;
@@ -57,7 +75,6 @@ class UserInfo extends Component {
       phoneNumber,
       gender
     };
-    console.log(firebaseUserData);
     if (!this.props.userData.isRegister)
       return alert('휴대폰 인증을 진행해주세요');
     if (
@@ -82,49 +99,45 @@ class UserInfo extends Component {
         firebaseUserData = { ...firebaseUserData, recommendationCode };
         count += 1;
 
-        // if (count === 3) {
-        //   count = 0;
+        // 유효한 추천인 코드면 포인트 증가
         await axios.patch(`http://52.79.227.227:3030/users/${_id}/addpoint`);
-        // }
 
         await firebase
           .database()
           .ref('users/' + recommendationCode)
           .update({ recommendation: count });
-        console.log(firebaseUserData);
       }
     }
     await firebase
       .database()
       .ref('users/' + uid)
       .update(firebaseUserData);
-    await alert('저장되었습니다!');
+    alert('저장되었습니다!');
   };
 
-  phoneCert() {
-    console.log('Asdfafds');
+  phoneCert = () => {
     const { IMP } = window;
     IMP.init('imp38067773');
+    alert('결제 함수 시작');
     IMP.certification(
       {
         merchant_uid: 'merchant_' + new Date().getTime(),
         popup: true
       },
-      function(rsp) {
+      rsp => {
         if (rsp.success) {
           // 인증성공
-          console.log(rsp.imp_uid);
-          console.log(rsp.merchant_uid);
+          this.setState({ isRegister: true });
+          alert('인증되었습니다');
         } else {
           // 인증취소 또는 인증실패
           var msg = '인증에 실패하였습니다.';
           msg += '에러내용 : ' + rsp.error_msg;
-
           alert(msg);
         }
       }
     );
-  }
+  };
 
   certification() {
     firebase

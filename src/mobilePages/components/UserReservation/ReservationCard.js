@@ -1,14 +1,14 @@
 import React from 'react';
 import Moment from 'react-moment';
-import './ReservationCard.css';
-import calendar_o from '../../assets/images/calendar_o.png';
-import calendar_x from '../../assets/images/calendar_x.png';
-import place_o from '../../assets/images/place_o.png';
-import place_x from '../../assets/images/place_x.png';
-import scissors_o from '../../assets/images/scissors_o.png';
-import scissors_x from '../../assets/images/scissors_x.png';
+import calendar_o from '../../../assets/images/calendar_o.png';
+import calendar_x from '../../../assets/images/calendar_x.png';
+import place_o from '../../../assets/images/place_o.png';
+import place_x from '../../../assets/images/place_x.png';
+import scissors_o from '../../../assets/images/scissors_o.png';
+import scissors_x from '../../../assets/images/scissors_x.png';
 
 const ReservationCard = props => {
+  // 시간 parse
   let since = '';
   let until = '';
   let services = '';
@@ -38,30 +38,24 @@ const ReservationCard = props => {
       services = services.substring(1);
     }
   }
+  // type따라 버튼 변경
   let button = null;
   let type = null;
-  let dDay = false;
   if (props.reservation.isCanceled) {
     button = (
-      <button
-        className="rc_button canceled"
-        onClick={() => props.cancelReasonModalToggle(props.reservation)}
-      >
+      <div onClick={() => props.cancelReasonModalToggle(props.reservation)}>
         취소 사유 보기
-      </button>
+      </div>
     );
-    type = <div className="rc_type canceled">취소</div>;
+    type = <div>취소</div>;
   } else if (props.type === 'soon') {
     button = (
-      <button
-        className="rc_button"
-        onClick={() => props.cancelModalToggle(props.reservation)}
-      >
-        예약 취소
-      </button>
+      <div onClick={() => props.cancelModalToggle(props.reservation)}>
+        예약취소
+      </div>
     );
     type = (
-      <div className="rc_type">
+      <div>
         D-
         <Moment unit="days" diff={new Date()}>
           {props.reservation.date + 86400000}
@@ -69,57 +63,68 @@ const ReservationCard = props => {
       </div>
     );
     let date = new Date(props.reservation.date);
-    if (new Date() >= date || new Date().getDate() === date.getDate()) {
-      dDay = true;
+    if (new Date().getDate() === date.getDate() || new Date() >= date) {
       if (new Date().getDate() === date.getDate()) {
-        type = <div className="rc_type">D-day</div>;
-      } else
+        type = <div>D-day</div>;
+        button = (
+          <div
+            onClick={() => {
+              alert('당일 취소는 경고 1회 누적됩니다.');
+              props.cancelModalToggle(props.reservation, true);
+            }}
+          >
+            예약취소
+          </div>
+        );
+      } else {
         type = (
-          <div className="rc_type">
+          <div>
             D+
             <Moment unit="days" diff={props.reservation.date - 86400000}>
               {new Date()}
             </Moment>
           </div>
         );
-      button = (
-        <button
-          className="rc_button review"
-          onClick={() => props.completeModalToggle(props.reservation)}
-        >
-          서비스 완료
-        </button>
-      );
+
+        button = (
+          <div
+            onClick={() => {
+              alert('서비스 완료 전입니다');
+            }}
+          >
+            완료 대기중
+          </div>
+        );
+      }
     }
   } else if (props.type === 'finish') {
     if (props.reservation._review) {
       button = (
-        <button
-          className="rc_button review"
-          onClick={() => props.showReviewModalToggle(props.reservation)}
-        >
-          리뷰 보기
-        </button>
+        <div onClick={() => props.showReviewModalToggle(props.reservation)}>
+          내 리뷰 보기
+        </div>
       );
     } else {
-      button = <button className="rc_button">리뷰 등록 전</button>;
-    }
-    type = <div className="rc_type rc_finish">완료</div>;
-  }
-  return (
-    <div className="col-3 my-2 px-2">
-      <div className={`drc_${dDay ? 'dDay' : props.type} rc_back p-4`}>
-        <div className="text-right">{type}</div>
-        <div
-          className={
-            props.type === 'soon' ? 'rc_content drc_title' : 'drc_title drc_off'
-          }
-        >
-          {props.reservation._user.name}
+      button = (
+        <div onClick={() => props.reviewModalToggle(props.reservation)}>
+          리뷰 등록
         </div>
-        <div
-          className={props.type === 'soon' ? 'rc_content' : 'rc_content rc_off'}
-        >
+      );
+    }
+    type = <div>완료</div>;
+  }
+
+  // return
+  if (props.reservation) {
+    return (
+      <div className="border col-6">
+        <div>
+          <div>{props.reservation._designer.name}</div>
+          {type}
+        </div>
+
+        <div>{props.reservation._designer._recruit.title}</div>
+        <div>
           <img
             alt="alt"
             src={props.type === 'soon' ? calendar_o : calendar_x}
@@ -130,9 +135,7 @@ const ReservationCard = props => {
           </Moment>{' '}
           {since} ~ {until}
         </div>
-        <div
-          className={props.type === 'soon' ? 'rc_content' : 'rc_content rc_off'}
-        >
+        <div>
           <img
             alt="alt"
             src={props.type === 'soon' ? place_o : place_x}
@@ -140,9 +143,7 @@ const ReservationCard = props => {
           />{' '}
           {props.reservation._card && props.reservation._card.shop}
         </div>
-        <div
-          className={props.type === 'soon' ? 'rc_content' : 'rc_content rc_off'}
-        >
+        <div>
           <img
             alt="alt"
             src={props.type === 'soon' ? scissors_o : scissors_x}
@@ -150,23 +151,24 @@ const ReservationCard = props => {
           />{' '}
           {services}
         </div>
-        <div className="mt-4 d-flex justify-content-between">
+        <div>
           {button}
           <div
-            className="rc_button"
-            style={{ color: '#1f3354', marginLeft: '22px' }}
             onClick={
               props.type === 'soon'
                 ? () => props.showMessage(props.reservation._id)
                 : () => props.showMore(props.reservation._designer._recruit)
             }
           >
-            더보기
+            {props.type === 'soon' ? '메시지' : '더보기'}
           </div>
         </div>
+        <div>예약번호: {props.reservation._id}</div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return <div />;
+  }
 };
 
 export default ReservationCard;

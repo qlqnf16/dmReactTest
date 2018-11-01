@@ -57,7 +57,7 @@ class InfoFormExtended extends Component {
             <div className="if_grid three">
               {this.props.num > 0
                 ? this.props.portfolioImg.map((url, i) => (
-                    <div className="if_file">
+                    <div className="if_file" key={i}>
                       <ImgPreview
                         url={url}
                         key={i}
@@ -83,29 +83,6 @@ class InfoFormExtended extends Component {
             </div>
           </div>
         </FormGroup>
-        {/* <FormGroup row>
-          <Label for="portfolio" xs={2}>
-            포트폴리오
-          </Label>
-          <Col xs={10}>
-            <div>
-              {this.props.num > 0
-                ? this.props.portfolioImg.map((url, i) => (
-                    <ImgPreview
-                      url={url}
-                      key={i}
-                      deletePortfolio={this.props.deletePortfolio}
-                    />
-                  ))
-                : null}
-            </div>
-            <input
-              type="file"
-              name="portfolio"
-              onChange={this.props.imgChange}
-            />
-          </Col>
-        </FormGroup> */}
       </Fragment>
     );
   }

@@ -1,32 +1,33 @@
-import React, { Component, Fragment } from "react";
-import { Modal, ModalBody } from "reactstrap";
-import { connect } from "react-redux";
+import React, { Component, Fragment } from 'react';
+import { Modal, ModalBody } from 'reactstrap';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
-import KakaoLogin from "react-kakao-login";
-import KaKaoKey from "../../../config/Kakao";
+import KakaoLogin from 'react-kakao-login';
+import KaKaoKey from '../../../config/Kakao';
 
-import * as actions from "../../../modules";
-import * as LoginFunc from "../../../utility/LoginFunc";
+import * as actions from '../../../modules';
+import * as LoginFunc from '../../../utility/LoginFunc';
 
-import googleLoginButton from "../../../assets/images/login_google.png";
-import facebookLoginButton from "../../../assets/images/login_fb.png";
-import kakaoLoginButton from "../../../assets/images/login_katalk.png";
-import googleSignUpButton from "../../../assets/images/join_google.png";
-import facebookSignUpButton from "../../../assets/images/join_fb.png";
-import kakaoSignUpButton from "../../../assets/images/join_katalk.png";
-import "./MyModal.css";
+import googleLoginButton from '../../../assets/images/login_google.png';
+import facebookLoginButton from '../../../assets/images/login_fb.png';
+import kakaoLoginButton from '../../../assets/images/login_katalk.png';
+import googleSignUpButton from '../../../assets/images/join_google.png';
+import facebookSignUpButton from '../../../assets/images/join_fb.png';
+import kakaoSignUpButton from '../../../assets/images/join_katalk.png';
+import './MyModal.css';
 
 class MyModal extends Component {
   state = {
-    title: "",
-    text: "",
-    subTitle: "",
+    title: '',
+    text: '',
+    subTitle: '',
     firstRender: false
   };
 
   componentDidMount = () => {
     if (!this.state.firstRender) {
-      this.props.type === "login"
+      this.props.type === 'login'
         ? this.changeToLogin()
         : this.changeToSignUp();
     }
@@ -34,9 +35,9 @@ class MyModal extends Component {
 
   changeToLogin = () => {
     this.setState({
-      title: "로그인",
-      text: "아직 드리머리 회원이 아니신가요?",
-      subText: " 후, 맞춤 헤어 서비스를 받아보세요",
+      title: '로그인',
+      text: '아직 드리머리 회원이 아니신가요?',
+      subText: ' 후, 맞춤 헤어 서비스를 받아보세요',
       subTitle: null,
       isLogin: true,
       infoPolicy: true,
@@ -45,10 +46,10 @@ class MyModal extends Component {
   };
   changeToSignUp = () => {
     this.setState({
-      title: "환영합니다",
-      text: "이미 드리머리 계정이 있나요? ",
+      title: '환영합니다',
+      text: '이미 드리머리 계정이 있나요? ',
       subText: null,
-      subTitle: "간단한 회원가입으로 서비스를 이용해보세요",
+      subTitle: '간단한 회원가입으로 서비스를 이용해보세요',
       isLogin: false,
       infoPolicy: false,
       termsOfUse: false
@@ -66,15 +67,15 @@ class MyModal extends Component {
   login = (type, props) => {
     if (this.state.infoPolicy && this.state.termsOfUse) {
       switch (type) {
-        case "google":
+        case 'google':
           this.props.off();
           LoginFunc.googleLogin();
           break;
-        case "facebook":
+        case 'facebook':
           this.props.off();
           LoginFunc.facebookLogin();
           break;
-        case "kakao":
+        case 'kakao':
           this.props.off();
           props.onClick();
           break;
@@ -83,7 +84,7 @@ class MyModal extends Component {
           break;
       }
     } else {
-      alert("필수 체크");
+      alert('필수 항목을 체크해주세요');
     }
   };
 
@@ -109,13 +110,13 @@ class MyModal extends Component {
             </div>
             <div
               style={{
-                fontSize: "1.1rem",
-                color: "#1f3354",
-                lineHeight: "2",
-                marginLeft: "0.5rem"
+                fontSize: '1.1rem',
+                color: '#1f3354',
+                lineHeight: '2',
+                marginLeft: '0.5rem'
               }}
             >
-              이용약관에 동의합니다(필수)
+              <Link to="/TermsOfUse">이용약관</Link>에 동의합니다(필수)
             </div>
           </div>
           <div className="row justify-content-start modal_checkbox">
@@ -130,13 +131,14 @@ class MyModal extends Component {
             </div>
             <div
               style={{
-                fontSize: "1.1rem",
-                color: "#1f3354",
-                lineHeight: "2",
-                marginLeft: "0.5rem"
+                fontSize: '1.1rem',
+                color: '#1f3354',
+                lineHeight: '2',
+                paddingLeft: '0.5rem'
               }}
             >
-              개인정보 수집, 이용에 동의합니다(필수)
+              <Link to="/InfoPolicy">개인정보 수집, 이용</Link>에
+              동의합니다(필수)
             </div>
           </div>
         </div>
@@ -155,7 +157,7 @@ class MyModal extends Component {
             <div className="modal_header">
               <div
                 className="modal_title"
-                style={this.state.isLogin ? null : { textAlign: "left" }}
+                style={this.state.isLogin ? null : { textAlign: 'left' }}
               >
                 {this.state.title}
               </div>
@@ -163,7 +165,7 @@ class MyModal extends Component {
             </div>
 
             {/* Modal Button */}
-            <div className="btn modal_b" onClick={() => this.login("google")}>
+            <div className="btn modal_b" onClick={() => this.login('google')}>
               <img
                 src={
                   this.state.isLogin ? googleLoginButton : googleSignUpButton
@@ -172,7 +174,7 @@ class MyModal extends Component {
                 className="modal_button"
               />
             </div>
-            <div className="btn modal_b" onClick={() => this.login("facebook")}>
+            <div className="btn modal_b" onClick={() => this.login('facebook')}>
               <img
                 src={
                   this.state.isLogin
@@ -193,7 +195,7 @@ class MyModal extends Component {
                   className="btn modal_b"
                   onClick={e => {
                     e.preventDefault();
-                    this.login("kakao", props);
+                    this.login('kakao', props);
                   }}
                 >
                   <img
@@ -220,9 +222,9 @@ class MyModal extends Component {
                       className="btn p-0"
                       onClick={this.changeToSignUp}
                       style={{
-                        color: "#dd6866",
-                        fontWeight: "bold",
-                        fontSize: "1.2rem"
+                        color: '#dd6866',
+                        fontWeight: 'bold',
+                        fontSize: '1.2rem'
                       }}
                     >
                       회원가입
@@ -236,9 +238,9 @@ class MyModal extends Component {
                   <span
                     onClick={this.changeToLogin}
                     style={{
-                      color: "#dd6866",
-                      fontWeight: "bold",
-                      fontSize: "1.2rem"
+                      color: '#dd6866',
+                      fontWeight: 'bold',
+                      fontSize: '1.2rem'
                     }}
                     className="btn p-0"
                   >

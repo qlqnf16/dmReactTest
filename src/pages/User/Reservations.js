@@ -44,7 +44,6 @@ class Reservations extends Component {
       reservation
     });
     if (isToday) this.setState({ isToday: true });
-    console.log(this.state.isToday);
   };
 
   showReviewModalToggle = reservation => {

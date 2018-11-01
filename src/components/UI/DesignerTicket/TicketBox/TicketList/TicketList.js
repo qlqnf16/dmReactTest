@@ -2,12 +2,12 @@ import React from 'react';
 import Moment from 'react-moment';
 
 const TicketList = props => {
-  const tickets = props.tickets.map(ticket => {
+  const tickets = props.tickets.map((ticket, key) => {
     let ticketState;
     let ticketPeriod;
     if (ticket.activatedAt) {
       ticketPeriod = (
-        <div>
+        <div key={key}>
           <Moment format="YYYY/MM/DD">{ticket.activatedAt}</Moment> ~
           <Moment format="YYYY/MM/DD">{ticket.expiredAt}</Moment>
         </div>
@@ -19,6 +19,7 @@ const TicketList = props => {
       ticketPeriod = <div />;
       ticketState = (
         <div
+          key={key}
           onClick={() => props.ticketActivate(ticket._id)}
           style={{ cursor: 'pointer' }}
         >
@@ -31,7 +32,6 @@ const TicketList = props => {
         <div className="col-2 ticket_box_line p-0">
           {ticket.price === 10000 ? '1개월 이용권' : '3개월 이용권'}
         </div>
-        {/* <div className="col-3">{ticket.purchasedAt}</div> */}
         <div className="col-3 ticket_box_line">
           <Moment format="YYYY/MM/DD">{ticket.createdAt}</Moment>
         </div>

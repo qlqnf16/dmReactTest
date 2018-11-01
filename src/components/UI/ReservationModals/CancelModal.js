@@ -31,7 +31,6 @@ class CancelModal extends Component {
     );
 
     if (this.props.isToday) {
-      console.log('당일취소');
       await firebase
         .database()
         .ref('users/' + this.props.userData.uid)
@@ -40,7 +39,7 @@ class CancelModal extends Component {
         });
     }
 
-    await alert('성공적으로 취소되었습니다');
+    alert('성공적으로 취소되었습니다');
     await this.props.toggle();
     await this.props.reloadData();
   };
@@ -60,7 +59,7 @@ class CancelModal extends Component {
         Object.keys(this.props.reservation.services).forEach(service => {
           switch (service) {
             case 'cut':
-              services += '/ 컷트 ';
+              services += '/ 커트 ';
               break;
             case 'perm':
               services += '/ 펌 ';

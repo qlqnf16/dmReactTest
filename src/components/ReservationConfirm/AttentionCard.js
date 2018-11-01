@@ -4,12 +4,13 @@ import womanBack from '../../assets/images/woman_back.png';
 
 const AttentionCard = props => {
   let service = props.service;
+  const permPrice = props.cardDatapermPrice;
+  const dyePrice = props.cardData.dyePrice;
   service = service.substring(1).split('/ ');
-  console.log(service);
   let priceImage = null;
   let boxStyle = null;
   if (service.includes('펌') && service.includes('염색')) {
-    boxStyle = { width: '950px' };
+    boxStyle = { width: '1000px' };
     priceImage = (
       <div className="ml-auto p-3" style={{ width: '450px' }}>
         <div
@@ -48,18 +49,14 @@ const AttentionCard = props => {
               style={{ borderColor: '#dd6866' }}
             >
               <div className="col-4 text-right">
-                기본{' '}
-                <span className="ml-3">
-                  {props.cardData.permPrice.noraml}원
-                </span>
+                기본 <span className="ml-3">{permPrice.normal}원</span>
               </div>
               <div className="col-4" />
               <div
                 className="col-4 text-left"
                 style={{ paddingLeft: '3.8rem' }}
               >
-                기본{' '}
-                <span className="ml-3">{props.cardData.dyePrice.noraml}원</span>
+                기본 <span className="ml-3">{dyePrice.normal}원</span>
               </div>
             </div>
             <div
@@ -67,8 +64,7 @@ const AttentionCard = props => {
               style={{ borderColor: '#dd6866' }}
             >
               <div className="col-4 text-right">
-                턱아래{' '}
-                <span className="ml-3">{props.cardData.permPrice.chin}원</span>
+                턱아래 <span className="ml-3">+{permPrice.chin}원</span>
               </div>
               <div className="col-4" />
 
@@ -76,8 +72,7 @@ const AttentionCard = props => {
                 className="col-4 text-left"
                 style={{ paddingLeft: '2.7rem' }}
               >
-                턱아래{' '}
-                <span className="ml-3">{props.cardData.dyePrice.chin}원</span>
+                턱아래 <span className="ml-3">+{dyePrice.chin}원</span>
               </div>
             </div>
             <div
@@ -85,18 +80,12 @@ const AttentionCard = props => {
               style={{ borderColor: '#dd6866' }}
             >
               <div className="col-4 text-right">
-                어깨아래{' '}
-                <span className="ml-3">
-                  {props.cardData.permPrice.shoulder}원
-                </span>
+                어깨아래 <span className="ml-3">+{permPrice.shoulder}원</span>
               </div>
               <div className="col-4" />
 
               <div className="col-4 text-left">
-                어깨아래{' '}
-                <span className="ml-3">
-                  {props.cardData.dyePrice.shoulder}원
-                </span>
+                어깨아래 <span className="ml-3">+{dyePrice.shoulder}원</span>
               </div>
             </div>
             <div
@@ -104,14 +93,12 @@ const AttentionCard = props => {
               style={{ borderColor: '#dd6866' }}
             >
               <div className="col-4 text-right">
-                가슴아래{' '}
-                <span className="ml-3">{props.cardData.permPrice.chest}원</span>
+                가슴아래 <span className="ml-3">+{permPrice.chest}원</span>
               </div>
               <div className="col-4" />
 
               <div className="col-4 text-left">
-                가슴아래{' '}
-                <span className="ml-3">{props.cardData.dyePrice.chest}원</span>
+                가슴아래 <span className="ml-3">+{dyePrice.chest}원</span>
               </div>
             </div>
           </div>
@@ -133,9 +120,7 @@ const AttentionCard = props => {
         >
           <p className="m-0">서비스 예상 금액</p>
           <p className="m-0">
-            {isPerm
-              ? props.cardData.permPrice.normal
-              : props.cardData.dyePrice.normal}
+            {isPerm ? permPrice.normal : dyePrice.normal}
             원(+기장)
           </p>
           <p className="m-0" style={{ color: '#1f3354', fontWeight: 'normal' }}>
@@ -173,10 +158,7 @@ const AttentionCard = props => {
               >
                 기본{' '}
                 <span className="ml-3">
-                  {isPerm
-                    ? props.cardData.permPrice.normal
-                    : props.cardData.dyePrice.normal}
-                  원
+                  {isPerm ? permPrice.normal : dyePrice.normal}원
                 </span>
               </div>
             </div>
@@ -192,10 +174,7 @@ const AttentionCard = props => {
               >
                 턱아래{' '}
                 <span className="ml-3">
-                  {isPerm
-                    ? props.cardData.permPrice.chin
-                    : props.cardData.dyePrice.chin}
-                  원
+                  +{isPerm ? permPrice.chin : dyePrice.chin}원
                 </span>
               </div>
             </div>
@@ -208,10 +187,7 @@ const AttentionCard = props => {
               <div className="col-6 text-left">
                 어깨아래{' '}
                 <span className="ml-3">
-                  {isPerm
-                    ? props.cardData.permPrice.shoulder
-                    : props.cardData.dyePrice.shoulder}
-                  원
+                  +{isPerm ? permPrice.shoulder : dyePrice.shoulder}원
                 </span>
               </div>
             </div>
@@ -224,10 +200,7 @@ const AttentionCard = props => {
               <div className="col-6 text-left">
                 가슴아래{' '}
                 <span className="ml-3">
-                  {isPerm
-                    ? props.cardData.permPrice.chest
-                    : props.cardData.dyePrice.chest}
-                  원
+                  +{isPerm ? permPrice.chest : dyePrice.chest}원
                 </span>
               </div>
             </div>
@@ -239,7 +212,7 @@ const AttentionCard = props => {
   return (
     <div className="ac_back text-left d-flex" style={boxStyle}>
       <div>
-        <h3 className="ac_title">※ 유의사항</h3>
+        <div className="ac_title">※ 유의사항</div>
         <div className="ac_body">
           우리 예디는 프로 헤어디자이너가 아닌 예비 헤어디자이너 입니다. <br />
           예디의 레벨에 따라 선생님들의 코칭이 있을수있으니 당황하지 마세요! :)

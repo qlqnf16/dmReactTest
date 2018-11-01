@@ -1,5 +1,4 @@
 import React from 'react';
-import './ReservationDetail.css';
 import spch_bubble from '../../../assets/images/spch_bubble_user.png';
 
 const ReservationDetail = props => {
@@ -36,21 +35,12 @@ const ReservationDetail = props => {
   }
 
   return (
-    <div
-      className="col-8 rd_back"
-      style={{
-        backgroundImage: `url(${spch_bubble})`
-      }}
-    >
+    <div>
+      <div>요청사항</div>
+      <div>{reservation._designer._recruit.requirement}</div>
+      <div>예상 시술 소요시간</div>
       <div>
-        <div className="rd_title">요청사항</div>
-        <div className="rd_content">
-          {reservation._designer._recruit.requirement}
-        </div>
-        <div className="rd_title">예상 시술 소요시간</div>
-        <div className="rd_content" style={{ marginBottom: 0 }}>
-          {services} : 총 {timeFormat}
-        </div>
+        {services} : 총 {timeFormat}
       </div>
     </div>
   );

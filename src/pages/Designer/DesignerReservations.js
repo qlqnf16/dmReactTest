@@ -72,7 +72,6 @@ class DesignerReservations extends Component {
   };
 
   cancelReservationHandler = async () => {
-    console.log(this.props);
     await axios.patch(
       `http://52.79.227.227:3030/users/${
         this.props.userData._id
@@ -129,7 +128,6 @@ class DesignerReservations extends Component {
       );
       previousReservations.sort(this.reservationSort);
     }
-    console.log(previousReservations);
 
     return (
       <div className="container-fluid d">

@@ -33,7 +33,6 @@ class ReviewModal extends Component {
     this.state.reviewImg.push(URL.createObjectURL(file));
     this.state.reviewImgFile.push(file);
     this.setState({ num: this.state.num + 1 });
-    console.log(this.state);
   };
 
   deleteImg = e => {
@@ -84,7 +83,7 @@ class ReviewModal extends Component {
       }
     );
 
-    await alert('성공적으로 등록되었습니다');
+    alert('성공적으로 등록되었습니다');
     await this.props.toggle();
     await this.props.reloadData();
   };
@@ -104,7 +103,7 @@ class ReviewModal extends Component {
         Object.keys(this.props.reservation.services).forEach(service => {
           switch (service) {
             case 'cut':
-              services += '/ 컷트 ';
+              services += '/ 커트 ';
               break;
             case 'perm':
               services += '/ 펌 ';
@@ -150,15 +149,6 @@ class ReviewModal extends Component {
                   starDimension="2rem"
                   starSpacing="1px"
                 />
-                {/* <input
-                  type="range"
-                  name="score"
-                  id="score"
-                  min="0"
-                  max="5"
-                  step="0.5"
-                  onChange={this.inputChangeHandler}
-                /> */}
               </div>
             </div>
             <textarea

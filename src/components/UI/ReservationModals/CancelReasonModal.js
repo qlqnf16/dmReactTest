@@ -4,7 +4,6 @@ import Moment from 'react-moment';
 
 const CancelReasonModal = props => {
   if (props.reservation) {
-    console.log(props.reservation);
     let since = '';
     let until = '';
     let services = '';
@@ -18,7 +17,7 @@ const CancelReasonModal = props => {
       Object.keys(props.reservation.services).forEach(service => {
         switch (service) {
           case 'cut':
-            services += '/ 컷트 ';
+            services += '/ 커트 ';
             break;
           case 'perm':
             services += '/ 펌 ';

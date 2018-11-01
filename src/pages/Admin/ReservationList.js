@@ -18,7 +18,6 @@ class DesignerList extends Component {
         reservations: data,
         madeRequest: true
       });
-      console.log(data);
     }
   };
 

@@ -29,7 +29,7 @@ const ScheduleCard = props => {
   const typeParse = type => {
     switch (type) {
       case 'cut':
-        return '/ 컷트 ';
+        return '/ 커트 ';
       case 'perm':
         return '/ 펌 ';
       case 'dye':

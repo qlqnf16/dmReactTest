@@ -11,8 +11,6 @@ class ReservationForm extends Component {
 
   pointSubmit = () => {
     if (this.state.point % 1000 === 0) {
-      console.log(this.state.point);
-      console.log(this.props.userData.point);
       if (this.state.point > this.props.userData.point) {
         alert('보유 포인트보다 많이 사용할 수 없습니다');
       } else {
@@ -26,12 +24,10 @@ class ReservationForm extends Component {
   };
 
   render() {
-    console.log(this.props.userData);
     return (
       <div className="container-fluid rf">
         <div className="row rf-title d-flex justify-content-between">
           <div className="rf-title-text1">예약/결제</div>
-          {/* {예약번호: {this.props.match.params.card_id}} */}
           <div className="text-right rf-title-text2">
             예약결제 > <span style={{ color: '#bcbab7' }}>예약완료</span>
           </div>
@@ -98,7 +94,6 @@ class ReservationForm extends Component {
           <div className="row">
             <div className="col-2  text-right rf-tableHead">헤어샵</div>
             <div className="col-10 rf-tableBody">{this.props.shop}</div>
-            {/* <div className="col-10 rf-tableBody" /> */}
           </div>
           <div className="row">
             <div className="col-2  text-right rf-tableHead">서비스</div>

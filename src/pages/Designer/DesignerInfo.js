@@ -14,7 +14,6 @@ class DesignerInfo extends Component {
     for (let i = 0; this.props.userData[`portfolio${i}`]; i++) {
       portfolios.push(this.props.userData[`portfolio${i}`]);
     }
-    console.log(portfolios);
 
     let {
       name,
@@ -109,7 +108,6 @@ class DesignerInfo extends Component {
       default:
         console.log('something wrong in [DesignerInfo.js]');
     }
-    console.log(this.state);
   };
 
   deletePortfolio = e => {
@@ -205,7 +203,7 @@ class DesignerInfo extends Component {
 
       result = await fbPromise;
       if (!result || designerRecommendationCode === this.props.userData.uid) {
-        await alert('유효하지 않은 추천인 코드 입니다.');
+        alert('유효하지 않은 추천인 코드 입니다.');
       } else {
         let { designerRecommendation, _id } = result.val();
         if (designerRecommendation) count = designerRecommendation;
@@ -219,7 +217,6 @@ class DesignerInfo extends Component {
             price: 10000
           });
         }
-        await alert(count);
         await firebase
           .database()
           .ref('users/' + designerRecommendationCode)
@@ -296,7 +293,7 @@ class DesignerInfo extends Component {
                     value={this.state.designerRecommendationCode}
                     onChange={
                       this.props.userData.designerRecommendationCode
-                        ? null
+                        ? () => {}
                         : e => this.handleInputChange(e)
                     }
                     className="if_input"

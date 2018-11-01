@@ -37,7 +37,6 @@ class Schedule extends Component {
           :00
         </option>
       ));
-      console.log(times);
       timeSelector.push(
         <div className="d-flex" key={i}>
           <Input
@@ -70,7 +69,6 @@ class Schedule extends Component {
   };
 
   render() {
-    console.log(moment().add(1, 'month'));
     const disabledDate = current => {
       if (!current) {
         return false;
@@ -100,12 +98,6 @@ class Schedule extends Component {
       <div className="schedule_border">
         <div className="row">
           <FormGroup className="col-6">
-            {/* <Input
-              type="date"
-              name="date"
-              placeholder="date placeholder"
-              onChange={this.props.datePick}
-            /> */}
             <Calendar
               name="date"
               type="date"
@@ -192,22 +184,14 @@ class Schedule extends Component {
                 <Button
                   color="light"
                   onClick={this.props.timeAdd}
-                  style={{
-                    fontSize: '1.1rem',
-                    background: 'none',
-                    border: 0
-                  }}
+                  style={{ fontSize: '1.1rem', background: 'none', border: 0 }}
                 >
                   + 시간 추가
                 </Button>
                 <Button
                   color="light"
                   onClick={this.props.timeDelete}
-                  style={{
-                    fontSize: '1.1rem',
-                    background: 'none',
-                    border: 0
-                  }}
+                  style={{ fontSize: '1.1rem', background: 'none', border: 0 }}
                 >
                   - 시간 지우기
                 </Button>
@@ -443,7 +427,7 @@ class Schedule extends Component {
                 onChange={this.props.changeInput}
                 name="permPrice"
                 id="normal"
-                className="length_input"
+                className="length_input text-right"
               />
             </div>
             <div className="col-4" />
@@ -455,7 +439,7 @@ class Schedule extends Component {
                 onChange={this.props.changeInput}
                 name="dyePrice"
                 id="normal"
-                className="length_input"
+                className="length_input text-right"
               />
             </div>
           </div>
@@ -468,8 +452,9 @@ class Schedule extends Component {
                 onChange={this.props.changeInput}
                 name="permPrice"
                 id="chin"
-                className="length_input"
+                className="length_input text-right"
               />
+              <span style={plus}>+</span>
             </div>
             <div className="col-4" />
 
@@ -481,8 +466,9 @@ class Schedule extends Component {
                 onChange={this.props.changeInput}
                 name="dyePrice"
                 id="chin"
-                className="length_input"
+                className="length_input text-right"
               />
+              <span style={{ ...plus, left: '41%' }}>+</span>
             </div>
           </div>
           <div className="length_price row">
@@ -494,8 +480,9 @@ class Schedule extends Component {
                 onChange={this.props.changeInput}
                 name="permPrice"
                 id="shoulder"
-                className="length_input"
+                className="length_input text-right"
               />
+              <span style={plus}>+</span>
             </div>
             <div className="col-4" />
 
@@ -507,11 +494,12 @@ class Schedule extends Component {
                 onChange={this.props.changeInput}
                 name="dyePrice"
                 id="shoulder"
-                className="length_input"
+                className="length_input text-right"
               />
+              <span style={{ ...plus, left: '41%' }}>+</span>
             </div>
           </div>
-          <div className="length_price row">
+          <div className="length_price row no-border">
             <div className="col-4 text-right">
               가슴아래{' '}
               <input
@@ -520,8 +508,9 @@ class Schedule extends Component {
                 onChange={this.props.changeInput}
                 name="permPrice"
                 id="chest"
-                className="length_input"
+                className="length_input text-right"
               />
+              <span style={plus}>+</span>
             </div>
             <div className="col-4" />
 
@@ -533,8 +522,9 @@ class Schedule extends Component {
                 onChange={this.props.changeInput}
                 name="dyePrice"
                 id="chest"
-                className="length_input"
+                className="length_input text-right"
               />
+              <span style={{ ...plus, left: '41%' }}>+</span>
             </div>
           </div>
 
@@ -561,4 +551,10 @@ class Schedule extends Component {
   }
 }
 
+const plus = {
+  position: 'absolute',
+  fontSize: '1.5rem',
+  left: '45%',
+  top: '-8%'
+};
 export default Schedule;

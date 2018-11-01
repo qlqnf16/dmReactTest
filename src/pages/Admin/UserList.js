@@ -23,7 +23,6 @@ class UserList extends Component {
   };
 
   render() {
-    console.log(this.state.users);
     if (this.state.madeRequest) {
       const userList = this.state.users.map((user, key) => (
         <User
@@ -32,7 +31,6 @@ class UserList extends Component {
           handleInputChange={this.handleInputChange}
         />
       ));
-      console.log(userList);
 
       return (
         <div>

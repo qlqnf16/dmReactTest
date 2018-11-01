@@ -93,7 +93,7 @@ class Navitems extends Component {
           </NavItem>
           <NavItem>
             <NavLink tag={Link} to={'/designer/coupon'} className="">
-              추천인/쿠폰
+              프로모션
             </NavLink>
           </NavItem>
           <NavItem>

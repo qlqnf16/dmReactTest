@@ -16,15 +16,13 @@ class User extends Component {
   };
 
   penaltySubmit = async uid => {
-    console.log(uid);
-    console.log(this.state.penalty);
     await firebase
       .database()
       .ref('users/' + uid)
       .update({
         penalty: this.state.penalty
       });
-    await alert('수정되었습니다');
+    alert('수정되었습니다');
   };
 
   handleInputChange = e => {
@@ -36,7 +34,6 @@ class User extends Component {
 
   render() {
     const user = this.props.user;
-    console.log(user.birthday);
     return (
       <tr key={this.props.key}>
         <th scope="row">{user.name}</th>
@@ -55,7 +52,6 @@ class User extends Component {
         <td>
           <Moment format="YYYY/MM/DD">{user.joinedDate}</Moment>
         </td>
-        {/* <td>{user.penalty}</td> */}
         <td>
           <select
             className="w-75"

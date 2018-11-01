@@ -66,8 +66,6 @@ class CardAdd extends Component {
         time += 30;
       }
     });
-    console.log(reservedTimes);
-    console.log(Times);
     let timeButtons = null;
     timeButtons = Times.map((time, key) => {
       let classN = 'toggle_button time_button';
@@ -122,7 +120,7 @@ class CardAdd extends Component {
     let time = 0;
     if (this.state.cut) {
       time += this.props.recruit.requireTime.cut;
-      service += '/ 컷트 ';
+      service += '/ 커트 ';
       serviceFormat['cut'] = true;
     }
     if (this.state.perm) {
@@ -145,7 +143,6 @@ class CardAdd extends Component {
     }
     service = service.substring(1);
 
-    console.log(this.props);
     return (
       <div className="">
         <div className="border-top border-bottom py-3 row m-2 ">
@@ -183,25 +180,6 @@ class CardAdd extends Component {
                   )
           }
         >
-          {/* <Link
-            className="link"
-            to={
-              this.props.userData.name
-                ? {
-                    pathname: `/reservation/${this.props.id}`,
-                    state: {
-                      price,
-                      time,
-                      service,
-                      serviceFormat,
-                      startTime: this.state.time,
-                      recruit: this.props.recruit,
-                      cardData: this.props.cardData
-                    }
-                  }
-                : {}
-            }
-          > */}
           <div className="row p-3" style={{ alignItems: 'flex-end' }}>
             <div className="col-7 m-0">
               <p className="time mb-2">예상 소요시간</p>
@@ -265,7 +243,6 @@ class CardAdd extends Component {
               <div className="pr-2 mr-2">예약하기</div>
             </div>
           </div>
-          {/* </Link> */}
         </div>
       </div>
     );

@@ -258,25 +258,56 @@ h3 {
 .chat_content {
   padding: 2rem 1.5rem;
 }
+.chat_back_1 {
+  display: flex;
+  justify-content: flex-start
+}
+.chat_back_2 {
+  display: flex;
+  justify-content: flex-end
+}
+.chat_bubbleBack_1 {
+  max-width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end
+}
+.chat_bubbleBack_2 {
+  max-width: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start
+}
+
+.chat_bubbleBack_2 .d-flex {
+  flex-direction: row-reverse;
+}
+
 .chat_bubble_1 {
+  min-width: 110px;
   background-color: rgba(193, 228, 235, 0.5);
   padding: 1.5rem;
-  margin-left: 1.5rem;
-  max-width: 70%;
+  width: fit-content;
   border-radius: 5px;
+  font-size: 1.3rem;
 }
 .chat_bubble_2 {
+  min-width: 110px;
   background-color: rgba(245, 177, 173, 0.5);
   padding: 1.5rem;
-  margin-right: 1.5rem;
-  margin-left: auto;
-  max-width: 70%;
+  width: fit-content;
   border-radius: 5px;
+  font-size: 1.3rem;
 }
 .chat_time {
   color: #1f3354;
   font-size: 0.9rem;
-  margin: 0 1.5rem;
+  float: right;
+  margin: 0 10px;
+}
+.chat_new {
+  color: #dd6866;
+  margin: auto 3px 0 3px;
 }
 .chat_bottom {
   border-top: solid 1.5px rgba(0, 0, 0, 0.1);

@@ -111,7 +111,7 @@ const DrawerItems = props => {
         </Link>
         <Link to="/designer/coupon">
           <div className="mobile-drawer-items" onClick={props.click}>
-            추천인/쿠폰
+            프로모션
           </div>
         </Link>
       </nav>

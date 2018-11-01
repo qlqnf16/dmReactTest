@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
-import attach from '../../assets/images/attach.png';
-import default_people from '../../assets/images/Default_guy-01.jpg';
-import alart from '../../assets/images/alart.png';
+import default_people from '../../../assets/images/Default_guy-01.jpg';
+import alart from '../../../assets/images/alart.png';
 import Moment from 'react-moment';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
 class ChatBox extends Component {
   state = {
@@ -43,10 +41,13 @@ class ChatBox extends Component {
       let otherName2 = '';
       if (
         this.props.userData.name === this.props.reservationData._designer.name
-      ) {otherName = this.props.reservationData._user.name;
-        otherName2 = '모델';}
-      else {otherName = this.props.reservationData._designer.name;
-      otherName2 = '예디'}
+      ) {
+        otherName = this.props.reservationData._user.name;
+        otherName2 = '모델';
+      } else {
+        otherName = this.props.reservationData._designer.name;
+        otherName2 = '예디';
+      }
       let messages = '로딩중';
       if (this.props.messages) {
         messages = this.props.messages.map((message, key) => (

@@ -19,8 +19,6 @@ class Coupon extends Component {
   };
 
   couponSubmit = async () => {
-    console.log(this.state.coupon);
-
     try {
       const {
         data: { point }
@@ -31,9 +29,8 @@ class Coupon extends Component {
           isD: false
         }
       );
-      console.log(point);
       await this.props.updateRedux('point', point);
-      await alert('쿠폰이 적용 되었습니다.');
+      alert('쿠폰이 적용 되었습니다.');
     } catch (err) {
       alert('유효하지 않은 쿠폰번호 입니다.');
     }
@@ -45,10 +42,10 @@ class Coupon extends Component {
           <UserNav />
           <div className="u_bg">
             <div className="u_container">
-              <div className="u_title">추천인/쿠폰</div>
-              <div className="uif_title ">쿠폰 입력</div>
-              <FormGroup row>
-                <div className="col-2 if_head uif_head ">쿠폰 입력</div>
+              <div className="u_title">프로모션</div>
+              <div className="uif_title ">프로모션 코드/포인트 적립</div>
+              <div className='row' style={{marginTop: '3rem'}}>
+                <div className="col-2 if_head uif_head ">프로모션 코드 입력</div>
                 <div className="col-8 d-flex justify-content-left">
                   <input
                     onChange={e => this.inputChangeHandler(e)}
@@ -62,22 +59,18 @@ class Coupon extends Component {
                     style={{ border: 'solid 1px #dd6866', color: '#dd6866' }}
                     onClick={() => this.couponSubmit()}
                   >
-                    적용
+                    포인트 적립
                   </div>
                 </div>
-              </FormGroup>
-
-              <div className="uif_title d-flex">
-                추천인 코드{' '}
-                <span className="mr-5 ml-auto">
-                  내 추천으로 가입한 친구 :{' '}
-                  {this.props.userData.recommendation
-                    ? this.props.userData.recommendation
-                    : 0}
-                  명
-                </span>
               </div>
-              <CouponContent couponNumber={firebase.auth().currentUser.uid} />
+              <div className='row' style={{marginTop: '4.4rem'}}>
+              <div className="col-2 if_head uif_head" >추천인 코드</div>
+              <div className='col-8'>
+              <CouponContent couponNumber={firebase.auth().currentUser.uid} recommendationNum={this.props.userData.recommendation} />
+              </div>
+              
+              </div>
+              
             </div>
           </div>
         </div>

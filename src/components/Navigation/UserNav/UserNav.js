@@ -16,7 +16,7 @@ const UserNav = () => (
       >
         예약관리
       </NavLink>
-      <NavLink
+      {/* <NavLink
         to="/likedesigner"
         className="un_navItem"
         activeStyle={{
@@ -25,7 +25,7 @@ const UserNav = () => (
         }}
       >
         찜한예디
-      </NavLink>
+      </NavLink> */}
       <NavLink
         to="/userInfo"
         className="un_navItem"
@@ -44,18 +44,8 @@ const UserNav = () => (
           borderBottom: 'solid 1.8px #1f3354'
         }}
       >
-        추천인/쿠폰
+        프로모션
       </NavLink>
-      {/* <NavLink
-        to="/message"
-        className="un_navItem"
-        activeStyle={{
-          color: '#1f3354',
-          borderBottom: 'solid 1.8px #1f3354'
-        }}
-      >
-        메세지
-      </NavLink> */}
     </div>
   </div>
 );

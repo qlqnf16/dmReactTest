@@ -11,10 +11,16 @@
   border-bottom: dotted 1.5px #4c91ba;
   padding: 0.3rem 0;
   color: #1f3354;
+  position: relative;
 }
+
 .length_input {
   width: 8rem;
   height: 80%;
+}
+
+.no-border {
+  border: none;
 }
 
 input[id='male'] + label,

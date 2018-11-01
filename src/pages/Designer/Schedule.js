@@ -103,12 +103,10 @@ class Schedule extends Component {
       return alert('채워지지 않은 정보가 있습니다');
     // 유저에 리크루트 없으면 생성
     if (!this.props.userData._recruit) {
-      console.log('최초 생성');
       const res = await axios.post(
         'http://52.79.227.227:3030/recruits',
         recruitData
       );
-      console.log(res);
       //firebase에 _recruit 추가
       await firebase
         .database()
@@ -129,22 +127,17 @@ class Schedule extends Component {
 
       // 유저가 이미 리크루트 있으면 수정
     } else {
-      console.log('정보 수정');
-
       await axios.patch(
         `http://52.79.227.227:3030/recruits/${this.props.userData._recruit}`,
         recruitData
       );
-      console.log(this.state.newCards);
       for (const newCard of this.state.newCards) {
-        console.log(`시작`);
         await axios.post(
           `http://52.79.227.227:3030/recruits/${
             this.props.userData._recruit
           }/cards`,
           newCard
         );
-        console.log(`끝`);
       }
       await this.reloadCardData();
       await this.setState({ newCards: [] });
@@ -172,7 +165,6 @@ class Schedule extends Component {
                 totalSubmitHandler={this.totalSubmitHandler}
                 dates={dates}
               />
-              {/* // changeInput= {e => this.handleInputChange(e)} */}
             </div>
           </div>
         </div>
