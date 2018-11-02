@@ -12,6 +12,7 @@ class Reservation extends Component {
   state = {
     point: 0,
     finalPrice: 5000,
+    method: null,
     reservationData: {
       time: {
         since: this.props.location.state.startTime,
@@ -63,15 +64,16 @@ class Reservation extends Component {
   };
 
   purchaseHandler(kind) {
+    console.log(this.state.method);
     const { IMP } = window;
     IMP.init('imp06037656');
     IMP.request_pay(
       {
-        pg: 'danal', // version 1.1.0부터 지원.
-        pay_method: 'card',
+        pg: `${this.state.method === 'kakaopay' ? 'kakaopay' : 'danal'}`, // version 1.1.0부터 지원.
+        pay_method: this.state.method,
         merchant_uid: 'merchant_' + new Date().getTime(),
         name: '주문명: 예약',
-        amount: 100,
+        amount: 200,
         buyer_email: this.props.userData.email,
         buyer_name: this.props.userData.name,
         buyer_tel: this.props.userData.phoneNumber
@@ -140,6 +142,7 @@ class Reservation extends Component {
             service={this.props.location.state.service}
             price={this.props.location.state.price}
             date={cardData.date}
+            method={this.state.method}
             state={this.state}
             handleInputChange={this.handleInputChange}
             pointSubmit={this.pointSubmit}

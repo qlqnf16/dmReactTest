@@ -154,13 +154,37 @@ class ReservationForm extends Component {
             >
               <input
                 type="radio"
-                name="payment"
+                name="method"
+                value="card"
+                onChange={this.props.handleInputChange}
+                checked={this.props.method === 'card'}
                 style={{ marginRight: '3.5px' }}
               />
               <span style={{ marginRight: '21.5px' }}>신용/체크카드</span>
               <input
                 type="radio"
-                name="payment"
+                name="method"
+                value="trans"
+                onChange={this.props.handleInputChange}
+                checked={this.props.method === 'trans'}
+                style={{ marginRight: '3.5px' }}
+              />
+              <span style={{ marginRight: '21.5px' }}>실시간 계좌이체</span>
+              <input
+                type="radio"
+                name="method"
+                value="vbank"
+                onChange={this.props.handleInputChange}
+                checked={this.props.method === 'vbank'}
+                style={{ marginRight: '3.5px' }}
+              />
+              <span style={{ marginRight: '21.5px' }}>가상계좌</span>
+              <input
+                type="radio"
+                name="method"
+                value="kakaopay"
+                onChange={this.props.handleInputChange}
+                checked={this.props.method === 'kakaopay'}
                 style={{ marginRight: '3.5px' }}
               />
               카카오페이
