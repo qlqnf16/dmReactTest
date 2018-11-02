@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import axios from "axios";
-import io from "socket.io-client";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import axios from 'axios';
+import io from 'socket.io-client';
+import { connect } from 'react-redux';
 
-import ChatPreview from "../components/Message/ChatPreview";
-import messageSort from "../../utility/messageSortFunc";
+import ChatPreview from '../components/Message/ChatPreview';
+import messageSort from '../../utility/messageSortFunc';
 
-const socket = io("http://54.180.92.115:3030");
+const socket = io('http://54.180.92.115:3030');
 
 class Message extends Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class Message extends Component {
       messages: null
     };
 
-    socket.on("newMessage", params => {
+    socket.on('newMessage', params => {
       this.setState({ messages: null });
     });
   }
@@ -32,12 +32,12 @@ class Message extends Component {
       const sortData = future.concat(prev);
       const promises = [];
       sortData.forEach(reservation => {
-        socket.emit("join", { reservationId: reservation._id });
+        socket.emit('join', { reservationId: reservation._id });
         promises.push(
           new Promise((resolve, reject) => {
             try {
               socket.emit(
-                "getMessages",
+                'getMessages',
                 {
                   reservationId: reservation._id
                 },
@@ -79,11 +79,11 @@ class Message extends Component {
       const promises = [];
       console.log(data);
       sortData.forEach(reservation => {
-        socket.emit("join", { reservationId: reservation._id });
+        socket.emit('join', { reservationId: reservation._id });
         promises.push(
           new Promise((resolve, reject) => {
             socket.emit(
-              "getMessages",
+              'getMessages',
               {
                 reservationId: reservation._id
               },
@@ -113,7 +113,7 @@ class Message extends Component {
   };
 
   render() {
-    let chats = "로딩중...";
+    let chats = '로딩중...';
     if (this.state.messages) {
       chats = this.state.messages.map((message, key) => {
         const latest = message.messages[message.messages.length - 1];
@@ -145,11 +145,15 @@ class Message extends Component {
       });
     }
     return (
-      <div>
-        <div>메시지</div>
-        <div>
-          <div>전체메시지</div>
-          <div>{chats}</div>
+      <div className="m_containerStyle">
+        <div style={containerStyle}>
+          <div style={titleStyle}>메시지</div>
+          <div>
+            <div style={subtitleStyle}>
+              * 진행중인 예약 건에서만 조회 가능합니다.
+            </div>
+            <div>{chats}</div>
+          </div>
         </div>
       </div>
     );
@@ -158,5 +162,28 @@ class Message extends Component {
 const mapStateToProps = ({ authentication: { userData } }) => {
   return { userData };
 };
+
+const styles = {
+  containerStyle: {
+    width: '85%',
+    display: 'flex',
+    flexDirection: 'column',
+    textAlign: 'left'
+  },
+  titleStyle: {
+    fontSize: '1.5rem',
+    fontWeight: 'bold',
+    color: '#dd6866',
+    textAlign: 'left',
+    margin: '33.5px 0 25px 0'
+  },
+  subtitleStyle: {
+    fontSize: '1.3rem',
+    fontWeight: 'bold',
+    color: 'rgba(0,0,0,0.8)'
+  }
+};
+
+const { containerStyle, titleStyle, subtitleStyle } = styles;
 
 export default connect(mapStateToProps)(Message);
