@@ -9,7 +9,8 @@ const UserInfoForm = props => {
     labelStyle,
     inputTextStyle,
     calendarStyle,
-    buttonStyle
+    buttonStyle,
+    phoneButtonStyle
   } = styles;
 
   // 달력 만들기
@@ -72,6 +73,27 @@ const UserInfoForm = props => {
     </div>
   );
 
+  let isRegister;
+  if (!userData.isRegister) {
+    isRegister = (
+      <div onClick={props.phoneCert} style={phoneButtonStyle}>
+        인증
+      </div>
+    );
+  } else {
+    isRegister = (
+      <div
+        style={{
+          ...phoneButtonStyle,
+          backgroundColor: 'transparent',
+          color: '#66ce82',
+          border: 'solid 1px #66ce82'
+        }}
+      >
+        인증됨
+      </div>
+    );
+  }
   return (
     <div style={containerStyle}>
       <div style={titleStyle}>회원 정보 관리</div>
@@ -96,18 +118,20 @@ const UserInfoForm = props => {
       />
       <span style={labelStyle}>생년월일</span> {calendar}
       <span style={labelStyle}>전화번호</span>
-      <input
-        style={inputTextStyle}
-        type="tel"
-        name="phoneNumber"
-        id="phoneNumber"
-        onChange={props.inputChangeHandler}
-        value={userData.phoneNumber}
-      />
+      <div>
+        <input
+          style={{ ...inputTextStyle, width: '78.7%' }}
+          type="tel"
+          name="phoneNumber"
+          id="phoneNumber"
+          onChange={props.inputChangeHandler}
+          value={userData.phoneNumber}
+        />
+        {isRegister}
+      </div>
       <span style={labelStyle}>추천인 코드</span>
       <input
-        style={inputTextStyle}
-        // 이미 입력된 추천인코드가 있다면 수정 안되도록
+        style={inputTextStyle} // 이미 입력된 추천인코드가 있다면 수정 안되도록
         onChange={userData.recommendationCode ? null : props.inputChangeHandler}
         type="text"
         name="recommendationCode"
@@ -182,6 +206,19 @@ const styles = {
     backgroundColor: '#4c91ba',
     textAlign: 'center',
     lineHeight: '3.9rem'
+  },
+  phoneButtonStyle: {
+    display: 'inline-block',
+    width: '18%',
+    marginLeft: '3.3%',
+    padding: '2.3%',
+    border: '1px solid #dd6866',
+    backgroundColor: '#dd6866',
+    borderRadius: '5px',
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: '1.3rem',
+    textAlign: 'center'
   }
 };
 
