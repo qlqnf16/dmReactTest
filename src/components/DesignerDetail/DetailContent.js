@@ -38,7 +38,11 @@ const DetailContent = props => {
               리뷰 {recruit._reviews.length}
             </div>
             {recruit._reviews.map((review, key) => (
-              <Review key={key} review={review} />
+              <Review
+                key={key}
+                review={review}
+                showLargeImageToggle={props.showLargeImageToggle}
+              />
             ))}
           </div>
         </div>
