@@ -9,20 +9,12 @@ import axios from 'axios';
 
 class ChatBox extends Component {
   state = {
-    // reservationData: {},
-    // madeRequest: false
+    scrollHeight: null
   };
-  componentDidMount = async () => {
-    // if (!this.state.madeRequest) {
-    //   const { data } = await axios.get(
-    //     `http://52.79.227.227:3030/users/${
-    //       this.props.userData._id
-    //     }/reservations/${this.props.reservationId}`
-    //   );
-    //   console.log(data);
-    //   await this.setState({ reservationData: data, madeRequest: true });
-    // }
-  };
+
+  componentDidMount() {
+    console.log(this.state);
+  }
 
   componentWillUnmount() {
     this.props.socket.emit('leaveChat', {
@@ -43,10 +35,13 @@ class ChatBox extends Component {
       let otherName2 = '';
       if (
         this.props.userData.name === this.props.reservationData._designer.name
-      ) {otherName = this.props.reservationData._user.name;
-        otherName2 = '모델';}
-      else {otherName = this.props.reservationData._designer.name;
-      otherName2 = '예디'}
+      ) {
+        otherName = this.props.reservationData._user.name;
+        otherName2 = '모델';
+      } else {
+        otherName = this.props.reservationData._designer.name;
+        otherName2 = '예디';
+      }
       let messages = '로딩중';
       if (this.props.messages) {
         messages = this.props.messages.map((message, key) => (
@@ -68,7 +63,6 @@ class ChatBox extends Component {
                   {message.content}
                 </div>
                 <div className="chat_new">
-                  {console.log(message.from)}
                   {message.from !== otherName &&
                   (!this.props.checkPoints[otherName] ||
                     this.props.checkPoints[otherName] < message.createdAt)
@@ -114,11 +108,25 @@ class ChatBox extends Component {
               </Link>
             </div>
           </div>
-          <div className="chat_content">{messages}</div>
+          <div
+            className="chat_content"
+            style={{ maxHeight: '500px', overflow: 'scroll' }}
+            ref={ref => {
+              if (
+                ref &&
+                ref.textContent !== '로딩중' &&
+                !this.state.scrollHeight
+              )
+                ref.scrollTop = ref.scrollHeight;
+            }}
+          >
+            {messages}
+          </div>
           <div className="chat_bottom row m-0">
             <div className="col-10 px-0">
               <input
                 type="text"
+                autoFocus={true}
                 placeholder="안전한 거래를 위해 연락처 공개 및 직거래(유도) 시 사이트 이용이 제한될 수 있습니다."
                 className="if_input rounded"
                 onChange={this.props.change}
