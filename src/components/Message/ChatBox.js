@@ -9,7 +9,7 @@ import axios from 'axios';
 
 class ChatBox extends Component {
   state = {
-    scrollHeight: null
+    madeRequest: false
   };
 
   componentDidMount() {
@@ -112,12 +112,19 @@ class ChatBox extends Component {
             className="chat_content"
             style={{ maxHeight: '500px', overflow: 'scroll' }}
             ref={ref => {
-              if (
-                ref &&
-                ref.textContent !== '로딩중' &&
-                !this.state.scrollHeight
-              )
+              if (ref && this.state.madeRequest) {
+                ref.scrollTop = ref.scrollHeight - this.state.madeRequest;
+                return;
+              }
+              if (ref && ref.textContent !== '로딩중')
                 ref.scrollTop = ref.scrollHeight;
+            }}
+            onScroll={e => {
+              if (!e.target.scrollTop && !this.state.madeRequest) {
+                console.log('i');
+                this.setState({ madeRequest: e.target.scrollHeight });
+                this.props.moreMessages(() => (this.state.madeRequest = false));
+              }
             }}
           >
             {messages}
@@ -150,8 +157,8 @@ class ChatBox extends Component {
   }
 }
 
-const mapStateToProps = ({ authentication: { userData } }) => {
-  return { userData };
+const mapStateToProps = ({ authentication: { userData, socket } }) => {
+  return { userData, socket };
 };
 
 export default connect(mapStateToProps)(ChatBox);

@@ -15,6 +15,87 @@ import message_x from '../../../assets/images/message_x.png';
 import { connect } from 'react-redux';
 
 class Navitems extends Component {
+  state = {
+    newMessage: false
+  };
+
+  async componentDidMount(prevProps, prevState) {
+    console.log(this.props.userData);
+    if (
+      this.props.userData.uid &&
+      this.props.userData._reservations &&
+      this.props.userData._reservations.length
+    ) {
+      const promises = [];
+      this.props.userData._reservations.forEach(r => {
+        if (!this.props.socket) return;
+        this.props.socket.emit('join', { reservationId: r });
+        promises.push(
+          new Promise(resolve => {
+            this.props.socket.emit(
+              'getMessages',
+              { reservationId: r },
+              (messages, checkPoints) => {
+                resolve(
+                  checkPoints[this.props.userData.name] &&
+                    messages &&
+                    checkPoints[this.props.userData.name] <
+                      messages.pop().createdAt
+                );
+              }
+            );
+          })
+        );
+      });
+      const bools = await Promise.all(promises);
+      console.log(bools);
+      if (bools.includes(true) === this.state.newMessage) return;
+      this.setState({ newMessage: bools.includes(true) });
+      this.props.socket.on('newMessage', () => {
+        this.setState({ newMessage: true });
+      });
+    }
+  }
+
+  async componentDidUpdate(prevProps, prevState) {
+    console.log(this.props.userData);
+    if (
+      this.props.userData.uid &&
+      this.props.userData._reservations &&
+      this.props.userData._reservations.length
+    ) {
+      const promises = [];
+      this.props.userData._reservations.forEach(r => {
+        if (!this.props.socket) return;
+        this.props.socket.emit('join', { reservationId: r });
+        promises.push(
+          new Promise(resolve => {
+            this.props.socket.emit(
+              'getMessages',
+              { reservationId: r },
+              (messages, checkPoints) => {
+                console.log(messages, checkPoints);
+                resolve(
+                  checkPoints[this.props.userData.name] &&
+                    messages.length &&
+                    checkPoints[this.props.userData.name] <
+                      messages.pop().createdAt
+                );
+              }
+            );
+          })
+        );
+      });
+      const bools = await Promise.all(promises);
+      console.log(bools);
+      if (bools.includes(true) === this.state.newMessage) return;
+      this.setState({ newMessage: bools.includes(true) });
+      this.props.socket.on('newMessage', () => {
+        this.setState({ newMessage: true });
+      });
+    }
+  }
+
   logout() {
     firebase.auth().signOut();
   }
@@ -22,6 +103,7 @@ class Navitems extends Component {
   render() {
     // 로그인 했는지 && 디자이너가 아닌지 확인 후 고객용 navbar
     if (this.props.userData.uid && !this.props.userData.isD) {
+      console.log(this.props.socket);
       return (
         <Fragment>
           <NavItem>
@@ -58,6 +140,19 @@ class Navitems extends Component {
           <NavItem>
             <NavLink tag={Link} to={'/message'} className=" message_img">
               <img alt="alt" src={message_x} style={{ width: '100%' }} />
+              {this.state.newMessage ? (
+                <div
+                  style={{
+                    position: 'relative',
+                    width: '7px',
+                    top: '-20px',
+                    left: '20px',
+                    height: '7px',
+                    borderRadius: '100%',
+                    backgroundColor: '#dd6866'
+                  }}
+                />
+              ) : null}
             </NavLink>
           </NavItem>
         </Fragment>
@@ -143,8 +238,8 @@ class Navitems extends Component {
   }
 }
 
-const mapStateToProps = ({ authentication: { userData } }) => {
-  return { userData };
+const mapStateToProps = ({ authentication: { userData, socket } }) => {
+  return { userData, socket };
 };
 
 export default connect(mapStateToProps)(Navitems);

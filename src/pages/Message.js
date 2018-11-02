@@ -7,8 +7,9 @@ import { connect } from 'react-redux';
 import ChatPreview from '../components/Message/chatPreview';
 import messageSort from '../utility/messageSortFunc';
 import './PageCss.css';
+import { connectSocket } from '../modules/authentication';
 
-const socket = io('http://54.180.92.115:3030'); // 실제 chat 서버 주소
+// const socket = io('http://54.180.92.115:3030'); // 실제 chat 서버 주소
 
 class Message extends Component {
   constructor(props) {
@@ -17,9 +18,10 @@ class Message extends Component {
       messages: null
     };
 
-    socket.on('newMessage', params => {
-      this.setState({ messages: null });
-    });
+    if (this.props.socket)
+      this.props.socket.on('newMessage', params => {
+        this.setState({ messages: null });
+      });
   }
 
   async componentDidMount() {
@@ -35,26 +37,28 @@ class Message extends Component {
       const sortData = future.concat(prev);
       const promises = [];
       sortData.forEach(reservation => {
-        socket.emit('join', { reservationId: reservation._id });
+        if (this.props.socket)
+          this.props.socket.emit('join', { reservationId: reservation._id });
         promises.push(
           new Promise((resolve, reject) => {
             try {
-              socket.emit(
-                'getMessages',
-                {
-                  reservationId: reservation._id
-                },
-                (messages, checkPoints) =>
-                  resolve({
-                    id: reservation._id,
-                    messages,
-                    designerName: reservation._designer.name,
-                    userName: reservation._user.name,
-                    checkPoints,
-                    date: reservation.date,
-                    finished: reservation.isDone || reservation.isCanceled
-                  })
-              );
+              if (this.props.socket)
+                this.props.socket.emit(
+                  'getMessages',
+                  {
+                    reservationId: reservation._id
+                  },
+                  (messages, checkPoints) =>
+                    resolve({
+                      id: reservation._id,
+                      messages,
+                      designerName: reservation._designer.name,
+                      userName: reservation._user.name,
+                      checkPoints,
+                      date: reservation.date,
+                      finished: reservation.isDone || reservation.isCanceled
+                    })
+                );
             } catch (e) {
               reject(e);
             }
@@ -81,25 +85,27 @@ class Message extends Component {
       const sortData = future.concat(prev);
       const promises = [];
       sortData.forEach(reservation => {
-        socket.emit('join', { reservationId: reservation._id });
+        if (this.props.socket)
+          this.props.socket.emit('join', { reservationId: reservation._id });
         promises.push(
           new Promise((resolve, reject) => {
-            socket.emit(
-              'getMessages',
-              {
-                reservationId: reservation._id
-              },
-              (messages, checkPoints) =>
-                resolve({
-                  id: reservation._id,
-                  messages,
-                  designerName: reservation._designer.name,
-                  userName: reservation._user.name,
-                  checkPoints,
-                  date: reservation.date,
-                  finished: reservation.isDone || reservation.isCanceled
-                })
-            );
+            if (this.props.socket)
+              this.props.socket.emit(
+                'getMessages',
+                {
+                  reservationId: reservation._id
+                },
+                (messages, checkPoints) =>
+                  resolve({
+                    id: reservation._id,
+                    messages,
+                    designerName: reservation._designer.name,
+                    userName: reservation._user.name,
+                    checkPoints,
+                    date: reservation.date,
+                    finished: reservation.isDone || reservation.isCanceled
+                  })
+              );
           })
         );
       });
@@ -160,8 +166,8 @@ class Message extends Component {
     );
   }
 }
-const mapStateToProps = ({ authentication: { userData } }) => {
-  return { userData };
+const mapStateToProps = ({ authentication: { userData, socket } }) => {
+  return { userData, socket };
 };
 
 export default connect(mapStateToProps)(Message);

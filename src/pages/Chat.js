@@ -6,8 +6,8 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import './PageCss.css';
 import ChatBox from '../components/Message/ChatBox';
+import { callbackify } from 'util';
 
-const socket = io('http://54.180.92.115:3030'); // 실제 chat 서버 주소
 let names;
 
 class Chat extends Component {
@@ -22,22 +22,24 @@ class Chat extends Component {
       madeRequest: false
     };
 
-    socket.on('newMessage', params => {
-      this.setState({
-        messages: this.state.messages.concat({
-          content: params.content,
-          from: params.from,
-          to: params.to,
-          createdAt: params.createdAt,
-          checked: params.checked
-        }),
-        textfield: ''
+    if (this.props.socket)
+      this.props.socket.on('newMessage', params => {
+        this.setState({
+          messages: this.state.messages.concat({
+            content: params.content,
+            from: params.from,
+            to: params.to,
+            createdAt: params.createdAt,
+            checked: params.checked
+          }),
+          textfield: ''
+        });
       });
-    });
 
-    socket.on('newCheckPoints', params => {
-      this.setState({ checkPoints: params.checkPoints });
-    });
+    if (this.props.socket)
+      this.props.socket.on('newCheckPoints', params => {
+        this.setState({ checkPoints: params.checkPoints });
+      });
   }
 
   async componentDidMount() {
@@ -51,43 +53,64 @@ class Chat extends Component {
       await this.setState({ reservationData: data, madeRequest: true });
     }
     if (!this.state.messages) {
-      socket.emit('join', {
-        reservationId: params.r
-      });
-      socket.emit(
-        'joinChat',
-        {
+      if (this.props.socket)
+        this.props.socket.emit('join', {
           reservationId: params.r
-        },
-        () => {
-          const names = [
-            this.props.userData.name,
-            this.state.reservationData._designer.name ===
-            this.props.userData.name
-              ? this.state.reservationData._user.name
-              : this.state.reservationData._designer.name
-          ];
-          socket.emit(
-            'updateCheckpoint',
-            {
-              reservationId: params.r,
-              names
-            },
-            checkPoints => {}
-          );
-        }
-      );
-      socket.emit(
-        'getMessages',
-        {
-          reservationId: params.r
-        },
-        (messages, checkPoints) => {
-          this.setState({ messages, checkPoints });
-        }
-      );
+        });
+      if (this.props.socket)
+        this.props.socket.emit(
+          'joinChat',
+          {
+            reservationId: params.r
+          },
+          () => {
+            const names = [
+              this.props.userData.name,
+              this.state.reservationData._designer.name ===
+              this.props.userData.name
+                ? this.state.reservationData._user.name
+                : this.state.reservationData._designer.name
+            ];
+            if (this.props.socket)
+              this.props.socket.emit(
+                'updateCheckpoint',
+                {
+                  reservationId: params.r,
+                  names
+                },
+                checkPoints => {}
+              );
+          }
+        );
+      if (this.props.socket) {
+        this.props.socket.emit(
+          'getMessages',
+          {
+            reservationId: params.r
+          },
+          (messages, checkPoints) => {
+            this.setState({ messages, checkPoints });
+          }
+        );
+      }
     }
   }
+
+  getMoreMessagesHandler = callback => {
+    const params = deparam(this.props.location.search.slice(1));
+    this.props.socket.emit(
+      'getMoreMessages',
+      {
+        reservationId: params.r,
+        msgNum: this.state.messages.length
+      },
+      (messages, checkPoints) => {
+        console.log(messages);
+        this.setState({ messages, checkPoints });
+        callback();
+      }
+    );
+  };
 
   sendMessageHandler = msg => {
     if (msg === '') return;
@@ -98,27 +121,29 @@ class Chat extends Component {
         ? this.state.reservationData._user.name
         : this.state.reservationData._designer.name
     ];
-    socket.emit(
-      'createMessage',
-      {
-        content: msg,
-        from: names[0],
-        to: names[1],
-        reservationId: params.r
-      },
-      () => {
-        socket.emit(
-          'updateCheckpoint',
-          {
-            reservationId: params.r,
-            names
-          },
-          checkPoints => {
-            this.setState({ checkPoints });
-          }
-        );
-      }
-    );
+    if (this.props.socket)
+      this.props.socket.emit(
+        'createMessage',
+        {
+          content: msg,
+          from: names[0],
+          to: names[1],
+          reservationId: params.r
+        },
+        () => {
+          if (this.props.socket)
+            this.props.socket.emit(
+              'updateCheckpoint',
+              {
+                reservationId: params.r,
+                names
+              },
+              checkPoints => {
+                this.setState({ checkPoints });
+              }
+            );
+        }
+      );
   };
 
   changeHandler = event => {
@@ -146,13 +171,13 @@ class Chat extends Component {
                   this.sendMessageHandler(this.state.textfield)
                 }
                 names={names}
-                socket={socket}
                 checkPoints={this.state.checkPoints}
                 change={this.changeHandler}
                 textfield={this.state.textfield}
                 reservationId={params.r}
                 reservationData={this.state.reservationData}
                 madeRequest={this.state.madeRequest}
+                moreMessages={this.getMoreMessagesHandler}
               />
             </div>
             <div className="col-2" />
@@ -162,8 +187,8 @@ class Chat extends Component {
     );
   }
 }
-const mapStateToProps = ({ authentication: { userData } }) => {
-  return { userData };
+const mapStateToProps = ({ authentication: { userData, socket } }) => {
+  return { userData, socket };
 };
 
 export default connect(mapStateToProps)(Chat);
