@@ -1,0 +1,172 @@
+
+.m_why_1 {
+  font-size: 1.5rem;
+  line-height: 1.33;
+  letter-spacing: 0.8px;
+  color: #1f3354;
+  margin-bottom: 31.3px;
+}
+
+.m_why_1.p {
+  width: fit-content;
+    background-color: #dd6866;
+    font-weight: bold;
+    color: white;
+    margin-top: 114.4px;
+    margin-bottom: 0;
+    margin-left: 75px;
+    padding: 0 9px;
+}
+
+.m_why_back {
+  width: 100%;
+  background-color: #dd6866;
+  position: relative;
+  padding-top: 28px;
+  align-items: center;
+}
+
+.m_why_back.g {
+  height: 730px;
+  background-color: #4d4d4d;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.m_why_button {
+  width: 39.5%;
+  height: 25.4px;
+  border-radius: 38px;
+  box-shadow: 2px 2px 12px 0 rgba(87, 87, 87, 0.48);
+  border: solid 1px #dd6866;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 1.3;
+  letter-spacing: 0.5px;
+  color: #dd6866;
+  position: absolute;
+  top: -12.7px;
+  left: 30.2%;
+}
+
+.m_why_content1 {
+  font-size: 1rem;
+  line-height: 1.4;
+  letter-spacing: 0.5px;
+  color: #ffffff;
+}
+
+.m_why_content2 {
+  width: fit-content;
+  font-size: 1rem;
+  line-height: 1.4;
+  letter-spacing: 0.5px;
+  color: #1f3354;
+  margin: 19.3px auto;
+}
+
+.m_why_roundBack {
+  width: 56%;
+  padding: 7.75px 0;
+  height: fit-content;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, 0.16);
+  background-color: #333333;
+}
+
+.m_why_roundText {
+  margin: 7.75px 0;
+  font-size: 0.8rem;
+  font-weight: bold;
+  line-height: 1.38;
+  letter-spacing: 0.4px;
+  text-align: center;
+  color: #f8f8f9;
+}
+
+.m_why_content3 {
+  font-size: 2.5rem;
+  line-height: 1.48;
+  letter-spacing: 2.5px;
+  color: #1f3354;
+}
+
+.m_why_content4 {
+  font-size: 32px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.47;
+  letter-spacing: 3.2px;
+  text-align: center;
+  color: #dd6866;
+  margin-top: 46px;
+  margin-bottom: 92.3px;
+}
+
+.m_why_content2.c {
+  margin: 0 47.5px;
+  text-align: left;
+}
+
+.m_why_button2 {
+  width: 29.29%;
+  height: 75px;
+  border-radius: 38px;
+  background-color: #dd6866;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.8rem;
+  font-weight: bold;
+  line-height: 1.32;
+  letter-spacing: 1.4px;
+  text-align: center;
+  color: #f8f8f9;
+  margin: 143px auto 100px auto;
+}
+
+.m_why_button2:hover {
+  text-decoration: none;
+}
+
+.m_why_imgBack {
+  position: relative;
+  margin: 67px 0 126px 0;
+}
+
+.m_why_imgText {
+  width: fit-content;
+  font-size: 5.5rem;
+  line-height: 1.56;
+  letter-spacing: 2.8px;
+  text-align: center;
+  color: #ffffff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+}
+
+.m_why_imgText2 {
+  font-size: 1.6rem;
+  line-height: 1.56;
+  letter-spacing: 0.8px;
+  color: #ffffff;
+  position: absolute;
+  bottom: 10px;
+  right: 11px;
+}
