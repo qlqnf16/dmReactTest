@@ -1,5 +1,6 @@
 import firebaseApp from 'firebase';
 import firebase from '../config/Firebase';
+import io from 'socket.io-client';
 // Module for Authentication
 // Use Ducks Structure
 // 1. Type
@@ -9,6 +10,7 @@ import firebase from '../config/Firebase';
 const LOGIN_SUCCESS = 'authentication/LOGIN_SUCCESS';
 const GET_USER_ID = 'authentication/GET_USER_ID';
 const UPDATE_REDUX = 'authentication/UPDATE_REDUX';
+const CONNECT_SOCKET = 'socket';
 // const LOGIN_FAIL = 'authentication/LOGIN_FAIL';
 
 const initialState = {
@@ -21,7 +23,8 @@ const initialState = {
     phoneNumber: null,
     birthday: null
   },
-  userId: null
+  userId: null,
+  socket: null
 };
 
 export default (state = initialState, { type, payload }) => {
@@ -34,6 +37,9 @@ export default (state = initialState, { type, payload }) => {
       const name = payload.name;
       const updateData = payload.updateData;
       return { ...state, userData: { ...state.userData, [name]: updateData } };
+    case CONNECT_SOCKET:
+      const socket = io('http://54.180.92.115:3030');
+      return { ...state, socket };
     default:
       return state;
   }
@@ -47,4 +53,7 @@ export const getUserId = _id => dispatch => {
 };
 export const updateRedux = (name, updateData) => dispatch => {
   dispatch({ type: UPDATE_REDUX, payload: { name, updateData } });
+};
+export const connectSocket = () => dispatch => {
+  dispatch({ type: CONNECT_SOCKET });
 };

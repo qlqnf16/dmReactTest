@@ -133,6 +133,7 @@ class App extends Component {
             await this.props.updateRedux('point', data.point);
             await this.props.updateRedux('_tickets', data._tickets);
             await this.props.updateRedux('_reservations', data._reservations);
+            await this.props.connectSocket();
           });
         document
           .querySelector('iframe')
