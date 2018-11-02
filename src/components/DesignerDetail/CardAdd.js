@@ -74,12 +74,8 @@ class CardAdd extends Component {
         time % 60 === 0 ? '00' : '30'
       }`;
       return (
-        <div className="col-6 p-1">
-          <div
-            key={key}
-            onClick={() => this.selectTime(time)}
-            className={classN}
-          >
+        <div key={key} className="col-6 p-1">
+          <div onClick={() => this.selectTime(time)} className={classN}>
             <p>{timeFormat}</p>
           </div>
         </div>

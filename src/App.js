@@ -135,9 +135,11 @@ class App extends Component {
             await this.props.updateRedux('_reservations', data._reservations);
             await this.props.connectSocket();
           });
-        document
-          .querySelector('iframe')
-          .setAttribute('src', "don't try to look at this!");
+        if (document.querySelector('iframe')) {
+          document
+            .querySelector('iframe')
+            .setAttribute('src', "don't try to look at this!");
+        }
       } else {
         // logout 하면 landing page로 이동
         this.props.history.push('/');

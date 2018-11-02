@@ -118,7 +118,7 @@ class ReviewModal extends Component {
         services = services.substring(1);
       }
       return (
-        <Modal isOpen={this.props.isOpen} toggle={this.toggle}>
+        <Modal isOpen={this.props.isOpen} centered toggle={this.toggle}>
           <ModalBody className="m-4">
             <p className="m_title">예약 정보</p>
             <div className="m_content mb-5">
@@ -158,47 +158,47 @@ class ReviewModal extends Component {
               onChange={this.inputChangeHandler}
             />
             <div className="text-center">
-              <div style={{width: '100%', display: 'flex', flexWrap: 'wrap'}}>
+              <div style={{ width: '100%', display: 'flex', flexWrap: 'wrap' }}>
                 {this.state.num > 0
                   ? this.state.reviewImg.map((url, i) => (
-                    <div style={{width: '50%', padding: '1px'}}>
-                      <ImgPreview
-                        url={url}
-                        key={i}
-                        deletePortfolio={this.deleteImg}
-                        style={{width: '100%'}}
-                      />
+                      <div style={{ width: '50%', padding: '1px' }}>
+                        <ImgPreview
+                          url={url}
+                          key={i}
+                          deletePortfolio={this.deleteImg}
+                          style={{ width: '100%' }}
+                        />
                       </div>
                     ))
                   : null}
               </div>
-              <div style={{
-                marginTop: '3rem',
-                display: 'grid', 
-                gridTemplateColumns: '78% 20%', 
-                gridGap: '2%'}}>
-              <div>
-                      <label style={{display: 'block'}}>
-                <div className='m_file'>
-                  사진 등록 (선택)
-                </div>
-                <input
-                  style={{display: 'none'}}
-                  type="file"
-                  name="reviewImg"
-                  onChange={e => this.handleImgChange(e)}
-                />
-              </label></div>
               <div
-                className="m_button m_button_green btn"
-                style={{width: '100%', margin: 0, height: 'fit-content'}}
-                onClick={this.reviewSubmit}
+                style={{
+                  marginTop: '3rem',
+                  display: 'grid',
+                  gridTemplateColumns: '78% 20%',
+                  gridGap: '2%'
+                }}
               >
-                리뷰 등록
+                <div>
+                  <label style={{ display: 'block' }}>
+                    <div className="m_file">사진 등록 (선택)</div>
+                    <input
+                      style={{ display: 'none' }}
+                      type="file"
+                      name="reviewImg"
+                      onChange={e => this.handleImgChange(e)}
+                    />
+                  </label>
+                </div>
+                <div
+                  className="m_button m_button_green btn"
+                  style={{ width: '100%', margin: 0, height: 'fit-content' }}
+                  onClick={this.reviewSubmit}
+                >
+                  리뷰 등록
+                </div>
               </div>
-              
-              </div>
-        
             </div>
           </ModalBody>
         </Modal>

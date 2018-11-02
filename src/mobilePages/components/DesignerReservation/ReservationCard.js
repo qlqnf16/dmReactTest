@@ -8,7 +8,6 @@ import scissors_o from '../../../assets/images/scissors_o.png';
 import scissors_x from '../../../assets/images/scissors_x.png';
 
 const ReservationCard = props => {
-  // 시간 parse
   let since = '';
   let until = '';
   let services = '';
@@ -38,27 +37,27 @@ const ReservationCard = props => {
       services = services.substring(1);
     }
   }
-  // type따라 버튼 변경
   let button = null;
   let type = null;
+  let dDay = false;
   if (props.reservation.isCanceled) {
     button = (
-      <div
+      <button
         style={{ ...buttonStyle, backgroundColor: '#dd6866', color: 'white' }}
         onClick={() => props.cancelReasonModalToggle(props.reservation)}
       >
         취소 사유 보기
-      </div>
+      </button>
     );
     type = <div style={typeStyle}>취소</div>;
   } else if (props.type === 'soon') {
     button = (
-      <div
+      <button
         style={buttonStyle}
         onClick={() => props.cancelModalToggle(props.reservation)}
       >
-        예약취소
-      </div>
+        예약 취소
+      </button>
     );
     type = (
       <div style={typeStyle}>
@@ -69,20 +68,11 @@ const ReservationCard = props => {
       </div>
     );
     let date = new Date(props.reservation.date);
-    if (new Date().getDate() === date.getDate() || new Date() >= date) {
+    if (new Date() >= date || new Date().getDate() === date.getDate()) {
+      dDay = true;
       if (new Date().getDate() === date.getDate()) {
         type = <div style={typeStyle}>D-day</div>;
-        button = (
-          <div
-            onClick={() => {
-              alert('당일 취소는 경고 1회 누적됩니다.');
-              props.cancelModalToggle(props.reservation, true);
-            }}
-          >
-            예약취소
-          </div>
-        );
-      } else {
+      } else
         type = (
           <div style={typeStyle}>
             D+
@@ -91,38 +81,27 @@ const ReservationCard = props => {
             </Moment>
           </div>
         );
-
-        button = (
-          <div
-            style={buttonStyle}
-            onClick={() => {
-              alert('서비스 완료 전입니다');
-            }}
-          >
-            완료 대기중
-          </div>
-        );
-      }
+      button = (
+        <button
+          style={{ ...buttonStyle, backgroundColor: '#66ce82', color: 'white' }}
+          onClick={() => props.completeModalToggle(props.reservation)}
+        >
+          서비스 완료
+        </button>
+      );
     }
   } else if (props.type === 'finish') {
     if (props.reservation._review) {
       button = (
-        <div
-          style={buttonStyle}
+        <button
+          style={{ ...buttonStyle, backgroundColor: '#66ce82', color: 'white' }}
           onClick={() => props.showReviewModalToggle(props.reservation)}
         >
-          내 리뷰 보기
-        </div>
+          리뷰 보기
+        </button>
       );
     } else {
-      button = (
-        <div
-          style={{ ...buttonStyle, backgroundColor: '#66ce82', color: 'white' }}
-          onClick={() => props.reviewModalToggle(props.reservation)}
-        >
-          리뷰 등록
-        </div>
-      );
+      button = <button style={buttonStyle}>리뷰 등록 전</button>;
     }
     type = (
       <div style={{ ...typeStyle, color: 'rgba(102, 206, 130, 0.5)' }}>
@@ -130,73 +109,63 @@ const ReservationCard = props => {
       </div>
     );
   }
-
-  // return
-  if (props.reservation) {
-    return (
-      <div
-        style={props.active ? { ...cardStyle, ...activeCardStyle } : cardStyle}
-      >
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <div style={designerStyle}>{props.reservation._designer.name}</div>
-          {type}
-        </div>
-
-        <div style={titleStyle}>
-          {props.reservation._designer._recruit.title}
-        </div>
-        <div style={contentStyle}>
-          <img
-            alt="alt"
-            src={props.type === 'soon' ? calendar_o : calendar_x}
-            className="rc_icon"
-          />{' '}
-          <Moment unix format="YYYY/MM/DD">
-            {props.reservation.date / 1000}
-          </Moment>{' '}
-          {since} ~ {until}
-        </div>
-        <div style={contentStyle}>
-          <img
-            alt="alt"
-            src={props.type === 'soon' ? place_o : place_x}
-            className="rc_icon"
-          />{' '}
-          {props.reservation._card && props.reservation._card.shop}
-        </div>
-        <div style={contentStyle}>
-          <img
-            alt="alt"
-            src={props.type === 'soon' ? scissors_o : scissors_x}
-            className="rc_icon"
-          />{' '}
-          {services}
-        </div>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            margin: '1.5rem 0'
-          }}
-        >
-          {button}
-          <div
-            style={buttonStyle}
-            onClick={
-              props.type === 'soon'
-                ? () => props.showMessage(props.reservation._id)
-                : () => props.showMore(props.reservation._designer._recruit)
-            }
-          >
-            {props.type === 'soon' ? '메시지' : '더보기'}
-          </div>
-        </div>
-        <div style={contentStyle}>예약번호: {props.reservation._id}</div>
+  return (
+    <div
+      style={props.active ? { ...cardStyle, ...activeCardStyle } : cardStyle}
+    >
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        <div style={userNameStyle}>{props.reservation._user.name}</div>
+        {type}
       </div>
-    );
-  } else {
-    return <div />;
-  }
+
+      <div style={contentStyle}>
+        <img
+          alt="alt"
+          src={props.type === 'soon' ? calendar_o : calendar_x}
+          className="rc_icon"
+        />{' '}
+        <Moment unix format="YYYY/MM/DD">
+          {props.reservation.date / 1000}
+        </Moment>{' '}
+        {since} ~ {until}
+      </div>
+      <div style={contentStyle}>
+        <img
+          alt="alt"
+          src={props.type === 'soon' ? place_o : place_x}
+          className="rc_icon"
+        />{' '}
+        {props.reservation._card && props.reservation._card.shop}
+      </div>
+      <div style={contentStyle}>
+        <img
+          alt="alt"
+          src={props.type === 'soon' ? scissors_o : scissors_x}
+          className="rc_icon"
+        />{' '}
+        {services}
+      </div>
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          margin: '1.5rem 0'
+        }}
+      >
+        {button}
+        <div
+          style={buttonStyle}
+          onClick={
+            props.type === 'soon'
+              ? () => props.showMessage(props.reservation._id)
+              : () => props.showMore(props.reservation._designer._recruit)
+          }
+        >
+          더보기
+        </div>
+      </div>
+    </div>
+  );
 };
 
 const styles = {
@@ -208,11 +177,7 @@ const styles = {
     margin: '1rem auto',
     color: 'rgba(0, 0, 0, 0.5)'
   },
-  designerStyle: {
-    fontSize: '1.0rem',
-    fontWeight: 'bold'
-  },
-  titleStyle: {
+  userNameStyle: {
     fontSize: '1.5rem',
     fontWeight: 'bold',
     margin: '8px 0'
@@ -244,8 +209,7 @@ const styles = {
 
 const {
   cardStyle,
-  designerStyle,
-  titleStyle,
+  userNameStyle,
   contentStyle,
   buttonStyle,
   activeCardStyle,

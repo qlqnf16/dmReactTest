@@ -66,17 +66,18 @@ class UserInfo extends Component {
       email,
       phoneNumber,
       gender,
-      recommendationCode
+      recommendationCode,
+      isRegister
     } = this.state;
     let firebaseUserData = {
       name,
       birthday: { year, month, day },
       email,
       phoneNumber,
-      gender
+      gender,
+      isRegister
     };
-    if (!this.props.userData.isRegister)
-      return alert('휴대폰 인증을 진행해주세요');
+    if (!this.state.isRegister) return alert('휴대폰 인증을 진행해주세요');
     if (
       Object.values(firebaseUserData).includes(undefined) ||
       Object.values(firebaseUserData.birthday).includes('null')
@@ -117,12 +118,10 @@ class UserInfo extends Component {
 
   phoneCert = () => {
     const { IMP } = window;
-    IMP.init('imp38067773');
-    alert('결제 함수 시작');
+    IMP.init('imp06037656');
     IMP.certification(
       {
-        merchant_uid: 'merchant_' + new Date().getTime(),
-        popup: true
+        merchant_uid: 'merchant_' + new Date().getTime()
       },
       rsp => {
         if (rsp.success) {
@@ -154,7 +153,7 @@ class UserInfo extends Component {
 
   render() {
     let isRegister = '';
-    if (!this.props.userData.isRegister) {
+    if (!this.state.isRegister) {
       isRegister = (
         <div
           className="btn uif_button uif_phone col-1"

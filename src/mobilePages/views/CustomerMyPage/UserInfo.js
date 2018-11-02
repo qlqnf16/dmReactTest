@@ -17,7 +17,8 @@ class UserInfo extends Component {
       birthday,
       phoneNumber,
       gender,
-      recommendationCode
+      recommendationCode,
+      isRegister
     } = this.props.userData;
     this.state = {
       name,
@@ -28,9 +29,26 @@ class UserInfo extends Component {
       year: birthday && birthday.year,
       month: birthday && birthday.month,
       day: birthday && birthday.day,
-      recommendationCode
+      recommendationCode,
+      isRegister
     };
   }
+
+  componentDidMount = async () => {
+    // iamport 사용하기 위한 inline script 작성
+    let links = [
+      'https://code.jquery.com/jquery-1.12.4.min.js',
+      'https://cdn.iamport.kr/js/iamport.payment-1.1.5.js'
+    ];
+
+    for (let link of links) {
+      const script = document.createElement('script');
+
+      script.src = link;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  };
 
   inputChangeHandler = event => {
     const { value, name } = event.target;
@@ -47,14 +65,16 @@ class UserInfo extends Component {
       email,
       phoneNumber,
       gender,
-      recommendationCode
+      recommendationCode,
+      isRegister
     } = this.state;
     let firebaseUserData = {
       name,
       birthday: { year, month, day },
       email,
       phoneNumber,
-      gender
+      gender,
+      isRegister
     };
     if (!this.props.userData.isRegister)
       return alert('휴대폰 인증을 진행해주세요');
@@ -99,6 +119,28 @@ class UserInfo extends Component {
     alert('저장되었습니다!');
   };
 
+  phoneCert = () => {
+    const { IMP } = window;
+    IMP.init('imp06037656');
+    IMP.certification(
+      {
+        merchant_uid: 'merchant_' + new Date().getTime()
+      },
+      rsp => {
+        if (rsp.success) {
+          // 인증성공
+          this.setState({ isRegister: true });
+          alert('인증되었습니다');
+        } else {
+          // 인증취소 또는 인증실패
+          var msg = '인증에 실패하였습니다.';
+          msg += '에러내용 : ' + rsp.error_msg;
+          alert(msg);
+        }
+      }
+    );
+  };
+
   render() {
     return (
       <Fragment>
@@ -108,6 +150,7 @@ class UserInfo extends Component {
             inputChangeHandler={this.inputChangeHandler}
             userData={this.state}
             submitHandler={this.submitHandler}
+            phoneCert={this.phoneCert}
           />
         </div>
       </Fragment>

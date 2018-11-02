@@ -76,12 +76,7 @@ class CompleteModal extends Component {
         services = services.substring(1);
       }
       return (
-        <Modal
-          style={{ maxWidth: '20%' }}
-          centered
-          isOpen={this.props.isOpen}
-          toggle={this.props.toggle}
-        >
+        <Modal centered isOpen={this.props.isOpen} toggle={this.props.toggle}>
           <ModalBody className="m-4">
             <p className="m_title">
               {this.props.reservation._user &&

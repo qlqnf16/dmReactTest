@@ -19,24 +19,72 @@ const CouponContent = props => {
     img = coupon;
   }
   return (
-    <div>
-      <div>{title}</div>
-      <div>
-        <strong>친구 추천하고 포인트 받자!</strong>
+    <div style={containerStyle}>
+      <div style={titleStyle}>{title}</div>
+      <div style={contentStyle}>
+        친구 추천하고
+        <br />
+        <strong>포인트 받자!</strong>
       </div>
-      <div>
+      <div style={descriptionStyle}>
         {content} <br />
-        가입 시 추천인 코드란에 아래의 프로모션 코드를 기입해달라고 부탁하세요!
+        가입 시 추천인 코드란에 아래의 프로모션 코드를
+        <br />
+        기입해달라고 부탁하세요!
       </div>
       <div>
-        <img alt="alt" className="cc_coupon" src={img} />
-        <div>{props.couponNumber}</div>
+        <div style={{ backgroundImage: `url(${img})`, ...couponStyle }}>
+          {props.couponNumber}
+        </div>
       </div>
-      <div>
-        내 추천으로 가입한 친구:{' '}
-        {props.recommendationNum ? props.recommendationNum : 0}명
+      <div style={{ fontSize: '1.1rem', marginTop: '1.7rem' }}>
+        (내 추천으로 가입한 친구:{' '}
+        {props.recommendationNum ? props.recommendationNum : 0}
+        명)
       </div>
     </div>
   );
 };
+
+const styles = {
+  containerStyle: {
+    textAlign: 'center',
+    padding: '3rem',
+    borderRadius: 5,
+    backgroundImage:
+      'linear-gradient(151deg, #fffae3, #ffefe3 52%, #ffeee3 59%, #ffe8e3)',
+    color: '#1f3354'
+  },
+  titleStyle: {
+    fontSize: '1.5rem',
+    fontWeight: 'bold'
+  },
+  contentStyle: {
+    margin: '2.5rem 0',
+    fontSize: '3rem'
+  },
+  descriptionStyle: {
+    fontSize: '1.2rem',
+    marginBottom: '1.3rem'
+  },
+  couponStyle: {
+    backgroundSize: 'contain',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    height: '6rem',
+    lineHeight: '6rem',
+    paddingTop: '0.7rem',
+    fontWeight: 'bold',
+    color: '#dd6866',
+    fontSize: '1.2rem'
+  }
+};
+
+const {
+  containerStyle,
+  titleStyle,
+  contentStyle,
+  descriptionStyle,
+  couponStyle
+} = styles;
 export default CouponContent;
