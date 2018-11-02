@@ -94,6 +94,7 @@ const ReservationCard = props => {
 
         button = (
           <div
+            style={buttonStyle}
             onClick={() => {
               alert('서비스 완료 전입니다');
             }}
