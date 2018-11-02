@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment } from "react";
 import {
   NavItem,
   NavLink,
@@ -6,13 +6,13 @@ import {
   DropdownToggle,
   DropdownMenu,
   UncontrolledDropdown
-} from 'reactstrap';
-import { Link } from 'react-router-dom';
-import firebase from '../../../config/Firebase';
-import './Navitems.css';
-import message_x from '../../../assets/images/message_x.png';
+} from "reactstrap";
+import { Link } from "react-router-dom";
+import firebase from "../../../config/Firebase";
+import "./Navitems.css";
+import message_x from "../../../assets/images/message_x.png";
 
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 class Navitems extends Component {
   logout() {
@@ -25,12 +25,17 @@ class Navitems extends Component {
       return (
         <Fragment>
           <NavItem>
-            <NavLink tag={Link} to={'/designerList'} className="">
+            <NavLink tag={Link} to={"/about"} className="">
+              드리머리 소개
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink tag={Link} to={"/designerList"} className="">
               예디찾기
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to={'/whyDreamary'} className="">
+            <NavLink tag={Link} to={"/whyDreamary"} className="">
               예디등록
             </NavLink>
           </NavItem>
@@ -40,7 +45,7 @@ class Navitems extends Component {
             </DropdownToggle>
             <DropdownMenu right className="dropdownMenu">
               <DropdownItem>
-                <NavLink tag={Link} to={'/reservations'}>
+                <NavLink tag={Link} to={"/reservations"}>
                   마이페이지
                 </NavLink>
               </DropdownItem>
@@ -56,8 +61,8 @@ class Navitems extends Component {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to={'/message'} className=" message_img">
-              <img alt="alt" src={message_x} style={{ width: '100%' }} />
+            <NavLink tag={Link} to={"/message"} className=" message_img">
+              <img alt="alt" src={message_x} style={{ width: "100%" }} />
             </NavLink>
           </NavItem>
         </Fragment>
@@ -67,38 +72,38 @@ class Navitems extends Component {
       return (
         <Fragment>
           <NavItem>
-            <NavLink tag={Link} to={'/whyDreamary'} className="">
+            <NavLink tag={Link} to={"/whyDreamary"} className="">
               왜?
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to={'/designer/reservations'} className="">
+            <NavLink tag={Link} to={"/designer/reservations"} className="">
               예약관리
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to={'/designer/schedule'} className="">
+            <NavLink tag={Link} to={"/designer/schedule"} className="">
               스케줄등록
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to={'/designer/ticket'} className="">
+            <NavLink tag={Link} to={"/designer/ticket"} className="">
               이용권관리
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to={'/designer/info'} className="">
+            <NavLink tag={Link} to={"/designer/info"} className="">
               회원정보관리
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to={'/designer/coupon'} className="">
+            <NavLink tag={Link} to={"/designer/coupon"} className="">
               프로모션
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to={'/message'} className=" message_img">
-              <img alt="alt" src={message_x} style={{ width: '100%' }} />
+            <NavLink tag={Link} to={"/message"} className=" message_img">
+              <img alt="alt" src={message_x} style={{ width: "100%" }} />
             </NavLink>
           </NavItem>
           <NavItem>
@@ -113,7 +118,7 @@ class Navitems extends Component {
       return (
         <Fragment>
           <NavItem>
-            <NavLink tag={Link} to={'/about'} className="">
+            <NavLink tag={Link} to={"/about"} className="">
               드리머리 소개
             </NavLink>
           </NavItem>
@@ -128,7 +133,7 @@ class Navitems extends Component {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to={'/designerList'} className="">
+            <NavLink tag={Link} to={"/designerList"} className="">
               예디찾기
             </NavLink>
           </NavItem>
