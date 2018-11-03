@@ -1,6 +1,15 @@
 import React from 'react';
 
 const styles = {
+  titleStyle: {
+    fontSize: '1.5rem',
+    fontWeight: 'bold',
+    color: '#4c91ba',
+    textAlign: 'left',
+    margin: '33.5px 0 20px 0',
+    paddingBottom: 6.9,
+    borderBottom: '1px solid rgba(0, 0, 0, 0.1)'
+  },
   labelStyle: {
     fontSize: '13px',
     fontFamily: 'Nanum Square',
@@ -8,9 +17,11 @@ const styles = {
     color: '#1f3354'
   },
   selectStyle: {
-    display: 'inline-block',
-    width: '70%',
-    marginLeft: '5%'
+    display: 'block',
+    fontSize: '1.3rem',
+    color: '#1f3354',
+    padding: '0.7rem',
+    paddingTop: '0.5rem'
   },
   saveButtonStyle: {
     position: 'absolute',
@@ -26,6 +37,15 @@ const styles = {
     fontFamily: 'Nanum Square',
     fontWeight: 'bold',
     color: '#4c91ba'
+  },
+  inputTextStyle: {
+    fontSize: '1.3rem',
+    color: '#1f3354',
+    padding: '0.7rem',
+    borderRadius: '5px',
+    border: 'solid 1px rgba(0, 0, 0, 0.1)',
+    width: '100%',
+    marginBottom: '1rem'
   }
 };
 
@@ -36,6 +56,7 @@ const TextInfo = props => (
         제목
       </label>
       <input
+        style={styles.inputTextStyle}
         value={props.state.title}
         onChange={props.changeInput}
         type="text"
@@ -58,6 +79,7 @@ const TextInfo = props => (
         </span>
       </label>
       <input
+        style={styles.inputTextStyle}
         value={props.state.requirement}
         onChange={props.changeInput}
         type="textarea"
@@ -67,7 +89,7 @@ const TextInfo = props => (
       />
     </div>
     <div>
-      <p style={styles.labelStyle}>
+      <p style={styles.titleStyle}>
         예상 시술 소요 시간
         <span
           style={{
@@ -77,10 +99,10 @@ const TextInfo = props => (
             marginLeft: '8px'
           }}
         >
-          예약에 관련된 부분인 만큼 최대한 정확하게 입력해주세요 :)
+          최대한 정확하게 입력해주세요 :)
         </span>
       </p>
-      <div>
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <div>
           <label for="cut" style={styles.labelStyle}>
             커트

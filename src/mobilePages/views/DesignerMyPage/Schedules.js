@@ -318,20 +318,30 @@ class Schedule extends Component {
 
       return (
         <div>
-          <div>
-            <DesignerNav />
-            <div onClick={() => this.totalSubmitHandler(recruitData)}>저장</div>
-            <div>내 카드 보기</div>
-            <TextInfo
-              state={this.state}
-              changeInput={e => this.handleInputChange(e)}
-            />
-            <ScheduleCards
-              cards={this.state.cards}
-              newCards={this.state.newCards}
-              cancelCardHandler={this.cancelCardHandler}
-            />
-            <div onClick={this.addCardModalToggle}>시간 등록하기</div>
+          <DesignerNav />
+          <div className="m_containerStyle">
+            <div style={containerStyle}>
+              <div onClick={() => this.totalSubmitHandler(recruitData)}>
+                저장
+              </div>
+              <div style={titleStyle}>기본정보</div>
+              <TextInfo
+                state={this.state}
+                changeInput={e => this.handleInputChange(e)}
+              />
+              <div style={titleStyle}>스케줄 카드</div>
+              <ScheduleCards
+                cards={this.state.cards}
+                newCards={this.state.newCards}
+                cancelCardHandler={this.cancelCardHandler}
+              />
+              <div
+                style={fileAttachingInputStyle}
+                onClick={this.addCardModalToggle}
+              >
+                + 카드 추가하기
+              </div>
+            </div>
           </div>
           <AddCardModal
             isOpen={this.state.addCardModal}
@@ -362,6 +372,77 @@ class Schedule extends Component {
     }
   }
 }
+
+const styles = {
+  subtitleStyle: {
+    fontSize: '1.3rem',
+    color: '#4c91ba',
+    marginTop: '5%'
+  },
+  titleStyle: {
+    fontSize: '1.5rem',
+    fontWeight: 'bold',
+    color: '#4c91ba',
+    textAlign: 'left',
+    margin: '33.5px 0 20px 0',
+    paddingBottom: 6.9,
+    borderBottom: '1px solid rgba(0, 0, 0, 0.1)'
+  },
+  containerStyle: {
+    width: '85%',
+    display: 'flex',
+    flexDirection: 'column',
+    textAlign: 'left'
+  },
+  labelStyle: {
+    fontSize: '1.1rem',
+    fontWeight: 'bold',
+    color: '#1e3354',
+    marginTop: '1.5rem',
+    marginBottom: '0.2rem'
+  },
+  inputTextStyle: {
+    fontSize: '1.3rem',
+    color: '#1f3354',
+    padding: '0.7rem',
+    borderRadius: '5px',
+    border: 'solid 1px rgba(0, 0, 0, 0.1)'
+  },
+  buttonStyle: {
+    height: '3.9rem',
+    color: 'white',
+    fontSize: '1.4rem',
+    fontWeight: 'bold',
+    marginTop: '2.5rem',
+    marginBottom: '4rem',
+    borderRadius: 6,
+    backgroundColor: '#4c91ba',
+    textAlign: 'center',
+    lineHeight: '3.9rem'
+  },
+  fileAttachingInputStyle: {
+    height: 48,
+    borderRadius: 5,
+    border: 'solid 1px rgba(0, 0, 0, 0.1)',
+    fontSize: '1.3rem',
+    color: 'rgba(0, 0, 0, 0.2',
+    textAlign: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center'
+  }
+};
+
+const {
+  subtitleStyle,
+  titleStyle,
+  containerStyle,
+  labelStyle,
+  inputTextStyle,
+  buttonStyle,
+  fileAttachingInputStyle
+} = styles;
+
 const mapStateToProps = ({ authentication: { userData } }) => {
   return { userData };
 };
