@@ -107,23 +107,48 @@ class DesignerTicket extends Component {
     return (
       <div>
         <DesignerNav />
-        <div>
-          <div>이용권 관리</div>
-          <div>보유 이용권</div>
-          <div>
-            <div>
-              <TicketPurchaseButton purchaseHandler={this.purchaseHandler} />
-            </div>
+        <div className="m_containerStyle">
+          <div style={containerStyle}>
+            <div style={titleStyle}>이용권 관리</div>
+            <div style={subtitleStyle}>보유 이용권</div>
             <TicketBox
               tickets={this.state.tickets}
               ticketActivate={this.ticketActivate}
             />
+            <div style={subtitleStyle}>이용권 구매</div>
+            <TicketPurchaseButton purchaseHandler={this.purchaseHandler} />
           </div>
         </div>
       </div>
     );
   }
 }
+
+const styles = {
+  containerStyle: {
+    width: '85%',
+    display: 'flex',
+    flexDirection: 'column',
+    textAlign: 'left'
+  },
+  titleStyle: {
+    fontSize: '1.5rem',
+    fontWeight: 'bold',
+    color: '#4c91ba',
+    textAlign: 'left',
+    margin: '33.5px 0',
+    paddingBottom: 6.9,
+    borderBottom: '1px solid rgba(0, 0, 0, 0.1)'
+  },
+  subtitleStyle: {
+    fontSize: '1.3rem',
+    fontWeight: 'bold',
+    color: '#1f3354'
+  }
+};
+
+const { containerStyle, titleStyle, subtitleStyle } = styles;
+
 const mapStateToProps = ({ authentication: { userData } }) => {
   return { userData };
 };

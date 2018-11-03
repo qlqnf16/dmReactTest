@@ -5,7 +5,7 @@ import NoContent from '../NoContent/NoContent';
 const ReservationCards = props => {
   return (
     <div style={containerStyle}>
-      <div style={titleStyle}>예약 관리</div>
+      <div style={titleStyle}>예약관리</div>
       <div>
         <div style={subtitleStyle}>다가오는 예약</div>
         {props.futureReservations.length > 0 ? (
