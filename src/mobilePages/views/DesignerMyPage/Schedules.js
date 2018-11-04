@@ -321,9 +321,6 @@ class Schedule extends Component {
           <DesignerNav />
           <div className="m_containerStyle">
             <div style={containerStyle}>
-              <div onClick={() => this.totalSubmitHandler(recruitData)}>
-                저장
-              </div>
               <div style={titleStyle}>기본정보</div>
               <TextInfo
                 state={this.state}
@@ -340,6 +337,12 @@ class Schedule extends Component {
                 onClick={this.addCardModalToggle}
               >
                 + 카드 추가하기
+              </div>
+              <div
+                style={buttonStyle}
+                onClick={() => this.totalSubmitHandler(recruitData)}
+              >
+                저장하기
               </div>
             </div>
           </div>
@@ -399,10 +402,27 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center'
+  },
+  buttonStyle: {
+    height: '3.9rem',
+    color: 'white',
+    fontSize: '1.4rem',
+    fontWeight: 'bold',
+    marginTop: '4rem',
+    marginBottom: '2rem',
+    borderRadius: 6,
+    backgroundColor: '#4c91ba',
+    textAlign: 'center',
+    lineHeight: '3.9rem'
   }
 };
 
-const { titleStyle, containerStyle, fileAttachingInputStyle } = styles;
+const {
+  titleStyle,
+  containerStyle,
+  fileAttachingInputStyle,
+  buttonStyle
+} = styles;
 
 const mapStateToProps = ({ authentication: { userData } }) => {
   return { userData };
