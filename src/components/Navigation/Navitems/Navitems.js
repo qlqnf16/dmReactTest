@@ -20,7 +20,6 @@ class Navitems extends Component {
   };
 
   async componentDidMount(prevProps, prevState) {
-    console.log(this.props.userData);
     if (
       this.props.userData.uid &&
       this.props.userData._reservations &&
@@ -48,7 +47,6 @@ class Navitems extends Component {
         );
       });
       const bools = await Promise.all(promises);
-      console.log(bools);
       if (bools.includes(true) === this.state.newMessage) return;
       this.setState({ newMessage: bools.includes(true) });
       this.props.socket.on('newMessage', () => {
@@ -58,7 +56,6 @@ class Navitems extends Component {
   }
 
   async componentDidUpdate(prevProps, prevState) {
-    console.log(this.props.userData);
     if (
       this.props.userData.uid &&
       this.props.userData._reservations &&
@@ -74,7 +71,6 @@ class Navitems extends Component {
               'getMessages',
               { reservationId: r },
               (messages, checkPoints) => {
-                console.log(messages, checkPoints);
                 resolve(
                   checkPoints[this.props.userData.name] &&
                     messages.length &&
@@ -87,7 +83,6 @@ class Navitems extends Component {
         );
       });
       const bools = await Promise.all(promises);
-      console.log(bools);
       if (bools.includes(true) === this.state.newMessage) return;
       this.setState({ newMessage: bools.includes(true) });
       this.props.socket.on('newMessage', () => {
@@ -103,7 +98,6 @@ class Navitems extends Component {
   render() {
     // 로그인 했는지 && 디자이너가 아닌지 확인 후 고객용 navbar
     if (this.props.userData.uid && !this.props.userData.isD) {
-      console.log(this.props.socket);
       let helloMessage =
         this.props.userData.isApproval === false
           ? '예디 승인 대기중입니다'

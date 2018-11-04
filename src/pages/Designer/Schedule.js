@@ -53,7 +53,6 @@ class Schedule extends Component {
   };
 
   cardAddHandler = async cardData => {
-    console.log(cardData);
     let must = cardData.must;
     let mustList = [];
     let no = cardData.no;

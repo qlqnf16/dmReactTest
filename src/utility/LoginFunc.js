@@ -6,10 +6,8 @@ export const facebookLogin = async () => {
   const provider = new firebaseApp.auth.FacebookAuthProvider();
 
   try {
-    console.log('시작');
     await firebase.auth().signInWithPopup(provider);
 
-    console.log('끝');
     const currentUser = firebase.auth().currentUser;
     const { displayName, uid, email } = currentUser;
     const DBUserData = {

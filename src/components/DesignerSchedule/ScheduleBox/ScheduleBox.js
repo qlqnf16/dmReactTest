@@ -1,11 +1,11 @@
-import React, { Component } from "react";
-import Schedule from "./Schedule/Schedule";
-import ScheduleCard from "./ScheduleCard/ScheduleCard";
-import TextInfo from "../TextInfo";
-import NoContent from "../../UI/NoContent/NoContent";
-import axios from "axios";
+import React, { Component } from 'react';
+import Schedule from './Schedule/Schedule';
+import ScheduleCard from './ScheduleCard/ScheduleCard';
+import TextInfo from '../TextInfo';
+import NoContent from '../../UI/NoContent/NoContent';
+import axios from 'axios';
 
-import { connect } from "react-redux";
+import { connect } from 'react-redux';
 
 class ScheduleBox extends Component {
   constructor(props) {
@@ -29,8 +29,8 @@ class ScheduleBox extends Component {
         shoulder: 0,
         chest: 0
       },
-      title: "",
-      requirement: "",
+      title: '',
+      requirement: '',
       requireTime: {},
       madeRequest: false,
       reviews: []
@@ -72,31 +72,30 @@ class ScheduleBox extends Component {
   handleInputChange = event => {
     const target = event.target;
     const name = target.name;
-    console.log("inputChange");
-    if (target.type !== "checkbox") {
-      if (target.name === "since") {
+    if (target.type !== 'checkbox') {
+      if (target.name === 'since') {
         this.sinces[target.id] = Number(target.value);
         this.setState({
           sinces: this.sinces
         });
-      } else if (target.name === "until") {
+      } else if (target.name === 'until') {
         this.untils[target.id] = Number(target.value);
         this.setState({
           untils: this.untils
         });
-      } else if (target.id === "time") {
+      } else if (target.id === 'time') {
         const value = Number(target.value);
         let requireTime = {
           ...this.state.requireTime,
           [name]: value
         };
         this.setState({ requireTime });
-      } else if (target.name === "permPrice") {
+      } else if (target.name === 'permPrice') {
         this.permPrice[target.id] = Number(target.value);
         this.setState({
           permPrice: this.permPrice
         });
-      } else if (target.name === "dyePrice") {
+      } else if (target.name === 'dyePrice') {
         this.dyePrice[target.id] = Number(target.value);
         this.setState({
           dyePrice: this.dyePrice
@@ -106,7 +105,7 @@ class ScheduleBox extends Component {
         this.setState({ [name]: value });
       }
     } else {
-      if (target.name === "must") {
+      if (target.name === 'must') {
         target.id = target.id.toLowerCase();
         this.setState({
           must: {
@@ -114,7 +113,7 @@ class ScheduleBox extends Component {
             [target.id]: target.checked
           }
         });
-      } else if (target.name === "no") {
+      } else if (target.name === 'no') {
         let id = target.id.toLowerCase();
         this.setState({
           no: {
@@ -135,11 +134,11 @@ class ScheduleBox extends Component {
     let requireGender = undefined;
 
     if (this.state.male && this.state.female) {
-      requireGender = "both";
+      requireGender = 'both';
     } else if (this.state.male) {
-      requireGender = "male";
+      requireGender = 'male';
     } else if (this.state.female) {
-      requireGender = "female";
+      requireGender = 'female';
     }
 
     let ableTimes = [];
@@ -188,7 +187,7 @@ class ScheduleBox extends Component {
         perm: this.state.permTime,
         dye: this.state.dyeTime
       };
-      recruitData["requireTime"] = requireTime;
+      recruitData['requireTime'] = requireTime;
     }
     return (
       <div className="row align-items-start">
@@ -220,7 +219,7 @@ class ScheduleBox extends Component {
           <div
             className="bg-light row"
             style={{
-              padding: "1.5rem"
+              padding: '1.5rem'
             }}
           >
             {this.state.cards.length === 0 &&

@@ -115,7 +115,6 @@ class DesginerDetail extends Component {
         />
       );
     }
-    console.log(this.state.isLogin);
     return (
       <div>
         <div className="text-center mb-5">
