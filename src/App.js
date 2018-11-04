@@ -220,13 +220,7 @@ class App extends Component {
               />
               <Route
                 path="/addDesigner"
-                component={
-                  this.props.userData.uid
-                    ? this.props.userData.isRegister
-                      ? AddDesigner
-                      : UserInfo
-                    : WrongAccess
-                }
+                component={this.props.userData.uid ? AddDesigner : WrongAccess}
               />
               <Route
                 path="/coupon"

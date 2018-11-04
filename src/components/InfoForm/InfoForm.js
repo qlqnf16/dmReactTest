@@ -265,7 +265,7 @@ class InfoForm extends Component {
         </FormGroup>
         <FormGroup row>
           <div className="col-3 if_head">전화번호</div>
-          <div className="col-9">
+          <div className="col-8">
             <input
               type="tel"
               name="phoneNumber"
@@ -275,6 +275,7 @@ class InfoForm extends Component {
               className="if_input"
             />
           </div>
+          {this.props.isRegister}
         </FormGroup>
         <FormGroup row>
           <div className="col-3 if_head">지역/샵주소</div>

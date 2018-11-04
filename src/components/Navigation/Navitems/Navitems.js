@@ -104,6 +104,10 @@ class Navitems extends Component {
     // 로그인 했는지 && 디자이너가 아닌지 확인 후 고객용 navbar
     if (this.props.userData.uid && !this.props.userData.isD) {
       console.log(this.props.socket);
+      let helloMessage =
+        this.props.userData.isApproval === false
+          ? '예디 승인 대기중입니다'
+          : `반갑습니다 ${this.props.userData.name}님`;
       return (
         <Fragment>
           <NavItem>
@@ -123,7 +127,7 @@ class Navitems extends Component {
           </NavItem>
           <UncontrolledDropdown nav inNavbar>
             <DropdownToggle nav caret className="">
-              반갑습니다 {this.props.userData.name}님
+              {helloMessage}
             </DropdownToggle>
             <DropdownMenu right className="dropdownMenu">
               <DropdownItem>
@@ -233,7 +237,7 @@ class Navitems extends Component {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink onClick={this.props.showLogin} className="">
+            <NavLink tag={Link} to={'./whyDreamary'} className="">
               예디등록
             </NavLink>
           </NavItem>

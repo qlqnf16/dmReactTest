@@ -4,6 +4,8 @@ import InfoForm from '../../components/InfoForm/InfoForm';
 import InfoFormExtended from '../../components/InfoForm/InfoFormExtended';
 import { connect } from 'react-redux';
 import firebase from '../../config/Firebase';
+import check_sm from '../../assets/images/check_sm.png';
+
 import fd from 'form-data';
 import axios from 'axios';
 
@@ -251,6 +253,12 @@ class DesignerInfo extends Component {
   };
 
   render() {
+    const isRegister = (
+      <div className="uif_registered col-1">
+        <img style={{ width: '1.4rem' }} src={check_sm} alt="alt" />
+        인증됨
+      </div>
+    );
     return (
       <div className="container-fluid d">
         <div className="d_bg">
@@ -271,6 +279,7 @@ class DesignerInfo extends Component {
                 handleAddress={this.handleAddress}
                 addressAddHandler={this.addressAddHandler}
                 addressRemoveHandler={this.addressRemoveHandler}
+                isRegister={isRegister}
               />
               <InfoFormExtended
                 state={this.state}

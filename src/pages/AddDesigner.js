@@ -5,6 +5,7 @@ import fd from 'form-data';
 import InfoForm from '../components/InfoForm/InfoForm';
 import { connect } from 'react-redux';
 import firebase from '../config/Firebase';
+import check_sm from '../assets/images/check_sm.png';
 import './PageCss.css';
 
 class AddDesigner extends Component {
@@ -23,7 +24,8 @@ class AddDesigner extends Component {
       addresses,
       designerRecommendationCode,
       cert_mh,
-      cert_jg
+      cert_jg,
+      isRegister
     } = this.props.userData;
     if (!addresses) addresses = [];
     this.state = {
@@ -43,13 +45,28 @@ class AddDesigner extends Component {
       certFile2: null,
       addressNum: addresses.length + 1,
       addresses,
-      designerRecommendationCode
+      designerRecommendationCode,
+      isRegister
     };
   }
 
   componentDidMount = async () => {
     if (this.props.userData.isApproval === false && !this.props.userData.isD)
       alert('예비디자이너 승인 대기중입니다.');
+
+    // iamport 사용하기 위한 inline script 작성
+    let links = [
+      'https://code.jquery.com/jquery-1.12.4.min.js',
+      'https://cdn.iamport.kr/js/iamport.payment-1.1.5.js'
+    ];
+
+    for (let link of links) {
+      const script = document.createElement('script');
+
+      script.src = link;
+      script.async = true;
+      document.body.appendChild(script);
+    }
   };
 
   addressAddHandler = () => {
@@ -137,7 +154,8 @@ class AddDesigner extends Component {
       career,
       careerDetail,
       addresses,
-      designerRecommendationCode
+      designerRecommendationCode,
+      isRegister
     } = this.state;
 
     let firebaseUserData = {
@@ -150,7 +168,8 @@ class AddDesigner extends Component {
       career,
       careerDetail,
       addresses,
-      isApproval: false
+      isApproval: false,
+      isRegister
     };
     if (
       Object.values(firebaseUserData).includes(undefined) ||
@@ -219,7 +238,50 @@ class AddDesigner extends Component {
     );
   };
 
+  phoneCert = () => {
+    if (!this.state.phoneNumber) return alert('휴대폰 번호를 먼저 입력하세요');
+
+    const { IMP } = window;
+    IMP.init('imp06037656');
+    IMP.certification(
+      {
+        merchant_uid: 'merchant_' + new Date().getTime()
+      },
+      rsp => {
+        if (rsp.success) {
+          // 인증성공
+          this.setState({ isRegister: true });
+          alert('인증되었습니다');
+        } else {
+          // 인증취소 또는 인증실패
+          var msg = '인증에 실패하였습니다.';
+          msg += '에러내용 : ' + rsp.error_msg;
+          alert(msg);
+        }
+      }
+    );
+  };
+
   render() {
+    let isRegister = '';
+    if (!this.state.isRegister) {
+      isRegister = (
+        <div
+          className="btn uif_button uif_phone col-1"
+          onClick={() => this.phoneCert()}
+        >
+          인증
+        </div>
+      );
+    } else {
+      isRegister = (
+        <div className="uif_registered col-1">
+          <img style={{ width: '1.4rem' }} src={check_sm} alt="alt" />
+          인증됨
+        </div>
+      );
+    }
+
     return (
       <div className="container-fluid ad">
         <Form className="m-5">
@@ -237,7 +299,7 @@ class AddDesigner extends Component {
           </div>
           <InfoForm
             state={this.state}
-            checked={!this.state.gender ? 'male' : this.state.gender}
+            checked={!this.state.gender ? null : this.state.gender}
             certImg1={this.state.certImg1}
             certFile1={this.state.certFile1}
             certImg2={this.state.certImg2}
@@ -247,6 +309,7 @@ class AddDesigner extends Component {
             handleAddress={this.handleAddress}
             addressAddHandler={this.addressAddHandler}
             addressRemoveHandler={this.addressRemoveHandler}
+            isRegister={isRegister}
           />
           <FormGroup row>
             <div className="col-3 if_head">추천인 코드</div>

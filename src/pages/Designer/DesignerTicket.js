@@ -45,6 +45,31 @@ class DesignerTicket extends Component {
     }
   };
 
+  inputChangeHandler = event => {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+
+    this.setState({ [name]: value });
+  };
+
+  couponSubmit = async () => {
+    try {
+      await axios.patch(
+        `http://52.79.227.227:3030/coupons/${this.state.coupon}`,
+        {
+          _user: this.props.userData._id,
+          isD: this.props.userData.isD
+        }
+      );
+      await this.reloadTicket();
+      this.setState({ coupon: null });
+      alert('쿠폰이 적용 되었습니다.');
+    } catch (err) {
+      alert('유효하지 않은 쿠폰번호 입니다.');
+    }
+  };
+
   reloadTicket = async () => {
     const { data } = await axios.get(
       `http://52.79.227.227:3030/users/${this.props.userData._id}/tickets`
@@ -199,6 +224,28 @@ class DesignerTicket extends Component {
                     >
                       카카오페이
                     </label>
+                  </div>
+                </div>
+                <div
+                  className="u_title"
+                  style={{ color: '#4c91ba', marginTop: '15rem', border: 0 }}
+                >
+                  프로모션 코드 입력
+                </div>
+                {/* <div className="uif_title ">프로모션 코드</div> */}
+                <div className="d-flex justify-content-left">
+                  <input
+                    onChange={e => this.inputChangeHandler(e)}
+                    type="text"
+                    name="coupon"
+                    id="coupon"
+                    className="if_input"
+                  />
+                  <div
+                    className=" coupon_button ml-1"
+                    onClick={() => this.couponSubmit()}
+                  >
+                    적용
                   </div>
                 </div>
                 {/* <TicketCounter
