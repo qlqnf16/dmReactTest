@@ -135,6 +135,7 @@ class DesignerTicket extends Component {
   };
 
   render() {
+    const { labelStyle, onLabelStyle } = styles;
     return (
       <div className="container-fluid d">
         <div className="d_bg">
@@ -157,7 +158,76 @@ class DesignerTicket extends Component {
                   <div className="col-12 text-right rf-tableHead mb-3">
                     결제방법
                   </div>
-                  <div className="col-6">
+                  <div className="col-12 px-0">
+                    <label
+                      style={
+                        this.state.method === 'card' ? onLabelStyle : labelStyle
+                      }
+                    >
+                      <input
+                        type="radio"
+                        id="card"
+                        name="method"
+                        value="card"
+                        onChange={this.changeHandler}
+                        className="genderRadio"
+                      />
+                      신용/체크카드
+                    </label>
+                    <label
+                      style={
+                        this.state.method === 'trans'
+                          ? onLabelStyle
+                          : labelStyle
+                      }
+                    >
+                      <input
+                        type="radio"
+                        id="trans"
+                        name="method"
+                        value="trans"
+                        onChange={this.changeHandler}
+                        className="genderRadio "
+                      />
+                      실시간 계좌이체
+                    </label>
+                    <label
+                      style={
+                        this.state.method === 'vbank'
+                          ? onLabelStyle
+                          : labelStyle
+                      }
+                    >
+                      <input
+                        type="radio"
+                        id="vbank"
+                        name="method"
+                        value="vbank"
+                        onChange={this.changeHandler}
+                        className="genderRadio "
+                      />
+                      가상 계좌
+                    </label>
+                    <label
+                      style={
+                        this.state.method === 'kakao'
+                          ? onLabelStyle
+                          : labelStyle
+                      }
+                    >
+                      <input
+                        type="radio"
+                        id="kakao"
+                        name="method"
+                        value="kakao"
+                        onChange={this.changeHandler}
+                        className="genderRadio "
+                      />
+                      카카오페이
+                    </label>
+                  </div>
+
+                  {/* <div className="col-6">
                     <input
                       id="card"
                       type="radio"
@@ -224,7 +294,7 @@ class DesignerTicket extends Component {
                     >
                       카카오페이
                     </label>
-                  </div>
+                  </div> */}
                 </div>
                 <div
                   className="u_title"
@@ -266,6 +336,37 @@ class DesignerTicket extends Component {
     );
   }
 }
+
+const styles = {
+  labelStyle: {
+    width: '50%',
+    height: '100%',
+    border: 'solid 2px rgba(0, 0, 0, 0.1)',
+    backgroundColor: 'white',
+    color: '#1f3354',
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    lineHeight: 1.08,
+    fontSize: '1.7rem',
+    cursor: 'pointer',
+    marginBottom: '0'
+  },
+  onLabelStyle: {
+    width: '50%',
+    height: '100%',
+    border: 'solid 2px #4c91ba',
+    backgroundColor: 'transparent',
+    color: '#1f3354',
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    lineHeight: 1.08,
+    fontSize: '1.7rem',
+    cursor: 'pointer',
+    marginBottom: '0'
+  }
+};
 const mapStateToProps = ({ authentication: { userData } }) => {
   return { userData };
 };
