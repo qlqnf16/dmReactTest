@@ -121,7 +121,7 @@ class App extends Component {
           .database()
           .ref('/users/' + firebase.auth().currentUser.uid)
           .on('value', async res => {
-            this.setState({ madeRequest: true });
+            this.setState({ madeRequest: true, isLogin: true });
 
             // redux;
             let userData = res.val();
@@ -135,14 +135,15 @@ class App extends Component {
             await this.props.updateRedux('_reservations', data._reservations);
             await this.props.connectSocket();
           });
-        // if (document.querySelector('iframe')) {
-        //   document
-        //     .querySelector('iframe')
-        //     .setAttribute('src', "don't try to look at this!");
-        // }
+        if (document.querySelector('iframe')) {
+          document
+            .querySelector('iframe')
+            .setAttribute('src', "don't try to look at this!");
+        }
       } else {
         // logout 하면 landing page로 이동
         this.props.history.push('/');
+        this.state.isLogin && window.location.reload();
         this.setState({ madeRequest: true });
 
         // redux

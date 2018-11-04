@@ -55,11 +55,6 @@ export const facebookLogin = async () => {
         '이미 다른 플랫폼으로 가입한 적이 있는 이메일입니다. 해당 플랫폼으로 로그인해주세요.'
       );
   }
-  if (document.querySelector('iframe')) {
-    document
-      .querySelector('iframe')
-      .setAttribute('src', "don't try to look at this!");
-  }
 };
 
 export const googleLogin = async () => {
@@ -110,11 +105,6 @@ export const googleLogin = async () => {
       alert(
         '이미 다른 플랫폼으로 가입한 적이 있는 이메일입니다. 해당 플랫폼으로 로그인해주세요.'
       );
-  }
-  if (document.querySelector('iframe')) {
-    document
-      .querySelector('iframe')
-      .setAttribute('src', "don't try to look at this!");
   }
 };
 
