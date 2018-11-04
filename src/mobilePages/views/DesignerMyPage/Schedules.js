@@ -344,8 +344,7 @@ class Schedule extends Component {
             </div>
           </div>
           <AddCardModal
-            // isOpen={this.state.addCardModal}
-            isOpen // 임시
+            isOpen={this.state.addCardModal}
             toggle={this.addCardModalToggle}
             datePick={e => this.timeDefault(e)}
             time={this.state.time}
