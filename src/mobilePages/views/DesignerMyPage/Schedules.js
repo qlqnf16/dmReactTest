@@ -344,7 +344,8 @@ class Schedule extends Component {
             </div>
           </div>
           <AddCardModal
-            isOpen={this.state.addCardModal}
+            // isOpen={this.state.addCardModal}
+            isOpen // 임시
             toggle={this.addCardModalToggle}
             datePick={e => this.timeDefault(e)}
             time={this.state.time}
@@ -374,11 +375,6 @@ class Schedule extends Component {
 }
 
 const styles = {
-  subtitleStyle: {
-    fontSize: '1.3rem',
-    color: '#4c91ba',
-    marginTop: '5%'
-  },
   titleStyle: {
     fontSize: '1.5rem',
     fontWeight: 'bold',
@@ -394,32 +390,6 @@ const styles = {
     flexDirection: 'column',
     textAlign: 'left'
   },
-  labelStyle: {
-    fontSize: '1.1rem',
-    fontWeight: 'bold',
-    color: '#1e3354',
-    marginTop: '1.5rem',
-    marginBottom: '0.2rem'
-  },
-  inputTextStyle: {
-    fontSize: '1.3rem',
-    color: '#1f3354',
-    padding: '0.7rem',
-    borderRadius: '5px',
-    border: 'solid 1px rgba(0, 0, 0, 0.1)'
-  },
-  buttonStyle: {
-    height: '3.9rem',
-    color: 'white',
-    fontSize: '1.4rem',
-    fontWeight: 'bold',
-    marginTop: '2.5rem',
-    marginBottom: '4rem',
-    borderRadius: 6,
-    backgroundColor: '#4c91ba',
-    textAlign: 'center',
-    lineHeight: '3.9rem'
-  },
   fileAttachingInputStyle: {
     height: 48,
     borderRadius: 5,
@@ -433,15 +403,7 @@ const styles = {
   }
 };
 
-const {
-  subtitleStyle,
-  titleStyle,
-  containerStyle,
-  labelStyle,
-  inputTextStyle,
-  buttonStyle,
-  fileAttachingInputStyle
-} = styles;
+const { titleStyle, containerStyle, fileAttachingInputStyle } = styles;
 
 const mapStateToProps = ({ authentication: { userData } }) => {
   return { userData };
