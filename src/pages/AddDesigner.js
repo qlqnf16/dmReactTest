@@ -325,6 +325,7 @@ class AddDesigner extends Component {
                     : e => this.handleInputChange(e)
                 }
                 className="if_input"
+                placeholder="선택사항"
               />
             </div>
           </FormGroup>

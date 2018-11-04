@@ -121,7 +121,7 @@ const UserInfoForm = props => {
       <div>
         <input
           style={{ ...inputTextStyle, width: '78.7%' }}
-          type="tel"
+          type="number"
           name="phoneNumber"
           id="phoneNumber"
           onChange={props.inputChangeHandler}

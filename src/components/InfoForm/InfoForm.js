@@ -267,7 +267,7 @@ class InfoForm extends Component {
           <div className="col-3 if_head">전화번호</div>
           <div className="col-8">
             <input
-              type="tel"
+              type="number"
               name="phoneNumber"
               id="phoneNumber"
               onChange={this.props.changeInput}
@@ -309,6 +309,8 @@ class InfoForm extends Component {
               className="if_input"
               style={{ width: '17.7%', textAlign: 'center' }}
               placeholder="0"
+              min="0"
+              max="11"
             />
             <span
               className="if_detail"
@@ -329,6 +331,8 @@ class InfoForm extends Component {
               className="if_input"
               style={{ width: '17.7%', textAlign: 'center', marginLeft: '3px' }}
               placeholder="0"
+              min="0"
+              max="11"
             />{' '}
             <span
               className="if_detail"
@@ -354,6 +358,8 @@ class InfoForm extends Component {
               className="if_input"
               style={{ width: '17.7%', textAlign: 'center' }}
               placeholder="0"
+              min="0"
+              max="11"
             />{' '}
             <span
               className="if_detail"
@@ -370,6 +376,8 @@ class InfoForm extends Component {
               style={{ width: '17.7%', textAlign: 'center', marginLeft: '3px' }}
               value={userData.career % 12 ? userData.career % 12 : undefined}
               placeholder="0"
+              min="0"
+              max="11"
             />{' '}
             <span
               className="if_detail"

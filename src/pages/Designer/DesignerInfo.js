@@ -275,7 +275,7 @@ class DesignerInfo extends Component {
                 certFile2={this.state.certFile2}
                 imgChange={e => this.handleImgChange(e)}
                 changeInput={e => this.handleInputChange(e)}
-                checked={!this.state.gender ? 'male' : this.state.gender}
+                checked={!this.state.gender ? null : this.state.gender}
                 handleAddress={this.handleAddress}
                 addressAddHandler={this.addressAddHandler}
                 addressRemoveHandler={this.addressRemoveHandler}
@@ -306,6 +306,7 @@ class DesignerInfo extends Component {
                         : e => this.handleInputChange(e)
                     }
                     className="if_input"
+                    placeholder="선택사항"
                   />
                 </div>
               </FormGroup>
