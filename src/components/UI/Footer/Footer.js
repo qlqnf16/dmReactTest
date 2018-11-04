@@ -24,7 +24,9 @@ const Footer = () => (
     <div className="d-flex justify-content-end">
       <div style={{ marginRight: '15%' }}>
         <div className="title">COMPANY</div>
-        <div className="content">서비스 소개</div>
+        <Link to="/about">
+          <div className="content">서비스 소개</div>
+        </Link>
       </div>
       <div style={{ marginRight: '15%', whiteSpace: 'nowrap' }}>
         <div className="title">POLICIES</div>

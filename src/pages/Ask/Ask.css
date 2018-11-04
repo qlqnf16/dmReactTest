@@ -16,6 +16,9 @@
 }
 
 .ask_content {
+  height: fit-content;
+  padding: 15px;
+  font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', sans-serif;
   font-size: 1.3rem;
   line-height: 1.31;
   text-align: left;
