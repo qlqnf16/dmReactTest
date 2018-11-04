@@ -5,7 +5,7 @@ import NoContent from '../NoContent/NoContent';
 const ReservationCards = props => {
   return (
     <div style={containerStyle}>
-      <div style={titleStyle}>예약 관리</div>
+      <div style={titleStyle}>예약관리</div>
       <div>
         <div style={subtitleStyle}>다가오는 예약</div>
         {props.futureReservations.length > 0 ? (
@@ -59,7 +59,9 @@ const styles = {
     fontWeight: 'bold',
     color: '#4c91ba',
     textAlign: 'left',
-    margin: '33.5px 0'
+    margin: '33.5px 0',
+    paddingBottom: 6.9,
+    borderBottom: '1px solid rgba(0, 0, 0, 0.1)'
   },
   subtitleStyle: {
     fontSize: '1.3rem',

@@ -91,37 +91,91 @@ const ScheduleCard = props => {
   if (!mustParse.length) mustParse = '없음';
   if (!noParse.length) noParse = '없음';
   return (
-    <div>
-      <div>
-        <div>
+    <div style={containerStyle}>
+      <div
+        style={{
+          width: '30%',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center'
+        }}
+      >
+        <div style={{ fontWeight: 'bold', fontSize: '1.8rem' }}>
           <Moment format="MM/DD">{props.card && props.card.date}</Moment> (
           {dayOfWeek(props.card.date)})
         </div>
-        <div>
+        <div
+          style={{
+            paddingBottom: '5%',
+            borderBottom: '1px solid rgba(0, 0, 0, 0.1)',
+            marginBottom: '5%'
+          }}
+        >
           {ableTimes.map((ableTime, key) => (
             <div key={key}>{ableTime}</div>
           ))}
         </div>
-        <div>
-          {props.cancelCardHandler ? (
-            <div
-              onClick={() =>
-                props.cancelCardHandler(props.card._id, props.card._recruit)
-              }
-            >
-              <img src={Delete} alt="alt" style={{ width: '2%' }} />
-            </div>
-          ) : null}
+        <div style={{ color: '#4c91ba' }}>
+          <span className="font-weight-bold">필수 :</span>
+          {mustParse}
+        </div>
+        <div style={{ color: '#dd6866' }}>
+          <span className="font-weight-bold">불가 :</span>
+          {noParse}
         </div>
       </div>
-      <div>
-        필수 : {mustParse} | 불가 :{noParse}
+      <div
+        style={{
+          width: '50%',
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-evenly'
+        }}
+      >
+        <div className="row">
+          <div className="col-6 font-weight-bold">모델성별</div>
+          <div className="col-6 px-0">
+            {genderFormat(props.card.requireGender)}
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-6 font-weight-bold">헤어샵</div>
+          <div className="col-6 px-0">{props.card.shop}</div>
+        </div>
+        <div className="row">
+          <div className="col-6 font-weight-bold">사진촬영</div>
+          <div className="col-6 px-0">{props.card.picture}</div>
+        </div>
       </div>
-      <div>모델: {genderFormat(props.card.requireGender)}</div>
-      <div>헤어샵: {props.card.shop}</div>
-      <div>사진촬영여부: {props.card.picture}</div>
+      <div style={{ width: '5%' }}>
+        {props.cancelCardHandler ? (
+          <div
+            onClick={() =>
+              props.cancelCardHandler(props.card._id, props.card._recruit)
+            }
+          >
+            <img src={Delete} alt="alt" style={{ width: '100%' }} />
+          </div>
+        ) : null}
+      </div>
     </div>
   );
 };
+
+const styles = {
+  containerStyle: {
+    height: 130,
+    borderRadius: 5,
+    border: 'solid 1px rgba(0, 0, 0, 0.1)',
+    fontSize: '1.2rem',
+    display: 'flex',
+    justifyContent: 'space-between',
+    padding: '5%',
+    marginBottom: '5%',
+    color: 'rgb(31, 51, 84)'
+  }
+};
+
+const { containerStyle } = styles;
 
 export default ScheduleCard;

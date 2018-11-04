@@ -134,7 +134,7 @@ class DesignerReservations extends Component {
         <div className="d_bg">
           <div className="d_container">
             <div style={{ color: '#4c91ba' }} className="u_title ">
-              예약 관리
+              예약관리
             </div>
             <div className="mb-5 pb-5">
               <div className="dr_title mb-2">다가오는 예약</div>

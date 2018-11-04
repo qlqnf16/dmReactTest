@@ -42,22 +42,22 @@ const ReservationCard = props => {
   let dDay = false;
   if (props.reservation.isCanceled) {
     button = (
-      <button
+      <div
         style={{ ...buttonStyle, backgroundColor: '#dd6866', color: 'white' }}
         onClick={() => props.cancelReasonModalToggle(props.reservation)}
       >
         취소 사유 보기
-      </button>
+      </div>
     );
     type = <div style={typeStyle}>취소</div>;
   } else if (props.type === 'soon') {
     button = (
-      <button
+      <div
         style={buttonStyle}
         onClick={() => props.cancelModalToggle(props.reservation)}
       >
         예약 취소
-      </button>
+      </div>
     );
     type = (
       <div style={typeStyle}>
@@ -82,26 +82,26 @@ const ReservationCard = props => {
           </div>
         );
       button = (
-        <button
+        <div
           style={{ ...buttonStyle, backgroundColor: '#66ce82', color: 'white' }}
           onClick={() => props.completeModalToggle(props.reservation)}
         >
           서비스 완료
-        </button>
+        </div>
       );
     }
   } else if (props.type === 'finish') {
     if (props.reservation._review) {
       button = (
-        <button
+        <div
           style={{ ...buttonStyle, backgroundColor: '#66ce82', color: 'white' }}
           onClick={() => props.showReviewModalToggle(props.reservation)}
         >
           리뷰 보기
-        </button>
+        </div>
       );
     } else {
-      button = <button style={buttonStyle}>리뷰 등록 전</button>;
+      button = <div style={buttonStyle}>리뷰 등록 전</div>;
     }
     type = (
       <div style={{ ...typeStyle, color: 'rgba(102, 206, 130, 0.5)' }}>
