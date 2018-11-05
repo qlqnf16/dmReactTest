@@ -22,7 +22,7 @@ class DesignerTicket extends Component {
         expiredAt: 20180811
       }
     ],
-    method: null
+    method: 'card'
   };
 
   componentDidMount = async () => {
@@ -86,7 +86,7 @@ class DesignerTicket extends Component {
         pay_method: this.state.method,
         merchant_uid: 'merchant_' + new Date().getTime(),
         name: '주문명: 디자이너 이용권',
-        amount: 500,
+        amount: kind,
         buyer_name: this.props.userData.name,
         buyer_tel: this.props.userData.phoneNumber
       },
@@ -180,6 +180,8 @@ class DesignerTicket extends Component {
                           ? onLabelStyle
                           : labelStyle
                       }
+                      onClick={() => alert('준비 중입니다.')}
+                      className="disabledButton"
                     >
                       <input
                         type="radio"
@@ -188,6 +190,7 @@ class DesignerTicket extends Component {
                         value="trans"
                         onChange={this.changeHandler}
                         className="genderRadio "
+                        disabled
                       />
                       실시간 계좌이체
                     </label>
@@ -197,6 +200,8 @@ class DesignerTicket extends Component {
                           ? onLabelStyle
                           : labelStyle
                       }
+                      onClick={() => alert('준비 중입니다.')}
+                      className="disabledButton"
                     >
                       <input
                         type="radio"
@@ -205,6 +210,7 @@ class DesignerTicket extends Component {
                         value="vbank"
                         onChange={this.changeHandler}
                         className="genderRadio "
+                        disabled
                       />
                       가상 계좌
                     </label>
@@ -214,6 +220,8 @@ class DesignerTicket extends Component {
                           ? onLabelStyle
                           : labelStyle
                       }
+                      onClick={() => alert('준비 중입니다.')}
+                      className="disabledButton"
                     >
                       <input
                         type="radio"
@@ -222,79 +230,11 @@ class DesignerTicket extends Component {
                         value="kakao"
                         onChange={this.changeHandler}
                         className="genderRadio "
+                        disabled
                       />
                       카카오페이
                     </label>
                   </div>
-
-                  {/* <div className="col-6">
-                    <input
-                      id="card"
-                      type="radio"
-                      name="method"
-                      value="card"
-                      onChange={this.changeHandler}
-                      checked={this.state.method === 'card'}
-                      style={{ marginRight: '3.5px', transform: 'scale(1.3)' }}
-                    />
-                    <label
-                      for="card"
-                      style={{ marginRight: '21.5px', fontSize: '1.5rem' }}
-                    >
-                      신용/체크카드
-                    </label>
-                  </div>
-                  <div className="col-6">
-                    <input
-                      id="trans"
-                      type="radio"
-                      name="method"
-                      value="trans"
-                      onChange={this.changeHandler}
-                      checked={this.state.method === 'trans'}
-                      style={{ marginRight: '3.5px', transform: 'scale(1.3)' }}
-                    />
-                    <label
-                      for="trans"
-                      style={{ marginRight: '21.5px', fontSize: '1.5rem' }}
-                    >
-                      실시간 계좌이체
-                    </label>
-                  </div>
-                  <div className="col-6">
-                    <input
-                      id="vbank"
-                      type="radio"
-                      name="method"
-                      value="vbank"
-                      onChange={this.changeHandler}
-                      checked={this.state.method === 'vbank'}
-                      style={{ marginRight: '3.5px', transform: 'scale(1.3)' }}
-                    />
-                    <label
-                      for="vbank"
-                      style={{ marginRight: '21.5px', fontSize: '1.5rem' }}
-                    >
-                      가상계좌
-                    </label>
-                  </div>
-                  <div className="col-6">
-                    <input
-                      id="kakao"
-                      type="radio"
-                      name="method"
-                      value="kakaopay"
-                      onChange={this.changeHandler}
-                      checked={this.state.method === 'kakaopay'}
-                      style={{ marginRight: '3.5px', transform: 'scale(1.3)' }}
-                    />
-                    <label
-                      for="kakao"
-                      style={{ marginRight: '21.5px', fontSize: '1.5rem' }}
-                    >
-                      카카오페이
-                    </label>
-                  </div> */}
                 </div>
                 <div
                   className="u_title"
@@ -302,7 +242,6 @@ class DesignerTicket extends Component {
                 >
                   프로모션 코드 입력
                 </div>
-                {/* <div className="uif_title ">프로모션 코드</div> */}
                 <div className="d-flex justify-content-left">
                   <input
                     onChange={e => this.inputChangeHandler(e)}
@@ -318,12 +257,6 @@ class DesignerTicket extends Component {
                     적용
                   </div>
                 </div>
-                {/* <TicketCounter
-                  count={this.state.tickets.reduce(
-                    (accu, pres) => (!pres.expiredAt ? accu + 1 : accu),
-                    0
-                  )}
-                /> */}
               </div>
               <TicketBox
                 tickets={this.state.tickets}
