@@ -168,8 +168,8 @@ class Schedule extends Component {
                     marginLeft: '2rem'
                   }}
                 >
-                  {this.props.userData.expiredAt ||
-                  this.props.userData.expiredAt < new Date().getTime()
+                  {this.props.userData.expiredAt &&
+                  this.props.userData.expiredAt > new Date().getTime()
                     ? null
                     : '※현재 사용중인 이용권이 없습니다. '}
                 </span>
