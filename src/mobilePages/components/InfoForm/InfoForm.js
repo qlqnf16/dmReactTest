@@ -207,7 +207,7 @@ class InfoForm extends Component {
           <div style={labelStyle}>전화번호</div>
           <input
             style={inputTextStyle}
-            type="tel"
+            type="number"
             name="phoneNumber"
             id="phoneNumber"
             onChange={this.props.changeInput}

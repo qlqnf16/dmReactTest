@@ -68,13 +68,19 @@ class Schedule extends Component {
         return alert('필수 서비스와 불가 서비스는 같을 수 없습니다');
     }
 
-    if (
-      Object.values(cardData).includes(undefined) ||
-      Object.values(cardData).includes('null') ||
-      Object.values(cardData).includes(NaN) ||
-      cardData.ableTimes.length === 0
-    )
-      return alert('채워지지 않은 정보가 있습니다');
+    // if (
+    //   Object.values(cardData).includes(undefined) ||
+    //   Object.values(cardData).includes('null') ||
+    //   Object.values(cardData).includes(NaN) ||
+    //   cardData.ableTimes.length === 0
+    // )
+    //   return alert('채워지지 않은 정보가 있습니다');
+
+    if (!cardData.date) return alert('날짜를 선택해주세요');
+    if (!cardData.shop) return alert('장소를 선택해주세요');
+    if (!cardData.ableTimes) return alert('가능한 시간대를 선택해주세요');
+    if (!cardData.picture) return alert('시간 촬영 여부를 선택해주세요');
+    if (!cardData.requireGender) return alert('희망 모델 성별을 선택해주세요');
 
     let newCards = this.state.newCards;
     let nCards = [];

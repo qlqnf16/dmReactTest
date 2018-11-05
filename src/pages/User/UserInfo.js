@@ -321,7 +321,7 @@ class UserInfo extends Component {
                   <div className="col-2 if_head uif_head">전화번호</div>
                   <div className="col-9">
                     <input
-                      type="tel"
+                      type="number"
                       name="phoneNumber"
                       id="phoneNumber"
                       onChange={e => this.inputChangeHandler(e)}
