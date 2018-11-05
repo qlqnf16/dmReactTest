@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import { Form, FormGroup } from "reactstrap";
-import InfoForm from "../../components/InfoForm/InfoForm";
-import InfoFormExtended from "../../components/InfoForm/InfoFormExtended";
-import { connect } from "react-redux";
-import firebase from "../../config/Firebase";
-import check_sm from "../../assets/images/check_sm.png";
+import React, { Component } from 'react';
+import { Form, FormGroup } from 'reactstrap';
+import InfoForm from '../../components/InfoForm/InfoForm';
+import InfoFormExtended from '../../components/InfoForm/InfoFormExtended';
+import { connect } from 'react-redux';
+import firebase from '../../config/Firebase';
+import check_sm from '../../assets/images/check_sm.png';
 
-import fd from "form-data";
-import axios from "axios";
+import fd from 'form-data';
+import axios from 'axios';
 
 class DesignerInfo extends Component {
   constructor(props) {
@@ -87,25 +87,25 @@ class DesignerInfo extends Component {
   handleImgChange = e => {
     let file = e.target.files[0];
     switch (e.target.name) {
-      case "cert1":
+      case 'cert1':
         this.setState({ certImg1: URL.createObjectURL(file), certFile1: file });
         break;
-      case "cert2":
+      case 'cert2':
         this.setState({ certImg2: URL.createObjectURL(file), certFile2: file });
         break;
-      case "profileImg":
+      case 'profileImg':
         this.setState({
           profileImg: URL.createObjectURL(file),
           profileFile: file
         });
         break;
-      case "portfolio":
+      case 'portfolio':
         this.state.portfolioImg.push(URL.createObjectURL(file));
         this.state.portfolioFile.push(file);
         this.setState({ num: this.state.num + 1 });
         break;
       default:
-        console.log("something wrong in [DesignerInfo.js]");
+        console.log('something wrong in [DesignerInfo.js]');
     }
   };
 
@@ -126,21 +126,21 @@ class DesignerInfo extends Component {
     const value = target.value;
     const name = target.name;
 
-    if (target.id === "dYear" || target.id === "dMonth") {
-      if (target.id === "dYear") {
+    if (target.id === 'dYear' || target.id === 'dMonth') {
+      if (target.id === 'dYear') {
         this.dYear = Number(value);
-      } else if (target.id === "dMonth") {
+      } else if (target.id === 'dMonth') {
         this.dMonth = Number(value);
       }
       this.setState({ untilDesigner: this.dYear * 12 + this.dMonth });
-    } else if (target.id === "careerYear" || target.id === "careerMonth") {
-      if (target.id === "careerYear") {
+    } else if (target.id === 'careerYear' || target.id === 'careerMonth') {
+      if (target.id === 'careerYear') {
         this.careerYear = Number(value);
-      } else if (target.id === "careerMonth") {
+      } else if (target.id === 'careerMonth') {
         this.careerMonth = Number(value);
       }
       this.setState({ career: this.careerYear * 12 + this.careerMonth });
-    } else if (target.name === "extraAddress") {
+    } else if (target.name === 'extraAddress') {
       let addresses = this.state.addresses;
       let address = addresses[target.id];
       addresses[target.id] = { ...address, extraAddress: target.value };
@@ -188,25 +188,25 @@ class DesignerInfo extends Component {
     // )
     //   return alert('채워지지 않은 정보가 있습니다');
 
-    if (!firebaseUserData.name) return alert("이름을 작성해주세요");
-    if (!firebaseUserData.gender) return alert("성별을 작성해주세요");
-    if (!firebaseUserData.email) return alert("이메일을 작성해주세요");
+    if (!firebaseUserData.name) return alert('이름을 작성해주세요');
+    if (!firebaseUserData.gender) return alert('성별을 작성해주세요');
+    if (!firebaseUserData.email) return alert('이메일을 작성해주세요');
     if (
-      Object.values(firebaseUserData.birthday).includes("null") ||
+      Object.values(firebaseUserData.birthday).includes('null') ||
       Object.values(firebaseUserData.birthday).includes(undefined)
     )
-      return alert("생년월일을 작성해주세요");
+      return alert('생년월일을 작성해주세요');
     if (!firebaseUserData.phoneNumber)
-      return alert("휴대폰 번호를 작성해주세요");
+      return alert('휴대폰 번호를 작성해주세요');
     if (firebaseUserData.phoneNumber.length !== 11)
-      return alert("정확한 휴대폰 번호를 입력해주세요");
-    if (!this.state.isRegister) return alert("휴대폰 인증을 먼저 해주세요");
+      return alert('정확한 휴대폰 번호를 입력해주세요');
+    if (!this.state.isRegister) return alert('휴대폰 인증을 먼저 해주세요');
     if (Object.values(firebaseUserData.addresses).includes(undefined))
-      return alert("지역/샵주소를 작성해주세요");
+      return alert('지역/샵주소를 작성해주세요');
     if (!firebaseUserData.untilDesigner)
-      return alert("디자이너까지 남은 기간을 작성해주세요");
-    if (!firebaseUserData.career) return alert("미용 경력을 작성해주세요");
-    if (!firebaseUserData.introduce) return alert("자기 소개를 작성해주세요");
+      return alert('디자이너까지 남은 기간을 작성해주세요');
+    if (!firebaseUserData.career) return alert('미용 경력을 작성해주세요');
+    if (!firebaseUserData.introduce) return alert('자기 소개를 작성해주세요');
 
     if (
       designerRecommendationCode &&
@@ -217,15 +217,15 @@ class DesignerInfo extends Component {
       const fbPromise = new Promise(resolve => {
         firebase
           .database()
-          .ref("users/" + designerRecommendationCode)
-          .on("value", res => {
+          .ref('users/' + designerRecommendationCode)
+          .on('value', res => {
             resolve(res);
           });
       });
 
       result = await fbPromise;
       if (!result || designerRecommendationCode === this.props.userData.uid) {
-        alert("유효하지 않은 추천인 코드 입니다.");
+        alert('유효하지 않은 추천인 코드 입니다.');
       } else {
         let { designerRecommendation, _id } = result.val();
         if (designerRecommendation) count = designerRecommendation;
@@ -241,20 +241,20 @@ class DesignerInfo extends Component {
         }
         await firebase
           .database()
-          .ref("users/" + designerRecommendationCode)
+          .ref('users/' + designerRecommendationCode)
           .update({ designerRecommendation: count });
       }
     }
 
     await firebase
       .database()
-      .ref("users/" + this.props.userData.uid)
+      .ref('users/' + this.props.userData.uid)
       .update(firebaseUserData);
 
     const formData = new fd();
-    formData.append("cert_mh", this.state.certFile1);
-    formData.append("cert_jg", this.state.certFile2);
-    formData.append("profile", this.state.profileFile);
+    formData.append('cert_mh', this.state.certFile1);
+    formData.append('cert_jg', this.state.certFile2);
+    formData.append('profile', this.state.profileFile);
     this.state.portfolioFile.forEach((p, index) => {
       formData.append(`portfolio${index + this.state.portfoliosNum}`, p);
     });
@@ -265,18 +265,18 @@ class DesignerInfo extends Component {
       formData,
       {
         headers: {
-          "Content-Type": "multipart/form-data"
+          'Content-Type': 'multipart/form-data'
         }
       }
     );
-    alert("성공적으로 신청되었습니다");
-    this.props.history.push("/designer/schedule");
+    alert('성공적으로 신청되었습니다. \n스케줄 등록으로 이동합니다.');
+    this.props.history.push('/designer/schedule');
   };
 
   render() {
     const isRegister = (
       <div className="uif_registered col-1">
-        <img style={{ width: "1.4rem" }} src={check_sm} alt="alt" />
+        <img style={{ width: '1.4rem' }} src={check_sm} alt="alt" />
         인증됨
       </div>
     );
@@ -284,7 +284,7 @@ class DesignerInfo extends Component {
       <div className="container-fluid d">
         <div className="d_bg">
           <div className="d_container">
-            <div style={{ color: "#4c91ba" }} className="u_title ">
+            <div style={{ color: '#4c91ba' }} className="u_title ">
               회원정보 수정
             </div>
             <Form className="m-5 d_info">

@@ -252,7 +252,7 @@ class DesignerInfo extends Component {
       formData,
       { headers: { 'Content-Type': 'multipart/form-data' } }
     );
-    alert('성공적으로 신청되었습니다');
+    alert('성공적으로 신청되었습니다. \n스케줄 등록으로 이동합니다.');
     this.props.history.push('designer/schedule');
   };
 
