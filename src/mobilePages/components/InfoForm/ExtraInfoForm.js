@@ -47,7 +47,7 @@ const ExtraInfoForm = props => {
     <div style={containerStyle}>
       <div style={labelStyle}>프로필/자기소개</div>
       <div style={fileAttachingContainerStyle}>
-        <label style={{ width: '50%', marginRight: '4%' }} for="profileImg">
+        <label style={{ width: '47.5%', marginRight: '4%' }} for="profileImg">
           <input
             style={defaultInputFileDisplayNone}
             id="profileImg"
@@ -70,9 +70,14 @@ const ExtraInfoForm = props => {
       <div style={portfolioContainerStyle}>
         {props.state.num > 0
           ? userData.portfolioImg.map((url, i) => (
-              <div style={fileAttachingInputStyle}>
+              <div
+                style={{
+                  ...fileAttachingInputStyle,
+                  width: '47.5%'
+                }}
+              >
                 <ImgPreview
-                  style={ImgPreviewStyle}
+                  style={{ ...ImgPreviewStyle }}
                   url={url}
                   key={i}
                   deletePortfolio={props.deletePortfolio}
@@ -80,7 +85,7 @@ const ExtraInfoForm = props => {
               </div>
             ))
           : null}
-        <label style={{ width: '50%', marginRight: '4%' }} for="portfolio">
+        <label style={{ width: '47.5%', marginRight: '4%' }} for="portfolio">
           <input
             style={defaultInputFileDisplayNone}
             id="portfolio"
@@ -113,8 +118,8 @@ const styles = {
     marginBottom: '0.2rem'
   },
   ImgPreviewStyle: {
-    maxWidth: '100%',
-    maxHeight: '100%'
+    width: '100%',
+    height: '100%'
   },
   defaultInputFileDisplayNone: {
     display: 'none'
@@ -142,6 +147,12 @@ const styles = {
     borderRadius: 5,
     border: 'solid 1px rgba(0, 0, 0, 0.1)',
     padding: '1rem'
+  },
+  portfolioContainerStyle: {
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between'
   }
 };
 

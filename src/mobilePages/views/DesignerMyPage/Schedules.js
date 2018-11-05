@@ -343,6 +343,25 @@ class Schedule extends Component {
               >
                 저장하기
               </div>
+              <div
+                style={{
+                  ...buttonStyle,
+                  marginTop: 0,
+                  color: 'rgb(76,145,186)',
+                  border: '2px solid rgb(76,145,186)',
+                  backgroundColor: 'white'
+                }}
+                onClick={
+                  this.props.userData._recruit
+                    ? () =>
+                        this.props.history.push(
+                          `/designerdetail/${this.props.userData._recruit}`
+                        )
+                    : () => alert('스케줄 등록을 먼저 진행해주세요')
+                }
+              >
+                내 카드 확인
+              </div>
             </div>
           </div>
           <AddCardModal

@@ -138,7 +138,7 @@ const DrawerItems = props => {
             예디찾기
           </div>
         </Link>
-        <Link to="/addDesigner">
+        <Link to="/whyDreamary">
           <div
             className="mobile-drawer-items mobile-drawer-gray"
             onClick={props.click}
