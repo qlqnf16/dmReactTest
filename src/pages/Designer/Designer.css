@@ -62,30 +62,35 @@
 }
 
 .label_style {
-    width: 50%;
-    height: 100%;
-    border: solid 2px rgba(0, 0, 0, 0.1);
-    background-color: white;
-    color: #1f3354;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 1.08;
-    font-size: 1.7rem;
-    cursor: pointer;
-  }
-  
+  width: 50%;
+  height: 100%;
+  border: solid 2px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  color: #1f3354;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.08;
+  font-size: 1.7rem;
+  cursor: pointer;
+}
+
 .on_label_style {
-    width: 50%;
-    height: 100%;
-    border: solid 2px #4c91ba;
-    background-color: transparent;
-    color: #1f3354;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 1.08;
-    font-size: 1.7rem;
-    cursor: pointer;
-    margin-bottom: 0
-  }
+  width: 50%;
+  height: 100%;
+  border: solid 2px #4c91ba;
+  background-color: transparent;
+  color: #1f3354;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.08;
+  font-size: 1.7rem;
+  cursor: pointer;
+  margin-bottom: 0;
+}
+
+.disabledButton {
+  background-color: rgba(0, 0, 0, 0.1) !important;
+  color: rgba(0, 0, 0, 0.4) !important;
+}

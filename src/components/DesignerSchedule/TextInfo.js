@@ -45,7 +45,6 @@ const TextInfo = props => {
         <div style={{ textAlign: 'center' }}>저장</div>
       </div>
       <div
-        // to={props.id ? `/designerdetail/${props.id}` : null}
         className="btn btn-success text-right d-inline"
         style={styles.saveButtonStyle}
         onClick={showMyCard}
