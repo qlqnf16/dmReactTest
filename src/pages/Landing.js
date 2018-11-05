@@ -14,6 +14,7 @@ import howtouse from '../assets/images/howtouse_web.png';
 import qmark1 from '../assets/images/Group2005.png';
 import qmark2 from '../assets/images/Group2006.png';
 import sponsor from '../assets/images/sponsor_logos.png';
+import download from '../assets/images/download_white.png';
 
 const items = [
   {
@@ -208,7 +209,7 @@ class Landing extends Component {
               </Link> */}
               <div style={{ display: 'flex' }}>
                 <a
-                  style={{ marginRight: '1%' }}
+                  style={{ marginRight: '1%', height: '48px' }}
                   href="https://goo.gl/forms/ZH7RU6NhLRNllEZk1"
                   target="_blank"
                   className="linkdeco"
@@ -221,20 +222,39 @@ class Landing extends Component {
                   href="https://docs.google.com/forms/d/e/1FAIpQLSeItk9iCRUtyrLL6Jjz79LkRaHiH0b2PK1byAAtCgH3q4_RXA/viewform"
                   target="_blank"
                   className="linkdeco"
+                  style={{ height: '48px' }}
                 >
                   <div style={{ width: 220 }} className="landing_cbutton">
                     고객 사전 등록
                   </div>
                 </a>
               </div>
+              <div style={{ display: 'flex' }}>
+                <a
+                  style={{ marginRight: '1%', height: '48px' }}
+                  href="https://drive.google.com/open?id=1deM6NFlJ5VCTEj5dgjDenSIHw8y5S9Gx"
+                  target="_blank"
+                  className="linkdeco"
+                >
+                  <div
+                    style={{
+                      width: 451.5,
+                      backgroundColor: 'rgba(0,0,0,0.5)',
+                      borderColor: 'white',
+                      color: 'white'
+                    }}
+                    className="landing_dbutton"
+                  >
+                    <img src={download} style={{ marginRight: '2%' }} />
+                    디자이너 등록 방법
+                  </div>
+                </a>
+              </div>
 
-              <div className="landing_ctext">
+              <div className="landing_ctext" style={{ marginTop: '17%' }}>
                 드리머리 - 대한민국 최초 예비헤어디자이너 & 대중 연결 플랫폼
               </div>
-              <div
-                className="landing_ctext"
-                style={{ fontSize: '11px', fontWeight: 'normal' }}
-              >
+              <div style={{ fontSize: '11px', fontWeight: 'normal' }}>
                 *드리머리에 속해있는 예비헤어디자이너들을 우리는{' '}
                 <span style={{ color: '#fffae3' }}>예디</span>
                 라고 부릅니다
