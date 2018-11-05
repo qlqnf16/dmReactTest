@@ -194,27 +194,6 @@ class Landing extends Component {
         </div> */}
         {/* 여기부터 랜딩 */}
         <div>
-          <div
-            style={{
-              position: 'fixed',
-              display: 'flex',
-              zIndex: '1',
-              width: '280px',
-              padding: '1%',
-              backgroundColor: '#dd6866',
-              fontSize: '1.2rem',
-              fontWeight: 'bold',
-              color: 'white',
-              borderRadius: '5px',
-              left: '15%',
-              top: '3.5%'
-            }}
-          >
-            <div style={{ marginRight: '5%', fontSize: '2.5rem' }}>⚠</div>{' '}
-            디자이너 사전 등록 기간입니다.
-            <br />
-            일부 기능이 작동하지 않을 수 있습니다.
-          </div>
           <Carousel
             activeIndex={activeIndex}
             next={this.next}
