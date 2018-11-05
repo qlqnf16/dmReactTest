@@ -320,7 +320,21 @@ class Schedule extends Component {
           <DesignerNav />
           <div className="m_containerStyle">
             <div style={containerStyle}>
-              <div style={titleStyle}>기본정보</div>
+              <div style={titleStyle}>
+                기본정보
+                <span
+                  style={{
+                    marginLeft: '1rem',
+                    fontSize: '1.3rem',
+                    color: '#dd6866'
+                  }}
+                >
+                  {this.props.userData.expiredAt &&
+                  this.props.userData.expiredAt > new Date().getTime()
+                    ? null
+                    : '※현재 사용중인 이용권이 없습니다. '}
+                </span>
+              </div>
               <TextInfo
                 state={this.state}
                 changeInput={e => this.handleInputChange(e)}
