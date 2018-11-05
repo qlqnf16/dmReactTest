@@ -151,11 +151,11 @@ class DesignerTicket extends Component {
               >
                 <TicketPurchaseButton purchaseHandler={this.purchaseHandler} />
                 <div className="row">
+                  <div className="col-12 mt-5" />
                   <div
-                    className="col-12 rf-tableBody"
-                    style={{ fontFamily: 'NanumSquareEB' }}
-                  />
-                  <div className="col-12 text-right rf-tableHead mb-3">
+                    style={{ color: '#4c91ba', border: 'none' }}
+                    className="col-12 mb-3 u_title"
+                  >
                     결제방법
                   </div>
                   <div className="col-12 px-0">

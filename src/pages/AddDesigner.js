@@ -171,12 +171,26 @@ class AddDesigner extends Component {
       isApproval: false,
       isRegister
     };
+    console.log(firebaseUserData);
+    // if (
+    //   Object.values(firebaseUserData).includes(undefined) ||
+    //   Object.values(firebaseUserData.birthday).includes('null') ||
+    //   addresses.length === 0
+    // )
+    //   return alert('채워지지 않은 정보가 있습니다');
+
+    if (!firebaseUserData.name) return alert('이름을 작성해주세요');
+    if (!firebaseUserData.email) return alert('이메일을 작성해주세요');
     if (
-      Object.values(firebaseUserData).includes(undefined) ||
       Object.values(firebaseUserData.birthday).includes('null') ||
-      addresses.length === 0
+      Object.values(firebaseUserData.birthday).includes(undefined)
     )
-      return alert('채워지지 않은 정보가 있습니다');
+      return alert('생년월일을 작성해주세요');
+    if (!firebaseUserData.phoneNumber)
+      return alert('휴대폰 번호를 작성해주세요');
+    if (!this.state.isRegister) return alert('휴대폰 인증을 먼저 해주세요');
+    if (Object.values(firebaseUserData.addresses).includes(undefined))
+      return alert('지역/샵주소를 작성해주세요');
 
     if (
       designerRecommendationCode &&
@@ -220,7 +234,9 @@ class AddDesigner extends Component {
       .database()
       .ref('users/' + this.props.userData.uid)
       .update(firebaseUserData);
-    alert('성공적으로 신청되었습니다');
+    alert(
+      '성공적으로 신청되었습니다. \n관리자의 승인을 거친 후 정상적으로 스케줄을 등록하실 수 있습니다.'
+    );
 
     const formData = new fd();
     formData.append('cert_mh', this.state.certFile1);

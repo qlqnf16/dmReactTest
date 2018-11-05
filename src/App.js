@@ -134,6 +134,8 @@ class App extends Component {
             await this.props.updateRedux('_tickets', data._tickets);
             await this.props.updateRedux('_reservations', data._reservations);
             await this.props.connectSocket();
+
+            // if (!userData.isRegister) this.props.history.push('/userInfo');
           });
         if (document.querySelector('iframe')) {
           document
@@ -154,7 +156,9 @@ class App extends Component {
 
   render() {
     const { width } = this.state;
-    const isMobile = width <= 500;
+    // const isMobile = width <= 500;
+    // 장막
+    const isMobile = false;
 
     // firebase에서 불러오기 전
     if (!this.state.madeRequest) {
