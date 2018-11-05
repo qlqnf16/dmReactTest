@@ -1,20 +1,8 @@
 import React, { Component } from 'react';
 import Moment from 'react-moment';
 import firebase from '../../config/Firebase';
+import axios from 'axios';
 class WaitDesigner extends Component {
-  state = {
-    penalty: null,
-    madeRequest: false
-  };
-  componentDidMount = () => {
-    if (!this.state.madeRequest) {
-      this.setState({
-        penalty: this.props.designer.penalty,
-        madeRequest: true
-      });
-    }
-  };
-
   approvalSubmit = async uid => {
     await firebase
       .database()
@@ -23,6 +11,13 @@ class WaitDesigner extends Component {
         isD: true,
         isApproval: true
       });
+
+    await axios.post(
+      `http://52.79.227.227:3030/users/${this.props.designer._id}/tickets`,
+      {
+        price: 28000
+      }
+    );
     alert('승인되었습니다');
   };
 

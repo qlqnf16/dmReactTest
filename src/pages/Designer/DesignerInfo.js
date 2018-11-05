@@ -21,6 +21,7 @@ class DesignerInfo extends Component {
       name,
       birthday,
       email,
+      gender,
       phoneNumber,
       untilDesigner,
       career,
@@ -39,6 +40,7 @@ class DesignerInfo extends Component {
       month: birthday && birthday.month,
       day: birthday && birthday.day,
       email,
+      gender,
       phoneNumber,
       untilDesigner,
       career,
@@ -230,7 +232,6 @@ class DesignerInfo extends Component {
       .database()
       .ref('users/' + this.props.userData.uid)
       .update(firebaseUserData);
-    alert('성공적으로 신청되었습니다');
 
     const formData = new fd();
     formData.append('cert_mh', this.state.certFile1);
@@ -250,6 +251,8 @@ class DesignerInfo extends Component {
         }
       }
     );
+    alert('성공적으로 신청되었습니다');
+    this.props.history.push('/designer/schedule');
   };
 
   render() {
