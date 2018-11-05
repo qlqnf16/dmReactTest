@@ -21,14 +21,14 @@ const TicketList = props => {
         <div
           key={key}
           onClick={() => props.ticketActivate(ticket._id)}
-          style={{ cursor: 'pointer' }}
+          style={{ cursor: 'pointer', marginLeft: '-2px' }}
         >
           사용하기
         </div>
       );
     }
     return (
-      <div className="ticket_box_row row" key={ticket.purchasedAt}>
+      <div className="ticket_box_row row text-center" key={ticket.purchasedAt}>
         <div className="col-2 ticket_box_line p-0">
           {ticket.price === 10000 ? '1개월 이용권' : '3개월 이용권'}
         </div>

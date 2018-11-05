@@ -30,6 +30,7 @@ class DetailCards extends Component {
                   addData={() => this.addData(key)}
                   loginToggle={this.props.loginToggle}
                   submitReservation={this.props.submitReservation}
+                  isLogin={this.props.isLogin}
                 />
               )
             : leftCards.push(
@@ -43,6 +44,7 @@ class DetailCards extends Component {
                   addData={() => this.addData(key)}
                   loginToggle={this.props.loginToggle}
                   submitReservation={this.props.submitReservation}
+                  isLogin={this.props.isLogin}
                 />
               );
           count++;

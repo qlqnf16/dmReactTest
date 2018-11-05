@@ -265,16 +265,18 @@ class InfoForm extends Component {
         </FormGroup>
         <FormGroup row>
           <div className="col-3 if_head">전화번호</div>
-          <div className="col-9">
+          <div className="col-8">
             <input
-              type="tel"
+              type="number"
               name="phoneNumber"
               id="phoneNumber"
               onChange={this.props.changeInput}
               value={userData.phoneNumber}
               className="if_input"
+              placeholder="휴대전화 번호를 - 없이 입력해주세요. ex) 01012345678"
             />
           </div>
+          {this.props.isRegister}
         </FormGroup>
         <FormGroup row>
           <div className="col-3 if_head">지역/샵주소</div>
@@ -308,6 +310,8 @@ class InfoForm extends Component {
               className="if_input"
               style={{ width: '17.7%', textAlign: 'center' }}
               placeholder="0"
+              min="0"
+              max="11"
             />
             <span
               className="if_detail"
@@ -328,6 +332,8 @@ class InfoForm extends Component {
               className="if_input"
               style={{ width: '17.7%', textAlign: 'center', marginLeft: '3px' }}
               placeholder="0"
+              min="0"
+              max="11"
             />{' '}
             <span
               className="if_detail"
@@ -353,6 +359,8 @@ class InfoForm extends Component {
               className="if_input"
               style={{ width: '17.7%', textAlign: 'center' }}
               placeholder="0"
+              min="0"
+              max="11"
             />{' '}
             <span
               className="if_detail"
@@ -369,6 +377,8 @@ class InfoForm extends Component {
               style={{ width: '17.7%', textAlign: 'center', marginLeft: '3px' }}
               value={userData.career % 12 ? userData.career % 12 : undefined}
               placeholder="0"
+              min="0"
+              max="11"
             />{' '}
             <span
               className="if_detail"

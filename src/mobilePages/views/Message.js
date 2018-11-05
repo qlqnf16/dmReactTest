@@ -77,7 +77,6 @@ class Message extends Component {
       const prev = data.filter(d => d.isDone || d.isCanceled);
       const sortData = future.concat(prev);
       const promises = [];
-      console.log(data);
       sortData.forEach(reservation => {
         socket.emit('join', { reservationId: reservation._id });
         promises.push(

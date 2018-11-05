@@ -12,9 +12,7 @@ class ChatBox extends Component {
     madeRequest: false
   };
 
-  componentDidMount() {
-    console.log(this.state);
-  }
+  componentDidMount() {}
 
   componentWillUnmount() {
     this.props.socket.emit('leaveChat', {
@@ -121,7 +119,6 @@ class ChatBox extends Component {
             }}
             onScroll={e => {
               if (!e.target.scrollTop && !this.state.madeRequest) {
-                console.log('i');
                 this.setState({ madeRequest: e.target.scrollHeight });
                 this.props.moreMessages(() => (this.state.madeRequest = false));
               }

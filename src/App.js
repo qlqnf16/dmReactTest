@@ -115,13 +115,13 @@ class App extends Component {
   };
 
   authListener() {
-    firebase.auth().onAuthStateChanged(user => {
+    firebase.auth().onAuthStateChanged(async user => {
       if (user && firebase.auth().currentUser) {
-        firebase
+        await firebase
           .database()
           .ref('/users/' + firebase.auth().currentUser.uid)
           .on('value', async res => {
-            this.setState({ madeRequest: true });
+            this.setState({ madeRequest: true, isLogin: true });
 
             // redux;
             let userData = res.val();
@@ -134,6 +134,8 @@ class App extends Component {
             await this.props.updateRedux('_tickets', data._tickets);
             await this.props.updateRedux('_reservations', data._reservations);
             await this.props.connectSocket();
+
+            // if (!userData.isRegister) this.props.history.push('/userInfo');
           });
         if (document.querySelector('iframe')) {
           document
@@ -143,6 +145,7 @@ class App extends Component {
       } else {
         // logout 하면 landing page로 이동
         this.props.history.push('/');
+        this.state.isLogin && window.location.reload();
         this.setState({ madeRequest: true });
 
         // redux
@@ -154,6 +157,8 @@ class App extends Component {
   render() {
     const { width } = this.state;
     const isMobile = width <= 500;
+    // 장막
+    // const isMobile = false;
 
     // firebase에서 불러오기 전
     if (!this.state.madeRequest) {
@@ -220,13 +225,7 @@ class App extends Component {
               />
               <Route
                 path="/addDesigner"
-                component={
-                  this.props.userData.uid
-                    ? this.props.userData.isRegister
-                      ? AddDesigner
-                      : UserInfo
-                    : WrongAccess
-                }
+                component={this.props.userData.uid ? AddDesigner : WrongAccess}
               />
               <Route
                 path="/coupon"
@@ -382,6 +381,12 @@ class App extends Component {
                 component={M_ReservationConfirm}
               />
               <Route path="/whyDreamary" component={M_WhyDreamary} />
+              <Route
+                path="/addDesigner"
+                component={
+                  this.props.userData.uid ? M_AddDesigner : M_WrongAccess
+                }
+              />
               {/* 로그인 했을 때만 */}
               <Route
                 path="/message"
@@ -413,16 +418,7 @@ class App extends Component {
                     : M_WrongAccess
                 }
               />
-              <Route
-                path="/addDesigner"
-                component={
-                  this.props.userData.uid
-                    ? this.props.userData.isRegister
-                      ? M_AddDesigner
-                      : M_UserInfo
-                    : M_WrongAccess
-                }
-              />
+
               <Route
                 path="/coupon"
                 component={

@@ -105,7 +105,6 @@ class Chat extends Component {
         msgNum: this.state.messages.length
       },
       (messages, checkPoints) => {
-        console.log(messages);
         this.setState({ messages, checkPoints });
         callback();
       }

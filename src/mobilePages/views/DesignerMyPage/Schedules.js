@@ -80,7 +80,6 @@ class Schedule extends Component {
   handleInputChange = event => {
     const target = event.target;
     const name = target.name;
-    console.log('inputChange');
     if (target.type !== 'checkbox') {
       if (target.name === 'since') {
         this.sinces[target.id] = Number(target.value);
@@ -321,10 +320,21 @@ class Schedule extends Component {
           <DesignerNav />
           <div className="m_containerStyle">
             <div style={containerStyle}>
-              <div onClick={() => this.totalSubmitHandler(recruitData)}>
-                저장
+              <div style={titleStyle}>
+                기본정보
+                <span
+                  style={{
+                    marginLeft: '1rem',
+                    fontSize: '1.3rem',
+                    color: '#dd6866'
+                  }}
+                >
+                  {this.props.userData.expiredAt &&
+                  this.props.userData.expiredAt > new Date().getTime()
+                    ? null
+                    : '※현재 사용중인 이용권이 없습니다. '}
+                </span>
               </div>
-              <div style={titleStyle}>기본정보</div>
               <TextInfo
                 state={this.state}
                 changeInput={e => this.handleInputChange(e)}
@@ -340,6 +350,31 @@ class Schedule extends Component {
                 onClick={this.addCardModalToggle}
               >
                 + 카드 추가하기
+              </div>
+              <div
+                style={buttonStyle}
+                onClick={() => this.totalSubmitHandler(recruitData)}
+              >
+                저장하기
+              </div>
+              <div
+                style={{
+                  ...buttonStyle,
+                  marginTop: 0,
+                  color: 'rgb(76,145,186)',
+                  border: '2px solid rgb(76,145,186)',
+                  backgroundColor: 'white'
+                }}
+                onClick={
+                  this.props.userData._recruit
+                    ? () =>
+                        this.props.history.push(
+                          `/designerdetail/${this.props.userData._recruit}`
+                        )
+                    : () => alert('스케줄 등록을 먼저 진행해주세요')
+                }
+              >
+                내 카드 확인
               </div>
             </div>
           </div>
@@ -374,11 +409,6 @@ class Schedule extends Component {
 }
 
 const styles = {
-  subtitleStyle: {
-    fontSize: '1.3rem',
-    color: '#4c91ba',
-    marginTop: '5%'
-  },
   titleStyle: {
     fontSize: '1.5rem',
     fontWeight: 'bold',
@@ -394,32 +424,6 @@ const styles = {
     flexDirection: 'column',
     textAlign: 'left'
   },
-  labelStyle: {
-    fontSize: '1.1rem',
-    fontWeight: 'bold',
-    color: '#1e3354',
-    marginTop: '1.5rem',
-    marginBottom: '0.2rem'
-  },
-  inputTextStyle: {
-    fontSize: '1.3rem',
-    color: '#1f3354',
-    padding: '0.7rem',
-    borderRadius: '5px',
-    border: 'solid 1px rgba(0, 0, 0, 0.1)'
-  },
-  buttonStyle: {
-    height: '3.9rem',
-    color: 'white',
-    fontSize: '1.4rem',
-    fontWeight: 'bold',
-    marginTop: '2.5rem',
-    marginBottom: '4rem',
-    borderRadius: 6,
-    backgroundColor: '#4c91ba',
-    textAlign: 'center',
-    lineHeight: '3.9rem'
-  },
   fileAttachingInputStyle: {
     height: 48,
     borderRadius: 5,
@@ -430,17 +434,26 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center'
+  },
+  buttonStyle: {
+    height: '3.9rem',
+    color: 'white',
+    fontSize: '1.4rem',
+    fontWeight: 'bold',
+    marginTop: '4rem',
+    marginBottom: '2rem',
+    borderRadius: 6,
+    backgroundColor: '#4c91ba',
+    textAlign: 'center',
+    lineHeight: '3.9rem'
   }
 };
 
 const {
-  subtitleStyle,
   titleStyle,
   containerStyle,
-  labelStyle,
-  inputTextStyle,
-  buttonStyle,
-  fileAttachingInputStyle
+  fileAttachingInputStyle,
+  buttonStyle
 } = styles;
 
 const mapStateToProps = ({ authentication: { userData } }) => {

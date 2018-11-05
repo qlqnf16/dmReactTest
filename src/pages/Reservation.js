@@ -64,7 +64,6 @@ class Reservation extends Component {
   };
 
   purchaseHandler(kind) {
-    console.log(this.state.method);
     const { IMP } = window;
     IMP.init('imp06037656');
     IMP.request_pay(

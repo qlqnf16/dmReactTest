@@ -141,7 +141,8 @@ const ScheduleCard = props => {
           <span style={{ fontWeight: 'bold' }}>헤어샵: </span> {props.card.shop}
         </div>
         <div style={{ fontSize: '1.2rem', margin: '0.5rem 0' }}>
-          <span style={{ fontWeight: 'bold' }}>사진촬영여부: </span> 적극응원
+          <span style={{ fontWeight: 'bold' }}>사진촬영여부: </span>{' '}
+          {props.card.picture}
         </div>
       </div>
     </div>

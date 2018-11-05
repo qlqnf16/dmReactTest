@@ -68,13 +68,19 @@ class Schedule extends Component {
         return alert('필수 서비스와 불가 서비스는 같을 수 없습니다');
     }
 
-    if (
-      Object.values(cardData).includes(undefined) ||
-      Object.values(cardData).includes('null') ||
-      Object.values(cardData).includes(NaN) ||
-      cardData.ableTimes.length === 0
-    )
-      return alert('채워지지 않은 정보가 있습니다');
+    // if (
+    //   Object.values(cardData).includes(undefined) ||
+    //   Object.values(cardData).includes('null') ||
+    //   Object.values(cardData).includes(NaN) ||
+    //   cardData.ableTimes.length === 0
+    // )
+    //   return alert('채워지지 않은 정보가 있습니다');
+
+    if (!cardData.date) return alert('날짜를 선택해주세요');
+    if (!cardData.shop) return alert('장소를 선택해주세요');
+    if (!cardData.ableTimes) return alert('가능한 시간대를 선택해주세요');
+    if (!cardData.picture) return alert('시간 촬영 여부를 선택해주세요');
+    if (!cardData.requireGender) return alert('희망 모델 성별을 선택해주세요');
 
     let newCards = this.state.newCards;
     let nCards = [];
@@ -88,11 +94,6 @@ class Schedule extends Component {
     let shops;
     shops = this.props.userData.addresses.map(address => address.extraAddress);
     recruitData['shops'] = shops;
-    if (
-      !this.props.userData.expiredAt ||
-      this.props.userData.expiredAt < new Date().getTime()
-    )
-      return alert('사용중인 이용권이 없습니다.');
     //안 채워진 정보 검증
     if (
       Object.values(recruitData).includes('') ||
@@ -155,6 +156,18 @@ class Schedule extends Component {
             <div className="d_container">
               <div style={{ color: '#4c91ba' }} className="u_title ">
                 스케줄 등록
+                <span
+                  style={{
+                    color: '#dd6866',
+                    fontSize: '1.6rem',
+                    marginLeft: '2rem'
+                  }}
+                >
+                  {this.props.userData.expiredAt &&
+                  this.props.userData.expiredAt > new Date().getTime()
+                    ? null
+                    : '※현재 사용중인 이용권이 없습니다. '}
+                </span>
               </div>
               <ScheduleBox
                 cards={this.state.cards}

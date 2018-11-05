@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import firebase from 'firebase';
+import firebase from '../config/Firebase';
 import axios from 'axios';
+import { connect } from 'react-redux';
+import * as actions from './../modules';
 import step2 from '../assets/images/step2.png';
 
 import DetailContent from '../components/DesignerDetail/DetailContent';
@@ -24,7 +26,12 @@ class DesginerDetail extends Component {
       const { data } = await axios.get(
         `http://52.79.227.227:3030/recruits/${this.props.match.params.id}`
       );
-      this.setState({ recruit: data, madeRequest: true });
+      this.setState({
+        recruit: data,
+        madeRequest: true,
+        isLogin: this.props.userData.uid
+      });
+      await this.authListener();
     }
     // firebase.auth().onAuthStateChanged(() => {
     //   this.offHandler();
@@ -42,6 +49,16 @@ class DesginerDetail extends Component {
       });
   };
 
+  authListener() {
+    firebase.auth().onAuthStateChanged(async user => {
+      if (user && firebase.auth().currentUser) {
+        this.setState({ isLogin: true });
+      } else {
+        this.setState({ isLogin: false });
+      }
+    });
+  }
+
   loginToggleHandler = () => {
     this.setState({ showLogin: !this.state.showLogin });
   };
@@ -58,6 +75,13 @@ class DesginerDetail extends Component {
     recruit,
     cardData
   ) => {
+    // 장막
+    if (true) return alert('아직 이용하실 수 없습니다.');
+
+    if (!this.state.isLogin && this.state.madeRequest) {
+      this.loginToggleHandler();
+      return;
+    }
     if (Object.values(serviceFormat).length === 0)
       return alert('받을 서비스를 선택해 주세요');
     if (!startTime) return alert('받을 시간을 선택해 주세요');
@@ -105,6 +129,7 @@ class DesginerDetail extends Component {
             recruit={this.state.recruit}
             loginToggle={this.loginToggleHandler}
             submitReservation={this.submitReservation}
+            isLogin={this.state.isLogin}
           />
         </div>
         <MyModal
@@ -122,4 +147,11 @@ class DesginerDetail extends Component {
   }
 }
 
-export default DesginerDetail;
+const mapStateToProps = ({ authentication: { userData } }) => {
+  return { userData };
+};
+
+export default connect(
+  mapStateToProps,
+  actions
+)(DesginerDetail);

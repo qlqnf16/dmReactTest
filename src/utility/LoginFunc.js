@@ -7,6 +7,7 @@ export const facebookLogin = async () => {
 
   try {
     await firebase.auth().signInWithPopup(provider);
+
     const currentUser = firebase.auth().currentUser;
     const { displayName, uid, email } = currentUser;
     const DBUserData = {
@@ -43,7 +44,15 @@ export const facebookLogin = async () => {
         .ref('users/' + uid)
         .update(firebaseUserData);
     }
-  } catch (error) {}
+  } catch (error) {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    console.log(errorCode, errorMessage);
+    if (errorCode === 'auth/account-exists-with-different-credential')
+      alert(
+        '이미 다른 플랫폼으로 가입한 적이 있는 이메일입니다. 해당 플랫폼으로 로그인해주세요.'
+      );
+  }
 };
 
 export const googleLogin = async () => {
@@ -86,7 +95,15 @@ export const googleLogin = async () => {
         .ref('users/' + uid)
         .update(firebaseUserData);
     }
-  } catch (error) {}
+  } catch (error) {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    console.log(errorCode, errorMessage);
+    if (errorCode === 'auth/account-exists-with-different-credential')
+      alert(
+        '이미 다른 플랫폼으로 가입한 적이 있는 이메일입니다. 해당 플랫폼으로 로그인해주세요.'
+      );
+  }
 };
 
 export const kakao_login_success = async (response, a) => {
@@ -138,7 +155,15 @@ export const kakao_login_success = async (response, a) => {
         .ref('users/' + data.uuid)
         .update(firebaseUserData);
     }
-  } catch (error) {}
+  } catch (error) {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    console.log(errorCode, errorMessage);
+    if (errorCode === 'auth/account-exists-with-different-credential')
+      alert(
+        '이미 다른 플랫폼으로 가입한 적이 있는 이메일입니다. 해당 플랫폼으로 로그인해주세요.'
+      );
+  }
 };
 
 export const kakao_login_fail = () => {};

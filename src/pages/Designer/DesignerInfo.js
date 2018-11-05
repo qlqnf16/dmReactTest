@@ -4,6 +4,8 @@ import InfoForm from '../../components/InfoForm/InfoForm';
 import InfoFormExtended from '../../components/InfoForm/InfoFormExtended';
 import { connect } from 'react-redux';
 import firebase from '../../config/Firebase';
+import check_sm from '../../assets/images/check_sm.png';
+
 import fd from 'form-data';
 import axios from 'axios';
 
@@ -19,6 +21,7 @@ class DesignerInfo extends Component {
       name,
       birthday,
       email,
+      gender,
       phoneNumber,
       untilDesigner,
       career,
@@ -37,6 +40,7 @@ class DesignerInfo extends Component {
       month: birthday && birthday.month,
       day: birthday && birthday.day,
       email,
+      gender,
       phoneNumber,
       untilDesigner,
       career,
@@ -84,23 +88,18 @@ class DesignerInfo extends Component {
     let file = e.target.files[0];
     switch (e.target.name) {
       case 'cert1':
-        if (!file) return this.setState({ certImg1: null, certFile1: null });
         this.setState({ certImg1: URL.createObjectURL(file), certFile1: file });
         break;
       case 'cert2':
-        if (!file) return this.setState({ certImg2: null, certFile2: null });
         this.setState({ certImg2: URL.createObjectURL(file), certFile2: file });
         break;
       case 'profileImg':
-        if (!file)
-          return this.setState({ profileImg: null, profileFile: null });
         this.setState({
           profileImg: URL.createObjectURL(file),
           profileFile: file
         });
         break;
       case 'portfolio':
-        if (!file) this.setState({ portfolioImg: null, portfolioFile: null });
         this.state.portfolioImg.push(URL.createObjectURL(file));
         this.state.portfolioFile.push(file);
         this.setState({ num: this.state.num + 1 });
@@ -154,6 +153,7 @@ class DesignerInfo extends Component {
   submitHandler = async () => {
     const {
       name,
+      gender,
       year,
       month,
       day,
@@ -169,6 +169,7 @@ class DesignerInfo extends Component {
 
     let firebaseUserData = {
       name,
+      gender,
       birthday: { year, month, day },
       email,
       phoneNumber,
@@ -179,13 +180,34 @@ class DesignerInfo extends Component {
       introduce
     };
 
+    // if (
+    //   Object.values(firebaseUserData).includes(undefined) ||
+    //   Object.values(firebaseUserData.birthday).includes(undefined) ||
+    //   Object.values(firebaseUserData.birthday).includes('null') ||
+    //   addresses.length === 0
+    // )
+    //   return alert('채워지지 않은 정보가 있습니다');
+
+    if (!firebaseUserData.name) return alert('이름을 작성해주세요');
+    if (!firebaseUserData.gender) return alert('성별을 작성해주세요');
+    if (!firebaseUserData.email) return alert('이메일을 작성해주세요');
     if (
-      Object.values(firebaseUserData).includes(undefined) ||
-      Object.values(firebaseUserData.birthday).includes(undefined) ||
       Object.values(firebaseUserData.birthday).includes('null') ||
-      addresses.length === 0
+      Object.values(firebaseUserData.birthday).includes(undefined)
     )
-      return alert('채워지지 않은 정보가 있습니다');
+      return alert('생년월일을 작성해주세요');
+    if (!firebaseUserData.phoneNumber)
+      return alert('휴대폰 번호를 작성해주세요');
+    if (firebaseUserData.phoneNumber.length !== 11)
+      return alert('정확한 휴대폰 번호를 입력해주세요');
+    if (!this.state.isRegister) return alert('휴대폰 인증을 먼저 해주세요');
+    if (Object.values(firebaseUserData.addresses).includes(undefined))
+      return alert('지역/샵주소를 작성해주세요');
+    if (!firebaseUserData.untilDesigner)
+      return alert('디자이너까지 남은 기간을 작성해주세요');
+    if (!firebaseUserData.career) return alert('미용 경력을 작성해주세요');
+    if (!firebaseUserData.introduce) return alert('자기 소개를 작성해주세요');
+
     if (
       designerRecommendationCode &&
       !this.props.userData.designerRecommendationCode
@@ -228,7 +250,6 @@ class DesignerInfo extends Component {
       .database()
       .ref('users/' + this.props.userData.uid)
       .update(firebaseUserData);
-    alert('성공적으로 신청되었습니다');
 
     const formData = new fd();
     formData.append('cert_mh', this.state.certFile1);
@@ -248,9 +269,17 @@ class DesignerInfo extends Component {
         }
       }
     );
+    alert('성공적으로 신청되었습니다. \n스케줄 등록으로 이동합니다.');
+    this.props.history.push('/designer/schedule');
   };
 
   render() {
+    const isRegister = (
+      <div className="uif_registered col-1">
+        <img style={{ width: '1.4rem' }} src={check_sm} alt="alt" />
+        인증됨
+      </div>
+    );
     return (
       <div className="container-fluid d">
         <div className="d_bg">
@@ -267,10 +296,11 @@ class DesignerInfo extends Component {
                 certFile2={this.state.certFile2}
                 imgChange={e => this.handleImgChange(e)}
                 changeInput={e => this.handleInputChange(e)}
-                checked={!this.state.gender ? 'male' : this.state.gender}
+                checked={!this.state.gender ? null : this.state.gender}
                 handleAddress={this.handleAddress}
                 addressAddHandler={this.addressAddHandler}
                 addressRemoveHandler={this.addressRemoveHandler}
+                isRegister={isRegister}
               />
               <InfoFormExtended
                 state={this.state}
@@ -297,6 +327,7 @@ class DesignerInfo extends Component {
                         : e => this.handleInputChange(e)
                     }
                     className="if_input"
+                    placeholder="선택사항"
                   />
                 </div>
               </FormGroup>

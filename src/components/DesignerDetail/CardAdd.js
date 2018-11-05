@@ -10,7 +10,8 @@ class CardAdd extends Component {
     cut: false,
     perm: false,
     dye: false,
-    time: null
+    time: null,
+    isLogin: this.props.isLogin
   };
 
   componentDidMount = () => {
@@ -139,6 +140,17 @@ class CardAdd extends Component {
     }
     service = service.substring(1);
 
+    const clickButton = () =>
+      this.props.submitReservation(
+        price,
+        time,
+        service,
+        serviceFormat,
+        this.state.time,
+        this.props.recruit,
+        this.props.cardData
+      );
+
     return (
       <div className="">
         <div className="border-top border-bottom py-3 row m-2 ">
@@ -159,23 +171,7 @@ class CardAdd extends Component {
           </div>
         </div>
         <div className=" py-3 row m-2">{timeButtons}</div>
-        <div
-          className="submit_button"
-          onClick={
-            !this.props.userData.name
-              ? this.props.loginToggle
-              : () =>
-                  this.props.submitReservation(
-                    price,
-                    time,
-                    service,
-                    serviceFormat,
-                    this.state.time,
-                    this.props.recruit,
-                    this.props.cardData
-                  )
-          }
-        >
+        <div className="submit_button" onClick={clickButton}>
           <div className="row p-3" style={{ alignItems: 'flex-end' }}>
             <div className="col-7 m-0">
               <p className="time mb-2">예상 소요시간</p>

@@ -139,7 +139,9 @@ class Schedule extends Component {
                   fontSize: '1.1rem'
                 }}
               >
-                {moment(this.props.date).format('YYYY/MM/DD')}
+                {!this.props.date
+                  ? '날짜를 선택해주세요'
+                  : moment(this.props.date).format('YYYY/MM/DD')}
               </div>
             </div>
             <FormGroup row>
@@ -429,6 +431,7 @@ class Schedule extends Component {
                 id="normal"
                 className="length_input text-right"
               />
+              원
             </div>
             <div className="col-4" />
             <div className="col-4 text-left" style={{ paddingLeft: '3.8rem' }}>
@@ -441,6 +444,7 @@ class Schedule extends Component {
                 id="normal"
                 className="length_input text-right"
               />
+              원
             </div>
           </div>
           <div className="length_price row">
@@ -454,7 +458,7 @@ class Schedule extends Component {
                 id="chin"
                 className="length_input text-right"
               />
-              <span style={plus}>+</span>
+              원<span style={plus}>+</span>
             </div>
             <div className="col-4" />
 
@@ -468,7 +472,7 @@ class Schedule extends Component {
                 id="chin"
                 className="length_input text-right"
               />
-              <span style={{ ...plus, left: '41%' }}>+</span>
+              원<span style={{ ...plus, left: '41%' }}>+</span>
             </div>
           </div>
           <div className="length_price row">
@@ -482,7 +486,7 @@ class Schedule extends Component {
                 id="shoulder"
                 className="length_input text-right"
               />
-              <span style={plus}>+</span>
+              원<span style={plus}>+</span>
             </div>
             <div className="col-4" />
 
@@ -496,7 +500,7 @@ class Schedule extends Component {
                 id="shoulder"
                 className="length_input text-right"
               />
-              <span style={{ ...plus, left: '41%' }}>+</span>
+              원<span style={{ ...plus, left: '41%' }}>+</span>
             </div>
           </div>
           <div className="length_price row no-border">
@@ -510,7 +514,7 @@ class Schedule extends Component {
                 id="chest"
                 className="length_input text-right"
               />
-              <span style={plus}>+</span>
+              원<span style={plus}>+</span>
             </div>
             <div className="col-4" />
 
@@ -524,7 +528,7 @@ class Schedule extends Component {
                 id="chest"
                 className="length_input text-right"
               />
-              <span style={{ ...plus, left: '41%' }}>+</span>
+              원<span style={{ ...plus, left: '41%' }}>+</span>
             </div>
           </div>
 

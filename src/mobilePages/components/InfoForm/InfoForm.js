@@ -205,14 +205,17 @@ class InfoForm extends Component {
           <div style={labelStyle}>생년월일</div>
           {calendar}
           <div style={labelStyle}>전화번호</div>
-          <input
-            style={inputTextStyle}
-            type="tel"
-            name="phoneNumber"
-            id="phoneNumber"
-            onChange={this.props.changeInput}
-            value={userData.phoneNumber}
-          />
+          <div style={{ display: 'flex' }}>
+            <input
+              style={{ ...inputTextStyle, width: '78.7%' }}
+              type="number"
+              name="phoneNumber"
+              id="phoneNumber"
+              onChange={this.props.changeInput}
+              value={userData.phoneNumber}
+            />
+            {this.props.isRegister}
+          </div>
           <div style={labelStyle}>샵주소</div>
           {this.addressSelector()}
           <div

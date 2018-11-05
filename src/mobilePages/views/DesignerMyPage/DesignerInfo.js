@@ -12,8 +12,13 @@ class DesignerInfo extends Component {
   constructor(props) {
     super(props);
     // redux에서 유저 정보 추출 후, state에 담기
+    const portfolios = [];
+    for (let i = 0; this.props.userData[`portfolio${i}`]; i++) {
+      portfolios.push(this.props.userData[`portfolio${i}`]);
+    }
     let {
       name,
+      gender,
       birthday,
       email,
       phoneNumber,
@@ -21,11 +26,15 @@ class DesignerInfo extends Component {
       career,
       careerDetail,
       addresses,
-      designerRecommendationCode
+      designerRecommendationCode,
+      profile,
+      cert_mh,
+      cert_jg
     } = this.props.userData;
     if (!addresses) addresses = [];
     this.state = {
       name,
+      gender,
       email,
       phoneNumber,
       untilDesigner,
@@ -34,18 +43,19 @@ class DesignerInfo extends Component {
       year: birthday && birthday.year,
       month: birthday && birthday.month,
       day: birthday && birthday.day,
-      profileImg: null,
+      profileImg: profile,
       profileFile: null,
-      certImg1: null,
+      certImg1: cert_mh,
       certFile1: null,
-      certImg2: null,
+      certImg2: cert_jg,
       certFile2: null,
-      portfolioImg: [],
+      portfolioImg: portfolios,
       portfolioFile: [],
-      num: 0,
+      num: portfolios.length,
       addressNum: addresses.length + 1,
       addresses,
-      designerRecommendationCode
+      designerRecommendationCode,
+      portfoliosNum: portfolios.length
     };
   }
 
@@ -129,6 +139,7 @@ class DesignerInfo extends Component {
   submitHandler = async () => {
     const {
       name,
+      gender,
       year,
       month,
       day,
@@ -144,6 +155,7 @@ class DesignerInfo extends Component {
 
     let firebaseUserData = {
       name,
+      gender,
       birthday: { year, month, day },
       email,
       phoneNumber,
@@ -154,11 +166,31 @@ class DesignerInfo extends Component {
       introduce
     };
 
+    // if (
+    //   Object.values(firebaseUserData).includes(undefined) ||
+    //   addresses.length === 0
+    // )
+    //   return alert('채워지지 않은 정보가 있습니다');
+
+    if (!firebaseUserData.name) return alert('이름을 작성해주세요');
+    if (!firebaseUserData.gender) return alert('성별을 작성해주세요');
+    if (!firebaseUserData.email) return alert('이메일을 작성해주세요');
     if (
-      Object.values(firebaseUserData).includes(undefined) ||
-      addresses.length === 0
+      Object.values(firebaseUserData.birthday).includes('null') ||
+      Object.values(firebaseUserData.birthday).includes(undefined)
     )
-      return alert('채워지지 않은 정보가 있습니다');
+      return alert('생년월일을 작성해주세요');
+    if (!firebaseUserData.phoneNumber)
+      return alert('휴대폰 번호를 작성해주세요');
+    if (firebaseUserData.phoneNumber.length !== 11)
+      return alert('정확한 휴대폰 번호를 입력해주세요');
+    if (!this.state.isRegister) return alert('휴대폰 인증을 먼저 해주세요');
+    if (Object.values(firebaseUserData.addresses).includes(undefined))
+      return alert('지역/샵주소를 작성해주세요');
+    if (!firebaseUserData.untilDesigner)
+      return alert('디자이너까지 남은 기간을 작성해주세요');
+    if (!firebaseUserData.career) return alert('미용 경력을 작성해주세요');
+    if (!firebaseUserData.introduce) return alert('자기 소개를 작성해주세요');
 
     // 추천인 로직
     // 전에 추천인을 입력한 적이 없고, 추천인을 작성했을 때,
@@ -208,7 +240,6 @@ class DesignerInfo extends Component {
       .database()
       .ref('users/' + this.props.userData.uid)
       .update(firebaseUserData);
-    alert('성공적으로 신청되었습니다');
 
     //img 업로드
     const formData = new fd();
@@ -221,6 +252,8 @@ class DesignerInfo extends Component {
       formData,
       { headers: { 'Content-Type': 'multipart/form-data' } }
     );
+    alert('성공적으로 신청되었습니다. \n스케줄 등록으로 이동합니다.');
+    this.props.history.push('designer/schedule');
   };
 
   render() {
@@ -230,11 +263,34 @@ class DesignerInfo extends Component {
       containerStyle,
       labelStyle,
       inputTextStyle,
-      buttonStyle
+      buttonStyle,
+      phoneButtonStyle
     } = styles;
+
+    let isRegister;
+    if (!this.state.isRegister) {
+      isRegister = (
+        <div onClick={this.phoneCert} style={phoneButtonStyle}>
+          인증
+        </div>
+      );
+    } else {
+      isRegister = (
+        <div
+          style={{
+            ...phoneButtonStyle,
+            backgroundColor: 'transparent',
+            color: '#66ce82',
+            border: 'solid 1px #66ce82'
+          }}
+        >
+          인증됨
+        </div>
+      );
+    }
     return (
       <div className="m_containerStyle">
-      <DesignerNav />
+        <DesignerNav />
         <div style={containerStyle}>
           <div style={titleStyle}>회원 정보 관리</div>
           <div style={subtitleStyle}>회원 정보 수정</div>
@@ -246,6 +302,7 @@ class DesignerInfo extends Component {
           addressAddHandler={this.addressAddHandler}
           addressRemoveHandler={this.addressRemoveHandler}
           handleImgChange={this.handleImgChange}
+          isRegister={isRegister}
         />
         <ExtraInfoForm
           state={this.state}
@@ -322,6 +379,19 @@ const styles = {
     backgroundColor: '#4c91ba',
     textAlign: 'center',
     lineHeight: '3.9rem'
+  },
+  phoneButtonStyle: {
+    display: 'inline-block',
+    width: '18%',
+    marginLeft: '3.3%',
+    padding: '2.3%',
+    border: '1px solid #dd6866',
+    backgroundColor: '#dd6866',
+    borderRadius: '5px',
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: '1.3rem',
+    textAlign: 'center'
   }
 };
 

@@ -93,6 +93,7 @@ class DetailCard extends Component {
           recruit={this.props.recruit}
           loginToggle={this.props.loginToggle}
           submitReservation={this.props.submitReservation}
+          isLogin={this.props.isLogin}
         />
       );
       dcard += 'dcard_selected';
@@ -129,7 +130,8 @@ class DetailCard extends Component {
             {this.props.cardData.shop}
           </h5>
           <h5 className="m-0">
-            <span style={{ fontWeight: 'bold' }}>조건</span> : 적극응원
+            <span style={{ fontWeight: 'bold' }}>조건</span> :{' '}
+            {this.props.cardData.picture}
             <img
               alt="alt"
               className="question"

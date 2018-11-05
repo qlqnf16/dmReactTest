@@ -34,7 +34,7 @@ class DesignerCoupon extends Component {
         <DesignerNav />
         <div className="m_containerStyle">
           <div style={containerStyle}>
-            <div style={titleStyle}>프로모션</div>
+            {/* <div style={titleStyle}>프로모션</div>
             <div style={subtitleStyle}>프로모션 코드/포인트 적립</div>
             <div>
               <div style={labelStyle}>프로모션 코드 입력</div>
@@ -50,7 +50,7 @@ class DesignerCoupon extends Component {
                   포인트 적립
                 </div>
               </div>
-            </div>
+            </div> */}
             <div>
               <div style={labelStyle}>추천인 코드</div>
               <div>
