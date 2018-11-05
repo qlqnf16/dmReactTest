@@ -33,7 +33,7 @@ const styles = {
 
 const TextInfo = props => {
   const showMyCard = props.id
-    ? this.props.history.push(`/designerdetail/${props.id}`)
+    ? () => this.props.history.push(`/designerdetail/${props.id}`)
     : () => alert('스케줄 등록을 먼저 진행해주세요');
   return (
     <div className="mt-5">
