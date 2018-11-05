@@ -24,3 +24,37 @@
   border: none;
   font-size: 2rem;
 }
+
+/* 디자이너 사전등록 임시 */
+
+.temporary_alert {
+  position: absolute;
+  display: flex;
+  z-index: 50;
+  width: 280px;
+  padding: 1%;
+  background-color: #dd6866;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: white;
+  border-radius: 5px;
+  left: 5%;
+  top: 85%;
+  transition: 0.3s;
+}
+
+.temporary_alert:hover {
+  opacity: 0;
+}
+/* position: 'absolute',
+              display: 'flex',
+              zIndex: '50',
+              width: '280px',
+              padding: '1%',
+              backgroundColor: '#dd6866',
+              fontSize: '1.2rem',
+              fontWeight: 'bold',
+              color: 'white',
+              borderRadius: '5px',
+              left: '5%',
+              top: '85%' */
