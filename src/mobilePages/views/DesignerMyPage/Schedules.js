@@ -342,7 +342,7 @@ class Schedule extends Component {
                 style={buttonStyle}
                 onClick={() => this.totalSubmitHandler(recruitData)}
               >
-                저장하기
+                내 모든 스케줄 저장하기
               </div>
             </div>
           </div>
