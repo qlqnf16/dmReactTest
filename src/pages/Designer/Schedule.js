@@ -94,11 +94,6 @@ class Schedule extends Component {
     let shops;
     shops = this.props.userData.addresses.map(address => address.extraAddress);
     recruitData['shops'] = shops;
-    if (
-      !this.props.userData.expiredAt ||
-      this.props.userData.expiredAt < new Date().getTime()
-    )
-      return alert('사용중인 이용권이 없습니다.');
     //안 채워진 정보 검증
     if (
       Object.values(recruitData).includes('') ||

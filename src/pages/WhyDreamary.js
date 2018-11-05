@@ -37,7 +37,11 @@ class WhyDreamary extends Component {
                 에서 쉽고 빠르게 구해보세요.
               </div>
               <div className="why_back">
-                <div onClick={() => this.clickButton()} className="why_button">
+                <div
+                  onClick={() => this.clickButton()}
+                  className="why_button"
+                  style={{ cursor: 'pointer' }}
+                >
                   지금 바로 등록하기!
                 </div>
                 <div className="why_content1">

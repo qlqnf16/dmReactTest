@@ -183,13 +183,34 @@ class DesignerInfo extends Component {
       introduce
     };
 
+    // if (
+    //   Object.values(firebaseUserData).includes(undefined) ||
+    //   Object.values(firebaseUserData.birthday).includes(undefined) ||
+    //   Object.values(firebaseUserData.birthday).includes('null') ||
+    //   addresses.length === 0
+    // )
+    //   return alert('채워지지 않은 정보가 있습니다');
+
+    if (!firebaseUserData.name) return alert('이름을 작성해주세요');
+    if (!firebaseUserData.gender) return alert('성별을 작성해주세요');
+    if (!firebaseUserData.email) return alert('이메일을 작성해주세요');
     if (
-      Object.values(firebaseUserData).includes(undefined) ||
-      Object.values(firebaseUserData.birthday).includes(undefined) ||
       Object.values(firebaseUserData.birthday).includes('null') ||
-      addresses.length === 0
+      Object.values(firebaseUserData.birthday).includes(undefined)
     )
-      return alert('채워지지 않은 정보가 있습니다');
+      return alert('생년월일을 작성해주세요');
+    if (!firebaseUserData.phoneNumber)
+      return alert('휴대폰 번호를 작성해주세요');
+    if (firebaseUserData.phoneNumber.length !== 11)
+      return alert('정확한 휴대폰 번호를 입력해주세요');
+    if (!this.state.isRegister) return alert('휴대폰 인증을 먼저 해주세요');
+    if (Object.values(firebaseUserData.addresses).includes(undefined))
+      return alert('지역/샵주소를 작성해주세요');
+    if (!firebaseUserData.untilDesigner)
+      return alert('디자이너까지 남은 기간을 작성해주세요');
+    if (!firebaseUserData.career) return alert('미용 경력을 작성해주세요');
+    if (!firebaseUserData.introduce) return alert('자기 소개를 작성해주세요');
+
     if (
       designerRecommendationCode &&
       !this.props.userData.designerRecommendationCode

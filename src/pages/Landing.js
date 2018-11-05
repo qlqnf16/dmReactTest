@@ -203,9 +203,31 @@ class Landing extends Component {
               style={{ background: 'transparent' }}
             >
               <div className="landing_ctitle" />
-              <Link to="/designerList" className="linkdeco">
+              {/* <Link to="/designerList" className="linkdeco">
                 <div className="landing_cbutton">예디 찾기</div>
-              </Link>
+              </Link> */}
+              <div style={{ display: 'flex' }}>
+                <a
+                  style={{ marginRight: '1%' }}
+                  href="https://goo.gl/forms/ZH7RU6NhLRNllEZk1"
+                  target="_blank"
+                  className="linkdeco"
+                >
+                  <div style={{ width: 220 }} className="landing_cbutton">
+                    디자이너 사전 등록
+                  </div>
+                </a>
+                <a
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSeItk9iCRUtyrLL6Jjz79LkRaHiH0b2PK1byAAtCgH3q4_RXA/viewform"
+                  target="_blank"
+                  className="linkdeco"
+                >
+                  <div style={{ width: 220 }} className="landing_cbutton">
+                    고객 사전 등록
+                  </div>
+                </a>
+              </div>
+
               <div className="landing_ctext">
                 드리머리 - 대한민국 최초 예비헤어디자이너 & 대중 연결 플랫폼
               </div>
