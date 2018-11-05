@@ -254,7 +254,13 @@ class Landing extends Component {
               <div className="landing_ctext" style={{ marginTop: '17%' }}>
                 드리머리 - 대한민국 최초 예비헤어디자이너 & 대중 연결 플랫폼
               </div>
-              <div style={{ fontSize: '11px', fontWeight: 'normal' }}>
+              <div
+                style={{
+                  fontSize: '11px',
+                  fontWeight: 'normal',
+                  color: 'white'
+                }}
+              >
                 *드리머리에 속해있는 예비헤어디자이너들을 우리는{' '}
                 <span style={{ color: '#fffae3' }}>예디</span>
                 라고 부릅니다
