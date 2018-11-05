@@ -161,6 +161,18 @@ class Schedule extends Component {
             <div className="d_container">
               <div style={{ color: '#4c91ba' }} className="u_title ">
                 스케줄 등록
+                <span
+                  style={{
+                    color: '#dd6866',
+                    fontSize: '1.6rem',
+                    marginLeft: '2rem'
+                  }}
+                >
+                  {this.props.userData.expiredAt ||
+                  this.props.userData.expiredAt < new Date().getTime()
+                    ? null
+                    : '※현재 사용중인 이용권이 없습니다. '}
+                </span>
               </div>
               <ScheduleBox
                 cards={this.state.cards}

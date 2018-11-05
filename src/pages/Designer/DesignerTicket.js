@@ -155,7 +155,10 @@ class DesignerTicket extends Component {
                     className="col-12 rf-tableBody"
                     style={{ fontFamily: 'NanumSquareEB' }}
                   />
-                  <div className="col-12 text-right rf-tableHead mb-3">
+                  <div
+                    className="col-12 text-right rf-tableHead mb-3"
+                    style={{ borderRight: '0' }}
+                  >
                     결제방법
                   </div>
                   <div className="col-12 px-0">

@@ -110,7 +110,11 @@ class Navitems extends Component {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to={'/designerList'} className="">
+            <NavLink
+              onClick={() => alert('아직 이용하실 수 없습니다.')}
+              className=""
+            >
+              {/* <NavLink tag={Link} to={'/designerList'} className=""> */}
               예디찾기
             </NavLink>
           </NavItem>
@@ -125,7 +129,7 @@ class Navitems extends Component {
             </DropdownToggle>
             <DropdownMenu right className="dropdownMenu">
               <DropdownItem>
-                <NavLink tag={Link} to={'/reservations'}>
+                <NavLink tag={Link} to={'/userInfo'}>
                   마이페이지
                 </NavLink>
               </DropdownItem>
@@ -141,7 +145,11 @@ class Navitems extends Component {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to={'/message'} className=" message_img">
+            <NavLink
+              onClick={() => alert('아직 이용하실 수 없습니다.')}
+              className=" message_img"
+            >
+              {/* <NavLink tag={Link} to={'/message'} className=" message_img"> */}
               <img alt="alt" src={message_x} style={{ width: '100%' }} />
               {this.state.newMessage ? (
                 <div
@@ -170,7 +178,11 @@ class Navitems extends Component {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to={'/designer/reservations'} className="">
+            <NavLink
+              onClick={() => alert('아직 이용하실 수 없습니다.')}
+              className=""
+            >
+              {/* <NavLink tag={Link} to={'/designer/reservations'} className=""> */}
               예약관리
             </NavLink>
           </NavItem>
@@ -226,7 +238,11 @@ class Navitems extends Component {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to={'/designerList'} className="">
+            <NavLink
+              onClick={() => alert('아직 이용하실 수 없습니다.')}
+              className=""
+            >
+              {/* <NavLink tag={Link} to={'/designerList'} className=""> */}
               예디찾기
             </NavLink>
           </NavItem>
