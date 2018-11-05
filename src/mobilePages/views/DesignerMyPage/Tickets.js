@@ -103,6 +103,29 @@ class DesignerTicket extends Component {
     await this.reloadTicket();
   };
 
+  inputChangeHandler = event => {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+
+    this.setState({ [name]: value });
+  };
+
+  couponSubmit = async () => {
+    try {
+      await axios.patch(
+        `http://52.79.227.227:3030/coupons/${this.state.coupon}`,
+        {
+          _user: this.props.userData._id,
+          isD: this.props.userData.isD
+        }
+      );
+      alert('쿠폰이 적용 되었습니다.');
+    } catch (err) {
+      alert('유효하지 않은 쿠폰번호 입니다.');
+    }
+  };
+
   render() {
     return (
       <div>
@@ -117,6 +140,19 @@ class DesignerTicket extends Component {
             />
             <div style={subtitleStyle}>이용권 구매</div>
             <TicketPurchaseButton purchaseHandler={this.purchaseHandler} />
+            <div style={subtitleStyle}>프로모션 코드 입력</div>
+            <div>
+              <input
+                style={inputTextStyle}
+                onChange={e => this.inputChangeHandler(e)}
+                type="text"
+                name="coupon"
+                id="coupon"
+              />
+              <div style={buttonStyle} onClick={() => this.couponSubmit()}>
+                포인트 적립
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -144,10 +180,37 @@ const styles = {
     fontSize: '1.3rem',
     fontWeight: 'bold',
     color: '#1f3354'
+  },
+  buttonStyle: {
+    display: 'inline-block',
+    marginLeft: '3.3%',
+    padding: '2.3%',
+    width: '30%',
+    border: '1px solid #4c91ba',
+    backgroundColor: '#4c91ba',
+    borderRadius: '5px',
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: '1.3rem',
+    textAlign: 'center'
+  },
+  inputTextStyle: {
+    fontSize: '1.3rem',
+    color: '#1f3354',
+    padding: '0.7rem',
+    borderRadius: '5px',
+    border: 'solid 1px rgba(0, 0, 0, 0.1)',
+    width: '66.7%'
   }
 };
 
-const { containerStyle, titleStyle, subtitleStyle } = styles;
+const {
+  containerStyle,
+  titleStyle,
+  subtitleStyle,
+  inputTextStyle,
+  buttonStyle
+} = styles;
 
 const mapStateToProps = ({ authentication: { userData } }) => {
   return { userData };

@@ -88,23 +88,18 @@ class DesignerInfo extends Component {
     let file = e.target.files[0];
     switch (e.target.name) {
       case 'cert1':
-        if (!file) return this.setState({ certImg1: null, certFile1: null });
         this.setState({ certImg1: URL.createObjectURL(file), certFile1: file });
         break;
       case 'cert2':
-        if (!file) return this.setState({ certImg2: null, certFile2: null });
         this.setState({ certImg2: URL.createObjectURL(file), certFile2: file });
         break;
       case 'profileImg':
-        if (!file)
-          return this.setState({ profileImg: null, profileFile: null });
         this.setState({
           profileImg: URL.createObjectURL(file),
           profileFile: file
         });
         break;
       case 'portfolio':
-        if (!file) this.setState({ portfolioImg: null, portfolioFile: null });
         this.state.portfolioImg.push(URL.createObjectURL(file));
         this.state.portfolioFile.push(file);
         this.setState({ num: this.state.num + 1 });
@@ -158,6 +153,7 @@ class DesignerInfo extends Component {
   submitHandler = async () => {
     const {
       name,
+      gender,
       year,
       month,
       day,
@@ -173,6 +169,7 @@ class DesignerInfo extends Component {
 
     let firebaseUserData = {
       name,
+      gender,
       birthday: { year, month, day },
       email,
       phoneNumber,
@@ -272,7 +269,7 @@ class DesignerInfo extends Component {
         }
       }
     );
-    alert('성공적으로 신청되었습니다');
+    alert('성공적으로 신청되었습니다. \n스케줄 등록으로 이동합니다.');
     this.props.history.push('/designer/schedule');
   };
 
