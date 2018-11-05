@@ -20,7 +20,7 @@ class About extends Component {
         <iframe
           width="1280"
           height="720"
-          src="https://www.youtube.com/embed/TJeCHWzgfgs?autohide=1&autoplay=1&loop=1&rel=0&controls=0&modestbranding=0&showinfo=0"
+          src="https://www.youtube.com/embed/jepipiX0KN8?autohide=1&autoplay=1&loop=1&rel=0&controls=0&modestbranding=0&showinfo=0"
           frameborder="0"
           allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen
