@@ -102,7 +102,6 @@ class Navitems extends Component {
         this.props.userData.isApproval === false
           ? '예디 승인 대기중입니다'
           : `반갑습니다 ${this.props.userData.name}님`;
-
       let adminTap = this.props.userData.isAdmin ? (
         <NavItem>
           <NavLink tag={Link} to={'/admin/userList'} className="">

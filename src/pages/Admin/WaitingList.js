@@ -50,10 +50,10 @@ class WaitingList extends Component {
                 <th>디자이너까지 남은 기간</th>
                 <th>휴대폰</th>
                 <th>가입일</th>
-                <th>프로필 사진</th>
                 <th>자격증</th>
                 <th>면허증</th>
                 <th>승인</th>
+                <th>미승인</th>
               </tr>
             </thead>
             <tbody>{WaitDesignerList}</tbody>
