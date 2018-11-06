@@ -135,7 +135,7 @@ class Landing extends Component {
               );
             })}
             captionText=""
-            className='landing_caption'
+            className='d-block landing_caption'
           />
         </CarouselItem>
       );
