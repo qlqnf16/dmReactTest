@@ -119,11 +119,12 @@ class Navitems extends Component {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink
-              onClick={() => alert('아직 이용하실 수 없습니다.')}
+            {/* <NavLink
+              // 장막
+              // onClick={() => alert('아직 이용하실 수 없습니다.')}
               className=""
-            >
-              {/* <NavLink tag={Link} to={'/designerList'} className=""> */}
+            > */}
+            <NavLink tag={Link} to={'/designerList'} className="">
               예디찾기
             </NavLink>
           </NavItem>
@@ -155,7 +156,7 @@ class Navitems extends Component {
           </NavItem>
           <NavItem>
             <NavLink
-              onClick={() => alert('아직 이용하실 수 없습니다.')}
+              // onClick={() => alert('아직 이용하실 수 없습니다.')}
               className=" message_img"
             >
               {/* <NavLink tag={Link} to={'/message'} className=" message_img"> */}
@@ -188,7 +189,7 @@ class Navitems extends Component {
           </NavItem>
           <NavItem>
             <NavLink
-              onClick={() => alert('아직 이용하실 수 없습니다.')}
+              // onClick={() => alert('아직 이용하실 수 없습니다.')}
               className=""
             >
               {/* <NavLink tag={Link} to={'/designer/reservations'} className=""> */}
@@ -247,11 +248,11 @@ class Navitems extends Component {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink
-              onClick={() => alert('아직 이용하실 수 없습니다.')}
+            {/* <NavLink
+              // onClick={() => alert('아직 이용하실 수 없습니다.')}
               className=""
-            >
-              {/* <NavLink tag={Link} to={'/designerList'} className=""> */}
+            > */}
+              <NavLink tag={Link} to={'/designerList'} className="">
               예디찾기
             </NavLink>
           </NavItem>
