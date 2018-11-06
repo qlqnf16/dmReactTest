@@ -20,7 +20,7 @@ class DesignerList extends Component {
 
   componentDidMount = async () => {
     if (!this.state.madeRequest) {
-      const { data } = await axios.get('http://52.79.227.227:3030/recruits');
+      const { data } = await axios.get('recruits');
       const filteredData = data.filter(
         d =>
           d._designer.expiredAt &&
@@ -89,13 +89,7 @@ class DesignerList extends Component {
     if (no === 'cut=2&perm=2&dye=2&')
       return alert('받으실 서비스를 선택해주세요');
     const { data } = await axios.get(
-      'http://52.79.227.227:3030/cards?' +
-        must +
-        no +
-        gender +
-        date +
-        sido +
-        sigungu
+      'cards?' + must + no + gender + date + sido + sigungu
     );
 
     let recruits = data.map(d => d._recruit);

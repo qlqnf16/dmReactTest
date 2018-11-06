@@ -24,7 +24,7 @@ class DesginerDetail extends Component {
     // DB에서 정보받아와서 넣어주는 곳
     if (!this.state.madeRequest) {
       const { data } = await axios.get(
-        `http://52.79.227.227:3030/recruits/${this.props.match.params.id}`
+        `recruits/${this.props.match.params.id}`
       );
       this.setState({
         recruit: data,

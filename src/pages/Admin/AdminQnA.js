@@ -10,7 +10,7 @@ class AdminQnA extends Component {
 
   componentDidMount = async () => {
     if (!this.state.madeRequest) {
-      const { data } = await axios.get(`http://52.79.227.227:3030/inquiries`);
+      const { data } = await axios.get(`inquiries`);
       this.setState({
         QnAs: data,
         madeRequest: true

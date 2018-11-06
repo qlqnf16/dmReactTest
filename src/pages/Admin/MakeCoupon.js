@@ -11,7 +11,7 @@ class MakeCoupon extends Component {
   };
 
   reloadCoupon = async () => {
-    const { data } = await axios.get(`http://52.79.227.227:3030/coupons`);
+    const { data } = await axios.get(`coupons`);
     const coupons = [];
     const designerCoupons = [];
     data.forEach(d => {
@@ -34,7 +34,7 @@ class MakeCoupon extends Component {
   };
 
   makeCoupon = async () => {
-    await axios.post(`http://52.79.227.227:3030/coupons`, {
+    await axios.post(`coupons`, {
       point: this.state.point,
       number: this.state.number,
       forDesigner: false
@@ -46,7 +46,7 @@ class MakeCoupon extends Component {
   };
 
   makeDesignerCoupon = async () => {
-    await axios.post(`http://52.79.227.227:3030/coupons`, {
+    await axios.post(`coupons`, {
       point: this.state.month,
       number: this.state.DNumber,
       forDesigner: true

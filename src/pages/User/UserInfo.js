@@ -116,7 +116,7 @@ class UserInfo extends Component {
         count += 1;
 
         // 유효한 추천인 코드면 포인트 증가
-        await axios.patch(`http://52.79.227.227:3030/users/${_id}/addpoint`);
+        await axios.patch(`users/${_id}/addpoint`);
 
         await firebase
           .database()
