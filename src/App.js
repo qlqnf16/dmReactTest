@@ -58,11 +58,11 @@ import {
   M_DesignerReservations,
   M_DesignerTicket,
   M_Schedule,
-  M_WhyDreamary,
+  M_WhyDreamary
 } from './mobilePages';
 import Toolbar from './components/Navigation/Toolbar/Toolbar';
 import Footer from './components/UI/Footer/Footer';
-import M_Footer from './mobilePages/components/Footer/Footer'
+import M_Footer from './mobilePages/components/Footer/Footer';
 import MobileNavigationBar from './mobilePages/components/NavigationBar/NavigationBar';
 import MobileSideDrawer from './mobilePages/components/NavigationBar/SideDrawer';
 import MobileBackdrop from './mobilePages/components/NavigationBar/Backdrop';
@@ -140,9 +140,9 @@ class App extends Component {
 
   render() {
     const { width } = this.state;
-    const isMobile = width <= 500;
+    // const isMobile = width <= 500;
     // 장막
-    // const isMobile = false;
+    const isMobile = false;
 
     // firebase에서 불러오기 전
     if (!this.state.madeRequest) {
