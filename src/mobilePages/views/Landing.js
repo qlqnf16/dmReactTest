@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import {Carousel, CarouselItem, CarouselCaption} from 'reactstrap'
+import Footer from '../components/Footer/Footer'
 
 import landing1 from '../../assets/images/mobile_landing1.png';
 import landing2 from '../../assets/images/mobile_landing2.png';
@@ -272,9 +273,8 @@ class Landing extends Component {
           <img src={quat2} alt='quat2' style={{width: '16.7%'}} />
         </div>
         <div className='m_landing_back' style={{backgroundColor: '#ffffff'}}>
-          <img src={partners} alt='partners' style={{width: '88%', margin: '89.4px auto 340px auto' }} />
+          <img src={partners} alt='partners' style={{width: '88%', margin: '89.4px auto 0 auto' }} />
         </div>
-
       </Fragment>
     );
   }
