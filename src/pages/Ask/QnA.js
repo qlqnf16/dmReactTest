@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import AskNav from '../../components/Navigation/AskNav/AskNav';
-import { FormGroup } from 'reactstrap';
-import { connect } from 'react-redux';
-import axios from '../../config/Axios';
+import React, { Component } from "react";
+import AskNav from "../../components/Navigation/AskNav/AskNav";
+import { FormGroup } from "reactstrap";
+import { connect } from "react-redux";
+import axios from "../../config/Axios";
 class QnA extends Component {
   inputChangeHandler = event => {
     const target = event.target;
@@ -17,8 +17,8 @@ class QnA extends Component {
       ...this.state,
       _user: this.props.userData._id
     };
-    axios.post('inquiries', inquirie);
-    alert('성공적으로 제출되었습니다.');
+    axios.post("inquiries", inquirie);
+    alert("성공적으로 제출되었습니다.");
   };
 
   render() {
@@ -26,12 +26,12 @@ class QnA extends Component {
       <div className="container-fluid ask">
         <AskNav />
         <div className="ask_title">관리자 문의</div>
-        <div style={{ width: '50%', margin: 'auto' }}>
+        <div style={{ width: "50%", margin: "auto" }}>
           <FormGroup row>
             <div className="col-3 if_head">성명</div>
             <div className="col-9">
               <input
-                type="name"
+                type="text"
                 name="name"
                 id="name"
                 onChange={this.inputChangeHandler}
@@ -43,7 +43,7 @@ class QnA extends Component {
             <div className="col-3 if_head">이메일 주소</div>
             <div className="col-9">
               <input
-                type="email"
+                type="text"
                 name="email"
                 id="email"
                 onChange={this.inputChangeHandler}
@@ -55,7 +55,7 @@ class QnA extends Component {
             <div className="col-3 if_head">제목</div>
             <div className="col-9">
               <input
-                type="title"
+                type="text"
                 name="title"
                 id="title"
                 onChange={this.inputChangeHandler}
@@ -71,7 +71,7 @@ class QnA extends Component {
                 id="content"
                 onChange={this.inputChangeHandler}
                 className="if_input"
-                style={{ height: '262px' }}
+                style={{ height: "262px" }}
               />
             </div>
           </FormGroup>
