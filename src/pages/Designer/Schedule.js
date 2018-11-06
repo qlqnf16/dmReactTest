@@ -141,6 +141,13 @@ class Schedule extends Component {
     if (this.state.cards) {
       const dates = this.state.cards.map(card => card.date);
 
+      const showMyCard = this.props.userData._recruit
+        ? () =>
+            this.props.history.push(
+              `/designerdetail/${this.props.userData._recruit}`
+            )
+        : () => alert('스케줄 등록을 먼저 진행해주세요');
+
       return (
         <div className="container-fluid d">
           <div className="d_bg">
@@ -168,6 +175,7 @@ class Schedule extends Component {
                 cardAddHandler={this.cardAddHandler}
                 totalSubmitHandler={this.totalSubmitHandler}
                 dates={dates}
+                showMyCard={showMyCard}
               />
             </div>
           </div>

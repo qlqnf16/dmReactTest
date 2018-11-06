@@ -198,7 +198,7 @@ class ScheduleBox extends Component {
             totalSubmitHandler={() =>
               this.props.totalSubmitHandler(recruitData)
             }
-            id={this.props.userData._recruit}
+            showMyCard={this.props.showMyCard}
           />
           <Schedule
             datePick={e => this.timeDefault(e)}
