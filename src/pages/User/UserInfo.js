@@ -77,12 +77,6 @@ class UserInfo extends Component {
       gender,
       isRegister
     };
-    // if (!this.state.isRegister) return alert('휴대폰 인증을 진행해주세요');
-    // if (
-    //   Object.values(firebaseUserData).includes(undefined) ||
-    //   Object.values(firebaseUserData.birthday).includes('null')
-    // )
-    // return alert('채워지지 않은 정보가 있습니다');
 
     if (!firebaseUserData.name) return alert('이름을 작성해주세요');
     if (!firebaseUserData.gender) return alert('성별을 작성해주세요');

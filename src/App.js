@@ -142,9 +142,9 @@ class App extends Component {
 
   render() {
     const { width } = this.state;
-    // const isMobile = width <= 500;
+    const isMobile = width <= 500;
     // 장막
-    const isMobile = false;
+    // const isMobile = false;
 
     // firebase에서 불러오기 전
     if (!this.state.madeRequest) {
