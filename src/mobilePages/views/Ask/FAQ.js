@@ -60,7 +60,7 @@ class FAQ extends Component {
           <div />
           <div className="m_ask_question">
             사실의 왜곡 또는 고의적인 악플은 드리머리 고객센터측의 면밀한 검토를
-            통해 처리할 수 있도록 하겠습니다. 관련 내용을 페이지 우측 하단에
+            통해 처리할 수 있도록 하겠습니다. 관련 내용을 페이지 하단에
             위치한 '관리자 문의' 페이지에서 보고해주세요
           </div>
         </div>
@@ -242,7 +242,7 @@ class FAQ extends Component {
           </div>
           <div />
           <div className="m_ask_question">
-            드리머리 홈페이지 우측 하단의 '관리자 문의' 탭에서 문의를 하거나
+            드리머리 홈페이지 하단의 '관리자 문의' 탭에서 문의를 하거나
             help@dreamary.net 으로 직접 문의해주시면 됩니다.
           </div>
         </div>
@@ -301,7 +301,7 @@ class FAQ extends Component {
     return (
       <div>
         <AskNavigationBar pathname={this.props.location.pathname} />
-        <div className='container-fluid m_ask' style={{width: '93.8%'}}>
+        <div className='container-fluid m_ask' style={{width: '96.8%'}}>
           <div className='m_ask_title' style={{marginBottom: 0}}>FAQ</div>
           <div className='m_ask_faqnav'>
             <div className={navD} onClick={this.designerToggler}>예비디자이너</div>
