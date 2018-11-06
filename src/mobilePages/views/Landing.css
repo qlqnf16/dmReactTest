@@ -1,3 +1,39 @@
 #temporary-landing {
   width: 100%;
 }
+
+.m_landing_back {
+  width: 100%;
+  height: 640px;
+  background-color: #f8f8f9;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.m_landing_title {
+  width: fit-content;
+  font-size: 2.5rem;
+  font-weight: bold;
+  line-height: 1.24;
+  letter-spacing: 0.13rem;
+  color: #1f3354;
+  margin-top: 58px;
+  margin-bottom: 24.7px;
+}
+
+.m_landing_content {
+  font-size: 1.2rem;
+  line-height: 1.25;
+  letter-spacing: 0.6px;
+  color: #1f3354;
+}
+
+.m_landing_content2 {
+  font-size: 1.3rem;
+  line-height: 1.54;
+  letter-spacing: 0.7px;
+  text-align: center;
+  color: #f8f8f9;
+}
