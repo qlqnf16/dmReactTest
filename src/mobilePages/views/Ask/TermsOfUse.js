@@ -1,7 +1,17 @@
-import React from 'react';
+import React, {Component, Fragment} from 'react';
+import AskNavigationBar from '../../components/AskNavigationBar/AskNavigationBar';
 
-const TermsOfUse = () => (
+class TermsOfUse extends Component {
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+
+  render() {
+  return (
+    <Fragment>
+    <AskNavigationBar pathname={this.props.location.pathname} />
   <div className="container-fluid ask">
+
     <div className="ask_title">이용약관</div>
     <pre className="ask_content">
       {
@@ -9,6 +19,7 @@ const TermsOfUse = () => (
       }
     </pre>
   </div>
-)
+  </Fragment>
+)}}
 
 export default TermsOfUse;

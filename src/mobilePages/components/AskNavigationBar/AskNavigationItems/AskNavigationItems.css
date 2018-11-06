@@ -1,0 +1,15 @@
+.m_asknavitem_back {
+  width: 100%;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+  background-color: #f8f8f9;
+  overflow: auto;
+}
+
+.m_asknavitem {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  letter-spacing: 0.6px;
+  text-align: center;
+  color: #1f3354;
+  margin: 12px auto;
+}
