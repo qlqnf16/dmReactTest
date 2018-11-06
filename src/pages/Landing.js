@@ -135,6 +135,7 @@ class Landing extends Component {
               );
             })}
             captionText=""
+            className='landing_caption'
           />
         </CarouselItem>
       );

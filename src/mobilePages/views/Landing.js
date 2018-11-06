@@ -127,8 +127,9 @@ class Landing extends Component {
           onExited={this.onExited}
           key={item.src}
         >
-          <img src={item.src} alt={item.altText} style={{ width: '1280px' }} />
+          <img src={item.src} alt={item.altText} style={{ width: '100%' }} />
           <CarouselCaption
+            className="d-block m_landing_caption"
             captionHeader={item.caption.split('\n').map((line, key) => {
               return (
                 <span key={key}>
@@ -189,12 +190,33 @@ class Landing extends Component {
             해제
           </div>
         </div>
-
-          <Carousel
+        <Carousel
             activeIndex={activeIndex}
             next={this.next}
             previous={this.previous}
-          />
+          >
+            <div
+              className="m_landing_imgback"
+              style={{ background: 'transparent' }}
+            >
+              <div className="m_landing_ctext">
+                드리머리 - 대한민국 최초 예비헤어디자이너 & 대중 연결 플랫폼
+              </div>
+              <div className='m_landing_ctext'
+                style={{
+                  fontSize: '0.8rem',
+                  fontWeight: 'normal',
+                  color: 'white'
+                }}
+              >
+                *드리머리에 속해있는 예비헤어디자이너들을 우리는{' '}
+                <span style={{ color: '#fffae3' }}>예디</span>
+                라고 부릅니다
+              </div>
+            </div>
+            {slides}
+          </Carousel>
+
         <div className='m_landing_back'>
           <img src={icon1} alt='icon1' style={{width: '34%'}} />
           <div className='text-left'>
