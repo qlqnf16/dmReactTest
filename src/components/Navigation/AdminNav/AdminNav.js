@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 const AdminNav = () => (
-  <div>
+  <div style={{ marginTop: '50px' }}>
     <NavLink
       className="m-2 lg"
       to="/admin/userlist"

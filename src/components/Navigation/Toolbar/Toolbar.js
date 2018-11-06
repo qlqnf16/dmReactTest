@@ -61,6 +61,28 @@ class Toolbar extends Component {
           <NavbarBrand tag={Link} to={'/'}>
             <img className="logo" src={logo} alt="Main Logo" />
           </NavbarBrand>
+          <div
+            style={{
+              position: 'absolute',
+              display: 'flex',
+              zIndex: '999',
+              width: '280px',
+              padding: '1%',
+              backgroundColor: 'rgba(0,0,0,0.5)',
+              fontSize: '1.2rem',
+              fontWeight: 'bold',
+              color: 'white',
+              borderRadius: '5px',
+              borderColor: 'white',
+              left: '5%',
+              top: '85%'
+            }}
+          >
+            <div style={{ marginRight: '5%', fontSize: '2.5rem' }}>⚠</div>{' '}
+            디자이너 사전 등록 기간입니다.
+            <br />
+            일부 기능이 작동하지 않을 수 있습니다.
+          </div>
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <Navitems

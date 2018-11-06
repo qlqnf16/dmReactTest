@@ -67,7 +67,10 @@ const DrawerItems = props => {
             <img className="mobile-drawer-logo" src={logo} alt="logo" />
           </div>
         </Link>
-        <div className="mobile-drawer-items mobile-drawer-login">
+        <div
+          className="mobile-drawer-items mobile-drawer-login"
+          style={{ backgroundColor: '#4c91ba' }}
+        >
           반갑습니다 {props.userData.name}님
         </div>
         <Link to="/message">
@@ -138,7 +141,7 @@ const DrawerItems = props => {
             예디찾기
           </div>
         </Link>
-        <Link to="/addDesigner">
+        <Link to="/whyDreamary">
           <div
             className="mobile-drawer-items mobile-drawer-gray"
             onClick={props.click}

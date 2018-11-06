@@ -381,6 +381,12 @@ class App extends Component {
                 component={M_ReservationConfirm}
               />
               <Route path="/whyDreamary" component={M_WhyDreamary} />
+              <Route
+                path="/addDesigner"
+                component={
+                  this.props.userData.uid ? M_AddDesigner : M_WrongAccess
+                }
+              />
               {/* 로그인 했을 때만 */}
               <Route
                 path="/message"
@@ -412,16 +418,7 @@ class App extends Component {
                     : M_WrongAccess
                 }
               />
-              <Route
-                path="/addDesigner"
-                component={
-                  this.props.userData.uid
-                    ? this.props.userData.isRegister
-                      ? M_AddDesigner
-                      : M_UserInfo
-                    : M_WrongAccess
-                }
-              />
+
               <Route
                 path="/coupon"
                 component={

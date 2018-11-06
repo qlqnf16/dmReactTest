@@ -102,8 +102,16 @@ class Navitems extends Component {
         this.props.userData.isApproval === false
           ? '예디 승인 대기중입니다'
           : `반갑습니다 ${this.props.userData.name}님`;
+      let adminTap = this.props.userData.isAdmin ? (
+        <NavItem>
+          <NavLink tag={Link} to={'/admin/userlist'} className="">
+            관리자 탭
+          </NavLink>
+        </NavItem>
+      ) : null;
       return (
         <Fragment>
+          {adminTap}
           <NavItem>
             <NavLink tag={Link} to={'/about'} className="">
               드리머리 소개

@@ -12,6 +12,7 @@ class AddDesigner extends Component {
     // redux에서 유저 정보 추출 후, state에 담기
     let {
       name,
+      gender,
       birthday,
       email,
       phoneNumber,
@@ -19,11 +20,15 @@ class AddDesigner extends Component {
       career,
       careerDetail,
       addresses,
-      designerRecommendationCode
+      designerRecommendationCode,
+      cert_mh,
+      cert_jg,
+      isRegister
     } = this.props.userData;
     if (!addresses) addresses = [];
     this.state = {
       name,
+      gender,
       email,
       phoneNumber,
       untilDesigner,
@@ -32,15 +37,34 @@ class AddDesigner extends Component {
       year: birthday && birthday.year,
       month: birthday && birthday.month,
       day: birthday && birthday.day,
-      certImg1: null,
+      certImg1: cert_mh,
       certFile1: null,
-      certImg2: null,
+      certImg2: cert_jg,
       certFile2: null,
       addressNum: addresses.length + 1,
       addresses,
-      designerRecommendationCode
+      designerRecommendationCode,
+      isRegister
     };
   }
+  componentDidMount = async () => {
+    if (this.props.userData.isApproval === false && !this.props.userData.isD)
+      alert('예비디자이너 승인 대기중입니다.');
+
+    // iamport 사용하기 위한 inline script 작성
+    let links = [
+      'https://code.jquery.com/jquery-1.12.4.min.js',
+      'https://cdn.iamport.kr/js/iamport.payment-1.1.5.js'
+    ];
+
+    for (let link of links) {
+      const script = document.createElement('script');
+
+      script.src = link;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  };
 
   // 주소 입력받기
   addressAddHandler = () => {
@@ -105,6 +129,7 @@ class AddDesigner extends Component {
   submitHandler = async () => {
     const {
       name,
+      gender,
       year,
       month,
       day,
@@ -114,11 +139,13 @@ class AddDesigner extends Component {
       career,
       careerDetail,
       addresses,
-      designerRecommendationCode
+      designerRecommendationCode,
+      isRegister
     } = this.state;
 
     let firebaseUserData = {
       name,
+      gender,
       birthday: { year, month, day },
       email,
       phoneNumber,
@@ -126,14 +153,28 @@ class AddDesigner extends Component {
       career,
       careerDetail,
       addresses,
-      isApproval: false
+      isApproval: false,
+      isRegister
     };
 
+    if (!firebaseUserData.name) return alert('이름을 작성해주세요');
+    if (!firebaseUserData.gender) return alert('성별을 작성해주세요');
+    if (!firebaseUserData.email) return alert('이메일을 작성해주세요');
     if (
-      Object.values(firebaseUserData).includes(undefined) ||
-      addresses.length === 0
+      Object.values(firebaseUserData.birthday).includes('null') ||
+      Object.values(firebaseUserData.birthday).includes(undefined)
     )
-      return alert('채워지지 않은 정보가 있습니다');
+      return alert('생년월일을 작성해주세요');
+    if (!firebaseUserData.phoneNumber)
+      return alert('휴대폰 번호를 작성해주세요');
+    if (firebaseUserData.phoneNumber.length !== 11)
+      return alert('정확한 휴대폰 번호를 입력해주세요');
+    if (!this.state.isRegister) return alert('휴대폰 인증을 먼저 해주세요');
+    if (Object.values(firebaseUserData.addresses).includes(undefined))
+      return alert('지역/샵주소를 작성해주세요');
+    if (!firebaseUserData.untilDesigner)
+      return alert('디자이너까지 남은 기간을 작성해주세요');
+    if (!firebaseUserData.career) return alert('미용 경력을 작성해주세요');
 
     // 추천인 로직
     // 전에 추천인을 입력한 적이 없고, 추천인을 작성했을 때,
@@ -183,7 +224,9 @@ class AddDesigner extends Component {
       .database()
       .ref('users/' + this.props.userData.uid)
       .update(firebaseUserData);
-    alert('성공적으로 신청되었습니다');
+    alert(
+      '성공적으로 신청되었습니다. \n관리자의 승인을 거친 후 정상적으로 스케줄을 등록하실 수 있습니다.'
+    );
 
     // img 업로드
     const formData = new fd();
@@ -194,6 +237,31 @@ class AddDesigner extends Component {
       formData,
       { headers: { 'Content-Type': 'multipart/form-data' } }
     );
+    this.props.history.push('/');
+  };
+
+  phoneCert = () => {
+    if (!this.state.phoneNumber) return alert('휴대폰 번호를 먼저 입력하세요');
+
+    const { IMP } = window;
+    IMP.init('imp06037656');
+    IMP.certification(
+      {
+        merchant_uid: 'merchant_' + new Date().getTime()
+      },
+      rsp => {
+        if (rsp.success) {
+          // 인증성공
+          this.setState({ isRegister: true });
+          alert('인증되었습니다');
+        } else {
+          // 인증취소 또는 인증실패
+          var msg = '인증에 실패하였습니다.';
+          msg += '에러내용 : ' + rsp.error_msg;
+          alert(msg);
+        }
+      }
+    );
   };
 
   render() {
@@ -203,8 +271,31 @@ class AddDesigner extends Component {
       containerStyle,
       labelStyle,
       inputTextStyle,
-      buttonStyle
+      buttonStyle,
+      phoneButtonStyle
     } = styles;
+
+    let isRegister;
+    if (!this.state.isRegister) {
+      isRegister = (
+        <div onClick={this.phoneCert} style={phoneButtonStyle}>
+          인증
+        </div>
+      );
+    } else {
+      isRegister = (
+        <div
+          style={{
+            ...phoneButtonStyle,
+            backgroundColor: 'transparent',
+            color: '#66ce82',
+            border: 'solid 1px #66ce82'
+          }}
+        >
+          인증됨
+        </div>
+      );
+    }
     return (
       <Fragment>
         <div className="m_containerStyle">
@@ -223,6 +314,7 @@ class AddDesigner extends Component {
             addressAddHandler={this.addressAddHandler}
             addressRemoveHandler={this.addressRemoveHandler}
             handleImgChange={e => this.handleImgChange(e)}
+            isRegister={isRegister}
           />
           <div style={containerStyle}>
             <div style={labelStyle}>추천인 코드 </div>
@@ -291,6 +383,19 @@ const styles = {
     backgroundColor: '#4c91ba',
     textAlign: 'center',
     lineHeight: '3.9rem'
+  },
+  phoneButtonStyle: {
+    display: 'inline-block',
+    width: '18%',
+    marginLeft: '3.3%',
+    padding: '2.3%',
+    border: '1px solid #dd6866',
+    backgroundColor: '#dd6866',
+    borderRadius: '5px',
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: '1.3rem',
+    textAlign: 'center'
   }
 };
 

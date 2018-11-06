@@ -273,6 +273,7 @@ class InfoForm extends Component {
               onChange={this.props.changeInput}
               value={userData.phoneNumber}
               className="if_input"
+              placeholder="휴대전화 번호를 - 없이 입력해주세요. ex) 01012345678"
             />
           </div>
           {this.props.isRegister}

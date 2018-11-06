@@ -20,6 +20,16 @@ class WaitDesigner extends Component {
     );
     alert('승인되었습니다');
   };
+  noApprovalSubmit = async uid => {
+    await firebase
+      .database()
+      .ref('users/' + uid)
+      .update({
+        isApproval: '미승인'
+      });
+
+    alert('미승인되었습니다');
+  };
 
   render() {
     const designer = this.props.designer;
@@ -68,9 +78,6 @@ class WaitDesigner extends Component {
           <Moment format="YYYY/MM/DD">{designer.joinedDate}</Moment>
         </td>
         <td>
-          <a href={designer.profile}>프로필</a>
-        </td>
-        <td>
           <a href={designer.cert_jg}>자격증</a>
         </td>
         <td>
@@ -82,6 +89,14 @@ class WaitDesigner extends Component {
             className="btn-sm"
           >
             승인
+          </button>
+        </td>
+        <td>
+          <button
+            onClick={() => this.noAprovalSubmit(designer.uid)}
+            className="btn-sm"
+          >
+            미승인
           </button>
         </td>
       </tr>

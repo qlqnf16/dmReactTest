@@ -14,6 +14,7 @@ import howtouse from '../assets/images/howtouse_web.png';
 import qmark1 from '../assets/images/Group2005.png';
 import qmark2 from '../assets/images/Group2006.png';
 import sponsor from '../assets/images/sponsor_logos.png';
+import download from '../assets/images/download_white.png';
 
 const items = [
   {
@@ -141,7 +142,7 @@ class Landing extends Component {
 
     return (
       <div>
-        <div
+        {/* <div
           style={{
             display: 'inline-block',
             marginTop: '20px',
@@ -190,7 +191,7 @@ class Landing extends Component {
           >
             해제
           </div>
-        </div>
+        </div> */}
         {/* 여기부터 랜딩 */}
         <div>
           <Carousel
@@ -203,15 +204,62 @@ class Landing extends Component {
               style={{ background: 'transparent' }}
             >
               <div className="landing_ctitle" />
-              <Link to="/designerList" className="linkdeco">
+              {/* <Link to="/designerList" className="linkdeco">
                 <div className="landing_cbutton">예디 찾기</div>
-              </Link>
-              <div className="landing_ctext">
+              </Link> */}
+              <div style={{ display: 'flex' }}>
+                <a
+                  style={{ marginRight: '1%', height: '48px' }}
+                  href="https://goo.gl/forms/ZH7RU6NhLRNllEZk1"
+                  target="_blank"
+                  className="linkdeco"
+                >
+                  <div style={{ width: 220 }} className="landing_cbutton">
+                    디자이너 사전 등록
+                  </div>
+                </a>
+                <a
+                  href="https://docs.google.com/forms/d/e/1FAIpQLSeItk9iCRUtyrLL6Jjz79LkRaHiH0b2PK1byAAtCgH3q4_RXA/viewform"
+                  target="_blank"
+                  className="linkdeco"
+                  style={{ height: '48px' }}
+                >
+                  <div style={{ width: 220 }} className="landing_cbutton">
+                    고객 사전 등록
+                  </div>
+                </a>
+              </div>
+              <div style={{ display: 'flex' }}>
+                <a
+                  style={{ marginRight: '1%', height: '48px' }}
+                  href="	https://s3.ap-northeast-2.amazonaws.com/dreamary/%E1%84%83%E1%85%B5%E1%84%8C%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%82%E1%85%A5+%E1%84%83%E1%85%B3%E1%86%BC%E1%84%85%E1%85%A9%E1%86%A8+%E1%84%80%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%83%E1%85%B3.pdf"
+                  target="_blank"
+                  className="linkdeco"
+                >
+                  <div
+                    style={{
+                      width: 451.5,
+                      backgroundColor: 'rgba(0,0,0,0.5)',
+                      borderColor: 'white',
+                      color: 'white'
+                    }}
+                    className="landing_dbutton"
+                  >
+                    <img src={download} style={{ marginRight: '2%' }} />
+                    디자이너 등록 방법
+                  </div>
+                </a>
+              </div>
+
+              <div className="landing_ctext" style={{ marginTop: '17%' }}>
                 드리머리 - 대한민국 최초 예비헤어디자이너 & 대중 연결 플랫폼
               </div>
               <div
-                className="landing_ctext"
-                style={{ fontSize: '11px', fontWeight: 'normal' }}
+                style={{
+                  fontSize: '11px',
+                  fontWeight: 'normal',
+                  color: 'white'
+                }}
               >
                 *드리머리에 속해있는 예비헤어디자이너들을 우리는{' '}
                 <span style={{ color: '#fffae3' }}>예디</span>
