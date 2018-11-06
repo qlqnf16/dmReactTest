@@ -111,10 +111,6 @@ export const kakao_login_success = async (response, a) => {
     // 서버에서 customToken 넘겨 받기
     const customToken = res.data.token;
     const data = res.data.userData;
-<<<<<<< HEAD
-=======
-    console.log(res);
->>>>>>> de3a79083d4d65cef95999aca897e9e7d29532ec
     // 넘겨받은 토큰으로 커스텀 로그인
     await firebase.auth().signInWithCustomToken(customToken);
 
@@ -123,13 +119,7 @@ export const kakao_login_success = async (response, a) => {
       _uid: data.id,
       name: data.properties.nickname
     };
-<<<<<<< HEAD
     const Users = await axios.get('users');
-=======
-    console.log(DBUserData);
-    const Users = await axios.get('users');
-    console.log(Users);
->>>>>>> de3a79083d4d65cef95999aca897e9e7d29532ec
     let newUser = true;
     Users.data.some(user => {
       if (user._uid === data.id) {
