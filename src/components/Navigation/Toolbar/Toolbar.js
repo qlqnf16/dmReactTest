@@ -79,7 +79,7 @@ class Toolbar extends Component {
             }}
           >
             <div style={{ marginRight: '5%', fontSize: '2.5rem' }}>⚠</div>{' '}
-            디자이너 사전 등록 기간입니다.
+            디자이너 등록 기간입니다.
             <br />
             일부 기능이 작동하지 않을 수 있습니다.
           </div>
