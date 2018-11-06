@@ -8,7 +8,7 @@ const UserNav = () => (
     <div className="un_navBack">
       <NavLink
         // 장막
-        to="/userInfo"
+        to="/reservations"
         // onClick={() => alert('아직 이용하실 수 없습니다.')}
         className="un_navItem"
         activeStyle={{
@@ -40,7 +40,7 @@ const UserNav = () => (
       </NavLink>
       <NavLink
         // 장막
-        to="/userInfo"
+        to="/coupon"
         // onClick={() => alert('아직 이용하실 수 없습니다.')}
         className="un_navItem"
         activeStyle={{
