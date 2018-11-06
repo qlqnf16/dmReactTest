@@ -15,7 +15,7 @@ export const facebookLogin = async () => {
       name: displayName
     };
 
-    const Users = await axios.get('http://52.79.227.227:3030/users');
+    const Users = await axios.get('users');
     let newUser = true;
     Users.data.some(user => {
       if (user._uid === uid) {
@@ -25,10 +25,7 @@ export const facebookLogin = async () => {
     });
 
     if (newUser) {
-      const res = await axios.post(
-        'http://52.79.227.227:3030/users',
-        DBUserData
-      );
+      const res = await axios.post('users', DBUserData);
 
       const firebaseUserData = {
         name: displayName,
@@ -67,7 +64,7 @@ export const googleLogin = async () => {
       name: displayName
     };
 
-    const Users = await axios.get('http://52.79.227.227:3030/users');
+    const Users = await axios.get('users');
     let newUser = true;
     Users.data.some(user => {
       if (user._uid === uid) {
@@ -76,10 +73,7 @@ export const googleLogin = async () => {
       return user._uid === uid;
     });
     if (newUser) {
-      const res = await axios.post(
-        'http://52.79.227.227:3030/users',
-        DBUserData
-      );
+      const res = await axios.post('users', DBUserData);
 
       const firebaseUserData = {
         name: displayName,
@@ -112,39 +106,31 @@ export const kakao_login_success = async (response, a) => {
 
   try {
     // 카카오톡 토큰을 node 서버에 전달
-    const res = await axios.post(
-      'http://52.79.227.227:3030/kakao_login',
-      userToken
-    );
+    const res = await axios.post('kakao_login', userToken);
 
     // 서버에서 customToken 넘겨 받기
     const customToken = res.data.token;
     const data = res.data.userData;
-
     // 넘겨받은 토큰으로 커스텀 로그인
     await firebase.auth().signInWithCustomToken(customToken);
 
     const DBUserData = {
-      _uid: data.uuid,
+      _uid: data.id,
       name: data.properties.nickname
     };
-
-    const Users = await axios.get('http://52.79.227.227:3030/users');
+    const Users = await axios.get('users');
     let newUser = true;
     Users.data.some(user => {
-      if (user._uid === data.uuid) {
+      if (user._uid === data.id) {
         newUser = false;
       }
       return user._uid === data.uuid;
     });
     if (newUser) {
-      const response = await axios.post(
-        'http://52.79.227.227:3030/users',
-        DBUserData
-      );
+      const response = await axios.post('users', DBUserData);
       const firebaseUserData = {
-        name: data.properties.nickname,
-        uid: data.uuid,
+        name: DBUserData.name,
+        uid: DBUserData._uid,
         _id: response.data._id,
         joinedDate: new Date().getTime(),
         penalty: 0
@@ -152,7 +138,7 @@ export const kakao_login_success = async (response, a) => {
 
       await firebase
         .database()
-        .ref('users/' + data.uuid)
+        .ref('users/' + data.id)
         .update(firebaseUserData);
     }
   } catch (error) {
