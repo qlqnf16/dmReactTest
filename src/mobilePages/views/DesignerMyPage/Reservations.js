@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import DesignerNav from '../../components/NavigationBar/DesignerNav';
-import axios from 'axios';
+import axios from '../../../config/Axios';
 import CancelReasonModal from '../../../components/UI/ReservationModals/CancelReasonModal';
 import CancelModal from '../../../components/UI/ReservationModals/CancelModal';
 import ShowReviewModal from '../../../components/UI/ReservationModals/ShowReviewModal';

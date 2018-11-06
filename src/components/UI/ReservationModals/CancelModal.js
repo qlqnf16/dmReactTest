@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
+import axios from '../../../config/Axios';
 import firebase from '../../../config/Firebase';
 import Moment from 'react-moment';
 import './Modal.css';

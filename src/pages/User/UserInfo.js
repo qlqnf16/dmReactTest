@@ -4,7 +4,7 @@ import firebase from '../../config/Firebase';
 import UserNav from '../../components/Navigation/UserNav/UserNav';
 import { Form, FormGroup } from 'reactstrap';
 import check_sm from '../../assets/images/check_sm.png';
-import axios from 'axios';
+import axios from '../../config/Axios';
 
 class UserInfo extends Component {
   constructor(props) {

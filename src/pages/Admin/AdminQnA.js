@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import axios from '../../config/Axios';
 import AdminNav from '../../components/Navigation/AdminNav/AdminNav';
 
 class AdminQnA extends Component {

@@ -5,7 +5,6 @@ import alart from '../../assets/images/alart.png';
 import Moment from 'react-moment';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
 class ChatBox extends Component {
   state = {

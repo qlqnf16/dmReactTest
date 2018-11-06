@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import axios from '../../config/Axios';
 import io from 'socket.io-client';
 import { connect } from 'react-redux';
 

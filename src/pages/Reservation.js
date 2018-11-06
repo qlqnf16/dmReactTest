@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from 'reactstrap';
 import { connect } from 'react-redux';
-import axios from 'axios';
+import axios from '../config/Axios';
 import ReservationForm from '../components/ReservationForm/ReservationForm';
 import step2 from '../assets/images/step2.png';
 

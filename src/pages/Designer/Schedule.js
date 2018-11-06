@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ScheduleBox from '../../components/DesignerSchedule/ScheduleBox/ScheduleBox';
-import axios from 'axios';
+import axios from '../../config/Axios';
 
 import firebase from '../../config/Firebase';
 import { connect } from 'react-redux';

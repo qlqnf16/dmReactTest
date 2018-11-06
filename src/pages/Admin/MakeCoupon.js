@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AdminNav from '../../components/Navigation/AdminNav/AdminNav';
-import axios from 'axios';
+import axios from '../../config/Axios';
 import Moment from 'react-moment';
 
 class MakeCoupon extends Component {

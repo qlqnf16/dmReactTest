@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import axios from '../../config/Axios';
 import firebase from '../../config/Firebase';
 
 import Header from '../components/DesignerList/Header';

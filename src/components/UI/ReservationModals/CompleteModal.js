@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
+import axios from '../../../config/Axios';
 import Moment from 'react-moment';
 
 import { Modal, ModalBody } from 'reactstrap';

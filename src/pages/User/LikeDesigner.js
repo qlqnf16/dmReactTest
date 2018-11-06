@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import UserNav from '../../components/Navigation/UserNav/UserNav';
 import { CardDeck } from 'reactstrap';
-import axios from 'axios';
+import axios from '../../config/Axios';
 import DesignerCard from '../../components/DesignerCard/DesignerCard';
 
 class LikeDesigner extends Component {

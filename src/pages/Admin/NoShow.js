@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import axios from '../../config/Axios';
 import Moment from 'react-moment';
 import firebase from '../../config/Firebase';
 import AdminNav from '../../components/Navigation/AdminNav/AdminNav';

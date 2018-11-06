@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import AskNav from '../../components/Navigation/AskNav/AskNav';
 import { FormGroup } from 'reactstrap';
 import { connect } from 'react-redux';
-import axios from 'axios';
+import axios from '../../config/Axios';
 class QnA extends Component {
   inputChangeHandler = event => {
     const target = event.target;

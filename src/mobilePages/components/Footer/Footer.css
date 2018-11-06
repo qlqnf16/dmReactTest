@@ -1,0 +1,17 @@
+.m_footer_back {
+  width: 100%;
+  padding: 5.5%;
+  background-color: #ebecec;
+  font-size: 1rem;
+  line-height: 2;
+  letter-spacing: 0.5px;
+  text-align: left;
+  color: #2b2e34;
+  margin-top: 80px;
+}
+
+.m_footer_title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
