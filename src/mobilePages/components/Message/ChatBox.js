@@ -13,7 +13,7 @@ class ChatBox extends Component {
   componentDidMount = async () => {
     // if (!this.state.madeRequest) {
     //   const { data } = await axios.get(
-    //     `http://52.79.227.227:3030/users/${
+    //     `users/${
     //       this.props.userData._id
     //     }/reservations/${this.props.reservationId}`
     //   );

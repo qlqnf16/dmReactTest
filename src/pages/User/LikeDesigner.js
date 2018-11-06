@@ -12,7 +12,7 @@ class LikeDesigner extends Component {
 
   async componentDidMount() {
     if (!this.state.madeRequest) {
-      const { data } = await axios.get('http://52.79.227.227:3030/recruits');
+      const { data } = await axios.get('recruits');
       this.setState({
         recruits: data,
         madeRequest: true

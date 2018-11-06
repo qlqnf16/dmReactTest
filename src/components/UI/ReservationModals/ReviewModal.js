@@ -60,9 +60,7 @@ class ReviewModal extends Component {
 
     // review 생성
     const { data } = await axios.post(
-      `http://52.79.227.227:3030/recruits/${
-        this.props.reservation._designer._recruit._id
-      }/reviews`,
+      `recruits/${this.props.reservation._designer._recruit._id}/reviews`,
       reviewData
     );
 
@@ -72,9 +70,9 @@ class ReviewModal extends Component {
       formData.append(`review${index}`, p);
     });
     await axios.patch(
-      `http://52.79.227.227:3030/recruits/${
-        this.props.reservation._designer._recruit._id
-      }/reviews/${data._id}/images`,
+      `recruits/${this.props.reservation._designer._recruit._id}/reviews/${
+        data._id
+      }/images`,
       formData,
       {
         headers: {

@@ -26,7 +26,7 @@ class DesignerDetail extends Component {
   componentDidMount = async () => {
     if (!this.state.madeRequest) {
       const { data } = await axios.get(
-        `http://52.79.227.227:3030/recruits/${this.props.match.params.id}`
+        `recruits/${this.props.match.params.id}`
       );
       this.setState({ recruit: data, madeRequest: true });
     }

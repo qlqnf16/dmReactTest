@@ -16,7 +16,7 @@ class Schedule extends Component {
   componentDidMount = async () => {
     if (!this.state.madeRequest) {
       const { data } = await axios.get(
-        `http://52.79.227.227:3030/recruits/${this.props.userData._recruit}`
+        `recruits/${this.props.userData._recruit}`
       );
       this.setState({
         cards: data._cards,
@@ -40,15 +40,13 @@ class Schedule extends Component {
   reloadCardData = async () => {
     await this.setState({ cards: null });
     const { data } = await axios.get(
-      `http://52.79.227.227:3030/recruits/${this.props.userData._recruit}`
+      `recruits/${this.props.userData._recruit}`
     );
     await this.setState({ cards: data._cards, madeRequest: true });
   };
 
   cancelCardHandler = async (cardId, recruitId) => {
-    await axios.delete(
-      `http://52.79.227.227:3030/recruits/${recruitId}/cards/${cardId}`
-    );
+    await axios.delete(`recruits/${recruitId}/cards/${cardId}`);
     await this.reloadCardData();
   };
 
@@ -104,10 +102,7 @@ class Schedule extends Component {
       return alert('채워지지 않은 정보가 있습니다');
     // 유저에 리크루트 없으면 생성
     if (!this.props.userData._recruit) {
-      const res = await axios.post(
-        'http://52.79.227.227:3030/recruits',
-        recruitData
-      );
+      const res = await axios.post('recruits', recruitData);
       //firebase에 _recruit 추가
       await firebase
         .database()
@@ -117,9 +112,7 @@ class Schedule extends Component {
         });
       for (const newCard of this.state.newCards) {
         await axios.post(
-          `http://52.79.227.227:3030/recruits/${
-            this.props.userData._recruit
-          }/cards`,
+          `recruits/${this.props.userData._recruit}/cards`,
           newCard
         );
       }
@@ -129,14 +122,12 @@ class Schedule extends Component {
       // 유저가 이미 리크루트 있으면 수정
     } else {
       await axios.patch(
-        `http://52.79.227.227:3030/recruits/${this.props.userData._recruit}`,
+        `recruits/${this.props.userData._recruit}`,
         recruitData
       );
       for (const newCard of this.state.newCards) {
         await axios.post(
-          `http://52.79.227.227:3030/recruits/${
-            this.props.userData._recruit
-          }/cards`,
+          `recruits/${this.props.userData._recruit}/cards`,
           newCard
         );
       }

@@ -31,7 +31,8 @@ class DesignerInfo extends Component {
       designerRecommendationCode,
       profile,
       cert_mh,
-      cert_jg
+      cert_jg,
+      isRegister
     } = this.props.userData;
     if (!addresses) addresses = [];
     this.state = {
@@ -58,7 +59,8 @@ class DesignerInfo extends Component {
       num: portfolios.length,
       addressNum: addresses.length + 1,
       portfoliosNum: portfolios.length,
-      designerRecommendationCode
+      designerRecommendationCode,
+      isRegister
     };
   }
 
@@ -164,7 +166,8 @@ class DesignerInfo extends Component {
       careerDetail,
       addresses,
       introduce,
-      designerRecommendationCode
+      designerRecommendationCode,
+      isRegister
     } = this.state;
 
     let firebaseUserData = {
@@ -177,7 +180,8 @@ class DesignerInfo extends Component {
       career,
       careerDetail,
       addresses,
-      introduce
+      introduce,
+      isRegister
     };
 
     // if (
@@ -201,7 +205,12 @@ class DesignerInfo extends Component {
     if (firebaseUserData.phoneNumber.length !== 11)
       return alert('정확한 휴대폰 번호를 입력해주세요');
     if (!this.state.isRegister) return alert('휴대폰 인증을 먼저 해주세요');
-    if (Object.values(firebaseUserData.addresses).includes(undefined))
+    if (!Object.values(firebaseUserData.addresses).length)
+      return alert('지역/샵주소를 작성해주세요');
+    if (
+      !firebaseUserData.addresses[0].fullAddress ||
+      !firebaseUserData.addresses[0].extraAddress
+    )
       return alert('지역/샵주소를 작성해주세요');
     if (!firebaseUserData.untilDesigner)
       return alert('디자이너까지 남은 기간을 작성해주세요');
@@ -235,7 +244,7 @@ class DesignerInfo extends Component {
         if (count === 2) {
           count = 0;
 
-          await axios.post(`http://52.79.227.227:3030/users/${_id}/tickets`, {
+          await axios.post(`users/${_id}/tickets`, {
             price: 10000
           });
         }
@@ -259,9 +268,7 @@ class DesignerInfo extends Component {
       formData.append(`portfolio${index + this.state.portfoliosNum}`, p);
     });
     await axios.post(
-      `http://52.79.227.227:3030/firebase/upload?uid=${
-        this.props.userData.uid
-      }`,
+      `firebase/upload?uid=${this.props.userData.uid}`,
       formData,
       {
         headers: {

@@ -50,7 +50,7 @@ class DesignerReservations extends Component {
   componentDidMount = async () => {
     if (!this.state.madeRequest) {
       const { data } = await axios.get(
-        `http://52.79.227.227:3030/users/${
+        `users/${
           this.props.userData._id
         }/reservations`
       );
@@ -69,7 +69,7 @@ class DesignerReservations extends Component {
 
   cancelReservationHandler = async () => {
     await axios.patch(
-      `http://52.79.227.227:3030/users/${
+      `users/${
         this.props.userData._id
       }/reservations/${this.state.reservation._id}`,
       {
@@ -81,7 +81,7 @@ class DesignerReservations extends Component {
   };
   reloadData = async () => {
     const { data } = await axios.get(
-      `http://52.79.227.227:3030/users/${this.props.userData._id}/reservations`
+      `users/${this.props.userData._id}/reservations`
     );
     const reservations = data.filter(
       d => d._designer._id === this.props.userData._id

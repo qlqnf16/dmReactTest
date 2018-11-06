@@ -29,3 +29,9 @@ export { default as M_DesignerInfo } from './views/DesignerMyPage/DesignerInfo';
 export {
   default as M_DesignerReservations
 } from './views/DesignerMyPage/Reservations';
+
+// Ask
+export { default as M_FAQ } from './views/Ask/FAQ';
+export { default as M_InfoPolicy } from './views/Ask/InfoPolicy';
+export { default as M_QnA } from './views/Ask/QnA';
+export { default as M_TermsOfUse } from './views/Ask/TermsOfUse';

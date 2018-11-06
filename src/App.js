@@ -58,7 +58,11 @@ import {
   M_DesignerReservations,
   M_DesignerTicket,
   M_Schedule,
-  M_WhyDreamary
+  M_WhyDreamary,
+  M_FAQ,
+  M_InfoPolicy,
+  M_QnA,
+  M_TermsOfUse
 } from './mobilePages';
 import Toolbar from './components/Navigation/Toolbar/Toolbar';
 import Footer from './components/UI/Footer/Footer';
@@ -109,9 +113,7 @@ class App extends Component {
 
             // redux;
             let userData = res.val();
-            const { data } = await axios.get(
-              `http://52.79.227.227:3030/users/` + userData._id
-            );
+            const { data } = await axios.get(`users/` + userData._id);
             await this.props.login(userData);
             await this.props.updateRedux('expiredAt', data.expiredAt);
             await this.props.updateRedux('point', data.point);
@@ -358,6 +360,10 @@ class App extends Component {
             <Switch>
               <Route path="/" exact component={M_Landing} />
               <Route path="/about" component={M_About} />
+              <Route path="/QnA" component={M_QnA} />
+              <Route path="/TermsOfUse" component={M_TermsOfUse} />
+              <Route path="/FAQ" component={M_FAQ} />
+              <Route path="/InfoPolicy" component={M_InfoPolicy} />
               <Route path="/designerlist" component={M_DesignerList} />
               <Route path="/designerDetail/:id" component={M_DesignerDetail} />
               <Route

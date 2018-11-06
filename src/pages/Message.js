@@ -25,7 +25,7 @@ class Message extends Component {
   async componentDidMount() {
     if (!this.state.messages) {
       const { data } = await axios.get(
-        `http://52.79.227.227:3030/users/${
+        `users/${
           this.props.userData._id
         }/reservations`
       );
@@ -74,7 +74,7 @@ class Message extends Component {
   async componentDidUpdate() {
     if (!this.state.messages) {
       const { data } = await axios.get(
-        `http://52.79.227.227:3030/users/${
+        `users/${
           this.props.userData._id
         }/reservations`
       );

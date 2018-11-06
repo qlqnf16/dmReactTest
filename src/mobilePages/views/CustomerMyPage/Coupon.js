@@ -20,13 +20,10 @@ class Coupon extends Component {
     try {
       const {
         data: { point }
-      } = await axios.patch(
-        `http://52.79.227.227:3030/coupons/${this.state.coupon}`,
-        {
-          _user: this.props.userData._id,
-          isD: false
-        }
-      );
+      } = await axios.patch(`coupons/${this.state.coupon}`, {
+        _user: this.props.userData._id,
+        isD: false
+      });
       await this.props.updateRedux('point', point);
       alert('쿠폰이 적용 되었습니다.');
     } catch (err) {

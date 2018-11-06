@@ -46,7 +46,7 @@ class Chat extends Component {
     const params = deparam(this.props.location.search.slice(1));
     if (!this.state.madeRequest) {
       const { data } = await axios.get(
-        `http://52.79.227.227:3030/users/${
+        `users/${
           this.props.userData._id
         }/reservations/${params.r}`
       );

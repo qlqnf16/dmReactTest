@@ -80,7 +80,7 @@ class Reservation extends Component {
       async rsp => {
         if (rsp.success) {
           const { data } = await axios.post(
-            `http://52.79.227.227:3030/users/${
+            `users/${
               this.props.userData._id
             }/reservations`,
             this.state.reservationData
@@ -106,7 +106,7 @@ class Reservation extends Component {
   }
   reservationSubmit = async () => {
     const { data } = await axios.post(
-      `http://52.79.227.227:3030/users/${this.props.userData._id}/reservations`,
+      `users/${this.props.userData._id}/reservations`,
       this.state.reservationData
     );
     this.setState({
