@@ -3,7 +3,7 @@ import Schedule from './Schedule/Schedule';
 import ScheduleCard from './ScheduleCard/ScheduleCard';
 import TextInfo from '../TextInfo';
 import NoContent from '../../UI/NoContent/NoContent';
-import axios from 'axios';
+import axios from '../../../config/Axios';
 
 import { connect } from 'react-redux';
 

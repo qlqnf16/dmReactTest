@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Moment from 'react-moment';
 import firebase from '../../config/Firebase';
-import axios from 'axios';
+import axios from '../../config/Axios';
 class WaitDesigner extends Component {
   approvalSubmit = async uid => {
     await firebase
@@ -22,6 +22,7 @@ class WaitDesigner extends Component {
   };
 
   render() {
+    console.log(this.props.designer);
     const designer = this.props.designer;
     let addresses = [];
     let shops = [];

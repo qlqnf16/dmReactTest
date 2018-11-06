@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+import axios from '../../config/Axios';
 import UserNav from '../../components/Navigation/UserNav/UserNav';
 import ReservationCards from '../../components/UserReservation/ReservationCards/ReservationCards';
 import CancelReasonModal from '../../components/UI/ReservationModals/CancelReasonModal';

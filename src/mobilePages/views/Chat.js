@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import io from 'socket.io-client';
 import deparam from 'deparam';
-import axios from 'axios';
+import axios from '../../config/Axios';
 import { connect } from 'react-redux';
 import ChatBox from '../components/Message/ChatBox';
 

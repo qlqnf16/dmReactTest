@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import DesignerNav from '../../components/NavigationBar/DesignerNav';
 import { connect } from 'react-redux';
 import * as actions from '../../../modules';
-import axios from 'axios';
+import axios from '../../../config/Axios';
 import TicketBox from '../../components/Tickets/TicketBox';
 import TicketPurchaseButton from '../../components/Tickets/TicketPurchase';
 

@@ -2,9 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import * as actions from '../../modules';
-import axios from 'axios';
+import axios from '../../config/Axios';
 import TicketBox from '../../components/UI/DesignerTicket/TicketBox/TicketBox';
-import TicketCounter from '../../components/UI/DesignerTicket/TicketCounter/TicketCounter';
 import TicketPurchaseButton from '../../components/UI/DesignerTicket/TicketPurchaseButton/TicketPurchaseButton';
 
 class DesignerTicket extends Component {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import DesignerCard from '../components/DesignerCard/DesignerCard';
 import Filter from '../components/DesignerCard/Filter/Filter';
 import { CardDeck } from 'reactstrap';
-import axios from 'axios';
+import axios from '../config/Axios';
 import firebase from '../config/Firebase';
 import step1 from '../assets/images/step1.png';
 

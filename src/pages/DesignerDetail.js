@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import firebase from '../config/Firebase';
-import axios from 'axios';
+import axios from '../config/Axios';
 import { connect } from 'react-redux';
 import * as actions from './../modules';
 import step2 from '../assets/images/step2.png';

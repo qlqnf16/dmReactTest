@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import firebase from '../../config/Firebase';
-import axios from 'axios';
+import axios from '../../config/Axios';
 import { withRouter } from 'react-router-dom';
 import * as actions from '../../modules';
 
@@ -44,8 +44,10 @@ class Coupon extends Component {
             <div className="u_container">
               <div className="u_title">프로모션</div>
               <div className="uif_title ">프로모션 코드/포인트 적립</div>
-              <div className='row' style={{marginTop: '3rem'}}>
-                <div className="col-2 if_head uif_head ">프로모션 코드 입력</div>
+              <div className="row" style={{ marginTop: '3rem' }}>
+                <div className="col-2 if_head uif_head ">
+                  프로모션 코드 입력
+                </div>
                 <div className="col-8 d-flex justify-content-left">
                   <input
                     onChange={e => this.inputChangeHandler(e)}
@@ -63,14 +65,15 @@ class Coupon extends Component {
                   </div>
                 </div>
               </div>
-              <div className='row' style={{marginTop: '4.4rem'}}>
-              <div className="col-2 if_head uif_head" >추천인 코드</div>
-              <div className='col-8'>
-              <CouponContent couponNumber={firebase.auth().currentUser.uid} recommendationNum={this.props.userData.recommendation} />
+              <div className="row" style={{ marginTop: '4.4rem' }}>
+                <div className="col-2 if_head uif_head">추천인 코드</div>
+                <div className="col-8">
+                  <CouponContent
+                    couponNumber={firebase.auth().currentUser.uid}
+                    recommendationNum={this.props.userData.recommendation}
+                  />
+                </div>
               </div>
-              
-              </div>
-              
             </div>
           </div>
         </div>

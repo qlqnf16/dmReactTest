@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
-import io from 'socket.io-client';
+import axios from '../config/Axios';
 import { connect } from 'react-redux';
 
 import ChatPreview from '../components/Message/chatPreview';

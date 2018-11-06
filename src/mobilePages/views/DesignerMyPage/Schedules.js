@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import DesignerNav from '../../components/NavigationBar/DesignerNav';
-import axios from 'axios';
+import axios from '../../../config/Firebase';
 
 import firebase from '../../../config/Firebase';
 import { connect } from 'react-redux';

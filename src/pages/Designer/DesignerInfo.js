@@ -7,7 +7,7 @@ import firebase from '../../config/Firebase';
 import check_sm from '../../assets/images/check_sm.png';
 
 import fd from 'form-data';
-import axios from 'axios';
+import axios from '../../config/Axios';
 
 class DesignerInfo extends Component {
   constructor(props) {

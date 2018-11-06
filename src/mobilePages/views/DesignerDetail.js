@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import firebase from 'firebase';
-import axios from 'axios';
+import axios from '../../config/Axios';
 // import './DesignerDetail.css'; todo: how to solve modal problem
 
 import Header from '../components/DesignerDetail/Header';

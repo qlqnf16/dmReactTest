@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
 import firebase from '../../../config/Firebase';
-import axios from 'axios';
+import axios from '../../../config/Axios';
 
 import MyPageNavigationBar from '../../components/MyPageNavigationBar/MyPageNavigationBar';
 import UserInfoForm from '../../components/CustomerMypage/UserInfo/UserInfoForm';

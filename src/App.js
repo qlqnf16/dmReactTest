@@ -69,7 +69,7 @@ import firebase from './config/Firebase';
 
 import { connect } from 'react-redux';
 import * as actions from './modules';
-import axios from 'axios';
+import axios from './config/Axios';
 import './App.css';
 // import SideDrawer from './mobilePages/components/NavigationBar/SideDrawer';
 class App extends Component {
@@ -156,9 +156,9 @@ class App extends Component {
 
   render() {
     const { width } = this.state;
-    // const isMobile = width <= 500;
+    const isMobile = width <= 500;
     // 장막
-    const isMobile = false;
+    // const isMobile = false;
 
     // firebase에서 불러오기 전
     if (!this.state.madeRequest) {

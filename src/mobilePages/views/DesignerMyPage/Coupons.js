@@ -3,7 +3,7 @@ import DesignerNav from '../../components/NavigationBar/DesignerNav';
 import { connect } from 'react-redux';
 import firebase from '../../../config/Firebase';
 import CouponContent from '../../components/Coupon/CouponContent';
-import axios from 'axios';
+import axios from '../../../config/Axios';
 
 class DesignerCoupon extends Component {
   inputChangeHandler = event => {

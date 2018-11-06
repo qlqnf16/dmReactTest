@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import MyPageNavigationBar from '../../components/MyPageNavigationBar/MyPageNavigationBar';
 import firebase from '../../../config/Firebase';
-import axios from 'axios';
+import axios from '../../../config/Axios';
 import * as actions from '../../../modules';
 
 import { connect } from 'react-redux';
