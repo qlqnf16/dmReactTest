@@ -256,7 +256,7 @@ class Navitems extends Component {
           </NavItem>
           <NavItem>
             <NavLink
-              // onClick={() => alert('아직 이용하실 수 없습니다.')}
+              onClick={() => alert('아직 이용하실 수 없습니다.')}
               className=""
             >
               {/* <NavLink tag={Link} to={'/designerList'} className=""> */}
