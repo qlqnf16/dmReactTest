@@ -58,7 +58,11 @@ import {
   M_DesignerReservations,
   M_DesignerTicket,
   M_Schedule,
-  M_WhyDreamary
+  M_WhyDreamary,
+  M_FAQ,
+  M_InfoPolicy,
+  M_QnA,
+  M_TermsOfUse
 } from './mobilePages';
 import Toolbar from './components/Navigation/Toolbar/Toolbar';
 import Footer from './components/UI/Footer/Footer';
@@ -138,9 +142,9 @@ class App extends Component {
 
   render() {
     const { width } = this.state;
-    // const isMobile = width <= 500;
+    const isMobile = width <= 500;
     // 장막
-    const isMobile = false;
+    // const isMobile = false;
 
     // firebase에서 불러오기 전
     if (!this.state.madeRequest) {
@@ -356,6 +360,10 @@ class App extends Component {
             <Switch>
               <Route path="/" exact component={M_Landing} />
               <Route path="/about" component={M_About} />
+              <Route path="/FAQ" component={M_FAQ} />
+              <Route path="/termsofuse" component={M_TermsOfUse} />
+              <Route path="/infoPolicy" component={M_InfoPolicy} />
+              <Route path="/QnA" component={M_QnA} />
               <Route path="/designerlist" component={M_DesignerList} />
               <Route path="/designerDetail/:id" component={M_DesignerDetail} />
               <Route
