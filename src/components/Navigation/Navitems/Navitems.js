@@ -118,12 +118,12 @@ class Navitems extends Component {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink
+            {/* <NavLink
               // 장막
               onClick={() => alert('아직 이용하실 수 없습니다.')}
               className=""
-            >
-              {/* <NavLink tag={Link} to={'/designerList'} className=""> */}
+            > */}
+            <NavLink tag={Link} to={'/designerList'} className="">
               예디찾기
             </NavLink>
           </NavItem>
@@ -154,11 +154,11 @@ class Navitems extends Component {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink
+            {/* <NavLink
               onClick={() => alert('아직 이용하실 수 없습니다.')}
               className=" message_img"
-            >
-              {/* <NavLink tag={Link} to={'/message'} className=" message_img"> */}
+            > */}
+            <NavLink tag={Link} to={'/message'} className=" message_img">
               <img alt="alt" src={message_x} style={{ width: '100%' }} />
               {this.state.newMessage ? (
                 <div
@@ -187,11 +187,11 @@ class Navitems extends Component {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink
+            {/* <NavLink
               onClick={() => alert('아직 이용하실 수 없습니다.')}
               className=""
-            >
-              {/* <NavLink tag={Link} to={'/designer/reservations'} className=""> */}
+            > */}
+            <NavLink tag={Link} to={'/designer/reservations'} className="">
               예약관리
             </NavLink>
           </NavItem>
@@ -247,11 +247,11 @@ class Navitems extends Component {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink
+            {/* <NavLink
               // onClick={() => alert('아직 이용하실 수 없습니다.')}
               className=""
-            >
-              {/* <NavLink tag={Link} to={'/designerList'} className=""> */}
+            > */}
+            <NavLink tag={Link} to={'/designerList'} className="">
               예디찾기
             </NavLink>
           </NavItem>
