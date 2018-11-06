@@ -205,6 +205,8 @@ class DesignerInfo extends Component {
     if (firebaseUserData.phoneNumber.length !== 11)
       return alert('정확한 휴대폰 번호를 입력해주세요');
     if (!this.state.isRegister) return alert('휴대폰 인증을 먼저 해주세요');
+    if (!Object.values(firebaseUserData.addresses).length)
+      return alert('지역/샵주소를 작성해주세요');
     if (
       !firebaseUserData.addresses[0].fullAddress ||
       !firebaseUserData.addresses[0].extraAddress
