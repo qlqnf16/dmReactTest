@@ -65,14 +65,15 @@ class Toolbar extends Component {
             style={{
               position: 'absolute',
               display: 'flex',
-              zIndex: '1',
+              zIndex: '999',
               width: '280px',
               padding: '1%',
-              backgroundColor: '#dd6866',
+              backgroundColor: 'rgba(0,0,0,0.5)',
               fontSize: '1.2rem',
               fontWeight: 'bold',
               color: 'white',
               borderRadius: '5px',
+              borderColor: 'white',
               left: '5%',
               top: '85%'
             }}

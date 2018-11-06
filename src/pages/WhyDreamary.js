@@ -188,9 +188,15 @@ class WhyDreamary extends Component {
                   감동 <span style={{ color: '#dd6866' }}>서비스</span>를
                 </div>
               </div>
-              <Link to="/addDesigner" style={{ textDecoration: 'none' }}>
-                <div className="why_button2">지금 바로 등록하기!</div>
-              </Link>
+              {/* <Link to="/addDesigner" style={{ textDecoration: 'none' }}> */}
+              <div
+                onClick={() => this.clickButton()}
+                style={{ cursor: 'pointer' }}
+                className="why_button2"
+              >
+                지금 바로 등록하기!
+              </div>
+              {/* </Link> */}
               <img alt="alt" src={logo} style={{ width: '5%' }} />
             </div>
           </div>
