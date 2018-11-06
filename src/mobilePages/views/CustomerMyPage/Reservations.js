@@ -55,7 +55,7 @@ class Reservations extends Component {
   componentDidMount = async () => {
     if (!this.state.madeRequest) {
       const { data } = await axios.get(
-        `http://52.79.227.227:3030/users/${
+        `users/${
           this.props.userData._id
         }/reservations`
       );
@@ -68,7 +68,7 @@ class Reservations extends Component {
 
   reloadData = async () => {
     const { data } = await axios.get(
-      `http://52.79.227.227:3030/users/${this.props.userData._id}/reservations`
+      `users/${this.props.userData._id}/reservations`
     );
     this.setState({
       reservations: data,

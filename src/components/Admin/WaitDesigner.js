@@ -13,7 +13,7 @@ class WaitDesigner extends Component {
       });
 
     await axios.post(
-      `http://52.79.227.227:3030/users/${this.props.designer._id}/tickets`,
+      `users/${this.props.designer._id}/tickets`,
       {
         price: 28000
       }

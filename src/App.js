@@ -109,9 +109,7 @@ class App extends Component {
 
             // redux;
             let userData = res.val();
-            const { data } = await axios.get(
-              `http://52.79.227.227:3030/users/` + userData._id
-            );
+            const { data } = await axios.get(`users/` + userData._id);
             await this.props.login(userData);
             await this.props.updateRedux('expiredAt', data.expiredAt);
             await this.props.updateRedux('point', data.point);

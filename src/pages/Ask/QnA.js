@@ -17,7 +17,7 @@ class QnA extends Component {
       ...this.state,
       _user: this.props.userData._id
     };
-    axios.post('http://52.79.227.227:3030/inquiries', inquirie);
+    axios.post('inquiries', inquirie);
     alert('성공적으로 제출되었습니다.');
   };
 

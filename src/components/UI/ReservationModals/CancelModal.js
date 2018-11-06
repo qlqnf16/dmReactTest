@@ -20,7 +20,7 @@ class CancelModal extends Component {
     if (!this.state.cancelReason || this.state.cancelReason === '')
       return alert('채워지지 않은 정보가 있습니다');
     await axios.patch(
-      `http://52.79.227.227:3030/users/${
+      `users/${
         this.props.userData._id
       }/reservations/${this.props.reservation._id}`,
       {

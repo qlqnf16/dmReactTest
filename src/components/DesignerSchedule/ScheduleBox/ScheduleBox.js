@@ -40,7 +40,7 @@ class ScheduleBox extends Component {
   componentDidMount = async () => {
     if (!this.state.madeRequest) {
       const { data } = await axios.get(
-        `http://52.79.227.227:3030/recruits/${this.props.userData._recruit}`
+        `recruits/${this.props.userData._recruit}`
       );
       this.setState({
         cards: data._cards,

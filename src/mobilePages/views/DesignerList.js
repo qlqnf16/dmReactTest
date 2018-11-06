@@ -18,7 +18,7 @@ class DesignerList extends Component {
 
   componentDidMount = async () => {
     if (!this.state.madeRequest) {
-      const { data } = await axios.get('http://52.79.227.227:3030/recruits');
+      const { data } = await axios.get('recruits');
       data.sort((a, b) => {
         if (a.score < b.score) return 1;
         else if (a.score > b.score) return -1;
@@ -74,9 +74,7 @@ class DesignerList extends Component {
     if (this.state.dye === '100') must += 'dye=1&';
     else if (this.state.dye === '0') no += 'dye=2&';
 
-    const { data } = await axios.get(
-      'http://52.79.227.227:3030/cards?' + must + no + gender
-    );
+    const { data } = await axios.get('cards?' + must + no + gender);
     let recruits = data.map(d => d._recruit);
 
     let uniqueRecruits = [];

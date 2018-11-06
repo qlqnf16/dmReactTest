@@ -45,7 +45,7 @@ class DesignerTicket extends Component {
 
   reloadTicket = async () => {
     const { data } = await axios.get(
-      `http://52.79.227.227:3030/users/${this.props.userData._id}/tickets`
+      `users/${this.props.userData._id}/tickets`
     );
     await this.setState({ tickets: data, madeRequest: true });
   };
@@ -66,9 +66,7 @@ class DesignerTicket extends Component {
       async rsp => {
         if (rsp.success) {
           const { data } = await axios.post(
-            `http://52.79.227.227:3030/users/${
-              this.props.userData._id
-            }/tickets`,
+            `users/${this.props.userData._id}/tickets`,
             { price: kind }
           );
           await this.props.updateRedux('_tickets', [
@@ -94,9 +92,7 @@ class DesignerTicket extends Component {
       return alert('아직 사용중인 이용권이 있습니다');
 
     const { data } = await axios.patch(
-      `http://52.79.227.227:3030/users/${
-        this.props.userData._id
-      }/tickets/${ticketId}`
+      `users/${this.props.userData._id}/tickets/${ticketId}`
     );
     await this.props.updateRedux('expiredAt', data.expiredAt);
     alert('적용되었습니다.');
@@ -113,13 +109,10 @@ class DesignerTicket extends Component {
 
   couponSubmit = async () => {
     try {
-      await axios.patch(
-        `http://52.79.227.227:3030/coupons/${this.state.coupon}`,
-        {
-          _user: this.props.userData._id,
-          isD: this.props.userData.isD
-        }
-      );
+      await axios.patch(`coupons/${this.state.coupon}`, {
+        _user: this.props.userData._id,
+        isD: this.props.userData.isD
+      });
       alert('쿠폰이 적용 되었습니다.');
     } catch (err) {
       alert('유효하지 않은 쿠폰번호 입니다.');

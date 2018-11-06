@@ -223,7 +223,7 @@ class DesignerInfo extends Component {
 
         if (count === 2) {
           count = 0;
-          await axios.post(`http://52.79.227.227:3030/users/${_id}/tickets`, {
+          await axios.post(`users/${_id}/tickets`, {
             price: 10000
           });
         }

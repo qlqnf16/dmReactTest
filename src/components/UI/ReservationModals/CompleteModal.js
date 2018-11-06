@@ -16,7 +16,7 @@ class CompleteModal extends Component {
 
   completeSubmit = async () => {
     await axios.patch(
-      `http://52.79.227.227:3030/users/${
+      `users/${
         this.props.userData._id
       }/reservations/${this.props.reservation._id}`,
       {
@@ -31,7 +31,7 @@ class CompleteModal extends Component {
 
   noShowSubmit = async () => {
     await axios.patch(
-      `http://52.79.227.227:3030/users/${
+      `users/${
         this.props.userData._id
       }/reservations/${this.props.reservation._id}`,
       {

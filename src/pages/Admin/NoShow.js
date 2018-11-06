@@ -14,7 +14,7 @@ class NoShow extends Component {
   componentDidMount = async () => {
     if (!this.state.madeRequest) {
       const { data } = await axios.get(
-        `http://52.79.227.227:3030/users/5bc213a5f4376e579d2c18f6/reservations/all`
+        `users/5bc213a5f4376e579d2c18f6/reservations/all`
       );
 
       const filteredData = data.filter(d => d.cancelReason === '노쇼dreamary');

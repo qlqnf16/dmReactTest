@@ -226,7 +226,7 @@ class AddDesigner extends Component {
 
         if (count === 2) {
           count = 0;
-          await axios.post(`http://52.79.227.227:3030/users/${_id}/tickets`, {
+          await axios.post(`users/${_id}/tickets`, {
             price: 10000
           });
         }
@@ -250,9 +250,7 @@ class AddDesigner extends Component {
     formData.append('cert_mh', this.state.certFile1);
     formData.append('cert_jg', this.state.certFile2);
     await axios.post(
-      `http://52.79.227.227:3030/firebase/upload?uid=${
-        this.props.userData.uid
-      }`,
+      `firebase/upload?uid=${this.props.userData.uid}`,
       formData,
       {
         headers: {
