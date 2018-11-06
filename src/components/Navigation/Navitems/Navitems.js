@@ -121,7 +121,7 @@ class Navitems extends Component {
             <NavLink
               // 장막
               onClick={() => alert('아직 이용하실 수 없습니다.')}
-              className=""
+              style={{ cursor: 'pointer' }}
             >
               {/* <NavLink tag={Link} to={'/designerList'} className=""> */}
               예디찾기
@@ -143,7 +143,9 @@ class Navitems extends Component {
                 </NavLink>
               </DropdownItem>
               <DropdownItem>
-                <NavLink onClick={this.logout}>로그아웃</NavLink>
+                <NavLink onClick={this.logout} style={{ cursor: 'pointer' }}>
+                  로그아웃
+                </NavLink>
               </DropdownItem>
             </DropdownMenu>
           </UncontrolledDropdown>
@@ -157,6 +159,7 @@ class Navitems extends Component {
             <NavLink
               onClick={() => alert('아직 이용하실 수 없습니다.')}
               className=" message_img"
+              style={{ cursor: 'pointer' }}
             >
               {/* <NavLink tag={Link} to={'/message'} className=" message_img"> */}
               <img alt="alt" src={message_x} style={{ width: '100%' }} />
@@ -197,7 +200,7 @@ class Navitems extends Component {
           <NavItem>
             <NavLink
               onClick={() => alert('아직 이용하실 수 없습니다.')}
-              className=""
+              style={{ cursor: 'pointer' }}
             >
               {/* <NavLink tag={Link} to={'/designer/reservations'} className=""> */}
               예약관리
@@ -224,12 +227,17 @@ class Navitems extends Component {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink tag={Link} to={'/message'} className=" message_img">
+            <NavLink
+              onClick={() => alert('아직 이용하실 수 없습니다.')}
+              className=" message_img"
+              style={{ cursor: 'pointer' }}
+            >
+              {/* <NavLink tag={Link} to={'/message'} className=" message_img"> */}
               <img alt="alt" src={message_x} style={{ width: '100%' }} />
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink onClick={this.logout} className="">
+            <NavLink onClick={this.logout} style={{ cursor: 'pointer' }}>
               로그아웃
             </NavLink>
           </NavItem>
@@ -245,19 +253,25 @@ class Navitems extends Component {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink onClick={this.props.showSignUp} className="">
+            <NavLink
+              onClick={this.props.showSignUp}
+              style={{ cursor: 'pointer' }}
+            >
               회원가입
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink onClick={this.props.showLogin} className="">
+            <NavLink
+              onClick={this.props.showLogin}
+              style={{ cursor: 'pointer' }}
+            >
               로그인
             </NavLink>
           </NavItem>
           <NavItem>
             <NavLink
               onClick={() => alert('아직 이용하실 수 없습니다.')}
-              className=""
+              style={{ cursor: 'pointer' }}
             >
               {/* <NavLink tag={Link} to={'/designerList'} className=""> */}
               예디찾기
