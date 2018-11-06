@@ -153,19 +153,6 @@ class UserInfo extends Component {
     );
   };
 
-  certification() {
-    firebase
-      .database()
-      .ref('users/' + firebase.auth().currentUser.uid)
-      .update({ isRegister: true });
-  }
-  noCertification() {
-    firebase
-      .database()
-      .ref('users/' + firebase.auth().currentUser.uid)
-      .update({ isRegister: false });
-  }
-
   render() {
     let isRegister = '';
     if (!this.state.isRegister) {
@@ -370,12 +357,6 @@ class UserInfo extends Component {
                       저장하기
                     </span>
                   </div>
-                </div>
-                <div onClick={() => this.certification()} className="btn m-5">
-                  임시인증
-                </div>
-                <div onClick={() => this.noCertification()} className="btn m-5">
-                  인증해제
                 </div>
               </div>
             </Form>
