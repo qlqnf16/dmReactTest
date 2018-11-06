@@ -10,8 +10,9 @@ class QnA extends Component {
     return (
       <div>
         <AskNavigationBar pathname={this.props.location.pathname} />
-
-        QnA
+        <div className='container-fluid' style={{width: '93.8%'}}>
+          <div className='m_ask_title'>관리자문의</div>
+        </div>
       </div>
     )
   }

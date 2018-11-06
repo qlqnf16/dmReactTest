@@ -1,0 +1,79 @@
+.container-fluid.m_ask {
+  width: 87%;
+  margin-top: 2.25rem;
+  margin-bottom: 1.14rem;
+}
+
+.m_ask_title {
+  border-bottom: solid 1px #1f3354;
+  font-size: 1.2rem;
+  font-weight: bold;
+  line-height: 1.5;
+  letter-spacing: 0.6px;
+  color: #1f3354;
+  padding: 0.85rem;
+  margin-bottom: 2.55rem;
+}
+
+.m_ask_content {
+  height: fit-content;
+  font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', sans-serif;
+  font-size: 1.3rem;
+  line-height: 1.31;
+  text-align: justify;
+  color: #1f3354;
+}
+
+.m_ask_faqnav {
+  width: 100%;
+  padding: 18.5px 18%; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.m_ask_faqnavitem {
+  font-size: 1.2rem;
+  font-weight: bold;
+  line-height: 1.5;
+  letter-spacing: 0.6px;
+  padding: 0.5px;
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.m_ask_faqnavitem.active {
+  color: #1f3354;
+  border-bottom: solid 1px #1f3354;
+}
+
+.m_ask_list {
+  width: 100%;
+  height: fit-content;
+  border-top: solid 1px rgb(229, 229, 229);
+  border-bottom: solid 1px rgb(229, 229, 229);
+  margin-top: -1px;
+  padding: 23.5px 11.5px;
+}
+
+.m_ask_qnum {
+  font-size: 1rem;
+  font-weight: bold;
+  line-height: 1.7;
+  letter-spacing: 0.5px;
+  color: #dd6866;
+}
+
+.m_ask_question {
+  font-size: 1rem;
+  line-height: 1.7;
+  letter-spacing: 0.5px;
+  color: #1f3354;
+  width: 87%;
+  text-align: justify;
+}
+
+.m_ask_grid {
+  display: grid;
+  grid-template-columns: 2% 98%;
+  grid-gap: 4px 20px;
+}
