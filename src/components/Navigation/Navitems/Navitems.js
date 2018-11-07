@@ -179,8 +179,16 @@ class Navitems extends Component {
       );
       // 로그인 했는지 && 디자이너인지 확인 후 디자이너용 navbar
     } else if (this.props.userData.uid && this.props.userData.isD) {
+      let adminTap = this.props.userData.isAdmin ? (
+        <NavItem>
+          <NavLink tag={Link} to={'/admin/userList'} className="">
+            관리자 탭
+          </NavLink>
+        </NavItem>
+      ) : null;
       return (
         <Fragment>
+          {adminTap}
           <NavItem>
             <NavLink tag={Link} to={'/whyDreamary'} className="">
               왜?
