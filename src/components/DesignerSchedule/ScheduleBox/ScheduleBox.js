@@ -91,9 +91,12 @@ class ScheduleBox extends Component {
         };
         this.setState({ requireTime });
       } else if (target.name === 'permPrice') {
-        this.permPrice[target.id] = Number(target.value);
+        // this.permPrice[target.id] = Number(target.value);
         this.setState({
-          permPrice: this.permPrice
+          permPrice: {
+            ...this.state.permPrice,
+            [target.id]: Number(target.value)
+          }
         });
       } else if (target.name === 'dyePrice') {
         this.dyePrice[target.id] = Number(target.value);
@@ -125,6 +128,13 @@ class ScheduleBox extends Component {
         this.setState({ [name]: target.checked });
       }
     }
+  };
+
+  cardAddHandler = async cardData => {
+    await this.props.cardAddHandler(cardData);
+    this.setState({ time: 1, sinces: [], untils: [], date: null });
+    this.sinces = [];
+    this.untils = [];
   };
 
   cardSort = (c1, c2) => c1.date - c2.date;
@@ -206,13 +216,16 @@ class ScheduleBox extends Component {
             timeAdd={this.timeAddHandler}
             timeDelete={this.timeDeleteHandler}
             submit={this.submit}
-            cardAddHandler={() => this.props.cardAddHandler(cardData)}
+            cardAddHandler={() => this.cardAddHandler(cardData)}
             changeInput={e => this.handleInputChange(e)}
             date={this.state.date}
             addresses={this.props.userData.addresses}
             dates={this.props.dates}
+            newDates={this.props.newDates}
             sinces={this.state.sinces}
             untils={this.state.untils}
+            permPrice={this.state.permPrice}
+            dyePrice={this.state.dyePrice}
           />
         </div>
         <div className="col-6 mt-5">

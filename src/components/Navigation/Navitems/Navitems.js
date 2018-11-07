@@ -218,6 +218,19 @@ class Navitems extends Component {
           <NavItem>
             <NavLink tag={Link} to={'/message'} className=" message_img">
               <img alt="alt" src={message_x} style={{ width: '100%' }} />
+              {this.state.newMessage ? (
+                <div
+                  style={{
+                    position: 'relative',
+                    width: '7px',
+                    top: '-20px',
+                    left: '20px',
+                    height: '7px',
+                    borderRadius: '100%',
+                    backgroundColor: '#dd6866'
+                  }}
+                />
+              ) : null}
             </NavLink>
           </NavItem>
           <NavItem>

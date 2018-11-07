@@ -267,6 +267,7 @@ class DesignerInfo extends Component {
     this.state.portfolioFile.forEach((p, index) => {
       formData.append(`portfolio${index + this.state.portfoliosNum}`, p);
     });
+    console.log(formData);
     await axios.post(
       `firebase/upload?uid=${this.props.userData.uid}`,
       formData,

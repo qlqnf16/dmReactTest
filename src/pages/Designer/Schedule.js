@@ -140,6 +140,7 @@ class Schedule extends Component {
   render() {
     if (this.state.cards) {
       const dates = this.state.cards.map(card => card.date);
+      const newDates = this.state.newCards.map(card => card.date);
 
       const showMyCard = this.props.userData._recruit
         ? () =>
@@ -175,6 +176,7 @@ class Schedule extends Component {
                 cardAddHandler={this.cardAddHandler}
                 totalSubmitHandler={this.totalSubmitHandler}
                 dates={dates}
+                newDates={newDates}
                 showMyCard={showMyCard}
               />
             </div>

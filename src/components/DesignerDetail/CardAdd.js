@@ -62,7 +62,11 @@ class CardAdd extends Component {
     });
     this.props.ableTimes.forEach(ableTime => {
       let time = ableTime.since;
-      while (time <= ableTime.until - 90) {
+      while (
+        time <=
+        ableTime.until -
+          Math.min(...Object.values(this.props.recruit.requireTime))
+      ) {
         if (!reservedTimes.includes(time)) Times.push(time);
         time += 30;
       }
