@@ -172,7 +172,8 @@ const styles = {
   subtitleStyle: {
     fontSize: '1.3rem',
     fontWeight: 'bold',
-    color: '#1f3354'
+    color: '#1f3354',
+    marginBottom: '1.5rem'
   },
   buttonStyle: {
     display: 'inline-block',

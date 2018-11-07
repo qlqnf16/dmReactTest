@@ -3,12 +3,12 @@ import Ticket from '../../../assets/images/ticket.png';
 const TicketPurchaseButton = props => (
   <div style={{ display: 'flex', justifyContent: 'space-around' }}>
     <div style={containerStyle} onClick={() => props.purchaseHandler(10000)}>
-      <img src={Ticket} className="tc_ticket" />
+      <img src={Ticket} style={{ width: '40%' }} />
       <div style={textStyle}>1개월 이용권</div>
       <div style={puchaseButtonStyle}>10,000원</div>
     </div>
     <div style={containerStyle} onClick={() => props.purchaseHandler(28000)}>
-      <img src={Ticket} className="tc_ticket" />
+      <img src={Ticket} style={{ width: '40%' }} />
       <div style={textStyle}>3개월 이용권</div>
       <div style={puchaseButtonStyle}>28,000원</div>
     </div>
@@ -24,7 +24,7 @@ const styles = {
     boxShadow: '1px 2px 15px 0 rgba(0, 0, 0, 0.1)',
     width: '40%',
     height: 150,
-    margin: '5% 0'
+    marginBottom: '5%'
   },
   textStyle: {
     fontSize: '1.5rem',
