@@ -174,6 +174,7 @@ const ReservationCard = props => {
               src={props.type === 'soon' ? place_o : place_x}
               className="rc_icon"
             />{' '}
+            {console.log(props.reservation)}
             {props.reservation._card && props.reservation._card.shop}
           </div>
           <div

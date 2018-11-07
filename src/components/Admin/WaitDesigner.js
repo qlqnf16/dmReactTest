@@ -4,6 +4,9 @@ import firebase from '../../config/Firebase';
 import axios from '../../config/Axios';
 class WaitDesigner extends Component {
   approvalSubmit = async uid => {
+    await axios.post(`users/${this.props.designer._id}/tickets`, {
+      price: 28000
+    });
     await firebase
       .database()
       .ref('users/' + uid)
@@ -12,12 +15,6 @@ class WaitDesigner extends Component {
         isApproval: true
       });
 
-    await axios.post(
-      `users/${this.props.designer._id}/tickets`,
-      {
-        price: 28000
-      }
-    );
     alert('승인되었습니다');
   };
   noApprovalSubmit = async uid => {

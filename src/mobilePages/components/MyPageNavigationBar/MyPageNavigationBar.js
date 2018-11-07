@@ -1,32 +1,54 @@
-import React, { Component } from "react";
-import MyPageHeader from "./MyPageHeader";
-import MyPageNavigationItems from "./MyPageNavigationItems";
-import "./MyPageNavigationBar.css";
-import { Link } from "react-router-dom";
+import React, { Fragment } from 'react';
+import './MyPageNavigationBar.css';
+import MyPageHeader from './MyPageHeader';
+import { NavLink } from 'react-router-dom';
 
-class MyPageNavigationBar extends Component {
-  render() {
-    return (
-      <div>
-        <MyPageHeader />
-        <div className="mobile-sub-menu">
-          {/* todo: 해당 페이지에 있을 때 active property를 적용하게 하기 */}
-          <Link to="/reservations">
-            <MyPageNavigationItems active>예약관리</MyPageNavigationItems>
-          </Link>
-          <Link to="/likedesigner">
-            <MyPageNavigationItems>찜한예디</MyPageNavigationItems>
-          </Link>
-          <Link to="userInfo">
-            <MyPageNavigationItems>회원정보관리</MyPageNavigationItems>
-          </Link>
-          <Link to="coupon">
-            <MyPageNavigationItems>프로모션</MyPageNavigationItems>
-          </Link>
-        </div>
-      </div>
-    );
-  }
-}
+const MyPageNavigationBar = () => (
+  <Fragment>
+    <MyPageHeader />
+    <div className="mobile-sub-menu">
+      <NavLink
+        to="/reservations"
+        className="unav_navitem"
+        activeStyle={{
+          color: '#dd6866',
+          borderBottom: 'solid 1.8px #dd6866'
+        }}
+      >
+        예약관리
+      </NavLink>
+      <NavLink
+        to="/likedesigner"
+        className="unav_navitem"
+        activeStyle={{
+          color: '#dd6866',
+          borderBottom: 'solid 1.8px #dd6866'
+        }}
+      >
+        스케줄등록
+      </NavLink>
+      <NavLink
+        to="/userInfo"
+        className="unav_navitem"
+        activeStyle={{
+          color: '#dd6866',
+          borderBottom: 'solid 1.8px #dd6866'
+        }}
+      >
+        이용권관리
+      </NavLink>
+      <NavLink
+        to="/coupon"
+        className="unav_navitem"
+        activeStyle={{
+          color: '#dd6866',
+          borderBottom: 'solid 1.8px #dd6866'
+        }}
+      >
+        프로모션
+      </NavLink>
+    </div>
+  </Fragment>
+);
 
 export default MyPageNavigationBar;

@@ -60,7 +60,9 @@ const CancelReasonModal = props => {
             서비스 취소 사유
           </p>
           <div className="m_input p-3" name="cancelReason" id="cancelReason">
-            {props.reservation.cancelReason}
+            {props.reservation.cancelReason === '노쇼dreamary'
+              ? '노쇼 신고가 접수되었습니다.'
+              : props.reservation.cancelReason}
           </div>
           <div className="text-center">
             <div
