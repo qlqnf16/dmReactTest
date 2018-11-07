@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import { Modal } from 'reactstrap';
 import DaumPostcode from 'react-daum-postcode';
 import ImgPreview from './ImgPreview';
+import './InfoForm.css';
 
 class InfoForm extends Component {
   constructor(props) {
@@ -184,15 +185,62 @@ class InfoForm extends Component {
     return (
       <Fragment>
         <div style={containerStyle}>
-          <div style={labelStyle}>성명</div>
-          <input
-            style={inputTextStyle}
-            type="text"
-            name="name"
-            id="name"
-            onChange={this.props.changeInput}
-            value={userData.name}
-          />
+          <div style={{ display: 'flex' }}>
+            <div style={{ width: '70%', marginRight: '5%' }}>
+              <div style={labelStyle}>성명</div>
+              <input
+                style={{ ...inputTextStyle, width: '100%' }}
+                type="text"
+                name="name"
+                id="name"
+                onChange={this.props.changeInput}
+                value={userData.name}
+              />
+            </div>
+            <div style={{ width: '25%' }}>
+              <div style={labelStyle}>성별</div>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <label
+                  for="infoform-male"
+                  className="infoform-male"
+                  style={
+                    this.props.state.gender === 'male'
+                      ? { borderColor: '#4c91ba', fontWeight: 'bold' }
+                      : { color: 'rbga(0,0,0,0.2)' }
+                  }
+                >
+                  <input
+                    style={{ display: 'none' }}
+                    type="radio"
+                    name="gender"
+                    id="infoform-male"
+                    onChange={this.props.changeInput}
+                    value="male"
+                  />
+                  <div>남</div>
+                </label>
+                <label
+                  for="infoform-female"
+                  className="infoform-female"
+                  style={
+                    this.props.state.gender === 'female'
+                      ? { borderColor: '#4c91ba', fontWeight: 'bold' }
+                      : { color: 'rgba(0,0,0,0.2)' }
+                  }
+                >
+                  <input
+                    style={{ display: 'none' }}
+                    type="radio"
+                    name="gender"
+                    id="infoform-female"
+                    onChange={this.props.changeInput}
+                    value="female"
+                  />
+                  <div>여</div>
+                </label>
+              </div>
+            </div>
+          </div>
           <div style={labelStyle}>이메일 주소</div>
           <input
             style={inputTextStyle}

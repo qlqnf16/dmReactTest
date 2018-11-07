@@ -29,7 +29,8 @@ class DesignerInfo extends Component {
       designerRecommendationCode,
       profile,
       cert_mh,
-      cert_jg
+      cert_jg,
+      isRegister
     } = this.props.userData;
     if (!addresses) addresses = [];
     this.state = {
@@ -55,7 +56,8 @@ class DesignerInfo extends Component {
       addressNum: addresses.length + 1,
       addresses,
       designerRecommendationCode,
-      portfoliosNum: portfolios.length
+      portfoliosNum: portfolios.length,
+      isRegister
     };
   }
 
@@ -150,7 +152,8 @@ class DesignerInfo extends Component {
       careerDetail,
       addresses,
       introduce,
-      designerRecommendationCode
+      designerRecommendationCode,
+      isRegister
     } = this.state;
 
     let firebaseUserData = {
@@ -163,7 +166,8 @@ class DesignerInfo extends Component {
       career,
       careerDetail,
       addresses,
-      introduce
+      introduce,
+      isRegister
     };
 
     // if (
@@ -248,7 +252,7 @@ class DesignerInfo extends Component {
     formData.append('profile', this.state.profileFile);
     formData.append('portfolio', this.state.portfolioFile);
     await axios.post(
-      `http://localhost:3030/firebase/upload?uid=${this.props.userData.uid}`,
+      `firebase/upload?uid=${this.props.userData.uid}`,
       formData,
       { headers: { 'Content-Type': 'multipart/form-data' } }
     );
