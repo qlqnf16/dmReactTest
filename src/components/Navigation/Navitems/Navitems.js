@@ -179,8 +179,16 @@ class Navitems extends Component {
       );
       // 로그인 했는지 && 디자이너인지 확인 후 디자이너용 navbar
     } else if (this.props.userData.uid && this.props.userData.isD) {
+      let adminTap = this.props.userData.isAdmin ? (
+        <NavItem>
+          <NavLink tag={Link} to={'/admin/userList'} className="">
+            관리자 탭
+          </NavLink>
+        </NavItem>
+      ) : null;
       return (
         <Fragment>
+          {adminTap}
           <NavItem>
             <NavLink tag={Link} to={'/whyDreamary'} className="">
               왜?
@@ -218,6 +226,19 @@ class Navitems extends Component {
           <NavItem>
             <NavLink tag={Link} to={'/message'} className=" message_img">
               <img alt="alt" src={message_x} style={{ width: '100%' }} />
+              {this.state.newMessage ? (
+                <div
+                  style={{
+                    position: 'relative',
+                    width: '7px',
+                    top: '-20px',
+                    left: '20px',
+                    height: '7px',
+                    borderRadius: '100%',
+                    backgroundColor: '#dd6866'
+                  }}
+                />
+              ) : null}
             </NavLink>
           </NavItem>
           <NavItem>
