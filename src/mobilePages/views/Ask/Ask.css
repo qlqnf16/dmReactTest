@@ -21,11 +21,12 @@
   line-height: 1.31;
   text-align: justify;
   color: #1f3354;
+  overflow: visible;
 }
 
 .m_ask_faqnav {
   width: 100%;
-  padding: 18.5px 18%; 
+  padding: 18.5px 18%;
   display: flex;
   justify-content: space-between;
   align-items: center;
