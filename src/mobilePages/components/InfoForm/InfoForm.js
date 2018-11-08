@@ -424,13 +424,7 @@ const styles = {
     color: '#1f3354',
     marginRight: '3.3%',
     padding: '0.7rem',
-    paddingTop: '0.5rem',
-    backgroundImage:
-      'linear-gradient(45deg, transparent 50%, gray 50%), linear-gradient(135deg, gray 50%, transparent 50%)',
-    backgroundPosition:
-      'calc(100% - 20px) calc(1em + 2px), calc(100% - 15px) calc(1em + 2px)',
-    backgroundSize: '5px 5px, 5px 5px',
-    backgroundRepeat: 'no-repeat'
+    paddingTop: '0.5rem'
   },
   addressButtonStyle: {
     display: 'inline-block',
