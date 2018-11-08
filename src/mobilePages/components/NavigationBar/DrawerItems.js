@@ -20,7 +20,7 @@ const DrawerItems = props => {
         <div className="mobile-drawer-items mobile-drawer-login">
           반갑습니다 {props.userData.name}님
         </div>
-        <Link to="reservations">
+        <Link to="/userinfo">
           <div
             className="mobile-drawer-items mobile-drawer-gray"
             onClick={props.click}
