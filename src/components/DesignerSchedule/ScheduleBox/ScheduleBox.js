@@ -132,7 +132,9 @@ class ScheduleBox extends Component {
 
   cardAddHandler = async cardData => {
     await this.props.cardAddHandler(cardData);
+
     this.setState({ time: 1, sinces: [], untils: [], date: null });
+
     this.sinces = [];
     this.untils = [];
   };

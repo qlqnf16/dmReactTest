@@ -46,7 +46,9 @@ class Schedule extends Component {
             onChange={this.props.changeInput}
             className=""
           >
-            <option value="null">-시작시간-</option>
+            <option value="null" selected>
+              -시작시간-
+            </option>
             {ts}
           </Input>
           <span className="mx-2" style={{ lineHeight: '2.3' }}>
