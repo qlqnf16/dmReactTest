@@ -73,10 +73,10 @@ class Schedule extends Component {
     //   cardData.ableTimes.length === 0
     // )
     //   return alert('채워지지 않은 정보가 있습니다');
-
     if (!cardData.date) return alert('날짜를 선택해주세요');
     if (!cardData.shop) return alert('장소를 선택해주세요');
-    if (!cardData.ableTimes) return alert('가능한 시간대를 선택해주세요');
+    if (cardData.ableTimes.length === 0)
+      return alert('가능한 시간대를 선택해주세요'); //바뀐것: ableTimes가 배열이어서 length로 조건 바꿨음
     if (!cardData.picture) return alert('시간 촬영 여부를 선택해주세요');
     if (!cardData.requireGender) return alert('희망 모델 성별을 선택해주세요');
 
@@ -92,6 +92,7 @@ class Schedule extends Component {
     let shops;
     shops = this.props.userData.addresses.map(address => address.extraAddress);
     recruitData['shops'] = shops;
+    console.log(Object.values(recruitData));
     //안 채워진 정보 검증
     if (
       Object.values(recruitData).includes('') ||
