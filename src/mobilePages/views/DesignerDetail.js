@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import firebase from 'firebase';
 import axios from '../../config/Axios';
@@ -8,13 +9,17 @@ import axios from '../../config/Axios';
 import Header from '../components/DesignerDetail/Header';
 import Review from '../components/DesignerDetail/Review';
 import DetailCards from '../components/DesignerDetail/DetailCards';
+import MyModal from '../../components/UI/MyModal/MyModal';
+import ShowLargeImage from '../../components/DesignerDetail/ShowLargeImage';
 
 class DesignerDetail extends Component {
   state = {
     modal: false,
     madeRequest: false,
     recruit: {},
-    designerData: {}
+    designerData: {},
+    showLargeImage: false,
+    showLogin: false
   };
 
   toggleModal = () => {
@@ -28,7 +33,12 @@ class DesignerDetail extends Component {
       const { data } = await axios.get(
         `recruits/${this.props.match.params.id}`
       );
-      this.setState({ recruit: data, madeRequest: true });
+      this.setState({
+        recruit: data,
+        madeRequest: true,
+        isLogin: this.props.userData.uid
+      });
+      await this.authListener();
     }
 
     await firebase
@@ -39,12 +49,25 @@ class DesignerDetail extends Component {
       });
   };
 
-  timeFormat = time => {
-    return `${parseInt(time / 60, 10)}시간 ${time % 60 === 0 ? '' : '30분'}`;
-  };
+  authListener() {
+    firebase.auth().onAuthStateChanged(async user => {
+      if (user && firebase.auth().currentUser) {
+        this.setState({ isLogin: true });
+      } else {
+        this.setState({ isLogin: false });
+      }
+    });
+  }
 
   loginToggleHandler = () => {
     this.setState({ showLogin: !this.state.showLogin });
+  };
+  offHandler = () => {
+    this.setState({ showLogin: false });
+  };
+
+  timeFormat = time => {
+    return `${parseInt(time / 60, 10)}시간 ${time % 60 === 0 ? '' : '30분'}`;
   };
 
   submitReservation = async (
@@ -56,6 +79,14 @@ class DesignerDetail extends Component {
     recruit,
     cardData
   ) => {
+    // 비로그인시 로그인 모달
+    if (!this.state.isLogin && this.state.madeRequest) {
+      console.log('Go');
+      await this.toggleModal();
+      await this.loginToggleHandler();
+      return;
+    }
+
     if (Object.values(serviceFormat).length === 0)
       return alert('받을 서비스를 선택해 주세요');
     await this.props.history.push({
@@ -69,6 +100,14 @@ class DesignerDetail extends Component {
         recruit,
         cardData
       }
+    });
+  };
+
+  // 사진 크게보기
+  showLargeImageToggle = src => {
+    this.setState({
+      showLargeImage: !this.state.showLargeImage,
+      largeImage: src
     });
   };
 
@@ -149,6 +188,7 @@ class DesignerDetail extends Component {
                     src={portfolio}
                     className="col-4"
                     style={{ padding: '0', width: '100%', height: '100%' }}
+                    onClick={() => this.showLargeImageToggle(portfolio)}
                   />
                 ))}
               </div>
@@ -177,7 +217,11 @@ class DesignerDetail extends Component {
             </div>
             {recruit._reviews &&
               recruit._reviews.map((review, key) => (
-                <Review key={key} review={review} />
+                <Review
+                  key={key}
+                  review={review}
+                  showLargeImageToggle={this.showLargeImageToggle}
+                />
               ))}
           </div>
           {/* fixed button 때문에 만들어놓은 임시 div */}
@@ -196,6 +240,16 @@ class DesignerDetail extends Component {
             </div>
           </div>
         </div>
+        <MyModal
+          showLogin={this.state.showLogin}
+          off={this.loginToggleHandler}
+          type="login"
+        />
+        <ShowLargeImage
+          isOpen={this.state.showLargeImage}
+          toggle={this.showLargeImageToggle}
+          src={this.state.largeImage}
+        />
         <Modal
           isOpen={this.state.modal}
           toggle={this.toggleModal}
@@ -205,20 +259,19 @@ class DesignerDetail extends Component {
           <ModalBody>
             <DetailCards
               recruit={this.state.recruit}
-              loginToggle={this.loginToggleHandler}
               submitReservation={this.submitReservation}
             />
           </ModalBody>
           {/* <ModalFooter>
             <div
-              style={{ ...buttonStyle, width: '100%' }}
-              onClick={this.toggleModal}
+              style={{ ...buttonStyle, width: '100%', color: 'white' }}
+              onClick={this.to}
             >
               <Link
                 style={{ color: 'white' }}
                 to={{ pathname: `/reservation/${this.props.id}`, state: {} }}
               >
-                결제하기
+              결제하기
               </Link>
             </div>
           </ModalFooter> */}
@@ -306,4 +359,8 @@ const styles = {
   }
 };
 
-export default DesignerDetail;
+const mapStateToProps = ({ authentication: { userData } }) => {
+  return { userData };
+};
+
+export default connect(mapStateToProps)(DesignerDetail);

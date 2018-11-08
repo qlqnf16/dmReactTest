@@ -73,7 +73,7 @@ class CardAdd extends Component {
         time % 60 === 0 ? '00' : '30'
       }`;
       return (
-        <div className="col-6 p-1">
+        <div className="col-4 p-1">
           <div
             key={key}
             onClick={() => this.selectTime(time)}
@@ -164,19 +164,16 @@ class CardAdd extends Component {
         <div className=" py-3 row m-2">{timeButtons}</div>
         <div
           className="submit_button"
-          onClick={
-            !this.props.userData.name
-              ? this.props.loginToggle
-              : () =>
-                  this.props.submitReservation(
-                    price,
-                    time,
-                    service,
-                    serviceFormat,
-                    this.state.time,
-                    this.props.recruit,
-                    this.props.cardData
-                  )
+          onClick={() =>
+            this.props.submitReservation(
+              price,
+              time,
+              service,
+              serviceFormat,
+              this.state.time,
+              this.props.recruit,
+              this.props.cardData
+            )
           }
         >
           <div className="row p-3" style={{ alignItems: 'flex-end' }}>
