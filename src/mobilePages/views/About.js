@@ -12,7 +12,7 @@ import profile5 from '../../assets/images/3.png';
 import profile6 from '../../assets/images/2.png';
 import profile7 from '../../assets/images/1.png';
 import logo from '../../assets/images/logo.png';
-import './About.css'
+import './About.css';
 
 class About extends Component {
   render() {
@@ -20,7 +20,7 @@ class About extends Component {
       <div className="container-fluid text-center p-0">
         <iframe
           width="100%"
-          height='240px'
+          height="240px"
           src="https://www.youtube.com/embed/jepipiX0KN8?autohide=1&autoplay=1&loop=1&rel=0&controls=0&modestbranding=0&showinfo=0"
           frameborder="0"
           allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
@@ -69,9 +69,9 @@ class About extends Component {
           <br />
           그래서 드리머리는
           <br />
-          공인자격증 검증, 다른 사람들의 리뷰,<br/>
-          헤어디자이너의 포트폴리오, 환불
-          시스템을 통해
+          공인자격증 검증, 다른 사람들의 리뷰,
+          <br />
+          헤어디자이너의 포트폴리오, 환불 시스템을 통해
           <br />
           <span style={{ backgroundColor: '#ffe8e5' }}>
             안심하고 예약할 수 있는 서비스
@@ -92,7 +92,10 @@ class About extends Component {
               src={icon1}
               style={{ width: '33%', marginBottom: '36.9px' }}
             />
-            <div className="m_about_2" style={{ fontSize: '1.2rem', marginBottom: '70px' }}>
+            <div
+              className="m_about_2"
+              style={{ fontSize: '1.2rem', marginBottom: '70px' }}
+            >
               <span className="m_about_highlight">
                 대중이 인정한, 실패 없는 헤어서비스
               </span>
@@ -115,7 +118,10 @@ class About extends Component {
               src={icon2}
               style={{ width: '33%', marginBottom: '36.9px' }}
             />
-            <div className="m_about_2" style={{ fontSize: '1.2rem', marginBottom: '70px' }}>
+            <div
+              className="m_about_2"
+              style={{ fontSize: '1.2rem', marginBottom: '70px' }}
+            >
               <span className="m_about_highlight">
                 커피 한 잔 가격의 헤어서비스
               </span>
@@ -138,7 +144,10 @@ class About extends Component {
               src={icon3}
               style={{ width: '33%', marginBottom: '36.9px' }}
             />
-            <div className="m_about_2" style={{ fontSize: '1.2rem', marginBottom: '70px' }}>
+            <div
+              className="m_about_2"
+              style={{ fontSize: '1.2rem', marginBottom: '70px' }}
+            >
               <span className="m_about_highlight">
                 디자이너의 꿈을 응원하는 서비스
               </span>
