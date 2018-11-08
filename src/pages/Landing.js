@@ -196,6 +196,7 @@ class Landing extends Component {
         {/* 여기부터 랜딩 */}
         <div>
           <Carousel
+            class="carousel-custom"
             activeIndex={activeIndex}
             next={this.next}
             previous={this.previous}
