@@ -2,10 +2,8 @@ import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import './Footer.css';
 
-const Footer = ({ location }) => {
-  console.log(location.pathname);
-  return location.pathname.includes('chat') ||
-    location.pathname.includes('designerdetail/') ? (
+const Footer = ({ location: { pathname } }) => {
+  return pathname.includes('chat') || pathname.includes('designerdetail/') ? (
     <div />
   ) : (
     <div className="m_footer_back">
