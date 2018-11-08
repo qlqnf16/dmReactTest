@@ -9,18 +9,7 @@ import TicketPurchaseButton from '../../components/UI/DesignerTicket/TicketPurch
 class DesignerTicket extends Component {
   state = {
     madeRequest: false,
-    tickets: [
-      {
-        price: 10000,
-        createdAt: 1540795759135,
-        expiredAt: null
-      },
-      {
-        price: 28000,
-        createdAt: 1540795759135,
-        expiredAt: 20180811
-      }
-    ],
+    tickets: [],
     method: 'card'
   };
 
