@@ -9,7 +9,13 @@ const Review = props => {
   const images =
     review.images &&
     review.images.map((img, key) => (
-      <img src={img} key={key} alt="img" className="col-4 w-100 h-100" />
+      <img
+        src={img}
+        key={key}
+        alt="img"
+        className="col-4 w-100 h-100"
+        onClick={() => props.showLargeImageToggle(img)}
+      />
     ));
 
   return (

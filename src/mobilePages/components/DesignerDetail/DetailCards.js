@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactSwipe from 'react-swipe';
 import DetailCard from './DetailCard';
 class DetailCards extends Component {
   state = { click: false };
@@ -17,6 +18,7 @@ class DetailCards extends Component {
       cards.forEach((card, key) => {
         if (card.reservable) {
           cardList.push(
+            // <div>
             <DetailCard
               key={key}
               number={key}
@@ -28,11 +30,18 @@ class DetailCards extends Component {
               loginToggle={this.props.loginToggle}
               submitReservation={this.props.submitReservation}
             />
+            // </div>
           );
         }
       });
     }
-    return <div>{cardList}</div>;
+    return (
+      <div>
+        {/* <ReactSwipe className="carousel" swipeOptions={{ continuous: false }}> */}
+        {cardList}
+        {/* </ReactSwipe> */}
+      </div>
+    );
   }
 }
 

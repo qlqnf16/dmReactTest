@@ -91,9 +91,12 @@ class ScheduleBox extends Component {
         };
         this.setState({ requireTime });
       } else if (target.name === 'permPrice') {
-        this.permPrice[target.id] = Number(target.value);
+        // this.permPrice[target.id] = Number(target.value);
         this.setState({
-          permPrice: this.permPrice
+          permPrice: {
+            ...this.state.permPrice,
+            [target.id]: Number(target.value)
+          }
         });
       } else if (target.name === 'dyePrice') {
         this.dyePrice[target.id] = Number(target.value);
@@ -129,7 +132,9 @@ class ScheduleBox extends Component {
 
   cardAddHandler = async cardData => {
     await this.props.cardAddHandler(cardData);
-    this.setState({ time: 1, sinces: [], untils: [] });
+
+    this.setState({ time: 1, sinces: [], untils: [], date: null });
+
     this.sinces = [];
     this.untils = [];
   };
@@ -221,6 +226,8 @@ class ScheduleBox extends Component {
             newDates={this.props.newDates}
             sinces={this.state.sinces}
             untils={this.state.untils}
+            permPrice={this.state.permPrice}
+            dyePrice={this.state.dyePrice}
           />
         </div>
         <div className="col-6 mt-5">

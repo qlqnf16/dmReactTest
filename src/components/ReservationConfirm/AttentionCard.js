@@ -4,7 +4,7 @@ import womanBack from '../../assets/images/woman_back.png';
 
 const AttentionCard = props => {
   let service = props.service;
-  const permPrice = props.cardDatapermPrice;
+  const permPrice = props.cardData.permPrice;
   const dyePrice = props.cardData.dyePrice;
   service = service.substring(1).split('/ ');
   let priceImage = null;

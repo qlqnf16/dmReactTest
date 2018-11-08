@@ -7,7 +7,6 @@ class WaitDesigner extends Component {
     await axios.post(`users/${this.props.designer._id}/tickets`, {
       price: 28000
     });
-
     await firebase
       .database()
       .ref('users/' + uid)

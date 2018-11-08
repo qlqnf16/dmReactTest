@@ -260,6 +260,7 @@ class AddDesigner extends Component {
         }
       }
     );
+
     this.props.history.push('/');
   };
 

@@ -433,6 +433,7 @@ class Schedule extends Component {
                 name="permPrice"
                 id="normal"
                 className="length_input text-right"
+                value={this.props.permPrice.normal}
               />
               원
             </div>
@@ -446,6 +447,7 @@ class Schedule extends Component {
                 name="dyePrice"
                 id="normal"
                 className="length_input text-right"
+                value={this.props.dyePrice.normal}
               />
               원
             </div>
@@ -460,6 +462,7 @@ class Schedule extends Component {
                 name="permPrice"
                 id="chin"
                 className="length_input text-right"
+                value={this.props.permPrice.chin}
               />
               원<span style={plus}>+</span>
             </div>
@@ -474,6 +477,7 @@ class Schedule extends Component {
                 name="dyePrice"
                 id="chin"
                 className="length_input text-right"
+                value={this.props.dyePrice.chin}
               />
               원<span style={{ ...plus, left: '41%' }}>+</span>
             </div>
@@ -488,6 +492,7 @@ class Schedule extends Component {
                 name="permPrice"
                 id="shoulder"
                 className="length_input text-right"
+                value={this.props.permPrice.shoulder}
               />
               원<span style={plus}>+</span>
             </div>
@@ -502,6 +507,7 @@ class Schedule extends Component {
                 name="dyePrice"
                 id="shoulder"
                 className="length_input text-right"
+                value={this.props.dyePrice.shoulder}
               />
               원<span style={{ ...plus, left: '41%' }}>+</span>
             </div>
@@ -516,6 +522,7 @@ class Schedule extends Component {
                 name="permPrice"
                 id="chest"
                 className="length_input text-right"
+                value={this.props.permPrice.chest}
               />
               원<span style={plus}>+</span>
             </div>
@@ -530,6 +537,7 @@ class Schedule extends Component {
                 name="dyePrice"
                 id="chest"
                 className="length_input text-right"
+                value={this.props.dyePrice.chest}
               />
               원<span style={{ ...plus, left: '41%' }}>+</span>
             </div>
