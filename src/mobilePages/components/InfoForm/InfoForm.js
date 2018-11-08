@@ -288,8 +288,14 @@ class InfoForm extends Component {
               name="dYear"
               id="dYear"
               onChange={this.props.changeInput}
-              value={Math.floor(userData.untilDesigner / 12)}
+              value={
+                Math.floor(userData.untilDesigner / 12)
+                  ? Math.floor(userData.untilDesigner / 12)
+                  : undefined
+              }
               placeholder="0"
+              min='0'
+              max='11'
             />
             년
             <input
@@ -298,8 +304,14 @@ class InfoForm extends Component {
               name="dMonth"
               id="dMonth"
               onChange={this.props.changeInput}
-              value={userData.untilDesigner % 12}
-              placeholder="0"
+              value={
+                userData.untilDesigner % 12
+                  ? userData.untilDesigner % 12
+                  : undefined
+              }             
+               placeholder="0"
+               min='0'
+               max='11'
             />
             개월
           </div>
@@ -311,8 +323,14 @@ class InfoForm extends Component {
               name="careerYear"
               id="careerYear"
               onChange={this.props.changeInput}
-              value={Math.floor(userData.career / 12)}
+              value={
+                Math.floor(userData.career / 12)
+                  ? Math.floor(userData.career / 12)
+                  : undefined
+              }
               placeholder="0"
+              min="0"
+              max="11"
             />
             년
             <input
@@ -321,8 +339,10 @@ class InfoForm extends Component {
               name="careerMonth"
               id="careerMonth"
               onChange={this.props.changeInput}
-              value={userData.career % 12}
+              value={userData.career % 12 ? userData.career % 12 : undefined}
               placeholder="0"
+              min="0"
+              max="11"
             />
             개월
           </div>

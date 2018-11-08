@@ -233,7 +233,7 @@ class AddDesigner extends Component {
     formData.append('cert_mh', this.state.certFile1);
     formData.append('cert_jg', this.state.certFile2);
     await axios.post(
-      `http://localhost:3030/firebase/upload?uid=${this.props.userData.uid}`,
+      `firebase/upload?uid=${this.props.userData.uid}`,
       formData,
       { headers: { 'Content-Type': 'multipart/form-data' } }
     );
