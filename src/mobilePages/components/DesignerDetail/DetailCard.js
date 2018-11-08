@@ -106,19 +106,43 @@ class DetailCard extends Component {
     return (
       <div className={dcard}>
         <div className="p-4" onClick={this.addData}>
-          <p>
+          <p style={{ fontSize: '2rem', fontWeight: 'bold', color: '#1f3354' }}>
             <Moment format="MM/DD">
               {this.props.cardData && this.props.cardData.date}
             </Moment>{' '}
             ({this.dayOfWeek(this.props.cardData.date)})
           </p>
           <h5>
-            <span>필수 : {mustParse}</span> | <span>불가 : {noParse}</span>
+            <span
+              style={{
+                fontSize: '1.4rem',
+                fontWeight: 'bold',
+                color: '#4c91ba'
+              }}
+            >
+              필수 : {mustParse}
+            </span>{' '}
+            |{' '}
+            <span
+              style={{
+                fontSize: '1.4rem',
+                fontWeight: 'bold',
+                color: '#dd6866'
+              }}
+            >
+              불가 : {noParse}
+            </span>
           </h5>
-          <h5>모델 : {this.genderFormat(this.props.cardData.requireGender)}</h5>
-          <h5>헤어샵 : {this.props.cardData.shop}</h5>
-          <h5>
-            조건 : 적극응원
+          <h5 style={{ fontSize: '1.2rem', color: '#1f3354' }}>
+            <span style={{ fontWeight: 'bold' }}>모델 :</span>{' '}
+            {this.genderFormat(this.props.cardData.requireGender)}
+          </h5>
+          <h5 style={{ fontSize: '1.2rem', color: '#1f3354' }}>
+            <span style={{ fontWeight: 'bold' }}>헤어샵 :</span>{' '}
+            {this.props.cardData.shop}
+          </h5>
+          <h5 style={{ fontSize: '1.2rem', color: '#1f3354' }}>
+            <span style={{ fontWeight: 'bold' }}>조건 :</span> 적극응원
             <img
               alt="alt"
               className="question"

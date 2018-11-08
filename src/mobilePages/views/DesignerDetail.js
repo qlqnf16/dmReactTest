@@ -209,7 +209,7 @@ class DesignerDetail extends Component {
               submitReservation={this.submitReservation}
             />
           </ModalBody>
-          <ModalFooter>
+          {/* <ModalFooter>
             <div
               style={{ ...buttonStyle, width: '100%' }}
               onClick={this.toggleModal}
@@ -221,7 +221,7 @@ class DesignerDetail extends Component {
                 결제하기
               </Link>
             </div>
-          </ModalFooter>
+          </ModalFooter> */}
         </Modal>
       </div>
     );
