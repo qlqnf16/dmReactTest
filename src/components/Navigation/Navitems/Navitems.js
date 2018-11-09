@@ -16,78 +16,85 @@ import { connect } from 'react-redux';
 
 class Navitems extends Component {
   state = {
-    newMessage: false
+    newMessage: false,
+    madeRequest: false
   };
 
   async componentDidMount(prevProps, prevState) {
-    if (
-      this.props.userData.uid &&
-      this.props.userData._reservations &&
-      this.props.userData._reservations.length
-    ) {
-      const promises = [];
-      this.props.userData._reservations.forEach(r => {
-        if (!this.props.socket) return;
-        this.props.socket.emit('join', { reservationId: r });
-        promises.push(
-          new Promise(resolve => {
-            this.props.socket.emit(
-              'getMessages',
-              { reservationId: r },
-              (messages, checkPoints) => {
-                resolve(
-                  checkPoints[this.props.userData.name] &&
-                    messages &&
-                    checkPoints[this.props.userData.name] <
-                      messages.pop().createdAt
-                );
-              }
-            );
-          })
-        );
-      });
-      const bools = await Promise.all(promises);
-      if (bools.includes(true) === this.state.newMessage) return;
-      this.setState({ newMessage: bools.includes(true) });
-      this.props.socket.on('newMessage', () => {
-        this.setState({ newMessage: true });
-      });
+    if (!this.state.madeRequest) {
+      if (
+        this.props.userData.uid &&
+        this.props.userData._reservations &&
+        this.props.userData._reservations.length
+      ) {
+        const promises = [];
+        this.props.userData._reservations.forEach(r => {
+          if (!this.props.socket) return;
+          this.props.socket.emit('join', { reservationId: r });
+          promises.push(
+            new Promise(resolve => {
+              this.props.socket.emit(
+                'getMessages',
+                { reservationId: r },
+                (messages, checkPoints) => {
+                  resolve(
+                    checkPoints[this.props.userData.name] &&
+                      messages &&
+                      checkPoints[this.props.userData.name] <
+                        messages.pop().createdAt
+                  );
+                }
+              );
+            })
+          );
+        });
+        const bools = await Promise.all(promises);
+        if (bools.includes(true) === this.state.newMessage) return;
+        this.setState({ newMessage: bools.includes(true) });
+        this.props.socket.on('newMessage', () => {
+          this.setState({ newMessage: true });
+        });
+      }
+      this.setState({ madeRequest: true });
     }
   }
 
   async componentDidUpdate(prevProps, prevState) {
-    if (
-      this.props.userData.uid &&
-      this.props.userData._reservations &&
-      this.props.userData._reservations.length
-    ) {
-      const promises = [];
-      this.props.userData._reservations.forEach(r => {
-        if (!this.props.socket) return;
-        this.props.socket.emit('join', { reservationId: r });
-        promises.push(
-          new Promise(resolve => {
-            this.props.socket.emit(
-              'getMessages',
-              { reservationId: r },
-              (messages, checkPoints) => {
-                resolve(
-                  checkPoints[this.props.userData.name] &&
-                    messages.length &&
-                    checkPoints[this.props.userData.name] <
-                      messages.pop().createdAt
-                );
-              }
-            );
-          })
-        );
-      });
-      const bools = await Promise.all(promises);
-      if (bools.includes(true) === this.state.newMessage) return;
-      this.setState({ newMessage: bools.includes(true) });
-      this.props.socket.on('newMessage', () => {
-        this.setState({ newMessage: true });
-      });
+    if (!this.state.madeRequest) {
+      if (
+        this.props.userData.uid &&
+        this.props.userData._reservations &&
+        this.props.userData._reservations.length
+      ) {
+        const promises = [];
+        this.props.userData._reservations.forEach(r => {
+          if (!this.props.socket) return;
+          this.props.socket.emit('join', { reservationId: r });
+          promises.push(
+            new Promise(resolve => {
+              this.props.socket.emit(
+                'getMessages',
+                { reservationId: r },
+                (messages, checkPoints) => {
+                  resolve(
+                    checkPoints[this.props.userData.name] &&
+                      messages.length &&
+                      checkPoints[this.props.userData.name] <
+                        messages.pop().createdAt
+                  );
+                }
+              );
+            })
+          );
+        });
+        const bools = await Promise.all(promises);
+        if (bools.includes(true) === this.state.newMessage) return;
+        this.setState({ newMessage: bools.includes(true) });
+        this.props.socket.on('newMessage', () => {
+          this.setState({ newMessage: true });
+        });
+      }
+      this.setState({ madeRequest: true });
     }
   }
 
@@ -96,8 +103,24 @@ class Navitems extends Component {
   }
 
   render() {
+    if (!this.state.madeRequest) {
+      return (
+        <div className="navbar_loading">
+          <div class="lds-roller">
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+            <div />
+          </div>
+        </div>
+      );
+    }
     // 로그인 했는지 && 디자이너가 아닌지 확인 후 고객용 navbar
-    if (this.props.userData.uid && !this.props.userData.isD) {
+    else if (this.props.userData.uid && !this.props.userData.isD) {
       let helloMessage =
         this.props.userData.isApproval === false
           ? '예디 승인 대기중입니다'

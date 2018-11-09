@@ -9,7 +9,22 @@ const DrawerItems = props => {
     drawerClasses = 'side-drawer open';
   }
 
-  if (props.userData.uid && !props.userData.isD) {
+  if (!props.madeRequest) {
+    return (
+      <div className="navbar_loading">
+        <div class="lds-roller">
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+          <div />
+        </div>
+      </div>
+    );
+  } else if (props.userData.uid && !props.userData.isD) {
     return (
       <nav className={drawerClasses}>
         <Link to="/">
