@@ -52,16 +52,16 @@ class DesignerInfo extends Component {
       certFile1: null,
       certImg2: cert_jg,
       certFile2: null,
-      portfolioImg: portfolios,
+      portfolioImg: portfolios || [],
       portfolioFile: [],
-      num: portfolios.length,
+      num: portfolios ? portfolios.length : 0,
       realFileNum: 0,
       addressNum: addresses.length + 1,
       addresses,
       designerRecommendationCode,
-      portfoliosNum: portfolios.length,
+      portfoliosNum: portfolios ? portfolios.length : 0,
       isRegister,
-      portfolios,
+      portfolios: portfolios || [],
       introduce
     };
   }

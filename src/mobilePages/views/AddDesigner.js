@@ -184,6 +184,7 @@ class AddDesigner extends Component {
       introduce
     };
 
+    if (!careerDetail) return alert('이력을 작성해주세요');
     if (!firebaseUserData.name) return alert('이름을 작성해주세요');
     if (!firebaseUserData.gender) return alert('성별을 작성해주세요');
     if (!firebaseUserData.email) return alert('이메일을 작성해주세요');
@@ -207,6 +208,7 @@ class AddDesigner extends Component {
     if (!firebaseUserData.untilDesigner)
       return alert('디자이너까지 남은 기간을 작성해주세요');
     if (!firebaseUserData.career) return alert('미용 경력을 작성해주세요');
+    if (!firebaseUserData.introduce) return alert('자기소개를 작성해주세요!');
 
     // 추천인 로직
     // 전에 추천인을 입력한 적이 없고, 추천인을 작성했을 때,

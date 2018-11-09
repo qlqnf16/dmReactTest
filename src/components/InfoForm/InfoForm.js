@@ -274,6 +274,7 @@ class InfoForm extends Component {
               value={userData.phoneNumber}
               className="if_input"
               placeholder="휴대전화 번호를 - 없이 입력해주세요. ex) 01012345678"
+              required={true}
             />
           </div>
           {this.props.isRegister}
@@ -399,6 +400,7 @@ class InfoForm extends Component {
               value={userData.careerDetail}
               className="if_input"
               style={{ height: '136px' }}
+              required={true}
             />
             <div className="if_detail" style={{ marginTop: '8.3px' }}>
               모델들이 참고할 수 있는 경력/이력들을 적어주세요.
