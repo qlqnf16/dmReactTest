@@ -205,8 +205,12 @@ class InfoForm extends Component {
                   className="infoform-male"
                   style={
                     this.props.state.gender === 'male'
-                      ? { borderColor: '#4c91ba', fontWeight: 'bold' }
-                      : { color: 'rbga(0,0,0,0.2)' }
+                      ? {
+                          borderColor: '#4c91ba',
+                          fontWeight: 'bold',
+                          color: 'rgb(31, 51, 84)'
+                        }
+                      : { color: 'rgba(0,0,0,0.2)' }
                   }
                 >
                   <input
@@ -224,7 +228,11 @@ class InfoForm extends Component {
                   className="infoform-female"
                   style={
                     this.props.state.gender === 'female'
-                      ? { borderColor: '#4c91ba', fontWeight: 'bold' }
+                      ? {
+                          borderColor: '#4c91ba',
+                          fontWeight: 'bold',
+                          color: 'rgb(31, 51, 84)'
+                        }
                       : { color: 'rgba(0,0,0,0.2)' }
                   }
                 >
@@ -294,8 +302,8 @@ class InfoForm extends Component {
                   : undefined
               }
               placeholder="0"
-              min='0'
-              max='11'
+              min="0"
+              max="11"
             />
             년
             <input
@@ -308,10 +316,10 @@ class InfoForm extends Component {
                 userData.untilDesigner % 12
                   ? userData.untilDesigner % 12
                   : undefined
-              }             
-               placeholder="0"
-               min='0'
-               max='11'
+              }
+              placeholder="0"
+              min="0"
+              max="11"
             />
             개월
           </div>

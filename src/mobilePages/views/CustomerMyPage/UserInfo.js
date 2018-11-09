@@ -76,8 +76,19 @@ class UserInfo extends Component {
       gender,
       isRegister
     };
-    if (!this.props.userData.isRegister)
-      return alert('휴대폰 인증을 진행해주세요');
+    if (!firebaseUserData.name) return alert('이름을 작성해주세요');
+    if (!firebaseUserData.gender) return alert('성별을 작성해주세요');
+    if (!firebaseUserData.email) return alert('이메일을 작성해주세요');
+    if (
+      Object.values(firebaseUserData.birthday).includes('null') ||
+      Object.values(firebaseUserData.birthday).includes(undefined)
+    )
+      return alert('생년월일을 작성해주세요');
+    if (!firebaseUserData.phoneNumber)
+      return alert('휴대폰 번호를 작성해주세요');
+    if (firebaseUserData.phoneNumber.length !== 11)
+      return alert('정확한 휴대폰 번호를 입력해주세요');
+    if (!this.state.isRegister) return alert('휴대폰 인증을 진행해주세요');
 
     // 추천인 로직
     // 전에 추천인을 입력한 적이 없고, 추천인을 작성했을 때,

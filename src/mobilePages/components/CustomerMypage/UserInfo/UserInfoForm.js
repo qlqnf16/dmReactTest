@@ -98,15 +98,70 @@ const UserInfoForm = props => {
     <div style={containerStyle}>
       <div style={titleStyle}>회원 정보 관리</div>
       <div style={subtitleStyle}>회원 정보 수정</div>
-      <span style={labelStyle}>성명</span>
-      <input
-        style={inputTextStyle}
-        type="text"
-        name="name"
-        id="name"
-        onChange={props.inputChangeHandler}
-        value={userData.name}
-      />
+      <div style={{ display: 'flex' }}>
+        <div style={{ width: '70%', marginRight: '5%' }}>
+          <div style={labelStyle}>성명</div>
+          <input
+            style={{ ...inputTextStyle, width: '100%' }}
+            type="text"
+            name="name"
+            id="name"
+            onChange={props.inputChangeHandler}
+            value={userData.name}
+          />
+        </div>
+        <div style={{ width: '25%' }}>
+          <div style={labelStyle}>성별</div>
+          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <label
+              for="infoform-male"
+              className="infoform-male"
+              style={
+                userData.gender === 'male'
+                  ? {
+                      borderColor: 'rgb(221, 104, 102)',
+                      fontWeight: 'bold',
+                      color: 'rgb(31, 51, 84)'
+                    }
+                  : { color: 'rgba(0,0,0,0.2)' }
+              }
+            >
+              <input
+                style={{ display: 'none' }}
+                type="radio"
+                name="gender"
+                id="infoform-male"
+                onChange={props.inputChangeHandler}
+                value="male"
+              />
+              <div>남</div>
+            </label>
+            <label
+              for="infoform-female"
+              className="infoform-female"
+              style={
+                userData.gender === 'female'
+                  ? {
+                      borderColor: 'rgb(221, 104, 102)',
+                      fontWeight: 'bold',
+                      color: 'rgb(31, 51, 84)'
+                    }
+                  : { color: 'rgba(0,0,0,0.2)' }
+              }
+            >
+              <input
+                style={{ display: 'none' }}
+                type="radio"
+                name="gender"
+                id="infoform-female"
+                onChange={props.inputChangeHandler}
+                value="female"
+              />
+              <div>여</div>
+            </label>
+          </div>
+        </div>
+      </div>
       <span style={labelStyle}>이메일 주소</span>
       <input
         style={inputTextStyle}
