@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, ModalBody } from 'reactstrap';
+import { Modal, ModalBody, ModalHeader } from 'reactstrap';
 import Calendar from 'rc-calendar';
 import koKR from 'rc-calendar/lib/locale/ko_KR';
 import 'rc-calendar/assets/index.css';
@@ -92,6 +92,17 @@ const AddCardModal = props => {
   };
   return (
     <Modal fade={false} centered isOpen={props.isOpen} toggle={props.toggle}>
+      <ModalHeader toggle={props.toggle}>
+        <span
+          style={{
+            fontSize: '2rem',
+            fontWeight: 'bold',
+            color: 'rgb(30, 51, 84)'
+          }}
+        >
+          카드 추가하기
+        </span>
+      </ModalHeader>
       <ModalBody>
         <div>
           <div>
