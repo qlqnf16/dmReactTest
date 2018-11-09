@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import axios from '../../../config/Axios';
-import fd from 'form-data';
-import firebase from '../../../config/Firebase';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import axios from "../../../config/Axios";
+import fd from "form-data";
+import firebase from "../../../config/Firebase";
 
-import InfoForm from '../../components/InfoForm/InfoForm';
-import ExtraInfoForm from '../../components/InfoForm/ExtraInfoForm';
-import DesignerNav from '../../components/NavigationBar/DesignerNav';
+import InfoForm from "../../components/InfoForm/InfoForm";
+import ExtraInfoForm from "../../components/InfoForm/ExtraInfoForm";
+import DesignerNav from "../../components/NavigationBar/DesignerNav";
 
 class DesignerInfo extends Component {
   constructor(props) {
@@ -82,17 +82,17 @@ class DesignerInfo extends Component {
   handleInputChange = e => {
     const { value, name, id } = e.target;
 
-    if (id === 'dYear' || id === 'dMonth') {
-      if (id === 'dYear') this.dYear = Number(value);
-      else if (id === 'dMonth') this.dMonth = Number(value);
+    if (id === "dYear" || id === "dMonth") {
+      if (id === "dYear") this.dYear = Number(value);
+      else if (id === "dMonth") this.dMonth = Number(value);
 
       this.setState({ untilDesigner: this.dYear * 12 + this.dMonth });
-    } else if (id === 'careerYear' || id === 'careerMonth') {
-      if (id === 'careerYear') this.careerYear = Number(value);
-      else if (id === 'careerMonth') this.careerMonth = Number(value);
+    } else if (id === "careerYear" || id === "careerMonth") {
+      if (id === "careerYear") this.careerYear = Number(value);
+      else if (id === "careerMonth") this.careerMonth = Number(value);
 
       this.setState({ career: this.careerYear * 12 + this.careerMonth });
-    } else if (name === 'extraAddress') {
+    } else if (name === "extraAddress") {
       let { addresses } = this.state;
       let address = addresses[id];
       addresses[id] = { ...address, extraAddress: value };
@@ -107,25 +107,25 @@ class DesignerInfo extends Component {
   handleImgChange = e => {
     let file = e.target.files[0];
     switch (e.target.name) {
-      case 'cert1':
+      case "cert1":
         this.setState({ certImg1: URL.createObjectURL(file) });
         this.setState({ certFile1: file });
         break;
-      case 'cert2':
+      case "cert2":
         this.setState({ certImg2: URL.createObjectURL(file) });
         this.setState({ certFile2: file });
         break;
-      case 'profileImg':
+      case "profileImg":
         this.setState({ profileImg: URL.createObjectURL(file) });
         this.setState({ profileFile: file });
         break;
-      case 'portfolio':
+      case "portfolio":
         this.state.portfolioImg.push(URL.createObjectURL(file));
         this.state.portfolioFile.push(file);
         this.setState({ num: this.state.num + 1 });
         break;
       default:
-        console.log('something wrong in [DesignerInfo.js]');
+        console.log("something wrong in [DesignerInfo.js]");
     }
   };
   deletePortfolio = e => {
@@ -176,25 +176,29 @@ class DesignerInfo extends Component {
     // )
     //   return alert('채워지지 않은 정보가 있습니다');
 
-    if (!firebaseUserData.name) return alert('이름을 작성해주세요');
-    if (!firebaseUserData.gender) return alert('성별을 작성해주세요');
-    if (!firebaseUserData.email) return alert('이메일을 작성해주세요');
+    if (!firebaseUserData.name) return alert("이름을 작성해주세요");
+    if (!firebaseUserData.gender) return alert("성별을 작성해주세요");
+    if (!firebaseUserData.email) return alert("이메일을 작성해주세요");
     if (
-      Object.values(firebaseUserData.birthday).includes('null') ||
+      Object.values(firebaseUserData.birthday).includes("null") ||
       Object.values(firebaseUserData.birthday).includes(undefined)
     )
-      return alert('생년월일을 작성해주세요');
+      return alert("생년월일을 작성해주세요");
     if (!firebaseUserData.phoneNumber)
-      return alert('휴대폰 번호를 작성해주세요');
+      return alert("휴대폰 번호를 작성해주세요");
     if (firebaseUserData.phoneNumber.length !== 11)
-      return alert('정확한 휴대폰 번호를 입력해주세요');
-    if (!this.state.isRegister) return alert('휴대폰 인증을 먼저 해주세요');
-    if (Object.values(firebaseUserData.addresses).includes(undefined))
-      return alert('지역/샵주소를 작성해주세요');
-    if (!firebaseUserData.untilDesigner)
-      return alert('디자이너까지 남은 기간을 작성해주세요');
-    if (!firebaseUserData.career) return alert('미용 경력을 작성해주세요');
-    if (!firebaseUserData.introduce) return alert('자기 소개를 작성해주세요');
+      return alert("정확한 휴대폰 번호를 입력해주세요");
+    if (!this.state.isRegister) return alert("휴대폰 인증을 먼저 해주세요");
+    if (!Object.values(firebaseUserData.addresses).length)
+      return alert("지역/샵주소를 작성해주세요");
+    if (
+      !firebaseUserData.addresses[0].fullAddress ||
+      !firebaseUserData.addresses[0].extraAddress
+    )
+      if (!firebaseUserData.untilDesigner)
+        return alert("디자이너까지 남은 기간을 작성해주세요");
+    if (!firebaseUserData.career) return alert("미용 경력을 작성해주세요");
+    if (!firebaseUserData.introduce) return alert("자기 소개를 작성해주세요");
 
     // 추천인 로직
     // 전에 추천인을 입력한 적이 없고, 추천인을 작성했을 때,
@@ -209,15 +213,15 @@ class DesignerInfo extends Component {
       const fbPromise = new Promise(resolve => {
         firebase
           .database()
-          .ref('users/' + designerRecommendationCode)
-          .on('value', res => {
+          .ref("users/" + designerRecommendationCode)
+          .on("value", res => {
             resolve(res);
           });
       });
       result = await fbPromise;
       // 유효하지 않은 추천인 코드일 때,
       if (!result || designerRecommendationCode === this.props.userData.uid)
-        alert('유효하지 않은 추천인 코드 입니다.');
+        alert("유효하지 않은 추천인 코드 입니다.");
       // 유효한 추천인 코드일 때,
       else {
         let { designerRecommendation, _id } = result.val();
@@ -235,29 +239,29 @@ class DesignerInfo extends Component {
         // 추천받은 횟수 저장
         await firebase
           .database()
-          .ref('users/' + designerRecommendationCode)
+          .ref("users/" + designerRecommendationCode)
           .update({ designerRecommendation: count });
       }
     }
     // 최종 유저정보 저장
     await firebase
       .database()
-      .ref('users/' + this.props.userData.uid)
+      .ref("users/" + this.props.userData.uid)
       .update(firebaseUserData);
 
     //img 업로드
     const formData = new fd();
-    formData.append('cert_mh', this.state.certFile1);
-    formData.append('cert_jg', this.state.certFile2);
-    formData.append('profile', this.state.profileFile);
-    formData.append('portfolio', this.state.portfolioFile);
+    formData.append("cert_mh", this.state.certFile1);
+    formData.append("cert_jg", this.state.certFile2);
+    formData.append("profile", this.state.profileFile);
+    formData.append("portfolio", this.state.portfolioFile);
     await axios.post(
       `firebase/upload?uid=${this.props.userData.uid}`,
       formData,
-      { headers: { 'Content-Type': 'multipart/form-data' } }
+      { headers: { "Content-Type": "multipart/form-data" } }
     );
-    alert('성공적으로 신청되었습니다. \n스케줄 등록으로 이동합니다.');
-    this.props.history.push('designer/schedule');
+    alert("성공적으로 신청되었습니다. \n스케줄 등록으로 이동합니다.");
+    this.props.history.push("designer/schedule");
   };
 
   render() {
@@ -283,9 +287,9 @@ class DesignerInfo extends Component {
         <div
           style={{
             ...phoneButtonStyle,
-            backgroundColor: 'transparent',
-            color: '#66ce82',
-            border: 'solid 1px #66ce82'
+            backgroundColor: "transparent",
+            color: "#66ce82",
+            border: "solid 1px #66ce82"
           }}
         >
           인증됨
@@ -339,63 +343,63 @@ class DesignerInfo extends Component {
 
 const styles = {
   titleStyle: {
-    fontSize: '1.5rem',
-    fontWeight: 'bold',
-    color: '#4c91ba',
-    textAlign: 'left',
-    margin: '33.5px 0',
-    paddingBottom: '6.9px',
-    borderBottom: 'solid 1px rgba(0, 0, 0, 0.1)'
+    fontSize: "1.5rem",
+    fontWeight: "bold",
+    color: "#4c91ba",
+    textAlign: "left",
+    margin: "33.5px 0",
+    paddingBottom: "6.9px",
+    borderBottom: "solid 1px rgba(0, 0, 0, 0.1)"
   },
   subtitleStyle: {
-    fontSize: '1.3rem',
-    fontWeight: 'bold',
-    color: '#1f3354'
+    fontSize: "1.3rem",
+    fontWeight: "bold",
+    color: "#1f3354"
   },
   containerStyle: {
-    width: '85%',
-    display: 'flex',
-    flexDirection: 'column',
-    textAlign: 'left'
+    width: "85%",
+    display: "flex",
+    flexDirection: "column",
+    textAlign: "left"
   },
   labelStyle: {
-    fontSize: '1.1rem',
-    fontWeight: 'bold',
-    color: '#1e3354',
-    marginTop: '1.5rem',
-    marginBottom: '0.2rem'
+    fontSize: "1.1rem",
+    fontWeight: "bold",
+    color: "#1e3354",
+    marginTop: "1.5rem",
+    marginBottom: "0.2rem"
   },
   inputTextStyle: {
-    fontSize: '1.3rem',
-    color: '#1f3354',
-    padding: '0.7rem',
-    borderRadius: '5px',
-    border: 'solid 1px rgba(0, 0, 0, 0.1)'
+    fontSize: "1.3rem",
+    color: "#1f3354",
+    padding: "0.7rem",
+    borderRadius: "5px",
+    border: "solid 1px rgba(0, 0, 0, 0.1)"
   },
   buttonStyle: {
-    height: '3.9rem',
-    color: 'white',
-    fontSize: '1.4rem',
-    fontWeight: 'bold',
-    marginTop: '2.5rem',
-    marginBottom: '4rem',
+    height: "3.9rem",
+    color: "white",
+    fontSize: "1.4rem",
+    fontWeight: "bold",
+    marginTop: "2.5rem",
+    marginBottom: "4rem",
     borderRadius: 6,
-    backgroundColor: '#4c91ba',
-    textAlign: 'center',
-    lineHeight: '3.9rem'
+    backgroundColor: "#4c91ba",
+    textAlign: "center",
+    lineHeight: "3.9rem"
   },
   phoneButtonStyle: {
-    display: 'inline-block',
-    width: '18%',
-    marginLeft: '3.3%',
-    padding: '2.3%',
-    border: '1px solid #dd6866',
-    backgroundColor: '#dd6866',
-    borderRadius: '5px',
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: '1.3rem',
-    textAlign: 'center'
+    display: "inline-block",
+    width: "18%",
+    marginLeft: "3.3%",
+    padding: "2.3%",
+    border: "1px solid #dd6866",
+    backgroundColor: "#dd6866",
+    borderRadius: "5px",
+    color: "white",
+    fontWeight: "bold",
+    fontSize: "1.3rem",
+    textAlign: "center"
   }
 };
 
