@@ -19,7 +19,7 @@ const NavigationBar = props => (
     <div
       style={{
         textAlign: 'center',
-        position: 'absolute',
+        position: 'fixed',
         zIndex: '99',
         width: '50%',
         padding: '1%',
@@ -30,7 +30,7 @@ const NavigationBar = props => (
         borderRadius: '5px',
         borderColor: 'white',
         left: '25%',
-        top: '7%'
+        top: '6.5%'
       }}
     >
       디자이너 등록 기간입니다.
