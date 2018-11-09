@@ -546,7 +546,25 @@ const AddCardModal = props => {
         </div>
         <div>
           <div style={buttonStyle} onClick={props.cardAddHandler}>
-            등록하기
+            스케줄 추가
+          </div>
+          <div
+            style={{
+              textAlign: 'center',
+              fontSize: '1.2rem',
+              color: 'rgb(76, 145, 186)'
+            }}
+          >
+            스케줄 추가가 끝난 후 반드시{' '}
+          </div>
+          <div
+            style={{
+              textAlign: 'center',
+              fontSize: '1.2rem',
+              color: 'rgb(76, 145, 186)'
+            }}
+          >
+            ‘스케줄 저장하기’ 버튼을 클릭하셔야 최종 등록완료됩니다
           </div>
         </div>
       </ModalBody>

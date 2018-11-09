@@ -141,6 +141,7 @@ class InfoForm extends Component {
           value={userData.year}
           onChange={this.props.changeInput}
         >
+          <option value="null">--년--</option>
           {y}
         </select>
         <select
@@ -149,6 +150,7 @@ class InfoForm extends Component {
           value={userData.month}
           onChange={this.props.changeInput}
         >
+          <option value="null">--월--</option>
           {m}
         </select>
         <select
@@ -157,6 +159,7 @@ class InfoForm extends Component {
           value={userData.day}
           onChange={this.props.changeInput}
         >
+          <option value="null">--일--</option>
           {d}
         </select>
       </div>

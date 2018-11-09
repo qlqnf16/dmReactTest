@@ -88,6 +88,11 @@ class MyModal extends Component {
     }
   };
 
+  click = () => {
+    this.props.off();
+    if (this.props.click) this.props.click();
+  };
+
   render() {
     let subTitle = null;
     if (!this.state.isLogin) {
@@ -116,7 +121,10 @@ class MyModal extends Component {
                 marginLeft: '0.5rem'
               }}
             >
-              <Link to="/TermsOfUse">이용약관</Link>에 동의합니다(필수)
+              <Link to="/TermsOfUse" onClick={() => this.click()}>
+                이용약관
+              </Link>
+              에 동의합니다(필수)
             </div>
           </div>
           <div className="row justify-content-start modal_checkbox">
@@ -137,8 +145,10 @@ class MyModal extends Component {
                 paddingLeft: '0.5rem'
               }}
             >
-              <Link to="/InfoPolicy">개인정보 수집, 이용</Link>에
-              동의합니다(필수)
+              <Link to="/InfoPolicy" onClick={() => this.click()}>
+                개인정보 수집, 이용
+              </Link>
+              에 동의합니다(필수)
             </div>
           </div>
         </div>
