@@ -613,7 +613,3 @@
   bottom: 10px;
   right: 11px;
 }
-
-.carousel {
-  height: calc(100vh - 60px);
-}

@@ -128,7 +128,16 @@ class Landing extends Component {
           onExited={this.onExited}
           key={item.src}
         >
-          <img src={item.src} alt={item.altText} style={{ width: '100%' }} />
+          <img
+            src={item.src}
+            alt={item.altText}
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              objectPosition: 'left'
+            }}
+          />
           <CarouselCaption
             className="d-block m_landing_caption"
             captionHeader={item.caption.split('\n').map((line, key) => {
