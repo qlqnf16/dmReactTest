@@ -229,26 +229,26 @@ const AddCardModal = props => {
                     style={{ display: 'none' }}
                     type="checkbox"
                     name="must"
-                    id="cut-mobile"
+                    id="cut"
                     onChange={props.changeInput}
                   />
-                  <label for="cut-mobile">커트</label>
+                  <label for="cut">커트</label>
                   <input
                     style={{ display: 'none' }}
                     type="checkbox"
                     name="must"
-                    id="perm-mobile"
+                    id="perm"
                     onChange={props.changeInput}
                   />
-                  <label for="perm-mobile">펌</label>
+                  <label for="perm">펌</label>
                   <input
                     style={{ display: 'none' }}
                     type="checkbox"
                     name="must"
-                    id="dye-mobile"
+                    id="dye"
                     onChange={props.changeInput}
                   />
-                  <label for="dye-mobile">염색</label>
+                  <label for="dye">염색</label>
                 </div>
               </div>
             </div>
@@ -264,26 +264,26 @@ const AddCardModal = props => {
                     style={{ display: 'none' }}
                     type="checkbox"
                     name="no"
-                    id="Cut-mobile"
+                    id="Cut"
                     onChange={props.changeInput}
                   />
-                  <label for="Cut-mobile">커트</label>
+                  <label for="Cut">커트</label>
                   <input
                     style={{ display: 'none' }}
                     type="checkbox"
                     name="no"
-                    id="Perm-mobile"
+                    id="Perm"
                     onChange={props.changeInput}
                   />
-                  <label for="Perm-mobile">펌</label>
+                  <label for="Perm">펌</label>
                   <input
                     style={{ display: 'none' }}
                     type="checkbox"
                     name="no"
-                    id="Dye-mobile"
+                    id="Dye"
                     onChange={props.changeInput}
                   />
-                  <label for="Dye-mobile">염색</label>
+                  <label for="Dye">염색</label>
                 </div>
               </div>
             </div>
@@ -299,18 +299,18 @@ const AddCardModal = props => {
                     style={{ display: 'none' }}
                     type="checkbox"
                     name="male"
-                    id="male-mobile"
+                    id="male"
                     onChange={props.changeInput}
                   />
-                  <label for="male-mobile">남자</label>
+                  <label for="male">남자</label>
                   <input
                     style={{ display: 'none' }}
                     type="checkbox"
                     name="female"
-                    id="female-mobile"
+                    id="female"
                     onChange={props.changeInput}
                   />
-                  <label for="female-mobile">여자</label>
+                  <label for="female">여자</label>
                 </div>
               </div>
             </div>

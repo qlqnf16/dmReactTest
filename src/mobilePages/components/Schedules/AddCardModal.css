@@ -1,55 +1,60 @@
-input[id='cut-mobile'] + label,
-input[id='perm-mobile'] + label,
-input[id='dye-mobile'] + label,
-input[id='Cut-mobile'] + label,
-input[id='Perm-mobile'] + label,
-input[id='Dye-mobile'] + label {
-  display: inline-block;
-  width: 32%;
-  height: unset;
-  padding: 2.3%;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  background-color: #fff;
-  border-radius: 5px;
-  color: rgba(0, 0, 0, 0.2);
-  font-weight: bold;
-  font-size: 1.3rem;
-  text-align: center;
-  margin-top: 2%;
-}
+@media screen and (max-width: 500px) {
+  input[id='cut'] + label,
+  input[id='perm'] + label,
+  input[id='dye'] + label,
+  input[id='Cut'] + label,
+  input[id='Perm'] + label,
+  input[id='Dye'] + label {
+    display: inline-block;
+    width: 32%;
+    height: unset;
+    padding: 2.3%;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    border-radius: 5px;
+    color: rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+    font-size: 1.3rem;
+    text-align: center;
+    margin-top: 2%;
+  }
 
-input[id='cut-mobile']:checked + label,
-input[id='perm-mobile']:checked + label,
-input[id='dye-mobile']:checked + label {
-  color: rgb(102, 206, 130);
-  border-color: rgb(102, 206, 130);
-}
+  input[id='cut']:checked + label,
+  input[id='perm']:checked + label,
+  input[id='dye']:checked + label {
+    color: rgb(102, 206, 130);
+    border-color: rgb(102, 206, 130);
+    background-color: white;
+  }
 
-input[id='Cut-mobile']:checked + label,
-input[id='Perm-mobile']:checked + label,
-input[id='Dye-mobile']:checked + label {
-  color: #dd6866;
-  border-color: #dd6866;
-}
+  input[id='Cut']:checked + label,
+  input[id='Perm']:checked + label,
+  input[id='Dye']:checked + label {
+    color: #dd6866;
+    border-color: #dd6866;
+    background-color: white;
+  }
 
-input[id='male-mobile'] + label,
-input[id='female-mobile'] + label {
-  display: inline-block;
-  width: 49%;
-  height: unset;
-  padding: 2.3%;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  background-color: #fff;
-  border-radius: 5px;
-  color: rgba(0, 0, 0, 0.2);
-  font-weight: bold;
-  font-size: 1.3rem;
-  text-align: center;
-  margin-top: 2%;
-}
+  input[id='male'] + label,
+  input[id='female'] + label {
+    display: inline-block;
+    width: 49%;
+    height: unset;
+    padding: 2.3%;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    border-radius: 5px;
+    color: rgba(0, 0, 0, 0.2);
+    font-weight: bold;
+    font-size: 1.3rem;
+    text-align: center;
+    margin-top: 2%;
+  }
 
-input[id='male-mobile']:checked + label,
-input[id='female-mobile']:checked + label {
-  color: rgb(102, 206, 130);
-  border-color: rgb(102, 206, 130);
+  input[id='male']:checked + label,
+  input[id='female']:checked + label {
+    color: rgb(102, 206, 130);
+    border-color: rgb(102, 206, 130);
+    background-color: white;
+  }
 }
