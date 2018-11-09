@@ -61,7 +61,7 @@ class DesignerTicket extends Component {
         pay_method: this.state.method,
         merchant_uid: 'merchant_' + new Date().getTime(),
         name: '주문명: 디자이너 이용권',
-        amount: 500,
+        amount: kind,
         buyer_name: this.props.userData.name,
         buyer_tel: this.props.userData.phoneNumber
       },
