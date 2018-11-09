@@ -365,68 +365,88 @@ const AddCardModal = props => {
           >
             <div style={{ ...labelStyle, margin: 0 }}>펌</div>
             <div>
-              <input
-                style={{
-                  ...inputTextStyle,
-                  fontSize: '1.1rem',
-                  width: '100%',
-                  textAlign: 'right'
-                }}
-                type="number"
-                step="1000"
-                onChange={props.changeInput}
-                name="permPrice"
-                id="normal"
-                value={props.permPrice.normal}
-              />
+              <div className="addingPrice">
+                +
+                <input
+                  style={{
+                    ...inputTextStyle,
+                    fontSize: '1.1rem',
+                    width: '75%',
+                    textAlign: 'right',
+                    border: 0
+                  }}
+                  type="number"
+                  step="1000"
+                  onChange={props.changeInput}
+                  name="permPrice"
+                  id="normal"
+                  value={props.permPrice.normal}
+                />
+                원
+              </div>
             </div>
             <div>
-              <input
-                style={{
-                  ...inputTextStyle,
-                  fontSize: '1.1rem',
-                  width: '100%',
-                  textAlign: 'right'
-                }}
-                type="number"
-                step="1000"
-                onChange={props.changeInput}
-                name="permPrice"
-                id="chin"
-                value={props.permPrice.chin}
-              />
+              <div className="addingPrice">
+                +
+                <input
+                  style={{
+                    ...inputTextStyle,
+                    fontSize: '1.1rem',
+                    width: '75%',
+                    textAlign: 'right',
+                    border: 0
+                  }}
+                  type="number"
+                  step="1000"
+                  onChange={props.changeInput}
+                  name="permPrice"
+                  id="chin"
+                  value={props.permPrice.chin}
+                />
+                원
+              </div>
             </div>
             <div>
-              <input
-                style={{
-                  ...inputTextStyle,
-                  fontSize: '1.1rem',
-                  width: '100%',
-                  textAlign: 'right'
-                }}
-                type="number"
-                step="1000"
-                onChange={props.changeInput}
-                name="permPrice"
-                id="shoulder"
-                value={props.permPrice.shoulder}
-              />
+              <div className="addingPrice">
+                +
+                <input
+                  style={{
+                    ...inputTextStyle,
+                    fontSize: '1.1rem',
+                    width: '75%',
+                    textAlign: 'right',
+                    border: 0
+                  }}
+                  type="number"
+                  step="1000"
+                  onChange={props.changeInput}
+                  name="permPrice"
+                  id="shoulder"
+                  value={props.permPrice.shoulder}
+                />
+                원
+              </div>
             </div>
             <div>
-              <input
-                style={{
-                  ...inputTextStyle,
-                  fontSize: '1.1rem',
-                  width: '100%',
-                  textAlign: 'right'
-                }}
-                type="number"
-                step="1000"
-                onChange={props.changeInput}
-                name="permPrice"
-                id="chest"
-                value={props.permPrice.chest}
-              />
+              <div className="addingPrice">
+                +
+                <input
+                  style={{
+                    ...inputTextStyle,
+                    fontSize: '1.1rem',
+                    width: '75%',
+                    textAlign: 'right',
+                    border: 0
+                  }}
+                  type="number"
+                  step="1000"
+                  onChange={props.changeInput}
+                  name="permPrice"
+                  id="chest"
+                  value={props.permPrice.chest}
+                />
+                원
+              </div>
             </div>
           </div>
           <div
@@ -439,68 +459,88 @@ const AddCardModal = props => {
           >
             <div style={{ ...labelStyle, margin: 0 }}>염색</div>
             <div>
-              <input
-                style={{
-                  ...inputTextStyle,
-                  fontSize: '1.1rem',
-                  width: '100%',
-                  textAlign: 'right'
-                }}
-                type="number"
-                step="1000"
-                onChange={props.changeInput}
-                name="dyePrice"
-                id="normal"
-                value={props.dyePrice.normal}
-              />
+              <div className="addingPrice">
+                +
+                <input
+                  style={{
+                    ...inputTextStyle,
+                    fontSize: '1.1rem',
+                    width: '75%',
+                    textAlign: 'right',
+                    border: 0
+                  }}
+                  type="number"
+                  step="1000"
+                  onChange={props.changeInput}
+                  name="dyePrice"
+                  id="normal"
+                  value={props.dyePrice.normal}
+                />
+                원
+              </div>
             </div>
             <div>
-              <input
-                style={{
-                  ...inputTextStyle,
-                  fontSize: '1.1rem',
-                  width: '100%',
-                  textAlign: 'right'
-                }}
-                type="number"
-                step="1000"
-                onChange={props.changeInput}
-                name="dyePrice"
-                id="chin"
-                value={props.dyePrice.chin}
-              />
+              <div className="addingPrice">
+                +
+                <input
+                  style={{
+                    ...inputTextStyle,
+                    fontSize: '1.1rem',
+                    width: '75%',
+                    textAlign: 'right',
+                    border: 0
+                  }}
+                  type="number"
+                  step="1000"
+                  onChange={props.changeInput}
+                  name="dyePrice"
+                  id="chin"
+                  value={props.dyePrice.chin}
+                />
+                원
+              </div>
             </div>
             <div>
-              <input
-                style={{
-                  ...inputTextStyle,
-                  fontSize: '1.1rem',
-                  width: '100%',
-                  textAlign: 'right'
-                }}
-                type="number"
-                step="1000"
-                onChange={props.changeInput}
-                name="dyePrice"
-                id="shoulder"
-                value={props.dyePrice.shoulder}
-              />
+              <div className="addingPrice">
+                +
+                <input
+                  style={{
+                    ...inputTextStyle,
+                    fontSize: '1.1rem',
+                    width: '75%',
+                    textAlign: 'right',
+                    border: 0
+                  }}
+                  type="number"
+                  step="1000"
+                  onChange={props.changeInput}
+                  name="dyePrice"
+                  id="shoulder"
+                  value={props.dyePrice.shoulder}
+                />
+                원
+              </div>
             </div>
             <div>
-              <input
-                style={{
-                  ...inputTextStyle,
-                  fontSize: '1.1rem',
-                  width: '100%',
-                  textAlign: 'right'
-                }}
-                type="number"
-                step="1000"
-                onChange={props.changeInput}
-                name="dyePrice"
-                id="chest"
-                value={props.dyePrice.chest}
-              />
+              <div className="addingPrice">
+                +
+                <input
+                  style={{
+                    ...inputTextStyle,
+                    fontSize: '1.1rem',
+                    width: '75%',
+                    textAlign: 'right',
+                    border: 0
+                  }}
+                  type="number"
+                  step="1000"
+                  onChange={props.changeInput}
+                  name="dyePrice"
+                  id="chest"
+                  value={props.dyePrice.chest}
+                />
+                원
+              </div>
             </div>
           </div>
         </div>
