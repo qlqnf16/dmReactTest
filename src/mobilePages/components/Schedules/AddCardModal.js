@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, ModalBody } from 'reactstrap';
+import { Modal, ModalBody, ModalHeader } from 'reactstrap';
 import Calendar from 'rc-calendar';
 import koKR from 'rc-calendar/lib/locale/ko_KR';
 import 'rc-calendar/assets/index.css';
@@ -92,6 +92,17 @@ const AddCardModal = props => {
   };
   return (
     <Modal fade={false} centered isOpen={props.isOpen} toggle={props.toggle}>
+      <ModalHeader toggle={props.toggle}>
+        <span
+          style={{
+            fontSize: '2rem',
+            fontWeight: 'bold',
+            color: 'rgb(30, 51, 84)'
+          }}
+        >
+          카드 추가하기
+        </span>
+      </ModalHeader>
       <ModalBody>
         <div>
           <div>
@@ -229,26 +240,26 @@ const AddCardModal = props => {
                     style={{ display: 'none' }}
                     type="checkbox"
                     name="must"
-                    id="cut-mobile"
+                    id="cut"
                     onChange={props.changeInput}
                   />
-                  <label for="cut-mobile">커트</label>
+                  <label for="cut">커트</label>
                   <input
                     style={{ display: 'none' }}
                     type="checkbox"
                     name="must"
-                    id="perm-mobile"
+                    id="perm"
                     onChange={props.changeInput}
                   />
-                  <label for="perm-mobile">펌</label>
+                  <label for="perm">펌</label>
                   <input
                     style={{ display: 'none' }}
                     type="checkbox"
                     name="must"
-                    id="dye-mobile"
+                    id="dye"
                     onChange={props.changeInput}
                   />
-                  <label for="dye-mobile">염색</label>
+                  <label for="dye">염색</label>
                 </div>
               </div>
             </div>
@@ -264,26 +275,26 @@ const AddCardModal = props => {
                     style={{ display: 'none' }}
                     type="checkbox"
                     name="no"
-                    id="Cut-mobile"
+                    id="Cut"
                     onChange={props.changeInput}
                   />
-                  <label for="Cut-mobile">커트</label>
+                  <label for="Cut">커트</label>
                   <input
                     style={{ display: 'none' }}
                     type="checkbox"
                     name="no"
-                    id="Perm-mobile"
+                    id="Perm"
                     onChange={props.changeInput}
                   />
-                  <label for="Perm-mobile">펌</label>
+                  <label for="Perm">펌</label>
                   <input
                     style={{ display: 'none' }}
                     type="checkbox"
                     name="no"
-                    id="Dye-mobile"
+                    id="Dye"
                     onChange={props.changeInput}
                   />
-                  <label for="Dye-mobile">염색</label>
+                  <label for="Dye">염색</label>
                 </div>
               </div>
             </div>
@@ -299,18 +310,18 @@ const AddCardModal = props => {
                     style={{ display: 'none' }}
                     type="checkbox"
                     name="male"
-                    id="male-mobile"
+                    id="male"
                     onChange={props.changeInput}
                   />
-                  <label for="male-mobile">남자</label>
+                  <label for="male">남자</label>
                   <input
                     style={{ display: 'none' }}
                     type="checkbox"
                     name="female"
-                    id="female-mobile"
+                    id="female"
                     onChange={props.changeInput}
                   />
-                  <label for="female-mobile">여자</label>
+                  <label for="female">여자</label>
                 </div>
               </div>
             </div>
@@ -365,45 +376,88 @@ const AddCardModal = props => {
           >
             <div style={{ ...labelStyle, margin: 0 }}>펌</div>
             <div>
-              <input
-                style={{ ...inputTextStyle, fontSize: '1.1rem', width: '100%' }}
-                type="number"
-                step="1000"
-                onChange={props.changeInput}
-                name="permPrice"
-                id="normal"
-                placeholder="필수"
-              />
+              <div className="addingPrice">
+                +
+                <input
+                  style={{
+                    ...inputTextStyle,
+                    fontSize: '1.1rem',
+                    width: '75%',
+                    textAlign: 'right',
+                    border: 0
+                  }}
+                  type="number"
+                  step="1000"
+                  onChange={props.changeInput}
+                  name="permPrice"
+                  id="normal"
+                  value={props.permPrice.normal}
+                />
+                원
+              </div>
             </div>
             <div>
-              <input
-                style={{ ...inputTextStyle, fontSize: '1.1rem', width: '100%' }}
-                type="number"
-                step="1000"
-                onChange={props.changeInput}
-                name="permPrice"
-                id="chin"
-              />
+              <div className="addingPrice">
+                +
+                <input
+                  style={{
+                    ...inputTextStyle,
+                    fontSize: '1.1rem',
+                    width: '75%',
+                    textAlign: 'right',
+                    border: 0
+                  }}
+                  type="number"
+                  step="1000"
+                  onChange={props.changeInput}
+                  name="permPrice"
+                  id="chin"
+                  value={props.permPrice.chin}
+                />
+                원
+              </div>
             </div>
             <div>
-              <input
-                style={{ ...inputTextStyle, fontSize: '1.1rem', width: '100%' }}
-                type="number"
-                step="1000"
-                onChange={props.changeInput}
-                name="permPrice"
-                id="shoulder"
-              />
+              <div className="addingPrice">
+                +
+                <input
+                  style={{
+                    ...inputTextStyle,
+                    fontSize: '1.1rem',
+                    width: '75%',
+                    textAlign: 'right',
+                    border: 0
+                  }}
+                  type="number"
+                  step="1000"
+                  onChange={props.changeInput}
+                  name="permPrice"
+                  id="shoulder"
+                  value={props.permPrice.shoulder}
+                />
+                원
+              </div>
             </div>
             <div>
-              <input
-                style={{ ...inputTextStyle, fontSize: '1.1rem', width: '100%' }}
-                type="number"
-                step="1000"
-                onChange={props.changeInput}
-                name="permPrice"
-                id="chest"
-              />
+              <div className="addingPrice">
+                +
+                <input
+                  style={{
+                    ...inputTextStyle,
+                    fontSize: '1.1rem',
+                    width: '75%',
+                    textAlign: 'right',
+                    border: 0
+                  }}
+                  type="number"
+                  step="1000"
+                  onChange={props.changeInput}
+                  name="permPrice"
+                  id="chest"
+                  value={props.permPrice.chest}
+                />
+                원
+              </div>
             </div>
           </div>
           <div
@@ -416,52 +470,112 @@ const AddCardModal = props => {
           >
             <div style={{ ...labelStyle, margin: 0 }}>염색</div>
             <div>
-              <input
-                style={{ ...inputTextStyle, fontSize: '1.1rem', width: '100%' }}
-                type="number"
-                step="1000"
-                onChange={props.changeInput}
-                name="dyePrice"
-                id="normal"
-                placeholder="필수"
-              />
+              <div className="addingPrice">
+                +
+                <input
+                  style={{
+                    ...inputTextStyle,
+                    fontSize: '1.1rem',
+                    width: '75%',
+                    textAlign: 'right',
+                    border: 0
+                  }}
+                  type="number"
+                  step="1000"
+                  onChange={props.changeInput}
+                  name="dyePrice"
+                  id="normal"
+                  value={props.dyePrice.normal}
+                />
+                원
+              </div>
             </div>
             <div>
-              <input
-                style={{ ...inputTextStyle, fontSize: '1.1rem', width: '100%' }}
-                type="number"
-                step="1000"
-                onChange={props.changeInput}
-                name="dyePrice"
-                id="chin"
-              />
+              <div className="addingPrice">
+                +
+                <input
+                  style={{
+                    ...inputTextStyle,
+                    fontSize: '1.1rem',
+                    width: '75%',
+                    textAlign: 'right',
+                    border: 0
+                  }}
+                  type="number"
+                  step="1000"
+                  onChange={props.changeInput}
+                  name="dyePrice"
+                  id="chin"
+                  value={props.dyePrice.chin}
+                />
+                원
+              </div>
             </div>
             <div>
-              <input
-                style={{ ...inputTextStyle, fontSize: '1.1rem', width: '100%' }}
-                type="number"
-                step="1000"
-                onChange={props.changeInput}
-                name="dyePrice"
-                id="shoulder"
-                className="length_input text-right"
-              />
+              <div className="addingPrice">
+                +
+                <input
+                  style={{
+                    ...inputTextStyle,
+                    fontSize: '1.1rem',
+                    width: '75%',
+                    textAlign: 'right',
+                    border: 0
+                  }}
+                  type="number"
+                  step="1000"
+                  onChange={props.changeInput}
+                  name="dyePrice"
+                  id="shoulder"
+                  value={props.dyePrice.shoulder}
+                />
+                원
+              </div>
             </div>
             <div>
-              <input
-                style={{ ...inputTextStyle, fontSize: '1.1rem', width: '100%' }}
-                type="number"
-                step="1000"
-                onChange={props.changeInput}
-                name="dyePrice"
-                id="chest"
-              />
+              <div className="addingPrice">
+                +
+                <input
+                  style={{
+                    ...inputTextStyle,
+                    fontSize: '1.1rem',
+                    width: '75%',
+                    textAlign: 'right',
+                    border: 0
+                  }}
+                  type="number"
+                  step="1000"
+                  onChange={props.changeInput}
+                  name="dyePrice"
+                  id="chest"
+                  value={props.dyePrice.chest}
+                />
+                원
+              </div>
             </div>
           </div>
         </div>
         <div>
           <div style={buttonStyle} onClick={props.cardAddHandler}>
-            등록하기
+            스케줄 추가
+          </div>
+          <div
+            style={{
+              textAlign: 'center',
+              fontSize: '1.2rem',
+              color: 'rgb(76, 145, 186)'
+            }}
+          >
+            스케줄 추가가 끝난 후 반드시{' '}
+          </div>
+          <div
+            style={{
+              textAlign: 'center',
+              fontSize: '1.2rem',
+              color: 'rgb(76, 145, 186)'
+            }}
+          >
+            ‘스케줄 저장하기’ 버튼을 클릭하셔야 최종 등록완료됩니다
           </div>
         </div>
       </ModalBody>

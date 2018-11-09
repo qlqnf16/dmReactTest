@@ -141,6 +141,7 @@ class InfoForm extends Component {
           value={userData.year}
           onChange={this.props.changeInput}
         >
+          <option value="null">--년--</option>
           {y}
         </select>
         <select
@@ -149,6 +150,7 @@ class InfoForm extends Component {
           value={userData.month}
           onChange={this.props.changeInput}
         >
+          <option value="null">--월--</option>
           {m}
         </select>
         <select
@@ -157,6 +159,7 @@ class InfoForm extends Component {
           value={userData.day}
           onChange={this.props.changeInput}
         >
+          <option value="null">--일--</option>
           {d}
         </select>
       </div>
@@ -205,8 +208,12 @@ class InfoForm extends Component {
                   className="infoform-male"
                   style={
                     this.props.state.gender === 'male'
-                      ? { borderColor: '#4c91ba', fontWeight: 'bold' }
-                      : { color: 'rbga(0,0,0,0.2)' }
+                      ? {
+                          borderColor: '#4c91ba',
+                          fontWeight: 'bold',
+                          color: 'rgb(31, 51, 84)'
+                        }
+                      : { color: 'rgba(0,0,0,0.2)' }
                   }
                 >
                   <input
@@ -224,7 +231,11 @@ class InfoForm extends Component {
                   className="infoform-female"
                   style={
                     this.props.state.gender === 'female'
-                      ? { borderColor: '#4c91ba', fontWeight: 'bold' }
+                      ? {
+                          borderColor: '#4c91ba',
+                          fontWeight: 'bold',
+                          color: 'rgb(31, 51, 84)'
+                        }
                       : { color: 'rgba(0,0,0,0.2)' }
                   }
                 >
@@ -280,6 +291,7 @@ class InfoForm extends Component {
           >
             + 샵주소 추가하기
           </div>
+
           <div style={labelStyle}>디자이너까지 남은 기간</div>
           <div style={yearMonthStyle}>
             <input
@@ -288,8 +300,14 @@ class InfoForm extends Component {
               name="dYear"
               id="dYear"
               onChange={this.props.changeInput}
-              value={Math.floor(userData.untilDesigner / 12)}
+              value={
+                Math.floor(userData.untilDesigner / 12)
+                  ? Math.floor(userData.untilDesigner / 12)
+                  : undefined
+              }
               placeholder="0"
+              min="0"
+              max="11"
             />
             년
             <input
@@ -298,8 +316,14 @@ class InfoForm extends Component {
               name="dMonth"
               id="dMonth"
               onChange={this.props.changeInput}
-              value={userData.untilDesigner % 12}
+              value={
+                userData.untilDesigner % 12
+                  ? userData.untilDesigner % 12
+                  : undefined
+              }
               placeholder="0"
+              min="0"
+              max="11"
             />
             개월
           </div>
@@ -311,8 +335,14 @@ class InfoForm extends Component {
               name="careerYear"
               id="careerYear"
               onChange={this.props.changeInput}
-              value={Math.floor(userData.career / 12)}
+              value={
+                Math.floor(userData.career / 12)
+                  ? Math.floor(userData.career / 12)
+                  : undefined
+              }
               placeholder="0"
+              min="0"
+              max="11"
             />
             년
             <input
@@ -321,8 +351,10 @@ class InfoForm extends Component {
               name="careerMonth"
               id="careerMonth"
               onChange={this.props.changeInput}
-              value={userData.career % 12}
+              value={userData.career % 12 ? userData.career % 12 : undefined}
               placeholder="0"
+              min="0"
+              max="11"
             />
             개월
           </div>
@@ -404,13 +436,7 @@ const styles = {
     color: '#1f3354',
     marginRight: '3.3%',
     padding: '0.7rem',
-    paddingTop: '0.5rem',
-    backgroundImage:
-      'linear-gradient(45deg, transparent 50%, gray 50%), linear-gradient(135deg, gray 50%, transparent 50%)',
-    backgroundPosition:
-      'calc(100% - 20px) calc(1em + 2px), calc(100% - 15px) calc(1em + 2px)',
-    backgroundSize: '5px 5px, 5px 5px',
-    backgroundRepeat: 'no-repeat'
+    paddingTop: '0.5rem'
   },
   addressButtonStyle: {
     display: 'inline-block',

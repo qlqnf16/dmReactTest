@@ -164,20 +164,27 @@ class Schedule extends Component {
         return alert('필수 서비스와 불가 서비스는 같을 수 없습니다');
     }
 
-    if (
-      Object.values(cardData).includes(undefined) ||
-      Object.values(cardData).includes('null') ||
-      Object.values(cardData).includes(NaN) ||
-      cardData.ableTimes.length === 0
-    )
-      return alert('채워지지 않은 정보가 있습니다');
-
+    if (!cardData.date) return alert('날짜를 선택해주세요');
+    if (!cardData.shop) return alert('장소를 선택해주세요');
+    if (!cardData.ableTimes.length)
+      return alert('가능한 시간대를 선택해주세요');
+    if (!cardData.picture) return alert('시간 촬영 여부를 선택해주세요');
+    if (!cardData.requireGender) return alert('희망 모델 성별을 선택해주세요');
+    console.log(cardData);
     let newCards = this.state.newCards;
     let nCards = [];
     newCards.push(cardData);
     nCards = [...newCards];
 
-    this.setState({ newCards: nCards });
+    this.setState({
+      newCards: nCards,
+      time: 1,
+      sinces: [],
+      untils: [],
+      date: null
+    });
+    this.sinces = [];
+    this.untils = [];
     this.addCardModalToggle();
   };
 
@@ -185,19 +192,24 @@ class Schedule extends Component {
     let shops;
     shops = this.props.userData.addresses.map(address => address.extraAddress);
     recruitData['shops'] = shops;
-    if (
-      !this.props.userData.expiredAt ||
-      this.props.userData.expiredAt < new Date().getTime()
-    )
-      return alert('사용중인 이용권이 없습니다.');
+
     //안 채워진 정보 검증
+    // if (
+    //   Object.values(recruitData).includes('') ||
+    //   Object.values(recruitData).includes(null) ||
+    //   Object.values(recruitData.requireTime).length !== 3 ||
+    //   Object.values(recruitData.requireTime).includes('null') ||
+    //   Object.values(recruitData.requireTime).includes(null)
+    // )
+    //   return alert('채워지지 않은 정보가 있습니다');
+    if (!recruitData.title) return alert('제목을 작성해주세요');
+    if (!recruitData.requirement) return alert('요청사항을 작성해주세요');
     if (
-      Object.values(recruitData).includes('') ||
-      Object.values(recruitData).includes(null) ||
       Object.values(recruitData.requireTime).length !== 3 ||
-      Object.values(recruitData.requireTime).includes('null')
+      Object.values(recruitData.requireTime).includes('null') ||
+      Object.values(recruitData.requireTime).includes(null)
     )
-      return alert('채워지지 않은 정보가 있습니다');
+      return alert('예상 시술 소요 시간을 전부 작성해주세요');
     // 유저에 리크루트 없으면 생성
     if (!this.props.userData._recruit) {
       const res = await axios.post('recruits', recruitData);
@@ -344,7 +356,7 @@ class Schedule extends Component {
                 style={buttonStyle}
                 onClick={() => this.totalSubmitHandler(recruitData)}
               >
-                내 모든 스케줄 저장하기
+                스케줄 저장하기
               </div>
               <div
                 style={{
@@ -381,6 +393,8 @@ class Schedule extends Component {
             dates={dates}
             sinces={this.state.sinces}
             untils={this.state.untils}
+            permPrice={this.state.permPrice}
+            dyePrice={this.state.dyePrice}
           />
         </div>
       );

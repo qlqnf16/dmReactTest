@@ -76,7 +76,7 @@ class DesginerDetail extends Component {
     cardData
   ) => {
     // // 장막
-    // if (true) return alert('아직 이용하실 수 없습니다.');
+    if (true) return alert('아직 이용하실 수 없습니다.');
 
     if (!this.state.isLogin && this.state.madeRequest) {
       this.loginToggleHandler();

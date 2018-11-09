@@ -8,16 +8,18 @@ const MyPageNavigationBar = () => (
     <MyPageHeader />
     <div className="mobile-sub-menu">
       <NavLink
-        to="/reservations"
+        to="/userInfo"
         className="unav_navitem"
-        activeStyle={{
-          color: '#dd6866',
-          borderBottom: 'solid 1.8px #dd6866'
-        }}
+        // activeStyle={{
+        //   color: '#dd6866',
+        //   borderBottom: 'solid 1.8px #dd6866'
+        // }}
+        onClick={() => alert('아직 이용할 수 없습니다.')}
       >
         예약관리
       </NavLink>
-      <NavLink
+
+      {/* <NavLink
         to="/likedesigner"
         className="unav_navitem"
         activeStyle={{
@@ -25,8 +27,8 @@ const MyPageNavigationBar = () => (
           borderBottom: 'solid 1.8px #dd6866'
         }}
       >
-        스케줄등록
-      </NavLink>
+        찜한 예디
+      </NavLink> */}
       <NavLink
         to="/userInfo"
         className="unav_navitem"
@@ -35,15 +37,16 @@ const MyPageNavigationBar = () => (
           borderBottom: 'solid 1.8px #dd6866'
         }}
       >
-        이용권관리
+        회원정보관리
       </NavLink>
       <NavLink
-        to="/coupon"
+        to="/userInfo"
         className="unav_navitem"
-        activeStyle={{
-          color: '#dd6866',
-          borderBottom: 'solid 1.8px #dd6866'
-        }}
+        // activeStyle={{
+        //   color: '#dd6866',
+        //   borderBottom: 'solid 1.8px #dd6866'
+        // }}
+        onClick={() => alert('아직 이용할 수 없습니다.')}
       >
         프로모션
       </NavLink>

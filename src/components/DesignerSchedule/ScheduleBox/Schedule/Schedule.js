@@ -565,7 +565,11 @@ class Schedule extends Component {
                 : { backgroundColor: '#4c91ba' }
             }
           >
-            등록하기
+            스케줄 추가
+          </div>
+          <div>
+            스케줄 추가가 끝난 후 반드시 우측 상단의 ‘스케줄 게시하기’ 버튼을
+            클릭하셔야 최종 등록완료됩니다.
           </div>
         </div>
       </div>

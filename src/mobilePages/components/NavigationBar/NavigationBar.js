@@ -16,6 +16,25 @@ const NavigationBar = props => (
       <img className="mobile-tricolor" src={tricolor} />
     </div>
     <div style={{ height: 55 }} />
+    <div
+      style={{
+        textAlign: 'center',
+        position: 'fixed',
+        zIndex: '99',
+        width: '50%',
+        padding: '1%',
+        backgroundColor: 'rgba(0,0,0,0.8)',
+        fontSize: '1.1rem',
+        fontWeight: 'bold',
+        color: 'white',
+        borderRadius: '5px',
+        borderColor: 'white',
+        left: '25%',
+        top: '6.5%'
+      }}
+    >
+      디자이너 등록 기간입니다.
+    </div>
   </Fragment>
 );
 

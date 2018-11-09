@@ -39,10 +39,8 @@ class DesginerCard extends Component {
       });
       shops = shops.substring(1);
 
-      let portfolios = [];
-      for (let i = 0; this.state.designerData[`portfolio${i}`]; i++) {
-        portfolios.push(this.state.designerData[`portfolio${i}`]);
-      }
+      let { portfolios } = this.state.designerData;
+
       if (!portfolios.length) portfolios = [defaultGuy];
 
       return (

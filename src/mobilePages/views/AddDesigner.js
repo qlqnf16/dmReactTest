@@ -5,6 +5,7 @@ import fd from 'form-data';
 import firebase from '../../config/Firebase';
 
 import InfoForm from '../components/InfoForm/InfoForm';
+import ExtraInfoForm from '../components/InfoForm/ExtraInfoForm';
 
 class AddDesigner extends Component {
   constructor(props) {
@@ -23,7 +24,10 @@ class AddDesigner extends Component {
       designerRecommendationCode,
       cert_mh,
       cert_jg,
-      isRegister
+      isRegister,
+      profile,
+      introduce,
+      portfolios
     } = this.props.userData;
     if (!addresses) addresses = [];
     this.state = {
@@ -44,7 +48,16 @@ class AddDesigner extends Component {
       addressNum: addresses.length + 1,
       addresses,
       designerRecommendationCode,
-      isRegister
+      isRegister,
+      profileImg: profile,
+      profileFile: null,
+      portfolioImg: portfolios,
+      portfolioFile: [],
+      num: portfolios.length,
+      realFileNum: 0,
+      portfolios,
+      portfoliosNum: portfolios.length,
+      introduce
     };
   }
   componentDidMount = async () => {
@@ -120,6 +133,18 @@ class AddDesigner extends Component {
         this.setState({ certImg2: URL.createObjectURL(file) });
         this.setState({ certFile2: file });
         break;
+      case 'profileImg':
+        this.setState({ profileImg: URL.createObjectURL(file) });
+        this.setState({ profileFile: file });
+        break;
+      case 'portfolio':
+        this.state.portfolioImg.push(URL.createObjectURL(file));
+        this.state.portfolioFile.push(file);
+        this.setState({
+          num: this.state.num + 1,
+          realFileNum: this.state.realFileNum + 1
+        });
+        break;
       default:
         console.log('something wrong in [DesignerInfo.js]');
     }
@@ -140,7 +165,8 @@ class AddDesigner extends Component {
       careerDetail,
       addresses,
       designerRecommendationCode,
-      isRegister
+      isRegister,
+      introduce
     } = this.state;
 
     let firebaseUserData = {
@@ -154,7 +180,8 @@ class AddDesigner extends Component {
       careerDetail,
       addresses,
       isApproval: false,
-      isRegister
+      isRegister,
+      introduce
     };
 
     if (!firebaseUserData.name) return alert('이름을 작성해주세요');
@@ -170,7 +197,12 @@ class AddDesigner extends Component {
     if (firebaseUserData.phoneNumber.length !== 11)
       return alert('정확한 휴대폰 번호를 입력해주세요');
     if (!this.state.isRegister) return alert('휴대폰 인증을 먼저 해주세요');
-    if (Object.values(firebaseUserData.addresses).includes(undefined))
+    if (!Object.values(firebaseUserData.addresses).length)
+      return alert('지역/샵주소를 작성해주세요');
+    if (
+      !firebaseUserData.addresses[0].fullAddress ||
+      !firebaseUserData.addresses[0].extraAddress
+    )
       return alert('지역/샵주소를 작성해주세요');
     if (!firebaseUserData.untilDesigner)
       return alert('디자이너까지 남은 기간을 작성해주세요');
@@ -224,18 +256,22 @@ class AddDesigner extends Component {
       .database()
       .ref('users/' + this.props.userData.uid)
       .update(firebaseUserData);
-    alert(
-      '성공적으로 신청되었습니다. \n관리자의 승인을 거친 후 정상적으로 스케줄을 등록하실 수 있습니다.'
-    );
 
     // img 업로드
     const formData = new fd();
     formData.append('cert_mh', this.state.certFile1);
     formData.append('cert_jg', this.state.certFile2);
+    formData.append('profile', this.state.profileFile);
+    this.state.portfolioFile.forEach((p, index) => {
+      formData.append(`portfolio${index + this.state.portfoliosNum}`, p);
+    });
     await axios.post(
-      `http://localhost:3030/firebase/upload?uid=${this.props.userData.uid}`,
+      `firebase/upload?uid=${this.props.userData.uid}`,
       formData,
       { headers: { 'Content-Type': 'multipart/form-data' } }
+    );
+    alert(
+      '성공적으로 신청되었습니다. \n관리자의 승인을 거친 후 정상적으로 스케줄을 등록하실 수 있습니다.'
     );
     this.props.history.push('/');
   };
@@ -315,6 +351,12 @@ class AddDesigner extends Component {
             addressRemoveHandler={this.addressRemoveHandler}
             handleImgChange={e => this.handleImgChange(e)}
             isRegister={isRegister}
+          />
+          <ExtraInfoForm
+            state={this.state}
+            changeInput={e => this.handleInputChange(e)}
+            handleImgChange={e => this.handleImgChange(e)}
+            deletePortfolio={e => this.deletePortfolio(e)}
           />
           <div style={containerStyle}>
             <div style={labelStyle}>추천인 코드 </div>

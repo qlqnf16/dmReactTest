@@ -5,6 +5,7 @@ import * as actions from '../../../modules';
 import axios from '../../../config/Axios';
 import TicketBox from '../../components/Tickets/TicketBox';
 import TicketPurchaseButton from '../../components/Tickets/TicketPurchase';
+import './Tickets.css';
 
 class DesignerTicket extends Component {
   state = {
@@ -20,7 +21,8 @@ class DesignerTicket extends Component {
         createdAt: 1540795759135,
         expiredAt: 20180811
       }
-    ]
+    ],
+    method: 'card'
   };
 
   componentDidMount = async () => {
@@ -56,10 +58,10 @@ class DesignerTicket extends Component {
     IMP.request_pay(
       {
         pg: 'danal', // version 1.1.0부터 지원.
-        pay_method: 'card',
+        pay_method: this.state.method,
         merchant_uid: 'merchant_' + new Date().getTime(),
         name: '주문명: 디자이너 이용권',
-        amount: 500,
+        amount: kind,
         buyer_name: this.props.userData.name,
         buyer_tel: this.props.userData.phoneNumber
       },
@@ -132,6 +134,99 @@ class DesignerTicket extends Component {
               ticketActivate={this.ticketActivate}
             />
             <div style={subtitleStyle}>이용권 구매</div>
+
+            <div
+              className="m-3"
+              style={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                justifyContent: 'space-between'
+              }}
+            >
+              <label
+                for="card"
+                className="purchase_type"
+                style={
+                  this.state.method === 'card'
+                    ? { borderColor: '#4c91ba', fontWeight: 'bold' }
+                    : { color: 'rgba(0,0,0,0.2)' }
+                }
+              >
+                <input
+                  style={{ display: 'none' }}
+                  type="radio"
+                  name="method"
+                  id="card"
+                  onChange={this.inputChangeHandler}
+                  value="card"
+                />
+                <div>신용/체크카드</div>
+              </label>
+              <label
+                for="trans"
+                className="purchase_type"
+                style={
+                  this.state.method === 'trans'
+                    ? { borderColor: '#4c91ba', fontWeight: 'bold' }
+                    : { color: 'rgba(0,0,0,0.2)' }
+                }
+              >
+                <input
+                  style={{ display: 'none' }}
+                  type="radio"
+                  name="method"
+                  id="trans"
+                  onChange={this.inputChangeHandler}
+                  value="trans"
+                  disabled
+                  onClick={() => alert('준비 중입니다.')}
+                />
+                <div>실시간 계좌이체</div>
+              </label>
+              <label
+                for="vbank"
+                className="purchase_type"
+                style={
+                  this.state.method === 'vbank'
+                    ? { borderColor: '#4c91ba', fontWeight: 'bold' }
+                    : { color: 'rgba(0,0,0,0.2)' }
+                }
+              >
+                <input
+                  style={{ display: 'none' }}
+                  type="radio"
+                  name="method"
+                  id="vbank"
+                  onChange={this.inputChangeHandler}
+                  value="vbank"
+                  disabled
+                  onClick={() => alert('준비 중입니다.')}
+                />
+                <div>가상 계좌</div>
+              </label>
+              <label
+                for="kakao"
+                className="purchase_type"
+                style={
+                  this.state.method === 'kakao'
+                    ? { borderColor: '#4c91ba', fontWeight: 'bold' }
+                    : { color: 'rgba(0,0,0,0.2)' }
+                }
+              >
+                <input
+                  style={{ display: 'none' }}
+                  type="radio"
+                  name="method"
+                  id="kakao"
+                  onChange={this.inputChangeHandler}
+                  value="kakao"
+                  disabled
+                  onClick={() => alert('준비 중입니다.')}
+                />
+                <div>카카오페이</div>
+              </label>
+            </div>
+
             <TicketPurchaseButton purchaseHandler={this.purchaseHandler} />
             <div style={subtitleStyle}>프로모션 코드 입력</div>
             <div>

@@ -143,7 +143,7 @@ class Landing extends Component {
 
     return (
       <div>
-        <div
+        {/* <div
           style={{
             display: 'inline-block',
             marginTop: '20px',
@@ -192,10 +192,11 @@ class Landing extends Component {
           >
             해제
           </div>
-        </div>
+        </div> */}
         {/* 여기부터 랜딩 */}
         <div>
           <Carousel
+            class="carousel-custom"
             activeIndex={activeIndex}
             next={this.next}
             previous={this.previous}

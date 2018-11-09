@@ -159,7 +159,6 @@ class App extends Component {
 
       // firebase database에서 호출 후,
     } else if (!isMobile) {
-      console.log('go');
       return (
         <Fragment>
           <Toolbar />
