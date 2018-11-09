@@ -3,6 +3,7 @@ import { Form, FormGroup } from 'reactstrap';
 import axios from '../config/Axios';
 import fd from 'form-data';
 import InfoForm from '../components/InfoForm/InfoForm';
+import InfoFormExtended from '../components/InfoForm/InfoFormExtended';
 import { connect } from 'react-redux';
 import firebase from '../config/Firebase';
 import check_sm from '../assets/images/check_sm.png';
@@ -25,7 +26,10 @@ class AddDesigner extends Component {
       designerRecommendationCode,
       cert_mh,
       cert_jg,
-      isRegister
+      isRegister,
+      portfolios,
+      profile,
+      introduce
     } = this.props.userData;
     if (!addresses) addresses = [];
     this.state = {
@@ -46,7 +50,14 @@ class AddDesigner extends Component {
       addressNum: addresses.length + 1,
       addresses,
       designerRecommendationCode,
-      isRegister
+      isRegister,
+      profileImg: profile,
+      portfolioFile: null,
+      portfolioFile: [],
+      portfolioImg: portfolios,
+      num: portfolios.length,
+      realFileNum: 0,
+      portfoliosNum: portfolios.length
     };
   }
 
@@ -95,9 +106,58 @@ class AddDesigner extends Component {
         this.setState({ certImg2: URL.createObjectURL(file) });
         this.setState({ certFile2: file });
         break;
+      case 'profileImg':
+        this.setState({
+          profileImg: URL.createObjectURL(file),
+          profileFile: file
+        });
+        break;
+      case 'portfolio':
+        this.state.portfolioImg.push(URL.createObjectURL(file));
+        this.state.portfolioFile.push(file);
+
+        this.setState({
+          num: this.state.num + 1,
+          realFileNum: this.state.realFileNum + 1
+        });
+        break;
       default:
         console.log('something wrong in [AddDesigner.js]');
     }
+  };
+
+  deletePortfolio = async e => {
+    let foundFile = this.state.portfolioImg.findIndex(
+      url => url === e.target.src
+    );
+
+    let tempIndex = foundFile - (this.state.num - this.state.realFileNum);
+    if (tempIndex >= 0) {
+      this.state.portfolioImg.splice(foundFile, 1);
+      this.state.portfolioFile.splice(tempIndex, 1);
+      this.setState({ realFileNum: this.state.realFileNum - 1 });
+    } else {
+      if (window.confirm('해당 포트폴리오가 바로 삭제됩니다!!')) {
+        const remove = this.state.portfolioImg.splice(foundFile, 1)[0];
+        try {
+          firebase
+            .database()
+            .ref(`/users/${this.props.userData.uid}`)
+            .once('value')
+            .then(snapshot => {
+              let { portfolios } = snapshot.val();
+              portfolios = portfolios.filter(url => url !== remove);
+              firebase
+                .database()
+                .ref(`/users/${this.props.userData.uid}`)
+                .update({ portfolios });
+            });
+        } catch (e) {
+          console.log(e);
+        }
+      }
+    }
+    this.setState({ num: this.state.num - 1 });
   };
 
   dYear = 0;
@@ -155,7 +215,8 @@ class AddDesigner extends Component {
       careerDetail,
       addresses,
       designerRecommendationCode,
-      isRegister
+      isRegister,
+      introduce
     } = this.state;
 
     let firebaseUserData = {
@@ -169,7 +230,8 @@ class AddDesigner extends Component {
       careerDetail,
       addresses,
       isApproval: false,
-      isRegister
+      isRegister,
+      introduce
     };
     // if (
     //   Object.values(firebaseUserData).includes(undefined) ||
@@ -201,6 +263,7 @@ class AddDesigner extends Component {
     if (!firebaseUserData.untilDesigner)
       return alert('디자이너까지 남은 기간을 작성해주세요');
     if (!firebaseUserData.career) return alert('미용 경력을 작성해주세요');
+    if (!firebaseUserData.introduce) return alert('자기 소개를 작성해주세요');
 
     if (
       designerRecommendationCode &&
@@ -244,13 +307,14 @@ class AddDesigner extends Component {
       .database()
       .ref('users/' + this.props.userData.uid)
       .update(firebaseUserData);
-    alert(
-      '성공적으로 신청되었습니다. \n관리자의 승인을 거친 후 정상적으로 스케줄을 등록하실 수 있습니다.'
-    );
 
     const formData = new fd();
     formData.append('cert_mh', this.state.certFile1);
     formData.append('cert_jg', this.state.certFile2);
+    formData.append('profile', this.state.profileFile);
+    this.state.portfolioFile.forEach((p, index) => {
+      formData.append(`portfolio${index + this.state.portfoliosNum}`, p);
+    });
     await axios.post(
       `firebase/upload?uid=${this.props.userData.uid}`,
       formData,
@@ -261,6 +325,9 @@ class AddDesigner extends Component {
       }
     );
 
+    alert(
+      '성공적으로 신청되었습니다. \n관리자의 승인을 거친 후 정상적으로 스케줄을 등록하실 수 있습니다.'
+    );
     this.props.history.push('/');
   };
 
@@ -336,6 +403,17 @@ class AddDesigner extends Component {
             addressAddHandler={this.addressAddHandler}
             addressRemoveHandler={this.addressRemoveHandler}
             isRegister={isRegister}
+          />
+          <InfoFormExtended
+            state={this.state}
+            profileImg={this.state.profileImg}
+            profileFile={this.state.profileFile}
+            portfolioImg={this.state.portfolioImg}
+            portfolioFile={this.state.portfolioFile}
+            num={this.state.num}
+            imgChange={e => this.handleImgChange(e)}
+            deletePortfolio={e => this.deletePortfolio(e)}
+            changeInput={e => this.handleInputChange(e)}
           />
           <FormGroup row>
             <div className="col-3 if_head">추천인 코드</div>

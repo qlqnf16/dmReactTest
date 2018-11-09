@@ -300,7 +300,7 @@ class InfoForm extends Component {
               value={
                 Math.floor(userData.untilDesigner / 12)
                   ? Math.floor(userData.untilDesigner / 12)
-                  : 0
+                  : undefined
               }
               placeholder="0"
               min="0"
@@ -314,7 +314,9 @@ class InfoForm extends Component {
               id="dMonth"
               onChange={this.props.changeInput}
               value={
-                userData.untilDesigner % 12 ? userData.untilDesigner % 12 : 0
+                userData.untilDesigner % 12
+                  ? userData.untilDesigner % 12
+                  : undefined
               }
               placeholder="0"
               min="0"
@@ -333,7 +335,7 @@ class InfoForm extends Component {
               value={
                 Math.floor(userData.career / 12)
                   ? Math.floor(userData.career / 12)
-                  : 0
+                  : undefined
               }
               placeholder="0"
               min="0"
@@ -346,7 +348,7 @@ class InfoForm extends Component {
               name="careerMonth"
               id="careerMonth"
               onChange={this.props.changeInput}
-              value={userData.career % 12 ? userData.career % 12 : 0}
+              value={userData.career % 12 ? userData.career % 12 : undefined}
               placeholder="0"
               min="0"
               max="11"

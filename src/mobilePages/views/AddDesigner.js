@@ -1,10 +1,11 @@
-import React, { Component, Fragment } from "react";
-import { connect } from "react-redux";
-import axios from "../../config/Axios";
-import fd from "form-data";
-import firebase from "../../config/Firebase";
+import React, { Component, Fragment } from 'react';
+import { connect } from 'react-redux';
+import axios from '../../config/Axios';
+import fd from 'form-data';
+import firebase from '../../config/Firebase';
 
-import InfoForm from "../components/InfoForm/InfoForm";
+import InfoForm from '../components/InfoForm/InfoForm';
+import ExtraInfoForm from '../components/InfoForm/ExtraInfoForm';
 
 class AddDesigner extends Component {
   constructor(props) {
@@ -23,7 +24,10 @@ class AddDesigner extends Component {
       designerRecommendationCode,
       cert_mh,
       cert_jg,
-      isRegister
+      isRegister,
+      profile,
+      introduce,
+      portfolios
     } = this.props.userData;
     if (!addresses) addresses = [];
     this.state = {
@@ -44,21 +48,30 @@ class AddDesigner extends Component {
       addressNum: addresses.length + 1,
       addresses,
       designerRecommendationCode,
-      isRegister
+      isRegister,
+      profileImg: profile,
+      profileFile: null,
+      portfolioImg: portfolios,
+      portfolioFile: [],
+      num: portfolios.length,
+      realFileNum: 0,
+      portfolios,
+      portfoliosNum: portfolios.length,
+      introduce
     };
   }
   componentDidMount = async () => {
     if (this.props.userData.isApproval === false && !this.props.userData.isD)
-      alert("예비디자이너 승인 대기중입니다.");
+      alert('예비디자이너 승인 대기중입니다.');
 
     // iamport 사용하기 위한 inline script 작성
     let links = [
-      "https://code.jquery.com/jquery-1.12.4.min.js",
-      "https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"
+      'https://code.jquery.com/jquery-1.12.4.min.js',
+      'https://cdn.iamport.kr/js/iamport.payment-1.1.5.js'
     ];
 
     for (let link of links) {
-      const script = document.createElement("script");
+      const script = document.createElement('script');
 
       script.src = link;
       script.async = true;
@@ -87,17 +100,17 @@ class AddDesigner extends Component {
   handleInputChange = e => {
     const { value, name, id } = e.target;
 
-    if (id === "dYear" || id === "dMonth") {
-      if (id === "dYear") this.dYear = Number(value);
-      else if (id === "dMonth") this.dMonth = Number(value);
+    if (id === 'dYear' || id === 'dMonth') {
+      if (id === 'dYear') this.dYear = Number(value);
+      else if (id === 'dMonth') this.dMonth = Number(value);
 
       this.setState({ untilDesigner: this.dYear * 12 + this.dMonth });
-    } else if (id === "careerYear" || id === "careerMonth") {
-      if (id === "careerYear") this.careerYear = Number(value);
-      else if (id === "careerMonth") this.careerMonth = Number(value);
+    } else if (id === 'careerYear' || id === 'careerMonth') {
+      if (id === 'careerYear') this.careerYear = Number(value);
+      else if (id === 'careerMonth') this.careerMonth = Number(value);
 
       this.setState({ career: this.careerYear * 12 + this.careerMonth });
-    } else if (name === "extraAddress") {
+    } else if (name === 'extraAddress') {
       let { addresses } = this.state;
       let address = addresses[id];
       addresses[id] = { ...address, extraAddress: value };
@@ -112,16 +125,28 @@ class AddDesigner extends Component {
   handleImgChange = e => {
     let file = e.target.files[0];
     switch (e.target.name) {
-      case "cert1":
+      case 'cert1':
         this.setState({ certImg1: URL.createObjectURL(file) });
         this.setState({ certFile1: file });
         break;
-      case "cert2":
+      case 'cert2':
         this.setState({ certImg2: URL.createObjectURL(file) });
         this.setState({ certFile2: file });
         break;
+      case 'profileImg':
+        this.setState({ profileImg: URL.createObjectURL(file) });
+        this.setState({ profileFile: file });
+        break;
+      case 'portfolio':
+        this.state.portfolioImg.push(URL.createObjectURL(file));
+        this.state.portfolioFile.push(file);
+        this.setState({
+          num: this.state.num + 1,
+          realFileNum: this.state.realFileNum + 1
+        });
+        break;
       default:
-        console.log("something wrong in [DesignerInfo.js]");
+        console.log('something wrong in [DesignerInfo.js]');
     }
   };
 
@@ -140,7 +165,8 @@ class AddDesigner extends Component {
       careerDetail,
       addresses,
       designerRecommendationCode,
-      isRegister
+      isRegister,
+      introduce
     } = this.state;
 
     let firebaseUserData = {
@@ -154,32 +180,33 @@ class AddDesigner extends Component {
       careerDetail,
       addresses,
       isApproval: false,
-      isRegister
+      isRegister,
+      introduce
     };
 
-    if (!firebaseUserData.name) return alert("이름을 작성해주세요");
-    if (!firebaseUserData.gender) return alert("성별을 작성해주세요");
-    if (!firebaseUserData.email) return alert("이메일을 작성해주세요");
+    if (!firebaseUserData.name) return alert('이름을 작성해주세요');
+    if (!firebaseUserData.gender) return alert('성별을 작성해주세요');
+    if (!firebaseUserData.email) return alert('이메일을 작성해주세요');
     if (
-      Object.values(firebaseUserData.birthday).includes("null") ||
+      Object.values(firebaseUserData.birthday).includes('null') ||
       Object.values(firebaseUserData.birthday).includes(undefined)
     )
-      return alert("생년월일을 작성해주세요");
+      return alert('생년월일을 작성해주세요');
     if (!firebaseUserData.phoneNumber)
-      return alert("휴대폰 번호를 작성해주세요");
+      return alert('휴대폰 번호를 작성해주세요');
     if (firebaseUserData.phoneNumber.length !== 11)
-      return alert("정확한 휴대폰 번호를 입력해주세요");
-    if (!this.state.isRegister) return alert("휴대폰 인증을 먼저 해주세요");
+      return alert('정확한 휴대폰 번호를 입력해주세요');
+    if (!this.state.isRegister) return alert('휴대폰 인증을 먼저 해주세요');
     if (!Object.values(firebaseUserData.addresses).length)
-      return alert("지역/샵주소를 작성해주세요");
+      return alert('지역/샵주소를 작성해주세요');
     if (
       !firebaseUserData.addresses[0].fullAddress ||
       !firebaseUserData.addresses[0].extraAddress
     )
-      return alert("지역/샵주소를 작성해주세요");
+      return alert('지역/샵주소를 작성해주세요');
     if (!firebaseUserData.untilDesigner)
-      return alert("디자이너까지 남은 기간을 작성해주세요");
-    if (!firebaseUserData.career) return alert("미용 경력을 작성해주세요");
+      return alert('디자이너까지 남은 기간을 작성해주세요');
+    if (!firebaseUserData.career) return alert('미용 경력을 작성해주세요');
 
     // 추천인 로직
     // 전에 추천인을 입력한 적이 없고, 추천인을 작성했을 때,
@@ -194,15 +221,15 @@ class AddDesigner extends Component {
       const fbPromise = new Promise(resolve => {
         firebase
           .database()
-          .ref("users/" + designerRecommendationCode)
-          .on("value", res => {
+          .ref('users/' + designerRecommendationCode)
+          .on('value', res => {
             resolve(res);
           });
       });
       result = await fbPromise;
       // 유효하지 않은 추천인 코드일 때,
       if (!result || designerRecommendationCode === this.props.userData.uid)
-        alert("유효하지 않은 추천인 코드 입니다.");
+        alert('유효하지 않은 추천인 코드 입니다.');
       // 유효한 추천인 코드일 때,
       else {
         let { designerRecommendation, _id } = result.val();
@@ -220,49 +247,53 @@ class AddDesigner extends Component {
         // 추천받은 횟수 저장
         await firebase
           .database()
-          .ref("users/" + designerRecommendationCode)
+          .ref('users/' + designerRecommendationCode)
           .update({ designerRecommendation: count });
       }
     }
     // 최종 유저정보 저장
     await firebase
       .database()
-      .ref("users/" + this.props.userData.uid)
+      .ref('users/' + this.props.userData.uid)
       .update(firebaseUserData);
-    alert(
-      "성공적으로 신청되었습니다. \n관리자의 승인을 거친 후 정상적으로 스케줄을 등록하실 수 있습니다."
-    );
 
     // img 업로드
     const formData = new fd();
-    formData.append("cert_mh", this.state.certFile1);
-    formData.append("cert_jg", this.state.certFile2);
+    formData.append('cert_mh', this.state.certFile1);
+    formData.append('cert_jg', this.state.certFile2);
+    formData.append('profile', this.state.profileFile);
+    this.state.portfolioFile.forEach((p, index) => {
+      formData.append(`portfolio${index + this.state.portfoliosNum}`, p);
+    });
     await axios.post(
       `firebase/upload?uid=${this.props.userData.uid}`,
       formData,
-      { headers: { "Content-Type": "multipart/form-data" } }
+      { headers: { 'Content-Type': 'multipart/form-data' } }
     );
-    this.props.history.push("/");
+    alert(
+      '성공적으로 신청되었습니다. \n관리자의 승인을 거친 후 정상적으로 스케줄을 등록하실 수 있습니다.'
+    );
+    this.props.history.push('/');
   };
 
   phoneCert = () => {
-    if (!this.state.phoneNumber) return alert("휴대폰 번호를 먼저 입력하세요");
+    if (!this.state.phoneNumber) return alert('휴대폰 번호를 먼저 입력하세요');
 
     const { IMP } = window;
-    IMP.init("imp06037656");
+    IMP.init('imp06037656');
     IMP.certification(
       {
-        merchant_uid: "merchant_" + new Date().getTime()
+        merchant_uid: 'merchant_' + new Date().getTime()
       },
       rsp => {
         if (rsp.success) {
           // 인증성공
           this.setState({ isRegister: true });
-          alert("인증되었습니다");
+          alert('인증되었습니다');
         } else {
           // 인증취소 또는 인증실패
-          var msg = "인증에 실패하였습니다.";
-          msg += "에러내용 : " + rsp.error_msg;
+          var msg = '인증에 실패하였습니다.';
+          msg += '에러내용 : ' + rsp.error_msg;
           alert(msg);
         }
       }
@@ -292,9 +323,9 @@ class AddDesigner extends Component {
         <div
           style={{
             ...phoneButtonStyle,
-            backgroundColor: "transparent",
-            color: "#66ce82",
-            border: "solid 1px #66ce82"
+            backgroundColor: 'transparent',
+            color: '#66ce82',
+            border: 'solid 1px #66ce82'
           }}
         >
           인증됨
@@ -320,6 +351,12 @@ class AddDesigner extends Component {
             addressRemoveHandler={this.addressRemoveHandler}
             handleImgChange={e => this.handleImgChange(e)}
             isRegister={isRegister}
+          />
+          <ExtraInfoForm
+            state={this.state}
+            changeInput={e => this.handleInputChange(e)}
+            handleImgChange={e => this.handleImgChange(e)}
+            deletePortfolio={e => this.deletePortfolio(e)}
           />
           <div style={containerStyle}>
             <div style={labelStyle}>추천인 코드 </div>
@@ -347,60 +384,60 @@ class AddDesigner extends Component {
 
 const styles = {
   subtitleStyle: {
-    fontSize: "1.3rem",
-    color: "#4c91ba",
-    marginTop: "5%"
+    fontSize: '1.3rem',
+    color: '#4c91ba',
+    marginTop: '5%'
   },
   titleStyle: {
-    fontSize: "2.3rem",
-    fontWeight: "bold",
-    color: "#4c91ba",
-    marginBottom: "5%"
+    fontSize: '2.3rem',
+    fontWeight: 'bold',
+    color: '#4c91ba',
+    marginBottom: '5%'
   },
   containerStyle: {
-    width: "85%",
-    display: "flex",
-    flexDirection: "column",
-    textAlign: "left"
+    width: '85%',
+    display: 'flex',
+    flexDirection: 'column',
+    textAlign: 'left'
   },
   labelStyle: {
-    fontSize: "1.1rem",
-    fontWeight: "bold",
-    color: "#1e3354",
-    marginTop: "1.5rem",
-    marginBottom: "0.2rem"
+    fontSize: '1.1rem',
+    fontWeight: 'bold',
+    color: '#1e3354',
+    marginTop: '1.5rem',
+    marginBottom: '0.2rem'
   },
   inputTextStyle: {
-    fontSize: "1.3rem",
-    color: "#1f3354",
-    padding: "0.7rem",
-    borderRadius: "5px",
-    border: "solid 1px rgba(0, 0, 0, 0.1)"
+    fontSize: '1.3rem',
+    color: '#1f3354',
+    padding: '0.7rem',
+    borderRadius: '5px',
+    border: 'solid 1px rgba(0, 0, 0, 0.1)'
   },
   buttonStyle: {
-    height: "3.9rem",
-    color: "white",
-    fontSize: "1.4rem",
-    fontWeight: "bold",
-    marginTop: "2.5rem",
-    marginBottom: "4rem",
+    height: '3.9rem',
+    color: 'white',
+    fontSize: '1.4rem',
+    fontWeight: 'bold',
+    marginTop: '2.5rem',
+    marginBottom: '4rem',
     borderRadius: 6,
-    backgroundColor: "#4c91ba",
-    textAlign: "center",
-    lineHeight: "3.9rem"
+    backgroundColor: '#4c91ba',
+    textAlign: 'center',
+    lineHeight: '3.9rem'
   },
   phoneButtonStyle: {
-    display: "inline-block",
-    width: "18%",
-    marginLeft: "3.3%",
-    padding: "2.3%",
-    border: "1px solid #dd6866",
-    backgroundColor: "#dd6866",
-    borderRadius: "5px",
-    color: "white",
-    fontWeight: "bold",
-    fontSize: "1.3rem",
-    textAlign: "center"
+    display: 'inline-block',
+    width: '18%',
+    marginLeft: '3.3%',
+    padding: '2.3%',
+    border: '1px solid #dd6866',
+    backgroundColor: '#dd6866',
+    borderRadius: '5px',
+    color: 'white',
+    fontWeight: 'bold',
+    fontSize: '1.3rem',
+    textAlign: 'center'
   }
 };
 
