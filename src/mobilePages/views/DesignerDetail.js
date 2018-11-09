@@ -139,10 +139,9 @@ class DesignerDetail extends Component {
       shops = shops.substring(1);
     }
 
-    const portfolios = [];
-    for (let i = 0; designer[`portfolio${i}`]; i++) {
-      portfolios.push(designer[`portfolio${i}`]);
-    }
+    let portfolios = [];
+    if (designer.portfolios) portfolios = designer.portfolios;
+
     return (
       <div className="m_containerStyle">
         <Header />
