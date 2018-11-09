@@ -1,0 +1,74 @@
+.m_about_1 {
+  font-weight: bold;
+  font-size: 1.7rem;
+  line-height: 1.59;
+  letter-spacing: 0.9px;
+  color: #1f3354;
+}
+
+.m_about_bar {
+  margin: 36px auto;
+  width: 8.3%;
+  border: solid 1.5px #d3d2d2;
+}
+
+.m_about_2 {
+  font-size: 1.2rem;
+  line-height: 1.58;
+  color: #1f3354;
+}
+
+.m_about_highlight {
+  font-weight: bold;
+  font-size: 1.5rem;
+  line-height: 1.58;
+  color: #dd6866;
+  background-color: #ffe8e5;
+}
+
+.m_about_backImg {
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 59px;
+}
+
+.m_about_textBack {
+  z-index: 5;
+  /* height: 62%; */
+  width: 100%;
+  position: absolute;
+  top: 0;
+  display: flex;
+  align-items: center;
+  padding-left: 5.8%;
+  padding-top: 11%;
+  margin-top: 30px;
+  /* background-image: linear-gradient(
+    258deg,
+    rgba(255, 255, 255, 0),
+    rgba(19, 19, 19, 0.35) 47%,
+    rgba(30, 34, 39, 0.37)
+  ); */
+}
+
+.m_about_textOnImg {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5;
+  text-align: left;
+  color: #ffffff;
+}
+
+.m_about_profileBack {
+  display: flex;
+  justify-content: left;
+  height: 53px;
+  margin-bottom: 30px;
+}
+
+.m_about_profile {
+  font-size: 1.2rem;
+  line-height: 1.58;
+  text-align: left;
+  color: #1f3354;
+}

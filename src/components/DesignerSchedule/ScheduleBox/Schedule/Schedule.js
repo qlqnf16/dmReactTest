@@ -142,9 +142,11 @@ class Schedule extends Component {
                   fontSize: '1.1rem'
                 }}
               >
-                {!this.props.date
-                  ? '날짜를 선택해주세요'
-                  : moment(this.props.date).format('YYYY/MM/DD')}
+                {!this.props.date ? (
+                  <div className="text-danger">날짜를 선택해주세요</div>
+                ) : (
+                  moment(this.props.date).format('YYYY/MM/DD')
+                )}
               </div>
             </div>
             <FormGroup row>
@@ -186,6 +188,12 @@ class Schedule extends Component {
               </Label>
               <div className="col-7 p-0">
                 {this.timeSelector()}
+                {/* 바뀐것: 시간선택 안내 */}
+                {this.props.timeValidation ? (
+                  <div className="text-danger">
+                    시작시간과 종료시간을 모두 선택해주세요
+                  </div>
+                ) : null}
                 <Button
                   color="light"
                   onClick={this.props.timeAdd}
@@ -542,21 +550,20 @@ class Schedule extends Component {
               원<span style={{ ...plus, left: '41%' }}>+</span>
             </div>
           </div>
-
+          {/* 바뀐것: 등록버튼 필수필드 안 채워지면 disaled 만듦 */}
           <div
-            onClick={this.props.cardAddHandler}
-            className="btn btn-light w-50 "
-            style={{
-              height: 28,
-              lineHeight: '20px',
-              borderRadius: 5,
-              backgroundColor: '#4c91ba',
-              color: 'white',
-              fontSize: '1.1rem',
-              fontWeight: 'bold',
-              marginLeft: '25%',
-              marginTop: '2rem'
-            }}
+            onClick={
+              this.props.finalValidation ? null : this.props.cardAddHandler
+            }
+            className="btn btn-light w-50 schedule_button"
+            style={
+              this.props.finalValidation
+                ? {
+                    backgroundColor: 'rgba(0,0,0,0.3)',
+                    cursor: 'default'
+                  }
+                : { backgroundColor: '#4c91ba' }
+            }
           >
             스케줄 추가
           </div>
