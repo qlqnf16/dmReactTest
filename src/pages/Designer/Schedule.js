@@ -76,7 +76,8 @@ class Schedule extends Component {
 
     if (!cardData.date) return alert('날짜를 선택해주세요');
     if (!cardData.shop) return alert('장소를 선택해주세요');
-    if (!cardData.ableTimes.length) return alert('가능한 시간대를 선택해주세요');
+    if (!cardData.ableTimes.length)
+      return alert('가능한 시간대를 선택해주세요');
     if (!cardData.picture) return alert('시간 촬영 여부를 선택해주세요');
     if (!cardData.requireGender) return alert('희망 모델 성별을 선택해주세요');
 
@@ -86,9 +87,13 @@ class Schedule extends Component {
     nCards = [...newCards];
 
     this.setState({ newCards: nCards });
+    alert(
+      "스케줄이 추가되었습니다. \n반드시 우측 상단의 '스케줄 게시하기' 버튼을 클릭하셔야 최종 등록완료됩니다."
+    );
   };
 
   totalSubmitHandler = async recruitData => {
+    console.log(recruitData);
     let shops;
     shops = this.props.userData.addresses.map(address => address.extraAddress);
     recruitData['shops'] = shops;
@@ -97,7 +102,8 @@ class Schedule extends Component {
       Object.values(recruitData).includes('') ||
       Object.values(recruitData).includes(null) ||
       Object.values(recruitData.requireTime).length !== 3 ||
-      Object.values(recruitData.requireTime).includes('null')
+      Object.values(recruitData.requireTime).includes('null') ||
+      Object.values(recruitData.requireTime).includes(null)
     )
       return alert('채워지지 않은 정보가 있습니다');
     // 유저에 리크루트 없으면 생성

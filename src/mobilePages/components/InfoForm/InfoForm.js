@@ -288,6 +288,7 @@ class InfoForm extends Component {
           >
             + 샵주소 추가하기
           </div>
+
           <div style={labelStyle}>디자이너까지 남은 기간</div>
           <div style={yearMonthStyle}>
             <input
@@ -299,7 +300,7 @@ class InfoForm extends Component {
               value={
                 Math.floor(userData.untilDesigner / 12)
                   ? Math.floor(userData.untilDesigner / 12)
-                  : undefined
+                  : 0
               }
               placeholder="0"
               min="0"
@@ -313,9 +314,7 @@ class InfoForm extends Component {
               id="dMonth"
               onChange={this.props.changeInput}
               value={
-                userData.untilDesigner % 12
-                  ? userData.untilDesigner % 12
-                  : undefined
+                userData.untilDesigner % 12 ? userData.untilDesigner % 12 : 0
               }
               placeholder="0"
               min="0"
@@ -334,7 +333,7 @@ class InfoForm extends Component {
               value={
                 Math.floor(userData.career / 12)
                   ? Math.floor(userData.career / 12)
-                  : undefined
+                  : 0
               }
               placeholder="0"
               min="0"
@@ -347,7 +346,7 @@ class InfoForm extends Component {
               name="careerMonth"
               id="careerMonth"
               onChange={this.props.changeInput}
-              value={userData.career % 12 ? userData.career % 12 : undefined}
+              value={userData.career % 12 ? userData.career % 12 : 0}
               placeholder="0"
               min="0"
               max="11"

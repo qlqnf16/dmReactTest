@@ -39,7 +39,7 @@ const TextInfo = props => {
         className="btn btn-success text-right d-inline"
         style={{ ...styles.saveButtonStyle, left: '160%' }}
       >
-        <div style={{ textAlign: 'center' }}>저장</div>
+        <div style={{ textAlign: 'center' }}>스케줄 게시하기</div>
       </div>
       <div
         className="btn btn-success text-right d-inline"

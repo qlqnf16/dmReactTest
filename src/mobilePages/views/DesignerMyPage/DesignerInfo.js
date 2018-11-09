@@ -12,10 +12,10 @@ class DesignerInfo extends Component {
   constructor(props) {
     super(props);
     // redux에서 유저 정보 추출 후, state에 담기
-    const portfolios = [];
-    for (let i = 0; this.props.userData[`portfolio${i}`]; i++) {
-      portfolios.push(this.props.userData[`portfolio${i}`]);
-    }
+    // const { portfolios } = this.props.userData;
+    // for (let i = 0; this.props.userData[`portfolio${i}`]; i++) {
+    //   portfolios.push(this.props.userData[`portfolio${i}`]);
+    // }
     let {
       name,
       gender,
@@ -30,7 +30,9 @@ class DesignerInfo extends Component {
       profile,
       cert_mh,
       cert_jg,
-      isRegister
+      isRegister,
+      introduce,
+      portfolios
     } = this.props.userData;
     if (!addresses) addresses = [];
     this.state = {
@@ -53,11 +55,14 @@ class DesignerInfo extends Component {
       portfolioImg: portfolios,
       portfolioFile: [],
       num: portfolios.length,
+      realFileNum: 0,
       addressNum: addresses.length + 1,
       addresses,
       designerRecommendationCode,
       portfoliosNum: portfolios.length,
-      isRegister
+      isRegister,
+      portfolios,
+      introduce
     };
   }
 
@@ -122,18 +127,46 @@ class DesignerInfo extends Component {
       case 'portfolio':
         this.state.portfolioImg.push(URL.createObjectURL(file));
         this.state.portfolioFile.push(file);
-        this.setState({ num: this.state.num + 1 });
+        this.setState({
+          num: this.state.num + 1,
+          realFileNum: this.state.realFileNum + 1
+        });
         break;
       default:
         console.log('something wrong in [DesignerInfo.js]');
     }
   };
-  deletePortfolio = e => {
+  deletePortfolio = async e => {
     let foundFile = this.state.portfolioImg.findIndex(
       url => url === e.target.src
     );
-    this.state.portfolioImg.splice(foundFile, 1);
-    this.state.portfolioFile.splice(foundFile, 1);
+
+    let tempIndex = foundFile - (this.state.num - this.state.realFileNum);
+    if (tempIndex >= 0) {
+      this.state.portfolioImg.splice(foundFile, 1);
+      this.state.portfolioFile.splice(tempIndex, 1);
+      this.setState({ realFileNum: this.state.realFileNum - 1 });
+    } else {
+      if (window.confirm('해당 포트폴리오가 바로 삭제됩니다!!')) {
+        const remove = this.state.portfolioImg.splice(foundFile, 1)[0];
+        try {
+          firebase
+            .database()
+            .ref(`/users/${this.props.userData.uid}`)
+            .once('value')
+            .then(snapshot => {
+              let { portfolios } = snapshot.val();
+              portfolios = portfolios.filter(url => url !== remove);
+              firebase
+                .database()
+                .ref(`/users/${this.props.userData.uid}`)
+                .update({ portfolios });
+            });
+        } catch (e) {
+          console.log(e);
+        }
+      }
+    }
     this.setState({ num: this.state.num - 1 });
   };
 
@@ -189,10 +222,14 @@ class DesignerInfo extends Component {
     if (firebaseUserData.phoneNumber.length !== 11)
       return alert('정확한 휴대폰 번호를 입력해주세요');
     if (!this.state.isRegister) return alert('휴대폰 인증을 먼저 해주세요');
-    if (Object.values(firebaseUserData.addresses).includes(undefined))
+    if (!Object.values(firebaseUserData.addresses).length)
       return alert('지역/샵주소를 작성해주세요');
-    if (!firebaseUserData.untilDesigner)
-      return alert('디자이너까지 남은 기간을 작성해주세요');
+    if (
+      !firebaseUserData.addresses[0].fullAddress ||
+      !firebaseUserData.addresses[0].extraAddress
+    )
+      if (!firebaseUserData.untilDesigner)
+        return alert('디자이너까지 남은 기간을 작성해주세요');
     if (!firebaseUserData.career) return alert('미용 경력을 작성해주세요');
     if (!firebaseUserData.introduce) return alert('자기 소개를 작성해주세요');
 
@@ -250,7 +287,9 @@ class DesignerInfo extends Component {
     formData.append('cert_mh', this.state.certFile1);
     formData.append('cert_jg', this.state.certFile2);
     formData.append('profile', this.state.profileFile);
-    formData.append('portfolio', this.state.portfolioFile);
+    this.state.portfolioFile.forEach((p, index) => {
+      formData.append(`portfolio${index + this.state.portfoliosNum}`, p);
+    });
     await axios.post(
       `firebase/upload?uid=${this.props.userData.uid}`,
       formData,
