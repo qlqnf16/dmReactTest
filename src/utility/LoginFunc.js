@@ -49,6 +49,10 @@ export const facebookLogin = async () => {
       alert(
         '이미 다른 플랫폼으로 가입한 적이 있는 이메일입니다. 해당 플랫폼으로 로그인해주세요.'
       );
+    else {
+      alert('문제가 발생했습니다. 잠시 뒤에 다시 시도해주세요');
+      window.location.reload();
+    }
   }
 };
 
@@ -97,6 +101,10 @@ export const googleLogin = async () => {
       alert(
         '이미 다른 플랫폼으로 가입한 적이 있는 이메일입니다. 해당 플랫폼으로 로그인해주세요.'
       );
+    else {
+      alert('문제가 발생했습니다. 잠시 뒤에 다시 시도해주세요');
+      window.location.reload();
+    }
   }
 };
 
@@ -149,6 +157,10 @@ export const kakao_login_success = async (response, a) => {
       alert(
         '이미 다른 플랫폼으로 가입한 적이 있는 이메일입니다. 해당 플랫폼으로 로그인해주세요.'
       );
+    else {
+      alert('문제가 발생했습니다. 잠시 뒤에 다시 시도해주세요');
+      window.location.reload();
+    }
   }
 };
 

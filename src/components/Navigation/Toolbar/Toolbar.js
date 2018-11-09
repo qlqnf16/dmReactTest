@@ -88,6 +88,7 @@ class Toolbar extends Component {
               <Navitems
                 showLogin={this.loginToggleHandler}
                 showSignUp={this.signUpToggleHandler}
+                finishRedux={this.props.finishRedux}
               />
             </Nav>
           </Collapse>

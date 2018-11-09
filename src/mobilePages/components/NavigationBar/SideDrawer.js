@@ -23,10 +23,6 @@ class SideDrawer extends Component {
     firebase.auth().signOut();
   };
 
-  componentDidMount = () => {
-    if (!this.state.madeRequest) this.setState({ madeRequest: true });
-  };
-
   render() {
     return (
       <Fragment>
@@ -37,7 +33,7 @@ class SideDrawer extends Component {
           signUpToggleHandler={this.signUpToggleHandler}
           logout={this.logout}
           userData={this.props.userData}
-          madeRequest={this.state.madeRequest}
+          finishRedux={this.props.finishRedux}
         />
         <MyModal
           showLogin={this.state.showLogin}
