@@ -9,7 +9,7 @@ const DrawerItems = props => {
     drawerClasses = 'side-drawer open';
   }
 
-  if (!props.madeRequest) {
+  if (!props.finishRedux) {
     return (
       <div className="navbar_loading">
         <div class="lds-roller">

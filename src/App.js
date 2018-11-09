@@ -81,7 +81,8 @@ class App extends Component {
   state = {
     madeRequest: false,
     width: window.innerWidth, // mobile version 만들기 위함
-    sideDrawerOpen: false // mobile version sideDrawer
+    sideDrawerOpen: false, // mobile version sideDrawer
+    finishRedux: true
   };
 
   /////////// mobile version sideDrawer methods
@@ -103,14 +104,18 @@ class App extends Component {
   };
 
   authListener() {
+    console.log('authLi');
     firebase.auth().onAuthStateChanged(async user => {
       if (user && firebase.auth().currentUser) {
+        this.setState({ finishRedux: false });
         await firebase
           .database()
           .ref('/users/' + firebase.auth().currentUser.uid)
           .on('value', async res => {
-            this.setState({ madeRequest: true, isLogin: true });
-
+            this.setState({
+              madeRequest: true,
+              isLogin: true
+            });
             // redux;
             let userData = res.val();
             const { data } = await axios.get(`users/` + userData._id);
@@ -120,7 +125,8 @@ class App extends Component {
             await this.props.updateRedux('_tickets', data._tickets);
             await this.props.updateRedux('_reservations', data._reservations);
             await this.props.connectSocket();
-
+            console.log('redux 끝');
+            this.setState({ finishRedux: true });
             // if (!userData.isRegister) this.props.history.push('/userInfo');
           });
         if (document.querySelector('iframe')) {
@@ -129,10 +135,11 @@ class App extends Component {
             .setAttribute('src', "don't try to look at this!");
         }
       } else {
+        this;
         // logout 하면 landing page로 이동
         this.props.history.push('/');
         this.state.isLogin && window.location.reload();
-        this.setState({ madeRequest: true });
+        this.setState({ madeRequest: true, finishRedux: true });
 
         // redux
         this.props.login({});
@@ -161,7 +168,7 @@ class App extends Component {
     } else if (!isMobile) {
       return (
         <Fragment>
-          <Toolbar />
+          <Toolbar finishRedux={this.state.finishRedux} />
           <div className="app-content web">
             <Switch>
               <Route path="/" exact component={Landing} />
@@ -351,6 +358,7 @@ class App extends Component {
             <MobileSideDrawer
               click={this.backdropClickHandler}
               show={this.state.sideDrawerOpen}
+              finishRedux={this.state.finishRedux}
             />
             {backdrop}
             {/* ------------------------------- */}
