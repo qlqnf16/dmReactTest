@@ -12,10 +12,7 @@ import axios from '../../config/Axios';
 class DesignerInfo extends Component {
   constructor(props) {
     super(props);
-    const portfolios = [];
-    for (let i = 0; this.props.userData[`portfolio${i}`]; i++) {
-      portfolios.push(this.props.userData[`portfolio${i}`]);
-    }
+    const { portfolios } = this.props.userData;
 
     let {
       name,
@@ -57,6 +54,7 @@ class DesignerInfo extends Component {
       portfolioImg: portfolios,
       portfolioFile: [],
       num: portfolios.length,
+      realFileNum: 0,
       addressNum: addresses.length + 1,
       portfoliosNum: portfolios.length,
       designerRecommendationCode,
@@ -104,19 +102,48 @@ class DesignerInfo extends Component {
       case 'portfolio':
         this.state.portfolioImg.push(URL.createObjectURL(file));
         this.state.portfolioFile.push(file);
-        this.setState({ num: this.state.num + 1 });
+
+        this.setState({
+          num: this.state.num + 1,
+          realFileNum: this.state.realFileNum + 1
+        });
         break;
       default:
         console.log('something wrong in [DesignerInfo.js]');
     }
   };
 
-  deletePortfolio = e => {
+  deletePortfolio = async e => {
     let foundFile = this.state.portfolioImg.findIndex(
       url => url === e.target.src
     );
-    this.state.portfolioImg.splice(foundFile, 1);
-    this.state.portfolioFile.splice(foundFile, 1);
+
+    let tempIndex = foundFile - (this.state.num - this.state.realFileNum);
+    if (tempIndex >= 0) {
+      this.state.portfolioImg.splice(foundFile, 1);
+      this.state.portfolioFile.splice(tempIndex, 1);
+      this.setState({ realFileNum: this.state.realFileNum - 1 });
+    } else {
+      if (window.confirm('해당 포트폴리오가 바로 삭제됩니다!!')) {
+        const remove = this.state.portfolioImg.splice(foundFile, 1)[0];
+        try {
+          firebase
+            .database()
+            .ref(`/users/${this.props.userData.uid}`)
+            .once('value')
+            .then(snapshot => {
+              let { portfolios } = snapshot.val();
+              portfolios = portfolios.filter(url => url !== remove);
+              firebase
+                .database()
+                .ref(`/users/${this.props.userData.uid}`)
+                .update({ portfolios });
+            });
+        } catch (e) {
+          console.log(e);
+        }
+      }
+    }
     this.setState({ num: this.state.num - 1 });
   };
   dYear = 0;
@@ -267,7 +294,7 @@ class DesignerInfo extends Component {
     this.state.portfolioFile.forEach((p, index) => {
       formData.append(`portfolio${index + this.state.portfoliosNum}`, p);
     });
-    console.log(formData);
+
     await axios.post(
       `firebase/upload?uid=${this.props.userData.uid}`,
       formData,
