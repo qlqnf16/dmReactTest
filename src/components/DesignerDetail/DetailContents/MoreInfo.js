@@ -2,7 +2,8 @@ import React from 'react';
 import './MoreInfo.css';
 
 const MoreInfo = props => {
-  const { portfolios } = props.designerData;
+  let portfolios = [];
+  if (props.designerData.portfolios) portfolios = props.designerData.portfolios;
   // for (let i = 0; props.designerData[`portfolio${i}`]; i++) {
   //   portfolios.push(props.designerData[`portfolio${i}`]);
   // }

@@ -81,6 +81,8 @@ class DetailCard extends Component {
 
     // 클릭했을 때, 카드 확장
     if (this.state.click && this.props.selectedCard === this.props.number) {
+      // 장막
+      if (true) return alert('아직 이용할 수 없습니다');
       addData = (
         <CardAdd
           cardData={this.props.cardData}
