@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import icon1 from '../../assets/images/9.png';
 import icon2 from '../../assets/images/DM_Icon-03.png';
 import icon3 from '../../assets/images/DM_Icon-05.png';
-import backimg from '../../assets/images/8.png';
+import backimg from '../../assets/images/mobile_about.png';
 import profile1 from '../../assets/images/7.png';
 import profile2 from '../../assets/images/6.png';
 import profile3 from '../../assets/images/5.png';
@@ -167,12 +167,19 @@ class About extends Component {
           <img alt="alt" src={backimg} className="m_about_backImg" />
           <div className="m_about_textBack">
             <div className="m_about_textOnImg">
-              두 대표는 ‘멋쟁이 사자처럼' 이라는 프로그래밍 교육 동아리에서
-              만났습니다. <br />
-              함께 밤새 코딩하고 동고동락 하며 공동창업을 결심하게 되었습니다.
+              두 대표는 ‘멋쟁이 사자처럼' 이라는
+              <br /> 프로그래밍 교육 동아리에서 만났습니다. <br />
+              함께 밤새 코딩하고 동고동락하며
+              <br /> 공동창업을 결심하게 되었습니다.
               <br />
               <br />
-              <span style={{ fontSize: '3.3rem', lineHeight: '1.48' }}>
+              <span
+                style={{
+                  fontSize: '1.7rem',
+                  lineHeight: '1.48',
+                  fontWeight: 700
+                }}
+              >
                 “우리와 같은 사회초년생들이 <br />
                 마음껏 꿈을 꿀 수 있는 환경을 만들어보자”
                 <br />
@@ -185,86 +192,124 @@ class About extends Component {
           </div>
           <div style={{ margin: '0 auto', width: 'fit-content' }}>
             <div className="m_about_profileBack">
-              <img alt="alt" src={profile1} style={{ width: '53px' }} />
+              <img
+                alt="alt"
+                src={profile1}
+                style={{ width: '41px', height: '41px' }}
+              />
               <div className="m_about_profile">
-                <span style={{ fontSize: '1.7rem', fontWeight: 'bold' }}>
+                <span style={{ fontSize: '1.4rem', fontWeight: 'bold' }}>
                   심건우 (CEO)
                 </span>
                 <br />
-                그간 패배한적 없는 인생을 살았으나, 이태훈과의 스타크래프트를
-                통해 본인을 낮추는 법을 배우기 시작.
+                그간 패배한적 없는 인생을 살았으나, 이태훈과의
+                <br /> 스타크래프트를 통해 본인을 낮추는 법을 배우기 시작.
               </div>
             </div>
-            <div className="m_about_profileBack">
-              <img alt="alt" src={profile2} style={{ width: '53px' }} />
+            <div
+              className="m_about_profileBack"
+              style={{ marginBottom: '45px' }}
+            >
+              <img
+                alt="alt"
+                src={profile2}
+                style={{ width: '41px', height: '41px' }}
+              />
               <div className="m_about_profile">
-                <span style={{ fontSize: '1.7rem', fontWeight: 'bold' }}>
+                <span style={{ fontSize: '1.4rem', fontWeight: 'bold' }}>
                   이태훈 (CEO)
                 </span>
                 <br />
-                먹을 걸 보면 입부터 튀어나가는 동물적 감각의 소유자. 그런 그가
-                수저가 아닌 가위를 들었으니, 그게 바로 드리머리.
+                먹을 걸 보면 입부터 튀어나가는 동물적 감각의
+                <br />
+                소유자. 그런 그가 수저가 아닌 가위를 들었으니,
+                <br />
+                그게 바로 드리머리.
               </div>
             </div>
             <div className="m_about_profileBack">
-              <img alt="alt" src={profile3} style={{ width: '53px' }} />
+              <img
+                alt="alt"
+                src={profile3}
+                style={{ width: '41px', height: '41px' }}
+              />
               <div className="m_about_profile">
-                <span style={{ fontSize: '1.7rem', fontWeight: 'bold' }}>
+                <span style={{ fontSize: '1.4rem', fontWeight: 'bold' }}>
                   박지윤 (Designer)
                 </span>
                 <br />
-                유학 9년차 미국 명문 디자인스쿨 출신이나, 트럼프의 벽에
-                가로막혀(?) 드리머리 입단.
+                유학 9년차 미국 명문 디자인스쿨 출신이나,
+                <br />
+                트럼프의 벽에 가로막혀(?) 드리머리 입단.
               </div>
             </div>
             <div className="m_about_profileBack">
-              <img alt="alt" src={profile4} style={{ width: '53px' }} />
+              <img
+                alt="alt"
+                src={profile4}
+                style={{ width: '41px', height: '41px' }}
+              />
               <div className="m_about_profile">
-                <span style={{ fontSize: '1.7rem', fontWeight: 'bold' }}>
+                <span style={{ fontSize: '1.4rem', fontWeight: 'bold' }}>
                   안운장 (Developer)
                 </span>
-                <br />별 이상한 것 다 만들어버림 ex) 안드로이드 커스텀룸, 공군
-                관우시계......읍읍
+                <br />별 이상한 것 다 만들어버림
+                <br />
+                ex) 안드로이드 커스텀룸, 공군 관우시계...읍읍
               </div>
             </div>
             <div className="m_about_profileBack">
-              <img alt="alt" src={profile5} style={{ width: '53px' }} />
+              <img
+                alt="alt"
+                src={profile5}
+                style={{ width: '41px', height: '41px' }}
+              />
               <div className="m_about_profile">
-                <span style={{ fontSize: '1.7rem', fontWeight: 'bold' }}>
+                <span style={{ fontSize: '1.4rem', fontWeight: 'bold' }}>
                   오상우 (Developer)
                 </span>
                 <br />
-                심리학과를 전공했으나 자신의 심리는 읽지 못해서 드리머리 입단.
+                심리학과를 전공했으나
+                <br />
+                자신의 심리는 읽지 못해서 드리머리 입단.
               </div>
             </div>
             <div className="m_about_profileBack">
-              <img alt="alt" src={profile6} style={{ width: '53px' }} />
+              <img
+                alt="alt"
+                src={profile6}
+                style={{ width: '41px', height: '41px' }}
+              />
               <div className="m_about_profile">
-                <span style={{ fontSize: '1.7rem', fontWeight: 'bold' }}>
+                <span style={{ fontSize: '1.4rem', fontWeight: 'bold' }}>
                   신한결 (Developer)
                 </span>
                 <br />
-                “야 그걸 언제 다해?” 라고 하면서 이미 다 해놓음. 전형적인
-                츤데레.
+                “야 그걸 언제 다해?” 라고 하면서 이미 다 해놓음.
+                <br />
+                전형적인 츤데레.
               </div>
             </div>
             <div className="m_about_profileBack">
-              <img alt="alt" src={profile7} style={{ width: '53px' }} />
+              <img
+                alt="alt"
+                src={profile7}
+                style={{ width: '41px', height: '41px' }}
+              />
               <div className="m_about_profile">
-                <span style={{ fontSize: '1.7rem', fontWeight: 'bold' }}>
+                <span style={{ fontSize: '1.4rem', fontWeight: 'bold' }}>
                   이정민 (Developer)
                 </span>
                 <br />
-                워너원 마지막 콘서트 값을 벌기 위해 드리머리 입단.
+                워너원 마지막 콘서트 값을 벌기 위해
+                <br />
+                드리머리 입단.
               </div>
             </div>
           </div>
         </div>
         <div className="m_about_bar" />
-        <div
-          className="m_about_1"
-          style={{ fontSize: '2.2rem', marginBottom: '65.8px' }}
-        >
+        <div className="m_about_1" style={{ marginBottom: '35.8px' }}>
           개인이 브랜드가 되는 문화
         </div>
         <div className="m_about_2">
@@ -296,14 +341,16 @@ class About extends Component {
           className="m_about_1"
           style={{
             color: '#dd6866',
-            fontSize: '3.2rem',
-            letterSpacing: '3.2px',
-            margin: '149px 0 125px 0'
+            fontSize: '1.7rem',
+            letterSpacing: '0.9px',
+            margin: '89px 0 36px 0'
           }}
         >
-          이 세상 모든 사회 초년생들의 꿈을 응원합니다.
+          이 세상 모든 예비전문가들의
+          <br />
+          꿈을 응원합니다.
         </div>
-        <img alt="alt" src={logo} style={{ width: '5%' }} />
+        <img alt="alt" src={logo} style={{ width: '12%' }} />
       </div>
     );
   }
