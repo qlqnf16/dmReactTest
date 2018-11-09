@@ -90,6 +90,8 @@ class Schedule extends Component {
     alert(
       "스케줄이 추가되었습니다. \n반드시 우측 상단의 '스케줄 게시하기' 버튼을 클릭하셔야 최종 등록완료됩니다."
     );
+
+    return true;
   };
 
   totalSubmitHandler = async recruitData => {

@@ -131,12 +131,13 @@ class ScheduleBox extends Component {
   };
 
   cardAddHandler = async cardData => {
-    await this.props.cardAddHandler(cardData);
+    const res = await this.props.cardAddHandler(cardData);
+    if (res) {
+      this.setState({ time: 1, sinces: [], untils: [], date: null });
 
-    this.setState({ time: 1, sinces: [], untils: [], date: null });
-
-    this.sinces = [];
-    this.untils = [];
+      this.sinces = [];
+      this.untils = [];
+    }
   };
 
   cardSort = (c1, c2) => c1.date - c2.date;
