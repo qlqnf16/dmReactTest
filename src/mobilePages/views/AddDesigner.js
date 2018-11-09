@@ -56,7 +56,7 @@ class AddDesigner extends Component {
       num: portfolios ? portfolios.length : 0,
       realFileNum: 0,
       portfolios,
-      portfoliosNum: portfolios.length,
+      portfoliosNum: portfolios ? portfolios.length : 0,
       introduce
     };
   }

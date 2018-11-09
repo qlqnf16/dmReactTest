@@ -57,7 +57,7 @@ class AddDesigner extends Component {
       portfolioImg: portfolios || [],
       num: portfolios ? portfolios.length : 0,
       realFileNum: 0,
-      portfoliosNum: portfolios.length
+      portfoliosNum: portfolios ? portfolios.length : 0
     };
   }
 
