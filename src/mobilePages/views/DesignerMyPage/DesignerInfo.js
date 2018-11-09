@@ -12,10 +12,10 @@ class DesignerInfo extends Component {
   constructor(props) {
     super(props);
     // redux에서 유저 정보 추출 후, state에 담기
-    const portfolios = [];
-    for (let i = 0; this.props.userData[`portfolio${i}`]; i++) {
-      portfolios.push(this.props.userData[`portfolio${i}`]);
-    }
+    const { portfolios } = this.props.userData;
+    // for (let i = 0; this.props.userData[`portfolio${i}`]; i++) {
+    //   portfolios.push(this.props.userData[`portfolio${i}`]);
+    // }
     let {
       name,
       gender,
