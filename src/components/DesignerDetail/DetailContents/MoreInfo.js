@@ -2,10 +2,10 @@ import React from 'react';
 import './MoreInfo.css';
 
 const MoreInfo = props => {
-  const portfolios = [];
-  for (let i = 0; props.designerData[`portfolio${i}`]; i++) {
-    portfolios.push(props.designerData[`portfolio${i}`]);
-  }
+  const { portfolios } = props.designerData;
+  // for (let i = 0; props.designerData[`portfolio${i}`]; i++) {
+  //   portfolios.push(props.designerData[`portfolio${i}`]);
+  // }
 
   return (
     <div>
