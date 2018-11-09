@@ -92,7 +92,7 @@ class CardAdd extends Component {
     else {
       cutButton = 'toggle_button';
       cutClick = () => this.toggle('cut');
-      if (this.state.cut) cutButton += ' toggle_on';
+      if (this.state.cut) cutButton = 'toggle_button toggle_on';
     }
     let permButton = '';
     let permClick = null;
