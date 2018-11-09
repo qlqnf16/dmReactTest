@@ -202,6 +202,22 @@ class ScheduleBox extends Component {
       };
       recruitData['requireTime'] = requireTime;
     }
+
+    // 바뀐것: 종료시간 선택 안 했을 때에만 '시작시간 종료시간 다 선택해주세요' 글씨 나오게
+    let timeValidation =
+      this.state.sinces.length !== this.state.untils.length ||
+      this.state.sinces.length === 0
+        ? true
+        : false;
+
+    // 바뀐것: 필수필드 validation, 없는거 하나라도 있으면 true 보내서 등록버튼 disabled 만듦
+    let finalValidation =
+      timeValidation ||
+      !cardData.date ||
+      !cardData.shop ||
+      !cardData.picture ||
+      !cardData.requireGender;
+
     return (
       <div className="row align-items-start">
         <div className="col-6">
@@ -229,6 +245,9 @@ class ScheduleBox extends Component {
             untils={this.state.untils}
             permPrice={this.state.permPrice}
             dyePrice={this.state.dyePrice}
+            // 바뀐것: validation들
+            timeValidation={timeValidation}
+            finalValidation={finalValidation}
           />
         </div>
         <div className="col-6 mt-5">
