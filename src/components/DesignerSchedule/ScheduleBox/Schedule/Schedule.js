@@ -191,7 +191,7 @@ class Schedule extends Component {
                 {/* 바뀐것: 시간선택 안내 */}
                 {this.props.timeValidation ? (
                   <div className="text-danger">
-                    시작시간과 종료시간을 모두 선택해주세요
+                    시작과 종료시간을 모두 선택해주세요
                   </div>
                 ) : null}
                 <Button
@@ -552,9 +552,7 @@ class Schedule extends Component {
           </div>
           {/* 바뀐것: 등록버튼 필수필드 안 채워지면 disaled 만듦 */}
           <div
-            onClick={
-              this.props.finalValidation ? null : this.props.cardAddHandler
-            }
+            onClick={this.props.cardAddHandler}
             className="btn btn-light w-50 schedule_button"
             style={
               this.props.finalValidation

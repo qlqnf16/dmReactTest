@@ -1,13 +1,13 @@
-import React from 'react';
-import { Modal, ModalBody, ModalHeader } from 'reactstrap';
-import Calendar from 'rc-calendar';
-import koKR from 'rc-calendar/lib/locale/ko_KR';
-import 'rc-calendar/assets/index.css';
-import moment from 'moment';
-import questionMark from '../../../assets/images/question_navy.png';
-import womanBack from '../../../assets/images/m_woman_back.png';
-import ReactTooltip from 'react-tooltip';
-import './AddCardModal.css';
+import React from "react";
+import { Modal, ModalBody, ModalHeader } from "reactstrap";
+import Calendar from "rc-calendar";
+import koKR from "rc-calendar/lib/locale/ko_KR";
+import "rc-calendar/assets/index.css";
+import moment from "moment";
+import questionMark from "../../../assets/images/question_navy.png";
+import womanBack from "../../../assets/images/m_woman_back.png";
+import ReactTooltip from "react-tooltip";
+import "./AddCardModal.css";
 
 const AddCardModal = props => {
   const timeSelector = () => {
@@ -40,7 +40,7 @@ const AddCardModal = props => {
       timeSelector.push(
         <div key={i}>
           <select
-            style={{ ...selectStyle, marginBottom: '2%' }}
+            style={{ ...selectStyle, marginBottom: "2%" }}
             type="select"
             name="since"
             id={i}
@@ -50,7 +50,7 @@ const AddCardModal = props => {
             {ts}
           </select>
           <select
-            style={{ ...selectStyle, marginBottom: '5%' }}
+            style={{ ...selectStyle, marginBottom: "5%" }}
             type="select"
             name="until"
             id={i}
@@ -70,7 +70,7 @@ const AddCardModal = props => {
       return false;
     }
     const nowTime = moment();
-    const oneMonthAfter = moment().add(1, 'month');
+    const oneMonthAfter = moment().add(1, "month");
     nowTime.hour(0);
     nowTime.minute(0);
     nowTime.second(0);
@@ -82,7 +82,7 @@ const AddCardModal = props => {
       .minute(0)
       .second(0)
       .millisecond(0);
-    current.add(9, 'hour');
+    current.add(9, "hour");
     return (
       // TODO: 일단은 과거날짜도 선택가능하게 변경, 나중에 주석해제 하기
       // current.valueOf() < nowTime.valueOf() ||
@@ -95,9 +95,9 @@ const AddCardModal = props => {
       <ModalHeader toggle={props.toggle}>
         <span
           style={{
-            fontSize: '2rem',
-            fontWeight: 'bold',
-            color: 'rgb(30, 51, 84)'
+            fontSize: "2rem",
+            fontWeight: "bold",
+            color: "rgb(30, 51, 84)"
           }}
         >
           카드 추가하기
@@ -114,14 +114,18 @@ const AddCardModal = props => {
               showDateInput="false"
               locale={koKR}
               defaultValue={null}
-              style={{ color: '#1f3354', width: '100%' }}
+              style={{ color: "#1f3354", width: "100%" }}
             />
           </div>
           <div>
             <div>
               <label style={labelStyle}>날짜</label>
               <div style={inputTextStyle}>
-                {moment(props.date).format('YYYY/MM/DD')}
+                {!props.date ? (
+                  <div className="text-danger">날짜를 선택해주세요</div>
+                ) : (
+                  moment(this.props.date).format("YYYY/MM/DD")
+                )}
               </div>
             </div>
             <div row>
@@ -140,13 +144,18 @@ const AddCardModal = props => {
             </div>
             <div>
               <label style={labelStyle}>서비스 가능 시간</label>
+              {props.timeValidation ? (
+                <span className="text-danger ml-4">
+                  시작과 종료시간을 모두 선택해주세요
+                </span>
+              ) : null}
               <div>
                 {timeSelector()}
                 <div
                   style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                    margin: '0 0 5% 0'
+                    display: "flex",
+                    justifyContent: "space-between",
+                    margin: "0 0 5% 0"
                   }}
                 >
                   <button
@@ -158,8 +167,8 @@ const AddCardModal = props => {
                   <button
                     style={{
                       ...addDeleteButtonStyle,
-                      backgroundColor: '#66ce82',
-                      borderColor: '#66ce82'
+                      backgroundColor: "#66ce82",
+                      borderColor: "#66ce82"
                     }}
                     color="light"
                     onClick={props.timeAdd}
@@ -186,28 +195,28 @@ const AddCardModal = props => {
                   effect="solid"
                   delayHide={500}
                 >
-                  <div className="mb-2" style={{ color: '#1f3354' }}>
+                  <div className="mb-2" style={{ color: "#1f3354" }}>
                     ✓ 적극응원
                   </div>
                   <div className="mb-3 tooltip_text">
                     사진을 촬영하며, 미래에 홍보용으로 사용될 수 있습니다.
                   </div>
 
-                  <div className="mb-2" style={{ color: '#1f3354' }}>
-                    ✓ 히든응원{' '}
+                  <div className="mb-2" style={{ color: "#1f3354" }}>
+                    ✓ 히든응원{" "}
                   </div>
                   <div className="mb-3 tooltip_text">
                     사진을 촬영하나 얼굴은 모자이크 처리합니다.
                   </div>
 
-                  <div className="mb-2" style={{ color: '#1f3354' }}>
+                  <div className="mb-2" style={{ color: "#1f3354" }}>
                     ✓ 매너응원
                   </div>
                   <div className="mb-3 tooltip_text">
                     사진을 촬영하나 개인소장/실습 증명용으로만 사용됩니다.
                   </div>
 
-                  <div className="mb-2" style={{ color: '#1f3354' }}>
+                  <div className="mb-2" style={{ color: "#1f3354" }}>
                     ✓ 사진촬영x
                   </div>
                   <div className="mb-3 tooltip_text">
@@ -234,10 +243,10 @@ const AddCardModal = props => {
               </label>
               <div>
                 <div
-                  style={{ display: 'flex', justifyContent: 'space-between' }}
+                  style={{ display: "flex", justifyContent: "space-between" }}
                 >
                   <input
-                    style={{ display: 'none' }}
+                    style={{ display: "none" }}
                     type="checkbox"
                     name="must"
                     id="cut"
@@ -245,7 +254,7 @@ const AddCardModal = props => {
                   />
                   <label for="cut">커트</label>
                   <input
-                    style={{ display: 'none' }}
+                    style={{ display: "none" }}
                     type="checkbox"
                     name="must"
                     id="perm"
@@ -253,7 +262,7 @@ const AddCardModal = props => {
                   />
                   <label for="perm">펌</label>
                   <input
-                    style={{ display: 'none' }}
+                    style={{ display: "none" }}
                     type="checkbox"
                     name="must"
                     id="dye"
@@ -269,10 +278,10 @@ const AddCardModal = props => {
               </label>
               <div>
                 <div
-                  style={{ display: 'flex', justifyContent: 'space-between' }}
+                  style={{ display: "flex", justifyContent: "space-between" }}
                 >
                   <input
-                    style={{ display: 'none' }}
+                    style={{ display: "none" }}
                     type="checkbox"
                     name="no"
                     id="Cut"
@@ -280,7 +289,7 @@ const AddCardModal = props => {
                   />
                   <label for="Cut">커트</label>
                   <input
-                    style={{ display: 'none' }}
+                    style={{ display: "none" }}
                     type="checkbox"
                     name="no"
                     id="Perm"
@@ -288,7 +297,7 @@ const AddCardModal = props => {
                   />
                   <label for="Perm">펌</label>
                   <input
-                    style={{ display: 'none' }}
+                    style={{ display: "none" }}
                     type="checkbox"
                     name="no"
                     id="Dye"
@@ -304,10 +313,10 @@ const AddCardModal = props => {
               </label>
               <div>
                 <div
-                  style={{ display: 'flex', justifyContent: 'space-between' }}
+                  style={{ display: "flex", justifyContent: "space-between" }}
                 >
                   <input
-                    style={{ display: 'none' }}
+                    style={{ display: "none" }}
                     type="checkbox"
                     name="male"
                     id="male"
@@ -315,7 +324,7 @@ const AddCardModal = props => {
                   />
                   <label for="male">남자</label>
                   <input
-                    style={{ display: 'none' }}
+                    style={{ display: "none" }}
                     type="checkbox"
                     name="female"
                     id="female"
@@ -334,10 +343,10 @@ const AddCardModal = props => {
           매칭률이 현저히 저하될 수 있으므로 예상금액을 표기하는 것을
           권고드립니다.
         </div>
-        <div className="row" style={{ margin: '2% 0 10% 0' }}>
+        <div className="row" style={{ margin: "2% 0 10% 0" }}>
           <div className="col-3 p-0">
             <img
-              style={{ width: '100%', transform: 'translateY(14%)' }}
+              style={{ width: "100%", transform: "translateY(14%)" }}
               src={womanBack}
               alt="alt"
             />
@@ -345,33 +354,33 @@ const AddCardModal = props => {
           <div
             className="col-3 pr-0"
             style={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-around'
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-around"
             }}
           >
-            <span style={{ ...labelStyle, margin: 0, color: 'transparent' }}>
+            <span style={{ ...labelStyle, margin: 0, color: "transparent" }}>
               .
             </span>
-            <span style={{ ...labelStyle, margin: 0, padding: '0.7rem' }}>
+            <span style={{ ...labelStyle, margin: 0, padding: "0.7rem" }}>
               기본
             </span>
-            <span style={{ ...labelStyle, margin: 0, padding: '0.7rem' }}>
+            <span style={{ ...labelStyle, margin: 0, padding: "0.7rem" }}>
               턱아래
             </span>
-            <span style={{ ...labelStyle, margin: 0, padding: '0.7rem' }}>
+            <span style={{ ...labelStyle, margin: 0, padding: "0.7rem" }}>
               어깨아래
             </span>
-            <span style={{ ...labelStyle, margin: 0, padding: '0.7rem' }}>
+            <span style={{ ...labelStyle, margin: 0, padding: "0.7rem" }}>
               가슴아래
             </span>
           </div>
           <div
             className="col-3 pl-0 text-center"
             style={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-around'
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-around"
             }}
           >
             <div style={{ ...labelStyle, margin: 0 }}>펌</div>
@@ -381,9 +390,9 @@ const AddCardModal = props => {
                 <input
                   style={{
                     ...inputTextStyle,
-                    fontSize: '1.1rem',
-                    width: '75%',
-                    textAlign: 'right',
+                    fontSize: "1.1rem",
+                    width: "75%",
+                    textAlign: "right",
                     border: 0
                   }}
                   type="number"
@@ -402,9 +411,9 @@ const AddCardModal = props => {
                 <input
                   style={{
                     ...inputTextStyle,
-                    fontSize: '1.1rem',
-                    width: '75%',
-                    textAlign: 'right',
+                    fontSize: "1.1rem",
+                    width: "75%",
+                    textAlign: "right",
                     border: 0
                   }}
                   type="number"
@@ -423,9 +432,9 @@ const AddCardModal = props => {
                 <input
                   style={{
                     ...inputTextStyle,
-                    fontSize: '1.1rem',
-                    width: '75%',
-                    textAlign: 'right',
+                    fontSize: "1.1rem",
+                    width: "75%",
+                    textAlign: "right",
                     border: 0
                   }}
                   type="number"
@@ -444,9 +453,9 @@ const AddCardModal = props => {
                 <input
                   style={{
                     ...inputTextStyle,
-                    fontSize: '1.1rem',
-                    width: '75%',
-                    textAlign: 'right',
+                    fontSize: "1.1rem",
+                    width: "75%",
+                    textAlign: "right",
                     border: 0
                   }}
                   type="number"
@@ -463,9 +472,9 @@ const AddCardModal = props => {
           <div
             className="col-3 pl-0 text-center"
             style={{
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-around'
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "space-around"
             }}
           >
             <div style={{ ...labelStyle, margin: 0 }}>염색</div>
@@ -475,9 +484,9 @@ const AddCardModal = props => {
                 <input
                   style={{
                     ...inputTextStyle,
-                    fontSize: '1.1rem',
-                    width: '75%',
-                    textAlign: 'right',
+                    fontSize: "1.1rem",
+                    width: "75%",
+                    textAlign: "right",
                     border: 0
                   }}
                   type="number"
@@ -496,9 +505,9 @@ const AddCardModal = props => {
                 <input
                   style={{
                     ...inputTextStyle,
-                    fontSize: '1.1rem',
-                    width: '75%',
-                    textAlign: 'right',
+                    fontSize: "1.1rem",
+                    width: "75%",
+                    textAlign: "right",
                     border: 0
                   }}
                   type="number"
@@ -517,9 +526,9 @@ const AddCardModal = props => {
                 <input
                   style={{
                     ...inputTextStyle,
-                    fontSize: '1.1rem',
-                    width: '75%',
-                    textAlign: 'right',
+                    fontSize: "1.1rem",
+                    width: "75%",
+                    textAlign: "right",
                     border: 0
                   }}
                   type="number"
@@ -538,9 +547,9 @@ const AddCardModal = props => {
                 <input
                   style={{
                     ...inputTextStyle,
-                    fontSize: '1.1rem',
-                    width: '75%',
-                    textAlign: 'right',
+                    fontSize: "1.1rem",
+                    width: "75%",
+                    textAlign: "right",
                     border: 0
                   }}
                   type="number"
@@ -556,23 +565,34 @@ const AddCardModal = props => {
           </div>
         </div>
         <div>
-          <div style={buttonStyle} onClick={props.cardAddHandler}>
+          <div
+            style={
+              props.finalValidation
+                ? {
+                    ...buttonStyle,
+                    backgroundColor: "rgba(0,0,0,0.3",
+                    cursor: "default"
+                  }
+                : buttonStyle
+            }
+            onClick={props.cardAddHandler}
+          >
             스케줄 추가
           </div>
           <div
             style={{
-              textAlign: 'center',
-              fontSize: '1.2rem',
-              color: 'rgb(76, 145, 186)'
+              textAlign: "center",
+              fontSize: "1.2rem",
+              color: "rgb(76, 145, 186)"
             }}
           >
-            스케줄 추가가 끝난 후 반드시{' '}
+            스케줄 추가가 끝난 후 반드시{" "}
           </div>
           <div
             style={{
-              textAlign: 'center',
-              fontSize: '1.2rem',
-              color: 'rgb(76, 145, 186)'
+              textAlign: "center",
+              fontSize: "1.2rem",
+              color: "rgb(76, 145, 186)"
             }}
           >
             ‘스케줄 저장하기’ 버튼을 클릭하셔야 최종 등록완료됩니다
@@ -585,50 +605,50 @@ const AddCardModal = props => {
 
 const styles = {
   labelStyle: {
-    fontSize: '1.1rem',
-    fontWeight: 'bold',
-    color: '#1e3354',
-    marginTop: '1.5rem',
-    marginBottom: '0.2rem'
+    fontSize: "1.1rem",
+    fontWeight: "bold",
+    color: "#1e3354",
+    marginTop: "1.5rem",
+    marginBottom: "0.2rem"
   },
   inputTextStyle: {
-    fontSize: '1.3rem',
-    color: '#1f3354',
-    padding: '0.7rem',
-    borderRadius: '5px',
-    border: 'dotted 1px rgba(0, 0, 0, 0.1)'
+    fontSize: "1.3rem",
+    color: "#1f3354",
+    padding: "0.7rem",
+    borderRadius: "5px",
+    border: "dotted 1px rgba(0, 0, 0, 0.1)"
   },
   buttonStyle: {
-    height: '3.9rem',
-    color: 'white',
-    fontSize: '1.4rem',
-    fontWeight: 'bold',
-    marginTop: '4rem',
-    marginBottom: '2rem',
+    height: "3.9rem",
+    color: "white",
+    fontSize: "1.4rem",
+    fontWeight: "bold",
+    marginTop: "4rem",
+    marginBottom: "2rem",
     borderRadius: 6,
-    backgroundColor: '#4c91ba',
-    textAlign: 'center',
-    lineHeight: '3.9rem'
+    backgroundColor: "#4c91ba",
+    textAlign: "center",
+    lineHeight: "3.9rem"
   },
   selectStyle: {
-    width: '100%',
-    fontSize: '1.3rem',
-    color: '#1f3354',
-    marginRight: '3.3%',
-    padding: '0.7rem',
-    paddingTop: '0.5rem'
+    width: "100%",
+    fontSize: "1.3rem",
+    color: "#1f3354",
+    marginRight: "3.3%",
+    padding: "0.7rem",
+    paddingTop: "0.5rem"
   },
   addDeleteButtonStyle: {
-    display: 'inline-block',
-    width: '49%',
-    padding: '2.3%',
-    border: '1px solid #dd6866',
-    backgroundColor: '#dd6866',
-    borderRadius: '5px',
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: '1.3rem',
-    textAlign: 'center'
+    display: "inline-block",
+    width: "49%",
+    padding: "2.3%",
+    border: "1px solid #dd6866",
+    backgroundColor: "#dd6866",
+    borderRadius: "5px",
+    color: "white",
+    fontWeight: "bold",
+    fontSize: "1.3rem",
+    textAlign: "center"
   }
 };
 
