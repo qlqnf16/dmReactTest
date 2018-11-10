@@ -156,7 +156,7 @@ class Landing extends Component {
 
     return (
       <Fragment>
-        {/* <div
+        <div
           style={{
             display: 'inline-block',
             marginTop: '20px',
@@ -199,7 +199,7 @@ class Landing extends Component {
           <div className="btn btn-warning" onClick={() => this.noAdmin()}>
             해제
           </div>
-        </div> */}
+        </div>
         <Carousel
           activeIndex={activeIndex}
           next={this.next}

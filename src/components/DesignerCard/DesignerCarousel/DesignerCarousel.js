@@ -6,24 +6,6 @@ import {
   CarouselIndicators
 } from 'reactstrap';
 
-const items = [
-  {
-    src: 'https://picsum.photos/300/200/?image=2',
-    altText: 'Slide 1',
-    caption: 'Slide 1'
-  },
-  {
-    src: 'https://picsum.photos/300/200/?image=23',
-    altText: 'Slide 2',
-    caption: 'Slide 2'
-  },
-  {
-    src: 'https://picsum.photos/300/200/?image=29',
-    altText: 'Slide 3',
-    caption: 'Slide 3'
-  }
-];
-
 class DesignerCarousel extends Component {
   constructor(props) {
     super(props);

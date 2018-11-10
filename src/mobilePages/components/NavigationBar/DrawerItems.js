@@ -1,18 +1,18 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 
-import logo from '../../../assets/images/logo.png';
+import logo from "../../../assets/images/logo.png";
 
 const DrawerItems = props => {
-  let drawerClasses = 'side-drawer';
+  let drawerClasses = "side-drawer";
   if (props.show) {
-    drawerClasses = 'side-drawer open';
+    drawerClasses = "side-drawer open";
   }
 
   if (!props.finishRedux) {
     return (
       <div className="navbar_loading">
-        <div class="lds-roller">
+        <div className="lds-roller">
           <div />
           <div />
           <div />
@@ -47,7 +47,7 @@ const DrawerItems = props => {
         <div
           className="mobile-drawer-items mobile-drawer-gray"
           // onClick={props.click}
-          onClick={() => alert('아직 이용할 수 없습니다.')}
+          onClick={() => alert("아직 이용할 수 없습니다.")}
         >
           메세지
         </div>
@@ -62,7 +62,7 @@ const DrawerItems = props => {
         <div
           className="mobile-drawer-items"
           //  onClick={props.click}
-          onClick={() => alert('아직 이용할 수 없습니다.')}
+          onClick={() => alert("아직 이용할 수 없습니다.")}
         >
           예디찾기
         </div>
@@ -89,14 +89,14 @@ const DrawerItems = props => {
         </Link>
         <div
           className="mobile-drawer-items mobile-drawer-login"
-          style={{ backgroundColor: '#4c91ba' }}
+          style={{ backgroundColor: "#4c91ba" }}
         >
           반갑습니다 {props.userData.name}님
         </div>
         {/* <Link to="/message"> */}
         <div
           className="mobile-drawer-items mobile-drawer-gray"
-          onClick={() => alert('아직 이용할 수 없습니다.')}
+          onClick={() => alert("아직 이용할 수 없습니다.")}
           // onClick={props.click}
         >
           메세지
@@ -116,7 +116,7 @@ const DrawerItems = props => {
         {/* <Link to="/designer/reservations"> */}
         <div
           className="mobile-drawer-items"
-          onClick={() => alert('아직 이용할 수 없습니다.')}
+          onClick={() => alert("아직 이용할 수 없습니다.")}
           // onClick={props.click}
         >
           예약관리
@@ -162,7 +162,7 @@ const DrawerItems = props => {
         <div
           className="mobile-drawer-items mobile-drawer-gray"
           // onClick={props.click}
-          onClick={() => alert('아직 이용할 수 없습니다.')}
+          onClick={() => alert("아직 이용할 수 없습니다.")}
         >
           예디찾기
         </div>
