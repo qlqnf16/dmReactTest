@@ -79,7 +79,7 @@ class DesignerDetail extends Component {
     recruit,
     cardData
   ) => {
-    if (true) return alert('아직 이용하실 수 없습니다.');
+    // if (true) return alert('아직 이용하실 수 없습니다.');
 
     // 비로그인시 로그인 모달
     if (!this.state.isLogin && this.state.madeRequest) {
@@ -90,6 +90,7 @@ class DesignerDetail extends Component {
 
     if (Object.values(serviceFormat).length === 0)
       return alert('받을 서비스를 선택해 주세요');
+    if (!startTime) return alert('받을 시간을 선택해 주세요');
     await this.props.history.push({
       pathname: `/reservation`,
       state: {

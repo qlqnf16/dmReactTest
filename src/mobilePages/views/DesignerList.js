@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import axios from "../../config/Axios";
-import firebase from "../../config/Firebase";
+import React, { Component } from 'react';
+import axios from '../../config/Axios';
+import firebase from '../../config/Firebase';
 
-import Header from "../components/DesignerList/Header";
-import FilterButton from "../components/DesignerList/FilterButton";
-import Filter from "../components/DesignerList/Filter";
-import DesignerCardList from "../components/DesignerList/DesignerCardList";
+import Header from '../components/DesignerList/Header';
+import FilterButton from '../components/DesignerList/FilterButton';
+import Filter from '../components/DesignerList/Filter';
+import DesignerCardList from '../components/DesignerList/DesignerCardList';
 
-import "./Pages.css";
+import './Pages.css';
 
 class DesignerList extends Component {
   state = {
@@ -18,7 +18,7 @@ class DesignerList extends Component {
 
   componentDidMount = async () => {
     if (!this.state.madeRequest) {
-      const { data } = await axios.get("recruits");
+      const { data } = await axios.get('recruits');
       const filteredData = data.filter(
         d =>
           d._designer &&
@@ -38,7 +38,7 @@ class DesignerList extends Component {
     await firebase
       .database()
       .ref(`/users`)
-      .on("value", async res => {
+      .on('value', async res => {
         const filterAddresses = [];
         let filterSido = [];
         Object.values(res.val()).forEach(user => {
@@ -70,24 +70,29 @@ class DesignerList extends Component {
   getFilteredCards = async () => {
     let must,
       no,
-      gender = "";
+      gender = '';
 
     if (this.state.gender) gender = `gender=${this.state.gender}`;
 
-    if (this.state.cut === "100") must += "cut=1&";
-    else if (this.state.cut === "0") no += "cut=2&";
-    if (this.state.perm === "100") must += "perm=1&";
-    else if (this.state.perm === "0") no += "perm=2&";
-    if (this.state.dye === "100") must += "dye=1&";
-    else if (this.state.dye === "0") no += "dye=2&";
+    if (this.state.cut === '100') must += 'cut=1&';
+    else if (this.state.cut === '0') no += 'cut=2&';
+    if (this.state.perm === '100') must += 'perm=1&';
+    else if (this.state.perm === '0') no += 'perm=2&';
+    if (this.state.dye === '100') must += 'dye=1&';
+    else if (this.state.dye === '0') no += 'dye=2&';
 
-    const { data } = await axios.get("cards?" + must + no + gender);
+    const { data } = await axios.get('cards?' + must + no + gender);
     let recruits = data.map(d => d._recruit);
 
     let uniqueRecruits = [];
     const counter = {};
     recruits.forEach(recruit => {
-      if (!counter[recruit._id]) {
+      if (
+        !counter[recruit._id] &&
+        recruit._designer &&
+        recruit._designer.expiredAt &&
+        recruit._designer.expiredAt > new Date().getTime()
+      ) {
         uniqueRecruits.push(recruit);
         counter[recruit._id] = true;
       }
