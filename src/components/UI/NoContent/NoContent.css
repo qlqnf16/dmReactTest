@@ -17,3 +17,11 @@
 .noContent:hover {
   text-decoration: none;
 }
+
+@media screen and (max-width: 500px) {
+  .noContent {
+    margin: 0 0;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+}
