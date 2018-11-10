@@ -126,7 +126,7 @@ class Reservation extends Component {
     return (
       <div>
         <Header />
-        <div>
+        <div className="m_containerStyle">
           <ReservationForm
             d_name={recruit._designer.name}
             startTime={startTimeFormat}
@@ -141,31 +141,46 @@ class Reservation extends Component {
             pointSubmit={this.pointSubmit}
             userData={this.props.userData}
           />
-          <div>
-            <div onClick={() => this.purchaseHandler(this.state.finalPrice)}>
-              결제하기
-            </div>
-            <Link
-              to={{
-                pathname: `/reservationConfirm/${this.state.reservationId}`,
-                state: {
-                  userName: this.props.userData.name,
-                  recruit,
-                  cardData,
-                  service: this.props.location.state.service
-                }
-              }}
-            >
-              <Button onClick={this.reservationSubmit} color="primary">
-                결제 성공한 척 하기
-              </Button>
-            </Link>
+          <div
+            onClick={() => this.purchaseHandler(this.state.finalPrice)}
+            style={buttonStyle}
+          >
+            결제하기
           </div>
+          <Link
+            to={{
+              pathname: `/reservationConfirm/${this.state.reservationId}`,
+              state: {
+                userName: this.props.userData.name,
+                recruit,
+                cardData,
+                service: this.props.location.state.service
+              }
+            }}
+          >
+            <Button onClick={this.reservationSubmit} color="primary">
+              결제 성공한 척 하기
+            </Button>
+          </Link>
         </div>
       </div>
     );
   }
 }
+
+const buttonStyle = {
+  height: '3.9rem',
+  width: '85%',
+  color: 'white',
+  fontSize: '1.4rem',
+  fontWeight: 'bold',
+  marginTop: '2.5rem',
+  marginBottom: '4rem',
+  borderRadius: 6,
+  backgroundColor: '#dd6866',
+  textAlign: 'center',
+  lineHeight: '3.9rem'
+};
 
 const mapStateToProps = ({ authentication: { userData } }) => {
   return { userData };
