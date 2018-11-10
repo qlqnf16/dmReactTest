@@ -83,7 +83,6 @@ class DesignerDetail extends Component {
 
     // 비로그인시 로그인 모달
     if (!this.state.isLogin && this.state.madeRequest) {
-      console.log('Go');
       await this.toggleModal();
       await this.loginToggleHandler();
       return;

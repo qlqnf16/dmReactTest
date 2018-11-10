@@ -104,7 +104,6 @@ class App extends Component {
   };
 
   authListener() {
-    console.log('authLi');
     firebase.auth().onAuthStateChanged(async user => {
       if (user && firebase.auth().currentUser) {
         this.setState({ finishRedux: false });
@@ -125,7 +124,6 @@ class App extends Component {
             await this.props.updateRedux('_tickets', data._tickets);
             await this.props.updateRedux('_reservations', data._reservations);
             await this.props.connectSocket();
-            console.log('redux 끝');
             this.setState({ finishRedux: true });
             // if (!userData.isRegister) this.props.history.push('/userInfo');
           });

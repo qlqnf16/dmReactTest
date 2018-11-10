@@ -21,7 +21,6 @@ class DesignerList extends Component {
   componentDidMount = async () => {
     if (!this.state.madeRequest) {
       const { data } = await axios.get('recruits');
-      console.log(data);
       const filteredData = data.filter(
         d =>
           d._designer &&

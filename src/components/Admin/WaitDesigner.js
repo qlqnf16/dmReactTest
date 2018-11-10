@@ -29,7 +29,6 @@ class WaitDesigner extends Component {
   };
 
   render() {
-    console.log(this.props.designer);
     const designer = this.props.designer;
     let addresses = [];
     let shops = [];

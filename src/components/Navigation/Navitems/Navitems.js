@@ -96,9 +96,7 @@ class Navitems extends Component {
   }
 
   render() {
-    console.log('navItem 렌더');
     if (!this.props.finishRedux) {
-      console.log('madeRequest 안됨!');
       return (
         <div className="navbar_loading">
           <div class="lds-roller">

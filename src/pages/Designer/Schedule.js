@@ -94,11 +94,9 @@ class Schedule extends Component {
   };
 
   totalSubmitHandler = async recruitData => {
-    console.log(recruitData);
     let shops;
     shops = this.props.userData.addresses.map(address => address.extraAddress);
     recruitData['shops'] = shops;
-    console.log(Object.values(recruitData));
     //안 채워진 정보 검증
     if (
       Object.values(recruitData).includes('') ||

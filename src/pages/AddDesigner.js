@@ -239,7 +239,6 @@ class AddDesigner extends Component {
     //   addresses.length === 0
     // )
     //   return alert('채워지지 않은 정보가 있습니다');
-    console.log(firebaseUserData);
     if (!careerDetail) return alert('이력을 작성해주세요');
     if (!firebaseUserData.name) return alert('이름을 작성해주세요');
     if (!firebaseUserData.gender) return alert('성별을 작성해주세요');

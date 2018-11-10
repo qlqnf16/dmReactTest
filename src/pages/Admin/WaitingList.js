@@ -27,7 +27,6 @@ class WaitingList extends Component {
 
   render() {
     if (this.state.madeRequest) {
-      console.log(this.state.designers);
       const WaitDesignerList = this.state.designers.map((designer, key) => (
         <WaitDesigner
           designer={designer}
