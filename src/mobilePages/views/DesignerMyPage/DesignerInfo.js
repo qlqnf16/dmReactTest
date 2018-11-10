@@ -84,6 +84,10 @@ class DesignerInfo extends Component {
   };
 
   // input
+  dYear = 0;
+  dMonth = 0;
+  careerYear = 0;
+  careerMonth = 0;
   handleInputChange = e => {
     const { value, name, id } = e.target;
 
