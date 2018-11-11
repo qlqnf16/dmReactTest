@@ -97,12 +97,15 @@ class UserInfo extends Component {
       let result = null;
 
       // 유효한 추천인 코드인지 확인
-      await firebase
-        .database()
-        .ref('users/' + recommendationCode)
-        .on('value', res => {
-          result = res;
-        });
+      const fbPromise = new Promise(resolve => {
+        firebase
+          .database()
+          .ref('users/' + recommendationCode)
+          .on('value', res => {
+            resolve(res);
+          });
+      });
+      result = await fbPromise;
       // 유효하지 않은 추천인 코드일 때,
       if (!result || recommendationCode === this.props.userData.uid)
         alert('유효하지 않은 추천인 코드 입니다.');
@@ -113,7 +116,7 @@ class UserInfo extends Component {
         firebaseUserData = { ...firebaseUserData, recommendationCode };
         count += 1;
 
-        await axios.patch(`users/${_id}/addpoint`);
+        await axios.patch(`users/${_id}/addpoint`, { point: 1000 });
 
         // 추천받은 횟수 저장
         await firebase

@@ -3,7 +3,6 @@ import firebase from '../../config/Firebase';
 import axios from '../../config/Axios';
 import { withRouter } from 'react-router-dom';
 import * as actions from '../../modules';
-
 import { connect } from 'react-redux';
 import UserNav from '../../components/Navigation/UserNav/UserNav';
 import CouponContent from '../../components/CouponContent/CouponContent';
