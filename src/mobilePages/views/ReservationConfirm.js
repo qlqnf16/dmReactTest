@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../components/ReservationConfirm/Header';
 import completeIcon from '../../assets/images/check_lg.png';
+import womanBack from '../../assets/images/m_woman_back.png';
 
 class ReservationConfirm extends Component {
   render() {
@@ -9,8 +10,10 @@ class ReservationConfirm extends Component {
       cautionSectionStyle,
       sectionTitleStyle,
       pricingStyle,
-      buttonStyle
+      buttonStyle,
+      labelStyle
     } = styles;
+
     return (
       <div className="m_containerStyle">
         <Header />
@@ -68,11 +71,131 @@ class ReservationConfirm extends Component {
               </p>
             </div>
             <div style={pricingStyle}>
-              <div style={sectionTitleStyle}>
+              <div style={{ ...sectionTitleStyle, textAlign: 'center' }}>
                 서비스 예상 금액
-                <br /> 30,000원(+기장)
+                <br />
+                <span style={{ fontSize: '1.5rem' }}>30,000원(+기장)</span>
               </div>
               <div>기장별 추가금액 안내</div>
+              <div className="row" style={{ margin: '2% 0 10% 0' }}>
+                <div className="col-3 p-0">
+                  <img
+                    style={{ width: '100%', transform: 'translateY(14%)' }}
+                    src={womanBack}
+                    alt="alt"
+                  />
+                </div>
+                <div
+                  className="col-3 pr-0"
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-around'
+                  }}
+                >
+                  <span
+                    style={{ ...labelStyle, margin: 0, color: 'transparent' }}
+                  >
+                    .
+                  </span>
+                  <span style={{ ...labelStyle, margin: 0, padding: '0.7rem' }}>
+                    기본
+                  </span>
+                  <span style={{ ...labelStyle, margin: 0, padding: '0.7rem' }}>
+                    턱아래
+                  </span>
+                  <span style={{ ...labelStyle, margin: 0, padding: '0.7rem' }}>
+                    어깨아래
+                  </span>
+                  <span style={{ ...labelStyle, margin: 0, padding: '0.7rem' }}>
+                    가슴아래
+                  </span>
+                </div>
+                <div
+                  className="col-3 pl-0 text-center"
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-around'
+                  }}
+                >
+                  <div style={{ ...labelStyle, margin: 0 }}>펌</div>
+                  <div>
+                    <div
+                      className="addingPrice"
+                      style={{ fontSize: '1rem', padding: '0.7rem' }}
+                    >
+                      + 1000 원
+                    </div>
+                  </div>
+                  <div>
+                    <div
+                      className="addingPrice"
+                      style={{ fontSize: '1rem', padding: '0.7rem' }}
+                    >
+                      + 1000 원
+                    </div>
+                  </div>
+                  <div>
+                    <div
+                      className="addingPrice"
+                      style={{ fontSize: '1rem', padding: '0.7rem' }}
+                    >
+                      + 1000 원
+                    </div>
+                  </div>
+                  <div>
+                    <div
+                      className="addingPrice"
+                      style={{ fontSize: '1rem', padding: '0.7rem' }}
+                    >
+                      + 1000 원
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="col-3 pl-0 text-center"
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-around'
+                  }}
+                >
+                  <div style={{ ...labelStyle, margin: 0 }}>염색</div>
+                  <div>
+                    <div
+                      className="addingPrice"
+                      style={{ fontSize: '1rem', padding: '0.7rem' }}
+                    >
+                      + 1000 원
+                    </div>
+                  </div>
+                  <div>
+                    <div
+                      className="addingPrice"
+                      style={{ fontSize: '1rem', padding: '0.7rem' }}
+                    >
+                      + 1000 원
+                    </div>
+                  </div>
+                  <div>
+                    <div
+                      className="addingPrice"
+                      style={{ fontSize: '1rem', padding: '0.7rem' }}
+                    >
+                      + 1000 원
+                    </div>
+                  </div>
+                  <div>
+                    <div
+                      className="addingPrice"
+                      style={{ fontSize: '1rem', padding: '0.7rem' }}
+                    >
+                      + 1000 원
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div style={buttonStyle}>예약 확인/취소</div>
@@ -124,6 +247,13 @@ const styles = {
     backgroundColor: '#dd6866',
     textAlign: 'center',
     lineHeight: '3.9rem'
+  },
+  labelStyle: {
+    fontSize: '1.1rem',
+    fontWeight: 'bold',
+    color: '#1e3354',
+    marginTop: '1.5rem',
+    marginBottom: '0.2rem'
   }
 };
 
