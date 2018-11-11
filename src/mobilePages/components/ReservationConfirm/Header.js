@@ -6,7 +6,7 @@ const Header = () => {
     <div style={containerStyle}>
       <h2 style={titleStyle}>3단계: 서비스 받기</h2>
       <p style={contentStyle}>
-        약속된 시간에 막내의 헤어샵에서 <br /> 맞춤 서비스 받기
+        약속된 시간에 예디의 헤어샵에서 <br /> 맞춤 서비스 받기
       </p>
     </div>
   );

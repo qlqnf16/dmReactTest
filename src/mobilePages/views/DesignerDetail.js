@@ -197,7 +197,7 @@ class DesignerDetail extends Component {
           </div>
           <div>
             <div style={{ ...sectionTitleStyle, marginBottom: '1rem' }}>
-              막내리뷰
+              예디리뷰
             </div>
             <div
               style={{ fontSize: '1.2rem', transform: 'translateX(-0.5rem)' }}

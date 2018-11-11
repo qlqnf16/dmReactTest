@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import './CardAdd.css';
-import questionMark from '../../assets/images/question_yellow.png';
-import { connect } from 'react-redux';
-import ReactTooltip from 'react-tooltip';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import "./CardAdd.css";
+import questionMark from "../../assets/images/question_yellow.png";
+import { connect } from "react-redux";
+import ReactTooltip from "react-tooltip";
 
 class CardAdd extends Component {
   state = {
@@ -15,11 +15,11 @@ class CardAdd extends Component {
   };
 
   componentDidMount = () => {
-    if (this.props.must.some(e => e === 'cut')) {
+    if (this.props.must.some(e => e === "cut")) {
       this.setState({ cut: true });
     }
-    if (this.props.must.some(e => e === 'perm')) this.setState({ perm: true });
-    if (this.props.must.some(e => e === 'dye')) this.setState({ dye: true });
+    if (this.props.must.some(e => e === "perm")) this.setState({ perm: true });
+    if (this.props.must.some(e => e === "dye")) this.setState({ dye: true });
   };
 
   shouldComponentUpdate = (nextProps, nextState) => {
@@ -32,13 +32,13 @@ class CardAdd extends Component {
 
   toggle = type => {
     switch (type) {
-      case 'cut':
+      case "cut":
         this.setState({ cut: !this.state.cut });
         break;
-      case 'perm':
+      case "perm":
         this.setState({ perm: !this.state.perm });
         break;
-      case 'dye':
+      case "dye":
         this.setState({ dye: !this.state.dye });
         break;
       default:
@@ -60,23 +60,26 @@ class CardAdd extends Component {
         time += 30;
       }
     });
-    this.props.ableTimes.forEach(ableTime => {
+    this.props.ableTimes.ㅌorEach(ableTime => {
       let time = ableTime.since;
-      while (
-        time <=
-        ableTime.until -
-          Math.min(...Object.values(this.props.recruit.requireTime))
-      ) {
-        if (!reservedTimes.includes(time)) Times.push(time);
-        time += 30;
+      let requireTime = 0;
+      requireTime += this.state.cut && this.props.recruit.requireTime.cut;
+      requireTime += this.state.perm && this.props.recruit.requireTime.perm;
+      requireTime += this.state.dye && this.props.recruit.requireTime.dye;
+      for (let t = time; t <= ableTime.until - requireTime; t += 30) {
+        let temp = true;
+        for (let i = t; i <= t + requireTime - 30; i += 30) {
+          if (reservedTimes.includes(i)) temp = false;
+        }
+        if (temp) Times.push(t);
       }
     });
     let timeButtons = null;
     timeButtons = Times.map((time, key) => {
-      let classN = 'toggle_button time_button';
-      if (time === this.state.time) classN += ' toggle_on';
+      let classN = "toggle_button time_button";
+      if (time === this.state.time) classN += " toggle_on";
       let timeFormat = `${parseInt(time / 60, 10)} : ${
-        time % 60 === 0 ? '00' : '30'
+        time % 60 === 0 ? "00" : "30"
       }`;
       return (
         <div key={key} className="col-6 p-1">
@@ -87,42 +90,42 @@ class CardAdd extends Component {
       );
     });
 
-    let cutButton = '';
+    let cutButton = "";
     let cutClick = null;
-    if (this.props.must.some(e => e === 'cut')) cutButton = 'must_button';
-    else if (this.props.no.some(e => e === 'cut')) cutButton = 'no_button';
+    if (this.props.must.some(e => e === "cut")) cutButton = "must_button";
+    else if (this.props.no.some(e => e === "cut")) cutButton = "no_button";
     else {
-      cutButton = 'toggle_button';
-      cutClick = () => this.toggle('cut');
-      if (this.state.cut) cutButton += ' toggle_on';
+      cutButton = "toggle_button";
+      cutClick = () => this.toggle("cut");
+      if (this.state.cut) cutButton += " toggle_on";
     }
-    let permButton = '';
+    let permButton = "";
     let permClick = null;
-    if (this.props.must.some(e => e === 'perm')) permButton = 'must_button';
-    else if (this.props.no.some(e => e === 'perm')) permButton = 'no_button';
+    if (this.props.must.some(e => e === "perm")) permButton = "must_button";
+    else if (this.props.no.some(e => e === "perm")) permButton = "no_button";
     else {
-      permButton = 'toggle_button';
-      permClick = () => this.toggle('perm');
-      if (this.state.perm) permButton += ' toggle_on';
+      permButton = "toggle_button";
+      permClick = () => this.toggle("perm");
+      if (this.state.perm) permButton += " toggle_on";
     }
-    let dyeButton = '';
+    let dyeButton = "";
     let dyeClick = null;
-    if (this.props.must.some(e => e === 'dye')) dyeButton = 'must_button';
-    else if (this.props.no.some(e => e === 'dye')) dyeButton = 'no_button ';
+    if (this.props.must.some(e => e === "dye")) dyeButton = "must_button";
+    else if (this.props.no.some(e => e === "dye")) dyeButton = "no_button ";
     else {
-      dyeButton = 'toggle_button';
-      dyeClick = () => this.toggle('dye');
-      if (this.state.dye) dyeButton += ' toggle_on';
+      dyeButton = "toggle_button";
+      dyeClick = () => this.toggle("dye");
+      if (this.state.dye) dyeButton += " toggle_on";
     }
 
     let price = 0;
-    let service = '';
+    let service = "";
     let serviceFormat = {};
     let time = 0;
     if (this.state.cut) {
       time += this.props.recruit.requireTime.cut;
-      service += '/ 커트 ';
-      serviceFormat['cut'] = true;
+      service += "/ 커트 ";
+      serviceFormat["cut"] = true;
     }
     if (this.state.perm) {
       price +=
@@ -130,8 +133,8 @@ class CardAdd extends Component {
           ? this.props.cardData.permPrice.normal
           : 30000;
       time += this.props.recruit.requireTime.perm;
-      service += '/ 펌';
-      serviceFormat['perm'] = true;
+      service += "/ 펌";
+      serviceFormat["perm"] = true;
     }
     if (this.state.dye) {
       price +=
@@ -139,8 +142,8 @@ class CardAdd extends Component {
           ? this.props.cardData.dyePrice.normal
           : 30000;
       time += this.props.recruit.requireTime.dye;
-      service += '/ 염색';
-      serviceFormat['dye'] = true;
+      service += "/ 염색";
+      serviceFormat["dye"] = true;
     }
     service = service.substring(1);
 
@@ -176,10 +179,10 @@ class CardAdd extends Component {
         </div>
         <div className=" py-3 row m-2">{timeButtons}</div>
         <div className="submit_button" onClick={clickButton}>
-          <div className="row p-3" style={{ alignItems: 'flex-end' }}>
+          <div className="row p-3" style={{ alignItems: "flex-end" }}>
             <div className="col-7 m-0">
               <p className="time mb-2">예상 소요시간</p>
-              <p className="time" style={{ fontWeight: 'bold' }}>
+              <p className="time" style={{ fontWeight: "bold" }}>
                 {parseInt(time / 60, 10)}
                 시간 {time % 60}분
               </p>
@@ -206,7 +209,7 @@ class CardAdd extends Component {
                   </div>
                 </ReactTooltip>
               </div>
-              <div className="time" style={{ fontWeight: 'bold' }}>
+              <div className="time" style={{ fontWeight: "bold" }}>
                 {price}원
               </div>
             </div>
@@ -216,7 +219,7 @@ class CardAdd extends Component {
                 <img
                   alt="alt"
                   className="question"
-                  style={{ marginBottom: '0.8rem' }}
+                  style={{ marginBottom: "0.8rem" }}
                   src={questionMark}
                   data-tip
                   data-for="price"

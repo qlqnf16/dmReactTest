@@ -344,7 +344,7 @@ class AddDesigner extends Component {
           <div style={containerStyle}>
             <div style={subtitleStyle}>예비 디자이너 등록</div>
             <div style={titleStyle}>
-              드리머리 막내가 되어
+              드리머리 예디가 되어
               <br />
               모델을 구해보세요
             </div>

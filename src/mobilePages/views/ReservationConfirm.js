@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Header from '../components/ReservationConfirm/Header';
 import completeIcon from '../../assets/images/check_lg.png';
 import womanBack from '../../assets/images/m_woman_back.png';
@@ -13,7 +13,245 @@ class ReservationConfirm extends Component {
       buttonStyle,
       labelStyle
     } = styles;
+    const locationState = this.props.location.state;
+    const permPrice = locationState.cardData.permPrice;
+    const dyePrice = locationState.cardData.dyePrice;
+    let service = locationState.service;
+    service = service.substring(1).split('/ ');
 
+    let priceBox;
+    if (service.includes('펌') && service.includes('펌')) {
+      priceBox = (
+        <Fragment>
+          <div style={pricingStyle}>
+            <div style={{ ...sectionTitleStyle, textAlign: 'center' }}>
+              서비스 예상 금액
+              <br />
+              <span style={{ fontSize: '1.5rem' }}>
+                {permPrice.normal + dyePrice.normal}
+                원(+기장)
+              </span>
+            </div>
+            <div>기장별 추가금액 안내</div>
+            <div className="row" style={{ margin: '2% 0 10% 0' }}>
+              <div className="col-3 p-0">
+                <img
+                  style={{ width: '100%', transform: 'translateY(14%)' }}
+                  src={womanBack}
+                  alt="alt"
+                />
+              </div>
+              <div
+                className="col-3 pr-0"
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-around'
+                }}
+              >
+                <span
+                  style={{ ...labelStyle, margin: 0, color: 'transparent' }}
+                >
+                  .
+                </span>
+                <span style={{ ...labelStyle, margin: 0, padding: '0.7rem' }}>
+                  기본
+                </span>
+                <span style={{ ...labelStyle, margin: 0, padding: '0.7rem' }}>
+                  턱아래
+                </span>
+                <span style={{ ...labelStyle, margin: 0, padding: '0.7rem' }}>
+                  어깨아래
+                </span>
+                <span style={{ ...labelStyle, margin: 0, padding: '0.7rem' }}>
+                  가슴아래
+                </span>
+              </div>
+              <div
+                className="col-3 pl-0 text-center"
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-around'
+                }}
+              >
+                <div style={{ ...labelStyle, margin: 0 }}>펌</div>
+                <div>
+                  <div
+                    className="addingPrice"
+                    style={{ fontSize: '1rem', padding: '0.7rem 0' }}
+                  >
+                    {permPrice.normal} 원
+                  </div>
+                </div>
+                <div>
+                  <div
+                    className="addingPrice"
+                    style={{ fontSize: '1rem', padding: '0.7rem 0' }}
+                  >
+                    + {permPrice.chin} 원
+                  </div>
+                </div>
+                <div>
+                  <div
+                    className="addingPrice"
+                    style={{ fontSize: '1rem', padding: '0.7rem 0' }}
+                  >
+                    + {permPrice.shoulder} 원
+                  </div>
+                </div>
+                <div>
+                  <div
+                    className="addingPrice"
+                    style={{ fontSize: '1rem', padding: '0.7rem 0' }}
+                  >
+                    + {permPrice.chest} 원
+                  </div>
+                </div>
+              </div>
+              <div
+                className="col-3 pl-0 text-center"
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-around'
+                }}
+              >
+                <div style={{ ...labelStyle, margin: 0 }}>염색</div>
+                <div>
+                  <div
+                    className="addingPrice"
+                    style={{ fontSize: '1rem', padding: '0.7rem 0' }}
+                  >
+                    {dyePrice.normal} 원
+                  </div>
+                </div>
+                <div>
+                  <div
+                    className="addingPrice"
+                    style={{ fontSize: '1rem', padding: '0.7rem 0' }}
+                  >
+                    + {dyePrice.chin} 원
+                  </div>
+                </div>
+                <div>
+                  <div
+                    className="addingPrice"
+                    style={{ fontSize: '1rem', padding: '0.7rem 0' }}
+                  >
+                    + {dyePrice.shoulder} 원
+                  </div>
+                </div>
+                <div>
+                  <div
+                    className="addingPrice"
+                    style={{ fontSize: '1rem', padding: '0.7rem 0' }}
+                  >
+                    + {dyePrice.chest} 원
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Fragment>
+      );
+    } else if (service.includes('펌') || service.includes('염색')) {
+      const isPerm = service.includes('펌');
+      priceBox = (
+        <Fragment>
+          <div style={pricingStyle}>
+            <div style={{ ...sectionTitleStyle, textAlign: 'center' }}>
+              서비스 예상 금액
+              <br />
+              <span style={{ fontSize: '1.5rem' }}>
+                {isPerm ? permPrice.normal : dyePrice.normal}
+                원(+기장)
+              </span>
+            </div>
+            <div>기장별 추가금액 안내</div>
+            <div className="row" style={{ margin: '2% 0 10% 0' }}>
+              <div className="col-3 p-0">
+                <img
+                  style={{ width: '100%', transform: 'translateY(14%)' }}
+                  src={womanBack}
+                  alt="alt"
+                />
+              </div>
+              <div
+                className="col-4 pr-0"
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-around'
+                }}
+              >
+                <span
+                  style={{ ...labelStyle, margin: 0, color: 'transparent' }}
+                >
+                  .
+                </span>
+                <span style={{ ...labelStyle, margin: 0, padding: '0.7rem' }}>
+                  기본
+                </span>
+                <span style={{ ...labelStyle, margin: 0, padding: '0.7rem' }}>
+                  턱아래
+                </span>
+                <span style={{ ...labelStyle, margin: 0, padding: '0.7rem' }}>
+                  어깨아래
+                </span>
+                <span style={{ ...labelStyle, margin: 0, padding: '0.7rem' }}>
+                  가슴아래
+                </span>
+              </div>
+              <div
+                className="col-5 pl-0 text-center"
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-around'
+                }}
+              >
+                <div style={{ ...labelStyle, margin: 0 }}>
+                  {isPerm ? '펌' : '염색'}
+                </div>
+                <div>
+                  <div
+                    className="addingPrice"
+                    style={{ fontSize: '1rem', padding: '0.7rem 0' }}
+                  >
+                    {isPerm ? permPrice.normal : dyePrice.normal} 원
+                  </div>
+                </div>
+                <div>
+                  <div
+                    className="addingPrice"
+                    style={{ fontSize: '1rem', padding: '0.7rem 0' }}
+                  >
+                    + {isPerm ? permPrice.chin : dyePrice.chin} 원
+                  </div>
+                </div>
+                <div>
+                  <div
+                    className="addingPrice"
+                    style={{ fontSize: '1rem', padding: '0.7rem 0' }}
+                  >
+                    + {isPerm ? permPrice.shoulder : dyePrice.shoulder} 원
+                  </div>
+                </div>
+                <div>
+                  <div
+                    className="addingPrice"
+                    style={{ fontSize: '1rem', padding: '0.7rem 0' }}
+                  >
+                    + {isPerm ? permPrice.chest : dyePrice.chest} 원
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Fragment>
+      );
+    }
     return (
       <div className="m_containerStyle">
         <Header />
@@ -35,7 +273,7 @@ class ReservationConfirm extends Component {
                 fontWeight: 'bold'
               }}
             >
-              예약번호: M7187722556
+              예약번호: {this.props.match.params.reservation_id}
             </div>
             <div
               style={{
@@ -44,25 +282,26 @@ class ReservationConfirm extends Component {
                 color: '#1e3354'
               }}
             >
-              박지윤님께 최선을 다해서 노력하는 <br />
-              이태훈 막내! 예쁘게 봐주세요~ ^.^
+              {locationState.userName}
+              님께 최선을 다해서 노력하는 <br />
+              {locationState.recruit._designer.name} 예디! 예쁘게 봐주세요~ ^.^
             </div>
           </div>
           <div style={cautionSectionStyle}>
             <div style={sectionTitleStyle}>※ 유의사항</div>
             <div>
               <p>
-                우리 막내는 프로 헤어디자이너가 아닌 예비 헤어디자이너 입니다.
-                막내의 레벨에 따라 선생님들의 코칭이 있을수있으니 당황하지
+                우리 예디는 프로 헤어디자이너가 아닌 예비 헤어디자이너 입니다.
+                예디의 레벨에 따라 선생님들의 코칭이 있을수있으니 당황하지
                 마세요! :)
               </p>
               <p>
                 당일예약은 취소 및 환불이 불가능하며, 당일 예약이 아닌 경우
-                표기된 취소 수수료 정책을 따릅니다. 막내 사정에 의한 취소 발생
+                표기된 취소 수수료 정책을 따릅니다. 예디 사정에 의한 취소 발생
                 시 100% 환불 처리됩니다.
               </p>
               <p>
-                막내 사정으로 스케줄 및 장소가 변경될 수 있습니다. 이 경우
+                예디 사정으로 스케줄 및 장소가 변경될 수 있습니다. 이 경우
                 안내메시지를 보내드리니 확인바랍니다.
               </p>
               <p>
@@ -70,133 +309,8 @@ class ReservationConfirm extends Component {
                 아닌 현장에서 결제해주셔야 합니다.
               </p>
             </div>
-            <div style={pricingStyle}>
-              <div style={{ ...sectionTitleStyle, textAlign: 'center' }}>
-                서비스 예상 금액
-                <br />
-                <span style={{ fontSize: '1.5rem' }}>30,000원(+기장)</span>
-              </div>
-              <div>기장별 추가금액 안내</div>
-              <div className="row" style={{ margin: '2% 0 10% 0' }}>
-                <div className="col-3 p-0">
-                  <img
-                    style={{ width: '100%', transform: 'translateY(14%)' }}
-                    src={womanBack}
-                    alt="alt"
-                  />
-                </div>
-                <div
-                  className="col-3 pr-0"
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'space-around'
-                  }}
-                >
-                  <span
-                    style={{ ...labelStyle, margin: 0, color: 'transparent' }}
-                  >
-                    .
-                  </span>
-                  <span style={{ ...labelStyle, margin: 0, padding: '0.7rem' }}>
-                    기본
-                  </span>
-                  <span style={{ ...labelStyle, margin: 0, padding: '0.7rem' }}>
-                    턱아래
-                  </span>
-                  <span style={{ ...labelStyle, margin: 0, padding: '0.7rem' }}>
-                    어깨아래
-                  </span>
-                  <span style={{ ...labelStyle, margin: 0, padding: '0.7rem' }}>
-                    가슴아래
-                  </span>
-                </div>
-                <div
-                  className="col-3 pl-0 text-center"
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'space-around'
-                  }}
-                >
-                  <div style={{ ...labelStyle, margin: 0 }}>펌</div>
-                  <div>
-                    <div
-                      className="addingPrice"
-                      style={{ fontSize: '1rem', padding: '0.7rem' }}
-                    >
-                      + 1000 원
-                    </div>
-                  </div>
-                  <div>
-                    <div
-                      className="addingPrice"
-                      style={{ fontSize: '1rem', padding: '0.7rem' }}
-                    >
-                      + 1000 원
-                    </div>
-                  </div>
-                  <div>
-                    <div
-                      className="addingPrice"
-                      style={{ fontSize: '1rem', padding: '0.7rem' }}
-                    >
-                      + 1000 원
-                    </div>
-                  </div>
-                  <div>
-                    <div
-                      className="addingPrice"
-                      style={{ fontSize: '1rem', padding: '0.7rem' }}
-                    >
-                      + 1000 원
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="col-3 pl-0 text-center"
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'space-around'
-                  }}
-                >
-                  <div style={{ ...labelStyle, margin: 0 }}>염색</div>
-                  <div>
-                    <div
-                      className="addingPrice"
-                      style={{ fontSize: '1rem', padding: '0.7rem' }}
-                    >
-                      + 1000 원
-                    </div>
-                  </div>
-                  <div>
-                    <div
-                      className="addingPrice"
-                      style={{ fontSize: '1rem', padding: '0.7rem' }}
-                    >
-                      + 1000 원
-                    </div>
-                  </div>
-                  <div>
-                    <div
-                      className="addingPrice"
-                      style={{ fontSize: '1rem', padding: '0.7rem' }}
-                    >
-                      + 1000 원
-                    </div>
-                  </div>
-                  <div>
-                    <div
-                      className="addingPrice"
-                      style={{ fontSize: '1rem', padding: '0.7rem' }}
-                    >
-                      + 1000 원
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+
+            {priceBox}
           </div>
           <div style={buttonStyle}>예약 확인/취소</div>
           <div style={buttonStyle}>예디에게 메시지</div>

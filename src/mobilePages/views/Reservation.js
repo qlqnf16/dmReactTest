@@ -10,7 +10,7 @@ class Reservation extends Component {
   state = {
     point: 0,
     finalPrice: 5000,
-    method: null,
+    method: 'card',
     reservationData: {
       time: {
         since: this.props.location.state.startTime,
@@ -70,7 +70,7 @@ class Reservation extends Component {
         pay_method: this.state.method,
         merchant_uid: 'merchant_' + new Date().getTime(),
         name: '주문명: 예약',
-        amount: 200,
+        amount: kind,
         buyer_email: this.props.userData.email,
         buyer_name: this.props.userData.name,
         buyer_tel: this.props.userData.phoneNumber

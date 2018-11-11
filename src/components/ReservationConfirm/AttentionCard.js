@@ -1,36 +1,39 @@
-import React from 'react';
-import './AttentionCard.css';
-import womanBack from '../../assets/images/woman_back.png';
+import React from "react";
+import "./AttentionCard.css";
+import womanBack from "../../assets/images/woman_back.png";
 
 const AttentionCard = props => {
   let service = props.service;
   const permPrice = props.cardData.permPrice;
   const dyePrice = props.cardData.dyePrice;
-  service = service.substring(1).split('/ ');
+  service = service.substring(1).split("/ ");
   let priceImage = null;
   let boxStyle = null;
-  if (service.includes('펌') && service.includes('염색')) {
-    boxStyle = { width: '1000px' };
+  if (service.includes("펌") && service.includes("염색")) {
+    boxStyle = { width: "1000px" };
     priceImage = (
-      <div className="ml-auto p-3" style={{ width: '450px' }}>
+      <div className="ml-auto p-3" style={{ width: "450px" }}>
         <div
           style={{
-            color: '#dd6866',
-            textAlign: 'center',
-            fontWeight: 'bold',
-            fontSize: '1.4rem'
+            color: "#dd6866",
+            textAlign: "center",
+            fontWeight: "bold",
+            fontSize: "1.4rem"
           }}
         >
           <p className="m-0">서비스 예상 금액</p>
-          <p className="m-0">30000원(+기장)</p>
-          <p className="m-0" style={{ color: '#1f3354', fontWeight: 'normal' }}>
+          <p className="m-0">
+            {permPrice.normal + dyePrice.normal}
+            원(+기장)
+          </p>
+          <p className="m-0" style={{ color: "#1f3354", fontWeight: "normal" }}>
             기장별 추가금액 안내
           </p>
         </div>
         <div>
           <div
             className="p-3 mx-auto"
-            style={{ color: '#dd6866', fontSize: '1.1rem' }}
+            style={{ color: "#dd6866", fontSize: "1.1rem" }}
           >
             <div className="row">
               <div className="col-4 text-center font-weight-bold"> 펌</div>
@@ -46,7 +49,7 @@ const AttentionCard = props => {
             </div>
             <div
               className="length_price row"
-              style={{ borderColor: '#dd6866' }}
+              style={{ borderColor: "#dd6866" }}
             >
               <div className="col-4 text-right">
                 기본 <span className="ml-3">{permPrice.normal}원</span>
@@ -54,14 +57,14 @@ const AttentionCard = props => {
               <div className="col-4" />
               <div
                 className="col-4 text-left"
-                style={{ paddingLeft: '3.8rem' }}
+                style={{ paddingLeft: "3.8rem" }}
               >
                 기본 <span className="ml-3">{dyePrice.normal}원</span>
               </div>
             </div>
             <div
               className="length_price row"
-              style={{ borderColor: '#dd6866' }}
+              style={{ borderColor: "#dd6866" }}
             >
               <div className="col-4 text-right">
                 턱아래 <span className="ml-3">+{permPrice.chin}원</span>
@@ -70,14 +73,14 @@ const AttentionCard = props => {
 
               <div
                 className="col-4 text-left"
-                style={{ paddingLeft: '2.7rem' }}
+                style={{ paddingLeft: "2.7rem" }}
               >
                 턱아래 <span className="ml-3">+{dyePrice.chin}원</span>
               </div>
             </div>
             <div
               className="length_price row"
-              style={{ borderColor: '#dd6866' }}
+              style={{ borderColor: "#dd6866" }}
             >
               <div className="col-4 text-right">
                 어깨아래 <span className="ml-3">+{permPrice.shoulder}원</span>
@@ -90,7 +93,7 @@ const AttentionCard = props => {
             </div>
             <div
               className="length_price row"
-              style={{ borderColor: '#dd6866' }}
+              style={{ borderColor: "#dd6866" }}
             >
               <div className="col-4 text-right">
                 가슴아래 <span className="ml-3">+{permPrice.chest}원</span>
@@ -105,17 +108,17 @@ const AttentionCard = props => {
         </div>
       </div>
     );
-  } else if (service.includes('펌') || service.includes('염색')) {
-    boxStyle = { width: '830px' };
-    const isPerm = service.includes('펌') ? true : false;
+  } else if (service.includes("펌") || service.includes("염색")) {
+    boxStyle = { width: "830px" };
+    const isPerm = service.includes("펌") ? true : false;
     priceImage = (
-      <div className="ml-auto p-3" style={{ width: '330px' }}>
+      <div className="ml-auto p-3" style={{ width: "330px" }}>
         <div
           style={{
-            color: '#dd6866',
-            textAlign: 'center',
-            fontWeight: 'bold',
-            fontSize: '1.4rem'
+            color: "#dd6866",
+            textAlign: "center",
+            fontWeight: "bold",
+            fontSize: "1.4rem"
           }}
         >
           <p className="m-0">서비스 예상 금액</p>
@@ -123,14 +126,14 @@ const AttentionCard = props => {
             {isPerm ? permPrice.normal : dyePrice.normal}
             원(+기장)
           </p>
-          <p className="m-0" style={{ color: '#1f3354', fontWeight: 'normal' }}>
+          <p className="m-0" style={{ color: "#1f3354", fontWeight: "normal" }}>
             기장별 추가금액 안내
           </p>
         </div>
         <div>
           <div
             className="p-3 mx-auto"
-            style={{ color: '#dd6866', fontSize: '1.1rem' }}
+            style={{ color: "#dd6866", fontSize: "1.1rem" }}
           >
             <div className="row">
               <div className="col-6">
@@ -138,25 +141,25 @@ const AttentionCard = props => {
                   src={womanBack}
                   alt="alt"
                   className="reservation_woman_back"
-                  style={{ width: '50%' }}
+                  style={{ width: "50%" }}
                 />
               </div>
 
               <div className="col-6 text-center font-weight-bold">
-                {' '}
-                {isPerm ? '펌' : '염색'}
+                {" "}
+                {isPerm ? "펌" : "염색"}
               </div>
             </div>
             <div
               className="length_price row"
-              style={{ borderColor: '#dd6866' }}
+              style={{ borderColor: "#dd6866" }}
             >
               <div className="col-6" />
               <div
                 className="col-6 text-left"
-                style={{ paddingLeft: '3.8rem' }}
+                style={{ paddingLeft: "3.8rem" }}
               >
-                기본{' '}
+                기본{" "}
                 <span className="ml-3">
                   {isPerm ? permPrice.normal : dyePrice.normal}원
                 </span>
@@ -164,15 +167,15 @@ const AttentionCard = props => {
             </div>
             <div
               className="length_price row"
-              style={{ borderColor: '#dd6866' }}
+              style={{ borderColor: "#dd6866" }}
             >
               <div className="col-6" />
 
               <div
                 className="col-6 text-left"
-                style={{ paddingLeft: '2.7rem' }}
+                style={{ paddingLeft: "2.7rem" }}
               >
-                턱아래{' '}
+                턱아래{" "}
                 <span className="ml-3">
                   +{isPerm ? permPrice.chin : dyePrice.chin}원
                 </span>
@@ -180,12 +183,12 @@ const AttentionCard = props => {
             </div>
             <div
               className="length_price row"
-              style={{ borderColor: '#dd6866' }}
+              style={{ borderColor: "#dd6866" }}
             >
               <div className="col-6" />
 
               <div className="col-6 text-left">
-                어깨아래{' '}
+                어깨아래{" "}
                 <span className="ml-3">
                   +{isPerm ? permPrice.shoulder : dyePrice.shoulder}원
                 </span>
@@ -193,12 +196,12 @@ const AttentionCard = props => {
             </div>
             <div
               className="length_price row"
-              style={{ borderColor: '#dd6866' }}
+              style={{ borderColor: "#dd6866" }}
             >
               <div className="col-6" />
 
               <div className="col-6 text-left">
-                가슴아래{' '}
+                가슴아래{" "}
                 <span className="ml-3">
                   +{isPerm ? permPrice.chest : dyePrice.chest}원
                 </span>
