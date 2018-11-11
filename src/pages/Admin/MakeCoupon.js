@@ -96,7 +96,7 @@ class MakeCoupon extends Component {
         <div className="row">
           <div className="row col-6">
             <div className="col-12 h2 hard">유저용</div>
-            <div className="col-2 if_head">개월수</div>
+            <div className="col-2 if_head">포인트</div>
             <div className="col-3">
               <input
                 type="point"
@@ -120,7 +120,7 @@ class MakeCoupon extends Component {
               만들기
             </div>
             <div className="col-12 h2 hard">디자이너용</div>
-            <div className="col-2 if_head">포인트</div>
+            <div className="col-2 if_head">개월수</div>
             <div className="col-3">
               <select
                 type="month"

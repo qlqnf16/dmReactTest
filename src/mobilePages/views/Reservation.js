@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import axios from '../../config/Axios';
 import ReservationForm from '../components/Reservation/ReservationForm';
 import Header from '../components/Reservation/Header';
+import * as actions from '../../modules';
 
 class Reservation extends Component {
   state = {
@@ -51,6 +52,8 @@ class Reservation extends Component {
     if (this.state.point % 1000 === 0) {
       if (this.state.point > this.props.userData.point) {
         alert('보유 포인트보다 많이 사용할 수 없습니다');
+      } else if (this.state.point > 5000) {
+        alert('총 서비스 가격보다 많이 사용할 수 없습니다');
       } else {
         this.setState({
           finalPrice: 5000 - Number(this.state.point)
@@ -61,45 +64,77 @@ class Reservation extends Component {
     }
   };
 
-  purchaseHandler(kind) {
-    const { IMP } = window;
-    IMP.init('imp06037656');
-    IMP.request_pay(
-      {
-        pg: `${this.state.method === 'kakaopay' ? 'kakaopay' : 'danal'}`, // version 1.1.0부터 지원.
-        pay_method: this.state.method,
-        merchant_uid: 'merchant_' + new Date().getTime(),
-        name: '주문명: 예약',
-        amount: kind,
-        buyer_email: this.props.userData.email,
-        buyer_name: this.props.userData.name,
-        buyer_tel: this.props.userData.phoneNumber
-      },
-      async rsp => {
-        if (rsp.success) {
-          const { data } = await axios.post(
-            `users/${this.props.userData._id}/reservations`,
-            this.state.reservationData
-          );
-          await this.props.history.push({
-            pathname: `/reservationConfirm/${data._id}`,
-            state: {
-              userName: this.props.userData.name,
-              recruit: this.props.location.state.recruit,
-              cardData: this.props.location.state.cardData,
-              service: this.props.location.state.service
-            }
-          });
+  purchaseHandler = async kind => {
+    if (kind >= 1000) {
+      const { IMP } = window;
+      IMP.init('imp06037656');
+      IMP.request_pay(
+        {
+          pg: `${this.state.method === 'kakaopay' ? 'kakaopay' : 'danal'}`, // version 1.1.0부터 지원.
+          pay_method: this.state.method,
+          merchant_uid: 'merchant_' + new Date().getTime(),
+          name: '주문명: 예약',
+          amount: kind,
+          buyer_email: this.props.userData.email,
+          buyer_name: this.props.userData.name,
+          buyer_tel: this.props.userData.phoneNumber
+        },
+        async rsp => {
+          if (rsp.success) {
+            //포인트 차감
+            const {
+              data: { point }
+            } = await axios.patch(`users/${this.props.userData._id}/addpoint`, {
+              point: this.state.finalPrice - 5000
+            });
+            await this.props.updateRedux('point', point);
 
-          alert('결제가 완료되었습니다. 결제 금액 : ' + rsp.paid_amount);
-        } else {
-          var errMsg = '결제에 실패하였습니다.';
-          errMsg += ' 에러내용 : ' + rsp.error_msg;
-          alert(errMsg);
+            const { data } = await axios.post(
+              `users/${this.props.userData._id}/reservations`,
+              this.state.reservationData
+            );
+            await this.props.history.push({
+              pathname: `/reservationConfirm/${data._id}`,
+              state: {
+                userName: this.props.userData.name,
+                recruit: this.props.location.state.recruit,
+                cardData: this.props.location.state.cardData,
+                service: this.props.location.state.service
+              }
+            });
+
+            alert('결제가 완료되었습니다. 결제 금액 : ' + rsp.paid_amount);
+          } else {
+            var errMsg = '결제에 실패하였습니다.';
+            errMsg += ' 에러내용 : ' + rsp.error_msg;
+            alert(errMsg);
+          }
         }
-      }
-    );
-  }
+      );
+    } else {
+      // 포인트 차감
+      const {
+        data: { point }
+      } = await axios.patch(`users/${this.props.userData._id}/addpoint`, {
+        point: this.state.finalPrice - 5000
+      });
+      await this.props.updateRedux('point', point);
+
+      const { data } = await axios.post(
+        `users/${this.props.userData._id}/reservations`,
+        this.state.reservationData
+      );
+      await this.props.history.push({
+        pathname: `/reservationConfirm/${data._id}`,
+        state: {
+          userName: this.props.userData.name,
+          recruit: this.props.location.state.recruit,
+          cardData: this.props.location.state.cardData,
+          service: this.props.location.state.service
+        }
+      });
+    }
+  };
   reservationSubmit = async () => {
     const { data } = await axios.post(
       `users/${this.props.userData._id}/reservations`,
@@ -186,4 +221,7 @@ const mapStateToProps = ({ authentication: { userData } }) => {
   return { userData };
 };
 
-export default connect(mapStateToProps)(Reservation);
+export default connect(
+  mapStateToProps,
+  actions
+)(Reservation);

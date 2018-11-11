@@ -113,7 +113,7 @@ class UserInfo extends Component {
         firebaseUserData = { ...firebaseUserData, recommendationCode };
         count += 1;
 
-        await axios.patch(`users/${_id}/addpoint`);
+        await axios.patch(`users/${_id}/addpoint`, { point: 1000 });
 
         // 추천받은 횟수 저장
         await firebase

@@ -60,7 +60,7 @@ class CardAdd extends Component {
         time += 30;
       }
     });
-    this.props.ableTimes.ㅌorEach(ableTime => {
+    this.props.ableTimes.forEach(ableTime => {
       let time = ableTime.since;
       let requireTime = 0;
       requireTime += this.state.cut && this.props.recruit.requireTime.cut;
