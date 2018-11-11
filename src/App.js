@@ -66,7 +66,7 @@ import {
 } from './mobilePages';
 import Toolbar from './components/Navigation/Toolbar/Toolbar';
 import Footer from './components/UI/Footer/Footer';
-import M_Footer from './mobilePages/components/Footer/Footer';
+import MobileFooter from './mobilePages/components/Footer/Footer';
 import MobileNavigationBar from './mobilePages/components/NavigationBar/NavigationBar';
 import MobileSideDrawer from './mobilePages/components/NavigationBar/SideDrawer';
 import MobileBackdrop from './mobilePages/components/NavigationBar/Backdrop';
@@ -133,7 +133,6 @@ class App extends Component {
             .setAttribute('src', "don't try to look at this!");
         }
       } else {
-        this;
         // logout 하면 landing page로 이동
         this.props.history.push('/');
         this.state.isLogin && window.location.reload();
@@ -497,7 +496,7 @@ class App extends Component {
               <Route component={M_WrongAccess} />
             </Switch>
           </div>
-          <M_Footer />
+          <MobileFooter />
         </Fragment>
       );
     }

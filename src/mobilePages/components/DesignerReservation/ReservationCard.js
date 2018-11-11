@@ -39,7 +39,6 @@ const ReservationCard = props => {
   }
   let button = null;
   let type = null;
-  let dDay = false;
   if (props.reservation.isCanceled) {
     button = (
       <div
@@ -69,7 +68,6 @@ const ReservationCard = props => {
     );
     let date = new Date(props.reservation.date);
     if (new Date() >= date || new Date().getDate() === date.getDate()) {
-      dDay = true;
       if (new Date().getDate() === date.getDate()) {
         type = <div style={typeStyle}>D-day</div>;
       } else

@@ -1,7 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import default_people from '../../../assets/images/Default_guy-01.jpg';
-import alart from '../../../assets/images/alart.png';
 import Moment from 'react-moment';
 import { connect } from 'react-redux';
 

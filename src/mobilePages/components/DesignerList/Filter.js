@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const Filter = props => {
   const {
@@ -17,8 +17,8 @@ const Filter = props => {
   } = styles;
   return (
     <div style={props.on ? filter : filterOff}>
-      <div style={{ ...filterFlex, marginBottom: "1rem" }}>
-        <div style={{ flex: "1" }}>
+      <div style={{ ...filterFlex, marginBottom: '1rem' }}>
+        <div style={{ flex: '1' }}>
           <div style={filterTitle}>성별</div>
           <input
             onChange={props.filterChangeHandler}
@@ -29,7 +29,7 @@ const Filter = props => {
           />
           <label
             style={
-              props.state.gender === "male"
+              props.state.gender === 'male'
                 ? genderRadioButtonOn
                 : genderRadioButton
             }
@@ -46,7 +46,7 @@ const Filter = props => {
           />
           <label
             style={
-              props.state.gender === "female"
+              props.state.gender === 'female'
                 ? genderRadioButtonOn
                 : genderRadioButton
             }
@@ -66,9 +66,9 @@ const Filter = props => {
         </div>
       </div>
       <div style={filterTitle}>지역</div>
-      <div style={{ ...filterFlex, marginBottom: "1rem" }}>
+      <div style={{ ...filterFlex, marginBottom: '1rem' }}>
         <select
-          style={{ ...selectBox, marginRight: "1rem" }}
+          style={{ ...selectBox, marginRight: '1rem' }}
           name="sido"
           onChange={props.filterChangeHandler}
         >
@@ -97,15 +97,27 @@ const Filter = props => {
       <div style={filterFlex}>
         <div style={serviceType}>
           <div>싫어요</div>
-          <div style={emoji}>😟👎</div>
+          <div style={emoji}>
+            <span role="img" aria-label="emoji">
+              😟👎
+            </span>
+          </div>
         </div>
         <div style={serviceType}>
           <div>상관없어요</div>
-          <div style={emoji}>😐💬</div>
+          <div style={emoji}>
+            <span role="img" aria-label="emoji">
+              😐💬
+            </span>
+          </div>
         </div>
         <div style={serviceType}>
           <div>받을래요</div>
-          <div style={emoji}>😀👍</div>
+          <div style={emoji}>
+            <span role="img" aria-label="emoji">
+              😀👍
+            </span>
+          </div>
         </div>
       </div>
       <input
@@ -147,71 +159,71 @@ const Filter = props => {
 
 const styles = {
   filterOff: {
-    display: "none"
+    display: 'none'
   },
   genderRadioButton: {
-    width: "10vw",
-    height: "10vw",
-    fontSize: "1.4rem",
-    lineHeight: "2",
-    textAlign: "center",
-    marginRight: "3vw",
-    borderRadius: "5px",
-    border: "solid 1px rgba(0, 0, 0, 0.1)"
+    width: '10vw',
+    height: '10vw',
+    fontSize: '1.4rem',
+    lineHeight: '2',
+    textAlign: 'center',
+    marginRight: '3vw',
+    borderRadius: '5px',
+    border: 'solid 1px rgba(0, 0, 0, 0.1)'
   },
   genderRadioButtonOn: {
-    width: "10vw",
-    height: "10vw",
-    fontSize: "1.4rem",
-    lineHeight: "2.5",
-    textAlign: "center",
-    marginRight: "3vw",
-    borderRadius: "5px",
-    border: "solid 1px rgba(0, 0, 0, 0.1)",
-    backgroundColor: "rgba(0,0,0,0.1)"
+    width: '10vw',
+    height: '10vw',
+    fontSize: '1.4rem',
+    lineHeight: '2.5',
+    textAlign: 'center',
+    marginRight: '3vw',
+    borderRadius: '5px',
+    border: 'solid 1px rgba(0, 0, 0, 0.1)',
+    backgroundColor: 'rgba(0,0,0,0.1)'
   },
   filter: {
-    width: "70%",
-    paddingTop: "5%"
+    width: '70%',
+    paddingTop: '5%'
   },
   filterFlex: {
-    display: "flex",
-    justifyContent: "space-between"
+    display: 'flex',
+    justifyContent: 'space-between'
   },
   selectBox: {
-    borderRadius: "5px",
-    border: "solid 1px rgba(0, 0, 0, 0.1)",
-    textAlign: "center",
-    fontSize: "1.3rem"
+    borderRadius: '5px',
+    border: 'solid 1px rgba(0, 0, 0, 0.1)',
+    textAlign: 'center',
+    fontSize: '1.3rem'
   },
   serviceName: {
-    textAlign: "center",
-    color: "#1f3354",
-    fontSize: "1.3rem"
+    textAlign: 'center',
+    color: '#1f3354',
+    fontSize: '1.3rem'
   },
   rangeFilter: {
-    marginTop: "2rem"
+    marginTop: '2rem'
   },
   filterTitle: {
-    fontSize: "1.3rem",
-    marginBottom: "0.3rem",
-    color: "#dd6866",
-    fontWeight: "bold"
+    fontSize: '1.3rem',
+    marginBottom: '0.3rem',
+    color: '#dd6866',
+    fontWeight: 'bold'
   },
   serviceType: {
-    fontSize: "1.2rem",
-    color: "#1f3354",
-    fontWeight: "bold"
+    fontSize: '1.2rem',
+    color: '#1f3354',
+    fontWeight: 'bold'
   },
   emoji: {
-    textAlign: "center",
-    fontSize: "2rem"
+    textAlign: 'center',
+    fontSize: '2rem'
   },
   selectFilterText: {
-    textAlign: "center",
-    backgroundColor: "rgba(0, 0, 0, 0.1)",
-    border: "solid 1px rgba(0, 0, 0, 0.1)",
-    fontSize: "1.3rem"
+    textAlign: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+    border: 'solid 1px rgba(0, 0, 0, 0.1)',
+    fontSize: '1.3rem'
   }
 };
 

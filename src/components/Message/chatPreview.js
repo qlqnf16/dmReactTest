@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import { Link } from 'react-router-dom';
 import './chatPreview.css';
 import Moment from 'react-moment';
 

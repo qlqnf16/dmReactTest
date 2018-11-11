@@ -56,11 +56,7 @@ const ReservationForm = props => {
       </div>
       <div style={subtitleStyle}>예약정보</div>
       <div className="row">
-        <div
-          className="col-4 text-right border-right py-3"
-          style={labelStyle}
-          style={labelStyle}
-        >
+        <div className="col-4 text-right border-right py-3" style={labelStyle}>
           예디 이름
         </div>
         <div className="col-8 py-3" style={valueStyle}>

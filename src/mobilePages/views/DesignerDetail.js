@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import firebase from 'firebase';
 import axios from '../../config/Axios';
 // import './DesignerDetail.css'; todo: how to solve modal problem
@@ -123,7 +122,6 @@ class DesignerDetail extends Component {
       labelStyle,
       paragraphStyle,
       sectionTitleStyle,
-      reviewAuthorStyle,
       starStyle,
       designerProfileStyle,
       buttonStyle
@@ -152,8 +150,12 @@ class DesignerDetail extends Component {
               <div style={titleStyle}>{recruit.title}</div>
               <div style={occupationStyle}>{shops}</div>
             </div>
-            <div style={{ width: '25%', textAlign: 'right' }}>
-              <img style={designerProfileStyle} src={designer.profile} />
+            <div style={{ width: 64, height: 64, textAlign: 'right' }}>
+              <img
+                style={designerProfileStyle}
+                src={designer.profile}
+                alt="designer profile"
+              />
             </div>
           </div>
           <div style={{ ...paragraphStyle, marginTop: '3rem' }}>
@@ -263,19 +265,6 @@ class DesignerDetail extends Component {
               submitReservation={this.submitReservation}
             />
           </ModalBody>
-          {/* <ModalFooter>
-            <div
-              style={{ ...buttonStyle, width: '100%', color: 'white' }}
-              onClick={this.to}
-            >
-              <Link
-                style={{ color: 'white' }}
-                to={{ pathname: `/reservation/${this.props.id}`, state: {} }}
-              >
-              결제하기
-              </Link>
-            </div>
-          </ModalFooter> */}
         </Modal>
       </div>
     );
@@ -297,7 +286,8 @@ const styles = {
     marginTop: '5%'
   },
   designerProfileStyle: {
-    width: '80%',
+    width: '100%',
+    height: '100%',
     borderRadius: '50%'
   },
   labelStyle: {
@@ -334,12 +324,6 @@ const styles = {
     marginTop: '2.7rem',
     marginBottom: '2.3rem',
     paddingBottom: '0.3rem'
-  },
-  reviewAuthorStyle: {
-    fontSize: '1.3rem',
-    fontWeight: 'bold',
-    color: '#2b2e34',
-    paddingTop: '2.2rem'
   },
   starStyle: {
     fontSize: '1.1rem',

@@ -1,6 +1,5 @@
 import React from 'react';
 import { FormGroup, Label, Input } from 'reactstrap';
-import { Link } from 'react-router-dom';
 
 const styles = {
   labelStyle: {

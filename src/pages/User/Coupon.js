@@ -7,7 +7,6 @@ import * as actions from '../../modules';
 import { connect } from 'react-redux';
 import UserNav from '../../components/Navigation/UserNav/UserNav';
 import CouponContent from '../../components/CouponContent/CouponContent';
-import { FormGroup } from 'reactstrap';
 
 class Coupon extends Component {
   inputChangeHandler = event => {

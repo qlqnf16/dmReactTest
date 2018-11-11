@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import why1 from '../assets/images/why_1.png';
 import why2 from '../assets/images/why_2.png';
 import why3 from '../assets/images/why_3.png';
@@ -188,7 +187,6 @@ class WhyDreamary extends Component {
                   감동 <span style={{ color: '#dd6866' }}>서비스</span>를
                 </div>
               </div>
-              {/* <Link to="/addDesigner" style={{ textDecoration: 'none' }}> */}
               <div
                 onClick={() => this.clickButton()}
                 style={{ cursor: 'pointer' }}
@@ -196,7 +194,6 @@ class WhyDreamary extends Component {
               >
                 지금 바로 등록하기!
               </div>
-              {/* </Link> */}
               <img alt="alt" src={logo} style={{ width: '5%' }} />
             </div>
           </div>

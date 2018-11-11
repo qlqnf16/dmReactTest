@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import { Carousel, CarouselItem, CarouselCaption } from 'reactstrap';
-import Footer from '../components/Footer/Footer';
 
 import landing1 from '../../assets/images/mobile_landing1.png';
 import landing2 from '../../assets/images/mobile_landing2.png';
@@ -18,7 +17,6 @@ import { connect } from 'react-redux';
 import firebase from '../../config/Firebase';
 //
 
-import temporaryLanding from '../../assets/images/temp-landing.jpg';
 import './Landing.css';
 
 const items = [

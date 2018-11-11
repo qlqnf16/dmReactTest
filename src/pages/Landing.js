@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import firebase from '../config/Firebase';
 import { connect } from 'react-redux';
 import './PageCss.css';
@@ -206,14 +205,12 @@ class Landing extends Component {
               style={{ background: 'transparent' }}
             >
               <div className="landing_ctitle" />
-              {/* <Link to="/designerList" className="linkdeco">
-                <div className="landing_cbutton">예디 찾기</div>
-              </Link> */}
               <div style={{ display: 'flex' }}>
                 <a
                   style={{ marginRight: '1%', height: '48px' }}
                   href="https://goo.gl/forms/ZH7RU6NhLRNllEZk1"
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="linkdeco"
                 >
                   <div style={{ width: 220 }} className="landing_cbutton">
@@ -223,6 +220,7 @@ class Landing extends Component {
                 <a
                   href="https://docs.google.com/forms/d/e/1FAIpQLSeItk9iCRUtyrLL6Jjz79LkRaHiH0b2PK1byAAtCgH3q4_RXA/viewform"
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="linkdeco"
                   style={{ height: '48px' }}
                 >
@@ -247,7 +245,11 @@ class Landing extends Component {
                     }}
                     className="landing_dbutton"
                   >
-                    <img src={download} style={{ marginRight: '2%' }} />
+                    <img
+                      src={download}
+                      style={{ marginRight: '2%' }}
+                      alt="download"
+                    />
                     디자이너 등록 방법
                   </div>
                 </a>
@@ -288,7 +290,7 @@ class Landing extends Component {
                 </div>
               </div>
               <div className="landing_imgcontainer justify-content-end">
-                <img alt="alt" src={icon3} style={{ width: '50%' }} />
+                <img src={icon3} style={{ width: '50%' }} alt="icon3" />
               </div>
             </div>
           </div>
@@ -311,7 +313,7 @@ class Landing extends Component {
                 </div>
               </div>
               <div className="landing_imgcontainer justify-content-end">
-                <img alt="alt" src={icon4} style={{ width: '50%' }} />
+                <img src={icon4} style={{ width: '50%' }} alt="icon4" />
               </div>
             </div>
           </div>
@@ -348,7 +350,11 @@ class Landing extends Component {
                 </span>
                 합니다
               </div>
-              <img src={howtouse} style={{ marginTop: '50px' }} />
+              <img
+                src={howtouse}
+                style={{ marginTop: '50px' }}
+                alt="how to use"
+              />
             </div>
           </div>
           <div className="landing_back b">

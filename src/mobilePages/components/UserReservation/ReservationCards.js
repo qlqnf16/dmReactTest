@@ -3,8 +3,6 @@ import ReservationCard from './ReservationCard';
 import ReservationDetail from './ReservationDetail';
 import NoContent from '../NoContent/NoContent';
 
-const activeCardStyle = {};
-
 const Reservations = props => (
   <div style={containerStyle}>
     <div style={titleStyle}>예약관리</div>

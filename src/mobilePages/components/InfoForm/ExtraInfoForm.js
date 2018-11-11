@@ -13,7 +13,7 @@ const ExtraInfoForm = props => {
     textareaStyle
   } = styles;
   const userData = props.state;
-  let profileImg, portfolio;
+  let profileImg;
 
   if (userData.profileImg)
     profileImg = (
@@ -27,22 +27,22 @@ const ExtraInfoForm = props => {
       </Fragment>
     );
 
-  portfolio =
-    props.state.num > 0 ? (
-      userData.portfolioImg.map((url, i) => (
-        <ImgPreview
-          style={ImgPreviewStyle}
-          url={url}
-          key={i}
-          deletePortfolio={props.deletePortfolio}
-        />
-      ))
-    ) : (
-      <Fragment>
-        <span>포트폴리오</span>
-        <span style={{ fontSize: '2rem' }}>+</span>
-      </Fragment>
-    );
+  // let portfolio =
+  //   props.state.num > 0 ? (
+  //     userData.portfolioImg.map((url, i) => (
+  //       <ImgPreview
+  //         style={ImgPreviewStyle}
+  //         url={url}
+  //         key={i}
+  //         deletePortfolio={props.deletePortfolio}
+  //       />
+  //     ))
+  //   ) : (
+  //     <Fragment>
+  //       <span>포트폴리오</span>
+  //       <span style={{ fontSize: '2rem' }}>+</span>
+  //     </Fragment>
+  //   );
   return (
     <div style={containerStyle}>
       <div style={labelStyle}>프로필/자기소개</div>

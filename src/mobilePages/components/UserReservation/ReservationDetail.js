@@ -1,5 +1,4 @@
 import React from 'react';
-import spch_bubble from '../../../assets/images/spch_bubble_user.png';
 
 const ReservationDetail = props => {
   const reservation = props.reservation;

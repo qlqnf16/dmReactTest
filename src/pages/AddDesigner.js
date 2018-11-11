@@ -28,8 +28,7 @@ class AddDesigner extends Component {
       cert_jg,
       isRegister,
       portfolios,
-      profile,
-      introduce
+      profile
     } = this.props.userData;
     if (!addresses) addresses = [];
     this.state = {
@@ -52,8 +51,8 @@ class AddDesigner extends Component {
       designerRecommendationCode,
       isRegister,
       profileImg: profile,
-      portfolioFile: null,
-      portfolioFile: [],
+      portfolioFile: null || [],
+      // portfolioFile: [],
       portfolioImg: portfolios || [],
       num: portfolios ? portfolios.length : 0,
       realFileNum: 0,

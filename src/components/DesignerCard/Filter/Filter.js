@@ -77,15 +77,27 @@ const Filter = props => {
         >
           <div>
             싫어요
-            <div style={{ fontSize: '2rem' }}>😟👎</div>
+            <div style={{ fontSize: '2rem' }}>
+              <span role="img" aria-label="emojis">
+                😟👎
+              </span>
+            </div>
           </div>
           <div>
             상관없어요
-            <div style={{ fontSize: '2rem' }}>😐💬</div>
+            <div style={{ fontSize: '2rem' }}>
+              <span role="img" aria-label="emojis">
+                😐💬
+              </span>
+            </div>
           </div>
           <div>
             받을래요
-            <div style={{ fontSize: '2rem' }}>😀👍</div>
+            <div style={{ fontSize: '2rem' }}>
+              <span role="img" aria-label="emojis">
+                😀👍
+              </span>
+            </div>
           </div>
         </div>
         <div className="d-flex justify-content-between" />

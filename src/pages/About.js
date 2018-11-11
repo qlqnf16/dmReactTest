@@ -22,6 +22,7 @@ class About extends Component {
     return (
       <div className="container-fluid text-center p-0">
         <iframe
+          title="introduction-video"
           width="1280"
           height="720"
           src="https://www.youtube.com/embed/jepipiX0KN8?autohide=1&autoplay=1&loop=1&rel=0&controls=0&modestbranding=0&showinfo=0"

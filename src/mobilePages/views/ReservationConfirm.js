@@ -258,6 +258,7 @@ class ReservationConfirm extends Component {
         <div style={containerStyle}>
           <div style={{ textAlign: 'center' }}>
             <img
+              alt="completeIcon"
               style={{ width: '20%', margin: '2rem 0 1.5rem 0' }}
               src={completeIcon}
             />

@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { FormGroup, Modal, ModalBody } from 'reactstrap';
+import { FormGroup, Modal } from 'reactstrap';
 import ImgPreview from './ImgPreview';
 import './InfoForm.css';
 import DaumPostcode from 'react-daum-postcode';

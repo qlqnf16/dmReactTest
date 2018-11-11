@@ -99,7 +99,7 @@ class Navitems extends Component {
     if (!this.props.finishRedux) {
       return (
         <div className="navbar_loading">
-          <div class="lds-roller">
+          <div className="lds-roller">
             <div />
             <div />
             <div />
