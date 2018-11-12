@@ -145,7 +145,7 @@ class DesignerTicket extends Component {
               }}
             >
               <label
-                for="card"
+                htmlFor="card"
                 className="purchase_type"
                 style={
                   this.state.method === 'card'
@@ -164,7 +164,7 @@ class DesignerTicket extends Component {
                 <div>신용/체크카드</div>
               </label>
               <label
-                for="trans"
+                htmlFor="trans"
                 className="purchase_type"
                 style={
                   this.state.method === 'trans'
@@ -185,7 +185,7 @@ class DesignerTicket extends Component {
                 <div>실시간 계좌이체</div>
               </label>
               <label
-                for="vbank"
+                htmlFor="vbank"
                 className="purchase_type"
                 style={
                   this.state.method === 'vbank'
@@ -206,7 +206,7 @@ class DesignerTicket extends Component {
                 <div>가상 계좌</div>
               </label>
               <label
-                for="kakao"
+                htmlFor="kakao"
                 className="purchase_type"
                 style={
                   this.state.method === 'kakao'

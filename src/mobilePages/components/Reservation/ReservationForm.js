@@ -163,7 +163,7 @@ const ReservationForm = props => {
         }}
       >
         <label
-          for="card"
+          htmlFor="card"
           className="purchase_type"
           style={
             props.method === 'card'
@@ -182,7 +182,7 @@ const ReservationForm = props => {
           <div>신용/체크카드</div>
         </label>
         <label
-          for="trans"
+          htmlFor="trans"
           className="purchase_type"
           style={
             props.method === 'trans'
@@ -203,7 +203,7 @@ const ReservationForm = props => {
           <div>실시간 계좌이체</div>
         </label>
         <label
-          for="vbank"
+          htmlFor="vbank"
           className="purchase_type"
           style={
             props.method === 'vbank'
@@ -224,7 +224,7 @@ const ReservationForm = props => {
           <div>가상 계좌</div>
         </label>
         <label
-          for="kakao"
+          htmlFor="kakao"
           className="purchase_type"
           style={
             props.method === 'kakao'

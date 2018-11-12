@@ -52,7 +52,7 @@ const styles = {
 const TextInfo = props => (
   <div>
     <div>
-      <label for="title" style={styles.labelStyle}>
+      <label htmlFor="title" style={styles.labelStyle}>
         제목
       </label>
       <input
@@ -65,7 +65,7 @@ const TextInfo = props => (
       />
     </div>
     <div>
-      <label for="requirement" style={styles.labelStyle}>
+      <label htmlFor="requirement" style={styles.labelStyle}>
         요청사항{' '}
         <span
           style={{
@@ -104,7 +104,7 @@ const TextInfo = props => (
       </p>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
         <div>
-          <label for="cut" style={styles.labelStyle}>
+          <label htmlFor="cut" style={styles.labelStyle}>
             커트
           </label>
           <select
@@ -135,7 +135,7 @@ const TextInfo = props => (
           </select>
         </div>
         <div>
-          <label for="perm" style={styles.labelStyle}>
+          <label htmlFor="perm" style={styles.labelStyle}>
             펌
           </label>
           <select
@@ -166,7 +166,7 @@ const TextInfo = props => (
           </select>
         </div>
         <div>
-          <label for="dye" style={styles.labelStyle}>
+          <label htmlFor="dye" style={styles.labelStyle}>
             염색
           </label>
           <select

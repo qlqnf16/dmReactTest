@@ -120,7 +120,7 @@ class Want extends Component {
                 <div className="row mx-0">
                   <div>
                     <input type="checkbox" id="read" name="read" value="read" />
-                    <label for="read" />
+                    <label htmlFor="read" />
                   </div>
                   <div
                     style={{

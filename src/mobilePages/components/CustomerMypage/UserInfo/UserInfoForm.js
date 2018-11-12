@@ -114,7 +114,7 @@ const UserInfoForm = props => {
           <div style={labelStyle}>성별</div>
           <div style={{ display: 'flex', justifyContent: 'space-between' }}>
             <label
-              for="infoform-male"
+              htmlFor="infoform-male"
               className="infoform-male"
               style={
                 userData.gender === 'male'
@@ -137,7 +137,7 @@ const UserInfoForm = props => {
               <div>남</div>
             </label>
             <label
-              for="infoform-female"
+              htmlFor="infoform-female"
               className="infoform-female"
               style={
                 userData.gender === 'female'

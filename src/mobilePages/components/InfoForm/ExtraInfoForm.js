@@ -47,7 +47,10 @@ const ExtraInfoForm = props => {
     <div style={containerStyle}>
       <div style={labelStyle}>프로필/자기소개</div>
       <div style={fileAttachingContainerStyle}>
-        <label style={{ width: '47.5%', marginRight: '4%' }} for="profileImg">
+        <label
+          style={{ width: '47.5%', marginRight: '4%' }}
+          htmlFor="profileImg"
+        >
           <input
             style={defaultInputFileDisplayNone}
             id="profileImg"
@@ -75,6 +78,7 @@ const ExtraInfoForm = props => {
                   ...fileAttachingInputStyle,
                   width: '47.5%'
                 }}
+                key={i}
               >
                 <ImgPreview
                   style={{ ...ImgPreviewStyle }}
@@ -85,7 +89,10 @@ const ExtraInfoForm = props => {
               </div>
             ))
           : null}
-        <label style={{ width: '47.5%', marginRight: '4%' }} for="portfolio">
+        <label
+          style={{ width: '47.5%', marginRight: '4%' }}
+          htmlFor="portfolio"
+        >
           <input
             style={defaultInputFileDisplayNone}
             id="portfolio"
