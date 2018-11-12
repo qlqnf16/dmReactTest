@@ -161,7 +161,7 @@ const ReservationCard = props => {
                 : () => props.showMore(props.reservation._designer._recruit)
             }
           >
-            더보기
+            {props.type === 'soon' ? '메세지' : '더보기'}
           </div>
         </div>
       </div>

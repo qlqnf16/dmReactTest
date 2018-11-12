@@ -48,11 +48,12 @@ const ReservationDetail = props => {
 };
 const styles = {
   cautionStyle: {
-    margin: '3rem 0',
+    margin: 0,
     color: '#2b2e34',
     fontSize: '1.2rem',
     padding: '5%',
-    border: 'solid 1px #c1e4eb',
+    backgroundColor: '#f2f9fc',
+    // border: 'solid 1px #c1e4eb',
     borderRadius: 5
   },
   titleStyle: {
