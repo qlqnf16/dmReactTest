@@ -11,10 +11,12 @@
 
 .rf-title-text1 {
   font-size: 2.2rem;
+  font-weight: bold;
 }
 
 .rf-title-text2 {
   font-size: 1.5rem;
+  font-weight: bold;
 }
 
 .rf-tableTitle {
@@ -53,12 +55,12 @@
 }
 
 .rf-button {
-  width: 3.87rem;
+  width: 5.5rem;
   height: 25.8px;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.1);
   border: solid 1px #dd6866;
   background-color: #ffffff;
-  /* margin-right: 1.55rem; */
+  margin-right: 1.55rem;
   cursor: pointer;
 }
 
@@ -67,4 +69,39 @@
   height: 25.8px;
   border: solid 1px rgba(0, 0, 0, 0.1);
   margin-right: 9.5px;
+  padding-left: 5px;
+}
+
+.rf-hideinput {
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  position: relative;
+  width: fit-content;
+  padding-left: 23px;
+  margin-bottom: 0;
+}
+
+.rf-hideinput input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0
+}
+
+.rf-radiobutton {
+  position: absolute;
+  top: 1;
+  left: 0;
+  height: 13px;
+  width: 13px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: solid 1px #1f3354;
+  
+}
+
+.rf-hideinput input:checked ~ .rf-radiobutton {
+  background-color: rgba(0, 0, 0, 0.2)
 }
