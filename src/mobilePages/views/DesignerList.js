@@ -88,6 +88,7 @@ class DesignerList extends Component {
     const counter = {};
     recruits.forEach(recruit => {
       if (
+        recruit &&
         !counter[recruit._id] &&
         recruit._designer &&
         recruit._designer.expiredAt &&
