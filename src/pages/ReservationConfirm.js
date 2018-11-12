@@ -7,6 +7,10 @@ import check from '../assets/images/check_lg.png';
 import './PageCss.css';
 
 class ReservationConfirm extends Component {
+  componentDidMount() {
+    window.scrollTo(0,0)
+  }
+
   showMessage = (reservationId, designerName) => {
     this.props.history.push({
       pathname: `/chat`,

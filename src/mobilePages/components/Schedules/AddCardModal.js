@@ -386,7 +386,6 @@ const AddCardModal = props => {
             <div style={{ ...labelStyle, margin: 0 }}>펌</div>
             <div>
               <div className="addingPrice">
-                +
                 <input
                   style={{
                     ...inputTextStyle,
@@ -480,7 +479,7 @@ const AddCardModal = props => {
             <div style={{ ...labelStyle, margin: 0 }}>염색</div>
             <div>
               <div className="addingPrice">
-                +
+              {' '}
                 <input
                   style={{
                     ...inputTextStyle,

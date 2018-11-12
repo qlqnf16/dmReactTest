@@ -454,7 +454,8 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    marginBottom: '2rem'
+    marginBottom: '2rem',
+    fontWeight: 'bold'
   },
   buttonStyle: {
     height: '3.9rem',

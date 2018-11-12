@@ -76,7 +76,7 @@ const Filter = props => {
           style={{ marginTop: '15px' }}
         >
           <div>
-            싫어요
+            안받을래요
             <div style={{ fontSize: '2rem' }}>
               <span role="img" aria-label="emojis">
                 😟👎

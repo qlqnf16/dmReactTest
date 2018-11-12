@@ -37,9 +37,9 @@ const CouponContent = props => {
         </div>
       </div>
       <div style={{ fontSize: '1.1rem', marginTop: '1.7rem' }}>
-        (내 추천으로 가입한 친구:{' '}
+        내 추천으로 가입한 친구:{' '}
         {props.recommendationNum ? props.recommendationNum : 0}
-        명)
+        명
       </div>
     </div>
   );
@@ -60,7 +60,11 @@ const styles = {
     borderRadius: 5,
     backgroundImage:
       'linear-gradient(304deg, #fffae3, #d2e3e8)',
-    color: '#1f3354'
+    color: '#1f3354',
+    height: '67vh',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center'
   },
   titleStyle: {
     fontSize: '1.5rem',

@@ -96,7 +96,7 @@ const Filter = props => {
       <div style={filterTitle}>서비스</div>
       <div style={filterFlex}>
         <div style={serviceType}>
-          <div>싫어요</div>
+          <div>안받을래요</div>
           <div style={emoji}>
             <span role="img" aria-label="emoji">
               😟👎
