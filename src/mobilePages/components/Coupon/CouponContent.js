@@ -15,8 +15,10 @@ const CouponContent = props => {
     content = '친구 3명 가입시 3000포인트 지급!';
     img = coupon;
   }
+  let couponStyle = props.isD ? designerCouponStyle : userCouponStyle
+
   return (
-    <div style={containerStyle}>
+    <div style={props.isD ? designerContainerStyle : userContainerStyle}>
       <div style={titleStyle}>{title}</div>
       <div style={contentStyle}>
         친구 추천하고
@@ -44,12 +46,20 @@ const CouponContent = props => {
 };
 
 const styles = {
-  containerStyle: {
+  userContainerStyle: {
     textAlign: 'center',
     padding: '3rem',
     borderRadius: 5,
     backgroundImage:
       'linear-gradient(151deg, #fffae3, #ffefe3 52%, #ffeee3 59%, #ffe8e3)',
+    color: '#1f3354'
+  },
+  designerContainerStyle: {
+    textAlign: 'center',
+    padding: '3rem',
+    borderRadius: 5,
+    backgroundImage:
+      'linear-gradient(304deg, #fffae3, #d2e3e8)',
     color: '#1f3354'
   },
   titleStyle: {
@@ -64,7 +74,7 @@ const styles = {
     fontSize: '1.2rem',
     marginBottom: '1.3rem'
   },
-  couponStyle: {
+  userCouponStyle: {
     backgroundSize: 'contain',
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
@@ -74,14 +84,27 @@ const styles = {
     fontWeight: 'bold',
     color: '#dd6866',
     fontSize: '1.2rem'
+  },
+  designerCouponStyle: {
+    backgroundSize: 'contain',
+    backgroundRepeat: 'no-repeat',
+    backgroundPosition: 'center',
+    height: '6rem',
+    lineHeight: '6rem',
+    paddingTop: '0.7rem',
+    fontWeight: 'bold',
+    color: '#4c91ba',
+    fontSize: '1.2rem'
   }
 };
 
 const {
-  containerStyle,
+  userContainerStyle,
+  designerContainerStyle,
   titleStyle,
   contentStyle,
   descriptionStyle,
-  couponStyle
+  userCouponStyle,
+  designerCouponStyle
 } = styles;
 export default CouponContent;
