@@ -168,6 +168,7 @@ class UserInfo extends Component {
             userData={this.state}
             submitHandler={this.submitHandler}
             phoneCert={this.phoneCert}
+            recommendationCode={this.props.userData.recommendationCode}
           />
         </div>
       </Fragment>
