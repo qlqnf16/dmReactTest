@@ -109,6 +109,8 @@ class DesignerInfo extends Component {
       this.setState({ addresses });
     } else {
       this.setState({ [name]: value });
+      console.log(this.props.userData.designerRecommendationCode)
+      console.log(this.state.designerRecommendationCode)
     }
   };
 
@@ -366,9 +368,7 @@ class DesignerInfo extends Component {
             id="designerRecommendationCode"
             value={this.state.designerRecommendationCode}
             onChange={
-              this.props.userData.designerRecommendationCode
-                ? null
-                : e => this.handleInputChange(e)
+              e => this.handleInputChange(e)
             }
           />
           <div style={buttonStyle} onClick={this.submitHandler}>
