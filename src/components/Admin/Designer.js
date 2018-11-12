@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import Moment from "react-moment";
-import firebase from "../../config/Firebase";
+import React, { Component, Link } from 'react';
+import Moment from 'react-moment';
+import firebase from '../../config/Firebase';
 class Designer extends Component {
   state = {
     penalty: null,
@@ -18,11 +18,11 @@ class Designer extends Component {
   penaltySubmit = async uid => {
     await firebase
       .database()
-      .ref("users/" + uid)
+      .ref('users/' + uid)
       .update({
         penalty: this.state.penalty
       });
-    alert("수정되었습니다");
+    alert('수정되었습니다');
   };
 
   handleInputChange = e => {
@@ -46,7 +46,16 @@ class Designer extends Component {
       });
     return (
       <tr key={this.props.key}>
-        <th scope="row">{designer.name}</th>
+        <th scope="row">
+          {designer._recruit === undefined ? (
+            <span>{designer.name}</span>
+          ) : (
+            <a href={`/#/designerdetail/${designer._recruit}`}>
+              {designer.name}
+            </a>
+          )}
+          {/* <a href={`/#/designerdetail/${designer._recruit}`}>{designer.name}</a> */}
+        </th>
         <td>{designer.email}</td>
         <td>
           {addresses.map((address, key) => (
@@ -63,16 +72,16 @@ class Designer extends Component {
         </td>
         <td>
           {Math.floor(designer.career / 12) === 0
-            ? ""
+            ? ''
             : `${Math.floor(designer.career / 12)}년`}
-          {designer.career % 12 === 0 ? "" : `${designer.career % 12}개월`}
+          {designer.career % 12 === 0 ? '' : `${designer.career % 12}개월`}
         </td>
         <td>
           {Math.floor(designer.untilDesigner / 12) === 0
-            ? ""
+            ? ''
             : `${Math.floor(designer.untilDesigner / 12)}년`}
           {designer.untilDesigner % 12 === 0
-            ? ""
+            ? ''
             : `${designer.untilDesigner % 12}개월`}
         </td>
         <td>{designer.phoneNumber}</td>
