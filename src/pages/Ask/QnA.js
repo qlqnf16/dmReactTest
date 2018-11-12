@@ -4,6 +4,10 @@ import { FormGroup } from "reactstrap";
 import { connect } from "react-redux";
 import axios from "../../config/Axios";
 class QnA extends Component {
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+  
   inputChangeHandler = event => {
     const target = event.target;
     const value = target.value;
