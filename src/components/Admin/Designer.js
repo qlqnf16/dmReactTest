@@ -54,7 +54,6 @@ class Designer extends Component {
               {designer.name}
             </a>
           )}
-          {/* <a href={`/#/designerdetail/${designer._recruit}`}>{designer.name}</a> */}
         </th>
         <td>{designer.email}</td>
         <td>
