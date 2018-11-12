@@ -105,7 +105,8 @@ class UserInfo extends Component {
           .database()
           .ref('users/' + recommendationCode)
           .on('value', res => {
-            resolve(res);
+            if (res.val()) resolve(res);
+            else resolve(false);
           });
       });
       result = await fbPromise;
@@ -168,6 +169,7 @@ class UserInfo extends Component {
             userData={this.state}
             submitHandler={this.submitHandler}
             phoneCert={this.phoneCert}
+            recommendationCode={this.props.userData.recommendationCode}
           />
         </div>
       </Fragment>

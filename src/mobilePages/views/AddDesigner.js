@@ -229,7 +229,8 @@ class AddDesigner extends Component {
           .database()
           .ref('users/' + designerRecommendationCode)
           .on('value', res => {
-            resolve(res);
+            if (res.val()) resolve(res);
+            else resolve(false);
           });
       });
       result = await fbPromise;
@@ -243,8 +244,7 @@ class AddDesigner extends Component {
         firebaseUserData = { ...firebaseUserData, designerRecommendationCode };
         count += 1;
 
-        if (count === 2) {
-          count = 0;
+        if (count !== 0 && count % 2 === 0) {
           await axios.post(`users/${_id}/tickets`, {
             price: 10000
           });

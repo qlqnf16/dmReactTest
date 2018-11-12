@@ -208,30 +208,6 @@ class Landing extends Component {
               <div style={{ display: 'flex' }}>
                 <a
                   style={{ marginRight: '1%', height: '48px' }}
-                  href="https://goo.gl/forms/ZH7RU6NhLRNllEZk1"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="linkdeco"
-                >
-                  <div style={{ width: 220 }} className="landing_cbutton">
-                    디자이너 사전 등록
-                  </div>
-                </a>
-                <a
-                  href="https://docs.google.com/forms/d/e/1FAIpQLSeItk9iCRUtyrLL6Jjz79LkRaHiH0b2PK1byAAtCgH3q4_RXA/viewform"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="linkdeco"
-                  style={{ height: '48px' }}
-                >
-                  <div style={{ width: 220 }} className="landing_cbutton">
-                    고객 사전 등록
-                  </div>
-                </a>
-              </div>
-              <div style={{ display: 'flex' }}>
-                <a
-                  style={{ marginRight: '1%', height: '48px' }}
                   href="	https://s3.ap-northeast-2.amazonaws.com/dreamary/%E1%84%83%E1%85%B5%E1%84%8C%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%82%E1%85%A5+%E1%84%83%E1%85%B3%E1%86%BC%E1%84%85%E1%85%A9%E1%86%A8+%E1%84%80%E1%85%A1%E1%84%8B%E1%85%B5%E1%84%83%E1%85%B3.pdf"
                   target="_blank"
                   className="linkdeco"

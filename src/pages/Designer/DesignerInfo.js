@@ -250,16 +250,18 @@ class DesignerInfo extends Component {
     ) {
       let count = 0;
       let result = null;
-      const fbPromise = new Promise(resolve => {
+      const fbPromise = new Promise((resolve, reject) => {
         firebase
           .database()
           .ref('users/' + designerRecommendationCode)
           .on('value', res => {
-            resolve(res);
+            if (res.val()) resolve(res);
+            else resolve(false);
           });
       });
 
       result = await fbPromise;
+
       if (!result || designerRecommendationCode === this.props.userData.uid) {
         alert('유효하지 않은 추천인 코드 입니다.');
       } else {
@@ -268,9 +270,7 @@ class DesignerInfo extends Component {
         firebaseUserData = { ...firebaseUserData, designerRecommendationCode };
         count += 1;
 
-        if (count === 2) {
-          count = 0;
-
+        if (count !== 0 && count % 2 === 0) {
           await axios.post(`users/${_id}/tickets`, {
             price: 10000
           });

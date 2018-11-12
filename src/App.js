@@ -59,6 +59,13 @@ import {
   M_DesignerTicket,
   M_Schedule,
   M_WhyDreamary,
+  M_AdminUserList,
+  M_AdminDesignerList,
+  M_AdminWaitingList,
+  M_AdminReservationList,
+  M_AdminMakeCoupon,
+  M_AdminNoShow,
+  M_AdminQnA,
   M_FAQ,
   M_InfoPolicy,
   M_QnA,
@@ -489,6 +496,36 @@ class App extends Component {
               <Route
                 path="/designer/schedule"
                 component={this.props.userData.isD ? M_Schedule : M_WrongAccess}
+              />
+
+              {/* 관리자페이지 */}
+              <Route 
+                path='/admin/userlist' 
+                component={this.props.userData.isAdmin ? M_AdminUserList : M_WrongAccess}
+              />
+              <Route 
+                path='/admin/designerlist' 
+                component={this.props.userData.isAdmin ? M_AdminDesignerList : M_WrongAccess}
+              />
+              <Route 
+                path='/admin/makecoupon' 
+                component={this.props.userData.isAdmin ? M_AdminMakeCoupon : M_WrongAccess}
+              />
+              <Route 
+                path='/admin/noshow' 
+                component={this.props.userData.isAdmin ? M_AdminNoShow : M_WrongAccess}
+              />
+              <Route 
+                path='/admin/qna' 
+                component={this.props.userData.isAdmin ? M_AdminQnA : M_WrongAccess}
+              />
+              <Route 
+                path='/admin/reservationlist' 
+                component={this.props.userData.isAdmin ? M_AdminReservationList : M_WrongAccess}
+              />
+              <Route 
+                path='/admin/waitinglist' 
+                component={this.props.userData.isAdmin ? M_AdminWaitingList : M_WrongAccess}
               />
 
               {/* customer my page (for testing MyPageNavigationBar) */}

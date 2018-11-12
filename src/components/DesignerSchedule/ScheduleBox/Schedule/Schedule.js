@@ -225,7 +225,7 @@ class Schedule extends Component {
                   className="question"
                   src={questionMark}
                   data-tip
-                  data-for="pic"
+                  data-htmlFor="pic"
                 />
                 <ReactTooltip
                   id="pic"
@@ -299,7 +299,7 @@ class Schedule extends Component {
                     id="cut"
                     onChange={this.props.changeInput}
                   />
-                  <label className="mb-0" for="cut" /> 커트
+                  <label className="mb-0" htmlFor="cut" /> 커트
                 </div>
               </FormGroup>
               <FormGroup check inline>
@@ -310,7 +310,7 @@ class Schedule extends Component {
                     id="perm"
                     onChange={this.props.changeInput}
                   />
-                  <label className="mb-0" for="perm" /> 펌
+                  <label className="mb-0" htmlFor="perm" /> 펌
                 </div>
               </FormGroup>
               <FormGroup check inline>
@@ -321,7 +321,7 @@ class Schedule extends Component {
                     id="dye"
                     onChange={this.props.changeInput}
                   />
-                  <label className="mb-0" for="dye" /> 염색
+                  <label className="mb-0" htmlFor="dye" /> 염색
                 </div>
               </FormGroup>
             </div>
@@ -345,7 +345,7 @@ class Schedule extends Component {
                     id="Cut"
                     onChange={this.props.changeInput}
                   />
-                  <label className="mb-0" for="Cut" /> 커트
+                  <label className="mb-0" htmlFor="Cut" /> 커트
                 </div>
               </FormGroup>
               <FormGroup check inline>
@@ -356,7 +356,7 @@ class Schedule extends Component {
                     id="Perm"
                     onChange={this.props.changeInput}
                   />
-                  <label className="mb-0" for="Perm" /> 펌
+                  <label className="mb-0" htmlFor="Perm" /> 펌
                 </div>
               </FormGroup>
               <FormGroup check inline>
@@ -367,7 +367,7 @@ class Schedule extends Component {
                     id="Dye"
                     onChange={this.props.changeInput}
                   />
-                  <label className="mb-0" for="Dye" /> 염색
+                  <label className="mb-0" htmlFor="Dye" /> 염색
                 </div>
               </FormGroup>
             </div>
@@ -392,7 +392,7 @@ class Schedule extends Component {
                     id="male"
                     onChange={this.props.changeInput}
                   />
-                  <label className="mb-0" for="male" /> 남자
+                  <label className="mb-0" htmlFor="male" /> 남자
                 </div>
               </FormGroup>
               <FormGroup check inline>
@@ -403,7 +403,7 @@ class Schedule extends Component {
                     id="female"
                     onChange={this.props.changeInput}
                   />
-                  <label className="mb-0" for="female" /> 여자
+                  <label className="mb-0" htmlFor="female" /> 여자
                 </div>
               </FormGroup>
             </div>

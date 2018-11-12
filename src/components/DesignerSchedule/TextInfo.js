@@ -48,7 +48,7 @@ const TextInfo = props => {
         <div style={{ textAlign: 'center' }}>내 카드 확인</div>
       </div>
       <FormGroup>
-        <Label for="title" style={styles.labelStyle}>
+        <Label htmlFor="title" style={styles.labelStyle}>
           제목
         </Label>
         <Input
@@ -60,7 +60,7 @@ const TextInfo = props => {
         />
       </FormGroup>
       <FormGroup>
-        <Label for="requirement" style={styles.labelStyle}>
+        <Label htmlFor="requirement" style={styles.labelStyle}>
           요청사항{' '}
           <span
             style={{
@@ -98,7 +98,7 @@ const TextInfo = props => {
         </p>
         <div className="row">
           <div className="col-4">
-            <Label for="cut" style={styles.labelStyle}>
+            <Label htmlFor="cut" style={styles.labelStyle}>
               커트
             </Label>
             <Input
@@ -129,7 +129,7 @@ const TextInfo = props => {
             </Input>
           </div>
           <div className="col-4">
-            <Label for="perm" style={styles.labelStyle}>
+            <Label htmlFor="perm" style={styles.labelStyle}>
               펌
             </Label>
             <Input
@@ -160,7 +160,7 @@ const TextInfo = props => {
             </Input>
           </div>
           <div className="col-4">
-            <Label for="dye" style={styles.labelStyle}>
+            <Label htmlFor="dye" style={styles.labelStyle}>
               염색
             </Label>
             <Input
