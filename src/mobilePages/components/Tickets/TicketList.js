@@ -8,22 +8,24 @@ const TicketList = props => {
     if (ticket.activatedAt) {
       ticketPeriod = (
         <div key={key}>
-          <Moment format="YYYY/MM/DD">{ticket.activatedAt}</Moment> ~
-          <Moment format="YYYY/MM/DD">{ticket.expiredAt}</Moment>
+          (<Moment format="YYYY/MM/DD">{ticket.activatedAt}</Moment> ~
+          <Moment format="YYYY/MM/DD">{ticket.expiredAt}</Moment>)
         </div>
       );
       if (ticket.expiredAt > new Date().getTime())
         ticketState = (
           <div
-            className="col-12 border p-3 text-center"
+            className="col-12 border py-4 text-center"
             style={{
-              backgroundColor: 'rgb(31, 51, 84)',
+              backgroundColor: '#4c91ba',
               color: 'white',
               fontSize: '1.2rem',
-              fontWeight: 'bold'
+              fontWeight: 'bold',
+              marginTop: '0.7rem'
             }}
           >
-            사용중
+            사용중 
+            {ticketPeriod}
           </div>
         );
       else
@@ -61,18 +63,16 @@ const TicketList = props => {
     }
     return (
       <div className="row" key={ticket.purchasedAt} style={containerStyle}>
-        <div className="col-4 border p-3 font-weight-bold">종류</div>
-        <div className="col-8 border p-3">
+        <div className="col-4 border p-3 font-weight-bold" style={tableStyle}>종류</div>
+        <div className="col-8 border p-3" style={tableStyle}>
           {ticket.price === 10000 ? '1개월 이용권' : '3개월 이용권'}
         </div>
-        <div className="col-4 border p-3 font-weight-bold">결제일</div>
-        <div className="col-8 border p-3">
+        <div className="col-4 border p-3 font-weight-bold" style={tableStyle}>결제일</div>
+        <div className="col-8 border p-3" style={tableStyle}>
           <Moment format="YYYY/MM/DD">{ticket.createdAt}</Moment>
         </div>
-        <div className="col-4 border p-3 font-weight-bold">결제금액</div>
-        <div className="col-8 border p-3">{ticket.price}원</div>
-        <div className="col-4 border p-3 font-weight-bold">이용권기간</div>
-        <div className="col-8 border p-3">{ticketPeriod}</div>
+        <div className="col-4 border p-3 font-weight-bold" style={tableStyle}>결제금액</div>
+        <div className="col-8 border p-3" style={tableStyle}>{ticket.price}원</div>
         {ticketState}
       </div>
     );
@@ -83,10 +83,15 @@ const TicketList = props => {
 
 const styles = {
   containerStyle: {
-    padding: '5% 9%'
+    padding: '0 9%',
+    fontSize: '1.2rem'
+  },
+  tableStyle: {
+    marginBottom: '-1px',
+    marginRight: '-1px'
   }
 };
 
-const { containerStyle } = styles;
+const { containerStyle, tableStyle } = styles;
 
 export default TicketList;
