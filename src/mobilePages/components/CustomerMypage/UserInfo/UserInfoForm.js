@@ -187,7 +187,7 @@ const UserInfoForm = props => {
       <span style={labelStyle}>추천인 코드</span>
       <input
         style={inputTextStyle} // 이미 입력된 추천인코드가 있다면 수정 안되도록
-        onChange={userData.recommendationCode ? null : props.inputChangeHandler}
+        onChange={userData.recommendationCode ? null : e=>props.inputChangeHandler(e)}
         type="text"
         name="recommendationCode"
         id="recommendationCode"
