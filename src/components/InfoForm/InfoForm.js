@@ -53,16 +53,17 @@ class InfoForm extends Component {
             }
             onChange={this.props.changeInput}
             className="if_input "
-            style={{ marginRight: '0' }}
+            style={{ marginRight: '5px' }}
           />
           <div
             className="address_button"
             style={{
               // border: 'none',
-              width: '3rem',
+              width: '1.5rem',
+              height: '1.5rem',
               color: '#4c91ba',
-              marginRight: '0',
-              marginLeft: 1,
+              margin: 'auto',
+              borderRadius: '50%',
               cursor: 'pointer'
             }}
             onClick={() => this.props.addressRemoveHandler(i)}
