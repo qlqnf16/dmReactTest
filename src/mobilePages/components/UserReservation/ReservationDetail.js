@@ -52,8 +52,7 @@ const styles = {
     color: '#2b2e34',
     fontSize: '1.2rem',
     padding: '5%',
-    backgroundColor: '#f2f9fc',
-    // border: 'solid 1px #c1e4eb',
+    border: '1px solid #ffe848',
     borderRadius: 5
   },
   titleStyle: {

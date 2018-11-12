@@ -30,6 +30,9 @@ class UserInfo extends Component {
       recommendationCode,
       isRegister
     };
+
+    if (this.props.location.pathname.includes('reservation'))
+      alert("휴대폰 인증 후 예약서비스를 사용할 수 있습니다'");
   }
 
   componentDidMount = async () => {

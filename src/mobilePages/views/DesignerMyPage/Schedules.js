@@ -56,7 +56,25 @@ class Schedule extends Component {
 
   addCardModalToggle = () => {
     this.setState({
-      addCardModal: !this.state.addCardModal
+      addCardModal: !this.state.addCardModal,
+      time: 1,
+      must: {},
+      no: {},
+      sinces: [],
+      untils: [],
+      permPrice: {
+        normal: 30000,
+        chin: 0,
+        shoulder: 0,
+        chest: 0
+      },
+      dyePrice: {
+        normal: 30000,
+        chin: 0,
+        shoulder: 0,
+        chest: 0
+      },
+      date: null
     });
   };
 
@@ -176,11 +194,11 @@ class Schedule extends Component {
     nCards = [...newCards];
 
     this.setState({
-      newCards: nCards,
-      time: 1,
-      sinces: [],
-      untils: [],
-      date: null
+      newCards: nCards
+      // time: 1,
+      // sinces: [],
+      // untils: [],
+      // date: null
     });
     this.sinces = [];
     this.untils = [];
