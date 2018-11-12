@@ -1,4 +1,5 @@
 import React from 'react';
+import './Filter.css';
 
 const Filter = props => {
   const {
@@ -16,7 +17,10 @@ const Filter = props => {
     selectFilterText
   } = styles;
   return (
-    <div style={props.on ? filter : filterOff}>
+    <div
+      style={props.on ? filter : filterOff}
+      className={props.on && 'filterOn'}
+    >
       <div style={{ ...filterFlex, marginBottom: '1rem' }}>
         <div style={{ flex: '1' }}>
           <div style={filterTitle}>성별</div>
@@ -184,7 +188,8 @@ const styles = {
   },
   filter: {
     width: '70%',
-    paddingTop: '5%'
+    paddingTop: '5%',
+    display: 'block'
   },
   filterFlex: {
     display: 'flex',
