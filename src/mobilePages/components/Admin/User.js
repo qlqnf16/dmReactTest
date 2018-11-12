@@ -66,7 +66,7 @@ class User extends Component {
           </select>
           <button
             onClick={() => this.penaltySubmit(user.uid)}
-            className="btn-sm"
+            className="btn-sm btn btn-light"
           >
             수정
           </button>

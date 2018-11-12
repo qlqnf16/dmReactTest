@@ -102,7 +102,7 @@ class Designer extends Component {
           </select>
           <button
             onClick={() => this.penaltySubmit(designer.uid)}
-            className="btn-sm"
+            className="btn btn-light btn-sm"
           >
             수정
           </button>

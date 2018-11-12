@@ -89,14 +89,14 @@ class MakeCoupon extends Component {
       );
     }
     return (
-      <div>
+      <div className='container'>
         <div className="h1 hard">쿠폰 발행</div>
         <div>
           <div>
-            <div className="h2 hard">유저용</div>
-            <div className='row'>
+            <div className="h2 hard mt-4 mb-3">유저용</div>
+            <div className='d-flex'>
               <div className="col-2 if_head">포인트</div>
-              <div className="col-3">
+              <div className="col-4">
                 <input
                   type="point"
                   name="point"
@@ -105,7 +105,7 @@ class MakeCoupon extends Component {
                   className="if_input"
                 />
               </div>
-              <div className="col-2 if_head">장수</div>
+              <div className="col-1 if_head">장수</div>
               <div className="col-3">
                 <input
                   type="number"
@@ -115,14 +115,14 @@ class MakeCoupon extends Component {
                   className="if_input"
                 />
               </div>
-              <div onClick={this.makeCoupon} className="btn btn-sm btn-light col-2">
+              <button onClick={this.makeCoupon} className="btn btn-sm btn-light col-2">
                 만들기
-              </div>
+              </button>
             </div>
-            <div className="col-12 h2 hard">디자이너용</div>
-            <div className='row'>
+            <div className="h2 hard mt-4 mb-3">디자이너용</div>
+            <div className='d-flex'>
               <div className="col-2 if_head">개월수</div>
-              <div className="col-3">
+              <div className="col-4">
                 <select
                   type="month"
                   name="month"
@@ -134,7 +134,7 @@ class MakeCoupon extends Component {
                   <option value="28000">3개월</option>
                 </select>
               </div>
-              <div className="col-2 if_head">장수</div>
+              <div className="col-1 if_head">장수</div>
               <div className="col-3">
                 <input
                   type="DNumber"
@@ -144,12 +144,20 @@ class MakeCoupon extends Component {
                   className="if_input"
                 />
               </div>
-              <div onClick={this.makeDesignerCoupon} className="btn btn-light col-2">
+              <button onClick={this.makeDesignerCoupon} className="btn btn-light col-2">
                 만들기
-              </div>
+              </button>
             </div>
-            <div className="h2 col-12">디자이너용 쿠폰</div>
-            <div className="row col-12">
+            <div className="h2 mt-4 mb-3">유저용 쿠폰</div>
+            <div className="d-flex text-center">
+              <div className="col-3">포인트</div>
+              <div className="col-3">번호</div>
+              <div className="col-3">상태</div>
+              <div className="col-3">발행일</div>
+            </div>
+            {coupons}
+            <div className="h2 mt-4 mb-3">디자이너용 쿠폰</div>
+            <div className="d-flex">
               <div className="col-3">포인트</div>
               <div className="col-3">번호</div>
               <div className="col-3">상태</div>
@@ -157,17 +165,7 @@ class MakeCoupon extends Component {
             </div>
             {designerCoupons}
           </div>
-          <div className="col-6">
-            <div className="h2">유저용 쿠폰</div>
-            <div className="row">
-              <div className="col-3">포인트</div>
-              <div className="col-3">번호</div>
-              <div className="col-3">상태</div>
-              <div className="col-3">발행일</div>
-            </div>
-            {coupons}
           </div>
-        </div>
       </div>
     );
   }
