@@ -17,8 +17,8 @@ class CancelModal extends Component {
   };
 
   cancelReasonSubmit = async () => {
-    if (!this.state.cancelReason || this.state.cancelReason === '')
-      return alert('채워지지 않은 정보가 있습니다');
+    if (!this.state || this.state.cancelReason === '')
+      return alert('취소 사유를 적어주세요');
     await axios.patch(
       `users/${
         this.props.userData._id
@@ -73,6 +73,7 @@ class CancelModal extends Component {
         });
         services = services.substring(1);
       }
+
       return (
         <Modal centered isOpen={this.props.isOpen} toggle={this.props.toggle}>
           <ModalBody className="m-4">
@@ -115,14 +116,14 @@ class CancelModal extends Component {
               <div
                 className={
                   this.props.isD
-                    ? 'm_button m_button_blue btn'
-                    : 'm_button m_button_red btn'
+                    ? 'm_button m_button_blue'
+                    : 'm_button m_button_red'
                 }
                 onClick={this.cancelReasonSubmit}
               >
                 예약취소
               </div>
-              <div className="m_button btn" onClick={this.props.toggle}>
+              <div className="m_button" onClick={this.props.toggle}>
                 취소
               </div>
             </div>

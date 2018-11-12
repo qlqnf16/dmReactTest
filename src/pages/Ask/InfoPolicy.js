@@ -1,7 +1,13 @@
-import React from 'react';
+import React, {Component} from 'react';
 import AskNav from '../../components/Navigation/AskNav/AskNav';
 
-const InfoPolicy = () => (
+class InfoPolicy extends Component {
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+  
+  render() {
+    return(
   <div className="container-fluid ask">
     <AskNav />
     <div className="ask_title">개인정보취급방침</div>
@@ -11,6 +17,6 @@ const InfoPolicy = () => (
       }
     </pre>
   </div>
-);
+)}};
 
 export default InfoPolicy;

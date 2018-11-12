@@ -190,7 +190,7 @@ class ReviewModal extends Component {
                   </label>
                 </div>
                 <div
-                  className="m_button m_button_green btn"
+                  className="m_button m_button_green"
                   style={{ width: '100%', margin: 0, height: 'fit-content' }}
                   onClick={this.reviewSubmit}
                 >

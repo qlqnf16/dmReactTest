@@ -1,9 +1,21 @@
 import React, { Component, Fragment } from 'react';
+import { Link } from 'react-router-dom'
 import Header from '../components/ReservationConfirm/Header';
 import completeIcon from '../../assets/images/check_lg.png';
 import womanBack from '../../assets/images/m_woman_back.png';
 
 class ReservationConfirm extends Component {
+  componentDidMount() {
+    window.scrollTo(0,0)
+  }
+
+  showMessage = (reservationId, designerName) => {
+    this.props.history.push({
+      pathname: `/chat`,
+      search: `?r=${reservationId}&n=${designerName}`
+    });
+  };
+
   render() {
     const {
       containerStyle,
@@ -313,8 +325,18 @@ class ReservationConfirm extends Component {
 
             {priceBox}
           </div>
-          <div style={buttonStyle}>예약 확인/취소</div>
-          <div style={buttonStyle}>예디에게 메시지</div>
+          <Link to='/reservations' style={{width: '100%'}}>
+            <div style={buttonStyle}>예약 확인/취소</div>
+          </Link>
+          <div 
+            onClick={() =>
+              this.showMessage(
+                this.props.match.params.reservation_id,
+                this.props.location.state.recruit._designer.name
+              )
+            }
+            style={buttonStyle}>예디에게 메시지
+          </div>
           {/* 밑에 여백 주기 위해 추가함 */}
           <div style={{ height: 100 }} />
         </div>

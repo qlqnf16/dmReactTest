@@ -18,7 +18,8 @@ class DesignerReservations extends Component {
       showReviewModal: false,
       cancelReasonModal: false,
       completeModal: false,
-      reservation: null
+      reservation: null,
+      showDetail: false
     };
   }
 

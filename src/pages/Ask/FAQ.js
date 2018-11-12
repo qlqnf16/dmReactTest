@@ -3,6 +3,10 @@ import AskNav from '../../components/Navigation/AskNav/AskNav';
 import './Ask.css';
 
 class FAQ extends Component {
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+
   state = {
     toggle: true
   };

@@ -201,11 +201,10 @@ const ReservationCard = props => {
 
 const styles = {
   cardStyle: {
-    width: '85%',
     padding: 12,
     backgroundColor: 'rgba(0, 0, 0, 0.03)',
     borderRadius: '5px',
-    margin: '1rem auto',
+    margin: '3rem auto 0 auto',
     color: 'rgba(0, 0, 0, 0.5)'
   },
   designerStyle: {

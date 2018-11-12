@@ -291,18 +291,17 @@
 /* Reservation.js */
 
 .r_button {
-  width: 15vw;
-  height: 5vh;
+  width: 10.8%;
+  height: 4.6rem;
   border-radius: 5px;
   background-color: #dd6866;
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
-  font-size: 1.7vw;
+  font-size: 1.7rem;
   letter-spacing: 0.17rem;
   margin: 54.1px auto 0 auto;
-  cursor: pointer;
   cursor: pointer;
 }
 

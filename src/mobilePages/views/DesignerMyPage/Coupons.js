@@ -49,7 +49,7 @@ class DesignerCoupon extends Component {
               </div>
             </div> */}
             <div>
-              <div style={labelStyle}>추천인 코드</div>
+              <div style={labelStyle} className='mb-3'>추천인 코드</div>
               <div>
                 <CouponContent
                   couponNumber={firebase.auth().currentUser.uid}
