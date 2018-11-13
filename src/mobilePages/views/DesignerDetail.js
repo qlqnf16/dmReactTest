@@ -78,7 +78,7 @@ class DesignerDetail extends Component {
     recruit,
     cardData
   ) => {
-    // if (true) return alert('아직 이용하실 수 없습니다.');
+    if (true) return alert('아직 이용하실 수 없습니다.');
 
     // 비로그인시 로그인 모달
     if (!this.state.isLogin && this.state.madeRequest) {

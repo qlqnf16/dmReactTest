@@ -6,7 +6,7 @@ const DesignerNav = () => (
   <Fragment>
     <div className="dnav_top">마이페이지</div>
     <div className="dnav_back">
-      <NavLink
+      {/* <NavLink
         to="/designer/reservations"
         className="dnav_navitem"
         activeStyle={{
@@ -15,8 +15,8 @@ const DesignerNav = () => (
         }}
       >
         예약관리
-      </NavLink>
-      {/* <div
+      </NavLink> */}
+      <div
         className="dnav_navitem"
         onClick={() => alert('아직 이용할 수 없습니다.')}
         // activeStyle={{
@@ -25,7 +25,7 @@ const DesignerNav = () => (
         // }}
       >
         예약관리
-      </div> */}
+      </div>
       <NavLink
         to="/designer/schedule"
         className="dnav_navitem"
