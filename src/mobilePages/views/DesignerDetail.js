@@ -183,16 +183,21 @@ class DesignerDetail extends Component {
             <div>
               {/* todo: modal(big picture) show when clicked */}
               <div style={labelStyle}>포트폴리오</div>
-              <div>
+              <div className="row wrap">
                 {portfolios.map(portfolio => (
-                  <img
-                    alt="alt"
-                    key={portfolio}
-                    src={portfolio}
-                    className="col-4"
-                    style={{ padding: '0', width: '100%', height: '100%' }}
-                    onClick={() => this.showLargeImageToggle(portfolio)}
-                  />
+                  <div className="col-4 px-1 my-1">
+                    <div
+                      key={portfolio}
+                      style={{
+                        height: 100,
+                        backgroundImage: `url(${portfolio})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center'
+                      }}
+                      // style={{ padding: '0', width: '100%', height: '100%' }}
+                      onClick={() => this.showLargeImageToggle(portfolio)}
+                    />
+                  </div>
                 ))}
               </div>
             </div>
