@@ -22,6 +22,38 @@ class UserList extends Component {
       });
   };
 
+  nameSortHandler = () => {
+    firebase
+      .database()
+      .ref(`/users`)
+      .on('value', async res => {
+        let users = Object.values(res.val()).filter(user => !user.isD);
+        users = users.sort((a, b) => {
+          if (a.name > b.name) return 1;
+          else return -1;
+        });
+
+        this.setState({
+          users
+        });
+      });
+  };
+
+  createdAtSortHandler = () => {
+    firebase
+      .database()
+      .ref(`/users`)
+      .on('value', async res => {
+        let users = Object.values(res.val()).filter(user => !user.isD);
+
+        users = users.sort((a, b) => a.joinedDate - b.joinedDate);
+
+        this.setState({
+          users
+        });
+      });
+  };
+
   render() {
     if (this.state.madeRequest) {
       const userList = this.state.users.map((user, key) => (
@@ -39,12 +71,12 @@ class UserList extends Component {
           <table className="table text-center">
             <thead>
               <tr>
-                <th>이름</th>
+                <th onClick={this.nameSortHandler}>이름</th>
                 <th>e-mail</th>
                 <th>생년월일</th>
                 <th>성별</th>
                 <th>휴대폰</th>
-                <th>가입일</th>
+                <th onClick={this.createdAtSortHandler}>가입일</th>
                 <th>패널티 관리</th>
               </tr>
             </thead>
