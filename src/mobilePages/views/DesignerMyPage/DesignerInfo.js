@@ -181,7 +181,6 @@ class DesignerInfo extends Component {
 
   // 최종 제출
   submitHandler = async () => {
-    this.setState({ submitLoading: false });
     const {
       name,
       gender,
@@ -243,6 +242,8 @@ class DesignerInfo extends Component {
     if (!firebaseUserData.career) return alert('미용 경력을 작성해주세요');
     if (!firebaseUserData.introduce) return alert('자기 소개를 작성해주세요');
 
+    this.setState({ submitLoading: false });
+    window.scrollTo(0, 0);
     // 추천인 로직
     // 전에 추천인을 입력한 적이 없고, 추천인을 작성했을 때,
     if (

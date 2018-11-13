@@ -182,8 +182,6 @@ class DesignerInfo extends Component {
   }
 
   submitHandler = async () => {
-    this.setState({ submitLoading: false });
-
     const {
       name,
       gender,
@@ -248,6 +246,8 @@ class DesignerInfo extends Component {
     if (!firebaseUserData.career) return alert('미용 경력을 작성해주세요');
     if (!firebaseUserData.introduce) return alert('자기 소개를 작성해주세요');
 
+    this.setState({ submitLoading: false });
+    window.scrollTo(0, 0);
     if (
       designerRecommendationCode &&
       !this.props.userData.designerRecommendationCode
