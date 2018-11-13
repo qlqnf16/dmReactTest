@@ -150,13 +150,18 @@ class DesignerDetail extends Component {
               <div style={titleStyle}>{recruit.title}</div>
               <div style={occupationStyle}>{shops}</div>
             </div>
-            <div style={{ width: 64, height: 64, textAlign: 'right' }}>
-              <img
-                style={designerProfileStyle}
-                src={designer.profile}
-                alt="designer profile"
-              />
-            </div>
+            <div
+              style={{
+                width: 64,
+                height: 64,
+                textAlign: 'right',
+                borderRadius: '50%',
+                backgroundImage: `url(${designer.profile})`,
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover'
+              }}
+            />
           </div>
           <div style={{ ...paragraphStyle, marginTop: '3rem' }}>
             {designer.introduce}
