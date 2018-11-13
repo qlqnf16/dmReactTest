@@ -39,7 +39,7 @@ class Schedule extends Component {
   };
 
   componentDidMount = async () => {
-    if (!this.state.madeRequest) {
+    if (!this.state.madeRequest && this.props.userData._recruit) {
       const { data } = await axios.get(
         `recruits/${this.props.userData._recruit}`
       );
@@ -56,7 +56,25 @@ class Schedule extends Component {
 
   addCardModalToggle = () => {
     this.setState({
-      addCardModal: !this.state.addCardModal
+      addCardModal: !this.state.addCardModal,
+      time: 1,
+      must: {},
+      no: {},
+      sinces: [],
+      untils: [],
+      permPrice: {
+        normal: 30000,
+        chin: 0,
+        shoulder: 0,
+        chest: 0
+      },
+      dyePrice: {
+        normal: 30000,
+        chin: 0,
+        shoulder: 0,
+        chest: 0
+      },
+      date: null
     });
   };
 
@@ -176,11 +194,11 @@ class Schedule extends Component {
     nCards = [...newCards];
 
     this.setState({
-      newCards: nCards,
-      time: 1,
-      sinces: [],
-      untils: [],
-      date: null
+      newCards: nCards
+      // time: 1,
+      // sinces: [],
+      // untils: [],
+      // date: null
     });
     this.sinces = [];
     this.untils = [];
@@ -454,7 +472,8 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    marginBottom: '2rem'
+    marginBottom: '2rem',
+    fontWeight: 'bold'
   },
   buttonStyle: {
     height: '3.9rem',

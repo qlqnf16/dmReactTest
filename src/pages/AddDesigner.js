@@ -7,6 +7,7 @@ import InfoFormExtended from '../components/InfoForm/InfoFormExtended';
 import { connect } from 'react-redux';
 import firebase from '../config/Firebase';
 import check_sm from '../assets/images/check_sm.png';
+import Spinner from '../assets/images/loading_spinner.gif';
 import './PageCss.css';
 
 class AddDesigner extends Component {
@@ -50,14 +51,16 @@ class AddDesigner extends Component {
       addressNum: addresses.length + 1,
       addresses,
       designerRecommendationCode,
+      introduce,
       isRegister,
       profileImg: profile,
-      portfolioFile: null,
-      portfolioFile: [],
+      portfolioFile: null || [],
+      // portfolioFile: [],
       portfolioImg: portfolios || [],
       num: portfolios ? portfolios.length : 0,
       realFileNum: 0,
-      portfoliosNum: portfolios ? portfolios.length : 0
+      portfoliosNum: portfolios ? portfolios.length : 0,
+      submitLoading: true
     };
   }
 
@@ -265,6 +268,9 @@ class AddDesigner extends Component {
     if (!firebaseUserData.career) return alert('미용 경력을 작성해주세요');
     if (!firebaseUserData.introduce) return alert('자기 소개를 작성해주세요');
 
+    this.setState({ submitLoading: false });
+    window.scrollTo(0, 0);
+
     if (
       designerRecommendationCode &&
       !this.props.userData.designerRecommendationCode
@@ -276,7 +282,8 @@ class AddDesigner extends Component {
           .database()
           .ref('users/' + designerRecommendationCode)
           .on('value', res => {
-            resolve(res);
+            if (res.val()) resolve(res);
+            else resolve(false);
           });
       });
 
@@ -289,8 +296,7 @@ class AddDesigner extends Component {
         firebaseUserData = { ...firebaseUserData, designerRecommendationCode };
         count += 1;
 
-        if (count === 2) {
-          count = 0;
+        if (count !== 0 && count % 2 === 0) {
           await axios.post(`users/${_id}/tickets`, {
             price: 10000
           });
@@ -328,6 +334,7 @@ class AddDesigner extends Component {
     alert(
       '성공적으로 신청되었습니다. \n관리자의 승인을 거친 후 정상적으로 스케줄을 등록하실 수 있습니다.'
     );
+    this.setState({ submitLoading: true });
     this.props.history.push('/');
   };
 
@@ -374,76 +381,86 @@ class AddDesigner extends Component {
         </div>
       );
     }
-
-    return (
-      <div className="container-fluid ad">
-        <Form className="m-5">
-          <div className="ad_title">
-            <p
-              style={{
-                fontWeight: 'normal',
-                fontSize: '1.3rem',
-                marginBottom: '0.5rem'
-              }}
-            >
-              예비디자이너 등록
-            </p>
-            드리머리 예디가 되어 <br /> 모델을 구해보세요
-          </div>
-          <InfoForm
-            state={this.state}
-            checked={!this.state.gender ? null : this.state.gender}
-            certImg1={this.state.certImg1}
-            certFile1={this.state.certFile1}
-            certImg2={this.state.certImg2}
-            certFile2={this.state.certFile2}
-            imgChange={e => this.handleImgChange(e)}
-            changeInput={e => this.handleInputChange(e)}
-            handleAddress={this.handleAddress}
-            addressAddHandler={this.addressAddHandler}
-            addressRemoveHandler={this.addressRemoveHandler}
-            isRegister={isRegister}
-          />
-          <InfoFormExtended
-            state={this.state}
-            profileImg={this.state.profileImg}
-            profileFile={this.state.profileFile}
-            portfolioImg={this.state.portfolioImg}
-            portfolioFile={this.state.portfolioFile}
-            num={this.state.num}
-            imgChange={e => this.handleImgChange(e)}
-            deletePortfolio={e => this.deletePortfolio(e)}
-            changeInput={e => this.handleInputChange(e)}
-          />
-          <FormGroup row>
-            <div className="col-3 if_head">추천인 코드</div>
-            <div className="col-9 d-flex justify-content-left">
-              <input
-                type="text"
-                name="designerRecommendationCode"
-                id="designerRecommendationCode"
-                value={this.state.designerRecommendationCode}
-                onChange={
-                  this.props.userData.designerRecommendationCode
-                    ? null
-                    : e => this.handleInputChange(e)
-                }
-                className="if_input"
-                placeholder="선택사항"
-              />
+    if (this.state.submitLoading) {
+      return (
+        <div className="container-fluid ad">
+          <Form className="m-5">
+            <div className="ad_title">
+              <p
+                style={{
+                  fontWeight: 'normal',
+                  fontSize: '1.3rem',
+                  marginBottom: '0.5rem'
+                }}
+              >
+                예비디자이너 등록
+              </p>
+              드리머리 예디가 되어 <br /> 모델을 구해보세요
             </div>
-          </FormGroup>
-          <FormGroup row>
-            <div className="col-3" />
-            <div className="text-center col-9">
-              <div className="ad_button" onClick={this.submitHandler}>
-                예디 등록하기
+            <InfoForm
+              state={this.state}
+              checked={!this.state.gender ? null : this.state.gender}
+              certImg1={this.state.certImg1}
+              certFile1={this.state.certFile1}
+              certImg2={this.state.certImg2}
+              certFile2={this.state.certFile2}
+              imgChange={e => this.handleImgChange(e)}
+              changeInput={e => this.handleInputChange(e)}
+              handleAddress={this.handleAddress}
+              addressAddHandler={this.addressAddHandler}
+              addressRemoveHandler={this.addressRemoveHandler}
+              isRegister={isRegister}
+            />
+            <InfoFormExtended
+              state={this.state}
+              profileImg={this.state.profileImg}
+              profileFile={this.state.profileFile}
+              portfolioImg={this.state.portfolioImg}
+              portfolioFile={this.state.portfolioFile}
+              num={this.state.num}
+              imgChange={e => this.handleImgChange(e)}
+              deletePortfolio={e => this.deletePortfolio(e)}
+              changeInput={e => this.handleInputChange(e)}
+            />
+            <FormGroup row>
+              <div className="col-3 if_head">추천인 코드</div>
+              <div className="col-9 d-flex justify-content-left">
+                <input
+                  type="text"
+                  name="designerRecommendationCode"
+                  id="designerRecommendationCode"
+                  value={this.state.designerRecommendationCode}
+                  onChange={
+                    this.props.userData.designerRecommendationCode
+                      ? null
+                      : e => this.handleInputChange(e)
+                  }
+                  className="if_input"
+                  placeholder="선택사항"
+                />
               </div>
-            </div>
-          </FormGroup>
-        </Form>
-      </div>
-    );
+            </FormGroup>
+            <FormGroup row>
+              <div className="col-3" />
+              <div className="text-center col-9">
+                <div className="ad_button" onClick={this.submitHandler}>
+                  예디 등록하기
+                </div>
+              </div>
+            </FormGroup>
+          </Form>
+        </div>
+      );
+    } else {
+      return (
+        <div
+          style={{ height: '100vh', width: '100%' }}
+          className="d-flex justify-content-center align-items-center"
+        >
+          <img alt="alt" style={{ height: '20%' }} src={Spinner} />
+        </div>
+      );
+    }
   }
 }
 

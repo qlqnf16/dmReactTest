@@ -39,7 +39,6 @@ const ReservationCard = props => {
   }
   let button = null;
   let type = null;
-  let dDay = false;
   if (props.reservation.isCanceled) {
     button = (
       <div
@@ -69,7 +68,6 @@ const ReservationCard = props => {
     );
     let date = new Date(props.reservation.date);
     if (new Date() >= date || new Date().getDate() === date.getDate()) {
-      dDay = true;
       if (new Date().getDate() === date.getDate()) {
         type = <div style={typeStyle}>D-day</div>;
       } else
@@ -161,7 +159,7 @@ const ReservationCard = props => {
               : () => props.showMore(props.reservation._designer._recruit)
           }
         >
-          더보기
+          {props.type === 'soon' ? '메세지 보내기' : '더보기'}
         </div>
       </div>
     </div>
@@ -170,11 +168,10 @@ const ReservationCard = props => {
 
 const styles = {
   cardStyle: {
-    width: '85%',
     padding: 12,
     backgroundColor: 'rgba(0, 0, 0, 0.03)',
     borderRadius: '5px',
-    margin: '1rem auto',
+    margin: '1rem auto 0 auto',
     color: 'rgba(0, 0, 0, 0.5)'
   },
   userNameStyle: {

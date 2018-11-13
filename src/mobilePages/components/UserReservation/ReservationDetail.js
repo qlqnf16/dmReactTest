@@ -1,5 +1,4 @@
 import React from 'react';
-import spch_bubble from '../../../assets/images/spch_bubble_user.png';
 
 const ReservationDetail = props => {
   const reservation = props.reservation;
@@ -49,11 +48,11 @@ const ReservationDetail = props => {
 };
 const styles = {
   cautionStyle: {
-    margin: '3rem 0',
+    margin: 0,
     color: '#2b2e34',
     fontSize: '1.2rem',
     padding: '5%',
-    border: 'solid 1px #c1e4eb',
+    border: '1px solid #ffe848',
     borderRadius: 5
   },
   titleStyle: {

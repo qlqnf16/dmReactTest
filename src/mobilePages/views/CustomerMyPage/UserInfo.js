@@ -32,6 +32,9 @@ class UserInfo extends Component {
       recommendationCode,
       isRegister
     };
+
+    if (this.props.location.pathname.includes('reservation'))
+      alert("휴대폰 인증 후 예약서비스를 사용할 수 있습니다'");
   }
 
   componentDidMount = async () => {
@@ -97,12 +100,16 @@ class UserInfo extends Component {
       let result = null;
 
       // 유효한 추천인 코드인지 확인
-      await firebase
-        .database()
-        .ref('users/' + recommendationCode)
-        .on('value', res => {
-          result = res;
-        });
+      const fbPromise = new Promise(resolve => {
+        firebase
+          .database()
+          .ref('users/' + recommendationCode)
+          .on('value', res => {
+            if (res.val()) resolve(res);
+            else resolve(false);
+          });
+      });
+      result = await fbPromise;
       // 유효하지 않은 추천인 코드일 때,
       if (!result || recommendationCode === this.props.userData.uid)
         alert('유효하지 않은 추천인 코드 입니다.');
@@ -113,7 +120,7 @@ class UserInfo extends Component {
         firebaseUserData = { ...firebaseUserData, recommendationCode };
         count += 1;
 
-        await axios.patch(`users/${_id}/addpoint`);
+        await axios.patch(`users/${_id}/addpoint`, { point: 1000 });
 
         // 추천받은 횟수 저장
         await firebase
@@ -162,6 +169,7 @@ class UserInfo extends Component {
             userData={this.state}
             submitHandler={this.submitHandler}
             phoneCert={this.phoneCert}
+            recommendationCode={this.props.userData.recommendationCode}
           />
         </div>
       </Fragment>

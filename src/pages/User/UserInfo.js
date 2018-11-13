@@ -30,6 +30,9 @@ class UserInfo extends Component {
       recommendationCode,
       isRegister
     };
+
+    if (this.props.location.pathname.includes('reservation'))
+      alert("휴대폰 인증 후 예약서비스를 사용할 수 있습니다'");
   }
 
   componentDidMount = async () => {
@@ -95,12 +98,17 @@ class UserInfo extends Component {
     if (recommendationCode && !this.props.userData.recommendationCode) {
       let count = 0;
       let result = null;
-      await firebase
-        .database()
-        .ref('users/' + recommendationCode)
-        .on('value', res => {
-          result = res;
-        });
+      // 유효한 추천인 코드인지 확인
+      const fbPromise = new Promise(resolve => {
+        firebase
+          .database()
+          .ref('users/' + recommendationCode)
+          .on('value', res => {
+            if (res.val()) resolve(res);
+            else resolve(false);
+          });
+      });
+      result = await fbPromise;
       if (!result || recommendationCode === this.props.userData.uid) {
         alert('유효하지 않은 추천인 코드 입니다.');
       } else {
@@ -110,12 +118,14 @@ class UserInfo extends Component {
         count += 1;
 
         // 유효한 추천인 코드면 포인트 증가
-        await axios.patch(`users/${_id}/addpoint`);
+        await axios.patch(`users/${_id}/addpoint`, { point: 1000 });
 
         await firebase
           .database()
           .ref('users/' + recommendationCode)
-          .update({ recommendation: count });
+          .update({
+            recommendation: count
+          });
       }
     }
     await firebase

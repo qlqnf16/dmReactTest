@@ -19,12 +19,19 @@ class DesignerList extends Component {
   componentDidMount = async () => {
     if (!this.state.madeRequest) {
       const { data } = await axios.get('recruits');
-      data.sort((a, b) => {
+      const filteredData = data.filter(
+        d =>
+          d._designer &&
+          d._designer.expiredAt &&
+          d._designer.expiredAt > new Date().getTime() &&
+          d._cards.some(card => card.reservable)
+      );
+      filteredData.sort((a, b) => {
         if (a.score < b.score) return 1;
         else if (a.score > b.score) return -1;
         else return 0;
       });
-      this.setState({ recruits: data, madeRequest: true });
+      this.setState({ recruits: filteredData, madeRequest: true });
     }
 
     // 시/도
@@ -80,7 +87,13 @@ class DesignerList extends Component {
     let uniqueRecruits = [];
     const counter = {};
     recruits.forEach(recruit => {
-      if (!counter[recruit._id]) {
+      if (
+        recruit &&
+        !counter[recruit._id] &&
+        recruit._designer &&
+        recruit._designer.expiredAt &&
+        recruit._designer.expiredAt > new Date().getTime()
+      ) {
         uniqueRecruits.push(recruit);
         counter[recruit._id] = true;
       }

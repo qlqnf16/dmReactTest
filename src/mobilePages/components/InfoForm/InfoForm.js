@@ -204,7 +204,7 @@ class InfoForm extends Component {
               <div style={labelStyle}>성별</div>
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <label
-                  for="infoform-male"
+                  htmlFor="infoform-male"
                   className="infoform-male"
                   style={
                     this.props.state.gender === 'male'
@@ -227,7 +227,7 @@ class InfoForm extends Component {
                   <div>남</div>
                 </label>
                 <label
-                  for="infoform-female"
+                  htmlFor="infoform-female"
                   className="infoform-female"
                   style={
                     this.props.state.gender === 'female'
@@ -370,7 +370,7 @@ class InfoForm extends Component {
 
           <div style={labelStyle}>면허증/자격증</div>
           <div style={fileAttachingContainerStyle}>
-            <label style={{ width: '47%', marginRight: '6%' }} for="cert1">
+            <label style={{ width: '47%', marginRight: '6%' }} htmlFor="cert1">
               <input
                 style={defaultInputFileDisplayNone}
                 id="cert1"
@@ -380,7 +380,7 @@ class InfoForm extends Component {
               />
               <div style={fileAttachingInputStyle}>{cert1}</div>
             </label>
-            <label style={{ width: '47%' }} for="cert2">
+            <label style={{ width: '47%' }} htmlFor="cert2">
               <input
                 style={defaultInputFileDisplayNone}
                 id="cert2"
@@ -394,7 +394,7 @@ class InfoForm extends Component {
           <div style={{ fontSize: '1.1rem', color: '#1f3354' }}>
             취득한것만 올려주시면 됩니다.
             <br />
-            드리머리 막내 승인 여부에 사용되며 외부에 공개되지 않습니다.
+            드리머리 예디 승인 여부에 사용되며 외부에 공개되지 않습니다.
           </div>
         </div>
         <Modal

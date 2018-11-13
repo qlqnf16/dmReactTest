@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import firebase from 'firebase';
 import axios from '../../config/Axios';
 // import './DesignerDetail.css'; todo: how to solve modal problem
@@ -79,7 +78,7 @@ class DesignerDetail extends Component {
     recruit,
     cardData
   ) => {
-    if (true) return alert('아직 이용하실 수 없습니다.');
+    // if (true) return alert('아직 이용하실 수 없습니다.');
 
     // 비로그인시 로그인 모달
     if (!this.state.isLogin && this.state.madeRequest) {
@@ -90,6 +89,7 @@ class DesignerDetail extends Component {
 
     if (Object.values(serviceFormat).length === 0)
       return alert('받을 서비스를 선택해 주세요');
+    if (!startTime) return alert('받을 시간을 선택해 주세요');
     await this.props.history.push({
       pathname: `/reservation`,
       state: {
@@ -122,7 +122,6 @@ class DesignerDetail extends Component {
       labelStyle,
       paragraphStyle,
       sectionTitleStyle,
-      reviewAuthorStyle,
       starStyle,
       designerProfileStyle,
       buttonStyle
@@ -151,9 +150,18 @@ class DesignerDetail extends Component {
               <div style={titleStyle}>{recruit.title}</div>
               <div style={occupationStyle}>{shops}</div>
             </div>
-            <div style={{ width: '25%', textAlign: 'right' }}>
-              <img style={designerProfileStyle} src={designer.profile} />
-            </div>
+            <div
+              style={{
+                width: 64,
+                height: 64,
+                textAlign: 'right',
+                borderRadius: '50%',
+                backgroundImage: `url(${designer.profile})`,
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: 'cover'
+              }}
+            />
           </div>
           <div style={{ ...paragraphStyle, marginTop: '3rem' }}>
             {designer.introduce}
@@ -180,23 +188,28 @@ class DesignerDetail extends Component {
             <div>
               {/* todo: modal(big picture) show when clicked */}
               <div style={labelStyle}>포트폴리오</div>
-              <div>
+              <div className="row wrap">
                 {portfolios.map(portfolio => (
-                  <img
-                    alt="alt"
-                    key={portfolio}
-                    src={portfolio}
-                    className="col-4"
-                    style={{ padding: '0', width: '100%', height: '100%' }}
-                    onClick={() => this.showLargeImageToggle(portfolio)}
-                  />
+                  <div className="col-4 px-1 my-1">
+                    <div
+                      key={portfolio}
+                      style={{
+                        height: 100,
+                        backgroundImage: `url(${portfolio})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center'
+                      }}
+                      // style={{ padding: '0', width: '100%', height: '100%' }}
+                      onClick={() => this.showLargeImageToggle(portfolio)}
+                    />
+                  </div>
                 ))}
               </div>
             </div>
           </div>
           <div>
             <div style={{ ...sectionTitleStyle, marginBottom: '1rem' }}>
-              막내리뷰
+              예디리뷰
             </div>
             <div
               style={{ fontSize: '1.2rem', transform: 'translateX(-0.5rem)' }}
@@ -262,19 +275,6 @@ class DesignerDetail extends Component {
               submitReservation={this.submitReservation}
             />
           </ModalBody>
-          {/* <ModalFooter>
-            <div
-              style={{ ...buttonStyle, width: '100%', color: 'white' }}
-              onClick={this.to}
-            >
-              <Link
-                style={{ color: 'white' }}
-                to={{ pathname: `/reservation/${this.props.id}`, state: {} }}
-              >
-              결제하기
-              </Link>
-            </div>
-          </ModalFooter> */}
         </Modal>
       </div>
     );
@@ -296,7 +296,8 @@ const styles = {
     marginTop: '5%'
   },
   designerProfileStyle: {
-    width: '80%',
+    width: '100%',
+    height: '100%',
     borderRadius: '50%'
   },
   labelStyle: {
@@ -333,12 +334,6 @@ const styles = {
     marginTop: '2.7rem',
     marginBottom: '2.3rem',
     paddingBottom: '0.3rem'
-  },
-  reviewAuthorStyle: {
-    fontSize: '1.3rem',
-    fontWeight: 'bold',
-    color: '#2b2e34',
-    paddingTop: '2.2rem'
   },
   starStyle: {
     fontSize: '1.1rem',

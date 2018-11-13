@@ -35,3 +35,12 @@ export { default as M_FAQ } from './views/Ask/FAQ';
 export { default as M_InfoPolicy } from './views/Ask/InfoPolicy';
 export { default as M_QnA } from './views/Ask/QnA';
 export { default as M_TermsOfUse } from './views/Ask/TermsOfUse';
+
+// 관리자
+export { default as M_AdminUserList } from './views/Admin/UserList';
+export { default as M_AdminDesignerList } from './views/Admin/DesignerList';
+export { default as M_AdminWaitingList } from './views/Admin/WaitingList';
+export { default as M_AdminReservationList } from './views/Admin/ReservationList';
+export { default as M_AdminNoShow } from './views/Admin/NoShow';
+export { default as M_AdminMakeCoupon } from './views/Admin/MakeCoupon';
+export { default as M_AdminQnA } from './views/Admin/AdminQnA';

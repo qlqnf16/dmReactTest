@@ -1,5 +1,5 @@
-import firebaseApp from 'firebase';
-import firebase from '../config/Firebase';
+// import firebaseApp from 'firebase';
+// import firebase from '../config/Firebase';
 import io from 'socket.io-client';
 // Module for Authentication
 // Use Ducks Structure

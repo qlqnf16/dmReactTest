@@ -136,15 +136,16 @@ class DesignerTicket extends Component {
             <div style={subtitleStyle}>이용권 구매</div>
 
             <div
-              className="m-3"
               style={{
+                width: '91%',
+                margin: '0 auto 1rem auto',
                 display: 'flex',
                 flexWrap: 'wrap',
                 justifyContent: 'space-between'
               }}
             >
               <label
-                for="card"
+                htmlFor="card"
                 className="purchase_type"
                 style={
                   this.state.method === 'card'
@@ -163,7 +164,7 @@ class DesignerTicket extends Component {
                 <div>신용/체크카드</div>
               </label>
               <label
-                for="trans"
+                htmlFor="trans"
                 className="purchase_type"
                 style={
                   this.state.method === 'trans'
@@ -184,7 +185,7 @@ class DesignerTicket extends Component {
                 <div>실시간 계좌이체</div>
               </label>
               <label
-                for="vbank"
+                htmlFor="vbank"
                 className="purchase_type"
                 style={
                   this.state.method === 'vbank'
@@ -205,7 +206,7 @@ class DesignerTicket extends Component {
                 <div>가상 계좌</div>
               </label>
               <label
-                for="kakao"
+                htmlFor="kakao"
                 className="purchase_type"
                 style={
                   this.state.method === 'kakao'
@@ -229,7 +230,7 @@ class DesignerTicket extends Component {
 
             <TicketPurchaseButton purchaseHandler={this.purchaseHandler} />
             <div style={subtitleStyle}>프로모션 코드 입력</div>
-            <div>
+            <div style={{width: '89%', margin: 'auto'}}>
               <input
                 style={inputTextStyle}
                 onChange={e => this.inputChangeHandler(e)}
@@ -260,7 +261,7 @@ const styles = {
     fontWeight: 'bold',
     color: '#4c91ba',
     textAlign: 'left',
-    margin: '33.5px 0',
+    marginTop: '33.5px',
     paddingBottom: 6.9,
     borderBottom: '1px solid rgba(0, 0, 0, 0.1)'
   },
@@ -268,7 +269,7 @@ const styles = {
     fontSize: '1.3rem',
     fontWeight: 'bold',
     color: '#1f3354',
-    marginBottom: '1.5rem'
+    margin: '3.35rem 0 2rem'
   },
   buttonStyle: {
     display: 'inline-block',

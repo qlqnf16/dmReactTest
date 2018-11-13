@@ -124,8 +124,8 @@ class DesignerList extends Component {
   render() {
     let recruits = null;
     if (this.state.recruits.length) {
-      recruits = this.state.recruits.map(recruit => (
-        <DesignerCard key={recruit._id} recruit={recruit} />
+      recruits = this.state.recruits.map((recruit, key) => (
+        <DesignerCard key={key} recruit={recruit} />
       ));
     }
 

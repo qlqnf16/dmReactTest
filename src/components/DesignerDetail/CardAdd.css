@@ -31,7 +31,7 @@
 }
 
 .toggle_on,
-.toggle_button:hover {
+.toggle_button:active {
   border: solid 2px #1f3354;
 }
 .time_button {

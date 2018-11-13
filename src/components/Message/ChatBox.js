@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import attach from '../../assets/images/attach.png';
 import default_people from '../../assets/images/Default_guy-01.jpg';
 import alart from '../../assets/images/alart.png';
 import Moment from 'react-moment';
@@ -119,7 +118,9 @@ class ChatBox extends Component {
             onScroll={e => {
               if (!e.target.scrollTop && !this.state.madeRequest) {
                 this.setState({ madeRequest: e.target.scrollHeight });
-                this.props.moreMessages(() => (this.state.madeRequest = false));
+                this.props.moreMessages(() =>
+                  this.setState({ madeRequest: false })
+                );
               }
             }}
           >

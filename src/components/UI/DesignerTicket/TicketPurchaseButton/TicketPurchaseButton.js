@@ -4,7 +4,7 @@ import './TicketPurchaseButton.css';
 const TicketPurchaseButton = props => (
   <div className="row tc_button">
     <div className="col-6">
-      <img src={Ticket} className="tc_ticket" />
+      <img src={Ticket} className="tc_ticket" alt="Ticket" />
       <div className="tc_number">1개월 이용권</div>
       <div className="tc_text">10,000원</div>
       <div
@@ -15,7 +15,7 @@ const TicketPurchaseButton = props => (
       </div>
     </div>
     <div className="col-6">
-      <img src={Ticket} className="tc_ticket" />
+      <img src={Ticket} className="tc_ticket" alt="Ticket" />
       <div className="tc_number">3개월 이용권</div>
       <div className="tc_text">28,000원</div>
       <div

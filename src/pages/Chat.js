@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import io from 'socket.io-client';
+// import io from 'socket.io-client';
 import deparam from 'deparam';
 import axios from '../config/Axios';
 import { connect } from 'react-redux';
 import './PageCss.css';
 import ChatBox from '../components/Message/ChatBox';
-import { callbackify } from 'util';
+// import { callbackify } from 'util';
 
 let names;
 
@@ -46,9 +46,7 @@ class Chat extends Component {
     const params = deparam(this.props.location.search.slice(1));
     if (!this.state.madeRequest) {
       const { data } = await axios.get(
-        `users/${
-          this.props.userData._id
-        }/reservations/${params.r}`
+        `users/${this.props.userData._id}/reservations/${params.r}`
       );
       await this.setState({ reservationData: data, madeRequest: true });
     }

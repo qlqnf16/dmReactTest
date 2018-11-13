@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { Component } from 'react';
 import AskNav from '../../components/Navigation/AskNav/AskNav';
 
-const TermsOfUse = () => (
+class TermsOfUse extends Component {
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+  
+  render() {
+  return(
   <div className="container-fluid ask">
     <AskNav />
     <div className="ask_title">이용약관</div>
@@ -11,6 +17,6 @@ const TermsOfUse = () => (
       }
     </pre>
   </div>
-);
+)}};
 
 export default TermsOfUse;

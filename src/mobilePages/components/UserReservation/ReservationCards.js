@@ -3,8 +3,6 @@ import ReservationCard from './ReservationCard';
 import ReservationDetail from './ReservationDetail';
 import NoContent from '../NoContent/NoContent';
 
-const activeCardStyle = {};
-
 const Reservations = props => (
   <div style={containerStyle}>
     <div style={titleStyle}>예약관리</div>
@@ -62,14 +60,15 @@ const styles = {
     fontWeight: 'bold',
     color: '#dd6866',
     textAlign: 'left',
-    margin: '33.5px 0',
+    marginTop: '33.5px',
     paddingBottom: 6.9,
     borderBottom: '1px solid rgba(0, 0, 0, 0.1)'
   },
   subtitleStyle: {
     fontSize: '1.3rem',
     fontWeight: 'bold',
-    color: '#1f3354'
+    color: '#1f3354',
+    marginTop: '33.5px'
   }
 };
 

@@ -13,7 +13,7 @@ const ExtraInfoForm = props => {
     textareaStyle
   } = styles;
   const userData = props.state;
-  let profileImg, portfolio;
+  let profileImg;
 
   if (userData.profileImg)
     profileImg = (
@@ -27,27 +27,30 @@ const ExtraInfoForm = props => {
       </Fragment>
     );
 
-  portfolio =
-    props.state.num > 0 ? (
-      userData.portfolioImg.map((url, i) => (
-        <ImgPreview
-          style={ImgPreviewStyle}
-          url={url}
-          key={i}
-          deletePortfolio={props.deletePortfolio}
-        />
-      ))
-    ) : (
-      <Fragment>
-        <span>포트폴리오</span>
-        <span style={{ fontSize: '2rem' }}>+</span>
-      </Fragment>
-    );
+  // let portfolio =
+  //   props.state.num > 0 ? (
+  //     userData.portfolioImg.map((url, i) => (
+  //       <ImgPreview
+  //         style={ImgPreviewStyle}
+  //         url={url}
+  //         key={i}
+  //         deletePortfolio={props.deletePortfolio}
+  //       />
+  //     ))
+  //   ) : (
+  //     <Fragment>
+  //       <span>포트폴리오</span>
+  //       <span style={{ fontSize: '2rem' }}>+</span>
+  //     </Fragment>
+  //   );
   return (
     <div style={containerStyle}>
       <div style={labelStyle}>프로필/자기소개</div>
       <div style={fileAttachingContainerStyle}>
-        <label style={{ width: '47.5%', marginRight: '4%' }} for="profileImg">
+        <label
+          style={{ width: '47.5%', marginRight: '4%' }}
+          htmlFor="profileImg"
+        >
           <input
             style={defaultInputFileDisplayNone}
             id="profileImg"
@@ -75,6 +78,7 @@ const ExtraInfoForm = props => {
                   ...fileAttachingInputStyle,
                   width: '47.5%'
                 }}
+                key={i}
               >
                 <ImgPreview
                   style={{ ...ImgPreviewStyle }}
@@ -85,7 +89,10 @@ const ExtraInfoForm = props => {
               </div>
             ))
           : null}
-        <label style={{ width: '47.5%', marginRight: '4%' }} for="portfolio">
+        <label
+          style={{ width: '47.5%', marginRight: '4%' }}
+          htmlFor="portfolio"
+        >
           <input
             style={defaultInputFileDisplayNone}
             id="portfolio"

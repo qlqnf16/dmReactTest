@@ -49,7 +49,7 @@ class DesignerCoupon extends Component {
               </div>
             </div> */}
             <div>
-              <div style={labelStyle}>추천인 코드</div>
+              <div style={labelStyle} className='mb-3'>추천인 코드</div>
               <div>
                 <CouponContent
                   couponNumber={firebase.auth().currentUser.uid}
@@ -78,52 +78,10 @@ const styles = {
     color: '#1e3354',
     marginTop: '1.5rem',
     marginBottom: '0.2rem'
-  },
-  inputTextStyle: {
-    fontSize: '1.3rem',
-    color: '#1f3354',
-    padding: '0.7rem',
-    borderRadius: '5px',
-    border: 'solid 1px rgba(0, 0, 0, 0.1)',
-    width: '66.7%'
-  },
-  titleStyle: {
-    fontSize: '1.5rem',
-    fontWeight: 'bold',
-    color: '#4c91ba',
-    textAlign: 'left',
-    margin: '33.5px 0',
-    paddingBottom: 6.9,
-    borderBottom: '1px solid rgba(0, 0, 0, 0.1)'
-  },
-  subtitleStyle: {
-    fontSize: '1.3rem',
-    fontWeight: 'bold',
-    color: '#1f3354'
-  },
-  buttonStyle: {
-    display: 'inline-block',
-    marginLeft: '3.3%',
-    padding: '2.3%',
-    width: '30%',
-    border: '1px solid #4c91ba',
-    backgroundColor: '#4c91ba',
-    borderRadius: '5px',
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: '1.3rem',
-    textAlign: 'center'
   }
 };
 
-const {
-  containerStyle,
-  labelStyle,
-  inputTextStyle,
-  titleStyle,
-  subtitleStyle,
-  buttonStyle
-} = styles;
+const { containerStyle, labelStyle } = styles;
 
 const mapStateToProps = ({ authentication: { userData } }) => {
   return { userData };

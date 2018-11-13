@@ -8,6 +8,8 @@ import InfoForm from '../../components/InfoForm/InfoForm';
 import ExtraInfoForm from '../../components/InfoForm/ExtraInfoForm';
 import DesignerNav from '../../components/NavigationBar/DesignerNav';
 
+import Spinner from '../../../assets/images/loading_spinner.gif';
+
 class DesignerInfo extends Component {
   constructor(props) {
     super(props);
@@ -62,7 +64,8 @@ class DesignerInfo extends Component {
       portfoliosNum: portfolios ? portfolios.length : 0,
       isRegister,
       portfolios: portfolios || [],
-      introduce
+      introduce,
+      submitLoading: true
     };
   }
 
@@ -84,6 +87,10 @@ class DesignerInfo extends Component {
   };
 
   // input
+  dYear = 0;
+  dMonth = 0;
+  careerYear = 0;
+  careerMonth = 0;
   handleInputChange = e => {
     const { value, name, id } = e.target;
 
@@ -105,6 +112,8 @@ class DesignerInfo extends Component {
       this.setState({ addresses });
     } else {
       this.setState({ [name]: value });
+      console.log(this.props.userData.designerRecommendationCode);
+      console.log(this.state.designerRecommendationCode);
     }
   };
 
@@ -233,6 +242,8 @@ class DesignerInfo extends Component {
     if (!firebaseUserData.career) return alert('미용 경력을 작성해주세요');
     if (!firebaseUserData.introduce) return alert('자기 소개를 작성해주세요');
 
+    this.setState({ submitLoading: false });
+    window.scrollTo(0, 0);
     // 추천인 로직
     // 전에 추천인을 입력한 적이 없고, 추천인을 작성했을 때,
     if (
@@ -248,7 +259,8 @@ class DesignerInfo extends Component {
           .database()
           .ref('users/' + designerRecommendationCode)
           .on('value', res => {
-            resolve(res);
+            if (res.val()) resolve(res);
+            else resolve(false);
           });
       });
       result = await fbPromise;
@@ -262,8 +274,7 @@ class DesignerInfo extends Component {
         firebaseUserData = { ...firebaseUserData, designerRecommendationCode };
         count += 1;
 
-        if (count === 2) {
-          count = 0;
+        if (count !== 0 && count % 2 === 0) {
           await axios.post(`users/${_id}/tickets`, {
             price: 10000
           });
@@ -296,6 +307,7 @@ class DesignerInfo extends Component {
       { headers: { 'Content-Type': 'multipart/form-data' } }
     );
     alert('성공적으로 신청되었습니다. \n스케줄 등록으로 이동합니다.');
+    this.setState({ submitLoading: true });
     this.props.history.push('schedule');
   };
 
@@ -331,48 +343,56 @@ class DesignerInfo extends Component {
         </div>
       );
     }
-    return (
-      <div className="m_containerStyle">
-        <DesignerNav />
-        <div style={containerStyle}>
-          <div style={titleStyle}>회원 정보 관리</div>
-          <div style={subtitleStyle}>회원 정보 수정</div>
-        </div>
-        <InfoForm
-          state={this.state}
-          changeInput={e => this.handleInputChange(e)}
-          handleAddress={this.handleAddress}
-          addressAddHandler={this.addressAddHandler}
-          addressRemoveHandler={this.addressRemoveHandler}
-          handleImgChange={this.handleImgChange}
-          isRegister={isRegister}
-        />
-        <ExtraInfoForm
-          state={this.state}
-          changeInput={e => this.handleInputChange(e)}
-          handleImgChange={e => this.handleImgChange(e)}
-          deletePortfolio={e => this.deletePortfolio(e)}
-        />
-        <div style={containerStyle}>
-          <div style={labelStyle}>추천인 코드</div>
-          <input
-            style={inputTextStyle}
-            type="text"
-            name="designerRecommendationCode"
-            id="designerRecommendationCode"
-            value={this.state.designerRecommendationCode}
-            onChange={
-              this.props.userData.designerRecommendationCode
-                ? null
-                : e => this.handleInputChange(e)
-            }
+
+    if (this.state.submitLoading) {
+      return (
+        <div className="m_containerStyle">
+          <DesignerNav />
+          <div style={containerStyle}>
+            <div style={titleStyle}>회원 정보 관리</div>
+            <div style={subtitleStyle}>회원 정보 수정</div>
+          </div>
+          <InfoForm
+            state={this.state}
+            changeInput={e => this.handleInputChange(e)}
+            handleAddress={this.handleAddress}
+            addressAddHandler={this.addressAddHandler}
+            addressRemoveHandler={this.addressRemoveHandler}
+            handleImgChange={this.handleImgChange}
+            isRegister={isRegister}
           />
-          <div style={buttonStyle} onClick={this.submitHandler}>
-            예디 정보 수정하기
+          <ExtraInfoForm
+            state={this.state}
+            changeInput={e => this.handleInputChange(e)}
+            handleImgChange={e => this.handleImgChange(e)}
+            deletePortfolio={e => this.deletePortfolio(e)}
+          />
+          <div style={containerStyle}>
+            <div style={labelStyle}>추천인 코드</div>
+            <input
+              style={inputTextStyle}
+              type="text"
+              name="designerRecommendationCode"
+              id="designerRecommendationCode"
+              value={this.state.designerRecommendationCode}
+              onChange={e => this.handleInputChange(e)}
+            />
+            <div style={buttonStyle} onClick={this.submitHandler}>
+              예디 정보 수정하기
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div
+          style={{ height: '100vh', width: '100%' }}
+          className="d-flex justify-content-center align-items-center"
+        >
+          <img alt="alt" style={{ height: '20%' }} src={Spinner} />
+        </div>
+      );
+    }
   }
 }
 

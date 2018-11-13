@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import ChatPreview from '../components/Message/chatPreview';
 import messageSort from '../utility/messageSortFunc';
 import './PageCss.css';
-import { connectSocket } from '../modules/authentication';
+// import { connectSocket } from '../modules/authentication';
 
 // const socket = io('http://54.180.92.115:3030'); // 실제 chat 서버 주소
 
@@ -25,9 +25,7 @@ class Message extends Component {
   async componentDidMount() {
     if (!this.state.messages) {
       const { data } = await axios.get(
-        `users/${
-          this.props.userData._id
-        }/reservations`
+        `users/${this.props.userData._id}/reservations`
       );
 
       const future = data.filter(d => !d.isDone && !d.isCanceled);
@@ -74,9 +72,7 @@ class Message extends Component {
   async componentDidUpdate() {
     if (!this.state.messages) {
       const { data } = await axios.get(
-        `users/${
-          this.props.userData._id
-        }/reservations`
+        `users/${this.props.userData._id}/reservations`
       );
       const future = data.filter(d => !d.isDone && !d.isCanceled);
       const prev = data.filter(d => d.isDone || d.isCanceled);

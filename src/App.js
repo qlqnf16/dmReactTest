@@ -59,6 +59,13 @@ import {
   M_DesignerTicket,
   M_Schedule,
   M_WhyDreamary,
+  M_AdminUserList,
+  M_AdminDesignerList,
+  M_AdminWaitingList,
+  M_AdminReservationList,
+  M_AdminMakeCoupon,
+  M_AdminNoShow,
+  M_AdminQnA,
   M_FAQ,
   M_InfoPolicy,
   M_QnA,
@@ -66,7 +73,7 @@ import {
 } from './mobilePages';
 import Toolbar from './components/Navigation/Toolbar/Toolbar';
 import Footer from './components/UI/Footer/Footer';
-import M_Footer from './mobilePages/components/Footer/Footer';
+import MobileFooter from './mobilePages/components/Footer/Footer';
 import MobileNavigationBar from './mobilePages/components/NavigationBar/NavigationBar';
 import MobileSideDrawer from './mobilePages/components/NavigationBar/SideDrawer';
 import MobileBackdrop from './mobilePages/components/NavigationBar/Backdrop';
@@ -101,6 +108,15 @@ class App extends Component {
 
   componentDidMount = () => {
     if (!this.state.madeRequest) this.authListener();
+
+    // ie 브라우저인지 확인
+    let isIE =
+      navigator.userAgent.indexOf('MSIE ') > -1 ||
+      navigator.userAgent.indexOf('Trident/') > -1;
+    if (isIE)
+      alert(
+        '드리머리 서비스는 인터넷 익스플로러 환경에서 원활하지 않을 수 있습니다. 크롬이나 사파리 등 다른 브라우저 또는 모바일 버전을 이용해주세요.'
+      );
   };
 
   authListener() {
@@ -133,7 +149,6 @@ class App extends Component {
             .setAttribute('src', "don't try to look at this!");
         }
       } else {
-        this;
         // logout 하면 landing page로 이동
         this.props.history.push('/');
         this.state.isLogin && window.location.reload();
@@ -492,12 +507,64 @@ class App extends Component {
                 component={this.props.userData.isD ? M_Schedule : M_WrongAccess}
               />
 
+              {/* 관리자페이지 */}
+              <Route
+                path="/admin/userlist"
+                component={
+                  this.props.userData.isAdmin ? M_AdminUserList : M_WrongAccess
+                }
+              />
+              <Route
+                path="/admin/designerlist"
+                component={
+                  this.props.userData.isAdmin
+                    ? M_AdminDesignerList
+                    : M_WrongAccess
+                }
+              />
+              <Route
+                path="/admin/makecoupon"
+                component={
+                  this.props.userData.isAdmin
+                    ? M_AdminMakeCoupon
+                    : M_WrongAccess
+                }
+              />
+              <Route
+                path="/admin/noshow"
+                component={
+                  this.props.userData.isAdmin ? M_AdminNoShow : M_WrongAccess
+                }
+              />
+              <Route
+                path="/admin/qna"
+                component={
+                  this.props.userData.isAdmin ? M_AdminQnA : M_WrongAccess
+                }
+              />
+              <Route
+                path="/admin/reservationlist"
+                component={
+                  this.props.userData.isAdmin
+                    ? M_AdminReservationList
+                    : M_WrongAccess
+                }
+              />
+              <Route
+                path="/admin/waitinglist"
+                component={
+                  this.props.userData.isAdmin
+                    ? M_AdminWaitingList
+                    : M_WrongAccess
+                }
+              />
+
               {/* customer my page (for testing MyPageNavigationBar) */}
               <Route path="/mypage" component={M_CustomerMyPage} />
               <Route component={M_WrongAccess} />
             </Switch>
           </div>
-          <M_Footer />
+          <MobileFooter />
         </Fragment>
       );
     }

@@ -38,7 +38,7 @@ class ScheduleBox extends Component {
   }
 
   componentDidMount = async () => {
-    if (!this.state.madeRequest) {
+    if (!this.state.madeRequest && this.props.userData._recruit) {
       const { data } = await axios.get(
         `recruits/${this.props.userData._recruit}`
       );
@@ -131,7 +131,7 @@ class ScheduleBox extends Component {
   };
 
   cardAddHandler = async cardData => {
-    const res = await this.props.cardAddHandler(cardData);
+    const res = this.props.cardAddHandler(cardData);
     if (res) {
       this.setState({ time: 1, sinces: [], untils: [], date: null });
 

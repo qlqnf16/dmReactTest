@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import questionMark from '../../../assets/images/question_yellow.png';
 import { connect } from 'react-redux';
 import ReactTooltip from 'react-tooltip';
@@ -60,9 +59,16 @@ class CardAdd extends Component {
     });
     this.props.ableTimes.forEach(ableTime => {
       let time = ableTime.since;
-      while (time <= ableTime.until - 90) {
-        if (!reservedTimes.includes(time)) Times.push(time);
-        time += 30;
+      let requireTime = 0;
+      requireTime += this.state.cut && this.props.recruit.requireTime.cut;
+      requireTime += this.state.perm && this.props.recruit.requireTime.perm;
+      requireTime += this.state.dye && this.props.recruit.requireTime.dye;
+      for (let t = time; t <= ableTime.until - requireTime; t += 30) {
+        let temp = true;
+        for (let i = t; i <= t + requireTime - 30; i += 30) {
+          if (reservedTimes.includes(i)) temp = false;
+        }
+        if (temp) Times.push(t);
       }
     });
     let timeButtons = null;

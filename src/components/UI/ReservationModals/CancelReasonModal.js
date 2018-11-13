@@ -68,8 +68,8 @@ const CancelReasonModal = props => {
             <div
               className={
                 props.isD
-                  ? 'm_button btn m_button_blue'
-                  : 'm_button btn m_button_red'
+                  ? 'm_button m_button_blue'
+                  : 'm_button m_button_red'
               }
               onClick={props.toggle}
             >
