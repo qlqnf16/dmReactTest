@@ -35,6 +35,14 @@ class DesignerList extends Component {
             <Moment format="YYYY/MM/DD">{reservation.date}</Moment>
           </td>
           <td>
+            {`${Math.floor(reservation.time.since / 60)}:${reservation.time
+              .since % 60} ~ ${Math.floor(
+              reservation.time.until / 60
+            )}:${reservation.time.until % 60}`}
+          </td>
+          <td>{reservation._card.shop}</td>
+          <td>{`${reservation._card.sido} ${reservation._card.sigungu}`}</td>
+          <td>
             {!reservation.isCanceled
               ? reservation.isDone
                 ? '완료'
@@ -55,6 +63,9 @@ class DesignerList extends Component {
                 <th>일반 회원</th>
                 <th>예약 체결일</th>
                 <th>예약일</th>
+                <th>에약일시</th>
+                <th>샵</th>
+                <th>주소</th>
                 <th>상태</th>
               </tr>
             </thead>
