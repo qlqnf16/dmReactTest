@@ -210,16 +210,18 @@ class Landing extends Component {
                 <div className="landing_cbutton">예디 찾기</div>
               </Link> */}
               <div style={{ display: 'flex' }}>
-                <a
-                  style={{ marginRight: '1%', height: '48px' }}
-                  href="https://goo.gl/forms/ZH7RU6NhLRNllEZk1"
-                  target="_blank"
-                  className="linkdeco"
+                <Link
+                  style={{
+                    textDecoration: 'none',
+                    marginRight: '1%',
+                    height: '48px'
+                  }}
+                  to="/whyDreamary"
                 >
                   <div style={{ width: 220 }} className="landing_cbutton">
-                    디자이너 사전 등록
+                    예비 디자이너 등록
                   </div>
-                </a>
+                </Link>
                 <a
                   href="https://docs.google.com/forms/d/e/1FAIpQLSeItk9iCRUtyrLL6Jjz79LkRaHiH0b2PK1byAAtCgH3q4_RXA/viewform"
                   target="_blank"
