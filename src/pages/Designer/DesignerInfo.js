@@ -304,6 +304,7 @@ class DesignerInfo extends Component {
         }
       }
     );
+    console.log('hi');
     alert('성공적으로 저장되었습니다. \n스케줄 등록으로 이동합니다.');
     this.props.history.push('/designer/schedule');
   };
