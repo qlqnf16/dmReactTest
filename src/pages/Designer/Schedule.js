@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import ScheduleBox from '../../components/DesignerSchedule/ScheduleBox/ScheduleBox';
 import axios from '../../config/Axios';
-
 import firebase from '../../config/Firebase';
 import { connect } from 'react-redux';
+
+import ScheduleBox from '../../components/DesignerSchedule/ScheduleBox/ScheduleBox';
 import Spinner from '../../assets/images/loading_spinner.gif';
+
 class Schedule extends Component {
   state = {
     cards: [],
@@ -14,7 +15,7 @@ class Schedule extends Component {
   };
 
   componentDidMount = async () => {
-    if (!this.state.madeRequest) {
+    if (!this.state.madeRequest && this.props.userData._recruit) {
       const { data } = await axios.get(
         `recruits/${this.props.userData._recruit}`
       );

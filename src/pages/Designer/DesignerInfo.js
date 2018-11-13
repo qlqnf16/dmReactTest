@@ -5,6 +5,7 @@ import InfoFormExtended from '../../components/InfoForm/InfoFormExtended';
 import { connect } from 'react-redux';
 import firebase from '../../config/Firebase';
 import check_sm from '../../assets/images/check_sm.png';
+import Spinner from '../../assets/images/loading_spinner.gif';
 
 import fd from 'form-data';
 import axios from '../../config/Axios';
@@ -58,7 +59,8 @@ class DesignerInfo extends Component {
       addressNum: addresses.length + 1,
       portfoliosNum: portfolios ? portfolios.length : 0,
       designerRecommendationCode,
-      isRegister
+      isRegister,
+      submitLoading: true
     };
   }
 
@@ -180,6 +182,8 @@ class DesignerInfo extends Component {
   }
 
   submitHandler = async () => {
+    this.setState({ submitLoading: false });
+
     const {
       name,
       gender,
@@ -305,6 +309,7 @@ class DesignerInfo extends Component {
       }
     );
     alert('성공적으로 저장되었습니다. \n스케줄 등록으로 이동합니다.');
+    this.setState({ submitLoading: true });
     this.props.history.push('/designer/schedule');
   };
 
@@ -315,67 +320,79 @@ class DesignerInfo extends Component {
         인증됨
       </div>
     );
-    return (
-      <div className="container-fluid d">
-        <div className="d_bg">
-          <div className="d_container">
-            <div style={{ color: '#4c91ba' }} className="u_title ">
-              회원정보 수정
-            </div>
-            <Form className="m-5 d_info">
-              <InfoForm
-                state={this.state}
-                certImg1={this.state.certImg1}
-                certFile1={this.state.certFile1}
-                certImg2={this.state.certImg2}
-                certFile2={this.state.certFile2}
-                imgChange={e => this.handleImgChange(e)}
-                changeInput={e => this.handleInputChange(e)}
-                checked={!this.state.gender ? null : this.state.gender}
-                handleAddress={this.handleAddress}
-                addressAddHandler={this.addressAddHandler}
-                addressRemoveHandler={this.addressRemoveHandler}
-                isRegister={isRegister}
-              />
-              <InfoFormExtended
-                state={this.state}
-                profileImg={this.state.profileImg}
-                profileFile={this.state.profileFile}
-                portfolioImg={this.state.portfolioImg}
-                portfolioFile={this.state.portfolioFile}
-                num={this.state.num}
-                imgChange={e => this.handleImgChange(e)}
-                deletePortfolio={e => this.deletePortfolio(e)}
-                changeInput={e => this.handleInputChange(e)}
-              />
-              <FormGroup row>
-                <div className="col-3 if_head">추천인 코드</div>
-                <div className="col-9 d-flex justify-content-left">
-                  <input
-                    type="text"
-                    name="designerRecommendationCode"
-                    id="designerRecommendationCode"
-                    value={this.state.designerRecommendationCode}
-                    onChange={
-                      this.props.userData.designerRecommendationCode
-                        ? () => {}
-                        : e => this.handleInputChange(e)
-                    }
-                    className="if_input"
-                    placeholder="선택사항"
-                  />
-                </div>
-              </FormGroup>
-              <div className="text-center">
-                <div className="btn dif_button" onClick={this.submitHandler}>
-                  등록하기
-                </div>
+
+    if (this.state.submitLoading) {
+      return (
+        <div className="container-fluid d">
+          <div className="d_bg">
+            <div className="d_container">
+              <div style={{ color: '#4c91ba' }} className="u_title ">
+                회원정보 수정
               </div>
-            </Form>
+              <Form className="m-5 d_info">
+                <InfoForm
+                  state={this.state}
+                  certImg1={this.state.certImg1}
+                  certFile1={this.state.certFile1}
+                  certImg2={this.state.certImg2}
+                  certFile2={this.state.certFile2}
+                  imgChange={e => this.handleImgChange(e)}
+                  changeInput={e => this.handleInputChange(e)}
+                  checked={!this.state.gender ? null : this.state.gender}
+                  handleAddress={this.handleAddress}
+                  addressAddHandler={this.addressAddHandler}
+                  addressRemoveHandler={this.addressRemoveHandler}
+                  isRegister={isRegister}
+                />
+                <InfoFormExtended
+                  state={this.state}
+                  profileImg={this.state.profileImg}
+                  profileFile={this.state.profileFile}
+                  portfolioImg={this.state.portfolioImg}
+                  portfolioFile={this.state.portfolioFile}
+                  num={this.state.num}
+                  imgChange={e => this.handleImgChange(e)}
+                  deletePortfolio={e => this.deletePortfolio(e)}
+                  changeInput={e => this.handleInputChange(e)}
+                />
+                <FormGroup row>
+                  <div className="col-3 if_head">추천인 코드</div>
+                  <div className="col-9 d-flex justify-content-left">
+                    <input
+                      type="text"
+                      name="designerRecommendationCode"
+                      id="designerRecommendationCode"
+                      value={this.state.designerRecommendationCode}
+                      onChange={
+                        this.props.userData.designerRecommendationCode
+                          ? () => {}
+                          : e => this.handleInputChange(e)
+                      }
+                      className="if_input"
+                      placeholder="선택사항"
+                    />
+                  </div>
+                </FormGroup>
+                <div className="text-center">
+                  <div className="btn dif_button" onClick={this.submitHandler}>
+                    등록하기
+                  </div>
+                </div>
+              </Form>
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div
+          style={{ height: '100vh', width: '100%' }}
+          className="d-flex justify-content-center align-items-center"
+        >
+          <img alt="alt" style={{ height: '20%' }} src={Spinner} />
+        </div>
+      );
+    }
   }
 }
 
