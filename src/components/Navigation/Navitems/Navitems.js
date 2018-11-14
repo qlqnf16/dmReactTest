@@ -134,8 +134,7 @@ class Navitems extends Component {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink
-              // 장막
+            <NavLink // 장막
               onClick={() => alert('아직 이용하실 수 없습니다.')}
               style={{ cursor: 'pointer' }}
               className=""
@@ -178,6 +177,7 @@ class Navitems extends Component {
               style={{ cursor: 'pointer' }}
               className=" message_img"
             >
+              <img alt="alt" src={message_x} style={{ width: '100%' }} />
               {/* <NavLink tag={Link} to={'/message'} className=" message_img">
               <img alt="alt" src={message_x} style={{ width: '100%' }} />
               {this.state.newMessage ? (
