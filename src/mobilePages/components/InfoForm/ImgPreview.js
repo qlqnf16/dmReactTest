@@ -1,10 +1,11 @@
 import React from 'react';
+import ExifOrientationImg from 'react-exif-orientation-img';
 
 const ImgPreview = props => {
   let image = null;
   if (props.url) {
     image = (
-      <img
+      <ExifOrientationImg
         style={props.style}
         src={props.url}
         onClick={props.deletePortfolio}
