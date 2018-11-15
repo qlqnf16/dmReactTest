@@ -248,7 +248,6 @@ class DesignerDetail extends Component {
           <div style={{ height: 100 }} />
           <div
             style={{
-              backgroundColor: 'white',
               height: 100,
               position: 'fixed',
               bottom: '0%',
