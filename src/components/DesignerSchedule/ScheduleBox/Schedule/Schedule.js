@@ -185,6 +185,45 @@ class Schedule extends Component {
                 }}
               >
                 서비스 가능 시간
+                <br />
+                <img
+                  alt="alt"
+                  className="question"
+                  src={questionMark}
+                  data-tip
+                  data-for="time"
+                />
+                <ReactTooltip
+                  id="time"
+                  place="left"
+                  type="light"
+                  effect="solid"
+                  delayHide={500}
+                  className="card_tooltip tooltip_pic"
+                >
+                  <div className="mb-3 tooltip_text">
+                    한 시술의 시작시간과 끝시간을 의미하는 것이 아니라,
+                    '하루동안 서비스가 가능한 전체 시간범위'를 의미합니다.
+                  </div>
+                  <div className="mb-2" style={{ color: '#1f3354' }}>
+                    예시)
+                  </div>
+                  <div className="mb-3 tooltip_text">
+                    - 저녁 7시 이후부터 시간이 가능하고, 11시에는 마무리 하고
+                    싶으시다면 19:00 ~ 23:00로 표기해주세요.
+                  </div>
+                  <div className="mb-3 tooltip_text">
+                    - 휴무라서 연습을 많이 하고 싶으시면 09:00 ~ 21:00 등으로
+                    표기해주시면 됩니다.
+                  </div>
+                  <div className="mb-3 tooltip_text">
+                    시간 추가/지우기 버튼으로 스케줄 세부 조정도 가능합니다.
+                  </div>
+                  <div className="mb-3 tooltip_text">
+                    앞서 작성한 예상 시술 소요 시간에 따라 서비스 시간은
+                    자동으로 조율됩니다!
+                  </div>
+                </ReactTooltip>
               </Label>
               <div className="col-7 p-0">
                 {this.timeSelector()}
@@ -220,6 +259,8 @@ class Schedule extends Component {
                   color: '#1f3354'
                 }}
               >
+                사진촬영 여부
+                <br />
                 <img
                   alt="alt"
                   className="question"
@@ -258,7 +299,6 @@ class Schedule extends Component {
                     고객들이 예약할 확률이 낮습니다.)
                   </div>
                 </ReactTooltip>
-                사진촬영 여부
               </Label>
               <Input
                 name="picture"
