@@ -46,7 +46,7 @@ class InfoForm extends Component {
             type="text"
             name="extraAddress"
             id={i}
-            placeholder="샵 상세주소(ex. 준오헤어 청담점)"
+            placeholder="샵 상세주소(ex. OO헤어 청담점)"
             value={
               this.props.state.addresses[i] &&
               this.props.state.addresses[i].extraAddress
@@ -281,7 +281,21 @@ class InfoForm extends Component {
           {this.props.isRegister}
         </FormGroup>
         <FormGroup row>
-          <div className="col-3 if_head">지역/샵주소</div>
+          <div className="col-3 if_head">
+            지역/샵주소
+            <div
+              style={{
+                fontSize: '1rem',
+                lineHeight: 1,
+                letterSpacing: '0rem',
+                fontWeight: 'normal'
+              }}
+            >
+              스케줄 생성 시 시술이 진행될 샵이
+              <br />
+              선택되므로 정확히 입력해주세요.
+            </div>
+          </div>
           <div className="col-9 ">
             {this.addressSelector()}
             <div

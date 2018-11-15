@@ -44,7 +44,7 @@ class InfoForm extends Component {
             type="text"
             name="extraAddress"
             id={i}
-            placeholder="샵 상세주소(ex. 준오헤어 청담점)"
+            placeholder="샵 상세주소(ex. OO헤어 청담점)"
             value={
               this.props.state.addresses[i] &&
               this.props.state.addresses[i].extraAddress
@@ -275,7 +275,20 @@ class InfoForm extends Component {
             />
             {this.props.isRegister}
           </div>
-          <div style={labelStyle}>샵주소</div>
+          <div style={labelStyle}>
+            샵주소
+            <span
+              style={{
+                fontSize: '1rem',
+                lineHeight: 1,
+                letterSpacing: '0rem',
+                fontWeight: 'normal',
+                marginLeft: '1rem'
+              }}
+            >
+              시술이 진행될 샵이 선택되므로 정확히 입력해주세요.
+            </span>
+          </div>
           {this.addressSelector()}
           <div
             style={{
