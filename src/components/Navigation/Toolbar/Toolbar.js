@@ -61,7 +61,7 @@ class Toolbar extends Component {
           <NavbarBrand tag={Link} to={'/'}>
             <img className="logo" src={logo} alt="Main Logo" />
           </NavbarBrand>
-          {/* <div
+          <div
             style={{
               position: 'absolute',
               display: 'flex',
@@ -82,7 +82,7 @@ class Toolbar extends Component {
             디자이너 등록 기간입니다.
             <br />
             일부 기능이 작동하지 않을 수 있습니다.
-          </div> */}
+          </div>
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <Navitems
