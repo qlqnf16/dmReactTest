@@ -195,7 +195,10 @@ class MyModal extends Component {
                 className="modal_button"
               />
             </div>
-            <KakaoLogin
+
+            {/* 카카오 로그인 일시적 사용 금지 */}
+
+            {/* <KakaoLogin
               jsKey={KaKaoKey}
               onSuccess={LoginFunc.kakao_login_success}
               onFailure={LoginFunc.kakao_login_fail}
@@ -217,7 +220,7 @@ class MyModal extends Component {
                   />
                 </div>
               )}
-            />
+            /> */}
 
             {/* Modal check */}
             {check}
