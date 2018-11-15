@@ -196,31 +196,26 @@ const AddCardModal = props => {
                   delayHide={500}
                 >
                   <div className="mb-2" style={{ color: '#1f3354' }}>
-                    ✓ 적극응원
+                    ✓ 사진촬영 X
                   </div>
                   <div className="mb-3 tooltip_text">
-                    사진을 촬영하며, 미래에 홍보용으로 사용될 수 있습니다.
+                    사진촬영을 하지 않습니다.
                   </div>
 
                   <div className="mb-2" style={{ color: '#1f3354' }}>
-                    ✓ 히든응원{' '}
+                    ✓ 사진촬영 O 모자이크 가능
                   </div>
                   <div className="mb-3 tooltip_text">
-                    사진을 촬영하나 얼굴은 모자이크 처리합니다.
+                    사진을 촬영하며 모자이크 처리할 수 있습니다. (사진 촬영이
+                    필요하시다면 이 옵션을 추천합니다.)
                   </div>
 
                   <div className="mb-2" style={{ color: '#1f3354' }}>
-                    ✓ 매너응원
+                    ✓ 사진촬영 O 모자이크 불가
                   </div>
                   <div className="mb-3 tooltip_text">
-                    사진을 촬영하나 개인소장/실습 증명용으로만 사용됩니다.
-                  </div>
-
-                  <div className="mb-2" style={{ color: '#1f3354' }}>
-                    ✓ 사진촬영x
-                  </div>
-                  <div className="mb-3 tooltip_text">
-                    사진을 촬영하지 않습니다.
+                    사진을 촬영하며 모자이크 처리하지 않습니다. (이 경우
+                    고객들이 예약할 확률이 낮습니다.)
                   </div>
                 </ReactTooltip>
               </label>
@@ -231,10 +226,9 @@ const AddCardModal = props => {
                 onChange={props.changeInput}
               >
                 <option value="null">사진촬영 여부를 선택해주세요.</option>
-                <option>적극응원</option>
-                <option>히든응원</option>
-                <option>매너응원</option>
-                <option>사진촬영x</option>
+                <option>사진촬영 X</option>
+                <option>사진촬영 O 모자이크 가능</option>
+                <option>사진촬영 O 모자이크 불가</option>
               </select>
             </div>
             <div>
