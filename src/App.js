@@ -143,11 +143,16 @@ class App extends Component {
             this.setState({ finishRedux: true });
             // if (!userData.isRegister) this.props.history.push('/userInfo');
           });
-        if (document.querySelector('iframe')) {
-          document
-            .querySelector('iframe')
-            .setAttribute('src', "don't try to look at this!");
-        }
+
+        // =========================================
+        // firebase 문제일수도 있다는 생각에 일단 지움 ㅅㄱ
+        // =========================================
+
+        // if (document.querySelector('iframe')) {
+        //   document
+        //     .querySelector('iframe')
+        //     .setAttribute('src', "don't try to look at this!");
+        // }
       } else {
         // logout 하면 landing page로 이동
         this.props.history.push('/');
