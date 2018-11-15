@@ -16,8 +16,17 @@ import googleSignUpButton from '../../../assets/images/join_google.png';
 import facebookSignUpButton from '../../../assets/images/join_fb.png';
 import kakaoSignUpButton from '../../../assets/images/join_katalk.png';
 import './MyModal.css';
+import KakaoKey from '../../../config/Kakao';
 
 class MyModal extends Component {
+  constructor(props) {
+    super(props);
+    if (!window.Kakao.Auth) {
+      // Kakao SDK Must be Initialized in Here...
+      window.Kakao.init(KakaoKey);
+    }
+  }
+
   state = {
     title: '',
     text: '',
@@ -64,7 +73,7 @@ class MyModal extends Component {
     });
   };
 
-  login = (type, props) => {
+  login = async type => {
     if (this.state.infoPolicy && this.state.termsOfUse) {
       switch (type) {
         case 'google':
@@ -77,7 +86,9 @@ class MyModal extends Component {
           break;
         case 'kakao':
           this.props.off();
-          props.onClick();
+          // 0부터 카운터를 증가시키며 0,1,2 총 3번 시도 후 실패시 로깅
+          LoginFunc.kakaoLogin(0);
+
           break;
 
         default:
@@ -191,6 +202,22 @@ class MyModal extends Component {
                     ? facebookLoginButton
                     : facebookSignUpButton
                 }
+                alt="alt"
+                className="modal_button"
+              />
+            </div>
+
+            {/* 카카오 로그인 by heeham */}
+            <div
+              className="btn modal_b"
+              style={{ display: 'none' }}
+              onClick={e => {
+                e.preventDefault();
+                this.login('kakao');
+              }}
+            >
+              <img
+                src={this.state.isLogin ? kakaoLoginButton : kakaoSignUpButton}
                 alt="alt"
                 className="modal_button"
               />
