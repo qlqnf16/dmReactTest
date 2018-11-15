@@ -210,7 +210,6 @@ class MyModal extends Component {
             {/* 카카오 로그인 by heeham */}
             <div
               className="btn modal_b"
-              style={{ display: 'none' }}
               onClick={e => {
                 e.preventDefault();
                 this.login('kakao');
