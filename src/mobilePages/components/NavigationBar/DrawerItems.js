@@ -43,30 +43,30 @@ const DrawerItems = props => {
             마이페이지
           </div>
         </Link>
-        {/* <Link to="/message"> */}
-        <div
-          className="mobile-drawer-items mobile-drawer-gray"
-          // onClick={props.click}
-          onClick={() => alert('아직 이용할 수 없습니다.')}
-        >
-          메세지
-        </div>
-        {/* </Link> */}
+        <Link to="/message">
+          <div
+            className="mobile-drawer-items mobile-drawer-gray"
+            onClick={props.click}
+            // onClick={() => alert('아직 이용할 수 없습니다.')}
+          >
+            메세지
+          </div>
+        </Link>
         <div
           className="mobile-drawer-items mobile-drawer-gray"
           onClick={props.logout}
         >
           로그아웃
         </div>
-        {/* <Link to="/designerlist"> */}
-        <div
-          className="mobile-drawer-items"
-          // onClick={props.click}
-          onClick={() => alert('아직 이용할 수 없습니다.')}
-        >
-          예디찾기
-        </div>
-        {/* </Link> */}
+        <Link to="/designerlist">
+          <div
+            className="mobile-drawer-items"
+            onClick={props.click}
+            // onClick={() => alert('아직 이용할 수 없습니다.')}
+          >
+            예디찾기
+          </div>
+        </Link>
         <Link to="/whyDreamary">
           <div className="mobile-drawer-items" onClick={props.click}>
             예디등록
@@ -105,15 +105,15 @@ const DrawerItems = props => {
               유저 리스트
             </div>
           </Link>
-          {/* <Link to="/admin/designerlist"> */}
-          <div
-            className="mobile-drawer-items"
-            onClick={() => alert('아직 이용할 수 없습니다.')}
-            // onClick={props.click}
-          >
-            디자이너 리스트
-          </div>
-          {/* </Link> */}
+          <Link to="/admin/designerlist">
+            <div
+              className="mobile-drawer-items"
+              // onClick={() => alert('아직 이용할 수 없습니다.')}
+              onClick={props.click}
+            >
+              디자이너 리스트
+            </div>
+          </Link>
           <Link to="/admin/waitinglist">
             <div className="mobile-drawer-items" onClick={props.click}>
               대기 디자이너
@@ -155,15 +155,15 @@ const DrawerItems = props => {
         >
           반갑습니다 {props.userData.name}님
         </div>
-        {/* <Link to="/message"> */}
-        <div
-          className="mobile-drawer-items mobile-drawer-gray"
-          onClick={() => alert('아직 이용할 수 없습니다.')}
-          // onClick={props.click}
-        >
-          메세지
-        </div>
-        {/* </Link> */}
+        <Link to="/message">
+          <div
+            className="mobile-drawer-items mobile-drawer-gray"
+            // onClick={() => alert('아직 이용할 수 없습니다.')}
+            onClick={props.click}
+          >
+            메세지
+          </div>
+        </Link>
         <div
           className="mobile-drawer-items mobile-drawer-gray"
           onClick={props.logout}
@@ -175,15 +175,15 @@ const DrawerItems = props => {
             왜?
           </div>
         </Link>
-        {/* <Link to="/designer/reservations"> */}
-        <div
-          className="mobile-drawer-items"
-          onClick={() => alert('아직 이용할 수 없습니다.')}
-          // onClick={props.click}
-        >
-          예약관리
-        </div>
-        {/* </Link> */}
+        <Link to="/designer/reservations">
+          <div
+            className="mobile-drawer-items"
+            // onClick={() => alert('아직 이용할 수 없습니다.')}
+            onClick={props.click}
+          >
+            예약관리
+          </div>
+        </Link>
         <Link to="/designer/schedule">
           <div className="mobile-drawer-items" onClick={props.click}>
             스케줄등록
@@ -220,15 +220,15 @@ const DrawerItems = props => {
         >
           로그인
         </div>
-        {/* <Link to="/designerlist"> */}
-        <div
-          className="mobile-drawer-items mobile-drawer-gray"
-          // onClick={props.click}
-          onClick={() => alert('아직 이용할 수 없습니다.')}
-        >
-          예디찾기
-        </div>
-        {/* </Link> */}
+        <Link to="/designerlist">
+          <div
+            className="mobile-drawer-items mobile-drawer-gray"
+            onClick={props.click}
+            // onClick={() => alert('아직 이용할 수 없습니다.')}
+          >
+            예디찾기
+          </div>
+        </Link>
         <Link to="/whyDreamary">
           <div
             className="mobile-drawer-items mobile-drawer-gray"

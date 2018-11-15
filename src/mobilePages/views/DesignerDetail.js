@@ -166,8 +166,15 @@ class DesignerDetail extends Component {
           <div style={{ ...paragraphStyle, marginTop: '3rem' }}>
             {designer.introduce}
           </div>
-          <div>
-            <div style={labelStyle}>요청사항</div>
+          <div
+            style={{
+              border: '1px solid rgba(76, 145, 186, 0.6)',
+              borderRadius: '5px',
+              padding: '1.5rem',
+              marginTop: '2rem'
+            }}
+          >
+            <div style={{ ...labelStyle, marginTop: 0 }}>요청사항</div>
             <div style={paragraphStyle}>{recruit.requirement}</div>
             <div style={labelStyle}>예상 시술 소요시간</div>
             <div style={paragraphStyle}>
