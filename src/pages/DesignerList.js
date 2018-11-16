@@ -92,6 +92,7 @@ class DesignerList extends Component {
     const { data } = await axios.get(
       'cards?' + must + no + gender + date + sido + sigungu
     );
+    console.log(data);
 
     let recruits = data.map(d => d._recruit);
 
@@ -99,6 +100,7 @@ class DesignerList extends Component {
     const counter = {};
     recruits.forEach(recruit => {
       if (
+        recruit &&
         !counter[recruit._id] &&
         recruit._designer.expiredAt &&
         recruit._designer.expiredAt > new Date().getTime()
