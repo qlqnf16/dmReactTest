@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import questionMark from '../../../assets/images/question_yellow.png';
 import { connect } from 'react-redux';
 import ReactTooltip from 'react-tooltip';
+import { max } from 'moment';
 
 class CardAdd extends Component {
   state = {
@@ -120,6 +121,7 @@ class CardAdd extends Component {
     }
 
     let price = 0;
+    let maxPrice = 0;
     let service = '';
     let serviceFormat = {};
     let time = 0;
@@ -136,6 +138,10 @@ class CardAdd extends Component {
       time += this.props.recruit.requireTime.perm;
       service += '/ 펌';
       serviceFormat['perm'] = true;
+      maxPrice += Math.max(...Object.values(this.props.cardData.permPrice));
+    }
+    if (this.state.dye && this.state.perm) {
+      maxPrice -= price;
     }
     if (this.state.dye) {
       price +=
@@ -145,6 +151,7 @@ class CardAdd extends Component {
       time += this.props.recruit.requireTime.dye;
       service += '/ 염색';
       serviceFormat['dye'] = true;
+      maxPrice += Math.max(...Object.values(this.props.cardData.dyePrice));
     }
     service = service.substring(1);
 
@@ -207,13 +214,13 @@ class CardAdd extends Component {
                   className="card_tooltip tooltip_pic"
                 >
                   <div className="tooltip_text">
-                    재료비는 현장 사정에 따라 달라질 수 있으므로 별도로 현금
-                    지참해주세요 :)
+                    재료비는 현장 사정 & 기장에 따라 달라질 수 있으므로 별도로
+                    현금 지참해주세요 :)
                   </div>
                 </ReactTooltip>
               </div>
               <div className="time" style={{ fontWeight: 'bold' }}>
-                {price}원
+                {price}원 ~ {maxPrice}원
               </div>
             </div>
             <div className="col-5 p-0 reservation">
