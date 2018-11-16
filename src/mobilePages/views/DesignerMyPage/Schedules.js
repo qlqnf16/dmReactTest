@@ -39,7 +39,7 @@ class Schedule extends Component {
   };
 
   componentDidMount = async () => {
-    if (!this.state.madeRequest) {
+    if (!this.state.madeRequest && this.props.userData._recruit) {
       const { data } = await axios.get(
         `recruits/${this.props.userData._recruit}`
       );
