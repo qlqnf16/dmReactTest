@@ -87,6 +87,9 @@ class DesignerDetail extends Component {
       return;
     }
 
+    if (this.props.userData && this.props.userData.isD)
+      return alert('디자이너는 예약 할 수 없습니다.');
+
     if (Object.values(serviceFormat).length === 0)
       return alert('받을 서비스를 선택해 주세요');
     if (!startTime) return alert('받을 시간을 선택해 주세요');

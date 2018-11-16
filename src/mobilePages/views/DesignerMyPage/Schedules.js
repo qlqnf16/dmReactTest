@@ -227,6 +227,10 @@ class Schedule extends Component {
       Object.values(recruitData.requireTime).includes(null)
     )
       return alert('예상 시술 소요 시간을 전부 작성해주세요');
+    if (!this.state.newCards.length && !this.state.cards.length)
+      return alert(
+        '스케줄을 먼저 추가한 후 스케줄 게시하기 버튼을 클릭해주세요'
+      );
     // 유저에 리크루트 없으면 생성
     if (!this.props.userData._recruit) {
       const res = await axios.post('recruits', recruitData);

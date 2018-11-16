@@ -107,8 +107,12 @@ class Schedule extends Component {
       Object.values(recruitData.requireTime).includes(null)
     )
       return alert('채워지지 않은 정보가 있습니다');
-    // 유저에 리크루트 없으면 생성
+    if (!this.state.newCards.length && !this.state.cards.length)
+      return alert(
+        '스케줄을 먼저 추가한 후 스케줄 게시하기 버튼을 클릭해주세요'
+      );
     if (!this.props.userData._recruit) {
+      // 유저에 리크루트 없으면 생성
       const res = await axios.post('recruits', recruitData);
       //firebase에 _recruit 추가
       await firebase
