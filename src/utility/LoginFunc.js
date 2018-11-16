@@ -207,6 +207,8 @@ export const kakao_login_success = async userToken => {
     var errorCode = error.code;
     var errorMessage = error.message;
     console.log(errorCode, errorMessage);
+    alert(errorCode);
+    alert(errorMessage);
     if (errorCode === 'auth/account-exists-with-different-credential')
       alert(
         '이미 다른 플랫폼으로 가입한 적이 있는 이메일입니다. 해당 플랫폼으로 로그인해주세요.'
@@ -244,7 +246,10 @@ export const kakaoLogin = (loginCount, loginError) => {
           // e.g 우리 잘못이 아닌 카카오 서버 장애라던가...
           // 우리 서버 장애일수도 있고...
           throw new Error(`Kakao Login Error - ${JSON.stringify(error)}`);
-        }
+        },
+        // persistAccessToken: false,
+        // persistRefreshToken: true,
+        throughTalk: true
       });
     } else {
       // 이건 진짜 뜨면 안되는 에러이지만 혹시 몰라서 둠.
