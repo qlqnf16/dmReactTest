@@ -84,6 +84,7 @@ class Schedule extends Component {
       return alert('가능한 시간대를 선택해주세요');
     if (!cardData.picture) return alert('시간 촬영 여부를 선택해주세요');
     if (!cardData.requireGender) return alert('희망 모델 성별을 선택해주세요');
+    // if (cardData.fixStart && )
     if (cardData.fixStart) {
       cardData.ableTimes = cardData.ableTimes.map(ableTime => {
         return { ...ableTime, until: ableTime.since + addTime };
