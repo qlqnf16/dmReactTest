@@ -60,6 +60,7 @@ class Schedule extends Component {
             id={i}
             onChange={this.props.changeInput}
             className=""
+            style={this.props.fixStart ? { display: 'none' } : {}}
           >
             <option value="null">-종료시간-</option>
             {finishts}
@@ -174,6 +175,30 @@ class Schedule extends Component {
                 ))}
               </Input>
             </FormGroup>
+            <div>
+              <Label
+                xs={5}
+                style={{
+                  textAlign: 'right',
+                  fontSize: '1.1rem',
+                  fontWeight: 'bold',
+                  color: '#1f3354'
+                }}
+              >
+                시작시간이 정해져 있나요?
+              </Label>
+              <FormGroup check inline>
+                <div>
+                  <input
+                    type="checkbox"
+                    name="fixStart"
+                    id="fixStart"
+                    onChange={this.props.changeInput}
+                    checked={this.props.fixStart}
+                  />
+                </div>
+              </FormGroup>
+            </div>
             <FormGroup row>
               <Label
                 xs={5}
@@ -230,7 +255,9 @@ class Schedule extends Component {
                 {/* 바뀐것: 시간선택 안내 */}
                 {this.props.timeValidation ? (
                   <div className="text-danger">
-                    시작과 종료시간을 모두 선택해주세요
+                    {this.props.fixStart
+                      ? '시작시간을 선택해주세요'
+                      : '시작과 종료시간을 모두 선택해주세요'}
                   </div>
                 ) : null}
                 <Button
@@ -590,10 +617,7 @@ class Schedule extends Component {
             className="btn btn-light w-50 schedule_button"
             style={
               this.props.finalValidation
-                ? {
-                    backgroundColor: 'rgba(0,0,0,0.3)',
-                    cursor: 'default'
-                  }
+                ? { backgroundColor: 'rgba(0,0,0,0.3)', cursor: 'default' }
                 : { backgroundColor: '#4c91ba' }
             }
           >

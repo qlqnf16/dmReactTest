@@ -33,7 +33,8 @@ class ScheduleBox extends Component {
       requirement: '',
       requireTime: {},
       madeRequest: false,
-      reviews: []
+      reviews: [],
+      fixStart: false
     };
   }
 
@@ -124,6 +125,8 @@ class ScheduleBox extends Component {
             [id]: target.checked
           }
         });
+      } else if (target.name === 'fixStart') {
+        this.setState({ fixStart: target.checked });
       } else {
         this.setState({ [name]: target.checked });
       }
@@ -156,7 +159,7 @@ class ScheduleBox extends Component {
 
     let ableTimes = [];
     this.state.sinces.forEach((since, key) => {
-      if (this.state.untils[key]) {
+      if (this.state.fixStart || this.state.untils[key]) {
         const ableTime = { since: since, until: this.state.untils[key] };
         ableTimes.push(ableTime);
       }
@@ -180,7 +183,9 @@ class ScheduleBox extends Component {
       ableTimes,
       sido,
       sigungu,
-      picture: this.state.picture
+      picture: this.state.picture,
+      requireTime: this.state.requireTime,
+      fixStart: this.state.fixStart
     };
     let requireTime = null;
 
@@ -245,6 +250,7 @@ class ScheduleBox extends Component {
             untils={this.state.untils}
             permPrice={this.state.permPrice}
             dyePrice={this.state.dyePrice}
+            fixStart={this.state.fixStart}
             // 바뀐것: validation들
             timeValidation={timeValidation}
             finalValidation={finalValidation}
