@@ -11,6 +11,7 @@ import './AddCardModal.css';
 
 const AddCardModal = props => {
   const timeSelector = () => {
+    console.log(props.fixStart);
     let timeSelector = [];
     for (let i = 0; i < props.time; i++) {
       let times = [];
@@ -55,6 +56,7 @@ const AddCardModal = props => {
             name="until"
             id={i}
             onChange={props.changeInput}
+            style={props.fixStart ? { display: 'none' } : {}}
           >
             <option value="null">종료시간을 설정해주세요.</option>
             {finishts}
@@ -141,6 +143,16 @@ const AddCardModal = props => {
                   <option key={key}>{address.extraAddress}</option>
                 ))}
               </select>
+            </div>
+            <div>
+              <label style={labelStyle}>정해진 시간이 있나요?</label>
+              <input
+                type="checkbox"
+                name="fixStart"
+                id="fixStart"
+                onChange={props.changeInput}
+                checked={props.fixStart}
+              />
             </div>
             <div>
               <label style={labelStyle}>

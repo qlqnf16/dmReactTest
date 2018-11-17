@@ -35,7 +35,8 @@ class Schedule extends Component {
     title: '',
     requirement: '',
     reviews: [],
-    addCardModal: false
+    addCardModal: false,
+    fixStart: false
   };
 
   componentDidMount = async () => {
@@ -147,6 +148,8 @@ class Schedule extends Component {
             [id]: target.checked
           }
         });
+      } else if (target.name === 'fixStart') {
+        this.setState({ fixStart: target.checked });
       } else {
         this.setState({ [name]: target.checked });
       }
@@ -167,12 +170,14 @@ class Schedule extends Component {
   };
 
   cardAddHandler = async cardData => {
+    let addTime = 0;
     let must = cardData.must;
     let mustList = [];
     let no = cardData.no;
     let noList = [];
     Object.keys(must).forEach(m => {
       if (must[m]) mustList.push(m);
+      addTime += cardData.requireTime[m];
     });
     Object.keys(no).forEach(m => {
       if (no[m]) noList.push(m);
@@ -188,6 +193,11 @@ class Schedule extends Component {
       return alert('가능한 시간대를 선택해주세요');
     if (!cardData.picture) return alert('시간 촬영 여부를 선택해주세요');
     if (!cardData.requireGender) return alert('희망 모델 성별을 선택해주세요');
+    if (cardData.fixStart) {
+      cardData.ableTimes = cardData.ableTimes.map(ableTime => {
+        return { ...ableTime, until: ableTime.since + addTime };
+      });
+    }
     let newCards = this.state.newCards;
     let nCards = [];
     newCards.push(cardData);
@@ -310,7 +320,7 @@ class Schedule extends Component {
 
       let ableTimes = [];
       this.state.sinces.forEach((since, key) => {
-        if (this.state.untils[key]) {
+        if (this.state.fixStart || this.state.untils[key]) {
           const ableTime = { since: since, until: this.state.untils[key] };
           ableTimes.push(ableTime);
         }
@@ -334,7 +344,9 @@ class Schedule extends Component {
         ableTimes,
         sido,
         sigungu,
-        picture: this.state.picture
+        picture: this.state.picture,
+        requireTime: this.state.requireTime,
+        fixStart: this.state.fixStart
       };
 
       // 바뀐것: 종료시간 선택 안 했을 때에만 '시작시간 종료시간 다 선택해주세요' 글씨 나오게
@@ -431,6 +443,7 @@ class Schedule extends Component {
             untils={this.state.untils}
             permPrice={this.state.permPrice}
             dyePrice={this.state.dyePrice}
+            fixStart={this.state.fixStart}
             // 바뀐것: validation들
             timeValidation={timeValidation}
             finalValidation={finalValidation}
