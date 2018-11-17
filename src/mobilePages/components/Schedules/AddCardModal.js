@@ -247,14 +247,14 @@ const AddCardModal = props => {
                   effect="solid"
                   delayHide={500}
                 >
-                  <div className="mb-2" style={{ color: '#1f3354' }}>
+                  <div className="mb-2" style={{ color: '#DD6866' }}>
                     ✓ 사진촬영 X
                   </div>
                   <div className="mb-3 tooltip_text">
                     사진촬영을 하지 않습니다.
                   </div>
 
-                  <div className="mb-2" style={{ color: '#1f3354' }}>
+                  <div className="mb-2" style={{ color: '#DD6866' }}>
                     ✓ 사진촬영 O 모자이크 가능
                   </div>
                   <div className="mb-3 tooltip_text">
@@ -262,7 +262,7 @@ const AddCardModal = props => {
                     필요하시다면 이 옵션을 추천합니다.)
                   </div>
 
-                  <div className="mb-2" style={{ color: '#1f3354' }}>
+                  <div className="mb-2" style={{ color: '#DD6866' }}>
                     ✓ 사진촬영 O 모자이크 불가
                   </div>
                   <div className="mb-3 tooltip_text">

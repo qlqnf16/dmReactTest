@@ -303,14 +303,14 @@ class Schedule extends Component {
                   delayHide={500}
                   className="card_tooltip tooltip_pic"
                 >
-                  <div className="mb-2" style={{ color: '#1f3354' }}>
+                  <div className="mb-2" style={{ color: '#DD6866' }}>
                     ✓ 사진촬영 X
                   </div>
                   <div className="mb-3 tooltip_text">
                     사진을 촬영하지 않습니다.
                   </div>
 
-                  <div className="mb-2" style={{ color: '#1f3354' }}>
+                  <div className="mb-2" style={{ color: '#DD6866' }}>
                     ✓ 사진촬영 O 모자이크 가능
                   </div>
                   <div className="mb-3 tooltip_text">
@@ -318,7 +318,7 @@ class Schedule extends Component {
                     촬영이 필요하시다면 이 옵션을 추천합니다.)
                   </div>
 
-                  <div className="mb-2" style={{ color: '#1f3354' }}>
+                  <div className="mb-2" style={{ color: '#DD6866' }}>
                     ✓ 사진촬영 O 모자이크 불가
                   </div>
                   <div className="mb-3 tooltip_text">
