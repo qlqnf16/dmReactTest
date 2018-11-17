@@ -165,6 +165,14 @@ class CardAdd extends Component {
         this.props.cardData
       );
 
+    let captionInner = [];
+    if (this.state.cut) captionInner.push('커트');
+    if (this.state.perm) captionInner.push('펌');
+    if (this.state.dye) captionInner.push('염색');
+    const caption = captionInner.length
+      ? `* ${captionInner.join(',')}은(는) 필수입니다.`
+      : null;
+
     return (
       <div className="">
         <div className="border-top border-bottom py-3 row m-2 ">
@@ -183,6 +191,7 @@ class CardAdd extends Component {
               펌
             </div>
           </div>
+          <div>{caption}</div>
         </div>
         <div className=" py-3 row m-2">{timeButtons}</div>
         <div className="submit_button" onClick={clickButton}>
