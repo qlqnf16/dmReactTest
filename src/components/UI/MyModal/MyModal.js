@@ -3,16 +3,16 @@ import { Modal, ModalBody } from 'reactstrap';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import KakaoLogin from 'react-kakao-login';
-import KaKaoKey from '../../../config/Kakao';
+// import KakaoLogin from 'react-kakao-login';
+// import KaKaoKey from '../../../config/Kakao';
 
 import * as actions from '../../../modules';
 import * as LoginFunc from '../../../utility/LoginFunc';
 
-import googleLoginButton from '../../../assets/images/login_google.png';
+// import googleLoginButton from '../../../assets/images/login_google.png';
 import facebookLoginButton from '../../../assets/images/login_fb.png';
 import kakaoLoginButton from '../../../assets/images/login_katalk.png';
-import googleSignUpButton from '../../../assets/images/join_google.png';
+// import googleSignUpButton from '../../../assets/images/join_google.png';
 import facebookSignUpButton from '../../../assets/images/join_fb.png';
 import kakaoSignUpButton from '../../../assets/images/join_katalk.png';
 import './MyModal.css';

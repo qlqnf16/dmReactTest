@@ -58,15 +58,17 @@ const DrawerItems = props => {
         >
           로그아웃
         </div>
-        <Link to="/designerlist">
-          <div
-            className="mobile-drawer-items"
-            onClick={props.click}
-            // onClick={() => alert('아직 이용할 수 없습니다.')}
-          >
-            예디찾기
-          </div>
-        </Link>
+
+        {/* 장막 */}
+        {/* <Link to="/designerlist"> */}
+        <div
+          className="mobile-drawer-items"
+          // onClick={props.click}
+          onClick={() => alert('아직 이용할 수 없습니다.')}
+        >
+          예디찾기
+        </div>
+        {/* </Link> */}
         <Link to="/whyDreamary">
           <div className="mobile-drawer-items" onClick={props.click}>
             예디등록
@@ -220,15 +222,15 @@ const DrawerItems = props => {
         >
           로그인
         </div>
-        <Link to="/designerlist">
-          <div
-            className="mobile-drawer-items mobile-drawer-gray"
-            onClick={props.click}
-            // onClick={() => alert('아직 이용할 수 없습니다.')}
-          >
-            예디찾기
-          </div>
-        </Link>
+        {/* <Link to="/designerlist"> */}
+        <div
+          className="mobile-drawer-items mobile-drawer-gray"
+          // onClick={props.click}
+          onClick={() => alert('아직 이용할 수 없습니다.')}
+        >
+          예디찾기
+        </div>
+        {/* </Link> */}
         <Link to="/whyDreamary">
           <div
             className="mobile-drawer-items mobile-drawer-gray"

@@ -52,11 +52,11 @@ const AddCardModal = props => {
           </select>
           <select
             style={{ ...selectStyle, marginBottom: '5%' }}
+            style={props.fixStart ? { display: 'none' } : {}}
             type="select"
             name="until"
             id={i}
             onChange={props.changeInput}
-            style={props.fixStart ? { display: 'none' } : {}}
           >
             <option value="null">종료시간을 설정해주세요.</option>
             {finishts}

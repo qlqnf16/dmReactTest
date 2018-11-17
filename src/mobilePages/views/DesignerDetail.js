@@ -126,7 +126,6 @@ class DesignerDetail extends Component {
       paragraphStyle,
       sectionTitleStyle,
       starStyle,
-      designerProfileStyle,
       buttonStyle
     } = styles;
     const designer = this.state.designerData;

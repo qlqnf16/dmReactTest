@@ -24,7 +24,8 @@ const Reservations = props => (
         ))
       ) : (
         <NoContent
-          link="/designerList"
+          // link="/designerList"
+          onClick={alert('아직 이용하실 수 없습니다.')} // 장막
           text="지금 바로 실력있는 예디들을 만나보세요"
         />
       )}

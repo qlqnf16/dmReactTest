@@ -142,7 +142,7 @@ class Landing extends Component {
 
     return (
       <div>
-        <div
+        {/* <div
           style={{
             display: 'inline-block',
             marginTop: '20px',
@@ -191,7 +191,7 @@ class Landing extends Component {
           >
             해제
           </div>
-        </div>
+        </div> */}
         {/* 여기부터 랜딩 */}
         <div>
           <Carousel
@@ -210,6 +210,7 @@ class Landing extends Component {
                   style={{ marginRight: '1%', height: '48px' }}
                   href="https://s3.ap-northeast-2.amazonaws.com/dreamary/%E1%84%89%E1%85%A1%E1%86%BC%E1%84%89%E1%85%A6flow.pdf"
                   target="_blank"
+                  rel="noopener noreferrer"
                   className="linkdeco"
                 >
                   <div
