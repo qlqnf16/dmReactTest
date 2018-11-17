@@ -114,6 +114,26 @@ class DesignerList extends Component {
       sigungu = new Set(sigungu);
       sigungu = [...sigungu].sort();
     }
+    const refreshButton = (
+      <div
+        onClick={() => window.location.reload()}
+        style={{
+          width: '85%',
+          height: '33px',
+          borderRadius: '5px',
+          boxShadow: '0 3px 6px 0 rgba(0, 0, 0, 0.16)',
+          border: 'solid 1px #dd6866',
+          color: '#dd6866',
+          fontWeight: 'bold',
+          fontSize: '1.3rem',
+          textAlign: 'center',
+          lineHeight: '33px',
+          margin: '2% 0 4% 0'
+        }}
+      >
+        초기화
+      </div>
+    );
     return (
       <div className="m_containerStyle">
         <Header />
@@ -127,6 +147,7 @@ class DesignerList extends Component {
           getFilteredCards={this.getFilteredCards}
           on={this.state.filterOn}
         />
+        {this.state.filterOn ? refreshButton : null}
         <DesignerCardList recruits={this.state.recruits} />
       </div>
     );

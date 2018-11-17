@@ -63,6 +63,23 @@ select {
   margin-top: 10.8px;
 }
 
+.filterRefresh {
+  height: 33px;
+  border-radius: 5px;
+  border: 1px solid #dd6866;
+  background-color: white;
+  color: #dd6866;
+  font-size: 1.3rem;
+  line-height: 1.08;
+  letter-spacing: 0.13rem;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin-top: 10.8px;
+}
+
 .filter-responsive {
   height: 200px;
 }

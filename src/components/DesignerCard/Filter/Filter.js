@@ -144,6 +144,12 @@ const Filter = props => {
       >
         검색하기
       </div>
+      <div
+        onClick={() => window.location.reload()}
+        className="col-12 filterRefresh"
+      >
+        초기화
+      </div>
     </div>
   );
 };
