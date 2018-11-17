@@ -74,7 +74,7 @@ class Reservation extends Component {
           pay_method: this.state.method,
           merchant_uid: 'merchant_' + new Date().getTime(),
           name: '주문명: 예약',
-          amount: 5000,
+          amount: kind,
           buyer_email: this.props.userData.email,
           buyer_name: this.props.userData.name,
           buyer_tel: this.props.userData.phoneNumber
