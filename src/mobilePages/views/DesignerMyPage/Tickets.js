@@ -230,7 +230,7 @@ class DesignerTicket extends Component {
 
             <TicketPurchaseButton purchaseHandler={this.purchaseHandler} />
             <div style={subtitleStyle}>프로모션 코드 입력</div>
-            <div style={{width: '89%', margin: 'auto'}}>
+            <div style={{ width: '89%', margin: 'auto' }}>
               <input
                 style={inputTextStyle}
                 onChange={e => this.inputChangeHandler(e)}
