@@ -16,7 +16,7 @@ const NavigationBar = props => (
       <img className="mobile-tricolor" src={tricolor} alt="tricolor" />
     </div>
     <div style={{ height: 55 }} />
-    <div
+    {/* <div
       style={{
         textAlign: 'center',
         position: 'fixed',
@@ -34,7 +34,7 @@ const NavigationBar = props => (
       }}
     >
       디자이너 등록 기간입니다.
-    </div>
+    </div> */}
   </Fragment>
 );
 
