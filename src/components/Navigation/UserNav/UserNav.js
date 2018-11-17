@@ -41,7 +41,7 @@ const UserNav = () => (
       </NavLink>
       <NavLink
         // 장막
-        to="/coupons"
+        to="/coupon"
         // to="/userinfo"
         // onClick={() => alert('아직 이용하실 수 없습니다.')}
         className="un_navItem"
