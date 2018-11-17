@@ -282,6 +282,18 @@ class InfoForm extends Component {
         </FormGroup>
         <FormGroup row>
           <div className="col-3 if_head">지역/샵주소</div>
+          <div
+            style={{
+              fontSize: '1rem',
+              lineHeight: 1,
+              letterSpacing: '0rem',
+              fontWeight: 'normal'
+            }}
+          >
+            스케줄 생성 시 시술이 진행될 샵이
+            <br />
+            선택되므로 정확히 입력해주세요.
+          </div>
           <div className="col-9 ">
             {this.addressSelector()}
             <div
