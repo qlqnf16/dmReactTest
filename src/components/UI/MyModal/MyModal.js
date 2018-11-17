@@ -186,6 +186,8 @@ class MyModal extends Component {
             </div>
 
             {/* Modal Button */}
+
+            {/* 구글 로그인 비활성화 */}
             {/* <div className="btn modal_b" onClick={() => this.login('google')}>
               <img
                 src={
