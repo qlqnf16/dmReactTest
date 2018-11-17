@@ -186,7 +186,7 @@ class MyModal extends Component {
             </div>
 
             {/* Modal Button */}
-            <div className="btn modal_b" onClick={() => this.login('google')}>
+            {/* <div className="btn modal_b" onClick={() => this.login('google')}>
               <img
                 src={
                   this.state.isLogin ? googleLoginButton : googleSignUpButton
@@ -194,7 +194,7 @@ class MyModal extends Component {
                 alt="alt"
                 className="modal_button"
               />
-            </div>
+            </div> */}
             <div className="btn modal_b" onClick={() => this.login('facebook')}>
               <img
                 src={
