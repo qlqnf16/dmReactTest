@@ -40,8 +40,10 @@ class DesignerList extends Component {
               reservation.time.until / 60
             )}:${reservation.time.until % 60}`}
           </td>
-          <td>{reservation._card.shop}</td>
-          <td>{`${reservation._card.sido} ${reservation._card.sigungu}`}</td>
+          <td>{reservation._card && reservation._card.shop}</td>
+          <td>{`${reservation._card &&
+            reservation._card.sido} ${reservation._card &&
+            reservation._card.sigungu}`}</td>
           <td>
             {!reservation.isCanceled
               ? reservation.isDone

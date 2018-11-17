@@ -299,14 +299,16 @@ class DesignerInfo extends Component {
       formData.append(`portfolio${index + this.state.portfoliosNum}`, p);
     });
 
-    await axios.post(
-      `firebase/upload?uid=${this.props.userData.uid}`,
-      formData,
-      {
-        headers: {
-          'Content-Type': 'multipart/form-data'
+    console.log(
+      await axios.post(
+        `firebase/upload?uid=${this.props.userData.uid}`,
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
         }
-      }
+      )
     );
     alert('성공적으로 저장되었습니다. \n스케줄 등록으로 이동합니다.');
     this.setState({ submitLoading: true });

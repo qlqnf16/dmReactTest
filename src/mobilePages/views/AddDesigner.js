@@ -218,6 +218,7 @@ class AddDesigner extends Component {
     if (!firebaseUserData.introduce) return alert('자기소개를 작성해주세요!');
 
     this.setState({ submitLoading: false });
+
     window.scrollTo(0, 0);
     // 추천인 로직
     // 전에 추천인을 입력한 적이 없고, 추천인을 작성했을 때,
@@ -276,11 +277,13 @@ class AddDesigner extends Component {
     this.state.portfolioFile.forEach((p, index) => {
       formData.append(`portfolio${index + this.state.portfoliosNum}`, p);
     });
+
     await axios.post(
       `firebase/upload?uid=${this.props.userData.uid}`,
       formData,
       { headers: { 'Content-Type': 'multipart/form-data' } }
     );
+
     alert(
       '성공적으로 신청되었습니다. \n관리자의 승인을 거친 후 정상적으로 스케줄을 등록하실 수 있습니다.'
     );
