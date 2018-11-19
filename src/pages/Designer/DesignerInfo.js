@@ -270,14 +270,19 @@ class DesignerInfo extends Component {
         alert('유효하지 않은 추천인 코드 입니다.');
       } else {
         let { designerRecommendation, _id } = result.val();
+
         if (designerRecommendation) count = designerRecommendation;
-        firebaseUserData = { ...firebaseUserData, designerRecommendationCode };
+        firebaseUserData = {
+          ...firebaseUserData,
+          designerRecommendationCode
+        };
         count += 1;
 
-        if (count !== 0 && count % 2 === 0) {
+        if (count !== 0 && count % 5 === 0) {
           await axios.post(`users/${_id}/tickets`, {
             price: 10000
           });
+          alert('쿠폰이 지급되었습니다.');
         }
         await firebase
           .database()

@@ -27,6 +27,7 @@ class Coupon extends Component {
       await this.props.updateRedux('point', point);
       alert('쿠폰이 적용 되었습니다.');
     } catch (err) {
+      console.log(err.message);
       alert('유효하지 않은 쿠폰번호 입니다.');
     }
   };

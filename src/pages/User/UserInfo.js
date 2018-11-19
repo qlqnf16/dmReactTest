@@ -113,7 +113,7 @@ class UserInfo extends Component {
       if (!result || recommendationCode == this.props.userData.uid) {
         alert('유효하지 않은 추천인 코드 입니다.');
       } else {
-        let { recommendation, _id, isD } = result.val();
+        let { recommendation, _id } = result.val();
 
         // 유효한 추천인 코드면 포인트 증가
 
