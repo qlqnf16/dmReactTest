@@ -161,7 +161,7 @@ class ReservationForm extends Component {
                 <span className="rf-radiobutton" />
                 <span style={{ marginRight: '21.5px' }}>신용/체크카드</span>
               </label>
-              <span>
+              <span style={{ fontSize: '1.1rem', color: 'gray' }}>
                 * 실시간 계좌이체, 가상계좌, 카카오페이 결제가 빠른 시일 내에
                 가능해질 예정입니다. 조금만 기다려주세요!
               </span>

@@ -92,7 +92,6 @@ class DesignerList extends Component {
     const { data } = await axios.get(
       'cards?' + must + no + gender + date + sido + sigungu
     );
-    console.log(data);
 
     let recruits = data.map(d => d._recruit);
 

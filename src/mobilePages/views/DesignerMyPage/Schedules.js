@@ -36,7 +36,8 @@ class Schedule extends Component {
     requirement: '',
     reviews: [],
     addCardModal: false,
-    fixStart: false
+    fixStart: false,
+    tickets: []
   };
 
   componentDidMount = async () => {
@@ -437,6 +438,7 @@ class Schedule extends Component {
               >
                 미리보기
               </div>
+              <span>* 스케줄 게시 완료 후 미리보기에 반영됩니다.</span>
             </div>
           </div>
           <AddCardModal

@@ -11,7 +11,6 @@ import './AddCardModal.css';
 
 const AddCardModal = props => {
   const timeSelector = () => {
-    console.log(props.fixStart);
     let timeSelector = [];
     for (let i = 0; i < props.time; i++) {
       let times = [];

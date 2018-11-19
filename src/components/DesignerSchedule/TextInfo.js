@@ -47,6 +47,18 @@ const TextInfo = props => {
       >
         <div style={{ textAlign: 'center' }}>미리보기</div>
       </div>
+      <span
+        style={{
+          width: 200,
+          position: 'absolute',
+          top: '-7.5%',
+          left: '165%',
+          fontSize: '1rem',
+          color: 'black'
+        }}
+      >
+        * 스케줄 게시 완료 후 미리보기에 반영됩니다.
+      </span>
       <FormGroup>
         <Label htmlFor="title" style={styles.labelStyle}>
           제목

@@ -44,7 +44,7 @@ export const facebookLogin = async () => {
   } catch (error) {
     var errorCode = error.code;
     var errorMessage = error.message;
-    console.log(errorCode, errorMessage);
+    // console.log(errorCode, errorMessage);
     if (errorCode === 'auth/account-exists-with-different-credential')
       alert(
         '이미 다른 플랫폼으로 가입한 적이 있는 이메일입니다. 해당 플랫폼으로 로그인해주세요.'
@@ -96,7 +96,7 @@ export const googleLogin = async () => {
   } catch (error) {
     var errorCode = error.code;
     var errorMessage = error.message;
-    console.log(errorCode, errorMessage);
+    // console.log(errorCode, errorMessage);
     if (errorCode === 'auth/account-exists-with-different-credential')
       alert(
         '이미 다른 플랫폼으로 가입한 적이 있는 이메일입니다. 해당 플랫폼으로 로그인해주세요.'
@@ -206,7 +206,7 @@ export const kakao_login_success = async userToken => {
   } catch (error) {
     var errorCode = error.code;
     var errorMessage = error.message;
-    console.log(errorCode, errorMessage);
+    // console.log(errorCode, errorMessage);
     alert(errorCode);
     alert(errorMessage);
     if (errorCode === 'auth/account-exists-with-different-credential')
@@ -225,7 +225,7 @@ export const kakao_login_fail = () => {};
 // 모든 에러처리는 여기서 하세요.
 export const kakaoLogin = (loginCount, loginError) => {
   if (loginCount >= 3) {
-    console.log(`Login Fail - ${loginError}`);
+    // console.log(`Login Fail - ${loginError}`);
     // TODO: Logging Error to Server Or Do Something...
     return;
   }
