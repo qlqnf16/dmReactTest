@@ -53,6 +53,12 @@ class Schedule extends Component {
         reviews: data._reviews
       });
     }
+
+    // 디자이너 티켓을 몇 개 보유중인지 표시하기 위해 state의 tickets를 불러서 length를 계산할 것
+    const { data } = await axios.get(
+      `users/${this.props.userData._id}/tickets`
+    );
+    await this.setState({ tickets: data, madeRequest: true });
   };
 
   addCardModalToggle = () => {
@@ -385,7 +391,9 @@ class Schedule extends Component {
                   {this.props.userData.expiredAt &&
                   this.props.userData.expiredAt > new Date().getTime()
                     ? null
-                    : '※현재 사용중인 이용권이 없습니다. '}
+                    : this.state.tickets.length > 0
+                      ? `※ 사용가능한 이용권이 있습니다. 이용권 관리 탭에서 ‘사용하기’를 누르면 게시물이 활성화됩니다.`
+                      : `※ 사용가능한 이용권이 없습니다. 스케줄 등록 후 게시를 위해서 이용권을 구매해주세요.`}
                 </span>
               </div>
               <TextInfo

@@ -196,9 +196,9 @@ class Schedule extends Component {
                   {this.props.userData.expiredAt &&
                   this.props.userData.expiredAt > new Date().getTime()
                     ? null
-                    : `※ 사용가능한 이용권이 ${
-                        this.state.tickets.length
-                      }개 있습니다, 이용권관리 탭에 가서 ‘사용하기’를 누르면 게시물이 활성화됩니다.`}
+                    : this.state.tickets.length > 0
+                      ? `※ 사용가능한 이용권이 있습니다. 이용권 관리 탭에 가서 ‘사용하기’를 누르면 게시물이 활성화됩니다.`
+                      : `※ 사용가능한 이용권이 없습니다. 스케줄 등록 후 게시를 위해서 이용권을 구매해주세요.`}
                 </span>
               </div>
               <ScheduleBox
