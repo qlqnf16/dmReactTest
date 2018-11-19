@@ -45,15 +45,19 @@ class DesignerCarousel extends Component {
 
   render() {
     const { activeIndex } = this.state;
-
     const slides = this.props.images.map((image, key) => {
       return (
         <CarouselItem
+          key={key}
           onExiting={this.onExiting}
           onExited={this.onExited}
-          key={key}
         >
-          <img src={image} alt="alt" style={{ width: '100%', height: 200 }} />
+          <img
+            src={image}
+            key={key}
+            alt="alt"
+            style={{ width: '100%', height: 200 }}
+          />
         </CarouselItem>
       );
     });
@@ -65,7 +69,9 @@ class DesignerCarousel extends Component {
         previous={() => this.previous(this.props.images)}
       >
         <CarouselIndicators
-          items={this.props.images}
+          items={this.props.images.map(im => {
+            return { src: im };
+          })}
           activeIndex={activeIndex}
           onClickHandler={() => this.goToIndex()}
         />

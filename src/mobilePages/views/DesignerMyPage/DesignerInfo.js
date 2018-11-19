@@ -265,7 +265,7 @@ class DesignerInfo extends Component {
       });
       result = await fbPromise;
       // 유효하지 않은 추천인 코드일 때,
-      if (!result || designerRecommendationCode === this.props.userData.uid)
+      if (!result || designerRecommendationCode == this.props.userData.uid)
         alert('유효하지 않은 추천인 코드 입니다.');
       // 유효한 추천인 코드일 때,
       else {
@@ -286,6 +286,11 @@ class DesignerInfo extends Component {
           .ref('users/' + designerRecommendationCode)
           .update({ designerRecommendation: count });
       }
+    } else if (
+      designerRecommendationCode &&
+      this.props.userData.designerRecommendationCode
+    ) {
+      alert('추천인 코드는 한번만 작성할 수 있습니다.');
     }
     // 최종 유저정보 저장
     await firebase

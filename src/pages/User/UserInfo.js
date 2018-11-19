@@ -49,6 +49,7 @@ class UserInfo extends Component {
       script.async = true;
       document.body.appendChild(script);
     }
+    if (this.state.recommendationCode) this.recommendationInput.disabled = true;
   };
 
   inputChangeHandler = event => {
@@ -109,7 +110,7 @@ class UserInfo extends Component {
           });
       });
       result = await fbPromise;
-      if (!result || recommendationCode === this.props.userData.uid) {
+      if (!result || recommendationCode == this.props.userData.uid) {
         alert('유효하지 않은 추천인 코드 입니다.');
       } else {
         let { recommendation, _id } = result.val();
@@ -127,6 +128,8 @@ class UserInfo extends Component {
             recommendation: count
           });
       }
+    } else if (recommendationCode && this.props.userData.recommendationCode) {
+      alert('추천인 코드는 한번만 작성할 수 있습니다.');
     }
     await firebase
       .database()
@@ -349,6 +352,7 @@ class UserInfo extends Component {
                       type="text"
                       name="recommendationCode"
                       id="recommendationCode"
+                      ref={ref => (this.recommendationInput = ref)}
                       value={this.state.recommendationCode}
                       className="if_input"
                     />

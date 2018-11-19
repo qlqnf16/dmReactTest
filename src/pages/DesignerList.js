@@ -37,6 +37,7 @@ class DesignerList extends Component {
         recruits: filteredData,
         madeRequest: true
       });
+      console.log(filteredData);
     }
 
     //시/도

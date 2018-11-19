@@ -16,6 +16,10 @@ import defaultGuy from '../../assets/images/Default_guy-01.jpg';
 import './DesignerCard.css';
 
 class DesginerCard extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   state = {
     designerData: {},
     madeRequest: false
@@ -25,9 +29,25 @@ class DesginerCard extends Component {
     await firebase
       .database()
       .ref('/users/' + this.props.recruit._designer._uid)
-      .on('value', async res => {
+      .once('value', async res => {
         this.setState({ designerData: res.val(), madeRequest: true });
       });
+  };
+
+  componentDidUpdate = async () => {
+    console.log(this.state);
+    if (!this.props.recruit.isSecondTime) {
+      this.props.recruit.isSecondTime = true;
+      await firebase
+        .database()
+        .ref('/users/' + this.props.recruit._designer._uid)
+        .once('value', async res => {
+          this.setState({
+            designerData: res.val(),
+            madeRequest: true
+          });
+        });
+    }
   };
 
   render() {
