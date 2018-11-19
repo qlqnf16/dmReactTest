@@ -59,7 +59,12 @@ const CancelReasonModal = props => {
           <p className={props.isD ? 'm_title m_designer' : 'm_title'}>
             서비스 취소 사유
           </p>
-          <div className="m_input p-3" name="cancelReason" id="cancelReason">
+          <div
+            className="m_input p-3"
+            name="cancelReason"
+            id="cancelReason"
+            style={{ overflow: 'scroll' }}
+          >
             {props.reservation.cancelReason === '노쇼dreamary'
               ? '노쇼 신고가 접수되었습니다.'
               : props.reservation.cancelReason}
@@ -67,9 +72,7 @@ const CancelReasonModal = props => {
           <div className="text-center">
             <div
               className={
-                props.isD
-                  ? 'm_button m_button_blue'
-                  : 'm_button m_button_red'
+                props.isD ? 'm_button m_button_blue' : 'm_button m_button_red'
               }
               onClick={props.toggle}
             >

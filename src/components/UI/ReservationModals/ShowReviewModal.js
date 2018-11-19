@@ -71,10 +71,16 @@ const ShowReviewModal = props => {
               />
               {props.reservation._review && props.reservation._review.score}
             </p>
-            <p className="m_input p-3">
+            <p className="m_input p-3" style={{ overflow: 'scroll' }}>
               {props.reservation._review && props.reservation._review.content}
             </p>
-            <div style={{display: 'grid', gridGap: '5%', gridTemplateColumns: '30% 30% 30%'}}>
+            <div
+              style={{
+                display: 'grid',
+                gridGap: '5%',
+                gridTemplateColumns: '30% 30% 30%'
+              }}
+            >
               {props.reservation._review &&
                 props.reservation._review.images.map((image, key) => (
                   <img
@@ -82,7 +88,7 @@ const ShowReviewModal = props => {
                     alt="alt"
                     src={image}
                     // className="col-4"
-                    style={{ width: '100%'}}
+                    style={{ width: '100%' }}
                   />
                 ))}
             </div>
@@ -90,9 +96,7 @@ const ShowReviewModal = props => {
           <div className="text-center">
             <div
               className={
-                props.isD
-                  ? 'm_button m_button_blue'
-                  : 'm_button m_button_red'
+                props.isD ? 'm_button m_button_blue' : 'm_button m_button_red'
               }
               onClick={props.toggle}
             >
