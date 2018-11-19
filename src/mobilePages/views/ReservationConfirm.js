@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from 'react';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import Header from '../components/ReservationConfirm/Header';
 import completeIcon from '../../assets/images/check_lg.png';
 import womanBack from '../../assets/images/m_woman_back.png';
 
 class ReservationConfirm extends Component {
   componentDidMount() {
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0);
   }
 
   showMessage = (reservationId, designerName) => {
@@ -295,9 +295,8 @@ class ReservationConfirm extends Component {
                 color: '#1e3354'
               }}
             >
-              {locationState.userName}
-              님께 최선을 다해서 노력하는 <br />
-              {locationState.recruit._designer.name} 예디! 예쁘게 봐주세요~ ^.^
+              {locationState.recruit._designer.name}님 과의 예약이
+              완료되었습니다! ^.^
             </div>
           </div>
           <div style={cautionSectionStyle}>
@@ -325,17 +324,19 @@ class ReservationConfirm extends Component {
 
             {priceBox}
           </div>
-          <Link to='/reservations' style={{width: '100%'}}>
+          <Link to="/reservations" style={{ width: '100%' }}>
             <div style={buttonStyle}>예약 확인/취소</div>
           </Link>
-          <div 
+          <div
             onClick={() =>
               this.showMessage(
                 this.props.match.params.reservation_id,
                 this.props.location.state.recruit._designer.name
               )
             }
-            style={buttonStyle}>예디에게 메시지
+            style={buttonStyle}
+          >
+            예디에게 메시지
           </div>
           {/* 밑에 여백 주기 위해 추가함 */}
           <div style={{ height: 100 }} />
