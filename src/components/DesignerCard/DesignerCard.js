@@ -35,7 +35,6 @@ class DesginerCard extends Component {
   };
 
   componentDidUpdate = async () => {
-    console.log(this.state);
     if (!this.props.recruit.isSecondTime) {
       this.props.recruit.isSecondTime = true;
       await firebase

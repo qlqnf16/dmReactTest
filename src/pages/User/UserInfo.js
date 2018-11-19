@@ -113,13 +113,19 @@ class UserInfo extends Component {
       if (!result || recommendationCode == this.props.userData.uid) {
         alert('유효하지 않은 추천인 코드 입니다.');
       } else {
-        let { recommendation, _id } = result.val();
+        let { recommendation, _id, isD } = result.val();
+
+        // 유효한 추천인 코드면 포인트 증가
+
         if (recommendation) count = recommendation;
         firebaseUserData = { ...firebaseUserData, recommendationCode };
         count += 1;
-
-        // 유효한 추천인 코드면 포인트 증가
         await axios.patch(`users/${_id}/addpoint`, { point: 1000 });
+
+        // 자기 자신도 포인트 증가
+        await axios.patch(`users/${this.props.userData._id}/addpoint`, {
+          point: 1000
+        });
 
         await firebase
           .database()
