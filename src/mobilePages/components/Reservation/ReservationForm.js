@@ -139,8 +139,7 @@ const ReservationForm = props => {
           <div className="mt-2">
             1,000 point 단위로 사용 가능합니다.
             <br />
-            (보유포인트 : {props.userData.point}
-            원)
+            (보유포인트 : {props.userData.point} point)
           </div>
         </div>
       </div>

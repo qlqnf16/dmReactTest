@@ -45,7 +45,7 @@ const TextInfo = props => {
         style={styles.saveButtonStyle}
         onClick={props.showMyCard}
       >
-        <div style={{ textAlign: 'center' }}>내 카드 확인</div>
+        <div style={{ textAlign: 'center' }}>미리보기</div>
       </div>
       <FormGroup>
         <Label htmlFor="title" style={styles.labelStyle}>

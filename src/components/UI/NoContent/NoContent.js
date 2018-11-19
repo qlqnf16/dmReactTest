@@ -12,7 +12,7 @@ const NoContent = props => {
           {props.text}
         </Link>
       ) : (
-        <div className="noContent">스케줄을 등록해주세요.</div>
+        <div className="noContent">현재 예약이 없습니다.</div>
       )}
     </Fragment>
   );

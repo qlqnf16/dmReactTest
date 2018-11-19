@@ -435,7 +435,7 @@ class Schedule extends Component {
                     : () => alert('스케줄 등록을 먼저 진행해주세요')
                 }
               >
-                내 카드 확인
+                미리보기
               </div>
             </div>
           </div>

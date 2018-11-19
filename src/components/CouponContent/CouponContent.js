@@ -27,14 +27,16 @@ const CouponContent = props => {
       </div>
       <div className="cc_3">
         {content} <br />
-        가입 시 추천인 코드란에 아래의 프로모션 코드를 기입해달라고 부탁하세요!
+        가입 후 마이페이지 > 회원정보관리에 아래의 프로모션 코드를 기입해달라고
+        부탁하세요!
       </div>
       <div>
         <img alt="alt" className="cc_coupon" src={img} />
         <div className={numClass}>{props.couponNumber}</div>
       </div>
-      <div style={{fontSize: '1.3rem'}}>
-        내 추천으로 가입한 친구: {props.recommendationNum ? props.recommendationNum : 0}명
+      <div style={{ fontSize: '1.3rem' }}>
+        내 추천으로 가입한 친구:{' '}
+        {props.recommendationNum ? props.recommendationNum : 0}명
       </div>
     </div>
   );

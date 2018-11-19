@@ -130,7 +130,7 @@ class ReservationForm extends Component {
               </button>
               <span className="font-weight-light">
                 1,000 point 단위로 사용 가능합니다. 보유포인트 :{' '}
-                {this.props.userData.point}원
+                {this.props.userData.point} point
               </span>
             </div>
           </div>
