@@ -20,9 +20,9 @@ class CancelModal extends Component {
     if (!this.state || this.state.cancelReason === '')
       return alert('취소 사유를 적어주세요');
     await axios.patch(
-      `users/${
-        this.props.userData._id
-      }/reservations/${this.props.reservation._id}`,
+      `users/${this.props.userData._id}/reservations/${
+        this.props.reservation._id
+      }`,
       {
         isCanceled: true,
         cancelReason: this.state.cancelReason,
@@ -119,7 +119,19 @@ class CancelModal extends Component {
                     ? 'm_button m_button_blue'
                     : 'm_button m_button_red'
                 }
-                onClick={this.cancelReasonSubmit}
+                onClick={() => {
+                  // 디자이너나 고객이 취소 버튼을 누르면 confirm 창을 하나 더 띄움.
+                  if (
+                    this.props.isD
+                      ? window.confirm(
+                          '서비스가 24시간이 남지 않은 시점에 취소가 이루어지면 페널티가 부여 되며, 당일 취소 3회 시 서비스 사용이 영구적으로 제한됩니다.'
+                        )
+                      : window.confirm(
+                          '서비스가 24시간이 남지 않은 시점에 취소가 이루어지면 포인트가 환급되지 않으며, 당일 취소 3회 시 서비스 사용이 영구적으로 제한됩니다.'
+                        )
+                  )
+                    this.cancelReasonSubmit;
+                }}
               >
                 예약취소
               </div>
