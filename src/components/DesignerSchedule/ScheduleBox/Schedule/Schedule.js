@@ -185,7 +185,7 @@ class Schedule extends Component {
                   color: '#1f3354'
                 }}
               >
-                시작시간이 정해져 있나요?
+                시작시간이 엄밀히 정해져 있는 경우 필수로 체크 (아카데미 웍 등)
               </Label>
               <FormGroup check inline>
                 <div>
