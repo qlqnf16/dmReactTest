@@ -132,7 +132,7 @@ class DetailCard extends Component {
           <h5 className="m-0">
             <span style={{ fontWeight: 'bold' }}>조건</span> :{' '}
             {this.props.cardData.picture}
-            <img
+            {/* <img
               alt="alt"
               className="question"
               src={questionMark}
@@ -143,7 +143,7 @@ class DetailCard extends Component {
                 width: '1.2rem',
                 marginBottom: '0.2rem'
               }}
-            />
+            /> */}
             {/* <ReactTooltip
               id="pic"
               place="left"
