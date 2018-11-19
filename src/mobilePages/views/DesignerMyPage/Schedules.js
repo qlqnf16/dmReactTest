@@ -193,6 +193,10 @@ class Schedule extends Component {
       return alert('가능한 시간대를 선택해주세요');
     if (!cardData.picture) return alert('시간 촬영 여부를 선택해주세요');
     if (!cardData.requireGender) return alert('희망 모델 성별을 선택해주세요');
+    if (cardData.fixStart && mustList.length + noList.length < 3)
+      return alert(
+        '시작시간이 정해져있는 예약의 경우(아카데미 웍 등), 각 서비스의 필수/불가 여부를 꼭 선택해주셔야합니다.'
+      );
     if (cardData.fixStart) {
       cardData.ableTimes = cardData.ableTimes.map(ableTime => {
         return { ...ableTime, until: ableTime.since + addTime };
