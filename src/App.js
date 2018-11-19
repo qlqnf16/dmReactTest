@@ -180,6 +180,10 @@ class App extends Component {
   render() {
     const { width } = this.state;
     const isMobile = width <= 500;
+
+    let ua = navigator.userAgent || navigator.vendor || window.opera;
+    const isFacebookApp = ua.indexOf('FBAN') > -1 || ua.indexOf('FBAV') > -1;
+
     // 장막
     // const isMobile = false;
 
@@ -195,7 +199,7 @@ class App extends Component {
       );
 
       // firebase database에서 호출 후,
-    } else if (!isMobile) {
+    } else if (!isFacebookApp && !isMobile) {
       return (
         <Fragment>
           <Toolbar finishRedux={this.state.finishRedux} />
