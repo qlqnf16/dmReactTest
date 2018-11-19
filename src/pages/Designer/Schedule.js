@@ -11,7 +11,8 @@ class Schedule extends Component {
     cards: [],
     madeRequest: false,
     newCards: [],
-    requireTime: {}
+    requireTime: {},
+    tickets: []
   };
 
   componentDidMount = async () => {
@@ -26,6 +27,12 @@ class Schedule extends Component {
         requireTime: data.requireTime
       });
     }
+
+    // 디자이너 티켓을 몇 개 보유중인지 표시하기 위해 state의 tickets를 불러서 length를 계산할 것
+    const { data } = await axios.get(
+      `users/${this.props.userData._id}/tickets`
+    );
+    await this.setState({ tickets: data, madeRequest: true });
   };
 
   handleInputChange = e => {
@@ -179,14 +186,16 @@ class Schedule extends Component {
                 <span
                   style={{
                     color: '#dd6866',
-                    fontSize: '1.6rem',
+                    fontSize: '1.2rem',
                     marginLeft: '2rem'
                   }}
                 >
                   {this.props.userData.expiredAt &&
                   this.props.userData.expiredAt > new Date().getTime()
                     ? null
-                    : '※현재 사용중인 이용권이 없습니다. '}
+                    : `※ 사용가능한 이용권이 ${
+                        this.state.tickets.length
+                      }개 있습니다, 이용권관리 탭에 가서 ‘사용하기’를 누르면 게시물이 활성화됩니다.`}
                 </span>
               </div>
               <ScheduleBox

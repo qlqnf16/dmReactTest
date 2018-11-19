@@ -1,4 +1,4 @@
-import React, { Component, Link } from 'react';
+import React, { Component } from 'react';
 import Moment from 'react-moment';
 import firebase from '../../config/Firebase';
 class Designer extends Component {

@@ -78,7 +78,7 @@ class DesignerDetail extends Component {
     recruit,
     cardData
   ) => {
-    if (true) return alert('아직 이용하실 수 없습니다.');
+    // if (true) return alert('아직 이용하실 수 없습니다.');
 
     // 비로그인시 로그인 모달
     if (!this.state.isLogin && this.state.madeRequest) {
@@ -126,7 +126,6 @@ class DesignerDetail extends Component {
       paragraphStyle,
       sectionTitleStyle,
       starStyle,
-      designerProfileStyle,
       buttonStyle
     } = styles;
     const designer = this.state.designerData;
@@ -169,8 +168,15 @@ class DesignerDetail extends Component {
           <div style={{ ...paragraphStyle, marginTop: '3rem' }}>
             {designer.introduce}
           </div>
-          <div>
-            <div style={labelStyle}>요청사항</div>
+          <div
+            style={{
+              border: '1px solid rgba(76, 145, 186, 0.6)',
+              borderRadius: '5px',
+              padding: '1.5rem',
+              marginTop: '2rem'
+            }}
+          >
+            <div style={{ ...labelStyle, marginTop: 0 }}>요청사항</div>
             <div style={paragraphStyle}>{recruit.requirement}</div>
             <div style={labelStyle}>예상 시술 소요시간</div>
             <div style={paragraphStyle}>
@@ -244,7 +250,6 @@ class DesignerDetail extends Component {
           <div style={{ height: 100 }} />
           <div
             style={{
-              backgroundColor: 'white',
               height: 100,
               position: 'fixed',
               bottom: '0%',

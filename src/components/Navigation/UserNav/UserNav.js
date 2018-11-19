@@ -8,14 +8,14 @@ const UserNav = () => (
     <div className="un_navBack">
       <NavLink
         // 장막
-        // to="/reservations"
-        to="/userinfo"
-        onClick={() => alert('아직 이용하실 수 없습니다.')}
+        // to="/userinfo"
+        to="/reservations"
+        // onClick={() => alert('아직 이용하실 수 없습니다.')}
         className="un_navItem"
-        // activeStyle={{
-        //   color: '#1f3354',
-        //   borderBottom: 'solid 1.8px #1f3354'
-        // }}
+        activeStyle={{
+          color: '#1f3354',
+          borderBottom: 'solid 1.8px #1f3354'
+        }}
       >
         예약관리
       </NavLink>

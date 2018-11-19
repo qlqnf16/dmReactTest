@@ -25,7 +25,7 @@ class About extends Component {
           src="https://www.youtube.com/embed/jepipiX0KN8?autohide=1&autoplay=1&loop=1&rel=0&controls=0&modestbranding=0&showinfo=0"
           frameborder="0"
           allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen
+          allowFullScreen
           style={{ marginBottom: '30px' }}
         />
         <div className="m_about_1">

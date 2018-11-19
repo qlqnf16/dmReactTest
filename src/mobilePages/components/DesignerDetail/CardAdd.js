@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import questionMark from '../../../assets/images/question_yellow.png';
 import { connect } from 'react-redux';
 import ReactTooltip from 'react-tooltip';
-import { max } from 'moment';
 
 class CardAdd extends Component {
   state = {

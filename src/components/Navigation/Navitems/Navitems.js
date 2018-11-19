@@ -172,13 +172,13 @@ class Navitems extends Component {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink
+            {/* <NavLink
               onClick={() => alert('아직 이용하실 수 없습니다.')}
               style={{ cursor: 'pointer' }}
               className=" message_img"
-            >
-              <img alt="alt" src={message_x} style={{ width: '100%' }} />
-              {/* <NavLink tag={Link} to={'/message'} className=" message_img">
+            > */}
+            {/* <img alt="alt" src={message_x} style={{ width: '100%' }} /> */}
+            <NavLink tag={Link} to={'/message'} className=" message_img">
               <img alt="alt" src={message_x} style={{ width: '100%' }} />
               {this.state.newMessage ? (
                 <div
@@ -192,7 +192,7 @@ class Navitems extends Component {
                     backgroundColor: '#dd6866'
                   }}
                 />
-              ) : null} */}
+              ) : null}
             </NavLink>
           </NavItem>
         </Fragment>
@@ -215,12 +215,12 @@ class Navitems extends Component {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink
+            {/* <NavLink
               onClick={() => alert('아직 이용하실 수 없습니다.')}
               style={{ cursor: 'pointer' }}
               className=""
-            >
-              {/* <NavLink tag={Link} to={'/designer/reservations'} className=""> */}
+            > */}
+            <NavLink tag={Link} to={'/designer/reservations'} className="">
               예약관리
             </NavLink>
           </NavItem>
@@ -245,12 +245,12 @@ class Navitems extends Component {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink
+            {/* <NavLink
               onClick={() => alert('아직 이용하실 수 없습니다.')}
               className=" message_img"
               style={{ cursor: 'pointer' }}
-            >
-              {/* <NavLink tag={Link} to={'/message'} className=" message_img"> */}
+            > */}
+            <NavLink tag={Link} to={'/message'} className=" message_img">
               <img alt="alt" src={message_x} style={{ width: '100%' }} />
               {this.state.newMessage ? (
                 <div

@@ -26,8 +26,13 @@ const MoreInfo = props => {
             key={key}
             alt="alt"
             src={portfolio}
-            className="col-4"
-            style={{ padding: '0', width: '100%', height: '100%' }}
+            className="col-4 p-1"
+            style={{
+              padding: '0',
+              width: '100%',
+              height: 150,
+              objectFit: 'cover'
+            }}
             onClick={() => props.showLargeImageToggle(portfolio)}
           />
         ))}
