@@ -39,18 +39,18 @@ class Schedule extends Component {
       ));
       timeSelector.push(
         <div className="d-flex" key={i}>
-          <Input
-            type="select"
+          <select
             name="since"
             id={i}
             onChange={this.props.changeInput}
             className=""
+            selected="null"
           >
             <option value="null" selected>
               -시작시간-
             </option>
             {ts}
-          </Input>
+          </select>
           <span className="mx-2" style={{ lineHeight: '2.3' }}>
             ~
           </span>

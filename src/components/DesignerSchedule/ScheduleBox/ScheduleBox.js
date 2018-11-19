@@ -64,7 +64,7 @@ class ScheduleBox extends Component {
 
   timeDefault = event => {
     const time = event._d.getTime();
-    this.setState({ time: 1, date: time });
+    this.setState({ date: time });
   };
   sinces = [];
   untils = [];
@@ -136,10 +136,7 @@ class ScheduleBox extends Component {
   cardAddHandler = async cardData => {
     const res = this.props.cardAddHandler(cardData);
     if (res) {
-      this.setState({ time: 1, sinces: [], untils: [], date: null });
-
-      this.sinces = [];
-      this.untils = [];
+      this.setState({ date: null });
     }
   };
 

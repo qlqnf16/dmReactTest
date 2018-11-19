@@ -32,8 +32,23 @@ const DrawerItems = props => {
             <img className="mobile-drawer-logo" src={logo} alt="logo" />
           </div>
         </Link>
-        <div className="mobile-drawer-items mobile-drawer-login">
+        <div
+          className="mobile-drawer-items mobile-drawer-login"
+          style={{ borderBottom: 0, height: '45px', lineHeight: '50px' }}
+        >
           반갑습니다 {props.userData.name}님
+        </div>
+        <div
+          className="mobile-drawer-items mobile-drawer-login"
+          style={{
+            height: '40px',
+            borderTop: 0,
+            lineHeight: '30px',
+            fontSize: '1.3rem'
+          }}
+        >
+          보유 포인트 : {props.userData.point}
+          point
         </div>
         <Link to="/userinfo">
           <div
@@ -47,8 +62,9 @@ const DrawerItems = props => {
           <div
             className="mobile-drawer-items mobile-drawer-gray"
             onClick={props.click}
-            // onClick={() => alert('아직 이용할 수 없습니다.')}
           >
+            {/* // onClick=
+            {() => alert('아직 이용할 수 없습니다.')} */}
             메세지
           </div>
         </Link>
@@ -62,8 +78,7 @@ const DrawerItems = props => {
         {/* 장막 */}
         {/* <Link to="/designerlist"> */}
         <div
-          className="mobile-drawer-items"
-          // onClick={props.click}
+          className="mobile-drawer-items" // onClick={props.click}
           onClick={() => alert('아직 이용할 수 없습니다.')}
         >
           예디찾기

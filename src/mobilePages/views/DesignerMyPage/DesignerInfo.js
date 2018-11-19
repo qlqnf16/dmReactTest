@@ -292,28 +292,35 @@ class DesignerInfo extends Component {
     ) {
       alert('추천인 코드는 한번만 작성할 수 있습니다.');
     }
-    // 최종 유저정보 저장
-    await firebase
-      .database()
-      .ref('users/' + this.props.userData.uid)
-      .update(firebaseUserData);
 
-    //img 업로드
-    const formData = new fd();
-    formData.append('cert_mh', this.state.certFile1);
-    formData.append('cert_jg', this.state.certFile2);
-    formData.append('profile', this.state.profileFile);
-    this.state.portfolioFile.forEach((p, index) => {
-      formData.append(`portfolio${index + this.state.portfoliosNum}`, p);
-    });
-    await axios.post(
-      `firebase/upload?uid=${this.props.userData.uid}`,
-      formData,
-      { headers: { 'Content-Type': 'multipart/form-data' } }
-    );
-    alert('성공적으로 신청되었습니다. \n스케줄 등록으로 이동합니다.');
-    this.setState({ submitLoading: true });
-    this.props.history.push('schedule');
+    try {
+      // 최종 유저정보 저장
+      await firebase
+        .database()
+        .ref('users/' + this.props.userData.uid)
+        .update(firebaseUserData);
+
+      await axios.patch(`users/${this.props.userData._id}`, { name });
+
+      //img 업로드
+      const formData = new fd();
+      formData.append('cert_mh', this.state.certFile1);
+      formData.append('cert_jg', this.state.certFile2);
+      formData.append('profile', this.state.profileFile);
+      this.state.portfolioFile.forEach((p, index) => {
+        formData.append(`portfolio${index + this.state.portfoliosNum}`, p);
+      });
+      await axios.post(
+        `firebase/upload?uid=${this.props.userData.uid}`,
+        formData,
+        { headers: { 'Content-Type': 'multipart/form-data' } }
+      );
+      alert('성공적으로 신청되었습니다. \n스케줄 등록으로 이동합니다.');
+      this.setState({ submitLoading: true });
+      this.props.history.push('schedule');
+    } catch (err) {
+      alert('문제가 발생했습니다. 잠시 뒤에 다시 시도해주세요.');
+    }
   };
 
   render() {

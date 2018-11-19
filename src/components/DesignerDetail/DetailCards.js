@@ -16,6 +16,7 @@ class DetailCards extends Component {
     if (this.props.recruit._cards) {
       const cards = this.props.recruit._cards.sort((a, b) => a.date - b.date);
       let count = 0;
+      console.log(cards);
       cards.forEach((card, key) => {
         if (card.reservable) {
           count % 2

@@ -137,11 +137,17 @@ class UserInfo extends Component {
     } else if (recommendationCode && this.props.userData.recommendationCode) {
       alert('추천인 코드는 한번만 작성할 수 있습니다.');
     }
-    await firebase
-      .database()
-      .ref('users/' + uid)
-      .update(firebaseUserData);
-    alert('저장되었습니다!');
+    try {
+      await firebase
+        .database()
+        .ref('users/' + uid)
+        .update(firebaseUserData);
+
+      await axios.patch(`users/${this.props.userData._id}`, { name });
+      alert('저장되었습니다!');
+    } catch (err) {
+      alert('문제가 발생했습니다. 잠시 뒤에 다시 시도해주세요.');
+    }
   };
 
   phoneCert = () => {

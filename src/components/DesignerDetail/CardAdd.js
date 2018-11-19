@@ -166,9 +166,9 @@ class CardAdd extends Component {
       );
 
     let captionInner = [];
-    if (this.state.cut) captionInner.push('커트');
-    if (this.state.perm) captionInner.push('펌');
-    if (this.state.dye) captionInner.push('염색');
+    if (this.props.must.some(e => e === 'cut')) captionInner.push('커트');
+    if (this.props.must.some(e => e === 'perm')) captionInner.push('펌');
+    if (this.props.must.some(e => e === 'dye')) captionInner.push('염색');
     const caption = captionInner.length
       ? `* ${captionInner.join(',')}은(는) 필수입니다.`
       : null;
