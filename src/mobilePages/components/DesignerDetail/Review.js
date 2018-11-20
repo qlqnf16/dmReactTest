@@ -35,9 +35,9 @@ const Review = props => {
       <div style={paragraphStyle}>
         <Moment format="YYYY/MM/DD">{review.createdAt}</Moment>
       </div>
-      <div style={{ ...paragraphStyle, margin: '1rem 0' }}>
+      <pre style={{ ...paragraphStyle, margin: '1rem 0' }}>
         {review.content}
-      </div>
+      </pre>
       <div>{images}</div>
     </div>
   );

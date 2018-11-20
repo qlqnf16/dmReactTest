@@ -1,5 +1,5 @@
-import React from "react";
-import StarRatings from "react-star-ratings";
+import React from 'react';
+import StarRatings from 'react-star-ratings';
 
 const DesignerCardContent = props => {
   const {
@@ -12,7 +12,7 @@ const DesignerCardContent = props => {
   if (props.recruit && props.recruit._designer) {
     const recruit = props.recruit;
 
-    let shops = "";
+    let shops = '';
     recruit.shops.forEach(shop => {
       shops += `/ ${shop}`;
     });
@@ -22,7 +22,7 @@ const DesignerCardContent = props => {
         <div style={locationStyle}>{shops}</div>
         <div style={titleStyle}>{recruit.title}</div>
         <div style={nameStyle}>
-          {recruit._designer.name}{" "}
+          <span style={{ maxWidth: '45%' }}>{recruit._designer.name} </span>
           <span style={starStyle}>
             <StarRatings
               rating={recruit.score}
@@ -32,7 +32,7 @@ const DesignerCardContent = props => {
               starEmptycolor="#ffffff"
             />
           </span>
-          <span style={{ color: "gray" }}>({recruit.score})</span>
+          <span style={{ color: 'gray' }}>({recruit.score})</span>
         </div>
       </div>
     );
@@ -43,31 +43,31 @@ const DesignerCardContent = props => {
 
 const styles = {
   containerStyle: {
-    paddingTop: "5%"
+    paddingTop: '5%'
   },
   locationStyle: {
-    fontSize: "1.1rem",
-    color: "#2b2e34",
+    fontSize: '1.1rem',
+    color: '#2b2e34',
     marginBottom: 4
   },
   titleStyle: {
-    fontSize: "1.3rem",
-    fontWeight: "bold",
-    color: "#1e3354",
+    fontSize: '1.3rem',
+    fontWeight: 'bold',
+    color: '#1e3354',
     marginBottom: 4
   },
   nameStyle: {
-    fontSize: "1rem",
-    fontWeight: "bold",
-    color: "#2b2e34",
-    display: "flex",
-    flexDirection: "row",
-    alignItems: "center"
+    fontSize: '1rem',
+    fontWeight: 'bold',
+    color: '#2b2e34',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center'
   },
   starStyle: {
-    marginLeft: "2%",
-    color: "#dd6866",
-    fontSize: "1.1rem"
+    marginLeft: '2%',
+    color: '#dd6866',
+    fontSize: '1.1rem'
   }
 };
 
