@@ -120,15 +120,6 @@ class App extends Component {
 
   componentDidMount = () => {
     if (!this.state.madeRequest) this.authListener();
-
-    // ie 브라우저인지 확인
-    let isIE =
-      navigator.userAgent.indexOf('MSIE ') > -1 ||
-      navigator.userAgent.indexOf('Trident/') > -1;
-    if (isIE)
-      alert(
-        '드리머리 서비스는 인터넷 익스플로러 환경에서 원활하지 않을 수 있습니다. 크롬이나 사파리 등 다른 브라우저 또는 모바일 버전을 이용해주세요.'
-      );
   };
 
   authListener() {
@@ -183,6 +174,7 @@ class App extends Component {
 
     let ua = navigator.userAgent || navigator.vendor || window.opera;
     const isFacebookApp = ua.indexOf('FBAN') > -1 || ua.indexOf('FBAV') > -1;
+    const isIphoneSafari = ua.match(/iPhone/i);
 
     // 장막
     // const isMobile = false;
@@ -199,7 +191,7 @@ class App extends Component {
       );
 
       // firebase database에서 호출 후,
-    } else if (!isFacebookApp && !isMobile) {
+    } else if (!isFacebookApp && !isMobile && !isIphoneSafari) {
       return (
         <Fragment>
           <Toolbar finishRedux={this.state.finishRedux} />
