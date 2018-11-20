@@ -51,7 +51,11 @@ const AddCardModal = props => {
           </select>
           <select
             style={{ ...selectStyle, marginBottom: '5%' }}
-            style={props.fixStart ? { display: 'none' } : {}}
+            style={
+              props.fixStart
+                ? { display: 'none' }
+                : { ...selectStyle, marginBottom: '5%' }
+            }
             type="select"
             name="until"
             id={i}
@@ -143,16 +147,7 @@ const AddCardModal = props => {
                 ))}
               </select>
             </div>
-            <div>
-              <label style={labelStyle}>정해진 시간이 있나요?</label>
-              <input
-                type="checkbox"
-                name="fixStart"
-                id="fixStart"
-                onChange={props.changeInput}
-                checked={props.fixStart}
-              />
-            </div>
+
             <div>
               <label style={labelStyle}>
                 <span>서비스 가능 시간</span>
@@ -200,6 +195,47 @@ const AddCardModal = props => {
                   시작과 종료시간을 모두 선택해주세요
                 </span>
               ) : null}
+              <div>
+                <label
+                  style={
+                    props.fixStart
+                      ? {
+                          display: 'block',
+                          fontSize: '1.3rem',
+                          fontWeight: 'bold',
+                          color: 'rgb(31, 51, 84)',
+                          border: '0.5px solid rgb(31, 51, 84)',
+                          padding: '0.5rem',
+                          margin: '1rem 0',
+                          textAlign: 'center',
+                          borderRadius: '5px',
+                          width: '100%'
+                        }
+                      : {
+                          display: 'block',
+                          fontSize: '1.3rem',
+                          fontWeight: 'normal',
+                          color: 'rgba(0,0,0,0.2)',
+                          border: '0.5px solid rgba(0,0,0,0.2)',
+                          padding: '0.5rem',
+                          margin: '1rem 0',
+                          textAlign: 'center',
+                          borderRadius: '5px',
+                          width: '100%'
+                        }
+                  }
+                >
+                  <input
+                    style={{ display: 'none' }}
+                    type="checkbox"
+                    name="fixStart"
+                    id="fixStart"
+                    onChange={props.changeInput}
+                    checked={props.fixStart}
+                  />
+                  시작시간이 꼭 정해져 있으면 체크 (아카데미 웍 등)
+                </label>
+              </div>
               <div>
                 {timeSelector()}
                 <div
@@ -354,7 +390,7 @@ const AddCardModal = props => {
             </div>
             <div>
               <label style={labelStyle}>
-                시술 가능한 모델 성별을 선택해주세요.
+                시술 가능한 모델 성별을 선택해주세요. (복수선택가능)
               </label>
               <div>
                 <div

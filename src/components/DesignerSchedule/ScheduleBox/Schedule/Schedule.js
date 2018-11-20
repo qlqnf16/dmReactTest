@@ -176,28 +176,47 @@ class Schedule extends Component {
               </Input>
             </FormGroup>
             <div>
-              <Label
-                xs={5}
-                style={{
-                  textAlign: 'right',
-                  fontSize: '1.1rem',
-                  fontWeight: 'bold',
-                  color: '#1f3354'
-                }}
+              <label
+                style={
+                  this.props.fixStart
+                    ? {
+                        display: 'block',
+                        fontSize: '1.1rem',
+                        fontWeight: 'bold',
+                        color: 'rgb(31, 51, 84)',
+                        border: '0.5px solid rgb(31, 51, 84)',
+                        padding: '0.5rem',
+                        margin: '1rem',
+                        textAlign: 'center',
+                        transform: 'translateX(2rem)',
+                        borderRadius: '5px',
+                        width: '100%'
+                      }
+                    : {
+                        display: 'block',
+                        fontSize: '1.1rem',
+                        fontWeight: 'bold',
+                        color: 'rgba(0,0,0,0.2)',
+                        border: '0.5px solid rgba(0,0,0,0.2)',
+                        padding: '0.5rem',
+                        margin: '1rem',
+                        textAlign: 'center',
+                        transform: 'translateX(2rem)',
+                        borderRadius: '5px',
+                        width: '100%'
+                      }
+                }
               >
-                시작시간이 엄밀히 정해져 있는 경우 필수로 체크 (아카데미 웍 등)
-              </Label>
-              <FormGroup check inline>
-                <div>
-                  <input
-                    type="checkbox"
-                    name="fixStart"
-                    id="fixStart"
-                    onChange={this.props.changeInput}
-                    checked={this.props.fixStart}
-                  />
-                </div>
-              </FormGroup>
+                <input
+                  style={{ display: 'none' }}
+                  type="checkbox"
+                  name="fixStart"
+                  id="fixStart"
+                  onChange={this.props.changeInput}
+                  checked={this.props.fixStart}
+                />
+                시작시간이 꼭 정해져 있으면 체크 (아카데미 웍 등)
+              </label>
             </div>
             <FormGroup row>
               <Label
@@ -443,7 +462,7 @@ class Schedule extends Component {
                   marginTop: '1rem'
                 }}
               >
-                모델 성별
+                모델 성별 (복수선택가능)
               </Label>
               <FormGroup check inline>
                 <div>

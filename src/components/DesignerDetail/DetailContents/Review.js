@@ -37,7 +37,10 @@ const Review = props => {
       <div className="r_content">
         <Moment format="YYYY/MM/DD">{review.createdAt}</Moment>
       </div>
-      <div className="r_content" style={{ marginTop: '22px' }}>
+      <div
+        className="r_content"
+        style={{ marginTop: '22px', lineHeight: '1.6' }}
+      >
         {review.content}
       </div>
       <div className="row">{images}</div>

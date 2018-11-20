@@ -5,7 +5,7 @@
 .schedule_border {
   border: solid 1px #c1e4eb;
   border-radius: 5px;
-  padding: 2rem;
+  padding: 4rem 1.5rem;
 }
 .length_price {
   border-bottom: dotted 1.5px #4c91ba;
