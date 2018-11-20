@@ -382,6 +382,14 @@ class DesignerInfo extends Component {
                       }
                       className="if_input"
                       placeholder="선택사항"
+                      style={
+                        this.props.userData.designerRecommendationCode
+                          ? {
+                              backgroundColor: 'rgba(0,0,0,0.1)',
+                              color: 'rgba(0,0,0,0.5)'
+                            }
+                          : null
+                      }
                     />
                   </div>
                 </FormGroup>

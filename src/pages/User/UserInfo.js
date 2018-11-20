@@ -354,7 +354,7 @@ class UserInfo extends Component {
                 </FormGroup>
                 <FormGroup row>
                   <div className="col-2 if_head uif_head ">추천인 코드</div>
-                  <div className="col-10 d-flex justify-content-left">
+                  <div className="col-10 justify-content-left">
                     <input
                       onChange={
                         this.props.userData.recommendationCode
@@ -365,9 +365,42 @@ class UserInfo extends Component {
                       name="recommendationCode"
                       id="recommendationCode"
                       ref={ref => (this.recommendationInput = ref)}
-                      value={this.state.recommendationCode}
+                      value={
+                        this.props.userData.recommendationCode
+                          ? this.props.userData.recommendationCode
+                          : this.state.recommendationCode
+                      }
                       className="if_input"
+                      style={
+                        this.props.userData.recommendationCode
+                          ? {
+                              backgroundColor: "rgba(0,0,0,0.1)",
+                              color: "rgba(0,0,0,0.5)"
+                            }
+                          : null
+                      }
                     />
+                    <div
+                      className="if_detail"
+                      style={{
+                        marginTop: "0.6rem",
+                        marginBottom: "0.6rem",
+                        fontSize: "1.2rem"
+                      }}
+                    >
+                      친구가 내 추천인 코드 입력하면 친구도 나도 1000포인트씩
+                      지급!
+                    </div>
+                    <div
+                      className="if_detail"
+                      style={{
+                        marginTop: "0.6rem",
+                        marginBottom: "0.6rem",
+                        fontSize: "1.2rem"
+                      }}
+                    >
+                      내 추천인 코드: {this.props.userData.uid}
+                    </div>
                   </div>
                 </FormGroup>
 

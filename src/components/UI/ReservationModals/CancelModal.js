@@ -122,15 +122,13 @@ class CancelModal extends Component {
                 onClick={() => {
                   // 디자이너나 고객이 취소 버튼을 누르면 confirm 창을 하나 더 띄움.
                   if (
-                    this.props.isD
-                      ? window.confirm(
-                          '서비스가 24시간이 남지 않은 시점에 취소가 이루어지면 페널티가 부여 되며, 당일 취소 3회 시 서비스 사용이 영구적으로 제한됩니다.'
-                        )
-                      : window.confirm(
-                          '서비스가 24시간이 남지 않은 시점에 취소가 이루어지면 포인트가 환급되지 않으며, 당일 취소 3회 시 서비스 사용이 영구적으로 제한됩니다.'
-                        )
+                    window.confirm(
+                      this.props.isD
+                        ? '서비스가 24시간이 남지 않은 시점에 취소가 이루어지면 페널티가 부여 되며, 당일 취소 3회 시 서비스 사용이 영구적으로 제한됩니다.'
+                        : '서비스가 24시간이 남지 않은 시점에 취소가 이루어지면 포인트가 환급되지 않으며, 당일 취소 3회 시 서비스 사용이 영구적으로 제한됩니다.'
+                    )
                   )
-                    this.cancelReasonSubmit;
+                    this.cancelReasonSubmit();
                 }}
               >
                 예약취소

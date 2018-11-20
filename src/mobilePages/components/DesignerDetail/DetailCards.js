@@ -13,7 +13,10 @@ class DetailCards extends Component {
   render() {
     let cardList = [];
     if (this.props.recruit._cards) {
-      const cards = this.props.recruit._cards.sort((a, b) => a.date - b.date);
+      const filteredCards = this.props.recruit._cards.filter(
+        card => card.date > new Date().getTime()
+      );
+      const cards = filteredCards.sort((a, b) => a.date - b.date);
       cards.forEach((card, key) => {
         if (card.reservable) {
           cardList.push(

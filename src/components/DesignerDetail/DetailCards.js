@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import DetailCard from './DetailCard';
+import React, { Component } from "react";
+import DetailCard from "./DetailCard";
 class DetailCards extends Component {
   state = { click: false };
 
@@ -14,7 +14,10 @@ class DetailCards extends Component {
     let leftCards = [];
     let rightCards = [];
     if (this.props.recruit._cards) {
-      const cards = this.props.recruit._cards.sort((a, b) => a.date - b.date);
+      const filteredCards = this.props.recruit._cards.filter(
+        card => card.date > new Date().getTime()
+      );
+      const cards = filteredCards.sort((a, b) => a.date - b.date);
       let count = 0;
       cards.forEach((card, key) => {
         if (card.reservable) {

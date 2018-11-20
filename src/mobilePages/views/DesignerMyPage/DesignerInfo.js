@@ -284,12 +284,13 @@ class DesignerInfo extends Component {
           .ref('users/' + designerRecommendationCode)
           .update({ designerRecommendation: count });
       }
-    } else if (
-      designerRecommendationCode &&
-      this.props.userData.designerRecommendationCode
-    ) {
-      alert('추천인 코드는 한번만 작성할 수 있습니다.');
     }
+    // else if (
+    //   designerRecommendationCode &&
+    //   this.props.userData.designerRecommendationCode
+    // ) {
+    //   alert('추천인 코드는 한번만 작성할 수 있습니다.');
+    // }
 
     try {
       // 최종 유저정보 저장
@@ -380,12 +381,24 @@ class DesignerInfo extends Component {
           <div style={containerStyle}>
             <div style={labelStyle}>추천인 코드</div>
             <input
-              style={inputTextStyle}
+              style={
+                !this.props.userData.designerRecommendationCode
+                  ? {
+                      ...inputTextStyle,
+                      backgroundColor: 'rgba(0,0,0,0.1)',
+                      color: 'rgba(0,0,0,0.5)'
+                    }
+                  : inputTextStyle
+              }
               type="text"
               name="designerRecommendationCode"
               id="designerRecommendationCode"
               value={this.state.designerRecommendationCode}
-              onChange={e => this.handleInputChange(e)}
+              onChange={
+                this.props.userData.designerRecommendationCode
+                  ? null
+                  : e => this.handleInputChange(e)
+              }
             />
             <div style={buttonStyle} onClick={this.submitHandler}>
               예디 정보 수정하기

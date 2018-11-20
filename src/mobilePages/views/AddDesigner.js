@@ -383,7 +383,15 @@ class AddDesigner extends Component {
             <div style={containerStyle}>
               <div style={labelStyle}>추천인 코드 </div>
               <input
-                style={inputTextStyle}
+                style={
+                  this.props.userData.designerRecommendationCode
+                    ? {
+                        ...inputTextStyle,
+                        backgroundColor: 'rgba(0,0,0,0.1)',
+                        color: 'rgba(0,0,0,0.5)'
+                      }
+                    : inputTextStyle
+                }
                 type="text"
                 name="designerRecommendationCode"
                 id="designerRecommendationCode"

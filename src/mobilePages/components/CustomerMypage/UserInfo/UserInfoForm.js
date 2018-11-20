@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 const UserInfoForm = props => {
   const userData = props.userData;
@@ -24,8 +24,8 @@ const UserInfoForm = props => {
     year.push(i);
   }
   if (userData && userData.month) {
-    if (['4', '6', '9', '11'].includes(userData.month)) day.pop();
-    else if (userData.month === '2')
+    if (["4", "6", "9", "11"].includes(userData.month)) day.pop();
+    else if (userData.month === "2")
       Number(userData.year) % 4 === 0 ? day.splice(29, 2) : day.splice(28, 3);
   }
   let m = month.map((m, key) => (
@@ -85,9 +85,9 @@ const UserInfoForm = props => {
       <div
         style={{
           ...phoneButtonStyle,
-          backgroundColor: 'transparent',
-          color: '#66ce82',
-          border: 'solid 1px #66ce82'
+          backgroundColor: "transparent",
+          color: "#66ce82",
+          border: "solid 1px #66ce82"
         }}
       >
         인증됨
@@ -98,11 +98,11 @@ const UserInfoForm = props => {
     <div style={containerStyle}>
       <div style={titleStyle}>회원 정보 관리</div>
       <div style={subtitleStyle}>회원 정보 수정</div>
-      <div style={{ display: 'flex' }}>
-        <div style={{ width: '70%', marginRight: '5%' }}>
+      <div style={{ display: "flex" }}>
+        <div style={{ width: "70%", marginRight: "5%" }}>
           <div style={labelStyle}>성명</div>
           <input
-            style={{ ...inputTextStyle, width: '100%' }}
+            style={{ ...inputTextStyle, width: "100%" }}
             type="text"
             name="name"
             id="name"
@@ -110,24 +110,24 @@ const UserInfoForm = props => {
             value={userData.name}
           />
         </div>
-        <div style={{ width: '25%' }}>
+        <div style={{ width: "25%" }}>
           <div style={labelStyle}>성별</div>
-          <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
             <label
               htmlFor="infoform-male"
               className="infoform-male"
               style={
-                userData.gender === 'male'
+                userData.gender === "male"
                   ? {
-                      borderColor: 'rgb(221, 104, 102)',
-                      fontWeight: 'bold',
-                      color: 'rgb(31, 51, 84)'
+                      borderColor: "rgb(221, 104, 102)",
+                      fontWeight: "bold",
+                      color: "rgb(31, 51, 84)"
                     }
-                  : { color: 'rgba(0,0,0,0.2)' }
+                  : { color: "rgba(0,0,0,0.2)" }
               }
             >
               <input
-                style={{ display: 'none' }}
+                style={{ display: "none" }}
                 type="radio"
                 name="gender"
                 id="infoform-male"
@@ -140,17 +140,17 @@ const UserInfoForm = props => {
               htmlFor="infoform-female"
               className="infoform-female"
               style={
-                userData.gender === 'female'
+                userData.gender === "female"
                   ? {
-                      borderColor: 'rgb(221, 104, 102)',
-                      fontWeight: 'bold',
-                      color: 'rgb(31, 51, 84)'
+                      borderColor: "rgb(221, 104, 102)",
+                      fontWeight: "bold",
+                      color: "rgb(31, 51, 84)"
                     }
-                  : { color: 'rgba(0,0,0,0.2)' }
+                  : { color: "rgba(0,0,0,0.2)" }
               }
             >
               <input
-                style={{ display: 'none' }}
+                style={{ display: "none" }}
                 type="radio"
                 name="gender"
                 id="infoform-female"
@@ -175,7 +175,7 @@ const UserInfoForm = props => {
       <span style={labelStyle}>전화번호</span>
       <div>
         <input
-          style={{ ...inputTextStyle, width: '78.7%' }}
+          style={{ ...inputTextStyle, width: "78.7%" }}
           type="number"
           name="phoneNumber"
           id="phoneNumber"
@@ -186,15 +186,31 @@ const UserInfoForm = props => {
       </div>
       <span style={labelStyle}>추천인 코드</span>
       <input
-        style={inputTextStyle} // 이미 입력된 추천인코드가 있다면 수정 안되도록
-        onChange={props.recommendationCode ? null : props.inputChangeHandler}
+        style={
+          props.recommendationCode
+            ? {
+                ...inputTextStyle,
+                backgroundColor: "rgba(0,0,0,0.1)",
+                color: "rgba(0,0,0,0.5)"
+              }
+            : inputTextStyle
+        }
+        onChange={
+          props.recommendationCode ? null : props.inputChangeHandler // 이미 입력된 추천인코드가 있다면 수정 안되도록
+        }
         type="text"
         name="recommendationCode"
         id="recommendationCode"
         value={props.recommendationCode}
       />
+      <div style={{ ...labelStyle, fontWeight: "normal", marginTop: "0.3rem" }}>
+        친구가 내 추천인 코드 입력하면 친구도 나도 1000포인트씩 지급!
+      </div>
+      <div style={{ ...labelStyle, fontWeight: "normal", marginTop: "0.3rem" }}>
+        내 추천인 코드: {props.userData.uid}
+      </div>
       <div
-        style={{ ...buttonStyle, backgroundColor: '#dd6866' }}
+        style={{ ...buttonStyle, backgroundColor: "#dd6866" }}
         onClick={props.submitHandler}
       >
         저장하기
@@ -205,77 +221,77 @@ const UserInfoForm = props => {
 
 const styles = {
   containerStyle: {
-    width: '85%',
-    display: 'flex',
-    flexDirection: 'column',
-    textAlign: 'left'
+    width: "85%",
+    display: "flex",
+    flexDirection: "column",
+    textAlign: "left"
   },
   titleStyle: {
-    fontSize: '1.5rem',
-    fontWeight: 'bold',
-    color: '#dd6866',
-    textAlign: 'left',
-    margin: '33.5px 0',
+    fontSize: "1.5rem",
+    fontWeight: "bold",
+    color: "#dd6866",
+    textAlign: "left",
+    margin: "33.5px 0",
     paddingBottom: 6.9,
-    borderBottom: '1px solid rgba(0, 0, 0, 0.1)'
+    borderBottom: "1px solid rgba(0, 0, 0, 0.1)"
   },
   subtitleStyle: {
-    fontSize: '1.3rem',
-    fontWeight: 'bold',
-    color: '#1f3354'
+    fontSize: "1.3rem",
+    fontWeight: "bold",
+    color: "#1f3354"
   },
   labelStyle: {
-    fontSize: '1.1rem',
-    fontWeight: 'bold',
-    color: '#1e3354',
-    marginTop: '1.5rem',
-    marginBottom: '0.2rem'
+    fontSize: "1.1rem",
+    fontWeight: "bold",
+    color: "#1e3354",
+    marginTop: "1.5rem",
+    marginBottom: "0.2rem"
   },
   inputTextStyle: {
-    fontSize: '1.3rem',
-    color: '#1f3354',
-    padding: '0.7rem',
-    borderRadius: '5px',
-    border: 'solid 1px rgba(0, 0, 0, 0.1)'
+    fontSize: "1.3rem",
+    color: "#1f3354",
+    padding: "0.7rem",
+    borderRadius: "5px",
+    border: "solid 1px rgba(0, 0, 0, 0.1)"
   },
   calendarStyle: {
-    width: '30%',
-    fontSize: '1.3rem',
-    color: '#1f3354',
-    marginRight: '3.3%',
-    padding: '0.7rem',
-    paddingTop: '0.5rem',
+    width: "30%",
+    fontSize: "1.3rem",
+    color: "#1f3354",
+    marginRight: "3.3%",
+    padding: "0.7rem",
+    paddingTop: "0.5rem",
     backgroundImage:
-      'linear-gradient(45deg, transparent 50%, gray 50%), linear-gradient(135deg, gray 50%, transparent 50%)',
+      "linear-gradient(45deg, transparent 50%, gray 50%), linear-gradient(135deg, gray 50%, transparent 50%)",
     backgroundPosition:
-      'calc(100% - 20px) calc(1em + 2px), calc(100% - 15px) calc(1em + 2px)',
-    backgroundSize: '5px 5px, 5px 5px',
-    backgroundRepeat: 'no-repeat'
+      "calc(100% - 20px) calc(1em + 2px), calc(100% - 15px) calc(1em + 2px)",
+    backgroundSize: "5px 5px, 5px 5px",
+    backgroundRepeat: "no-repeat"
   },
   buttonStyle: {
-    height: '3.9rem',
-    color: 'white',
-    fontSize: '1.4rem',
-    fontWeight: 'bold',
-    marginTop: '2.5rem',
-    marginBottom: '4rem',
+    height: "3.9rem",
+    color: "white",
+    fontSize: "1.4rem",
+    fontWeight: "bold",
+    marginTop: "2.5rem",
+    marginBottom: "4rem",
     borderRadius: 6,
-    backgroundColor: '#4c91ba',
-    textAlign: 'center',
-    lineHeight: '3.9rem'
+    backgroundColor: "#4c91ba",
+    textAlign: "center",
+    lineHeight: "3.9rem"
   },
   phoneButtonStyle: {
-    display: 'inline-block',
-    width: '18%',
-    marginLeft: '3.3%',
-    padding: '2.3%',
-    border: '1px solid #dd6866',
-    backgroundColor: '#dd6866',
-    borderRadius: '5px',
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: '1.3rem',
-    textAlign: 'center'
+    display: "inline-block",
+    width: "18%",
+    marginLeft: "3.3%",
+    padding: "2.3%",
+    border: "1px solid #dd6866",
+    backgroundColor: "#dd6866",
+    borderRadius: "5px",
+    color: "white",
+    fontWeight: "bold",
+    fontSize: "1.3rem",
+    textAlign: "center"
   }
 };
 
