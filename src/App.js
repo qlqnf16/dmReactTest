@@ -120,15 +120,6 @@ class App extends Component {
 
   componentDidMount = () => {
     if (!this.state.madeRequest) this.authListener();
-
-    // ie 브라우저인지 확인
-    let isIE =
-      navigator.userAgent.indexOf('MSIE ') > -1 ||
-      navigator.userAgent.indexOf('Trident/') > -1;
-    if (isIE)
-      alert(
-        '드리머리 서비스는 인터넷 익스플로러 환경에서 원활하지 않을 수 있습니다. 크롬이나 사파리 등 다른 브라우저 또는 모바일 버전을 이용해주세요.'
-      );
   };
 
   authListener() {
