@@ -6,6 +6,7 @@ import DesignerCardImage from "./DesignerCardImage";
 import DesignerCardContent from "./DesignerCardContent";
 
 import defaultGuy from "../../../assets/images/Default_guy-01.jpg";
+import Spinner from "../../../assets/images/loading_spinner.gif";
 
 class DesignerCard extends Component {
   // console.log(props.recruit);
@@ -43,11 +44,10 @@ class DesignerCard extends Component {
   };
 
   render() {
-    if (this.state.designerData) {
+    if (this.state.designerData && this.state.madeRequest) {
       let { portfolios } = this.state.designerData;
 
       if (!portfolios || !portfolios.length) portfolios = [defaultGuy];
-
       return (
         <div style={containerStyle}>
           <Link to={`designerdetail/${this.props.recruit._id}`}>
@@ -59,7 +59,14 @@ class DesignerCard extends Component {
         </div>
       );
     } else {
-      return <div />;
+      return (
+        <div
+          style={{ height: "100vh", width: "100%" }}
+          className="d-flex justify-content-center align-items-center"
+        >
+          <img alt="alt" style={{ height: "20%" }} src={Spinner} />
+        </div>
+      );
     }
   }
 }

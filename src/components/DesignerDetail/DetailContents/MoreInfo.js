@@ -23,7 +23,7 @@ const MoreInfo = props => {
       <div className="mi_subtitle">포트폴리오</div>
       <div className="row" style={{ margin: '13.3px 0 0 0' }}>
         {portfolios.map((portfolio, key) => (
-          <img
+          <ExifOrientationImg
             key={key}
             alt="alt"
             src={portfolio}
