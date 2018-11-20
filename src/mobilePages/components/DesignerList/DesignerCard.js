@@ -10,7 +10,7 @@ const DesignerCard = props => {
     <div style={containerStyle}>
       <Link to={`designerdetail/${props.recruit._id}`}>
         <div style={imageStyle}>
-          <DesignerCardImage />
+          <DesignerCardImage recruit={props.recruit} />
         </div>
         <DesignerCardContent recruit={props.recruit} />
       </Link>
