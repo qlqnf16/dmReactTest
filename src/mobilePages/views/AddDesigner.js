@@ -220,49 +220,7 @@ class AddDesigner extends Component {
     this.setState({ submitLoading: false });
 
     window.scrollTo(0, 0);
-    // 추천인 로직
-    // 전에 추천인을 입력한 적이 없고, 추천인을 작성했을 때,
-    if (
-      designerRecommendationCode &&
-      !this.props.userData.designerRecommendationCode
-    ) {
-      let count = 0;
-      let result = null;
 
-      // 유효한 추천인 코드인지 확인
-      const fbPromise = new Promise(resolve => {
-        firebase
-          .database()
-          .ref('users/' + designerRecommendationCode)
-          .on('value', res => {
-            if (res.val()) resolve(res);
-            else resolve(false);
-          });
-      });
-      result = await fbPromise;
-      // 유효하지 않은 추천인 코드일 때,
-      if (!result || designerRecommendationCode === this.props.userData.uid)
-        alert('유효하지 않은 추천인 코드 입니다.');
-      // 유효한 추천인 코드일 때,
-      else {
-        let { designerRecommendation, _id } = result.val();
-        if (designerRecommendation) count = designerRecommendation;
-        firebaseUserData = { ...firebaseUserData, designerRecommendationCode };
-        count += 1;
-
-        if (count !== 0 && count % 2 === 0) {
-          await axios.post(`users/${_id}/tickets`, {
-            price: 10000
-          });
-        }
-
-        // 추천받은 횟수 저장
-        await firebase
-          .database()
-          .ref('users/' + designerRecommendationCode)
-          .update({ designerRecommendation: count });
-      }
-    }
     try {
       // 최종 유저정보 저장
       await firebase
@@ -381,27 +339,6 @@ class AddDesigner extends Component {
               deletePortfolio={e => this.deletePortfolio(e)}
             />
             <div style={containerStyle}>
-              <div style={labelStyle}>추천인 코드 </div>
-              <input
-                style={
-                  this.props.userData.designerRecommendationCode
-                    ? {
-                        ...inputTextStyle,
-                        backgroundColor: 'rgba(0,0,0,0.1)',
-                        color: 'rgba(0,0,0,0.5)'
-                      }
-                    : inputTextStyle
-                }
-                type="text"
-                name="designerRecommendationCode"
-                id="designerRecommendationCode"
-                value={this.state.designerRecommendationCode}
-                onChange={
-                  this.props.userData.designerRecommendationCode
-                    ? null
-                    : e => this.handleInputChange(e)
-                }
-              />
               <div style={buttonStyle} onClick={this.submitHandler}>
                 예디 등록하기
               </div>

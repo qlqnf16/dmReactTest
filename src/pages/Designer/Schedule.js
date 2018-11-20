@@ -118,15 +118,18 @@ class Schedule extends Component {
     let shops;
     shops = this.props.userData.addresses.map(address => address.extraAddress);
     recruitData['shops'] = shops;
+
+    console.log(recruitData);
     //안 채워진 정보 검증
+    if (!recruitData.title) return alert('제목을 작성해주세요');
+    if (!recruitData.requirement) return alert('요청사항을 작성해주세요');
     if (
-      Object.values(recruitData).includes('') ||
-      Object.values(recruitData).includes(null) ||
       Object.values(recruitData.requireTime).length !== 3 ||
       Object.values(recruitData.requireTime).includes('null') ||
-      Object.values(recruitData.requireTime).includes(null)
+      Object.values(recruitData.requireTime).includes(null) ||
+      Object.values(recruitData.requireTime).includes(NaN)
     )
-      return alert('채워지지 않은 정보가 있습니다');
+      return alert('예상 시술 소요 시간을 모두 채워주세요');
     if (!this.state.newCards.length && !this.state.cards.length)
       return alert(
         '스케줄을 먼저 추가한 후 스케줄 게시하기 버튼을 클릭해주세요'

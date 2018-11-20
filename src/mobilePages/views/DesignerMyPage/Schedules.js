@@ -245,7 +245,8 @@ class Schedule extends Component {
     if (
       Object.values(recruitData.requireTime).length !== 3 ||
       Object.values(recruitData.requireTime).includes("null") ||
-      Object.values(recruitData.requireTime).includes(null)
+      Object.values(recruitData.requireTime).includes(null) ||
+      Object.values(recruitData.requireTime).includes(NaN)
     )
       return alert("예상 시술 소요 시간을 전부 작성해주세요");
     if (!this.state.newCards.length && !this.state.cards.length)

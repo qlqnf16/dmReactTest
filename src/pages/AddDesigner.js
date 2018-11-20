@@ -24,7 +24,6 @@ class AddDesigner extends Component {
       career,
       careerDetail,
       addresses,
-      designerRecommendationCode,
       cert_mh,
       cert_jg,
       isRegister,
@@ -50,7 +49,6 @@ class AddDesigner extends Component {
       certFile2: null,
       addressNum: addresses.length + 1,
       addresses,
-      designerRecommendationCode,
       introduce,
       isRegister,
       profileImg: profile,
@@ -217,7 +215,6 @@ class AddDesigner extends Component {
       career,
       careerDetail,
       addresses,
-      designerRecommendationCode,
       isRegister,
       introduce
     } = this.state;
@@ -271,43 +268,6 @@ class AddDesigner extends Component {
     this.setState({ submitLoading: false });
     window.scrollTo(0, 0);
 
-    if (
-      designerRecommendationCode &&
-      !this.props.userData.designerRecommendationCode
-    ) {
-      let count = 0;
-      let result = null;
-      const fbPromise = new Promise(resolve => {
-        firebase
-          .database()
-          .ref('users/' + designerRecommendationCode)
-          .on('value', res => {
-            if (res.val()) resolve(res);
-            else resolve(false);
-          });
-      });
-
-      result = await fbPromise;
-      if (!result || designerRecommendationCode === this.props.userData.uid) {
-        alert('유효하지 않은 추천인 코드 입니다.');
-      } else {
-        let { designerRecommendation, _id } = result.val();
-        if (designerRecommendation) count = designerRecommendation;
-        firebaseUserData = { ...firebaseUserData, designerRecommendationCode };
-        count += 1;
-
-        if (count !== 0 && count % 2 === 0) {
-          await axios.post(`users/${_id}/tickets`, {
-            price: 10000
-          });
-        }
-
-        await firebase
-          .database()
-          .ref('users/' + designerRecommendationCode)
-          .update({ designerRecommendation: count });
-      }
-    }
     try {
       await firebase
         .database()
@@ -427,32 +387,7 @@ class AddDesigner extends Component {
               deletePortfolio={e => this.deletePortfolio(e)}
               changeInput={e => this.handleInputChange(e)}
             />
-            <FormGroup row>
-              <div className="col-3 if_head">추천인 코드</div>
-              <div className="col-9 d-flex justify-content-left">
-                <input
-                  type="text"
-                  name="designerRecommendationCode"
-                  id="designerRecommendationCode"
-                  value={this.state.designerRecommendationCode}
-                  onChange={
-                    this.props.userData.designerRecommendationCode
-                      ? () => {}
-                      : e => this.handleInputChange(e)
-                  }
-                  className="if_input"
-                  placeholder="선택사항"
-                  style={
-                    this.props.userData.designerRecommendationCode
-                      ? {
-                          backgroundColor: 'rgba(0,0,0,0.1)',
-                          color: 'rgba(0,0,0,0.5)'
-                        }
-                      : null
-                  }
-                />
-              </div>
-            </FormGroup>
+
             <FormGroup row>
               <div className="col-3" />
               <div className="text-center col-9">
