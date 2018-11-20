@@ -15,7 +15,7 @@ const CouponContent = props => {
     content = '친구 3명 가입시 3000포인트 지급!';
     img = coupon;
   }
-  let couponStyle = props.isD ? designerCouponStyle : userCouponStyle
+  let couponStyle = props.isD ? designerCouponStyle : userCouponStyle;
 
   return (
     <div style={props.isD ? designerContainerStyle : userContainerStyle}>
@@ -27,9 +27,8 @@ const CouponContent = props => {
       </div>
       <div style={descriptionStyle}>
         {content} <br />
-        가입 시 추천인 코드란에 아래의 프로모션 코드를
-        <br />
-        기입해달라고 부탁하세요!
+        가입 후 마이페이지 > 회원정보관리에 <br />
+        아래의 프로모션 코드를 기입해달라고 부탁하세요!
       </div>
       <div>
         <div style={{ backgroundImage: `url(${img})`, ...couponStyle }}>
@@ -38,8 +37,7 @@ const CouponContent = props => {
       </div>
       <div style={{ fontSize: '1.1rem', marginTop: '1.7rem' }}>
         내 추천으로 가입한 친구:{' '}
-        {props.recommendationNum ? props.recommendationNum : 0}
-        명
+        {props.recommendationNum ? props.recommendationNum : 0}명
       </div>
     </div>
   );
@@ -58,8 +56,7 @@ const styles = {
     textAlign: 'center',
     padding: '3rem',
     borderRadius: 5,
-    backgroundImage:
-      'linear-gradient(304deg, #fffae3, #d2e3e8)',
+    backgroundImage: 'linear-gradient(304deg, #fffae3, #d2e3e8)',
     color: '#1f3354',
     height: '67vh',
     display: 'flex',

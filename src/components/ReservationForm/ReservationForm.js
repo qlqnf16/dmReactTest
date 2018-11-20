@@ -125,15 +125,12 @@ class ReservationForm extends Component {
                 value={this.props.state.point}
                 step="1000"
               />
-              <button
-                onClick={this.props.pointSubmit}
-                className="rf-button"
-              >
+              <button onClick={this.props.pointSubmit} className="rf-button">
                 적용
               </button>
               <span className="font-weight-light">
                 1,000 point 단위로 사용 가능합니다. 보유포인트 :{' '}
-                {this.props.userData.point}원
+                {this.props.userData.point} point
               </span>
             </div>
           </div>
@@ -152,7 +149,7 @@ class ReservationForm extends Component {
               className="col-10 rf-tableBody"
               style={{ fontFamily: 'NanumSquareEB' }}
             >
-              <label className='rf-hideinput'>
+              <label className="rf-hideinput">
                 <input
                   type="radio"
                   name="method"
@@ -161,10 +158,14 @@ class ReservationForm extends Component {
                   checked={this.props.method === 'card'}
                   style={{ marginRight: '3.5px' }}
                 />
-                <span className='rf-radiobutton'/> 
+                <span className="rf-radiobutton" />
                 <span style={{ marginRight: '21.5px' }}>신용/체크카드</span>
               </label>
-              <label className='rf-hideinput'>
+              <span style={{ fontSize: '1.1rem', color: 'gray' }}>
+                * 실시간 계좌이체, 가상계좌, 카카오페이 결제가 빠른 시일 내에
+                가능해질 예정입니다. 조금만 기다려주세요!
+              </span>
+              {/* <label className='rf-hideinput'>
                 <input
                   type="radio"
                   name="method"
@@ -199,7 +200,7 @@ class ReservationForm extends Component {
                 />
                 <span className='rf-radiobutton'></span>
                 카카오페이
-              </label>
+              </label> */}
             </div>
           </div>
         </div>

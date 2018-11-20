@@ -8,7 +8,7 @@ import './PageCss.css';
 
 class ReservationConfirm extends Component {
   componentDidMount() {
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0);
   }
 
   showMessage = (reservationId, designerName) => {
@@ -34,10 +34,8 @@ class ReservationConfirm extends Component {
           예약번호: {this.props.match.params.reservation_id}
         </div>
         <div className="rc_h3">
-          {this.props.location.state.userName}
-          님께 최선을 다해서 노력하는{' '}
-          {this.props.location.state.recruit._designer.name} 예디! 예쁘게
-          봐주세요~ ^.^
+          {this.props.location.state.recruit._designer.name} 예디님과의 예약이
+          완료되었습니다! ^.^
         </div>
         <AttentionCard
           cardData={this.props.location.state.cardData}

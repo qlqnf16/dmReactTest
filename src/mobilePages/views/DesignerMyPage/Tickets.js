@@ -133,7 +133,19 @@ class DesignerTicket extends Component {
               tickets={this.state.tickets}
               ticketActivate={this.ticketActivate}
             />
-            <div style={subtitleStyle}>이용권 구매</div>
+            <div style={subtitleStyle}>
+              이용권 구매
+              <div
+                style={{
+                  fontWeight: 'normal',
+                  color: 'gray',
+                  fontSize: '1.1rem'
+                }}
+              >
+                * 실시간 계좌이체, 가상계좌, 카카오페이 결제가 빠른 시일 내에
+                가능해질 예정입니다. 조금만 기다려주세요!
+              </div>
+            </div>
 
             <div
               style={{

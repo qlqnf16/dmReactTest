@@ -91,7 +91,8 @@ class DesginerCard extends Component {
                     style={{
                       fontSize: '1rem',
                       fontWeight: 'bold',
-                      marginRight: '6.5px'
+                      marginRight: '6.5px',
+                      maxWidth: '50%'
                     }}
                   >
                     {recruit._designer.name}

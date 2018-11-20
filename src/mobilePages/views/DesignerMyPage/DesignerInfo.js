@@ -112,8 +112,6 @@ class DesignerInfo extends Component {
       this.setState({ addresses });
     } else {
       this.setState({ [name]: value });
-      console.log(this.props.userData.designerRecommendationCode);
-      console.log(this.state.designerRecommendationCode);
     }
   };
 

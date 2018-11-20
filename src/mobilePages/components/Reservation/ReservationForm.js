@@ -139,8 +139,7 @@ const ReservationForm = props => {
           <div className="mt-2">
             1,000 point 단위로 사용 가능합니다.
             <br />
-            (보유포인트 : {props.userData.point}
-            원)
+            (보유포인트 : {props.userData.point} point)
           </div>
         </div>
       </div>
@@ -152,7 +151,15 @@ const ReservationForm = props => {
           {props.state.finalPrice}원
         </div>
       </div>
-      <div style={subtitleStyle}>결제방법</div>
+      <div style={subtitleStyle}>
+        결제방법
+        <div
+          style={{ fontWeight: 'normal', color: 'gray', fontSize: '1.1rem' }}
+        >
+          * 실시간 계좌이체, 가상계좌, 카카오페이 결제가 빠른 시일 내에 가능해질
+          예정입니다. 조금만 기다려주세요!
+        </div>
+      </div>
 
       <div
         className="m-3"

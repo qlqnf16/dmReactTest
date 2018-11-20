@@ -21,7 +21,7 @@
 }
 .m_button {
   height: 35px;
-  width:25%;
+  width: 25%;
   border-radius: 5px;
   background-color: rgba(0, 0, 0, 0.1);
   margin: 0 1rem;
@@ -71,7 +71,7 @@
   /* width: 100%; */
   height: 30.5px;
   /* padding: 10px 0; */
-  border: solid 1px rgba(0, 0, 0, 0.1);
+  border: solid 1px rgba(0, 0, 0, 0.4);
   color: rgba(0, 0, 0, 0.2);
   background-color: white;
   cursor: pointer;

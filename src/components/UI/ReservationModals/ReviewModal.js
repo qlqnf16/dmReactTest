@@ -180,7 +180,9 @@ class ReviewModal extends Component {
               >
                 <div>
                   <label style={{ display: 'block' }}>
-                    <div className="m_file">사진 등록 (선택)</div>
+                    <div className="m_file">
+                      [사진 등록]해서 적극적으로 응원하기!
+                    </div>
                     <input
                       style={{ display: 'none' }}
                       type="file"
