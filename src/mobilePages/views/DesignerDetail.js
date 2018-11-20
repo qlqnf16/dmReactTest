@@ -334,7 +334,7 @@ const styles = {
     color: '#2b2e34'
   },
   sectionTitleStyle: {
-    width: '23.5%',
+    width: '40%',
     fontSize: '2rem',
     fontWeight: 'bold',
     color: '#1e3354',
