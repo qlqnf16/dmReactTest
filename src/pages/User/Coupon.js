@@ -61,7 +61,7 @@ class Coupon extends Component {
                   </div>
                 </div>
               </div>
-              <div className="row" style={{ marginTop: '4.4rem' }}>
+              {/* <div className="row" style={{ marginTop: '4.4rem' }}>
                 <div className="col-2 if_head uif_head">추천인 코드</div>
                 <div className="col-8">
                   <CouponContent
@@ -69,7 +69,7 @@ class Coupon extends Component {
                     recommendationNum={this.props.userData.recommendation}
                   />
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

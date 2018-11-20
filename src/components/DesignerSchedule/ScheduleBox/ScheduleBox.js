@@ -135,7 +135,6 @@ class ScheduleBox extends Component {
 
   cardAddHandler = async cardData => {
     const res = this.props.cardAddHandler(cardData);
-    console.log(res);
     if (res) {
       this.setState({ date: null });
     }
@@ -162,11 +161,12 @@ class ScheduleBox extends Component {
         ableTimes.push(ableTime);
       }
     });
-    let sido, sigungu;
+    let sido, sigungu, fullAddress;
     this.props.userData.addresses.forEach(address => {
       if (address.extraAddress === this.state.shop) {
         sido = address.sido;
         sigungu = address.sigungu;
+        fullAddress = address.fullAddress;
       }
     });
     const cardData = {
@@ -181,6 +181,7 @@ class ScheduleBox extends Component {
       ableTimes,
       sido,
       sigungu,
+      fullAddress,
       picture: this.state.picture,
       requireTime: this.state.requireTime,
       fixStart: this.state.fixStart

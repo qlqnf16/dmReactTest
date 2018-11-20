@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import firebase from '../../config/Firebase';
-import UserNav from '../../components/Navigation/UserNav/UserNav';
-import { Form, FormGroup } from 'reactstrap';
-import check_sm from '../../assets/images/check_sm.png';
-import axios from '../../config/Axios';
-
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import firebase from "../../config/Firebase";
+import UserNav from "../../components/Navigation/UserNav/UserNav";
+import { Form, FormGroup } from "reactstrap";
+import check_sm from "../../assets/images/check_sm.png";
+import axios from "../../config/Axios";
+import CouponContent from "../../components/CouponContent/CouponContent";
 class UserInfo extends Component {
   constructor(props) {
     super(props);
@@ -31,19 +31,19 @@ class UserInfo extends Component {
       isRegister
     };
 
-    if (this.props.location.pathname.includes('reservation'))
+    if (this.props.location.pathname.includes("reservation"))
       alert("휴대폰 인증 후 예약서비스를 사용할 수 있습니다'");
   }
 
   componentDidMount = async () => {
     // iamport 사용하기 위한 inline script 작성
     let links = [
-      'https://code.jquery.com/jquery-1.12.4.min.js',
-      'https://cdn.iamport.kr/js/iamport.payment-1.1.5.js'
+      "https://code.jquery.com/jquery-1.12.4.min.js",
+      "https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"
     ];
 
     for (let link of links) {
-      const script = document.createElement('script');
+      const script = document.createElement("script");
 
       script.src = link;
       script.async = true;
@@ -82,19 +82,19 @@ class UserInfo extends Component {
       isRegister
     };
 
-    if (!firebaseUserData.name) return alert('이름을 작성해주세요');
-    if (!firebaseUserData.gender) return alert('성별을 작성해주세요');
-    if (!firebaseUserData.email) return alert('이메일을 작성해주세요');
+    if (!firebaseUserData.name) return alert("이름을 작성해주세요");
+    if (!firebaseUserData.gender) return alert("성별을 작성해주세요");
+    if (!firebaseUserData.email) return alert("이메일을 작성해주세요");
     if (
-      Object.values(firebaseUserData.birthday).includes('null') ||
+      Object.values(firebaseUserData.birthday).includes("null") ||
       Object.values(firebaseUserData.birthday).includes(undefined)
     )
-      return alert('생년월일을 작성해주세요');
+      return alert("생년월일을 작성해주세요");
     if (!firebaseUserData.phoneNumber)
-      return alert('휴대폰 번호를 작성해주세요');
+      return alert("휴대폰 번호를 작성해주세요");
     if (firebaseUserData.phoneNumber.length !== 11)
-      return alert('정확한 휴대폰 번호를 입력해주세요');
-    if (!this.state.isRegister) return alert('휴대폰 인증을 먼저 해주세요');
+      return alert("정확한 휴대폰 번호를 입력해주세요");
+    if (!this.state.isRegister) return alert("휴대폰 인증을 먼저 해주세요");
 
     if (recommendationCode && !this.props.userData.recommendationCode) {
       let count = 0;
@@ -103,15 +103,15 @@ class UserInfo extends Component {
       const fbPromise = new Promise(resolve => {
         firebase
           .database()
-          .ref('users/' + recommendationCode)
-          .on('value', res => {
+          .ref("users/" + recommendationCode)
+          .on("value", res => {
             if (res.val()) resolve(res);
             else resolve(false);
           });
       });
       result = await fbPromise;
       if (!result || recommendationCode == this.props.userData.uid) {
-        alert('유효하지 않은 추천인 코드 입니다.');
+        alert("유효하지 않은 추천인 코드 입니다.");
       } else {
         let { recommendation, _id } = result.val();
 
@@ -129,43 +129,43 @@ class UserInfo extends Component {
 
         await firebase
           .database()
-          .ref('users/' + recommendationCode)
+          .ref("users/" + recommendationCode)
           .update({
             recommendation: count
           });
       }
     } else if (recommendationCode && this.props.userData.recommendationCode) {
-      alert('추천인 코드는 한번만 작성할 수 있습니다.');
+      alert("추천인 코드는 한번만 작성할 수 있습니다.");
     }
     try {
       await firebase
         .database()
-        .ref('users/' + uid)
+        .ref("users/" + uid)
         .update(firebaseUserData);
 
       await axios.patch(`users/${this.props.userData._id}`, { name });
-      alert('저장되었습니다!');
+      alert("저장되었습니다!");
     } catch (err) {
-      alert('문제가 발생했습니다. 잠시 뒤에 다시 시도해주세요.');
+      alert("문제가 발생했습니다. 잠시 뒤에 다시 시도해주세요.");
     }
   };
 
   phoneCert = () => {
     const { IMP } = window;
-    IMP.init('imp06037656');
+    IMP.init("imp06037656");
     IMP.certification(
       {
-        merchant_uid: 'merchant_' + new Date().getTime()
+        merchant_uid: "merchant_" + new Date().getTime()
       },
       rsp => {
         if (rsp.success) {
           // 인증성공
           this.setState({ isRegister: true });
-          alert('인증되었습니다');
+          alert("인증되었습니다");
         } else {
           // 인증취소 또는 인증실패
-          var msg = '인증에 실패하였습니다.';
-          msg += '에러내용 : ' + rsp.error_msg;
+          var msg = "인증에 실패하였습니다.";
+          msg += "에러내용 : " + rsp.error_msg;
           alert(msg);
         }
       }
@@ -173,7 +173,7 @@ class UserInfo extends Component {
   };
 
   render() {
-    let isRegister = '';
+    let isRegister = "";
     if (!this.state.isRegister) {
       isRegister = (
         <div
@@ -186,7 +186,7 @@ class UserInfo extends Component {
     } else {
       isRegister = (
         <div className="uif_registered col-1">
-          <img style={{ width: '1.4rem' }} src={check_sm} alt="alt" />
+          <img style={{ width: "1.4rem" }} src={check_sm} alt="alt" />
           인증됨
         </div>
       );
@@ -201,9 +201,9 @@ class UserInfo extends Component {
     for (let i = 2018; i > 1920; i--) {
       year.push(i);
     }
-    if (['4', '6', '9', '11'].includes(this.state.month)) {
+    if (["4", "6", "9", "11"].includes(this.state.month)) {
       day.pop();
-    } else if (this.state.month === '2') {
+    } else if (this.state.month === "2") {
       if (Number(this.state.year) % 4 === 0) {
         day.splice(29, 2);
       } else {
@@ -279,9 +279,9 @@ class UserInfo extends Component {
                     />
                     <label
                       className={
-                        this.state.gender === 'male'
-                          ? 'if_gradio active'
-                          : 'if_gradio'
+                        this.state.gender === "male"
+                          ? "if_gradio active"
+                          : "if_gradio"
                       }
                     >
                       <input
@@ -296,9 +296,9 @@ class UserInfo extends Component {
                     </label>
                     <label
                       className={
-                        this.state.gender === 'female'
-                          ? 'if_gradio active'
-                          : 'if_gradio'
+                        this.state.gender === "female"
+                          ? "if_gradio active"
+                          : "if_gradio"
                       }
                     >
                       <input
@@ -332,7 +332,7 @@ class UserInfo extends Component {
                     {calendar}
                     <div
                       className="if_detail"
-                      style={{ marginTop: '1rem', marginBottom: '1rem' }}
+                      style={{ marginTop: "1rem", marginBottom: "1rem" }}
                     >
                       이 정보는 통계 목적으로 사용되며 외부에 공개되지 않습니다.
                     </div>
@@ -373,7 +373,7 @@ class UserInfo extends Component {
 
                 <div className="text-center">
                   <div onClick={this.submitHandler} className=" btn uif_button">
-                    <span style={{ fontWeight: 'bold', fontSize: '1.4rem' }}>
+                    <span style={{ fontWeight: "bold", fontSize: "1.4rem" }}>
                       저장하기
                     </span>
                   </div>

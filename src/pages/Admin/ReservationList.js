@@ -40,10 +40,8 @@ class DesignerList extends Component {
               reservation.time.until / 60
             )}:${reservation.time.until % 60}`}
           </td>
+          <td>{reservation._card && reservation._card.fullAddress}</td>
           <td>{reservation._card && reservation._card.shop}</td>
-          <td>{`${reservation._card &&
-            reservation._card.sido} ${reservation._card &&
-            reservation._card.sigungu}`}</td>
           <td>
             {!reservation.isCanceled
               ? reservation.isDone
@@ -65,9 +63,9 @@ class DesignerList extends Component {
                 <th>일반 회원</th>
                 <th>예약 체결일</th>
                 <th>예약일</th>
-                <th>에약일시</th>
-                <th>샵</th>
+                <th>예약일시</th>
                 <th>주소</th>
+                <th>샵</th>
                 <th>상태</th>
               </tr>
             </thead>

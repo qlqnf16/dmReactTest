@@ -53,7 +53,7 @@ class Coupon extends Component {
                 </div>
               </div>
             </div>
-            <div>
+            {/* <div>
               <div style={labelStyle}>추천인 코드</div>
               <div>
                 <CouponContent
@@ -61,7 +61,7 @@ class Coupon extends Component {
                   recommendationNum={this.props.userData.recommendation}
                 />
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
