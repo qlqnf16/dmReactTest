@@ -92,7 +92,7 @@ class Schedule extends Component {
       current.add(9, 'hour');
       return (
         // TODO: 일단은 과거날짜도 선택가능하게 변경, 나중에 주석해제 하기
-        // current.valueOf() < nowTime.valueOf() ||
+        current.valueOf() <= nowTime.valueOf() ||
         current.valueOf() > oneMonthAfter.valueOf() ||
         this.props.dates.includes(current.valueOf()) ||
         this.props.newDates.includes(current.valueOf())
