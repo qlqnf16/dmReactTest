@@ -1,30 +1,30 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import {
   Carousel,
   CarouselItem,
   CarouselIndicators,
   CarouselCaption
-} from 'reactstrap';
-import './DesignerCardImage.css';
+} from "reactstrap";
+import "./DesignerCardImage.css";
 
 const items = [
   {
     src:
-      'https://pbs.twimg.com/profile_images/2478846238/qtsl75yedbc7vymcmq78.jpeg',
-    altText: 'Slide 1',
-    caption: 'Slide 1'
+      "https://pbs.twimg.com/profile_images/2478846238/qtsl75yedbc7vymcmq78.jpeg",
+    altText: "Slide 1",
+    caption: "Slide 1"
   },
   {
     src:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROpgffp3yGdyg7fQBzQ2SbbV1VDW9T-b1Aggl0yFh9dOdyjcssAw',
-    altText: 'Slide 2',
-    caption: 'Slide 2'
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROpgffp3yGdyg7fQBzQ2SbbV1VDW9T-b1Aggl0yFh9dOdyjcssAw",
+    altText: "Slide 2",
+    caption: "Slide 2"
   },
   {
     src:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSh7SqF4efc09ygq4WvMqfQBSE7TKpcyErb9OadLe0P7kVqluff',
-    altText: 'Slide 3',
-    caption: 'Slide 3'
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSh7SqF4efc09ygq4WvMqfQBSE7TKpcyErb9OadLe0P7kVqluff",
+    altText: "Slide 3",
+    caption: "Slide 3"
   }
 ];
 
@@ -41,20 +41,20 @@ export default class DesignerCardImage extends Component {
     this.animating = false;
   };
 
-  next = () => {
+  next = images => {
     if (this.animating) return;
     const nextIndex =
-      this.state.activeIndex === items.length - 1
+      this.state.activeIndex === images.length - 1
         ? 0
         : this.state.activeIndex + 1;
     this.setState({ activeIndex: nextIndex });
   };
 
-  previous = () => {
+  previous = images => {
     if (this.animating) return;
     const nextIndex =
       this.state.activeIndex === 0
-        ? items.length - 1
+        ? images.length - 1
         : this.state.activeIndex - 1;
     this.setState({ activeIndex: nextIndex });
   };
@@ -64,9 +64,10 @@ export default class DesignerCardImage extends Component {
     this.setState({ activeIndex: newIndex });
   };
   render() {
+    console.log(this.props.images);
     const { activeIndex } = this.state;
 
-    const slides = items.map(item => {
+    const slides = this.props.images.map(item => {
       return (
         <CarouselItem
           onExiting={this.onExiting}
@@ -75,10 +76,10 @@ export default class DesignerCardImage extends Component {
         >
           <div
             style={{
-              width: '100%',
-              height: '134px',
-              backgroundImage: `url(${item.src})`,
-              backgroundSize: 'cover'
+              width: "100%",
+              height: "134px",
+              backgroundImage: `url(${item})`,
+              backgroundSize: "cover"
             }}
           />
           <CarouselCaption
@@ -92,13 +93,15 @@ export default class DesignerCardImage extends Component {
     return (
       <Carousel
         activeIndex={activeIndex}
-        next={this.next}
-        previous={this.previous}
+        next={() => this.next(this.props.images)}
+        previous={() => this.previous(this.props.images)}
       >
         <CarouselIndicators
-          items={items}
+          items={this.props.images.map(im => {
+            return { src: im };
+          })}
           activeIndex={activeIndex}
-          onClickHandler={this.goToIndex}
+          onClickHandler={() => this.goToIndex()}
         />
         {slides}
       </Carousel>

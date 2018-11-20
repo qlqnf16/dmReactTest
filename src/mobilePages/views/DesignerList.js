@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import axios from '../../config/Axios';
-import firebase from '../../config/Firebase';
+import React, { Component } from "react";
+import axios from "../../config/Axios";
+import firebase from "../../config/Firebase";
 
-import Header from '../components/DesignerList/Header';
-import FilterButton from '../components/DesignerList/FilterButton';
-import Filter from '../components/DesignerList/Filter';
-import DesignerCardList from '../components/DesignerList/DesignerCardList';
+import Header from "../components/DesignerList/Header";
+import FilterButton from "../components/DesignerList/FilterButton";
+import Filter from "../components/DesignerList/Filter";
+import DesignerCardList from "../components/DesignerList/DesignerCardList";
 
-import './Pages.css';
+import "./Pages.css";
 
 class DesignerList extends Component {
   state = {
@@ -18,7 +18,7 @@ class DesignerList extends Component {
 
   componentDidMount = async () => {
     if (!this.state.madeRequest) {
-      const { data } = await axios.get('recruits');
+      const { data } = await axios.get("recruits");
       const filteredData = data.filter(
         d =>
           d._designer &&
@@ -38,7 +38,7 @@ class DesignerList extends Component {
     await firebase
       .database()
       .ref(`/users`)
-      .on('value', async res => {
+      .on("value", async res => {
         const filterAddresses = [];
         let filterSido = [];
         Object.values(res.val()).forEach(user => {
@@ -68,20 +68,33 @@ class DesignerList extends Component {
   };
 
   getFilteredCards = async () => {
-    let must,
-      no,
-      gender = '';
+    let must = "";
+    let gender = "";
+    let no = "";
+    let date = "";
+    let sido = "";
+    let sigungu = "";
 
-    if (this.state.gender) gender = `gender=${this.state.gender}`;
+    if (this.state.sido) sido = `sido=${this.state.sido}&`;
+    if (this.state.sigungu) sigungu = `sigungu=${this.state.sigungu}&`;
 
-    if (this.state.cut === '100') must += 'cut=1&';
-    else if (this.state.cut === '0') no += 'cut=2&';
-    if (this.state.perm === '100') must += 'perm=1&';
-    else if (this.state.perm === '0') no += 'perm=2&';
-    if (this.state.dye === '100') must += 'dye=1&';
-    else if (this.state.dye === '0') no += 'dye=2&';
+    if (this.state.date) date = `date=${new Date(this.state.date).getTime()}&`;
 
-    const { data } = await axios.get('cards?' + must + no + gender);
+    if (this.state.gender) gender = `gender=${this.state.gender}&`;
+
+    if (this.state.cut === "100") must += "cut=1&";
+    else if (this.state.cut === "0") no += "cut=2&";
+    if (this.state.perm === "100") must += "perm=1&";
+    else if (this.state.perm === "0") no += "perm=2&";
+    if (this.state.dye === "100") must += "dye=1&";
+    else if (this.state.dye === "0") no += "dye=2&";
+    if (no === "cut=2&perm=2&dye=2&")
+      return alert("받으실 서비스를 선택해주세요");
+
+    const { data } = await axios.get(
+      "cards?" + must + no + gender + date + sido + sigungu
+    );
+
     let recruits = data.map(d => d._recruit);
 
     let uniqueRecruits = [];
@@ -118,39 +131,43 @@ class DesignerList extends Component {
       <div
         onClick={() => window.location.reload()}
         style={{
-          width: '85%',
-          height: '33px',
-          borderRadius: '5px',
-          boxShadow: '0 3px 6px 0 rgba(0, 0, 0, 0.16)',
-          border: 'solid 1px #dd6866',
-          color: '#dd6866',
-          fontWeight: 'bold',
-          fontSize: '1.3rem',
-          textAlign: 'center',
-          lineHeight: '33px',
-          margin: '2% 0 4% 0'
+          width: "85%",
+          height: "33px",
+          borderRadius: "5px",
+          boxShadow: "0 3px 6px 0 rgba(0, 0, 0, 0.16)",
+          border: "solid 1px #dd6866",
+          color: "#dd6866",
+          fontWeight: "bold",
+          fontSize: "1.3rem",
+          textAlign: "center",
+          lineHeight: "33px",
+          margin: "2% 0 4% 0"
         }}
       >
         초기화
       </div>
     );
-    return (
-      <div className="m_containerStyle">
-        <Header />
-        <Filter
-          on={this.state.filterOn}
-          filterChangeHandler={this.filterChangeHandler}
-          state={this.state}
-          sigungu={sigungu}
-        />
-        <FilterButton
-          getFilteredCards={this.getFilteredCards}
-          on={this.state.filterOn}
-        />
-        {this.state.filterOn ? refreshButton : null}
-        <DesignerCardList recruits={this.state.recruits} />
-      </div>
-    );
+    if (this.state.madeRequest) {
+      return (
+        <div className="m_containerStyle">
+          <Header />
+          <Filter
+            on={this.state.filterOn}
+            filterChangeHandler={this.filterChangeHandler}
+            state={this.state}
+            sigungu={sigungu}
+          />
+          <FilterButton
+            getFilteredCards={this.getFilteredCards}
+            on={this.state.filterOn}
+          />
+          {this.state.filterOn ? refreshButton : null}
+          <DesignerCardList recruits={this.state.recruits} />
+        </div>
+      );
+    } else {
+      return <div />;
+    }
   }
 }
 
