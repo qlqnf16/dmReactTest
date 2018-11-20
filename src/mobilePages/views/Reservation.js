@@ -197,9 +197,9 @@ class Reservation extends Component {
               }
             }}
           >
-            <Button onClick={this.reservationSubmit} color="primary">
+            {/* <Button onClick={this.reservationSubmit} color="primary">
               결제 성공한 척 하기
-            </Button>
+            </Button> */}
           </Link>
         </div>
       </div>
