@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import ExifOrientationImg from 'react-exif-orientation-img';
+
 import {
   Carousel,
   CarouselItem,
@@ -52,7 +54,7 @@ class DesignerCarousel extends Component {
           onExiting={this.onExiting}
           onExited={this.onExited}
         >
-          <img
+          <ExifOrientationImg
             src={image}
             key={key}
             alt="alt"

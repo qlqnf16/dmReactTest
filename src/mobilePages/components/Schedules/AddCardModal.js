@@ -18,23 +18,23 @@ const AddCardModal = props => {
       if (i > 0) {
         startTime = props.untils[i - 1];
       }
-      for (let j = startTime; j < 1560; j = j + 60) {
+      for (let j = startTime; j <= 1560; j = j + 30) {
         times.push(j);
       }
       let ts = times.map((time, key) => (
         <option key={key} value={time}>
-          {time / 60 > 23 ? time / 60 - 24 : time / 60}
-          :00 부터
+          {time / 60 >= 24 ? Math.floor(time / 60 - 24) : Math.floor(time / 60)}
+          :{time % 60 ? '30' : '00'} 부터
         </option>
       ));
       let finishTimes = [];
-      for (let j = props.sinces[i]; j < 1560; j = j + 60) {
+      for (let j = props.sinces[i]; j <= 1560; j = j + 30) {
         finishTimes.push(j);
       }
       let finishts = finishTimes.map((ftime, key) => (
         <option key={key} value={ftime}>
-          {ftime / 60 > 23 ? ftime / 60 - 24 : ftime / 60}
-          :00 까지
+          {ftime / 60 > 23 ? ftime / 60 - 24 : ftime / 60}:
+          {ftime % 60 ? '30' : '00'} 까지
         </option>
       ));
       timeSelector.push(
