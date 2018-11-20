@@ -134,12 +134,12 @@ class Navitems extends Component {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink // 장막
+            {/* <NavLink // 장막
               onClick={() => alert('아직 이용하실 수 없습니다.')}
               style={{ cursor: 'pointer' }}
               className=""
-            >
-              {/* <NavLink tag={Link} to={'/designerList'} className=""> */}
+            > */}
+            <NavLink tag={Link} to={'/designerList'} className="">
               예디찾기
             </NavLink>
           </NavItem>
@@ -300,11 +300,11 @@ class Navitems extends Component {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink
+            {/* <NavLink
               onClick={() => alert('아직 이용하실 수 없습니다.')}
               style={{ cursor: 'pointer' }}
-            >
-              {/* <NavLink tag={Link} to={'/designerList'} className=""> */}
+            > */}
+            <NavLink tag={Link} to={'/designerList'} className="">
               예디찾기
             </NavLink>
           </NavItem>
