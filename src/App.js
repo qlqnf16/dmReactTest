@@ -174,7 +174,6 @@ class App extends Component {
 
     let ua = navigator.userAgent || navigator.vendor || window.opera;
     const isFacebookApp = ua.indexOf('FBAN') > -1 || ua.indexOf('FBAV') > -1;
-    const isIphoneSafari = ua.match(/iPhone/i);
 
     // 장막
     // const isMobile = false;
@@ -191,7 +190,7 @@ class App extends Component {
       );
 
       // firebase database에서 호출 후,
-    } else if (!isFacebookApp && !isMobile && !isIphoneSafari) {
+    } else if (!isFacebookApp && !isMobile) {
       return (
         <Fragment>
           <Toolbar finishRedux={this.state.finishRedux} />
