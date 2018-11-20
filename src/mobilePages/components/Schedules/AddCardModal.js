@@ -390,7 +390,7 @@ const AddCardModal = props => {
             </div>
             <div>
               <label style={labelStyle}>
-                시술 가능한 모델 성별을 선택해주세요.
+                시술 가능한 모델 성별을 선택해주세요. (복수선택가능)
               </label>
               <div>
                 <div

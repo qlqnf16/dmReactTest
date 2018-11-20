@@ -462,7 +462,7 @@ class Schedule extends Component {
                   marginTop: '1rem'
                 }}
               >
-                모델 성별
+                모델 성별 (복수선택가능)
               </Label>
               <FormGroup check inline>
                 <div>
