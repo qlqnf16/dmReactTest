@@ -203,7 +203,8 @@ const AddCardModal = props => {
                           display: 'block',
                           fontSize: '1.3rem',
                           fontWeight: 'bold',
-                          color: 'rgb(31, 51, 84)',
+                          color: 'white',
+                          backgroundColor: 'rgb(31, 51, 84)',
                           border: '0.5px solid rgb(31, 51, 84)',
                           padding: '0.5rem',
                           margin: '1rem 0',
@@ -215,8 +216,8 @@ const AddCardModal = props => {
                           display: 'block',
                           fontSize: '1.3rem',
                           fontWeight: 'normal',
-                          color: 'rgba(0,0,0,0.2)',
-                          border: '0.5px solid rgba(0,0,0,0.2)',
+                          color: 'rgb(31, 51, 84)',
+                          border: '0.5px solid rgb(31, 51, 84)',
                           padding: '0.5rem',
                           margin: '1rem 0',
                           textAlign: 'center',
@@ -233,7 +234,7 @@ const AddCardModal = props => {
                     onChange={props.changeInput}
                     checked={props.fixStart}
                   />
-                  시작시간이 꼭 정해져 있으면 체크 (아카데미 웍 등)
+                  시작시간이 정해져 있는 경우 클릭 (아카데미 웍 등)
                 </label>
               </div>
               <div>
