@@ -58,7 +58,7 @@ class Schedule extends Component {
     await this.reloadCardData();
   };
 
-  cardAddHandler = async cardData => {
+  cardAddHandler = cardData => {
     let addTime = 0;
     let must = cardData.must;
     let mustList = [];

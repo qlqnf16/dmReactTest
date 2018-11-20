@@ -135,6 +135,7 @@ class ScheduleBox extends Component {
 
   cardAddHandler = async cardData => {
     const res = this.props.cardAddHandler(cardData);
+    console.log(res);
     if (res) {
       this.setState({ date: null });
     }
