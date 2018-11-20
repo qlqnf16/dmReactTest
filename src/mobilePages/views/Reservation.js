@@ -99,7 +99,9 @@ class Reservation extends Component {
                 userName: this.props.userData.name,
                 recruit: this.props.location.state.recruit,
                 cardData: this.props.location.state.cardData,
-                service: this.props.location.state.service
+                service: this.props.location.state.service,
+                startTime: this.props.location.state.startTime,
+                time: this.props.location.state.time
               }
             });
 
@@ -130,7 +132,9 @@ class Reservation extends Component {
           userName: this.props.userData.name,
           recruit: this.props.location.state.recruit,
           cardData: this.props.location.state.cardData,
-          service: this.props.location.state.service
+          service: this.props.location.state.service,
+          startTime: this.props.location.state.startTime,
+          time: this.props.location.state.time
         }
       });
     }

@@ -3,11 +3,24 @@ import { Link } from 'react-router-dom';
 import Header from '../components/ReservationConfirm/Header';
 import completeIcon from '../../assets/images/check_lg.png';
 import womanBack from '../../assets/images/m_woman_back.png';
+import Moment from 'react-moment';
+import firebase from '../../config/Firebase';
 
 class ReservationConfirm extends Component {
-  componentDidMount() {
+  state = {
+    madeRequest: false
+  };
+
+  componentDidMount = () => {
     window.scrollTo(0, 0);
-  }
+
+    firebase
+      .database()
+      .ref(`users/${this.props.location.state.recruit._designer._uid}`)
+      .on('value', res => {
+        this.setState({ designerData: res.val(), madeRequest: true });
+      });
+  };
 
   showMessage = (reservationId, designerName) => {
     this.props.history.push({
@@ -264,85 +277,134 @@ class ReservationConfirm extends Component {
         </Fragment>
       );
     }
-    return (
-      <div className="m_containerStyle">
-        <Header />
-        <div style={containerStyle}>
-          <div style={{ textAlign: 'center' }}>
-            <img
-              alt="completeIcon"
-              style={{ width: '20%', margin: '2rem 0 1.5rem 0' }}
-              src={completeIcon}
-            />
-            <div
-              style={{ color: '#1e3354', fontSize: '3rem', fontWeight: 'bold' }}
-            >
-              예약이 완료되었습니다.
-            </div>
-            <div
-              style={{
-                color: '#4c91ba',
-                fontSize: '1.5rem',
-                fontWeight: 'bold'
-              }}
-            >
-              예약번호: {this.props.match.params.reservation_id}
-            </div>
-            <div
-              style={{
-                margin: '2rem 0 3rem 0',
-                fontSize: '1.3rem',
-                color: '#1e3354'
-              }}
-            >
-              {locationState.recruit._designer.name}님 과의 예약이
-              완료되었습니다! ^.^
-            </div>
-          </div>
-          <div style={cautionSectionStyle}>
-            <div style={sectionTitleStyle}>※ 유의사항</div>
-            <div>
-              <p>
-                우리 예디는 프로 헤어디자이너가 아닌 예비 헤어디자이너 입니다.
-                예디의 레벨에 따라 선생님들의 코칭이 있을수있으니 당황하지
-                마세요! :)
-              </p>
-              <p>
-                당일예약은 취소 및 환불이 불가능하며, 당일 예약이 아닌 경우
-                표기된 취소 수수료 정책을 따릅니다. 예디 사정에 의한 취소 발생
-                시 100% 환불 처리됩니다.
-              </p>
-              <p>
-                예디 사정으로 스케줄 및 장소가 변경될 수 있습니다. 이 경우
-                안내메시지를 보내드리니 확인바랍니다.
-              </p>
-              <p>
-                염색, 펌 등 추가비용이 발생하는 서비스에 대해서는 본 플랫폼이
-                아닌 현장에서 결제해주셔야 합니다.
-              </p>
-            </div>
 
-            {priceBox}
+    const startTime = this.props.location.state.startTime;
+    const time = this.props.location.state.time;
+    let startTimeFormat = `${parseInt(startTime / 60, 10)}:${
+      startTime % 60 === 0 ? '00' : '30'
+    }`;
+    let finishTimeFormat = `${parseInt((startTime + time) / 60, 10)}:${
+      (startTime + time) % 60 === 0 ? '00' : '30'
+    }`;
+
+    if (this.state.madeRequest) {
+      let fullAddress;
+      this.state.designerData.addresses.forEach(address => {
+        if (address.extraAddress === this.props.location.state.cardData.shop) {
+          fullAddress = address.fullAddress + ' ' + address.extraAddress;
+        }
+      });
+      return (
+        <div className="m_containerStyle">
+          <Header />
+          <div style={containerStyle}>
+            <div style={{ textAlign: 'center' }}>
+              <img
+                alt="completeIcon"
+                style={{ width: '20%', margin: '2rem 0 1.5rem 0' }}
+                src={completeIcon}
+              />
+              <div
+                style={{
+                  color: '#1e3354',
+                  fontSize: '3rem',
+                  fontWeight: 'bold'
+                }}
+              >
+                예약이 완료되었습니다.
+              </div>
+              <div
+                style={{
+                  color: '#4c91ba',
+                  fontSize: '1.5rem',
+                  fontWeight: 'bold',
+                  marginBottom: '15px'
+                }}
+              >
+                예약번호: {this.props.match.params.reservation_id}
+              </div>
+              <div
+                style={{
+                  color: '#4c91ba',
+                  fontSize: '1.5rem',
+                  fontWeight: 'bold'
+                }}
+              >
+                일시 :{' '}
+                <Moment unix format="YYYY/MM/DD">
+                  {this.props.location.state.cardData.date / 1000}
+                </Moment>{' '}
+                <span className="ml-2">
+                  {startTimeFormat} ~ {finishTimeFormat}
+                </span>
+              </div>
+              <div
+                style={{
+                  color: '#4c91ba',
+                  fontSize: '1.5rem',
+                  fontWeight: 'bold'
+                }}
+              >
+                장소 : {fullAddress}
+              </div>
+              <div
+                style={{
+                  margin: '2rem 0 3rem 0',
+                  fontSize: '1.3rem',
+                  color: '#1e3354'
+                }}
+              >
+                {locationState.recruit._designer.name}님 과의 예약이
+                완료되었습니다! ^.^
+              </div>
+            </div>
+            <div style={cautionSectionStyle}>
+              <div style={sectionTitleStyle}>※ 유의사항</div>
+              <div>
+                <p>
+                  우리 예디는 프로 헤어디자이너가 아닌 예비 헤어디자이너 입니다.
+                  예디의 레벨에 따라 선생님들의 코칭이 있을수있으니 당황하지
+                  마세요! :)
+                </p>
+                <p>
+                  당일예약은 취소 및 환불이 불가능하며, 당일 예약이 아닌 경우
+                  표기된 취소 수수료 정책을 따릅니다. 예디 사정에 의한 취소 발생
+                  시 100% 환불 처리됩니다.
+                </p>
+                <p>
+                  예디 사정으로 스케줄 및 장소가 변경될 수 있습니다. 이 경우
+                  안내메시지를 보내드리니 확인바랍니다.
+                </p>
+                <p>
+                  염색, 펌 등 추가비용이 발생하는 서비스에 대해서는 본 플랫폼이
+                  아닌 현장에서 결제해주셔야 합니다.
+                </p>
+              </div>
+
+              {priceBox}
+            </div>
+            <Link to="/reservations" style={{ width: '100%' }}>
+              <div style={buttonStyle}>예약 확인/취소</div>
+            </Link>
+            <div
+              onClick={() =>
+                this.showMessage(
+                  this.props.match.params.reservation_id,
+                  this.props.location.state.recruit._designer.name
+                )
+              }
+              style={buttonStyle}
+            >
+              예디에게 메시지
+            </div>
+            {/* 밑에 여백 주기 위해 추가함 */}
+            <div style={{ height: 100 }} />
           </div>
-          <Link to="/reservations" style={{ width: '100%' }}>
-            <div style={buttonStyle}>예약 확인/취소</div>
-          </Link>
-          <div
-            onClick={() =>
-              this.showMessage(
-                this.props.match.params.reservation_id,
-                this.props.location.state.recruit._designer.name
-              )
-            }
-            style={buttonStyle}
-          >
-            예디에게 메시지
-          </div>
-          {/* 밑에 여백 주기 위해 추가함 */}
-          <div style={{ height: 100 }} />
         </div>
-      </div>
-    );
+      );
+    } else {
+      return <div />;
+    }
   }
 }
 
