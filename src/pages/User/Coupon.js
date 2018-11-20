@@ -38,12 +38,10 @@ class Coupon extends Component {
           <UserNav />
           <div className="u_bg">
             <div className="u_container">
-              <div className="u_title">프로모션</div>
-              <div className="uif_title ">프로모션 코드/포인트 적립</div>
+              <div className="u_title">쿠폰함</div>
+              <div className="uif_title ">쿠폰 코드/포인트 적립</div>
               <div className="row" style={{ marginTop: '3rem' }}>
-                <div className="col-2 if_head uif_head ">
-                  프로모션 코드 입력
-                </div>
+                <div className="col-2 if_head uif_head ">쿠폰 코드 입력</div>
                 <div className="col-8 d-flex justify-content-left">
                   <input
                     onChange={e => this.inputChangeHandler(e)}

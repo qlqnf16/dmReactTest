@@ -50,7 +50,7 @@ const MyPageNavigationBar = () => (
         }}
         // onClick={() => alert('아직 이용할 수 없습니다.')}
       >
-        프로모션
+        쿠폰함
       </NavLink>
     </div>
   </Fragment>

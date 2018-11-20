@@ -28,7 +28,7 @@ const CouponContent = props => {
       <div style={descriptionStyle}>
         {content} <br />
         가입 후 마이페이지 > 회원정보관리에 <br />
-        아래의 프로모션 코드를 기입해달라고 부탁하세요!
+        아래의 쿠폰 코드를 기입해달라고 부탁하세요!
       </div>
       <div>
         <div style={{ backgroundImage: `url(${img})`, ...couponStyle }}>

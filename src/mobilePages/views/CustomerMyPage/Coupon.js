@@ -36,10 +36,10 @@ class Coupon extends Component {
         <MyPageNavigationBar />
         <div className="m_containerStyle">
           <div style={containerStyle}>
-            <div style={titleStyle}>프로모션</div>
-            <div style={subtitleStyle}>프로모션 코드/포인트 적립</div>
+            <div style={titleStyle}>쿠폰함</div>
+            <div style={subtitleStyle}>쿠폰 코드/포인트 적립</div>
             <div>
-              <div style={labelStyle}>프로모션 코드 입력</div>
+              <div style={labelStyle}>쿠폰 코드 입력</div>
               <div>
                 <input
                   style={inputTextStyle}

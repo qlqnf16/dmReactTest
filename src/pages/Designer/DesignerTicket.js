@@ -231,7 +231,7 @@ class DesignerTicket extends Component {
                   className="u_title"
                   style={{ color: '#4c91ba', marginTop: '15rem', border: 0 }}
                 >
-                  프로모션 코드 입력
+                  쿠폰 코드 입력
                 </div>
                 <div className="d-flex justify-content-left">
                   <input

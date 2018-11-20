@@ -15,7 +15,7 @@ const CouponContent = props => {
     img = d_coupon;
   } else {
     title = '친구야, 머리 자를 때 되지 않았니?';
-    content = '친구 3명 가입시 3000포인트 지급!';
+    content = '친구 1명 가입시 1000포인트 지급!';
     numClass = 'cc_num';
     img = coupon;
   }
@@ -27,8 +27,8 @@ const CouponContent = props => {
       </div>
       <div className="cc_3">
         {content} <br />
-        가입 후 마이페이지 > 회원정보관리에 아래의 프로모션 코드를 기입해달라고
-        부탁하세요!
+        가입 승인된 디자이너 친구에게 '회원정보관리'에서 아래의 추천인 코드를
+        기입해달라고 부탁하세요!
       </div>
       <div>
         <img alt="alt" className="cc_coupon" src={img} />

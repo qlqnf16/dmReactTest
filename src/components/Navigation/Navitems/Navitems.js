@@ -241,7 +241,7 @@ class Navitems extends Component {
           </NavItem>
           <NavItem>
             <NavLink tag={Link} to={'/designer/coupon'} className="">
-              프로모션
+              쿠폰함
             </NavLink>
           </NavItem>
           <NavItem>
