@@ -192,8 +192,14 @@ const UserInfoForm = props => {
         />
         {isRegister}
         <div className="if_detail" style={{ marginTop: '8.3px' }}>
-          개인정보 제공동의를 받고 있습니다.(휴대폰 번호 수집에 대한 개인정보
-          제공동의 수취)
+          <input
+            type="checkbox"
+            id="phoneNumberAgree"
+            name="phoneNumberAgree"
+          />
+          <label htmlFor="phoneNumberAgree" style={{ marginLeft: '0.5rem' }}>
+            휴대폰 번호 수집에 대한 개인정보 제공에 동의합니다.
+          </label>
         </div>
       </div>
       <span style={labelStyle}>추천인 코드</span>
