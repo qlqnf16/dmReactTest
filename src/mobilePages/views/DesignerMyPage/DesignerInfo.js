@@ -382,7 +382,7 @@ class DesignerInfo extends Component {
             <div style={labelStyle}>추천인 코드</div>
             <input
               style={
-                !this.props.userData.designerRecommendationCode
+                this.props.userData.designerRecommendationCode
                   ? {
                       ...inputTextStyle,
                       backgroundColor: 'rgba(0,0,0,0.1)',
@@ -400,6 +400,24 @@ class DesignerInfo extends Component {
                   : e => this.handleInputChange(e)
               }
             />
+            <div
+              style={{
+                ...labelStyle,
+                fontWeight: 'normal',
+                marginTop: '0.3rem'
+              }}
+            >
+              친구가 내 추천인 코드 입력하면 친구도 나도 1000포인트씩 지급!
+            </div>
+            <div
+              style={{
+                ...labelStyle,
+                fontWeight: 'normal',
+                marginTop: '0.3rem'
+              }}
+            >
+              내 추천인 코드: {this.props.userData.uid}
+            </div>
             <div style={buttonStyle} onClick={this.submitHandler}>
               예디 정보 수정하기
             </div>

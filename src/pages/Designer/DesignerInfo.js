@@ -369,7 +369,7 @@ class DesignerInfo extends Component {
                 />
                 <FormGroup row>
                   <div className="col-3 if_head">추천인 코드</div>
-                  <div className="col-9 d-flex justify-content-left">
+                  <div className="col-9  justify-content-left">
                     <input
                       type="text"
                       name="designerRecommendationCode"
@@ -391,6 +391,27 @@ class DesignerInfo extends Component {
                           : null
                       }
                     />
+                    <div
+                      className="if_detail"
+                      style={{
+                        marginTop: '0.6rem',
+                        marginBottom: '0.6rem',
+                        fontSize: '1.2rem'
+                      }}
+                    >
+                      친구 2명이 내 추천인 코드 입력할 때마다 1달 이용권 무료
+                      지급! 주변에 내 추천인 코드를 알리세요.
+                    </div>
+                    <div
+                      className="if_detail"
+                      style={{
+                        marginTop: '0.6rem',
+                        marginBottom: '0.6rem',
+                        fontSize: '1.2rem'
+                      }}
+                    >
+                      내 추천인 코드: {this.props.userData.uid}
+                    </div>
                   </div>
                 </FormGroup>
                 <div className="text-center">

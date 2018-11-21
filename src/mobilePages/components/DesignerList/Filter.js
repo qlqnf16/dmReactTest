@@ -23,7 +23,7 @@ const Filter = props => {
     >
       <div style={{ ...filterFlex, marginBottom: '1rem' }}>
         <div style={{ flex: '1' }}>
-          <div style={filterTitle}>성별</div>
+          <div style={filterTitle}>내 성별</div>
           <input
             onChange={props.filterChangeHandler}
             type="radio"

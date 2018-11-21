@@ -239,11 +239,11 @@ class Navitems extends Component {
               회원정보관리
             </NavLink>
           </NavItem>
-          <NavItem>
+          {/* <NavItem>
             <NavLink tag={Link} to={'/designer/coupon'} className="">
               쿠폰함
             </NavLink>
-          </NavItem>
+          </NavItem> */}
           <NavItem>
             {/* <NavLink
               onClick={() => alert('아직 이용하실 수 없습니다.')}

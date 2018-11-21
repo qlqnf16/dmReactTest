@@ -268,49 +268,55 @@ class UserInfo extends Component {
                 <p className="uif_title">회원정보 수정</p>
                 <FormGroup row>
                   <div className="col-2 if_head uif_head ">성명</div>
-                  <div className="col-10 d-flex justify-content-left">
-                    <input
-                      onChange={e => this.inputChangeHandler(e)}
-                      type="text"
-                      name="name"
-                      id="name"
-                      value={this.state.name}
-                      className="if_input"
-                    />
-                    <label
-                      className={
-                        this.state.gender === "male"
-                          ? "if_gradio active"
-                          : "if_gradio"
-                      }
-                    >
+                  <div className="col-10">
+                    <div className="d-flex justify-content-left">
                       <input
-                        type="radio"
-                        id="male"
-                        name="gender"
-                        value="male"
                         onChange={e => this.inputChangeHandler(e)}
-                        className="genderRadio"
+                        type="text"
+                        name="name"
+                        id="name"
+                        value={this.state.name}
+                        className="if_input"
                       />
-                      남
-                    </label>
-                    <label
-                      className={
-                        this.state.gender === "female"
-                          ? "if_gradio active"
-                          : "if_gradio"
-                      }
-                    >
-                      <input
-                        type="radio"
-                        id="female"
-                        name="gender"
-                        value="female"
-                        onChange={e => this.inputChangeHandler(e)}
-                        className="genderRadio"
-                      />
-                      여
-                    </label>
+
+                      <label
+                        className={
+                          this.state.gender === "male"
+                            ? "if_gradio active"
+                            : "if_gradio"
+                        }
+                      >
+                        <input
+                          type="radio"
+                          id="male"
+                          name="gender"
+                          value="male"
+                          onChange={e => this.inputChangeHandler(e)}
+                          className="genderRadio"
+                        />
+                        남
+                      </label>
+                      <label
+                        className={
+                          this.state.gender === "female"
+                            ? "if_gradio active"
+                            : "if_gradio"
+                        }
+                      >
+                        <input
+                          type="radio"
+                          id="female"
+                          name="gender"
+                          value="female"
+                          onChange={e => this.inputChangeHandler(e)}
+                          className="genderRadio"
+                        />
+                        여
+                      </label>
+                    </div>
+                    <div className="if_detail" style={{ marginBottom: "1rem" }}>
+                      예약에 사용되는 이름인 실명을 사용해주세요
+                    </div>
                   </div>
                 </FormGroup>
                 <FormGroup row>

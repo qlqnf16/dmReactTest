@@ -56,7 +56,7 @@ const DesignerNav = () => (
       >
         회원정보관리
       </NavLink>
-      <NavLink
+      {/* <NavLink
         to="/designer/coupon"
         className="dnav_navitem"
         activeStyle={{
@@ -65,7 +65,7 @@ const DesignerNav = () => (
         }}
       >
         쿠폰함
-      </NavLink>
+      </NavLink> */}
     </div>
   </Fragment>
 );

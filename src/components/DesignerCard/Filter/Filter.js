@@ -5,7 +5,7 @@ const Filter = props => {
   return (
     <div className="col-3 form-row d-flex align-items-baseline filter-responsive">
       <div className="col-5">
-        <div className="filterTitle">성별</div>
+        <div className="filterTitle">내 성별</div>
         <div className="d-inline">
           <label
             className={props.checked === 'male' ? 'gradio active' : 'gradio'}

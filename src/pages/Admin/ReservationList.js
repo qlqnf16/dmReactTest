@@ -11,14 +11,26 @@ class DesignerList extends Component {
 
   componentDidMount = async () => {
     if (!this.state.madeRequest) {
-      const { data } = await axios.get(
+      let { data } = await axios.get(
         `users/5bc213a5f4376e579d2c18f6/reservations/all`
       );
+      data = data.sort((a, b) => b.createdAt - a.createdAt);
       this.setState({
         reservations: data,
         madeRequest: true
       });
     }
+  };
+
+  reservationSortHandler = async () => {
+    let { data } = await axios.get(
+      `users/5bc213a5f4376e579d2c18f6/reservations/all`
+    );
+    data = data.sort((a, b) => a.createdAt - b.createdAt);
+    this.setState({
+      reservations: data,
+      madeRequest: true
+    });
   };
 
   render() {
@@ -61,7 +73,7 @@ class DesignerList extends Component {
                 <th>서비스 종류</th>
                 <th>예비 디자이너</th>
                 <th>일반 회원</th>
-                <th>예약 체결일</th>
+                <th onClick={this.reservationSortHandler}>예약 체결일</th>
                 <th>예약일</th>
                 <th>예약일시</th>
                 <th>주소</th>
