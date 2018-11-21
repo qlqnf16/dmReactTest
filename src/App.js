@@ -30,6 +30,7 @@ import {
   AdminMakeCoupon,
   AdminNoShow,
   AdminQnA,
+  AdminCardList,
   TermsOfUse,
   InfoPolicy,
   FAQ,
@@ -357,6 +358,12 @@ class App extends Component {
               <Route
                 path="/admin/qna"
                 component={this.props.userData.isAdmin ? AdminQnA : WrongAccess}
+              />
+              <Route
+                path="/admin/cardList"
+                component={
+                  this.props.userData.isAdmin ? AdminCardList : WrongAccess
+                }
               />
               <Route component={WrongAccess} />
             </Switch>

@@ -45,6 +45,16 @@ const AdminNav = () => (
     </NavLink>
     <NavLink
       className="m-2 lg"
+      to="/admin/cardList"
+      activeStyle={{
+        color: '#1f3354',
+        borderBottom: 'solid 1.8px #1f3354'
+      }}
+    >
+      카드 리스트
+    </NavLink>
+    <NavLink
+      className="m-2 lg"
       to="/admin/noshow"
       activeStyle={{
         color: '#1f3354',
