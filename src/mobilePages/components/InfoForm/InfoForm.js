@@ -275,6 +275,10 @@ class InfoForm extends Component {
             />
             {this.props.isRegister}
           </div>
+          <div className="if_detail" style={{ marginTop: '8.3px' }}>
+            개인정보 제공동의를 받고 있습니다.(휴대폰 번호 수집에 대한 개인정보
+            제공동의 수취)
+          </div>
           <div style={labelStyle}>
             샵주소
             <span

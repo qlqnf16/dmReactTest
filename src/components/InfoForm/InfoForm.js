@@ -277,6 +277,10 @@ class InfoForm extends Component {
               placeholder="휴대전화 번호를 - 없이 입력해주세요. ex) 01012345678"
               required={true}
             />
+            <div className="if_detail" style={{ marginTop: '8.3px' }}>
+              개인정보 제공동의를 받고 있습니다.(휴대폰 번호 수집에 대한
+              개인정보 제공동의 수취)
+            </div>
           </div>
           {this.props.isRegister}
         </FormGroup>
