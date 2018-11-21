@@ -105,7 +105,7 @@ class AddDesigner extends Component {
   careerYear = 0;
   careerMonth = 0;
   handleInputChange = e => {
-    const { value, name, id } = e.target;
+    const { value, name, id, type } = e.target;
 
     if (id === 'dYear' || id === 'dMonth') {
       if (id === 'dYear') this.dYear = Number(value);
@@ -123,6 +123,8 @@ class AddDesigner extends Component {
       addresses[id] = { ...address, extraAddress: value };
 
       this.setState({ addresses });
+    } else if (type === 'checkbox') {
+      this.setState({ [name]: e.target.checked });
     } else {
       this.setState({ [name]: value });
     }
@@ -257,6 +259,8 @@ class AddDesigner extends Component {
 
   phoneCert = () => {
     if (!this.state.phoneNumber) return alert('휴대폰 번호를 먼저 입력하세요');
+    if (!this.state.phoneNumberAgree)
+      return alert('먼저 개인정보 제공에 동의해주세요');
 
     const { IMP } = window;
     IMP.init('imp06037656');

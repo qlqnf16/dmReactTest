@@ -196,6 +196,7 @@ const UserInfoForm = props => {
             type="checkbox"
             id="phoneNumberAgree"
             name="phoneNumberAgree"
+            onChange={props.inputChangeHandler}
           />
           <label htmlFor="phoneNumberAgree" style={{ marginLeft: '0.5rem' }}>
             휴대폰 번호 수집에 대한 개인정보 제공에 동의합니다.

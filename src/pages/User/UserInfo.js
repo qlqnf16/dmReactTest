@@ -56,8 +56,11 @@ class UserInfo extends Component {
     const target = event.target;
     const value = target.value;
     const name = target.name;
-
-    this.setState({ [name]: value });
+    if (target.type === 'checkbox') {
+      this.setState({ [name]: target.checked });
+    } else {
+      this.setState({ [name]: value });
+    }
   };
 
   submitHandler = async () => {
@@ -151,6 +154,10 @@ class UserInfo extends Component {
   };
 
   phoneCert = () => {
+    if (!this.state.phoneNumber) return alert('휴대폰 번호를 먼저 입력하세요');
+    if (!this.state.phoneNumberAgree)
+      return alert('먼저 개인정보 제공에 동의해주세요');
+
     const { IMP } = window;
     IMP.init('imp06037656');
     IMP.certification(
@@ -360,6 +367,7 @@ class UserInfo extends Component {
                         type="checkbox"
                         id="phoneNumberAgree"
                         name="phoneNumberAgree"
+                        onChange={e => this.inputChangeHandler(e)}
                       />
                       <label
                         htmlFor="phoneNumberAgree"

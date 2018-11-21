@@ -282,6 +282,7 @@ class InfoForm extends Component {
                 type="checkbox"
                 id="phoneNumberAgree"
                 name="phoneNumberAgree"
+                onChange={this.props.changeInput}
               />
               <label
                 htmlFor="phoneNumberAgree"
