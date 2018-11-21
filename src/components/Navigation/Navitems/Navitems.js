@@ -154,7 +154,7 @@ class Navitems extends Component {
             </DropdownToggle>
             <DropdownMenu right className="dropdownMenu">
               <DropdownItem>
-                <NavLink tag={Link} to={'/userInfo'}>
+                <NavLink tag={Link} to={'/reservations'}>
                   마이페이지
                 </NavLink>
               </DropdownItem>

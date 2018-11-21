@@ -50,7 +50,7 @@ const DrawerItems = props => {
           보유 포인트 : {props.userData.point}
           point
         </div>
-        <Link to="/userinfo">
+        <Link to="/reservations">
           <div
             className="mobile-drawer-items mobile-drawer-gray"
             onClick={props.click}
