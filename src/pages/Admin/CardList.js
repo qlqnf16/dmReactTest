@@ -75,6 +75,7 @@ class CardList extends Component {
               ? 'O'
               : 'X'}
           </td>
+          <td>{card.reservedTimes.length}</td>
         </tr>
       ));
       return (
@@ -92,6 +93,7 @@ class CardList extends Component {
                 <th>샵</th>
                 <th>모델 성별</th>
                 <th>이용권 사용중</th>
+                <th>예약 갯수</th>
               </tr>
             </thead>
             <tbody>{cards}</tbody>

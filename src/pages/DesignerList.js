@@ -73,7 +73,7 @@ class DesignerList extends Component {
     let date = '';
     let sido = '';
     let sigungu = '';
-
+    console.log(this.state.date);
     if (this.state.sido) sido = `sido=${this.state.sido}&`;
     if (this.state.sigungu) sigungu = `sigungu=${this.state.sigungu}&`;
 
@@ -103,6 +103,8 @@ class DesignerList extends Component {
         !counter[recruit._id] &&
         recruit._designer.expiredAt &&
         recruit._designer.expiredAt > new Date().getTime()
+
+        // recruit._cards.some(card => card.reservable)
       ) {
         uniqueRecruits.push(recruit);
         counter[recruit._id] = true;

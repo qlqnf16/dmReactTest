@@ -43,7 +43,7 @@ const Filter = props => {
           name="date"
           id="date"
           className="form-control"
-          placeholder="날짜"
+          placeholder="2018-xx-xx"
           onChange={props.filterChangeHandler}
         />
       </div>
