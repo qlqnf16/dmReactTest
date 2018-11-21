@@ -196,7 +196,7 @@ class MyModal extends Component {
                 alt="alt"
                 className="modal_button"
               />
-            </div>
+            </div> */}
             <div className="btn modal_b" onClick={() => this.login('facebook')}>
               <img
                 src={
@@ -207,7 +207,7 @@ class MyModal extends Component {
                 alt="alt"
                 className="modal_button"
               />
-            </div> */}
+            </div>
 
             {/* 카카오 로그인 by heeham */}
             <div
