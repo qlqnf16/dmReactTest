@@ -45,7 +45,7 @@ class ReservationConfirm extends Component {
     service = service.substring(1).split('/ ');
 
     let priceBox;
-    if (service.includes('펌') && service.includes('펌')) {
+    if (service.includes('펌') && service.includes('염색')) {
       priceBox = (
         <Fragment>
           <div style={pricingStyle}>
