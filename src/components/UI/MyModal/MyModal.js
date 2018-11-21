@@ -9,10 +9,10 @@ import { Link } from 'react-router-dom';
 import * as actions from '../../../modules';
 import * as LoginFunc from '../../../utility/LoginFunc';
 
-// import googleLoginButton from '../../../assets/images/login_google.png';
+import googleLoginButton from '../../../assets/images/login_google.png';
 import facebookLoginButton from '../../../assets/images/login_fb.png';
 import kakaoLoginButton from '../../../assets/images/login_katalk.png';
-// import googleSignUpButton from '../../../assets/images/join_google.png';
+import googleSignUpButton from '../../../assets/images/join_google.png';
 import facebookSignUpButton from '../../../assets/images/join_fb.png';
 import kakaoSignUpButton from '../../../assets/images/join_katalk.png';
 import './MyModal.css';
@@ -188,7 +188,7 @@ class MyModal extends Component {
             {/* Modal Button */}
 
             {/* 구글 로그인 비활성화 */}
-            {/* <div className="btn modal_b" onClick={() => this.login('google')}>
+            <div className="btn modal_b" onClick={() => this.login('google')}>
               <img
                 src={
                   this.state.isLogin ? googleLoginButton : googleSignUpButton
@@ -196,7 +196,7 @@ class MyModal extends Component {
                 alt="alt"
                 className="modal_button"
               />
-            </div> */}
+            </div>
             <div className="btn modal_b" onClick={() => this.login('facebook')}>
               <img
                 src={

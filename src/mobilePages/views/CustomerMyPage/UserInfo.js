@@ -113,7 +113,7 @@ class UserInfo extends Component {
       });
       result = await fbPromise;
       // 유효하지 않은 추천인 코드일 때,
-      if (!result || recommendationCode === this.props.userData.uid)
+      if (!result || recommendationCode == this.props.userData.uid)
         alert('유효하지 않은 추천인 코드 입니다.');
       // 유효한 추천인 코드일 때,
       else {
