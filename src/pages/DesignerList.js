@@ -125,7 +125,7 @@ class DesignerList extends Component {
   };
 
   render() {
-    let recruits = null;
+    let recruits = <div className="col-12">찾으시는 검색 결과가 없습니다.</div>;
     if (this.state.recruits.length) {
       recruits = this.state.recruits.map((recruit, key) => (
         <DesignerCard key={key} recruit={recruit} />
