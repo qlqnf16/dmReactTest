@@ -79,6 +79,7 @@ import MobileNavigationBar from './mobilePages/components/NavigationBar/Navigati
 import MobileSideDrawer from './mobilePages/components/NavigationBar/SideDrawer';
 import MobileBackdrop from './mobilePages/components/NavigationBar/Backdrop';
 import firebase from './config/Firebase';
+import NoticeModal from './utility/NoticeModal';
 
 import { connect } from 'react-redux';
 import * as actions from './modules';
@@ -194,6 +195,7 @@ class App extends Component {
     } else if (!isFacebookApp && !isMobile) {
       return (
         <Fragment>
+          {/* <NoticeModal /> */}
           <Toolbar finishRedux={this.state.finishRedux} />
           <div className="app-content web">
             <Switch>
@@ -384,6 +386,7 @@ class App extends Component {
       return (
         <Fragment>
           <div className="app-content">
+            {/* <NoticeModal /> */}
             <MobileNavigationBar
               drawerClickHandler={this.drawerToggleClickHandler}
             />
