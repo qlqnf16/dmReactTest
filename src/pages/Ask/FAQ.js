@@ -209,20 +209,6 @@ class FAQ extends Component {
         <div className="ask_grid">
           <div className="ask_qnum">5</div>
           <div className="ask_question font-weight-bold">
-            예비디자이너의 정보 검증을 어떻게 하나요?
-          </div>
-          <div />
-          <div className="ask_question">
-            예디 가입시 면허증/자격증을 검토한 후에 드리머리 가입승인이
-            이루어집니다. 추가적인 검증이 필요하다고 판단되는 경우, 사전에
-            예디들을 방문하여 실사를 진행하기도 합니다.
-          </div>
-        </div>
-      </div>
-      <div className="ask_list">
-        <div className="ask_grid">
-          <div className="ask_qnum">6</div>
-          <div className="ask_question font-weight-bold">
             추천인 코드는 무엇인가요?
           </div>
           <div />
@@ -235,7 +221,7 @@ class FAQ extends Component {
       </div>
       <div className="ask_list">
         <div className="ask_grid">
-          <div className="ask_qnum">7</div>
+          <div className="ask_qnum">6</div>
           <div className="ask_question font-weight-bold">
             문의나 불만사항은 어디로 연락을 해야 하나요?
           </div>
@@ -248,7 +234,7 @@ class FAQ extends Component {
       </div>
       <div className="ask_list">
         <div className="ask_grid">
-          <div className="ask_qnum">8</div>
+          <div className="ask_qnum">7</div>
           <div className="ask_question font-weight-bold">
             갑작스럽게 취소를 하게 되었어요. 환불은 어떻게 해야 하나요?
           </div>
@@ -262,7 +248,7 @@ class FAQ extends Component {
       </div>
       <div className="ask_list">
         <div className="ask_grid">
-          <div className="ask_qnum">9</div>
+          <div className="ask_qnum">8</div>
           <div className="ask_question font-weight-bold">
             텀블벅에서 구매한 '친구와 함께 구매이용권'은 친구와 함께 사용할 수
             있나요?
@@ -280,7 +266,7 @@ class FAQ extends Component {
       </div>
       <div className="ask_list">
         <div className="ask_grid">
-          <div className="ask_qnum">10</div>
+          <div className="ask_qnum">9</div>
           <div className="ask_question font-weight-bold">
             쿠폰의 유효기간은 어떻게 되나요?
           </div>

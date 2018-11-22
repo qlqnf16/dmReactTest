@@ -1,5 +1,4 @@
 import React from 'react';
-import ExifOrientationImg from 'react-exif-orientation-img';
 import './MoreInfo.css';
 
 const MoreInfo = props => {
@@ -23,7 +22,7 @@ const MoreInfo = props => {
       <div className="mi_subtitle">포트폴리오</div>
       <div className="row" style={{ margin: '13.3px 0 0 0' }}>
         {portfolios.map((portfolio, key) => (
-          <ExifOrientationImg
+          <img
             key={key}
             alt="alt"
             src={portfolio}
