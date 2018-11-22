@@ -48,11 +48,17 @@ class Designer extends Component {
       <tr key={this.props.key}>
         <th scope="row">
           {designer._recruit === undefined ? (
-            <span>{designer.name}</span>
+            <div>
+              <div>{designer.name}</div>
+              <div>{designer._id}</div>
+            </div>
           ) : (
-            <a href={`/#/designerdetail/${designer._recruit}`}>
-              {designer.name}
-            </a>
+            <div>
+              <a href={`/#/designerdetail/${designer._recruit}`}>
+                {designer.name}
+              </a>
+              <div>{designer._id}</div>
+            </div>
           )}
         </th>
         <td>{designer.email}</td>

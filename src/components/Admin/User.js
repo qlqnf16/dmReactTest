@@ -36,7 +36,10 @@ class User extends Component {
     const user = this.props.user;
     return (
       <tr key={this.props.key}>
-        <th scope="row">{user.name}</th>
+        <th scope="row">
+          <div>{user.name}</div>
+          <div>{user._id}</div>
+        </th>
         <td>{user.email}</td>
         <td>
           {user.birthday

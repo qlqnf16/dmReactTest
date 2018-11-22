@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import axios from '../../config/Axios';
-import Moment from 'react-moment';
-import AdminNav from '../../components/Navigation/AdminNav/AdminNav';
+import React, { Component } from "react";
+import axios from "../../config/Axios";
+import Moment from "react-moment";
+import AdminNav from "../../components/Navigation/AdminNav/AdminNav";
 
 class DesignerList extends Component {
   state = {
@@ -38,10 +38,16 @@ class DesignerList extends Component {
       const reservations = this.state.reservations.map((reservation, key) => (
         <tr key={key}>
           <td>{Object.keys(reservation.services)}</td>
-          <td>{reservation._designer.name}</td>
-          <td>{reservation._user.name}</td>
           <td>
-            <Moment format="YYYY/MM/DD">{reservation.createdAt}</Moment>{' '}
+            <div>{reservation._designer.name}</div>
+            <div>{reservation._designer._id}</div>
+          </td>
+          <td>
+            <div>{reservation._user.name}</div>
+            <div>{reservation._user._id}</div>
+          </td>
+          <td>
+            <Moment format="YYYY/MM/DD">{reservation.createdAt}</Moment>{" "}
           </td>
           <td>
             <Moment format="YYYY/MM/DD">{reservation.date}</Moment>
@@ -57,9 +63,9 @@ class DesignerList extends Component {
           <td>
             {!reservation.isCanceled
               ? reservation.isDone
-                ? '완료'
-                : '예약중'
-              : '취소'}
+                ? "완료"
+                : "예약중"
+              : "취소"}
           </td>
         </tr>
       ));
