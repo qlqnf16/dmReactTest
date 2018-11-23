@@ -18,6 +18,17 @@ class Coupon extends Component {
 
   couponSubmit = async () => {
     try {
+      if (this.state.coupon === '자라나라드리머리') {
+        const {
+          data: { point }
+        } = await axios.patch(`coupons/940979947329`, {
+          _user: this.props.userData._id,
+          isD: false
+        });
+        await this.props.updateRedux('point', point);
+        alert('쿠폰이 적용 되었습니다.');
+        return;
+      }
       const {
         data: { point }
       } = await axios.patch(`coupons/${this.state.coupon}`, {
@@ -27,7 +38,6 @@ class Coupon extends Component {
       await this.props.updateRedux('point', point);
       alert('쿠폰이 적용 되었습니다.');
     } catch (err) {
-      console.log(err.message);
       alert('유효하지 않은 쿠폰번호 입니다.');
     }
   };

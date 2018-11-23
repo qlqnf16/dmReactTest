@@ -1,23 +1,31 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import MyPageNavigationBar from '../../components/MyPageNavigationBar/MyPageNavigationBar';
 import firebase from '../../../config/Firebase';
 import axios from '../../../config/Axios';
 import * as actions from '../../../modules';
 
 import { connect } from 'react-redux';
-import CouponContent from '../../components/Coupon/CouponContent';
 
 class Coupon extends Component {
   inputChangeHandler = event => {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
-
+    const { value, name } = event.target;
     this.setState({ [name]: value });
   };
 
   couponSubmit = async () => {
     try {
+      if (this.state.coupon === '자라나라드리머리') {
+        const {
+          data: { point }
+        } = await axios.patch(`coupon/940979947329`, {
+          _user: this.props.userData._id,
+          isD: false
+        });
+        await this.props.updateRedux('point', point);
+        alert('쿠폰이 적용 되었습니다.');
+        return;
+      }
+
       const {
         data: { point }
       } = await axios.patch(`coupons/${this.state.coupon}`, {
@@ -32,7 +40,7 @@ class Coupon extends Component {
   };
   render() {
     return (
-      <div>
+      <Fragment>
         <MyPageNavigationBar />
         <div className="m_containerStyle">
           <div style={containerStyle}>
@@ -40,31 +48,20 @@ class Coupon extends Component {
             <div style={subtitleStyle}>쿠폰 코드/포인트 적립</div>
             <div>
               <div style={labelStyle}>쿠폰 코드 입력</div>
-              <div>
-                <input
-                  style={inputTextStyle}
-                  onChange={e => this.inputChangeHandler(e)}
-                  type="text"
-                  name="coupon"
-                  id="coupon"
-                />
-                <div style={buttonStyle} onClick={() => this.couponSubmit()}>
-                  포인트 적립
-                </div>
+              <input
+                style={inputTextStyle}
+                onChange={e => this.inputChangeHandler(e)}
+                type="text"
+                name="coupon"
+                id="coupon"
+              />
+              <div style={buttonStyle} onClick={() => this.couponSubmit()}>
+                포인트 적립
               </div>
             </div>
-            {/* <div>
-              <div style={labelStyle}>추천인 코드</div>
-              <div>
-                <CouponContent
-                  couponNumber={firebase.auth().currentUser.uid}
-                  recommendationNum={this.props.userData.recommendation}
-                />
-              </div>
-            </div> */}
           </div>
         </div>
-      </div>
+      </Fragment>
     );
   }
 }

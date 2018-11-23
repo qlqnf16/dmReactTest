@@ -56,9 +56,9 @@ class UserInfo extends Component {
   };
 
   inputChangeHandler = event => {
-    const { value, name, type } = event.target;
+    const { value, name, type, checked } = event.target;
     if (type === 'checkbox') {
-      this.setState({ [name]: event.target.checked });
+      this.setState({ [name]: checked });
     } else {
       this.setState({ [name]: value });
     }
@@ -99,7 +99,7 @@ class UserInfo extends Component {
       return alert('정확한 휴대폰 번호를 입력해주세요');
     if (!this.state.isRegister) return alert('휴대폰 인증을 진행해주세요');
 
-    // 추천인 로직
+    //// 추천인 로직
     // 전에 추천인을 입력한 적이 없고, 추천인을 작성했을 때,
     if (recommendationCode && !this.props.userData.recommendationCode) {
       let count = 0;
@@ -126,8 +126,15 @@ class UserInfo extends Component {
         firebaseUserData = { ...firebaseUserData, recommendationCode };
         count += 1;
 
-        await axios.patch(`users/${_id}/addpoint`, { point: 1000 });
+        //추천받은 사람 포인트 증가
+        await axios.patch(`users/${_id}/addpoint`, {
+          point: 1000
+        });
 
+        // 자기 자신도 포인트 증가
+        await axios.patch(`users/${this.props.userData._id}/addpoint`, {
+          point: 1000
+        });
         // 추천받은 횟수 저장
         await firebase
           .database()
@@ -137,6 +144,7 @@ class UserInfo extends Component {
     }
     try {
       // 최종 유저정보 저장
+      // 한번 추천 한 경우 다시 추천 못하도록 본인이 추천한 코드 firebase에 저장
       await firebase
         .database()
         .ref('users/' + uid)

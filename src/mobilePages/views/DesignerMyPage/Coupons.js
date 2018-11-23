@@ -7,9 +7,7 @@ import axios from '../../../config/Axios';
 
 class DesignerCoupon extends Component {
   inputChangeHandler = event => {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
+    const { value, name } = event.target;
 
     this.setState({ [name]: value });
   };
@@ -49,7 +47,9 @@ class DesignerCoupon extends Component {
               </div>
             </div> */}
             <div>
-              <div style={labelStyle} className='mb-3'>추천인 코드</div>
+              <div style={labelStyle} className="mb-3">
+                추천인 코드
+              </div>
               <div>
                 <CouponContent
                   couponNumber={firebase.auth().currentUser.uid}
