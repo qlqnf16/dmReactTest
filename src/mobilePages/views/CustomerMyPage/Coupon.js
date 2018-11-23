@@ -14,20 +14,16 @@ class Coupon extends Component {
 
   couponSubmit = async () => {
     try {
-      if (this.state.coupon === '자라나라드리머리') {
+      const masterCoupons = {
+        자라나라드리머리: 940979947329,
+        사쟁이멋자처럼: 288889093670,
+        민족의드리머리아: 754157299769
+      };
+
+      if (masterCoupons[this.state.coupon]) {
         const {
           data: { point }
-        } = await axios.patch(`coupons/940979947329`, {
-          _user: this.props.userData._id,
-          isD: false
-        });
-        await this.props.updateRedux('point', point);
-        alert('쿠폰이 적용 되었습니다.');
-        return;
-      } else if (this.state.coupon === '사쟁이멋자처럼') {
-        const {
-          data: { point }
-        } = await axios.patch(`coupons/288889093670`, {
+        } = await axios.patch(`coupons/${masterCoupons[this.state.coupon]}`, {
           _user: this.props.userData._id,
           isD: false
         });
@@ -35,6 +31,28 @@ class Coupon extends Component {
         alert('쿠폰이 적용 되었습니다.');
         return;
       }
+
+      // if (this.state.coupon === '자라나라드리머리') {
+      //   const {
+      //     data: { point }
+      //   } = await axios.patch(`coupons/940979947329`, {
+      //     _user: this.props.userData._id,
+      //     isD: false
+      //   });
+      //   await this.props.updateRedux('point', point);
+      //   alert('쿠폰이 적용 되었습니다.');
+      //   return;
+      // } else if (this.state.coupon === '사쟁이멋자처럼') {
+      //   const {
+      //     data: { point }
+      //   } = await axios.patch(`coupons/288889093670`, {
+      //     _user: this.props.userData._id,
+      //     isD: false
+      //   });
+      //   await this.props.updateRedux('point', point);
+      //   alert('쿠폰이 적용 되었습니다.');
+      //   return;
+      // }
 
       const {
         data: { point }
