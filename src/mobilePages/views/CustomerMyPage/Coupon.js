@@ -24,6 +24,16 @@ class Coupon extends Component {
         await this.props.updateRedux('point', point);
         alert('쿠폰이 적용 되었습니다.');
         return;
+      } else if (this.state.coupon === '사쟁이멋자처럼') {
+        const {
+          data: { point }
+        } = await axios.patch(`coupon/288889093670`, {
+          _user: this.props.userData._id,
+          isD: false
+        });
+        await this.props.updateRedux('point', point);
+        alert('쿠폰이 적용 되었습니다.');
+        return;
       }
 
       const {
