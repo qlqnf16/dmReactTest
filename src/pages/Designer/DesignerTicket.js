@@ -145,8 +145,8 @@ class DesignerTicket extends Component {
                         fontSize: '1.1rem'
                       }}
                     >
-                      * 실시간 계좌이체, 가상계좌, 카카오페이 결제가 빠른 시일
-                      내에 가능해질 예정입니다. 조금만 기다려주세요!
+                      * 실시간 계좌이체, 가상계좌 결제가 빠른 시일 내에 가능해질
+                      예정입니다. 조금만 기다려주세요!
                     </div>
                   </div>
                   <div className="col-12 px-0">
@@ -164,6 +164,23 @@ class DesignerTicket extends Component {
                         className="genderRadio"
                       />
                       신용/체크카드
+                    </label>
+                    <label
+                      style={
+                        this.state.method === 'kakaopay'
+                          ? onLabelStyle
+                          : labelStyle
+                      }
+                    >
+                      <input
+                        type="radio"
+                        id="kakaopay"
+                        name="method"
+                        value="kakaopay"
+                        onChange={this.changeHandler}
+                        className="genderRadio "
+                      />
+                      카카오페이
                     </label>
                     <label
                       style={
@@ -204,26 +221,6 @@ class DesignerTicket extends Component {
                         disabled
                       />
                       가상 계좌
-                    </label>
-                    <label
-                      style={
-                        this.state.method === 'kakao'
-                          ? onLabelStyle
-                          : labelStyle
-                      }
-                      onClick={() => alert('준비 중입니다.')}
-                      className="disabledButton"
-                    >
-                      <input
-                        type="radio"
-                        id="kakao"
-                        name="method"
-                        value="kakao"
-                        onChange={this.changeHandler}
-                        className="genderRadio "
-                        disabled
-                      />
-                      카카오페이
                     </label>
                   </div>
                 </div>

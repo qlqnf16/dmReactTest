@@ -156,8 +156,8 @@ const ReservationForm = props => {
         <div
           style={{ fontWeight: 'normal', color: 'gray', fontSize: '1.1rem' }}
         >
-          * 실시간 계좌이체, 가상계좌, 카카오페이 결제가 빠른 시일 내에 가능해질
-          예정입니다. 조금만 기다려주세요!
+          * 실시간 계좌이체, 가상계좌 결제가 빠른 시일 내에 가능해질 예정입니다.
+          조금만 기다려주세요!
         </div>
       </div>
 
@@ -189,6 +189,25 @@ const ReservationForm = props => {
           <div>신용/체크카드</div>
         </label>
         <label
+          htmlFor="kakaopay"
+          className="purchase_type"
+          style={
+            props.method === 'kakaopay'
+              ? { borderColor: '#dd6866', fontWeight: 'bold' }
+              : { color: 'rgba(0,0,0,0.2)' }
+          }
+        >
+          <input
+            style={{ display: 'none' }}
+            type="radio"
+            name="method"
+            id="kakaopay"
+            onChange={props.handleInputChange}
+            value="kakaopay"
+          />
+          <div>카카오페이</div>
+        </label>
+        <label
           htmlFor="trans"
           className="purchase_type"
           style={
@@ -196,6 +215,7 @@ const ReservationForm = props => {
               ? { borderColor: '#dd6866', fontWeight: 'bold' }
               : { color: 'rgba(0,0,0,0.2)' }
           }
+          onClick={() => alert('준비 중입니다.')}
         >
           <input
             style={{ display: 'none' }}
@@ -205,7 +225,6 @@ const ReservationForm = props => {
             onChange={props.handleInputChange}
             value="trans"
             disabled
-            onClick={() => alert('준비 중입니다.')}
           />
           <div>실시간 계좌이체</div>
         </label>
@@ -217,6 +236,7 @@ const ReservationForm = props => {
               ? { borderColor: '#dd6866', fontWeight: 'bold' }
               : { color: 'rgba(0,0,0,0.2)' }
           }
+          onClick={() => alert('준비 중입니다.')}
         >
           <input
             style={{ display: 'none' }}
@@ -226,30 +246,8 @@ const ReservationForm = props => {
             onChange={props.handleInputChange}
             value="vbank"
             disabled
-            onClick={() => alert('준비 중입니다.')}
           />
           <div>가상 계좌</div>
-        </label>
-        <label
-          htmlFor="kakao"
-          className="purchase_type"
-          style={
-            props.method === 'kakao'
-              ? { borderColor: '#dd6866', fontWeight: 'bold' }
-              : { color: 'rgba(0,0,0,0.2)' }
-          }
-        >
-          <input
-            style={{ display: 'none' }}
-            type="radio"
-            name="method"
-            id="kakao"
-            onChange={props.handleInputChange}
-            value="kakao"
-            disabled
-            onClick={() => alert('준비 중입니다.')}
-          />
-          <div>카카오페이</div>
         </label>
       </div>
     </div>

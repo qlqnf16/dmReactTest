@@ -57,7 +57,7 @@ class DesignerTicket extends Component {
     IMP.init('imp06037656');
     IMP.request_pay(
       {
-        pg: 'danal', // version 1.1.0부터 지원.
+        pg: this.state.method === 'kakaopay' ? 'kakaopay' : 'danal', // version 1.1.0부터 지원.
         pay_method: this.state.method,
         merchant_uid: 'merchant_' + new Date().getTime(),
         name: '주문명: 디자이너 이용권',
@@ -176,6 +176,25 @@ class DesignerTicket extends Component {
                 <div>신용/체크카드</div>
               </label>
               <label
+                htmlFor="kakaopay"
+                className="purchase_type"
+                style={
+                  this.state.method === 'kakaopay'
+                    ? { borderColor: '#4c91ba', fontWeight: 'bold' }
+                    : { color: 'rgba(0,0,0,0.2)' }
+                }
+              >
+                <input
+                  style={{ display: 'none' }}
+                  type="radio"
+                  name="method"
+                  id="kakaopay"
+                  onChange={this.inputChangeHandler}
+                  value="kakaopay"
+                />
+                <div>카카오페이</div>
+              </label>
+              <label
                 htmlFor="trans"
                 className="purchase_type"
                 style={
@@ -183,6 +202,7 @@ class DesignerTicket extends Component {
                     ? { borderColor: '#4c91ba', fontWeight: 'bold' }
                     : { color: 'rgba(0,0,0,0.2)' }
                 }
+                onClick={() => alert('준비 중입니다.')}
               >
                 <input
                   style={{ display: 'none' }}
@@ -192,7 +212,6 @@ class DesignerTicket extends Component {
                   onChange={this.inputChangeHandler}
                   value="trans"
                   disabled
-                  onClick={() => alert('준비 중입니다.')}
                 />
                 <div>실시간 계좌이체</div>
               </label>
@@ -204,6 +223,7 @@ class DesignerTicket extends Component {
                     ? { borderColor: '#4c91ba', fontWeight: 'bold' }
                     : { color: 'rgba(0,0,0,0.2)' }
                 }
+                onClick={() => alert('준비 중입니다.')}
               >
                 <input
                   style={{ display: 'none' }}
@@ -213,30 +233,8 @@ class DesignerTicket extends Component {
                   onChange={this.inputChangeHandler}
                   value="vbank"
                   disabled
-                  onClick={() => alert('준비 중입니다.')}
                 />
                 <div>가상 계좌</div>
-              </label>
-              <label
-                htmlFor="kakao"
-                className="purchase_type"
-                style={
-                  this.state.method === 'kakao'
-                    ? { borderColor: '#4c91ba', fontWeight: 'bold' }
-                    : { color: 'rgba(0,0,0,0.2)' }
-                }
-              >
-                <input
-                  style={{ display: 'none' }}
-                  type="radio"
-                  name="method"
-                  id="kakao"
-                  onChange={this.inputChangeHandler}
-                  value="kakao"
-                  disabled
-                  onClick={() => alert('준비 중입니다.')}
-                />
-                <div>카카오페이</div>
               </label>
             </div>
 
