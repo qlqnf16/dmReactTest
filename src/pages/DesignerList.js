@@ -125,7 +125,24 @@ class DesignerList extends Component {
   };
 
   render() {
-    let recruits = <div className="col-12">찾으시는 검색 결과가 없습니다.</div>;
+    let recruits = (
+      <div
+        className="col-12"
+        style={{
+          textAlign: 'center',
+          marignTop: '20px',
+          height: '450px',
+          lineHeight: '430px',
+          fontSize: '40px',
+          color: 'rgba(0,0,0,0.5)',
+          border: 'solid 1px rgba(0,0,0,0.2)',
+          padding: '10px',
+          borderRadius: '5px'
+        }}
+      >
+        검색 결과가 없습니다.
+      </div>
+    );
     if (this.state.recruits.length) {
       recruits = this.state.recruits.map((recruit, key) => (
         <DesignerCard key={key} recruit={recruit} />

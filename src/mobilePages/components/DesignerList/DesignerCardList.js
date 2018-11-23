@@ -4,9 +4,26 @@ import DesignerCard from "./DesignerCard";
 
 const DesignerCardList = props => (
   <div style={containerStyle}>
-    {props.recruits.map((recruit, key) => (
-      <DesignerCard recruit={recruit} key={key} />
-    ))}
+    {props.recruits.length ? (
+      props.recruits.map((recruit, key) => (
+        <DesignerCard recruit={recruit} key={key} />
+      ))
+    ) : (
+      <div
+        style={{
+          fontSize: "20px",
+          width: "100%",
+          textAlign: "center",
+          padding: "20px",
+          color: "rgba(0,0,0,0.5)",
+          height: "200px",
+          lineHeight: "300px",
+          borderRadius: "5px"
+        }}
+      >
+        검색 결과가 없습니다.
+      </div>
+    )}
 
     {/* 보기 좋게 X2 
     {props.recruits.map((recruit, key) => (
