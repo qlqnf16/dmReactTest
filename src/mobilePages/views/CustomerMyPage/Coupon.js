@@ -17,7 +17,7 @@ class Coupon extends Component {
       if (this.state.coupon === '자라나라드리머리') {
         const {
           data: { point }
-        } = await axios.patch(`coupon/940979947329`, {
+        } = await axios.patch(`coupons/940979947329`, {
           _user: this.props.userData._id,
           isD: false
         });
@@ -27,7 +27,7 @@ class Coupon extends Component {
       } else if (this.state.coupon === '사쟁이멋자처럼') {
         const {
           data: { point }
-        } = await axios.patch(`coupon/288889093670`, {
+        } = await axios.patch(`coupons/288889093670`, {
           _user: this.props.userData._id,
           isD: false
         });
