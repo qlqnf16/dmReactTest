@@ -269,7 +269,12 @@ class DesignerInfo extends Component {
       if (!result || designerRecommendationCode == this.props.userData.uid) {
         alert('유효하지 않은 추천인 코드 입니다.');
       } else {
-        let { designerRecommendation, _id } = result.val();
+        let { designerRecommendation, _id, isD } = result.val();
+
+        if (!isD)
+          return alert(
+            '예비 디자이너는 일반 유저를 추천인으로 작성할 수 없습니다!'
+          );
 
         if (designerRecommendation) count = designerRecommendation;
         firebaseUserData = {
@@ -278,7 +283,7 @@ class DesignerInfo extends Component {
         };
         count += 1;
 
-        if (count !== 0 && count % 5 === 0) {
+        if (count !== 0 && count % 2 === 0) {
           await axios.post(`users/${_id}/tickets`, {
             price: 10000
           });
