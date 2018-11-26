@@ -17,10 +17,16 @@ class Coupon extends Component {
       const masterCoupons = {
         자라나라드리머리: 940979947329,
         사쟁이멋자처럼: 288889093670,
-        민족의드리머리아: 754157299769
+        민족의드리머리아: 754157299769,
+        그대만큼사랑스러운사람: 883379918547
       };
 
       if (masterCoupons[this.state.coupon]) {
+        if (
+          this.state.coupon === '그대만큼사랑스러운사람' &&
+          !['1999', '2000', '2001'].includes(this.props.userData.birthday.year)
+        )
+          throw new Error('고등학생이 아닙니다!');
         const {
           data: { point }
         } = await axios.patch(`coupons/${masterCoupons[this.state.coupon]}`, {
