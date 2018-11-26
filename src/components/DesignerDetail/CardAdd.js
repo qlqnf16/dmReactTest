@@ -61,7 +61,7 @@ class CardAdd extends Component {
     });
     this.props.ableTimes.forEach(ableTime => {
       let time = ableTime.since;
-      let requireTime = 30;
+      let requireTime = 0;
       requireTime += this.state.cut && this.props.recruit.requireTime.cut;
       requireTime += this.state.perm && this.props.recruit.requireTime.perm;
       requireTime += this.state.dye && this.props.recruit.requireTime.dye;
