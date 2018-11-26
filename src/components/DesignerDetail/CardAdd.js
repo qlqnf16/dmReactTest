@@ -32,13 +32,13 @@ class CardAdd extends Component {
   toggle = type => {
     switch (type) {
       case 'cut':
-        this.setState({ cut: !this.state.cut });
+        this.setState({ cut: !this.state.cut, time: null });
         break;
       case 'perm':
-        this.setState({ perm: !this.state.perm });
+        this.setState({ perm: !this.state.perm, time: null });
         break;
       case 'dye':
-        this.setState({ dye: !this.state.dye });
+        this.setState({ dye: !this.state.dye, time: null });
         break;
       default:
         break;

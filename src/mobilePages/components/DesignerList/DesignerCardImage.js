@@ -73,14 +73,15 @@ export default class DesignerCardImage extends Component {
           onExited={this.onExited}
           key={item.src}
         >
-          <div
+          <img
+            src={item}
             style={{
               width: '100%',
               height: '134px',
-              backgroundImage: `url(${item})`,
-              backgroundSize: 'cover'
+              objectFit: 'cover'
             }}
           />
+
           <CarouselCaption
             captionText={item.caption}
             captionHeader={item.caption}
@@ -95,13 +96,13 @@ export default class DesignerCardImage extends Component {
         next={() => this.next(this.props.images)}
         previous={() => this.previous(this.props.images)}
       >
-        <CarouselIndicators
+        {/* <CarouselIndicators
           items={this.props.images.map(im => {
             return { src: im };
           })}
           activeIndex={activeIndex}
           onClickHandler={() => this.goToIndex()}
-        />
+        /> */}
         {slides}
       </Carousel>
     );

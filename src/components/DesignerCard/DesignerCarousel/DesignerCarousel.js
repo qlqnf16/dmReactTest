@@ -54,7 +54,11 @@ class DesignerCarousel extends Component {
           onExited={this.onExited}
         >
           <img
-            src={image}
+            src={image + '_thump'}
+            onError={e => {
+              e.target.onerror = null;
+              e.target.src = image;
+            }}
             key={key}
             alt="alt"
             style={{ width: '100%', height: 200 }}

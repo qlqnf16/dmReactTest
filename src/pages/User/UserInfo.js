@@ -164,9 +164,12 @@ class UserInfo extends Component {
       {
         merchant_uid: 'merchant_' + new Date().getTime()
       },
-      rsp => {
+      async rsp => {
         if (rsp.success) {
           // 인증성공
+
+          // const { data } = await axios.post(`certification`, { imp_uid : res.imp_uid})
+
           this.setState({ isRegister: true });
           alert('인증되었습니다');
         } else {

@@ -8,7 +8,7 @@ class CardAdd extends Component {
     cut: false,
     perm: false,
     dye: false,
-    time: ''
+    time: null
   };
 
   componentDidMount = () => {
@@ -30,13 +30,13 @@ class CardAdd extends Component {
   toggle = type => {
     switch (type) {
       case 'cut':
-        this.setState({ cut: !this.state.cut });
+        this.setState({ cut: !this.state.cut, time: null });
         break;
       case 'perm':
-        this.setState({ perm: !this.state.perm });
+        this.setState({ perm: !this.state.perm, time: null });
         break;
       case 'dye':
-        this.setState({ dye: !this.state.dye });
+        this.setState({ dye: !this.state.dye, time: null });
         break;
       default:
         break;
@@ -155,9 +155,9 @@ class CardAdd extends Component {
     service = service.substring(1);
 
     let captionInner = [];
-    if (this.state.cut) captionInner.push('커트');
-    if (this.state.perm) captionInner.push('펌');
-    if (this.state.dye) captionInner.push('염색');
+    if (this.props.must.some(e => e === 'cut')) captionInner.push('커트');
+    if (this.props.must.some(e => e === 'perm')) captionInner.push('펌');
+    if (this.props.must.some(e => e === 'dye')) captionInner.push('염색');
     const caption = captionInner.length
       ? `* ${captionInner.join(',')}은(는) 필수입니다.`
       : null;
