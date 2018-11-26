@@ -267,7 +267,11 @@ class DesignerInfo extends Component {
         alert('유효하지 않은 추천인 코드 입니다.');
       // 유효한 추천인 코드일 때,
       else {
-        let { designerRecommendation, _id } = result.val();
+        let { designerRecommendation, _id, isD } = result.val();
+        if (!isD)
+          return alert(
+            '예비 디자이너는 일반 유저를 추천인으로 작성할 수 없습니다!'
+          );
         if (designerRecommendation) count = designerRecommendation;
         firebaseUserData = { ...firebaseUserData, designerRecommendationCode };
         count += 1;
@@ -379,7 +383,7 @@ class DesignerInfo extends Component {
             deletePortfolio={e => this.deletePortfolio(e)}
           />
           <div style={containerStyle}>
-            <div style={labelStyle}>추천인 코드</div>
+            <div style={labelStyle}>인 코드</div>
             <input
               style={
                 this.props.userData.designerRecommendationCode
@@ -407,7 +411,8 @@ class DesignerInfo extends Component {
                 marginTop: '0.3rem'
               }}
             >
-              친구가 내 추천인 코드 입력하면 친구도 나도 1000포인트씩 지급!
+              친구 2명이 내 추천인 코드 입력할 때마다 1달 이용권 무료 지급!
+              주변에 내 추천인 코드를 알리세요.
             </div>
             <div
               style={{

@@ -116,8 +116,11 @@ class UserInfo extends Component {
       if (!result || recommendationCode == this.props.userData.uid) {
         alert('유효하지 않은 추천인 코드 입니다.');
       } else {
-        let { recommendation, _id } = result.val();
-
+        let { recommendation, _id, isD } = result.val();
+        if (isD)
+          return alert(
+            '예비 디자이너를 추천인으로 작성하는 것은 승인 완료된 예비 디자이너만 가능합니다! 아직 승인 대기중이시라면 승인 후에 다시 작성해주세요!!'
+          );
         // 유효한 추천인 코드면 포인트 증가
 
         if (recommendation) count = recommendation;

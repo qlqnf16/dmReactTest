@@ -121,7 +121,12 @@ class UserInfo extends Component {
         alert('유효하지 않은 추천인 코드 입니다.');
       // 유효한 추천인 코드일 때,
       else {
-        let { recommendation, _id } = result.val();
+        let { recommendation, _id, isD } = result.val();
+        if (isD)
+          return alert(
+            '예비 디자이너를 추천인으로 제출하는 것은 본인이 예비 디자이너일 경우에만 가능합니다! 먼저 예디 등록을 진행해주세요!!'
+          );
+
         if (recommendation) count = recommendation;
         firebaseUserData = { ...firebaseUserData, recommendationCode };
         count += 1;
