@@ -91,20 +91,31 @@ export default class DesignerCardImage extends Component {
     });
 
     return (
-      <Carousel
-        activeIndex={activeIndex}
-        next={() => this.next(this.props.images)}
-        previous={() => this.previous(this.props.images)}
-      >
-        {/* <CarouselIndicators
-          items={this.props.images.map(im => {
-            return { src: im };
-          })}
-          activeIndex={activeIndex}
-          onClickHandler={() => this.goToIndex()}
-        /> */}
-        {slides}
-      </Carousel>
+      // <Carousel
+      //   activeIndex={activeIndex}
+      //   next={() => this.next(this.props.images)}
+      //   previous={() => this.previous(this.props.images)}
+      // >
+      //   {/* <CarouselIndicators
+      //     items={this.props.images.map(im => {
+      //       return { src: im };
+      //     })}
+      //     activeIndex={activeIndex}
+      //     onClickHandler={() => this.goToIndex()}
+      //   /> */}
+      //   {slides}
+      // </Carousel>
+
+      // 대표 포트폴리오 image 한 장만 나오도록
+
+      <img
+        src={this.props.images[0]}
+        style={{
+          width: '100%',
+          height: '134px',
+          objectFit: 'cover'
+        }}
+      />
     );
   }
 }
