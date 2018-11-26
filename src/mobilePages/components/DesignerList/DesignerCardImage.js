@@ -7,27 +7,6 @@ import {
 } from 'reactstrap';
 import './DesignerCardImage.css';
 
-const items = [
-  {
-    src:
-      'https://pbs.twimg.com/profile_images/2478846238/qtsl75yedbc7vymcmq78.jpeg',
-    altText: 'Slide 1',
-    caption: 'Slide 1'
-  },
-  {
-    src:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcROpgffp3yGdyg7fQBzQ2SbbV1VDW9T-b1Aggl0yFh9dOdyjcssAw',
-    altText: 'Slide 2',
-    caption: 'Slide 2'
-  },
-  {
-    src:
-      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSh7SqF4efc09ygq4WvMqfQBSE7TKpcyErb9OadLe0P7kVqluff',
-    altText: 'Slide 3',
-    caption: 'Slide 3'
-  }
-];
-
 export default class DesignerCardImage extends Component {
   state = {
     activeIndex: 0
