@@ -176,6 +176,7 @@ class App extends Component {
 
     let ua = navigator.userAgent || navigator.vendor || window.opera;
     const isFacebookApp = ua.indexOf('FBAN') > -1 || ua.indexOf('FBAV') > -1;
+    const isInstagram = (ua.indexOf('Instagram') > -1) ? true : false;
 
     // 장막
     // const isMobile = false;
@@ -192,7 +193,7 @@ class App extends Component {
       );
 
       // firebase database에서 호출 후,
-    } else if (!isFacebookApp && !isMobile) {
+    } else if (!isFacebookApp && !isMobile && !isInstagram) {
       return (
         <Fragment>
           {/* <NoticeModal /> */}
