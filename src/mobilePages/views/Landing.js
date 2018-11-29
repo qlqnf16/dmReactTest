@@ -217,7 +217,7 @@ class Landing extends Component {
                       fontSize: '1.8rem',
                       fontWeight: 'bold',
                       border: '1px solid white',
-                      width: 'fit-content',
+                      width: 119,
                       position: 'absolute',
                       padding: '2% 4%',
                       bottom: '62vh',
@@ -235,7 +235,7 @@ class Landing extends Component {
                       fontSize: '1.8rem',
                       fontWeight: 'bold',
                       border: '1px solid white',
-                      width: 'fit-content',
+                      width: 103,
                       position: 'absolute',
                       padding: '2% 4%',
                       bottom: '62vh',
@@ -255,7 +255,7 @@ class Landing extends Component {
                     fontSize: '1.8rem',
                     fontWeight: 'bold',
                     border: '1px solid white',
-                    width: 'fit-content',
+                    width: 136,
                     position: 'absolute',
                     padding: '2% 4%',
                     bottom: '62vh',
@@ -267,23 +267,6 @@ class Landing extends Component {
                 </div>
               </Link>
             )}
-            {/* <Link to="/designerlist">
-              <div
-                style={{
-                  color: 'white',
-                  fontSize: '1.8rem',
-                  fontWeight: 'bold',
-                  border: '1px solid white',
-                  width: 'fit-content',
-                  position: 'absolute',
-                  padding: '2% 4%',
-                  bottom: '62vh',
-                  left: '10%'
-                }}
-              >
-                디자이너 찾기
-              </div>
-            </Link> */}
             <div className="m_landing_ctext">
               드리머리 - 대한민국 최초 예비헤어디자이너 & 대중 연결 플랫폼
             </div>
