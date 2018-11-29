@@ -165,9 +165,9 @@ class DesignerDetail extends Component {
               }}
             />
           </div>
-          <div style={{ ...paragraphStyle, marginTop: '3rem' }}>
+          <pre style={{ ...paragraphStyle, marginTop: '3rem' }}>
             {designer.introduce}
-          </div>
+          </pre>
           <div
             style={{
               border: '1px solid rgba(76, 145, 186, 0.6)',
@@ -177,7 +177,7 @@ class DesignerDetail extends Component {
             }}
           >
             <div style={{ ...labelStyle, marginTop: 0 }}>요청사항</div>
-            <div style={paragraphStyle}>{recruit.requirement}</div>
+            <pre style={paragraphStyle}>{recruit.requirement}</pre>
             <div style={labelStyle}>예상 시술 소요시간</div>
             <div style={paragraphStyle}>
               커트:{' '}
