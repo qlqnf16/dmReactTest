@@ -186,7 +186,7 @@ class CardAdd extends Component {
               펌
             </div>
           </div>
-          {caption}
+          <div className="mt-2">{caption}</div>
         </div>
         <div className=" py-3 row m-2">
           <div
@@ -211,7 +211,7 @@ class CardAdd extends Component {
             )
           }
         >
-          <div className="row p-3" style={{ alignItems: 'flex-end' }}>
+          <div className="row p-3">
             <div className="col-7 m-0">
               <p className="time mb-2">예상 소요시간</p>
               <p className="time" style={{ fontWeight: 'bold' }}>
@@ -271,7 +271,12 @@ class CardAdd extends Component {
                   <p>을 위하여 사용됩니다.</p>
                 </ReactTooltip>
               </div>
-              <div className="pr-2 mr-2">예약하기</div>
+              <div
+                className="mr-4 mt-3 p-2"
+                style={{ border: '1px solid white', borderRadius: 5 }}
+              >
+                예약하기
+              </div>
             </div>
           </div>
         </div>
