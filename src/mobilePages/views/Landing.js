@@ -209,24 +209,44 @@ class Landing extends Component {
             style={{ background: 'transparent' }}
           >
             {this.props.userData.isD ? (
-              <Link to="/designer/schedule">
-                <div
-                  style={{
-                    color: 'white',
-                    fontSize: '1.8rem',
-                    fontWeight: 'bold',
-                    border: '1px solid white',
-                    width: 'fit-content',
-                    position: 'absolute',
-                    padding: '2% 4%',
-                    bottom: '62vh',
-                    left: '10%',
-                    backgroundColor: 'rgba(0,0,0,0.35)'
-                  }}
-                >
-                  예비 디자이너 스케줄 관리하기
-                </div>
-              </Link>
+              <div>
+                <Link to="/designer/schedule">
+                  <div
+                    style={{
+                      color: 'white',
+                      fontSize: '1.8rem',
+                      fontWeight: 'bold',
+                      border: '1px solid white',
+                      width: 'fit-content',
+                      position: 'absolute',
+                      padding: '2% 4%',
+                      bottom: '62vh',
+                      left: '40%',
+                      backgroundColor: 'rgba(0,0,0,0.35)'
+                    }}
+                  >
+                    스케줄 등록
+                  </div>
+                </Link>
+                <Link to="/designer/reservations">
+                  <div
+                    style={{
+                      color: 'white',
+                      fontSize: '1.8rem',
+                      fontWeight: 'bold',
+                      border: '1px solid white',
+                      width: 'fit-content',
+                      position: 'absolute',
+                      padding: '2% 4%',
+                      bottom: '62vh',
+                      left: '10%',
+                      backgroundColor: 'rgba(0,0,0,0.35)'
+                    }}
+                  >
+                    예약 관리
+                  </div>
+                </Link>
+              </div>
             ) : (
               <Link to="/designerlist">
                 <div
