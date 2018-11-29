@@ -250,13 +250,23 @@ class DesignerDetail extends Component {
           <div style={{ height: 100 }} />
           <div
             style={{
-              height: 100,
+              height: 90,
               position: 'fixed',
+              left: 0,
               bottom: '0%',
-              width: '85%'
+              width: '100%',
+              backgroundColor: 'white'
             }}
           >
-            <div style={buttonStyle} onClick={this.toggleModal}>
+            <div
+              style={{
+                ...buttonStyle,
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                width: '85%'
+              }}
+              onClick={this.toggleModal}
+            >
               날짜/시간 선택하기
             </div>
           </div>
