@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { Carousel, CarouselItem, CarouselCaption } from 'reactstrap';
+import { Link } from 'react-router-dom';
 
 import landing1 from '../../assets/images/mobile_landing1.png';
 import landing2 from '../../assets/images/mobile_landing2.png';
@@ -207,6 +208,62 @@ class Landing extends Component {
             className="m_landing_imgback"
             style={{ background: 'transparent' }}
           >
+            {this.props.userData.isD ? (
+              <Link to="/designer/schedule">
+                <div
+                  style={{
+                    color: 'white',
+                    fontSize: '1.8rem',
+                    fontWeight: 'bold',
+                    border: '1px solid white',
+                    width: 'fit-content',
+                    position: 'absolute',
+                    padding: '2% 4%',
+                    bottom: '62vh',
+                    left: '10%',
+                    backgroundColor: 'rgba(0,0,0,0.35)'
+                  }}
+                >
+                  예비 디자이너 스케줄 관리하기
+                </div>
+              </Link>
+            ) : (
+              <Link to="/designerlist">
+                <div
+                  style={{
+                    color: 'white',
+                    fontSize: '1.8rem',
+                    fontWeight: 'bold',
+                    border: '1px solid white',
+                    width: 'fit-content',
+                    position: 'absolute',
+                    padding: '2% 4%',
+                    bottom: '62vh',
+                    left: '10%',
+                    backgroundColor: 'rgba(0,0,0,0.35)'
+                  }}
+                >
+                  디자이너 찾기
+                </div>
+              </Link>
+            )}
+            {/* <Link to="/designerlist">
+              <div
+                style={{
+                  color: 'white',
+                  fontSize: '1.8rem',
+                  fontWeight: 'bold',
+                  border: '1px solid white',
+                  width: 'fit-content',
+                  position: 'absolute',
+                  padding: '2% 4%',
+                  bottom: '62vh',
+                  left: '10%'
+                }}
+              >
+                디자이너 찾기
+              </div>
+            </Link> */}
             <div className="m_landing_ctext">
               드리머리 - 대한민국 최초 예비헤어디자이너 & 대중 연결 플랫폼
             </div>
