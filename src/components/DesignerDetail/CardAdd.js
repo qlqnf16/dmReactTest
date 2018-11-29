@@ -178,6 +178,12 @@ class CardAdd extends Component {
     return (
       <div className="">
         <div className="border-top border-bottom py-3 row m-2 ">
+          <div
+            style={{ fontSize: '1.2rem', fontWeight: 'bold' }}
+            className="col-12 px-1 mb-3"
+          >
+            1. 받으실 서비스를 선택해주세요.
+          </div>
           <div className="col-4 px-1">
             <div onClick={cutClick} className={cutButton}>
               커트
@@ -195,7 +201,16 @@ class CardAdd extends Component {
           </div>
           <div>{caption}</div>
         </div>
-        <div className=" py-3 row m-2">{timeButtons}</div>
+
+        <div className=" py-3 row m-2">
+          <div
+            style={{ fontSize: '1.2rem', fontWeight: 'bold' }}
+            className="col-12 px-1 mb-3"
+          >
+            2. 시간을 선택해주세요.
+          </div>
+          {timeButtons}
+        </div>
         <div className="submit_button" onClick={clickButton}>
           <div className="row p-3" style={{ alignItems: 'flex-end' }}>
             <div className="col-7 m-0">
