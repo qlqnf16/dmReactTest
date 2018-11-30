@@ -35,21 +35,24 @@ class UserInfo extends Component {
       alert("휴대폰 인증 후 예약서비스를 사용할 수 있습니다'");
   }
 
-  componentDidMount = async () => {
+  componentDidMount = () => {
     // iamport 사용하기 위한 inline script 작성
     let links = [
       'https://code.jquery.com/jquery-1.12.4.min.js',
       'https://cdn.iamport.kr/js/iamport.payment-1.1.5.js'
     ];
 
-    for (let link of links) {
-      const script = document.createElement('script');
+    // for (let link of links) {
+    //   const script = document.createElement('script');
 
-      script.src = link;
-      script.async = true;
-      document.body.appendChild(script);
-    }
+    //   script.src = link;
+    //   script.async = true;
+    //   document.body.appendChild(script);
+    // }
     if (this.state.recommendationCode) this.recommendationInput.disabled = true;
+    const { IMP } = window;
+    IMP.init('imp06037656');
+    this.IMP = IMP;
   };
 
   inputChangeHandler = event => {
@@ -161,9 +164,7 @@ class UserInfo extends Component {
     if (!this.state.phoneNumberAgree)
       return alert('먼저 개인정보 제공에 동의해주세요');
 
-    const { IMP } = window;
-    IMP.init('imp06037656');
-    IMP.certification(
+    this.IMP.certification(
       {
         merchant_uid: 'merchant_' + new Date().getTime()
       },
@@ -171,7 +172,11 @@ class UserInfo extends Component {
         if (rsp.success) {
           // 인증성공
 
-          // const { data } = await axios.post(`certification`, { imp_uid : res.imp_uid})
+          console.log(rsp.imp_uid);
+          const response = await axios.post(`certification`, {
+            imp_uid: rsp.imp_uid
+          });
+          console.log(response);
 
           this.setState({ isRegister: true });
           alert('인증되었습니다');

@@ -54,7 +54,7 @@ class CardAdd extends Component {
     const Times = [];
     this.props.cardData.reservedTimes.forEach(reservedTime => {
       let time = reservedTime.since;
-      while (time <= reservedTime.until - 30) {
+      while (time <= reservedTime.until) {
         reservedTimes.push(time);
         time += 30;
       }
