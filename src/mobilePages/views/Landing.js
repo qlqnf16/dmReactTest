@@ -217,11 +217,11 @@ class Landing extends Component {
                       fontSize: '1.8rem',
                       fontWeight: 'bold',
                       border: '1px solid white',
-                      width: 119,
+                      width: '35%',
                       position: 'absolute',
                       padding: '2% 4%',
                       bottom: '62vh',
-                      left: '40%',
+                      left: '50%',
                       backgroundColor: 'rgba(0,0,0,0.35)'
                     }}
                   >
@@ -235,7 +235,7 @@ class Landing extends Component {
                       fontSize: '1.8rem',
                       fontWeight: 'bold',
                       border: '1px solid white',
-                      width: 103,
+                      width: '35%',
                       position: 'absolute',
                       padding: '2% 4%',
                       bottom: '62vh',
