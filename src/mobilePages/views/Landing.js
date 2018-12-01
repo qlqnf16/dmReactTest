@@ -258,7 +258,7 @@ class Landing extends Component {
                     fontWeight: 'bold',
                     border: '1px solid white',
                     textAlign: 'center',
-                    width: '35%',
+                    width: '40%',
                     position: 'absolute',
                     padding: '2% 4%',
                     bottom: '62vh',
