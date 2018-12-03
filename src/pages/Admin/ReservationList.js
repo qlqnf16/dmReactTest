@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import axios from "../../config/Axios";
-import Moment from "react-moment";
-import AdminNav from "../../components/Navigation/AdminNav/AdminNav";
+import React, { Component } from 'react';
+import axios from '../../config/Axios';
+import Moment from 'react-moment';
+import AdminNav from '../../components/Navigation/AdminNav/AdminNav';
 
 class DesignerList extends Component {
   state = {
@@ -22,11 +22,22 @@ class DesignerList extends Component {
     }
   };
 
+  reservationSortHandlerCreated = async () => {
+    let { data } = await axios.get(
+      `users/5bc213a5f4376e579d2c18f6/reservations/all`
+    );
+    data = data.sort((a, b) => b.createdAt - a.createdAt);
+    this.setState({
+      reservations: data,
+      madeRequest: true
+    });
+  };
+
   reservationSortHandler = async () => {
     let { data } = await axios.get(
       `users/5bc213a5f4376e579d2c18f6/reservations/all`
     );
-    data = data.sort((a, b) => a.createdAt - b.createdAt);
+    data = data.sort((a, b) => b.date - a.date);
     this.setState({
       reservations: data,
       madeRequest: true
@@ -47,7 +58,7 @@ class DesignerList extends Component {
             <div>{reservation._user._id}</div>
           </td>
           <td>
-            <Moment format="YYYY/MM/DD">{reservation.createdAt}</Moment>{" "}
+            <Moment format="YYYY/MM/DD">{reservation.createdAt}</Moment>{' '}
           </td>
           <td>
             <Moment format="YYYY/MM/DD">{reservation.date}</Moment>
@@ -63,9 +74,9 @@ class DesignerList extends Component {
           <td>
             {!reservation.isCanceled
               ? reservation.isDone
-                ? "완료"
-                : "예약중"
-              : "취소"}
+                ? '완료'
+                : '예약중'
+              : '취소'}
           </td>
         </tr>
       ));
@@ -79,8 +90,10 @@ class DesignerList extends Component {
                 <th>서비스 종류</th>
                 <th>예비 디자이너</th>
                 <th>일반 회원</th>
-                <th onClick={this.reservationSortHandler}>예약 체결일</th>
-                <th>예약일</th>
+                <th onClick={this.reservationSortHandlerCreated}>
+                  예약 체결일
+                </th>
+                <th onClick={this.reservationSortHandler}>예약일</th>
                 <th>예약일시</th>
                 <th>주소</th>
                 <th>샵</th>
