@@ -19,7 +19,7 @@ const Footer = ({ location: { pathname } }) => {
         <br />
         위치: 서울 성북구 안암로 145 경영본관 215
         <br />
-        메일: official@dreamary.net
+        메일: help@dreamary.net
         <br />
         카카오톡: @드리머리
       </div>

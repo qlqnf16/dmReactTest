@@ -52,14 +52,14 @@ class CardAdd extends Component {
     const Times = [];
     this.props.cardData.reservedTimes.forEach(reservedTime => {
       let time = reservedTime.since;
-      while (time <= reservedTime.until - 30) {
+      while (time <= reservedTime.until) {
         reservedTimes.push(time);
         time += 30;
       }
     });
     this.props.ableTimes.forEach(ableTime => {
       let time = ableTime.since;
-      let requireTime = 30;
+      let requireTime = 0;
       requireTime += this.state.cut && this.props.recruit.requireTime.cut;
       requireTime += this.state.perm && this.props.recruit.requireTime.perm;
       requireTime += this.state.dye && this.props.recruit.requireTime.dye;
@@ -165,6 +165,12 @@ class CardAdd extends Component {
     return (
       <div className="">
         <div className="border-top border-bottom py-3 row m-2 ">
+          <div
+            style={{ fontSize: '1.2rem', fontWeight: 'bold' }}
+            className="col-12 px-1 mb-3"
+          >
+            1. 받으실 서비스를 선택해주세요.
+          </div>
           <div className="col-4 px-1">
             <div onClick={cutClick} className={cutButton}>
               커트
@@ -180,9 +186,17 @@ class CardAdd extends Component {
               펌
             </div>
           </div>
-          {caption}
+          <div className="mt-2">{caption}</div>
         </div>
-        <div className=" py-3 row m-2">{timeButtons}</div>
+        <div className=" py-3 row m-2">
+          <div
+            style={{ fontSize: '1.2rem', fontWeight: 'bold' }}
+            className="col-12 px-1 mb-3"
+          >
+            2. 시간을 선택해주세요.
+          </div>
+          {timeButtons}
+        </div>
         <div
           className="submit_button"
           onClick={() =>
@@ -197,7 +211,7 @@ class CardAdd extends Component {
             )
           }
         >
-          <div className="row p-3" style={{ alignItems: 'flex-end' }}>
+          <div className="row p-3">
             <div className="col-7 m-0">
               <p className="time mb-2">예상 소요시간</p>
               <p className="time" style={{ fontWeight: 'bold' }}>
@@ -257,7 +271,12 @@ class CardAdd extends Component {
                   <p>을 위하여 사용됩니다.</p>
                 </ReactTooltip>
               </div>
-              <div className="pr-2 mr-2">예약하기</div>
+              <div
+                className="mr-4 mt-3 p-2"
+                style={{ border: '1px solid white', borderRadius: 5 }}
+              >
+                예약하기
+              </div>
             </div>
           </div>
         </div>

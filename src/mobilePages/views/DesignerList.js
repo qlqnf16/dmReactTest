@@ -35,7 +35,8 @@ class DesignerList extends Component {
       document.body.scrollHeight;
     let clientHeight =
       document.documentElement.clientHeight || window.innerHeight;
-    let scrolledToBottom = Math.ceil(scrollTop + clientHeight) >= scrollHeight;
+    let scrolledToBottom =
+      Math.ceil(scrollTop + clientHeight) + 300 >= scrollHeight;
 
     let recruitsSeen = this.state.recruitsSeen.concat(
       this.state.recruits.slice(this.state.i, this.state.i + 6)
@@ -45,12 +46,12 @@ class DesignerList extends Component {
       scrolledToBottom &&
       this.state.recruits.length > this.state.recruitsSeen.length
     ) {
-      setTimeout(() => {
-        this.setState({
-          recruitsSeen,
-          i: this.state.i + 6
-        });
-      }, 300);
+      // setTimeout(() => {
+      this.setState({
+        recruitsSeen,
+        i: this.state.i + 6
+      });
+      // }, 300);
     }
   };
 
