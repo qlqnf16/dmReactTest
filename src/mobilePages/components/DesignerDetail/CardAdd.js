@@ -63,6 +63,7 @@ class CardAdd extends Component {
       requireTime += this.state.cut && this.props.recruit.requireTime.cut;
       requireTime += this.state.perm && this.props.recruit.requireTime.perm;
       requireTime += this.state.dye && this.props.recruit.requireTime.dye;
+      requireTime = requireTime || 30;
       for (let t = time; t <= ableTime.until - requireTime; t += 30) {
         let temp = true;
         for (let i = t; i <= t + requireTime - 30; i += 30) {
