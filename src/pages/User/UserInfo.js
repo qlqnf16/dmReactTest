@@ -172,19 +172,12 @@ class UserInfo extends Component {
         if (rsp.success) {
           // 인증성공
 
-<<<<<<< HEAD
-          const { data } = await axios.post(`certification`, {
-            imp_uid: rsp.imp_uid
-          });
-          console.log(data);
-=======
           console.log(rsp.imp_uid);
           // const response = await axios.post(`certification`, {
           //   imp_uid: rsp.imp_uid
           // });
           // console.log(response);
 
->>>>>>> 26fa6e8b3c8038e5b49e61d812712257fcae7994
           this.setState({ isRegister: true });
           alert('인증되었습니다');
         } else {
