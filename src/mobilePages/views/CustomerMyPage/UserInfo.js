@@ -173,10 +173,17 @@ class UserInfo extends Component {
       {
         merchant_uid: 'merchant_' + new Date().getTime()
       },
-      rsp => {
+      async rsp => {
         if (rsp.success) {
           // 인증성공
-          this.setState({ isRegister: true });
+          const response = await axios.post(`certification`, {
+            imp_uid: rsp.imp_uid
+          });
+
+          this.setState({
+            phoneNumber: response.data.data.phone,
+            isRegister: true
+          });
           alert('인증되었습니다');
         } else {
           // 인증취소 또는 인증실패
