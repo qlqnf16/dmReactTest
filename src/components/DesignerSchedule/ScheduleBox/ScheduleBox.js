@@ -209,7 +209,8 @@ class ScheduleBox extends Component {
 
     // 바뀐것: 종료시간 선택 안 했을 때에만 '시작시간 종료시간 다 선택해주세요' 글씨 나오게
     let timeValidation =
-      this.state.sinces.length !== this.state.untils.length ||
+      (!this.state.fixStart &&
+        this.state.sinces.length !== this.state.untils.length) ||
       this.state.sinces.length === 0
         ? true
         : false;

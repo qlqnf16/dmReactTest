@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import DesignerNav from "../../components/NavigationBar/DesignerNav";
-import axios from "../../../config/Axios";
+import React, { Component } from 'react';
+import DesignerNav from '../../components/NavigationBar/DesignerNav';
+import axios from '../../../config/Axios';
 
-import firebase from "../../../config/Firebase";
-import { connect } from "react-redux";
-import Spinner from "../../../assets/images/loading_spinner.gif";
+import firebase from '../../../config/Firebase';
+import { connect } from 'react-redux';
+import Spinner from '../../../assets/images/loading_spinner.gif';
 
-import TextInfo from "../../components/Schedules/TextInfo";
-import ScheduleCards from "../../components/Schedules/ScheduleCards";
-import AddCardModal from "../../components/Schedules/AddCardModal";
+import TextInfo from '../../components/Schedules/TextInfo';
+import ScheduleCards from '../../components/Schedules/ScheduleCards';
+import AddCardModal from '../../components/Schedules/AddCardModal';
 class Schedule extends Component {
   state = {
     cards: [],
@@ -32,8 +32,8 @@ class Schedule extends Component {
     },
     newCards: [],
     requireTime: {},
-    title: "",
-    requirement: "",
+    title: '',
+    requirement: '',
     reviews: [],
     addCardModal: false,
     fixStart: false,
@@ -106,30 +106,30 @@ class Schedule extends Component {
   handleInputChange = event => {
     const target = event.target;
     const name = target.name;
-    if (target.type !== "checkbox") {
-      if (target.name === "since") {
+    if (target.type !== 'checkbox') {
+      if (target.name === 'since') {
         this.sinces[target.id] = Number(target.value);
         this.setState({
           sinces: this.sinces
         });
-      } else if (target.name === "until") {
+      } else if (target.name === 'until') {
         this.untils[target.id] = Number(target.value);
         this.setState({
           untils: this.untils
         });
-      } else if (target.id === "time") {
+      } else if (target.id === 'time') {
         const value = Number(target.value);
         let requireTime = {
           ...this.state.requireTime,
           [name]: value
         };
         this.setState({ requireTime });
-      } else if (target.name === "permPrice") {
+      } else if (target.name === 'permPrice') {
         this.permPrice[target.id] = Number(target.value);
         this.setState({
           permPrice: this.permPrice
         });
-      } else if (target.name === "dyePrice") {
+      } else if (target.name === 'dyePrice') {
         this.dyePrice[target.id] = Number(target.value);
         this.setState({
           dyePrice: this.dyePrice
@@ -139,7 +139,7 @@ class Schedule extends Component {
         this.setState({ [name]: value });
       }
     } else {
-      if (target.name === "must") {
+      if (target.name === 'must') {
         target.id = target.id.toLowerCase();
         this.setState({
           must: {
@@ -147,7 +147,7 @@ class Schedule extends Component {
             [target.id]: target.checked
           }
         });
-      } else if (target.name === "no") {
+      } else if (target.name === 'no') {
         let id = target.id.toLowerCase();
         this.setState({
           no: {
@@ -155,7 +155,7 @@ class Schedule extends Component {
             [id]: target.checked
           }
         });
-      } else if (target.name === "fixStart") {
+      } else if (target.name === 'fixStart') {
         this.setState({ fixStart: target.checked });
       } else {
         this.setState({ [name]: target.checked });
@@ -191,18 +191,18 @@ class Schedule extends Component {
     });
     for (let i = 0; i < mustList.length; i++) {
       if (noList.some(n => mustList[i] === n))
-        return alert("필수 서비스와 불가 서비스는 같을 수 없습니다");
+        return alert('필수 서비스와 불가 서비스는 같을 수 없습니다');
     }
 
-    if (!cardData.date) return alert("날짜를 선택해주세요");
-    if (!cardData.shop) return alert("장소를 선택해주세요");
+    if (!cardData.date) return alert('날짜를 선택해주세요');
+    if (!cardData.shop) return alert('장소를 선택해주세요');
     if (!cardData.ableTimes.length)
-      return alert("가능한 시간대를 선택해주세요");
-    if (!cardData.picture) return alert("시간 촬영 여부를 선택해주세요");
-    if (!cardData.requireGender) return alert("희망 모델 성별을 선택해주세요");
+      return alert('가능한 시간대를 선택해주세요');
+    if (!cardData.picture) return alert('시간 촬영 여부를 선택해주세요');
+    if (!cardData.requireGender) return alert('희망 모델 성별을 선택해주세요');
     if (cardData.fixStart && mustList.length + noList.length < 3)
       return alert(
-        "시작시간이 정해져있는 예약의 경우(아카데미 웍 등), 각 서비스의 필수/불가 여부를 꼭 선택해주셔야합니다."
+        '시작시간이 정해져있는 예약의 경우(아카데미 웍 등), 각 서비스의 필수/불가 여부를 꼭 선택해주셔야합니다.'
       );
     if (cardData.fixStart) {
       cardData.ableTimes = cardData.ableTimes.map(ableTime => {
@@ -229,7 +229,7 @@ class Schedule extends Component {
   totalSubmitHandler = async recruitData => {
     let shops;
     shops = this.props.userData.addresses.map(address => address.extraAddress);
-    recruitData["shops"] = shops;
+    recruitData['shops'] = shops;
 
     //안 채워진 정보 검증
     // if (
@@ -240,26 +240,26 @@ class Schedule extends Component {
     //   Object.values(recruitData.requireTime).includes(null)
     // )
     //   return alert('채워지지 않은 정보가 있습니다');
-    if (!recruitData.title) return alert("제목을 작성해주세요");
-    if (!recruitData.requirement) return alert("요청사항을 작성해주세요");
+    if (!recruitData.title) return alert('제목을 작성해주세요');
+    if (!recruitData.requirement) return alert('요청사항을 작성해주세요');
     if (
       Object.values(recruitData.requireTime).length !== 3 ||
-      Object.values(recruitData.requireTime).includes("null") ||
+      Object.values(recruitData.requireTime).includes('null') ||
       Object.values(recruitData.requireTime).includes(null) ||
       Object.values(recruitData.requireTime).includes(NaN)
     )
-      return alert("예상 시술 소요 시간을 전부 작성해주세요");
+      return alert('예상 시술 소요 시간을 전부 작성해주세요');
     if (!this.state.newCards.length && !this.state.cards.length)
       return alert(
-        "스케줄을 먼저 추가한 후 스케줄 게시하기 버튼을 클릭해주세요"
+        '스케줄을 먼저 추가한 후 스케줄 게시하기 버튼을 클릭해주세요'
       );
     // 유저에 리크루트 없으면 생성
     if (!this.props.userData._recruit) {
-      const res = await axios.post("recruits", recruitData);
+      const res = await axios.post('recruits', recruitData);
       //firebase에 _recruit 추가
       await firebase
         .database()
-        .ref("users/" + this.props.userData.uid)
+        .ref('users/' + this.props.userData.uid)
         .update({
           _recruit: res.data._id
         });
@@ -287,7 +287,7 @@ class Schedule extends Component {
       await this.reloadCardData();
       await this.setState({ newCards: [] });
     }
-    alert(" 성공적으로 저장되었습니다! ");
+    alert(' 성공적으로 저장되었습니다! ');
   };
 
   cancelCardHandler = async (cardId, recruitId) => {
@@ -317,17 +317,17 @@ class Schedule extends Component {
           perm: this.state.permTime,
           dye: this.state.dyeTime
         };
-        recruitData["requireTime"] = requireTime;
+        recruitData['requireTime'] = requireTime;
       }
       const date = Math.floor(this.state.date / 86400000) * 86400000;
       let requireGender = undefined;
 
       if (this.state.male && this.state.female) {
-        requireGender = "both";
+        requireGender = 'both';
       } else if (this.state.male) {
-        requireGender = "male";
+        requireGender = 'male';
       } else if (this.state.female) {
-        requireGender = "female";
+        requireGender = 'female';
       }
 
       let ableTimes = [];
@@ -365,7 +365,8 @@ class Schedule extends Component {
 
       // 바뀐것: 종료시간 선택 안 했을 때에만 '시작시간 종료시간 다 선택해주세요' 글씨 나오게
       let timeValidation =
-        this.state.sinces.length !== this.state.untils.length ||
+        (!this.state.fixStart &&
+          this.state.sinces.length !== this.state.untils.length) ||
         this.state.sinces.length === 0
           ? true
           : false;
@@ -387,9 +388,9 @@ class Schedule extends Component {
                 기본정보
                 <span
                   style={{
-                    marginLeft: "1rem",
-                    fontSize: "1.3rem",
-                    color: "#dd6866"
+                    marginLeft: '1rem',
+                    fontSize: '1.3rem',
+                    color: '#dd6866'
                   }}
                 >
                   {this.props.userData.expiredAt &&
@@ -426,9 +427,9 @@ class Schedule extends Component {
                 style={{
                   ...buttonStyle,
                   marginTop: 0,
-                  color: "rgb(76,145,186)",
-                  border: "2px solid rgb(76,145,186)",
-                  backgroundColor: "white"
+                  color: 'rgb(76,145,186)',
+                  border: '2px solid rgb(76,145,186)',
+                  backgroundColor: 'white'
                 }}
                 onClick={
                   this.props.userData._recruit
@@ -436,7 +437,7 @@ class Schedule extends Component {
                         this.props.history.push(
                           `/designerdetail/${this.props.userData._recruit}`
                         )
-                    : () => alert("스케줄 등록을 먼저 진행해주세요")
+                    : () => alert('스케줄 등록을 먼저 진행해주세요')
                 }
               >
                 미리보기
@@ -470,10 +471,10 @@ class Schedule extends Component {
     } else {
       return (
         <div
-          style={{ height: "100vh", width: "100%" }}
+          style={{ height: '100vh', width: '100%' }}
           className="d-flex justify-content-center align-items-center"
         >
-          <img alt="alt" style={{ height: "20%" }} src={Spinner} />
+          <img alt="alt" style={{ height: '20%' }} src={Spinner} />
         </div>
       );
     }
@@ -482,44 +483,44 @@ class Schedule extends Component {
 
 const styles = {
   titleStyle: {
-    fontSize: "1.5rem",
-    fontWeight: "bold",
-    color: "#4c91ba",
-    textAlign: "left",
-    margin: "33.5px 0 20px 0",
+    fontSize: '1.5rem',
+    fontWeight: 'bold',
+    color: '#4c91ba',
+    textAlign: 'left',
+    margin: '33.5px 0 20px 0',
     paddingBottom: 6.9,
-    borderBottom: "1px solid rgba(0, 0, 0, 0.1)"
+    borderBottom: '1px solid rgba(0, 0, 0, 0.1)'
   },
   containerStyle: {
-    width: "85%",
-    display: "flex",
-    flexDirection: "column",
-    textAlign: "left"
+    width: '85%',
+    display: 'flex',
+    flexDirection: 'column',
+    textAlign: 'left'
   },
   fileAttachingInputStyle: {
     height: 48,
     borderRadius: 5,
-    border: "solid 1px rgba(0, 0, 0, 0.1)",
-    fontSize: "1.3rem",
-    color: "rgba(0, 0, 0, 0.2",
-    textAlign: "center",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    marginBottom: "2rem",
-    fontWeight: "bold"
+    border: 'solid 1px rgba(0, 0, 0, 0.1)',
+    fontSize: '1.3rem',
+    color: 'rgba(0, 0, 0, 0.2',
+    textAlign: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    marginBottom: '2rem',
+    fontWeight: 'bold'
   },
   buttonStyle: {
-    height: "3.9rem",
-    color: "white",
-    fontSize: "1.4rem",
-    fontWeight: "bold",
-    marginTop: "4rem",
-    marginBottom: "2rem",
+    height: '3.9rem',
+    color: 'white',
+    fontSize: '1.4rem',
+    fontWeight: 'bold',
+    marginTop: '4rem',
+    marginBottom: '2rem',
     borderRadius: 6,
-    backgroundColor: "#4c91ba",
-    textAlign: "center",
-    lineHeight: "3.9rem"
+    backgroundColor: '#4c91ba',
+    textAlign: 'center',
+    lineHeight: '3.9rem'
   }
 };
 
