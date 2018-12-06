@@ -174,22 +174,41 @@ class UserInfo extends Component {
         merchant_uid: 'merchant_' + new Date().getTime()
       },
       async rsp => {
-        if (rsp.success) {
-          // 인증성공
-          const response = await axios.post(`certification`, {
-            imp_uid: rsp.imp_uid
-          });
+        try {
+          if (rsp.success) {
+            // 인증성공
+            // const response = await axios.post(`certification`, {
+            //   imp_uid: rsp.imp_uid
+            // });
 
-          this.setState({
-            phoneNumber: response.data.data.phone,
-            isRegister: true
-          });
-          alert('인증되었습니다');
-        } else {
-          // 인증취소 또는 인증실패
-          var msg = '인증에 실패하였습니다.';
-          msg += '에러내용 : ' + rsp.error_msg;
-          alert(msg);
+            // axios
+            //   .post('certification', {
+            //     imp_uid: rsp.imp_uid
+            //   })
+            //   .then(response => {
+            //     console.log(response);
+            //     this.setState({
+            //       phoneNumber: response.data.data.phone,
+            //       isRegister: true
+            //     });
+            //   })
+            //   .catch(e => {
+            //     alert(e);
+            //   });
+
+            this.setState({
+              // phoneNumber: response.data.data.phone,
+              isRegister: true
+            });
+            alert('인증되었습니다');
+          } else {
+            // 인증취소 또는 인증실패
+            var msg = '인증에 실패하였습니다.';
+            msg += '에러내용 : ' + rsp.error_msg;
+            alert(msg);
+          }
+        } catch (e) {
+          alert(e);
         }
       }
     );
