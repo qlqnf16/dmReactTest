@@ -187,12 +187,22 @@ const UserInfoForm = props => {
       <span style={labelStyle}>전화번호</span>
       <div>
         <input
-          style={{ ...inputTextStyle, width: '78.7%' }}
+          style={
+            userData.phoneNumber
+              ? { ...inputTextStyle, width: '78.7%' }
+              : {
+                  ...inputTextStyle,
+                  width: '78.7%',
+                  backgroundColor: 'rgba(0,0,0,0.1)'
+                }
+          }
           type="number"
           name="phoneNumber"
           id="phoneNumber"
           onChange={props.inputChangeHandler}
           value={userData.phoneNumber}
+          disabled
+          placeholder="오른쪽의 인증버튼을 눌러주세요"
         />
         {isRegister}
         <div className="if_detail" style={{ marginTop: '8.3px' }}>

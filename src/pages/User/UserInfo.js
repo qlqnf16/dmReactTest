@@ -160,7 +160,6 @@ class UserInfo extends Component {
   };
 
   phoneCert = () => {
-    if (!this.state.phoneNumber) return alert('휴대폰 번호를 먼저 입력하세요');
     if (!this.state.phoneNumberAgree)
       return alert('먼저 개인정보 제공에 동의해주세요');
 
@@ -173,15 +172,17 @@ class UserInfo extends Component {
           // 인증성공
 
           // console.log(rsp.imp_uid);
-          // const response = await axios.post(`certification`, {
-          //   imp_uid: rsp.imp_uid
-          // });
+          const response = await axios.post(`certification`, {
+            imp_uid: rsp.imp_uid
+          });
 
-          // this.setState({
-          //   phoneNumber: response.data.data.phone,
-          //   isRegister: true
-          // });
-          this.setState({ isRegister: true });
+          // console.log(response);
+
+          this.setState({
+            phoneNumber: response.data.data.phone,
+            isRegister: true
+          });
+          // this.setState({ isRegister: true });
           alert('인증되었습니다');
         } else {
           // 인증취소 또는 인증실패
@@ -375,6 +376,13 @@ class UserInfo extends Component {
                       onChange={e => this.inputChangeHandler(e)}
                       value={this.state.phoneNumber}
                       className="if_input"
+                      disabled
+                      placeholder="오른쪽의 인증버튼을 눌러주세요"
+                      style={
+                        !this.state.phoneNumber
+                          ? { backgroundColor: 'rgba(0,0,0,0.1)' }
+                          : null
+                      }
                     />
                     <div className="if_detail" style={{ marginTop: '8.3px' }}>
                       <input

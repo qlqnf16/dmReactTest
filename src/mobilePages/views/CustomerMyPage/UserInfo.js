@@ -177,27 +177,12 @@ class UserInfo extends Component {
         try {
           if (rsp.success) {
             // 인증성공
-            // const response = await axios.post(`certification`, {
-            //   imp_uid: rsp.imp_uid
-            // });
-
-            // axios
-            //   .post('certification', {
-            //     imp_uid: rsp.imp_uid
-            //   })
-            //   .then(response => {
-            //     console.log(response);
-            //     this.setState({
-            //       phoneNumber: response.data.data.phone,
-            //       isRegister: true
-            //     });
-            //   })
-            //   .catch(e => {
-            //     alert(e);
-            //   });
+            const response = await axios.post(`certification`, {
+              imp_uid: rsp.imp_uid
+            });
 
             this.setState({
-              // phoneNumber: response.data.data.phone,
+              phoneNumber: response.data.data.phone,
               isRegister: true
             });
             alert('인증되었습니다');
