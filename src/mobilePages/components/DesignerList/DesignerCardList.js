@@ -2,7 +2,6 @@ import React from 'react';
 import DesignerCard from './DesignerCard';
 
 const DesignerCardList = props => {
-  console.log(props.recruitsSeen && props.recruitsSeen.length);
   return (
     <div style={containerStyle}>
       {props.recruitsSeen && props.recruitsSeen.length !== 0 ? (
