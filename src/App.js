@@ -34,7 +34,8 @@ import {
   TermsOfUse,
   InfoPolicy,
   FAQ,
-  QnA
+  QnA,
+  SignUp
 } from './pages';
 // mobile page
 import {
@@ -212,6 +213,7 @@ class App extends Component {
                 component={ReservationConfirm}
               />
               <Route path="/whyDreamary" component={WhyDreamary} />
+              <Route path="/signUp" component={SignUp} />
 
               {/* 비로그인 상태에서 url로 접근시 WrongAccess 렌더링 */}
               <Route
