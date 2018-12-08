@@ -163,7 +163,6 @@ class UserInfo extends Component {
   };
 
   phoneCert = () => {
-    if (!this.state.phoneNumber) return alert('휴대폰 번호를 먼저 입력하세요');
     if (!this.state.phoneNumberAgree)
       return alert('먼저 개인정보 제공에 동의해주세요');
 
