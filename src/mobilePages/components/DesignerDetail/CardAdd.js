@@ -79,6 +79,7 @@ class CardAdd extends Component {
       let timeFormat = `${parseInt(time / 60, 10)} : ${
         time % 60 === 0 ? '00' : '30'
       }`;
+
       return (
         <div className="col-4 p-1">
           <div
@@ -91,6 +92,21 @@ class CardAdd extends Component {
         </div>
       );
     });
+
+    if (!timeButtons.length)
+      timeButtons = (
+        <div
+          className="col-12"
+          style={{
+            textAlign: 'center',
+            fontSize: '15px',
+            padding: '20px',
+            fontWeight: 'bold'
+          }}
+        >
+          가능한 시간이 없습니다.
+        </div>
+      );
 
     let cutButton = '';
     let cutClick = null;
