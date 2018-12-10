@@ -18,6 +18,9 @@ const AddCardModal = props => {
       if (i > 0) {
         startTime = props.untils[i - 1];
       }
+      if (props.fixStart) {
+        startTime = 540;
+      }
       for (let j = startTime; j <= 1560; j = j + 30) {
         times.push(j);
       }
