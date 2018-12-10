@@ -18,6 +18,9 @@ class Schedule extends Component {
       if (i > 0) {
         startTime = this.props.untils[i - 1];
       }
+      if (this.props.fixStart) {
+        startTime = 540;
+      }
       for (let j = startTime; j <= 1560; j = j + 30) {
         times.push(j);
       }

@@ -46,7 +46,6 @@ class DesignerList extends Component {
           counter[recruit._id] = true;
         }
       });
-
       filteredData.sort((a, b) => {
         if (a.score < b.score) return 1;
         else if (a.score > b.score) return -1;
