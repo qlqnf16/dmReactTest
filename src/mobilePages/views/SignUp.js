@@ -52,7 +52,7 @@ class SignUp extends Component {
           const { phone, name, birth, gender } = response.data.data;
           this.setState({
             phoneNumber: phone,
-            birth,
+            birth: birth * 1000,
             gender,
             name,
             nextStep: true
@@ -79,9 +79,9 @@ class SignUp extends Component {
       recommendationCode,
       birth
     } = this.state;
-    const year = new Date(birth).getFullYear();
-    const month = new Date(birth).getMonth();
-    const day = new Date(birth).getDate();
+    const year = String(new Date(birth).getFullYear());
+    const month = String(new Date(birth).getMonth() + 1);
+    const day = String(new Date(birth).getDate());
     let firebaseUserData = {
       name,
       email,
