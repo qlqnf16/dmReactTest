@@ -97,6 +97,8 @@ class SignUp extends Component {
 
     console.log(firebaseUserData);
 
+    if (!firebaseUserData.email) return alert('이메일 주소를 입력해주세요');
+
     if (recommendationCode && !this.props.userData.recommendationCode) {
       let count = 0;
       let result = null;

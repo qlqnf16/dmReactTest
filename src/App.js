@@ -147,7 +147,7 @@ class App extends Component {
             await this.props.updateRedux('_reservations', data._reservations);
             await this.props.connectSocket();
             this.setState({ finishRedux: true });
-            // if (!userData.isRegister) this.props.history.push('/userInfo');
+            if (!userData.isRegister) this.props.history.push('/signup');
           });
 
         // =========================================
@@ -223,7 +223,7 @@ class App extends Component {
                   this.props.userData.uid
                     ? this.props.userData.isRegister
                       ? Message
-                      : UserInfo
+                      : SignUp
                     : WrongAccess
                 }
               />
@@ -233,7 +233,7 @@ class App extends Component {
                   this.props.userData.uid
                     ? this.props.userData.isRegister
                       ? Chat
-                      : UserInfo
+                      : SignUp
                     : WrongAccess
                 }
               />
@@ -243,7 +243,7 @@ class App extends Component {
                   this.props.userData.uid
                     ? this.props.userData.isRegister
                       ? Reservation
-                      : UserInfo
+                      : SignUp
                     : WrongAccess
                 }
               />
@@ -257,7 +257,7 @@ class App extends Component {
                   this.props.userData.uid
                     ? this.props.userData.isRegister
                       ? Coupon
-                      : UserInfo
+                      : SignUp
                     : WrongAccess
                 }
               />
@@ -267,7 +267,7 @@ class App extends Component {
                   this.props.userData.uid
                     ? this.props.userData.isRegister
                       ? LikeDesigner
-                      : UserInfo
+                      : SignUp
                     : WrongAccess
                 }
               />
@@ -277,7 +277,7 @@ class App extends Component {
                   this.props.userData.uid
                     ? this.props.userData.isRegister
                       ? Reservations
-                      : UserInfo
+                      : SignUp
                     : WrongAccess
                 }
               />
