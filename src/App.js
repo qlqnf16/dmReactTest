@@ -200,7 +200,8 @@ class App extends Component {
           <Toolbar finishRedux={this.state.finishRedux} />
           <div className="app-content web">
             <Switch>
-              <Route path="/" exact component={Landing} />
+              <Route path="/" exact component={DesignerList} />
+              <Route path="/landing" component={Landing} />
               <Route path="/about" component={About} />
               <Route path="/QnA" component={QnA} />
               <Route path="/TermsOfUse" component={TermsOfUse} />
@@ -403,7 +404,8 @@ class App extends Component {
             {/* ------------------------------- */}
             {/* landing */}
             <Switch>
-              <Route path="/" exact component={M_Landing} />
+              <Route path="/" exact component={M_DesignerList} />
+              <Route path="/landing" component={M_Landing} />
               <Route path="/about" component={M_About} />
               <Route path="/FAQ" component={M_FAQ} />
               <Route path="/termsofuse" component={M_TermsOfUse} />

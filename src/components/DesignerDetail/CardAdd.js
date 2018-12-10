@@ -90,6 +90,21 @@ class CardAdd extends Component {
       );
     });
 
+    if (!timeButtons.length)
+      timeButtons = (
+        <div
+          className="col-12"
+          style={{
+            textAlign: 'center',
+            fontSize: '15px',
+            padding: '20px',
+            fontWeight: 'bold'
+          }}
+        >
+          가능한 시간이 없습니다.
+        </div>
+      );
+
     let cutButton = '';
     let cutClick = null;
     if (this.props.must.some(e => e === 'cut')) cutButton = 'must_button';

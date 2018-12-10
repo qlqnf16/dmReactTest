@@ -20,6 +20,15 @@ class DesignerList extends Component {
 
   componentDidMount = async () => {
     if (!this.state.madeRequest) {
+      // const { data } = await axios.get('recruits');
+      // const filteredData = data.filter(
+      //   d =>
+      //     d._designer &&
+      //     d._designer.expiredAt &&
+      //     d._designer.expiredAt > new Date().getTime() &&
+      //     d._cards.some(card => card.reservable)
+      // );
+
       const { data } = await axios.get('cards');
 
       let recruits = data.map(d => d._recruit);
