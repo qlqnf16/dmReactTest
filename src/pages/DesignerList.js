@@ -20,14 +20,33 @@ class DesignerList extends Component {
 
   componentDidMount = async () => {
     if (!this.state.madeRequest) {
-      const { data } = await axios.get('recruits');
-      const filteredData = data.filter(
-        d =>
-          d._designer &&
-          d._designer.expiredAt &&
-          d._designer.expiredAt > new Date().getTime() &&
-          d._cards.some(card => card.reservable)
-      );
+      // const { data } = await axios.get('recruits');
+      // const filteredData = data.filter(
+      //   d =>
+      //     d._designer &&
+      //     d._designer.expiredAt &&
+      //     d._designer.expiredAt > new Date().getTime() &&
+      //     d._cards.some(card => card.reservable)
+      // );
+
+      const { data } = await axios.get('cards');
+
+      let recruits = data.map(d => d._recruit);
+      let filteredData = [];
+      const counter = {};
+      recruits.forEach(recruit => {
+        if (
+          recruit &&
+          !counter[recruit._id] &&
+          recruit._designer &&
+          recruit._designer.expiredAt &&
+          recruit._designer.expiredAt > new Date().getTime()
+        ) {
+          filteredData.push(recruit);
+          counter[recruit._id] = true;
+        }
+      });
+
       filteredData.sort((a, b) => {
         if (a.score < b.score) return 1;
         else if (a.score > b.score) return -1;
