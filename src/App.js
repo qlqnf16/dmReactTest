@@ -71,7 +71,8 @@ import {
   M_FAQ,
   M_InfoPolicy,
   M_QnA,
-  M_TermsOfUse
+  M_TermsOfUse,
+  M_SignUp
 } from './mobilePages';
 import Toolbar from './components/Navigation/Toolbar/Toolbar';
 import Footer from './components/UI/Footer/Footer';
@@ -411,6 +412,7 @@ class App extends Component {
               <Route path="/termsofuse" component={M_TermsOfUse} />
               <Route path="/infoPolicy" component={M_InfoPolicy} />
               <Route path="/QnA" component={M_QnA} />
+              <Route path="/signup" component={M_SignUp} />
               <Route path="/designerlist" component={M_DesignerList} />
               <Route path="/designerDetail/:id" component={M_DesignerDetail} />
               <Route
@@ -431,7 +433,7 @@ class App extends Component {
                   this.props.userData.uid
                     ? this.props.userData.isRegister
                       ? M_Message
-                      : M_UserInfo
+                      : M_SignUp
                     : WrongAccess
                 }
               />
@@ -441,7 +443,7 @@ class App extends Component {
                   this.props.userData.uid
                     ? this.props.userData.isRegister
                       ? M_Chat
-                      : M_UserInfo
+                      : M_SignUp
                     : M_WrongAccess
                 }
               />
@@ -451,7 +453,7 @@ class App extends Component {
                   this.props.userData.uid
                     ? this.props.userData.isRegister
                       ? M_Reservation
-                      : M_UserInfo
+                      : M_SignUp
                     : M_WrongAccess
                 }
               />
@@ -462,7 +464,7 @@ class App extends Component {
                   this.props.userData.uid
                     ? this.props.userData.isRegister
                       ? M_Coupon
-                      : M_UserInfo
+                      : M_SignUp
                     : M_WrongAccess
                 }
               />
@@ -472,7 +474,7 @@ class App extends Component {
                   this.props.userData.uid
                     ? this.props.userData.isRegister
                       ? M_LikeDesigner
-                      : M_UserInfo
+                      : M_SignUp
                     : M_WrongAccess
                 }
               />
@@ -482,7 +484,7 @@ class App extends Component {
                   this.props.userData.uid
                     ? this.props.userData.isRegister
                       ? M_MyTicket
-                      : M_UserInfo
+                      : M_SignUp
                     : M_WrongAccess
                 }
               />
@@ -492,7 +494,7 @@ class App extends Component {
                   this.props.userData.uid
                     ? this.props.userData.isRegister
                       ? M_Reservations
-                      : M_UserInfo
+                      : M_SignUp
                     : M_WrongAccess
                 }
               />
