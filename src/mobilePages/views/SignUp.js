@@ -6,10 +6,53 @@ import { connect } from 'react-redux';
 import Step2 from '../components/SignUp/Step2';
 import Step1 from '../components/SignUp/Step1';
 
+import Stepper from '@material-ui/core/Stepper';
+import Step from '@material-ui/core/Step';
+import StepLabel from '@material-ui/core/StepLabel';
+import StepContent from '@material-ui/core/StepContent';
+import Button from '@material-ui/core/Button';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+
+import './SignUp.css';
+
+//=======================================
+// steppers
+//=======================================
+
+function getSteps() {
+  return ['휴대폰 인증', '회원정보 입력'];
+}
+
+function getStepContent(step) {
+  switch (step) {
+    case 0:
+      return <Step1 />;
+    case 1:
+      return <Step2 />;
+    default:
+      return 'Unknown step';
+  }
+}
+
+//=======================================
+//=======================================
+
 class SignUp extends Component {
   state = {
-    phoneNumberAgree: false
+    phoneNumberAgree: false,
+
+    // steppers starts here
+    activeStep: 0
   };
+
+  handleNext = () => {
+    this.setState(state => ({
+      activeStep: state.activeStep + 1
+    }));
+  };
+
+  // stepper ends here
 
   componentDidMount = () => {
     const { IMP } = window;
@@ -157,23 +200,78 @@ class SignUp extends Component {
   };
 
   render() {
-    let step = this.state.nextStep ? (
-      <Step2
-        inputChangeHandler={this.inputChangeHandler}
-        state={this.state}
-        submitHandler={this.submitHandler}
-      />
-    ) : (
-      <Step1
-        inputChangeHandler={this.inputChangeHandler}
-        phoneCert={this.phoneCert}
-      />
-    );
+    const steps = getSteps();
+    const { activeStep } = this.state;
+    // let step = this.state.nextStep ? (
+    //   <Step2
+    //     inputChangeHandler={this.inputChangeHandler}
+    //     state={this.state}
+    //     submitHandler={this.submitHandler}
+    //   />
+    // ) : (
+    //   <Step1
+    //     inputChangeHandler={this.inputChangeHandler}
+    //     phoneCert={this.phoneCert}
+    //   />
+    // );
     return (
-      <div className="container text-center">
-        {step}
+      <div className="container">
+        {/* {step}
         <div className="btn" onClick={() => this.click()}>
           왔다갔다
+        </div> */}
+        <div>
+          <Stepper
+            style={{ padding: '24px 0' }}
+            activeStep={activeStep}
+            orientation="vertical"
+          >
+            {steps.map((label, index) => {
+              return (
+                <Step key={label}>
+                  <StepLabel>
+                    <span
+                      style={{
+                        fontSize: 14,
+                        fontWeight: 'bold'
+                      }}
+                    >
+                      {label}
+                    </span>
+                  </StepLabel>
+                  <StepContent>
+                    <Typography>{getStepContent(index)}</Typography>
+                    <div>
+                      <div style={{ textAlign: 'right' }}>
+                        {/* <Button
+                          disabled={activeStep === 0}
+                          onClick={this.handleBack}
+                          style={{ fontSize: '1.4rem' }}
+                        >
+                          뒤로
+                        </Button> */}
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          onClick={this.handleNext}
+                          style={{ fontSize: '1.4rem' }}
+                        >
+                          {activeStep === steps.length - 1 ? '완료' : '다음'}
+                        </Button>
+                      </div>
+                    </div>
+                  </StepContent>
+                </Step>
+              );
+            })}
+          </Stepper>
+          {activeStep === steps.length && (
+            <Paper square elevation={0}>
+              <Typography>
+                드리머리 회원이 되신 것을 진심으로 축하합니다.
+              </Typography>
+            </Paper>
+          )}
         </div>
       </div>
     );
