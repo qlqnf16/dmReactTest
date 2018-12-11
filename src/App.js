@@ -31,6 +31,7 @@ import {
   AdminNoShow,
   AdminQnA,
   AdminCardList,
+  AdminYeinbub,
   TermsOfUse,
   InfoPolicy,
   FAQ,
@@ -370,6 +371,12 @@ class App extends Component {
                 path="/admin/cardList"
                 component={
                   this.props.userData.isAdmin ? AdminCardList : WrongAccess
+                }
+              />
+              <Route
+                path="/admin/yeinbub"
+                component={
+                  this.props.userData.isAdmin ? AdminYeinbub : WrongAccess
                 }
               />
               <Route component={WrongAccess} />

@@ -36,6 +36,7 @@ export { default as AdminNoShow } from './Admin/NoShow';
 export { default as AdminMakeCoupon } from './Admin/MakeCoupon';
 export { default as AdminQnA } from './Admin/AdminQnA';
 export { default as AdminCardList } from './Admin/CardList';
+export { default as AdminYeinbub } from './Admin/Yeinbub';
 
 // Ask
 export { default as FAQ } from './Ask/FAQ';

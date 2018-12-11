@@ -83,6 +83,16 @@ const AdminNav = () => (
     >
       QnA
     </NavLink>
+    <NavLink
+      className="m-2 lg"
+      to="/admin/yeinbub"
+      activeStyle={{
+        color: '#1f3354',
+        borderBottom: 'solid 1.8px #1f3354'
+      }}
+    >
+      예인법
+    </NavLink>
   </div>
 );
 
