@@ -142,8 +142,8 @@ class DesignerTicket extends Component {
                   fontSize: '1.1rem'
                 }}
               >
-                * 실시간 계좌이체, 가상계좌, 카카오페이 결제가 빠른 시일 내에
-                가능해질 예정입니다. 조금만 기다려주세요!
+                * 휴대폰 소액결제가 빠른 시일 내에 가능해질 예정입니다. 조금만
+                기다려주세요!
               </div>
             </div>
 
@@ -215,7 +215,7 @@ class DesignerTicket extends Component {
               </label>
               <label
                 htmlFor="phone"
-                className="purchase_type"
+                className="purchase_type disabledButton"
                 style={
                   this.state.method === 'phone'
                     ? { borderColor: '#4c91ba', fontWeight: 'bold' }
@@ -229,6 +229,7 @@ class DesignerTicket extends Component {
                   id="phone"
                   onChange={this.inputChangeHandler}
                   value="phone"
+                  disabled
                 />
                 <div>휴대폰 소액결제</div>
               </label>

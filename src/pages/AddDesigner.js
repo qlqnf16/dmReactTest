@@ -406,7 +406,12 @@ class AddDesigner extends Component {
                   value={this.state.yeinbub}
                   className="if_input"
                   style={{ height: '4rem' }}
+                  placeholder="ex)홍길동/01012345678"
                 />
+                <div className="if_detail" style={{ marginTop: '8.3px' }}>
+                  *선택항목 (예비디자이너가 인싸되는 법 이벤트 참가자들에 한하여
+                  기재)
+                </div>
               </div>
             </FormGroup>
 

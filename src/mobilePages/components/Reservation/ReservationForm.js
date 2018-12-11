@@ -228,7 +228,7 @@ const ReservationForm = props => {
         </label>
         <label
           htmlFor="phone"
-          className="purchase_type"
+          className="purchase_type disabledButton"
           style={
             props.method === 'phone'
               ? { borderColor: '#dd6866', fontWeight: 'bold' }
@@ -242,6 +242,7 @@ const ReservationForm = props => {
             id="phone"
             onChange={props.handleInputChange}
             value="phone"
+            disabled
           />
           <div>휴대폰 소액결제</div>
         </label>

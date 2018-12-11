@@ -354,7 +354,17 @@ class AddDesigner extends Component {
               id="yeinbub"
               onChange={e => this.handleInputChange(e)}
               value={this.state.yeinbub}
+              placeholder="ex)홍길동/01012345678"
             />
+            <div
+              style={{
+                fontSize: '1.1rem',
+                color: '#1f3354'
+              }}
+            >
+              *선택항목 (예비디자이너가 인싸되는 법 이벤트 참가자들에 한하여
+              기재)
+            </div>
             <div style={containerStyle}>
               <div style={buttonStyle} onClick={this.submitHandler}>
                 예디 등록하기

@@ -138,16 +138,16 @@ class DesignerTicket extends Component {
                     className="col-12 mb-3 u_title"
                   >
                     결제방법
-                    {/* <div
+                    <div
                       style={{
                         fontWeight: 'normal',
                         color: 'gray',
                         fontSize: '1.1rem'
                       }}
                     >
-                      * 실시간 계좌이체, 가상계좌 결제가 빠른 시일 내에 가능해질
-                      예정입니다. 조금만 기다려주세요!
-                    </div> */}
+                      * 휴대폰 소액결제가 빠른 시일 내에 가능해질 예정입니다.
+                      조금만 기다려주세요!
+                    </div>
                   </div>
                   <div className="col-12 px-0">
                     <label
@@ -205,6 +205,7 @@ class DesignerTicket extends Component {
                           ? onLabelStyle
                           : labelStyle
                       }
+                      className="disabledButton"
                     >
                       <input
                         type="radio"
@@ -213,6 +214,7 @@ class DesignerTicket extends Component {
                         value="phone"
                         onChange={this.changeHandler}
                         className="genderRadio "
+                        disabled
                       />
                       휴대폰 소액결제
                     </label>
