@@ -41,7 +41,7 @@ const Reservations = props => (
               key={key}
               cancelReasonModalToggle={props.cancelReasonModalToggle}
               reviewModalToggle={props.reviewModalToggle}
-              showReviewModalToggle={props.showReviewModalToggle}
+              changeReviewModalToggle={props.changeReviewModalToggle}
               showMore={props.showMore}
             />
           ))}
