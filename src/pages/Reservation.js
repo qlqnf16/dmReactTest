@@ -13,7 +13,7 @@ class Reservation extends Component {
   state = {
     point: 0,
     finalPrice: 5000,
-    method: null,
+    method: 'card',
     reservationData: {
       time: {
         since: this.props.location.state.startTime,

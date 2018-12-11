@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import "./ReservationForm.css";
-import { connect } from "react-redux";
-import Moment from "react-moment";
+import React, { Component } from 'react';
+import './ReservationForm.css';
+import { connect } from 'react-redux';
+import Moment from 'react-moment';
 
 class ReservationForm extends Component {
   state = {
@@ -12,14 +12,14 @@ class ReservationForm extends Component {
   pointSubmit = () => {
     if (this.state.point % 1000 === 0) {
       if (this.state.point > this.props.userData.point) {
-        alert("보유 포인트보다 많이 사용할 수 없습니다");
+        alert('보유 포인트보다 많이 사용할 수 없습니다');
       } else {
         this.setState({
           finalPrice: 5000 - Number(this.state.point)
         });
       }
     } else {
-      alert("1,000 point 단위로 사용 가능합니다.");
+      alert('1,000 point 단위로 사용 가능합니다.');
     }
   };
 
@@ -29,7 +29,7 @@ class ReservationForm extends Component {
         <div className="row rf-title d-flex justify-content-between">
           <div className="rf-title-text1">예약/결제</div>
           <div className="text-right rf-title-text2">
-            예약결제 > <span style={{ color: "#bcbab7" }}>예약완료</span>
+            예약결제 > <span style={{ color: '#bcbab7' }}>예약완료</span>
           </div>
         </div>
         <div>
@@ -54,7 +54,7 @@ class ReservationForm extends Component {
             <div className="col-2 text-right rf-tableHead">휴대폰 번호</div>
             <div className="col-10 rf-tableBody mx-0">
               <span className="p-1 mr-3">
-                {typeof this.props.userData.phoneNumber === "undefined"
+                {typeof this.props.userData.phoneNumber === 'undefined'
                   ? null
                   : `${this.props.userData.phoneNumber.slice(
                       0,
@@ -85,7 +85,7 @@ class ReservationForm extends Component {
             <div className="col-10 rf-tableBody">
               <Moment unix format="YYYY/MM/DD">
                 {this.props.date / 1000}
-              </Moment>{" "}
+              </Moment>{' '}
               <span className="ml-2">
                 {this.props.startTime} ~ {this.props.finishTime}
               </span>
@@ -108,7 +108,7 @@ class ReservationForm extends Component {
             </div>
             <div
               className="col-10 rf-tableBody rf-tableTop"
-              style={{ fontFamily: "NanumSquareEB" }}
+              style={{ fontFamily: 'NanumSquareEB' }}
             >
               5,000원
             </div>
@@ -129,7 +129,7 @@ class ReservationForm extends Component {
                 적용
               </button>
               <span className="font-weight-light">
-                1,000 point 단위로 사용 가능합니다. 보유포인트 :{" "}
+                1,000 point 단위로 사용 가능합니다. 보유포인트 :{' '}
                 {this.props.userData.point} point
               </span>
             </div>
@@ -138,7 +138,7 @@ class ReservationForm extends Component {
             <div className="col-2 text-right rf-tableHead">총결제금액</div>
             <div
               className="col-10 rf-tableBody"
-              style={{ fontFamily: "NanumSquareEB", color: "#dd6866" }}
+              style={{ fontFamily: 'NanumSquareEB', color: '#dd6866' }}
             >
               {this.props.state.finalPrice}원
             </div>
@@ -147,7 +147,7 @@ class ReservationForm extends Component {
             <div className="col-2 text-right rf-tableHead">결제방법</div>
             <div
               className="col-10 rf-tableBody"
-              style={{ fontFamily: "NanumSquareEB" }}
+              style={{ fontFamily: 'NanumSquareEB' }}
             >
               <label className="rf-hideinput">
                 <input
@@ -155,11 +155,11 @@ class ReservationForm extends Component {
                   name="method"
                   value="card"
                   onChange={this.props.handleInputChange}
-                  checked={this.props.method === "card"}
-                  style={{ marginRight: "3.5px" }}
+                  checked={this.props.method === 'card'}
+                  style={{ marginRight: '3.5px' }}
                 />
                 <span className="rf-radiobutton" />
-                <span style={{ marginRight: "21.5px" }}>신용/체크카드</span>
+                <span style={{ marginRight: '21.5px' }}>신용/체크카드</span>
               </label>
               <label className="rf-hideinput">
                 <input
@@ -167,40 +167,40 @@ class ReservationForm extends Component {
                   name="method"
                   value="kakaopay"
                   onChange={this.props.handleInputChange}
-                  checked={this.props.method === "kakaopay"}
-                  style={{ marginRight: "3.5px" }}
+                  checked={this.props.method === 'kakaopay'}
+                  style={{ marginRight: '3.5px' }}
                 />
                 <span className="rf-radiobutton" />
-                카카오페이
+                <span style={{ marginRight: '21.5px' }}>카카오페이</span>
               </label>
-              <span style={{ fontSize: "1.1rem", color: "gray" }}>
+              {/* <span style={{ fontSize: "1.1rem", color: "gray" }}>
                 * 실시간 계좌이체, 가상계좌 결제가 빠른 시일 내에 가능해질
                 예정입니다. 조금만 기다려주세요!
-              </span>
-              {/* <label className="rf-hideinput">
+              </span> */}
+              <label className="rf-hideinput">
                 <input
                   type="radio"
                   name="method"
                   value="trans"
                   onChange={this.props.handleInputChange}
-                  checked={this.props.method === "trans"}
-                  style={{ marginRight: "3.5px" }}
+                  checked={this.props.method === 'trans'}
+                  style={{ marginRight: '3.5px' }}
                 />
                 <span className="rf-radiobutton" />
-                <span style={{ marginRight: "21.5px" }}>실시간 계좌이체</span>
+                <span style={{ marginRight: '21.5px' }}>실시간 계좌이체</span>
               </label>
               <label className="rf-hideinput">
                 <input
                   type="radio"
                   name="method"
-                  value="vbank"
+                  value="phone"
                   onChange={this.props.handleInputChange}
-                  checked={this.props.method === "vbank"}
-                  style={{ marginRight: "3.5px" }}
+                  checked={this.props.method === 'phone'}
+                  style={{ marginRight: '3.5px' }}
                 />
                 <span className="rf-radiobutton" />
-                <span style={{ marginRight: "21.5px" }}>가상계좌</span>
-              </label> */}
+                <span style={{ marginRight: '21.5px' }}>휴대폰 소액결제</span>
+              </label>
             </div>
           </div>
         </div>

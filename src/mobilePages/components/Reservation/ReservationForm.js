@@ -215,7 +215,6 @@ const ReservationForm = props => {
               ? { borderColor: '#dd6866', fontWeight: 'bold' }
               : { color: 'rgba(0,0,0,0.2)' }
           }
-          onClick={() => alert('준비 중입니다.')}
         >
           <input
             style={{ display: 'none' }}
@@ -224,30 +223,27 @@ const ReservationForm = props => {
             id="trans"
             onChange={props.handleInputChange}
             value="trans"
-            disabled
           />
           <div>실시간 계좌이체</div>
         </label>
         <label
-          htmlFor="vbank"
+          htmlFor="phone"
           className="purchase_type"
           style={
-            props.method === 'vbank'
+            props.method === 'phone'
               ? { borderColor: '#dd6866', fontWeight: 'bold' }
               : { color: 'rgba(0,0,0,0.2)' }
           }
-          onClick={() => alert('준비 중입니다.')}
         >
           <input
             style={{ display: 'none' }}
             type="radio"
             name="method"
-            id="vbank"
+            id="phone"
             onChange={props.handleInputChange}
-            value="vbank"
-            disabled
+            value="phone"
           />
-          <div>가상 계좌</div>
+          <div>휴대폰 소액결제</div>
         </label>
       </div>
     </div>
