@@ -29,7 +29,8 @@ class AddDesigner extends Component {
       isRegister,
       profile,
       introduce,
-      portfolios
+      portfolios,
+      yeinbub
     } = this.props.userData;
     if (!addresses) addresses = [];
     this.state = {
@@ -60,7 +61,8 @@ class AddDesigner extends Component {
       portfolios,
       portfoliosNum: portfolios ? portfolios.length : 0,
       introduce,
-      submitLoading: true
+      submitLoading: true,
+      yeinbub
     };
   }
   componentDidMount = async () => {
@@ -175,7 +177,8 @@ class AddDesigner extends Component {
       addresses,
       designerRecommendationCode,
       isRegister,
-      introduce
+      introduce,
+      yeinbub
     } = this.state;
 
     let firebaseUserData = {
@@ -190,7 +193,8 @@ class AddDesigner extends Component {
       addresses,
       isApproval: false,
       isRegister,
-      introduce
+      introduce,
+      yeinbub
     };
 
     if (!careerDetail) return alert('이력을 작성해주세요');
@@ -342,6 +346,15 @@ class AddDesigner extends Component {
               handleImgChange={e => this.handleImgChange(e)}
               deletePortfolio={e => this.deletePortfolio(e)}
             />
+            <div style={labelStyle}>예인법 이벤트</div>
+            <input
+              style={inputTextStyle}
+              type="text"
+              name="yeinbub"
+              id="yeinbub"
+              onChange={e => this.handleInputChange(e)}
+              value={this.state.yeinbub}
+            />
             <div style={containerStyle}>
               <div style={buttonStyle} onClick={this.submitHandler}>
                 예디 등록하기
@@ -386,14 +399,16 @@ const styles = {
     fontWeight: 'bold',
     color: '#1e3354',
     marginTop: '1.5rem',
-    marginBottom: '0.2rem'
+    marginBottom: '0.2rem',
+    width: '85%'
   },
   inputTextStyle: {
     fontSize: '1.3rem',
     color: '#1f3354',
     padding: '0.7rem',
     borderRadius: '5px',
-    border: 'solid 1px rgba(0, 0, 0, 0.1)'
+    border: 'solid 1px rgba(0, 0, 0, 0.1)',
+    width: '85%'
   },
   buttonStyle: {
     height: '3.9rem',

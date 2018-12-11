@@ -29,7 +29,8 @@ class AddDesigner extends Component {
       isRegister,
       portfolios,
       profile,
-      introduce
+      introduce,
+      yeinbub
     } = this.props.userData;
     if (!addresses) addresses = [];
     this.state = {
@@ -58,7 +59,8 @@ class AddDesigner extends Component {
       num: portfolios ? portfolios.length : 0,
       realFileNum: 0,
       portfoliosNum: portfolios ? portfolios.length : 0,
-      submitLoading: true
+      submitLoading: true,
+      yeinbub
     };
   }
 
@@ -218,7 +220,8 @@ class AddDesigner extends Component {
       careerDetail,
       addresses,
       isRegister,
-      introduce
+      introduce,
+      yeinbub
     } = this.state;
 
     let firebaseUserData = {
@@ -233,7 +236,8 @@ class AddDesigner extends Component {
       addresses,
       isApproval: false,
       isRegister,
-      introduce
+      introduce,
+      yeinbub
     };
     // if (
     //   Object.values(firebaseUserData).includes(undefined) ||
@@ -391,6 +395,20 @@ class AddDesigner extends Component {
               deletePortfolio={e => this.deletePortfolio(e)}
               changeInput={e => this.handleInputChange(e)}
             />
+            <FormGroup row>
+              <div className="col-3 if_head">예인법 이벤트</div>
+              <div className="col-9">
+                <input
+                  type="text"
+                  name="yeinbub"
+                  id="yeinbub"
+                  onChange={e => this.handleInputChange(e)}
+                  value={this.state.yeinbub}
+                  className="if_input"
+                  style={{ height: '4rem' }}
+                />
+              </div>
+            </FormGroup>
 
             <FormGroup row>
               <div className="col-3" />
