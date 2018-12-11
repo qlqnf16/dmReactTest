@@ -25,17 +25,24 @@ class ChangeReviewModal extends Component {
       this.props.reservation !== nextProps.reservation;
     const isFinishSetstate = this.state.score !== nextState.score;
     const isImgChange = this.state.num !== nextState.num;
-    return isReservationChange || isFinishSetstate || isImgChange;
+    const isTextChange = this.state.content !== nextState.content;
+    return (
+      isReservationChange || isFinishSetstate || isImgChange || isTextChange
+    );
   };
 
-  componentDidUpdate = () => {
-    if (this.props.reservation) {
+  componentDidUpdate = (prevProps, prevState) => {
+    if (
+      this.props.reservation &&
+      prevProps.reservation !== this.props.reservation
+    ) {
       const { content, score, images } = this.props.reservation._review;
       this.setState({
         score,
         content,
         reviewImg: images,
-        num: images.length
+        num: images.length,
+        madeRequest: true
       });
     }
   };
@@ -82,8 +89,10 @@ class ChangeReviewModal extends Component {
       return alert('채워지지 않은 정보가 있습니다');
 
     // review 생성
-    const { data } = await axios.post(
-      `recruits/${this.props.reservation._designer._recruit._id}/reviews`,
+    const { data } = await axios.patch(
+      `recruits/${this.props.reservation._designer._recruit._id}/reviews/${
+        this.props.reservation._review._id
+      }`,
       reviewData
     );
 

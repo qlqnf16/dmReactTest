@@ -132,6 +132,7 @@ class Reservations extends Component {
           isOpen={this.state.changeReviewModal}
           toggle={this.changeReviewModalToggle}
           reservation={this.state.reservation}
+          reloadData={this.reloadData}
         />
         <CancelModal
           isOpen={this.state.cancelModal}
