@@ -163,7 +163,6 @@ class UserInfo extends Component {
   };
 
   phoneCert = () => {
-    if (!this.state.phoneNumber) return alert('휴대폰 번호를 먼저 입력하세요');
     if (!this.state.phoneNumberAgree)
       return alert('먼저 개인정보 제공에 동의해주세요');
 
@@ -173,16 +172,27 @@ class UserInfo extends Component {
       {
         merchant_uid: 'merchant_' + new Date().getTime()
       },
-      rsp => {
-        if (rsp.success) {
-          // 인증성공
-          this.setState({ isRegister: true });
-          alert('인증되었습니다');
-        } else {
-          // 인증취소 또는 인증실패
-          var msg = '인증에 실패하였습니다.';
-          msg += '에러내용 : ' + rsp.error_msg;
-          alert(msg);
+      async rsp => {
+        try {
+          if (rsp.success) {
+            // 인증성공
+            const response = await axios.post(`certification`, {
+              imp_uid: rsp.imp_uid
+            });
+
+            this.setState({
+              phoneNumber: response.data.data.phone,
+              isRegister: true
+            });
+            alert('인증되었습니다');
+          } else {
+            // 인증취소 또는 인증실패
+            var msg = '인증에 실패하였습니다.';
+            msg += '에러내용 : ' + rsp.error_msg;
+            alert(msg);
+          }
+        } catch (e) {
+          alert(e);
         }
       }
     );

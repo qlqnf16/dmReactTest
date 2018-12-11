@@ -7,7 +7,7 @@ import CancelModal from '../../components/UI/ReservationModals/CancelModal';
 import ReviewModal from '../../components/UI/ReservationModals/ReviewModal';
 import { connect } from 'react-redux';
 import './UserCss.css';
-import ShowReviewModal from '../../components/UI/ReservationModals/ShowReviewModal';
+import ChangeReviewModal from '../../components/UI/ReservationModals/ChangeReviewModal';
 
 class Reservations extends Component {
   constructor(props) {
@@ -18,7 +18,7 @@ class Reservations extends Component {
       cancelReasonModal: false,
       cancelModal: false,
       reviewModal: false,
-      showReviewModal: false,
+      changeReviewModal: false,
       reservation: null,
       isToday: false
     };
@@ -46,9 +46,9 @@ class Reservations extends Component {
     if (isToday) this.setState({ isToday: true });
   };
 
-  showReviewModalToggle = reservation => {
+  changeReviewModalToggle = reservation => {
     this.setState({
-      showReviewModal: !this.state.showReviewModal,
+      changeReviewModal: !this.state.changeReviewModal,
       reservation
     });
   };
@@ -56,9 +56,7 @@ class Reservations extends Component {
   componentDidMount = async () => {
     if (!this.state.madeRequest) {
       const { data } = await axios.get(
-        `users/${
-          this.props.userData._id
-        }/reservations`
+        `users/${this.props.userData._id}/reservations`
       );
       this.setState({
         reservations: data,
@@ -120,7 +118,7 @@ class Reservations extends Component {
             cancelModalToggle={this.cancelModalToggle}
             cancelReasonModalToggle={this.cancelReasonModalToggle}
             reviewModalToggle={this.reviewModalToggle}
-            showReviewModalToggle={this.showReviewModalToggle}
+            changeReviewModalToggle={this.changeReviewModalToggle}
             showMore={this.showMore}
             showMessage={this.showMessage}
           />
@@ -130,9 +128,9 @@ class Reservations extends Component {
           toggle={this.cancelReasonModalToggle}
           reservation={this.state.reservation}
         />
-        <ShowReviewModal
-          isOpen={this.state.showReviewModal}
-          toggle={this.showReviewModalToggle}
+        <ChangeReviewModal
+          isOpen={this.state.changeReviewModal}
+          toggle={this.changeReviewModalToggle}
           reservation={this.state.reservation}
         />
         <CancelModal

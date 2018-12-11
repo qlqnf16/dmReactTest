@@ -12,6 +12,7 @@ export { default as M_Message } from './views/Message';
 export { default as M_Reservation } from './views/Reservation';
 export { default as M_ReservationConfirm } from './views/ReservationConfirm';
 export { default as M_WrongAccess } from './views/WrongAccess';
+export { default as M_SignUp } from './views/SignUp';
 
 // CustomerPages
 export { default as M_Coupon } from './views/CustomerMyPage/Coupon';
@@ -40,7 +41,9 @@ export { default as M_TermsOfUse } from './views/Ask/TermsOfUse';
 export { default as M_AdminUserList } from './views/Admin/UserList';
 export { default as M_AdminDesignerList } from './views/Admin/DesignerList';
 export { default as M_AdminWaitingList } from './views/Admin/WaitingList';
-export { default as M_AdminReservationList } from './views/Admin/ReservationList';
+export {
+  default as M_AdminReservationList
+} from './views/Admin/ReservationList';
 export { default as M_AdminNoShow } from './views/Admin/NoShow';
 export { default as M_AdminMakeCoupon } from './views/Admin/MakeCoupon';
 export { default as M_AdminQnA } from './views/Admin/AdminQnA';

@@ -165,9 +165,9 @@ class DesignerDetail extends Component {
               }}
             />
           </div>
-          <div style={{ ...paragraphStyle, marginTop: '3rem' }}>
+          <pre style={{ ...paragraphStyle, marginTop: '3rem' }}>
             {designer.introduce}
-          </div>
+          </pre>
           <div
             style={{
               border: '1px solid rgba(76, 145, 186, 0.6)',
@@ -177,7 +177,7 @@ class DesignerDetail extends Component {
             }}
           >
             <div style={{ ...labelStyle, marginTop: 0 }}>요청사항</div>
-            <div style={paragraphStyle}>{recruit.requirement}</div>
+            <pre style={paragraphStyle}>{recruit.requirement}</pre>
             <div style={labelStyle}>예상 시술 소요시간</div>
             <div style={paragraphStyle}>
               커트:{' '}
@@ -250,13 +250,23 @@ class DesignerDetail extends Component {
           <div style={{ height: 100 }} />
           <div
             style={{
-              height: 100,
+              height: 90,
               position: 'fixed',
+              left: 0,
               bottom: '0%',
-              width: '85%'
+              width: '100%',
+              backgroundColor: 'white'
             }}
           >
-            <div style={buttonStyle} onClick={this.toggleModal}>
+            <div
+              style={{
+                ...buttonStyle,
+                marginLeft: 'auto',
+                marginRight: 'auto',
+                width: '85%'
+              }}
+              onClick={this.toggleModal}
+            >
               날짜/시간 선택하기
             </div>
           </div>

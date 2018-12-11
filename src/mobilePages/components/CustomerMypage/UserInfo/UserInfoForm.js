@@ -113,7 +113,11 @@ const UserInfoForm = props => {
             value={userData.name}
           />
           <div
-            style={{ ...labelStyle, fontWeight: 'normal', marginTop: '0.3rem' }}
+            style={{
+              ...labelStyle,
+              fontWeight: 'normal',
+              marginTop: '0.3rem'
+            }}
           >
             예약에 사용되는 이름인 실명을 사용해주세요
           </div>
@@ -183,12 +187,22 @@ const UserInfoForm = props => {
       <span style={labelStyle}>전화번호</span>
       <div>
         <input
-          style={{ ...inputTextStyle, width: '78.7%' }}
+          style={
+            userData.phoneNumber
+              ? { ...inputTextStyle, width: '78.7%' }
+              : {
+                  ...inputTextStyle,
+                  width: '78.7%',
+                  backgroundColor: 'rgba(0,0,0,0.1)'
+                }
+          }
           type="number"
           name="phoneNumber"
           id="phoneNumber"
           onChange={props.inputChangeHandler}
           value={userData.phoneNumber}
+          disabled
+          placeholder="오른쪽의 인증버튼을 눌러주세요"
         />
         {isRegister}
         <div className="if_detail" style={{ marginTop: '8.3px' }}>
@@ -223,8 +237,7 @@ const UserInfoForm = props => {
         value={props.recommendationCode}
       />
       <div style={{ ...labelStyle, fontWeight: 'normal', marginTop: '0.3rem' }}>
-        친구 2명이 내 추천인 코드 입력할 때마다 1달 이용권 무료 지급! 주변에 내
-        추천인 코드를 알리세요.
+        친구가 내 추천인 코드 입력하면 친구도 나도 1000포인트씩 지급!
       </div>
       <div style={{ ...labelStyle, fontWeight: 'normal', marginTop: '0.3rem' }}>
         내 추천인 코드: {props.userData.uid}

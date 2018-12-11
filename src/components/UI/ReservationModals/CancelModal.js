@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import axios from '../../../config/Axios';
 import firebase from '../../../config/Firebase';
 import Moment from 'react-moment';
+import * as actions from '../../../modules';
+
 import './Modal.css';
 
 import { Modal, ModalBody } from 'reactstrap';
@@ -19,7 +21,9 @@ class CancelModal extends Component {
   cancelReasonSubmit = async () => {
     if (!this.state || this.state.cancelReason === '')
       return alert('취소 사유를 적어주세요');
-    await axios.patch(
+    const {
+      data: { point }
+    } = await axios.patch(
       `users/${this.props.userData._id}/reservations/${
         this.props.reservation._id
       }`,
@@ -40,6 +44,7 @@ class CancelModal extends Component {
     }
 
     alert('성공적으로 취소되었습니다');
+    await this.props.updateRedux('point', point);
     await this.props.toggle();
     await this.props.reloadData();
   };
@@ -149,4 +154,7 @@ const mapStateToProps = ({ authentication: { userData } }) => {
   return { userData };
 };
 
-export default connect(mapStateToProps)(CancelModal);
+export default connect(
+  mapStateToProps,
+  actions
+)(CancelModal);

@@ -89,7 +89,8 @@ class Schedule extends Component {
     if (!cardData.shop) return alert('장소를 선택해주세요');
     if (!cardData.ableTimes.length)
       return alert('가능한 시간대를 선택해주세요');
-    if (!cardData.picture) return alert('시간 촬영 여부를 선택해주세요');
+    if (!cardData.picture || cardData.picture === 'null')
+      return alert('시간 촬영 여부를 선택해주세요');
     if (!cardData.requireGender) return alert('희망 모델 성별을 선택해주세요');
     if (cardData.fixStart && mustList.length + noList.length < 3)
       return alert(
@@ -200,8 +201,8 @@ class Schedule extends Component {
                   this.props.userData.expiredAt > new Date().getTime()
                     ? null
                     : this.state.tickets.length > 0
-                      ? `※ 사용가능한 이용권이 있습니다. 이용권 관리 탭에 가서 ‘사용하기’를 누르면 게시물이 활성화됩니다.`
-                      : `※ 사용가능한 이용권이 없습니다. 스케줄 등록 후 게시를 위해서 이용권을 구매해주세요.`}
+                    ? `※ 사용가능한 이용권이 있습니다. 이용권 관리 탭에 가서 ‘사용하기’를 누르면 게시물이 활성화됩니다.`
+                    : `※ 사용가능한 이용권이 없습니다. 스케줄 등록 후 게시를 위해서 이용권을 구매해주세요.`}
                 </span>
               </div>
               <ScheduleBox

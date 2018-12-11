@@ -9,6 +9,7 @@ export { default as Message } from './Message';
 export { default as Chat } from './Chat';
 export { default as AddDesigner } from './AddDesigner';
 export { default as WhyDreamary } from './WhyDreamary';
+export { default as SignUp } from './SignUp';
 
 // 디자이너 서비스
 export {

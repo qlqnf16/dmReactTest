@@ -34,7 +34,8 @@ import {
   TermsOfUse,
   InfoPolicy,
   FAQ,
-  QnA
+  QnA,
+  SignUp
 } from './pages';
 // mobile page
 import {
@@ -70,7 +71,8 @@ import {
   M_FAQ,
   M_InfoPolicy,
   M_QnA,
-  M_TermsOfUse
+  M_TermsOfUse,
+  M_SignUp
 } from './mobilePages';
 import Toolbar from './components/Navigation/Toolbar/Toolbar';
 import Footer from './components/UI/Footer/Footer';
@@ -146,7 +148,7 @@ class App extends Component {
             await this.props.updateRedux('_reservations', data._reservations);
             await this.props.connectSocket();
             this.setState({ finishRedux: true });
-            // if (!userData.isRegister) this.props.history.push('/userInfo');
+            // if (!userData.isRegister) this.props.history.push('/signup');
           });
 
         // =========================================
@@ -200,7 +202,8 @@ class App extends Component {
           <Toolbar finishRedux={this.state.finishRedux} />
           <div className="app-content web">
             <Switch>
-              <Route path="/" exact component={Landing} />
+              <Route path="/" exact component={DesignerList} />
+              <Route path="/landing" component={Landing} />
               <Route path="/about" component={About} />
               <Route path="/QnA" component={QnA} />
               <Route path="/TermsOfUse" component={TermsOfUse} />
@@ -213,6 +216,7 @@ class App extends Component {
                 component={ReservationConfirm}
               />
               <Route path="/whyDreamary" component={WhyDreamary} />
+              <Route path="/signUp" component={SignUp} />
 
               {/* 비로그인 상태에서 url로 접근시 WrongAccess 렌더링 */}
               <Route
@@ -402,12 +406,14 @@ class App extends Component {
             {/* ------------------------------- */}
             {/* landing */}
             <Switch>
-              <Route path="/" exact component={M_Landing} />
+              <Route path="/" exact component={M_DesignerList} />
+              <Route path="/landing" component={M_Landing} />
               <Route path="/about" component={M_About} />
               <Route path="/FAQ" component={M_FAQ} />
               <Route path="/termsofuse" component={M_TermsOfUse} />
               <Route path="/infoPolicy" component={M_InfoPolicy} />
               <Route path="/QnA" component={M_QnA} />
+              <Route path="/signup" component={M_SignUp} />
               <Route path="/designerlist" component={M_DesignerList} />
               <Route path="/designerDetail/:id" component={M_DesignerDetail} />
               <Route

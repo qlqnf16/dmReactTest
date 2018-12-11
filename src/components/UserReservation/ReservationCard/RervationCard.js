@@ -111,9 +111,9 @@ const ReservationCard = props => {
       button = (
         <div
           className="rc_button"
-          onClick={() => props.showReviewModalToggle(props.reservation)}
+          onClick={() => props.changeReviewModalToggle(props.reservation)}
         >
-          내 리뷰 보기
+          리뷰 수정
         </div>
       );
     } else {
