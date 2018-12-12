@@ -149,12 +149,8 @@ class App extends Component {
             await this.props.updateRedux('_reservations', data._reservations);
             await this.props.connectSocket();
             this.setState({ finishRedux: true });
-            // if (!userData.isRegister) this.props.history.push('/signup');
+            if (!userData.isRegister) this.props.history.push('/signup');
           });
-
-        // =========================================
-        // firebase 문제일수도 있다는 생각에 일단 지움 ㅅㄱ
-        // =========================================
 
         if (document.querySelector('iframe')) {
           document
@@ -179,7 +175,7 @@ class App extends Component {
 
     let ua = navigator.userAgent || navigator.vendor || window.opera;
     const isFacebookApp = ua.indexOf('FBAN') > -1 || ua.indexOf('FBAV') > -1;
-    const isInstagram = (ua.indexOf('Instagram') > -1) ? true : false;
+    const isInstagram = ua.indexOf('Instagram') > -1 ? true : false;
 
     // 장막
     // const isMobile = false;
@@ -226,7 +222,7 @@ class App extends Component {
                   this.props.userData.uid
                     ? this.props.userData.isRegister
                       ? Message
-                      : UserInfo
+                      : SignUp
                     : WrongAccess
                 }
               />
@@ -236,7 +232,7 @@ class App extends Component {
                   this.props.userData.uid
                     ? this.props.userData.isRegister
                       ? Chat
-                      : UserInfo
+                      : SignUp
                     : WrongAccess
                 }
               />
@@ -246,7 +242,7 @@ class App extends Component {
                   this.props.userData.uid
                     ? this.props.userData.isRegister
                       ? Reservation
-                      : UserInfo
+                      : SignUp
                     : WrongAccess
                 }
               />
@@ -260,7 +256,7 @@ class App extends Component {
                   this.props.userData.uid
                     ? this.props.userData.isRegister
                       ? Coupon
-                      : UserInfo
+                      : SignUp
                     : WrongAccess
                 }
               />
@@ -270,7 +266,7 @@ class App extends Component {
                   this.props.userData.uid
                     ? this.props.userData.isRegister
                       ? LikeDesigner
-                      : UserInfo
+                      : SignUp
                     : WrongAccess
                 }
               />
@@ -280,7 +276,7 @@ class App extends Component {
                   this.props.userData.uid
                     ? this.props.userData.isRegister
                       ? Reservations
-                      : UserInfo
+                      : SignUp
                     : WrongAccess
                 }
               />
@@ -290,7 +286,7 @@ class App extends Component {
               />
               <Route
                 path="/userInfo"
-                component={this.props.userData.uid ? UserInfo : WrongAccess}
+                component={this.props.userData.uid ? SignUp : WrongAccess}
               />
               {/* 디자이너 아닌 user가 url로 접근시 WrongAccess 렌더링  */}
               <Route
@@ -441,7 +437,7 @@ class App extends Component {
                   this.props.userData.uid
                     ? this.props.userData.isRegister
                       ? M_Message
-                      : M_UserInfo
+                      : M_SignUp
                     : WrongAccess
                 }
               />
@@ -451,7 +447,7 @@ class App extends Component {
                   this.props.userData.uid
                     ? this.props.userData.isRegister
                       ? M_Chat
-                      : M_UserInfo
+                      : M_SignUp
                     : M_WrongAccess
                 }
               />
@@ -461,7 +457,7 @@ class App extends Component {
                   this.props.userData.uid
                     ? this.props.userData.isRegister
                       ? M_Reservation
-                      : M_UserInfo
+                      : M_SignUp
                     : M_WrongAccess
                 }
               />
@@ -472,7 +468,7 @@ class App extends Component {
                   this.props.userData.uid
                     ? this.props.userData.isRegister
                       ? M_Coupon
-                      : M_UserInfo
+                      : M_SignUp
                     : M_WrongAccess
                 }
               />
@@ -482,7 +478,7 @@ class App extends Component {
                   this.props.userData.uid
                     ? this.props.userData.isRegister
                       ? M_LikeDesigner
-                      : M_UserInfo
+                      : M_SignUp
                     : M_WrongAccess
                 }
               />
@@ -492,7 +488,7 @@ class App extends Component {
                   this.props.userData.uid
                     ? this.props.userData.isRegister
                       ? M_MyTicket
-                      : M_UserInfo
+                      : M_SignUp
                     : M_WrongAccess
                 }
               />
@@ -502,7 +498,7 @@ class App extends Component {
                   this.props.userData.uid
                     ? this.props.userData.isRegister
                       ? M_Reservations
-                      : M_UserInfo
+                      : M_SignUp
                     : M_WrongAccess
                 }
               />

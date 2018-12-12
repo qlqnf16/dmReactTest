@@ -48,6 +48,9 @@ class SignUp extends Component {
     const { IMP } = window;
     IMP.init('imp06037656');
     this.IMP = IMP;
+
+    if (!this.props.location.pathname.includes('singup'))
+      alert('회원가입 완료 후 서비스를 이용하실 수 있습니다');
   };
 
   getStepContent = step => {
