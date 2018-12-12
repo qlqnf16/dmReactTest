@@ -1,0 +1,21 @@
+.MuiStepIcon-text-49 {
+  font-size: 1.3rem !important;
+}
+
+.MuiStepIcon-active-50,
+.MuiStepLabel-active-41,
+.MuiStepLabel-completed-42,
+.MuiStepIcon-completed-51 {
+  color: #de6966 !important;
+}
+
+.MuiButtonBase-root-130 {
+  background-color: #de6966 !important;
+}
+
+.if_head_2 {
+  font-size: 1.3rem;
+  letter-spacing: 0.13rem;
+  font-weight: bold;
+  line-height: 2.3;
+}
