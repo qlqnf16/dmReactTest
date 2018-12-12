@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import DetailCard from "./DetailCard";
+import React, { Component } from 'react';
+import DetailCard from './DetailCard';
 class DetailCards extends Component {
   state = { click: false };
 
@@ -21,6 +21,7 @@ class DetailCards extends Component {
       let count = 0;
       cards.forEach((card, key) => {
         if (card.reservable) {
+          // if (true) {
           count % 2
             ? rightCards.push(
                 <DetailCard

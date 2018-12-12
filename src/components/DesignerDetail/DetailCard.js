@@ -104,8 +104,26 @@ class DetailCard extends Component {
     if (!noParse.length) noParse = '없음';
 
     return (
-      <div className={dcard}>
-        <div className="p-4" onClick={this.addData}>
+      <div
+        className={dcard}
+        // style={
+        //   this.props.cardData.reservable
+        //     ? null
+        //     : {
+        //         backgroundImage:
+        //           'url(https://humandignityco.files.wordpress.com/2014/09/sold-out.png?w=1180&h=435&crop=1)',
+        //         backgroundSize: 'contain',
+        //         backgroundRepeat: 'no-repeat',
+        //         backgroundPosition: 'center'
+        //       }
+        // }
+      >
+        <div
+          className="p-4"
+          onClick={this.addData}
+          // onClick={this.props.cardData.reservable ? this.addData : null}
+          // style={this.props.cardData.reservable ? null : { opacity: '0.5' }}
+        >
           <p className="dcard_date">
             <Moment format="MM/DD">
               {this.props.cardData && this.props.cardData.date}

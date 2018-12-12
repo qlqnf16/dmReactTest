@@ -49,8 +49,9 @@ class SignUp extends Component {
     IMP.init('imp06037656');
     this.IMP = IMP;
 
-    if (!this.props.location.pathname.includes('singup'))
+    if (!this.props.location.pathname.includes('signup')) {
       alert('회원가입 완료 후 서비스를 이용하실 수 있습니다');
+    }
   };
 
   getStepContent = step => {
@@ -73,8 +74,11 @@ class SignUp extends Component {
       case 2:
         return (
           <Paper square elevation={0}>
-            <div className="text-center h5">
-              드리머리 회원이 되신 것을 진심으로 축하합니다.
+            <div
+              className="text-left"
+              style={{ fontSize: '1.5rem', color: '#333132' }}
+            >
+              드리머리의 가족이 되신 것을 진심으로 환영합니다.
             </div>
             <div className="d-block text-center mt-5">
               <div
@@ -244,6 +248,19 @@ class SignUp extends Component {
     const { activeStep } = this.state;
     return (
       <div style={{ padding: '0 40rem' }}>
+        <div
+          style={{
+            marginTop: '2rem',
+            fontSize: '2.5rem',
+            color: '#333132',
+            fontWeight: 'bold'
+          }}
+        >
+          회원가입
+        </div>
+        <div style={{ fontSize: '1.5rem' }}>
+          드리머리의 모든 기능을 사용하시려면 회원가입을 완료해주셔야 합니다.
+        </div>
         <Stepper
           style={{ padding: '24px 0' }}
           activeStep={activeStep}
@@ -253,12 +270,7 @@ class SignUp extends Component {
             return (
               <Step key={label}>
                 <StepLabel>
-                  <span
-                    style={{
-                      fontSize: 14,
-                      fontWeight: 'bold'
-                    }}
-                  >
+                  <span style={{ fontSize: 14, fontWeight: 'bold' }}>
                     {label}
                   </span>
                 </StepLabel>
