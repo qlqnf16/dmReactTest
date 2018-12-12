@@ -34,6 +34,8 @@ class ChangeReviewModal extends Component {
   componentDidUpdate = (prevProps, prevState) => {
     if (
       this.props.reservation &&
+      this.props.reservation._review &&
+      this.props.reservation._review.content &&
       prevProps.reservation !== this.props.reservation
     ) {
       const { content, score, images } = this.props.reservation._review;
