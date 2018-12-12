@@ -1,29 +1,9 @@
 import React from 'react';
-import Moment from 'react-moment';
 
 const Step2 = props => {
   return (
     <div>
-      {/* <div className="h2 row mb-5" style={{ fontSize: '25px' }}>
-        <div className="col-5 text-right" style={{ color: 'rgba(0,0,0,0.5)' }}>
-          STEP 1
-        </div>
-        <div className="col-2 text-center">></div>
-        <div
-          className="col-5 text-left"
-          style={{ color: '#1f3354', fontWeight: 'bold' }}
-        >
-          STEP 2
-        </div>
-      </div> */}
       <div>
-        {/* <div>이름 : {props.state.name}</div>
-        <div>성별 : {props.state.gender}</div>
-        <div>번호 : {props.state.phoneNumber}</div>
-        <div>
-          생년월일 :{' '}
-          <Moment format="YYYY/MM/DD">{props.state.birth * 1000}</Moment>
-        </div> */}
         <div className="row">
           <div className="col-12 if_head_2 text-left">이름</div>
           <div className="col-12">
@@ -37,7 +17,7 @@ const Step2 = props => {
                 backgroundColor: '#ddd'
               }}
             >
-              신한결
+              {props.state.name}
             </div>
           </div>
         </div>
@@ -54,7 +34,7 @@ const Step2 = props => {
                 backgroundColor: '#ddd'
               }}
             >
-              01036051212
+              {props.state.phoneNumber}
             </div>
           </div>
         </div>
@@ -68,6 +48,7 @@ const Step2 = props => {
               id="email"
               onChange={e => props.inputChangeHandler(e)}
               className="if_input"
+              value={props.state.email}
             />
           </div>
         </div>
@@ -86,8 +67,7 @@ const Step2 = props => {
         </div>
         <div className="d-block text-center mt-5">
           <div
-            // onClick={props.submitHandler}
-            onClick={props.handleNext}
+            onClick={() => props.submitHandler()}
             className="btn"
             style={{
               textAlign: 'center',

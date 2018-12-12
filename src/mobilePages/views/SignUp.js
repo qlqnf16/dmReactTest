@@ -3,8 +3,8 @@ import axios from '../../config/Axios';
 import firebase from '../../config/Firebase';
 import { connect } from 'react-redux';
 
-import Step2 from '../components/SignUp/Step2';
 import Step1 from '../components/SignUp/Step1';
+import Step2 from '../components/SignUp/Step2';
 
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -20,20 +20,9 @@ import './SignUp.css';
 // steppers
 //=======================================
 
-function getSteps() {
-  return ['휴대폰 인증', '회원정보 입력'];
-}
-
-function getStepContent(step) {
-  switch (step) {
-    case 0:
-      return <Step1 />;
-    case 1:
-      return <Step2 />;
-    default:
-      return 'Unknown step';
-  }
-}
+const getSteps = () => {
+  return ['휴대폰 인증', '회원정보 입력', '완료'];
+};
 
 //=======================================
 //=======================================
@@ -41,7 +30,8 @@ function getStepContent(step) {
 class SignUp extends Component {
   state = {
     phoneNumberAgree: false,
-
+    name: null,
+    phoneNumber: null,
     // steppers starts here
     activeStep: 0
   };
@@ -60,6 +50,54 @@ class SignUp extends Component {
     this.IMP = IMP;
   };
 
+  getStepContent = step => {
+    switch (step) {
+      case 0:
+        return (
+          <Step1
+            inputChangeHandler={this.inputChangeHandler}
+            phoneCert={this.phoneCert}
+          />
+        );
+      case 1:
+        return (
+          <Step2
+            inputChangeHandler={this.inputChangeHandler}
+            submitHandler={this.submitHandler}
+            state={this.state}
+          />
+        );
+      case 2:
+        return (
+          <Paper square elevation={0}>
+            <div className="text-center h5">
+              드리머리 회원이 되신 것을 진심으로 축하합니다.
+            </div>
+            <div className="d-block text-center mt-5">
+              <div
+                onClick={this.goToDesignerList}
+                className="btn"
+                style={{
+                  textAlign: 'center',
+                  margin: '0 auto',
+                  padding: '0.3rem 2rem',
+                  color: 'white',
+                  backgroundColor: '#de6966',
+                  boxShadow: '2px 3px 10px rgba(0,0,0,0.5)',
+                  fontSize: '1.4rem',
+                  lineHeight: 2
+                }}
+              >
+                예디 찾기
+              </div>
+            </div>
+          </Paper>
+        );
+      default:
+        return 'Unknown step';
+    }
+  };
+
   inputChangeHandler = event => {
     const target = event.target;
     const value = target.value;
@@ -69,10 +107,6 @@ class SignUp extends Component {
     } else {
       this.setState({ [name]: value });
     }
-  };
-
-  click = () => {
-    this.setState({ nextStep: !this.state.nextStep });
   };
 
   phoneCert = () => {
@@ -97,11 +131,10 @@ class SignUp extends Component {
             phoneNumber: phone,
             birth: birth * 1000,
             gender,
-            name,
-            nextStep: true
+            name
           });
-
-          alert('인증되었습니다');
+          this.setState({ email: this.props.userData.email });
+          this.handleNext();
         } else {
           // 인증취소 또는 인증실패
           var msg = '인증에 실패하였습니다.';
@@ -192,87 +225,84 @@ class SignUp extends Component {
         .update(firebaseUserData);
 
       await axios.patch(`users/${this.props.userData._id}`, { name });
-      alert('저장되었습니다!');
+      this.handleNext();
     } catch (err) {
       console.log(err);
       alert('문제가 발생했습니다. 잠시 뒤에 다시 시도해주세요.');
     }
   };
 
+  goToDesignerList = () => {
+    this.props.history.push('/');
+  };
+
   render() {
     const steps = getSteps();
     const { activeStep } = this.state;
-    // let step = this.state.nextStep ? (
-    //   <Step2
-    //     inputChangeHandler={this.inputChangeHandler}
-    //     state={this.state}
-    //     submitHandler={this.submitHandler}
-    //   />
-    // ) : (
-    //   <Step1
-    //     inputChangeHandler={this.inputChangeHandler}
-    //     phoneCert={this.phoneCert}
-    //   />
-    // );
     return (
       <div className="container">
-        {/* {step}
-        <div className="btn" onClick={() => this.click()}>
-          왔다갔다
-        </div> */}
-        <div>
-          <Stepper
-            style={{ padding: '24px 0' }}
-            activeStep={activeStep}
-            orientation="vertical"
-          >
-            {steps.map((label, index) => {
-              return (
-                <Step key={label}>
-                  <StepLabel>
-                    <span
-                      style={{
-                        fontSize: 14,
-                        fontWeight: 'bold'
-                      }}
-                    >
-                      {label}
-                    </span>
-                  </StepLabel>
-                  <StepContent>
-                    <Typography>{getStepContent(index)}</Typography>
-                    <div>
-                      <div style={{ textAlign: 'right' }}>
-                        {/* <Button
-                          disabled={activeStep === 0}
-                          onClick={this.handleBack}
-                          style={{ fontSize: '1.4rem' }}
-                        >
-                          뒤로
-                        </Button> */}
-                        <Button
-                          variant="contained"
-                          color="primary"
-                          onClick={this.handleNext}
-                          style={{ fontSize: '1.4rem' }}
-                        >
-                          {activeStep === steps.length - 1 ? '완료' : '다음'}
-                        </Button>
-                      </div>
+        <Stepper
+          style={{ padding: '24px 0' }}
+          activeStep={activeStep}
+          orientation="vertical"
+        >
+          {steps.map((label, index) => {
+            return (
+              <Step key={label}>
+                <StepLabel>
+                  <span
+                    style={{
+                      fontSize: 14,
+                      fontWeight: 'bold'
+                    }}
+                  >
+                    {label}
+                  </span>
+                </StepLabel>
+                <StepContent>
+                  <div>{this.getStepContent(index)}</div>
+                  <div>
+                    <div style={{ textAlign: 'right' }}>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={this.handleNext}
+                        style={{ fontSize: '1.4rem' }}
+                      >
+                        {activeStep === steps.length - 1 ? '완료' : '다음'}
+                      </Button>
                     </div>
-                  </StepContent>
-                </Step>
-              );
-            })}
-          </Stepper>
-          {activeStep === steps.length && (
+                  </div>
+                </StepContent>
+              </Step>
+            );
+          })}
+        </Stepper>
+        {/* {activeStep === steps.length && (
             <Paper square elevation={0}>
-              <Typography>
+              <div>
                 드리머리 회원이 되신 것을 진심으로 축하합니다.
-              </Typography>
+                <div className="d-block text-center mt-5">
+                  <div
+                    onClick={this.goToDesignerList}
+                    className="btn"
+                    style={{
+                      textAlign: 'center',
+                      margin: '0 auto',
+                      padding: '0.3rem 2rem',
+                      color: 'white',
+                      backgroundColor: '#de6966',
+                      boxShadow: '2px 3px 10px rgba(0,0,0,0.5)',
+                      fontSize: '1.4rem',
+                      lineHeight: 2
+                    }}
+                  >
+                    예디 찾기
+                  </div>
+                </div>
+              </div>
             </Paper>
-          )}
-        </div>
+          )} */}
       </div>
     );
   }
