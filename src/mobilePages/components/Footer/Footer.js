@@ -42,6 +42,12 @@ const Footer = ({ location: { pathname } }) => {
         <Link to="/QnA" style={{ textDecoration: 'none', color: '#2b2e34' }}>
           <div>관리자문의</div>
         </Link>
+        <Link
+          to="/Withdrawal"
+          style={{ textDecoration: 'none', color: '#2b2e34' }}
+        >
+          <div>회원탈퇴</div>
+        </Link>
       </div>
     </div>
   );

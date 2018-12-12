@@ -40,6 +40,15 @@ const AskNav = () => (
     >
       관리자 문의
     </NavLink>
+    <NavLink
+      className="an_navItem"
+      to="/Withdrawal"
+      activeStyle={{
+        color: '#dd6866'
+      }}
+    >
+      회원 탈퇴
+    </NavLink>
   </div>
 );
 

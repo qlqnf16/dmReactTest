@@ -37,9 +37,11 @@ export { default as AdminMakeCoupon } from './Admin/MakeCoupon';
 export { default as AdminQnA } from './Admin/AdminQnA';
 export { default as AdminCardList } from './Admin/CardList';
 export { default as AdminYeinbub } from './Admin/Yeinbub';
+export { default as AdminWithdrawal } from './Admin/Withdrawal';
 
 // Ask
 export { default as FAQ } from './Ask/FAQ';
 export { default as InfoPolicy } from './Ask/InfoPolicy';
 export { default as QnA } from './Ask/QnA';
 export { default as TermsOfUse } from './Ask/TermsOfUse';
+export { default as Withdrawal } from './Ask/Withdrawal';

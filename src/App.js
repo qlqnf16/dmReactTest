@@ -32,10 +32,12 @@ import {
   AdminQnA,
   AdminCardList,
   AdminYeinbub,
+  AdminWithdrawal,
   TermsOfUse,
   InfoPolicy,
   FAQ,
   QnA,
+  Withdrawal,
   SignUp
 } from './pages';
 // mobile page
@@ -73,6 +75,7 @@ import {
   M_InfoPolicy,
   M_QnA,
   M_TermsOfUse,
+  M_Withdrawal,
   M_SignUp
 } from './mobilePages';
 import Toolbar from './components/Navigation/Toolbar/Toolbar';
@@ -206,6 +209,7 @@ class App extends Component {
               <Route path="/TermsOfUse" component={TermsOfUse} />
               <Route path="/FAQ" component={FAQ} />
               <Route path="/InfoPolicy" component={InfoPolicy} />
+              <Route path="/Withdrawal" component={Withdrawal} />
               <Route path="/designerList" component={DesignerList} />
               <Route path="/designerDetail/:id" component={DesignerDetail} />
               <Route
@@ -286,7 +290,7 @@ class App extends Component {
               />
               <Route
                 path="/userInfo"
-                component={this.props.userData.uid ? SignUp : WrongAccess}
+                component={this.props.userData.uid ? UserInfo : WrongAccess}
               />
               {/* 디자이너 아닌 user가 url로 접근시 WrongAccess 렌더링  */}
               <Route
@@ -375,6 +379,12 @@ class App extends Component {
                   this.props.userData.isAdmin ? AdminYeinbub : WrongAccess
                 }
               />
+              <Route
+                path="/admin/withdrawal"
+                component={
+                  this.props.userData.isAdmin ? AdminWithdrawal : WrongAccess
+                }
+              />
               <Route component={WrongAccess} />
             </Switch>
           </div>
@@ -416,6 +426,7 @@ class App extends Component {
               <Route path="/termsofuse" component={M_TermsOfUse} />
               <Route path="/infoPolicy" component={M_InfoPolicy} />
               <Route path="/QnA" component={M_QnA} />
+              <Route path="/Withdrawal" component={M_Withdrawal} />
               <Route path="/signup" component={M_SignUp} />
               <Route path="/designerlist" component={M_DesignerList} />
               <Route path="/designerDetail/:id" component={M_DesignerDetail} />
