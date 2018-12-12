@@ -33,6 +33,8 @@ class AskNavigationBar extends Component {
       case '/QnA':
         title = '관리자문의';
         break;
+      case '/Withdrawal':
+        title = '회원 탈퇴';
       default:
         break;
     }

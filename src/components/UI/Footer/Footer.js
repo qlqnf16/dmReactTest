@@ -47,6 +47,9 @@ const Footer = () => (
         <Link to="/QnA">
           <div className="content">관리자문의</div>
         </Link>
+        <Link to="/Withdrawal">
+          <div className="content">회원탈퇴</div>
+        </Link>
       </div>
     </div>
   </div>

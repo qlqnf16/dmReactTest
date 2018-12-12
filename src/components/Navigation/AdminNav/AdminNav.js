@@ -85,6 +85,16 @@ const AdminNav = () => (
     </NavLink>
     <NavLink
       className="m-2 lg"
+      to="/admin/withdrawal"
+      activeStyle={{
+        color: '#1f3354',
+        borderBottom: 'solid 1.8px #1f3354'
+      }}
+    >
+      회원탈퇴
+    </NavLink>
+    <NavLink
+      className="m-2 lg"
       to="/admin/yeinbub"
       activeStyle={{
         color: '#1f3354',
