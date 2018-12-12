@@ -152,7 +152,14 @@ class App extends Component {
             await this.props.updateRedux('_reservations', data._reservations);
             await this.props.connectSocket();
             this.setState({ finishRedux: true });
-            if (!userData.isRegister) this.props.history.push('/signup');
+            if (
+              !userData.isRegister &&
+              !this.props.location.pathname.includes('whyDreamary')
+            ) {
+              this.props.history.push('/signup');
+            } else if (this.props.location.pathname.includes('whyDreamary')) {
+              this.props.history.push('/addDesigner');
+            }
           });
 
         if (document.querySelector('iframe')) {
@@ -252,7 +259,13 @@ class App extends Component {
               />
               <Route
                 path="/addDesigner"
-                component={this.props.userData.uid ? AddDesigner : WrongAccess}
+                component={
+                  this.props.userData.uid
+                    ? this.props.userData.isRegister
+                      ? AddDesigner
+                      : SignUp
+                    : WrongAccess
+                }
               />
               <Route
                 path="/coupon"
@@ -438,7 +451,11 @@ class App extends Component {
               <Route
                 path="/addDesigner"
                 component={
-                  this.props.userData.uid ? M_AddDesigner : M_WrongAccess
+                  this.props.userData.uid
+                    ? this.props.userData.isRegister
+                      ? M_AddDesigner
+                      : M_SignUp
+                    : M_WrongAccess
                 }
               />
               {/* 로그인 했을 때만 */}
