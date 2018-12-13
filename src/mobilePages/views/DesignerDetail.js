@@ -142,6 +142,14 @@ class DesignerDetail extends Component {
     let portfolios = [];
     if (designer.portfolios) portfolios = designer.portfolios;
 
+    let reservable;
+    if (this.state.recruit && this.state.recruit._cards) {
+      reservable = this.state.recruit._cards.some(
+        card => card.date > new Date().getTime() && card.reservable
+      )
+        ? true
+        : false;
+    }
     return (
       <div className="m_containerStyle">
         <Header />
@@ -258,17 +266,31 @@ class DesignerDetail extends Component {
               backgroundColor: 'white'
             }}
           >
-            <div
-              style={{
-                ...buttonStyle,
-                marginLeft: 'auto',
-                marginRight: 'auto',
-                width: '85%'
-              }}
-              onClick={this.toggleModal}
-            >
-              날짜/시간 선택하기
-            </div>
+            {reservable ? (
+              <div
+                style={{
+                  ...buttonStyle,
+                  marginLeft: 'auto',
+                  marginRight: 'auto',
+                  width: '85%'
+                }}
+                onClick={this.toggleModal}
+              >
+                날짜/시간 선택하기
+              </div>
+            ) : (
+              <div
+                style={{
+                  ...buttonStyle,
+                  marginLeft: 'auto',
+                  marginRight: 'auto',
+                  width: '85%',
+                  backgroundColor: 'rgba(0,0,0,0.5)'
+                }}
+              >
+                현재 예약 가능한 스케줄이 없습니다
+              </div>
+            )}
           </div>
         </div>
         <MyModal

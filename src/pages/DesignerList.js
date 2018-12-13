@@ -32,46 +32,64 @@ class DesignerList extends Component {
       // const { data } = await axios.get('cards');
 
       const state = this.props.state;
-      let must = '';
-      let gender = '';
-      let no = '';
-      let date = '';
-      let sido = '';
-      let sigungu = '';
-      if (state.sido) sido = `sido=${state.sido}&`;
-      if (state.sigungu) sigungu = `sigungu=${state.sigungu}&`;
-
-      if (state.date) date = `date=${new Date(state.date).getTime()}&`;
-
-      if (state.gender) gender = `gender=${state.gender}&`;
-
-      if (state.cut === '100') must += 'cut=1&';
-      else if (state.cut === '0') no += 'cut=2&';
-      if (state.perm === '100') must += 'perm=1&';
-      else if (state.perm === '0') no += 'perm=2&';
-      if (state.dye === '100') must += 'dye=1&';
-      else if (state.dye === '0') no += 'dye=2&';
-      if (no === 'cut=2&perm=2&dye=2&')
-        return alert('받으실 서비스를 선택해주세요');
-      const { data } = await axios.get(
-        'cards?' + must + no + gender + date + sido + sigungu
-      );
-
-      let recruits = data.map(d => d._recruit);
       let filteredData = [];
-      const counter = {};
-      recruits.forEach(recruit => {
-        if (
-          recruit &&
-          !counter[recruit._id] &&
-          recruit._designer &&
-          recruit._designer.expiredAt &&
-          recruit._designer.expiredAt > new Date().getTime()
-        ) {
-          filteredData.push(recruit);
-          counter[recruit._id] = true;
-        }
-      });
+      if (
+        state.gender ||
+        state.date ||
+        state.sido ||
+        state.sigungu ||
+        state.cut ||
+        state.perm ||
+        state.dye
+      ) {
+        let must = '';
+        let gender = '';
+        let no = '';
+        let date = '';
+        let sido = '';
+        let sigungu = '';
+        if (state.sido) sido = `sido=${state.sido}&`;
+        if (state.sigungu) sigungu = `sigungu=${state.sigungu}&`;
+
+        if (state.date) date = `date=${new Date(state.date).getTime()}&`;
+
+        if (state.gender) gender = `gender=${state.gender}&`;
+
+        if (state.cut === '100') must += 'cut=1&';
+        else if (state.cut === '0') no += 'cut=2&';
+        if (state.perm === '100') must += 'perm=1&';
+        else if (state.perm === '0') no += 'perm=2&';
+        if (state.dye === '100') must += 'dye=1&';
+        else if (state.dye === '0') no += 'dye=2&';
+        if (no === 'cut=2&perm=2&dye=2&')
+          return alert('받으실 서비스를 선택해주세요');
+        const { data } = await axios.get(
+          'cards?' + must + no + gender + date + sido + sigungu
+        );
+
+        let recruits = data.map(d => d._recruit);
+        const counter = {};
+        recruits.forEach(recruit => {
+          if (
+            recruit &&
+            !counter[recruit._id] &&
+            recruit._designer &&
+            recruit._designer.expiredAt &&
+            recruit._designer.expiredAt > new Date().getTime()
+          ) {
+            filteredData.push(recruit);
+            counter[recruit._id] = true;
+          }
+        });
+      } else {
+        const { data } = await axios.get('recruits');
+        filteredData = data.filter(
+          d =>
+            d._designer &&
+            d._designer.expiredAt &&
+            d._designer.expiredAt > new Date().getTime()
+        );
+      }
       filteredData.sort((a, b) => {
         if (a.score < b.score) return 1;
         else if (a.score > b.score) return -1;
