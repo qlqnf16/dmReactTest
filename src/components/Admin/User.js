@@ -10,6 +10,7 @@ class User extends Component {
     if (!this.state.madeRequest) {
       this.setState({
         penalty: this.props.user.penalty,
+        memo: this.props.user.memo,
         madeRequest: true
       });
     }
@@ -89,7 +90,7 @@ class User extends Component {
             type="text"
             onChange={this.handleInputChange}
             name="memo"
-            value={user.memo}
+            value={this.state.memo}
             style={{ height: '3rem', width: '200px' }}
           />
           <button onClick={() => this.memoSubmit(user.uid)} className="btn-sm">

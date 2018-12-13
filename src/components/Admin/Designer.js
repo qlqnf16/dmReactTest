@@ -10,6 +10,7 @@ class Designer extends Component {
     if (!this.state.madeRequest) {
       this.setState({
         penalty: this.props.designer.penalty,
+        memeo: this.props.designer.memo,
         madeRequest: true
       });
     }
@@ -136,7 +137,7 @@ class Designer extends Component {
             type="text"
             onChange={this.handleInputChange}
             name="memo"
-            value={designer.memo}
+            value={this.state.memo}
             style={{ height: '3rem', width: '150px' }}
           />
           <button
