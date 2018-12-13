@@ -75,12 +75,12 @@ class Yeinbub extends Component {
       return (
         <div>
           <AdminNav />
-          <h1>예인법 이벤트 관리</h1>
+          <h1>헤어팟 이벤트 관리</h1>
           <table className="table text-center">
             <thead>
               <tr>
                 <th onClick={this.nameSortHandler}>작성자</th>
-                <th>예인법 이벤트</th>
+                <th>헤어팟 이벤트</th>
                 <th onClick={this.createdAtSortHandler}>가입일</th>
               </tr>
             </thead>

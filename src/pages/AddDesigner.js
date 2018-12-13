@@ -396,7 +396,7 @@ class AddDesigner extends Component {
               changeInput={e => this.handleInputChange(e)}
             />
             <FormGroup row>
-              <div className="col-3 if_head">예인법 이벤트</div>
+              <div className="col-3 if_head">헤어팟 이벤트</div>
               <div className="col-9">
                 <input
                   type="text"
@@ -406,11 +406,13 @@ class AddDesigner extends Component {
                   value={this.state.yeinbub}
                   className="if_input"
                   style={{ height: '4rem' }}
-                  placeholder="ex)홍길동/01012345678"
+                  placeholder="추천인 이름/소속 샵 [ex)홍길동/드림헤어 청담점]"
                 />
                 <div className="if_detail" style={{ marginTop: '8.3px' }}>
-                  *선택항목 (예비디자이너가 인싸되는 법 이벤트 참가자들에 한하여
-                  기재)
+                  *선택항목 (헤어팟 이벤트 참가자들에 한하여 기재)
+                  <br />
+                  <br />내 이름이 아닌, 추천해준 사람의 이름과 소속 샵을
+                  작성해주세요
                 </div>
               </div>
             </FormGroup>

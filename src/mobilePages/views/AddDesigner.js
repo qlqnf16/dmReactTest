@@ -346,7 +346,7 @@ class AddDesigner extends Component {
               handleImgChange={e => this.handleImgChange(e)}
               deletePortfolio={e => this.deletePortfolio(e)}
             />
-            <div style={labelStyle}>예인법 이벤트</div>
+            <div style={labelStyle}>헤어팟 이벤트</div>
             <input
               style={inputTextStyle}
               type="text"
@@ -354,16 +354,12 @@ class AddDesigner extends Component {
               id="yeinbub"
               onChange={e => this.handleInputChange(e)}
               value={this.state.yeinbub}
-              placeholder="ex)홍길동/01012345678"
+              placeholder="추천인 이름/소속 샵 [ex)홍길동/드림헤어 청담점]"
             />
-            <div
-              style={{
-                fontSize: '1.1rem',
-                color: '#1f3354'
-              }}
-            >
-              *선택항목 (예비디자이너가 인싸되는 법 이벤트 참가자들에 한하여
-              기재)
+            <div style={{ fontSize: '1.1rem', color: '#1f3354' }}>
+              *선택항목 (헤어팟 이벤트 참가자들에 한하여 기재)
+              <br />내 이름이 아닌, 추천해준 사람의 이름과 소속 샵을
+              작성해주세요
             </div>
             <div style={containerStyle}>
               <div style={buttonStyle} onClick={this.submitHandler}>

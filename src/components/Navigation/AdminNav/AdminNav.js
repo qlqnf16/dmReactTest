@@ -101,7 +101,7 @@ const AdminNav = () => (
         borderBottom: 'solid 1.8px #1f3354'
       }}
     >
-      예인법
+      헤어팟
     </NavLink>
   </div>
 );
