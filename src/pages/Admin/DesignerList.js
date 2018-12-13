@@ -84,6 +84,7 @@ class DesignerList extends Component {
                 <th>자격증</th>
                 <th>면허증</th>
                 <th>패널티 관리</th>
+                <th>메모</th>
               </tr>
             </thead>
             <tbody>{DesignerList}</tbody>

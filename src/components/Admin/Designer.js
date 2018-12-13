@@ -25,6 +25,16 @@ class Designer extends Component {
     alert('수정되었습니다');
   };
 
+  memoSubmit = async uid => {
+    await firebase
+      .database()
+      .ref('users/' + uid)
+      .update({
+        memo: this.state.memo
+      });
+    alert('저장되었습니다');
+  };
+
   handleInputChange = e => {
     const target = e.target;
     const value = target.value;
@@ -119,6 +129,21 @@ class Designer extends Component {
             className="btn-sm"
           >
             수정
+          </button>
+        </td>
+        <td>
+          <input
+            type="text"
+            onChange={this.handleInputChange}
+            name="memo"
+            value={designer.memo}
+            style={{ height: '3rem', width: '150px' }}
+          />
+          <button
+            onClick={() => this.memoSubmit(designer.uid)}
+            className="btn-sm"
+          >
+            저장
           </button>
         </td>
       </tr>

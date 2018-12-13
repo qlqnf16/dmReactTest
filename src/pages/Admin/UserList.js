@@ -78,6 +78,7 @@ class UserList extends Component {
                 <th>휴대폰</th>
                 <th onClick={this.createdAtSortHandler}>가입일</th>
                 <th>패널티 관리</th>
+                <th>메모</th>
               </tr>
             </thead>
             <tbody>{userList}</tbody>
