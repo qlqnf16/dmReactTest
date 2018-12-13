@@ -29,7 +29,33 @@ class DesignerList extends Component {
       //     d._cards.some(card => card.reservable)
       // );
 
-      const { data } = await axios.get('cards');
+      // const { data } = await axios.get('cards');
+
+      const state = this.props.state;
+      let must = '';
+      let gender = '';
+      let no = '';
+      let date = '';
+      let sido = '';
+      let sigungu = '';
+      if (state.sido) sido = `sido=${state.sido}&`;
+      if (state.sigungu) sigungu = `sigungu=${state.sigungu}&`;
+
+      if (state.date) date = `date=${new Date(state.date).getTime()}&`;
+
+      if (state.gender) gender = `gender=${state.gender}&`;
+
+      if (state.cut === '100') must += 'cut=1&';
+      else if (state.cut === '0') no += 'cut=2&';
+      if (state.perm === '100') must += 'perm=1&';
+      else if (state.perm === '0') no += 'perm=2&';
+      if (state.dye === '100') must += 'dye=1&';
+      else if (state.dye === '0') no += 'dye=2&';
+      if (no === 'cut=2&perm=2&dye=2&')
+        return alert('받으실 서비스를 선택해주세요');
+      const { data } = await axios.get(
+        'cards?' + must + no + gender + date + sido + sigungu
+      );
 
       let recruits = data.map(d => d._recruit);
       let filteredData = [];
@@ -85,26 +111,26 @@ class DesignerList extends Component {
   };
 
   getFilteredCards = async () => {
+    const state = this.props.state;
     let must = '';
     let gender = '';
     let no = '';
     let date = '';
     let sido = '';
     let sigungu = '';
-    console.log(this.state.date);
-    if (this.state.sido) sido = `sido=${this.state.sido}&`;
-    if (this.state.sigungu) sigungu = `sigungu=${this.state.sigungu}&`;
+    if (state.sido) sido = `sido=${state.sido}&`;
+    if (state.sigungu) sigungu = `sigungu=${state.sigungu}&`;
 
-    if (this.state.date) date = `date=${new Date(this.state.date).getTime()}&`;
+    if (state.date) date = `date=${new Date(state.date).getTime()}&`;
 
-    if (this.state.gender) gender = `gender=${this.state.gender}&`;
+    if (state.gender) gender = `gender=${state.gender}&`;
 
-    if (this.state.cut === '100') must += 'cut=1&';
-    else if (this.state.cut === '0') no += 'cut=2&';
-    if (this.state.perm === '100') must += 'perm=1&';
-    else if (this.state.perm === '0') no += 'perm=2&';
-    if (this.state.dye === '100') must += 'dye=1&';
-    else if (this.state.dye === '0') no += 'dye=2&';
+    if (state.cut === '100') must += 'cut=1&';
+    else if (state.cut === '0') no += 'cut=2&';
+    if (state.perm === '100') must += 'perm=1&';
+    else if (state.perm === '0') no += 'perm=2&';
+    if (state.dye === '100') must += 'dye=1&';
+    else if (state.dye === '0') no += 'dye=2&';
     if (no === 'cut=2&perm=2&dye=2&')
       return alert('받으실 서비스를 선택해주세요');
     const { data } = await axios.get(
@@ -127,6 +153,11 @@ class DesignerList extends Component {
         uniqueRecruits.push(recruit);
         counter[recruit._id] = true;
       }
+    });
+    uniqueRecruits.sort((a, b) => {
+      if (a.score < b.score) return 1;
+      else if (a.score > b.score) return -1;
+      else return 0;
     });
 
     this.setState({
@@ -171,7 +202,7 @@ class DesignerList extends Component {
     if (this.state.filterAddresses) {
       this.state.filterAddresses.forEach(address => {
         address.forEach(ad => {
-          if (ad.sido === this.state.sido) sigungu.push(ad.sigungu);
+          if (ad.sido === this.props.state.sido) sigungu.push(ad.sigungu);
         });
       });
       sigungu = new Set(sigungu);
@@ -185,9 +216,11 @@ class DesignerList extends Component {
         <div className="row" style={{ width: '92%', margin: 'auto' }}>
           <Filter
             getFilteredCards={this.getFilteredCards}
-            filterChangeHandler={e => this.filterChangeHandler(e)}
-            checked={this.state.gender}
+            filterChangeHandler={e => this.props.filterChangeHandler(e)}
+            checked={this.props.state.gender}
             state={this.state}
+            //필터 정보 app.js로부터 받아온 state
+            propsState={this.props.state}
             sigungu={sigungu}
           />
           <div className="col-9">

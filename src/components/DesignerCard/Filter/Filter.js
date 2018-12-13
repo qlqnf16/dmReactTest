@@ -45,11 +45,16 @@ const Filter = props => {
           className="form-control"
           placeholder="2018-xx-xx"
           onChange={props.filterChangeHandler}
+          value={props.propsState.date ? props.propsState.date : null}
         />
       </div>
       <div className="col-12 filterTitle">지역</div>
       <div className="col-6">
-        <select name="sido" onChange={props.filterChangeHandler}>
+        <select
+          name="sido"
+          onChange={props.filterChangeHandler}
+          value={props.propsState.sido ? props.propsState.sido : null}
+        >
           <option value="null">-도/시-</option>
           {props.state.filterSido &&
             props.state.filterSido.map((sido, key) => (
@@ -60,7 +65,11 @@ const Filter = props => {
         </select>
       </div>
       <div className="col-6">
-        <select name="sigungu" onChange={props.filterChangeHandler}>
+        <select
+          name="sigungu"
+          onChange={props.filterChangeHandler}
+          value={props.propsState.sido ? props.propsState.sigungu : null}
+        >
           <option value="null">-시/군/구-</option>
           {props.sigungu.map((sgg, key) => (
             <option key={key} value={sgg}>
@@ -110,6 +119,7 @@ const Filter = props => {
             min="0"
             max="100"
             step="50"
+            value={props.propsState.cut ? props.propsState.cut : null}
           />
           <label>커트</label>
         </div>
@@ -122,6 +132,7 @@ const Filter = props => {
             min="0"
             max="100"
             step="50"
+            value={props.propsState.dye ? props.propsState.dye : null}
           />
           <label>염색</label>
         </div>
@@ -134,6 +145,7 @@ const Filter = props => {
             min="0"
             max="100"
             step="50"
+            value={props.propsState.perm ? props.propsState.perm : null}
           />
           <label>펌</label>
         </div>

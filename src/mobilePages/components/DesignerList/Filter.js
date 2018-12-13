@@ -33,7 +33,7 @@ const Filter = props => {
           />
           <label
             style={
-              props.state.gender === 'male'
+              props.propsState.gender === 'male'
                 ? genderRadioButtonOn
                 : genderRadioButton
             }
@@ -50,7 +50,7 @@ const Filter = props => {
           />
           <label
             style={
-              props.state.gender === 'female'
+              props.propsState.gender === 'female'
                 ? genderRadioButtonOn
                 : genderRadioButton
             }
@@ -66,6 +66,7 @@ const Filter = props => {
             type="date"
             onChange={props.filterChangeHandler}
             name="date"
+            value={props.propsState.date ? props.propsState.date : null}
           />
         </div>
       </div>
@@ -75,6 +76,7 @@ const Filter = props => {
           style={{ ...selectBox, marginRight: '1rem' }}
           name="sido"
           onChange={props.filterChangeHandler}
+          value={props.propsState.sido ? props.propsState.sido : null}
         >
           <option value="null">-도/시-</option>
           {props.state.filterSido &&
@@ -88,6 +90,7 @@ const Filter = props => {
           style={selectBox}
           name="sigungu"
           onChange={props.filterChangeHandler}
+          value={props.propsState.sigungu ? props.propsState.sigungu : null}
         >
           <option value="null">-시/군/구-</option>
           {props.sigungu.map((sgg, key) => (
@@ -133,6 +136,7 @@ const Filter = props => {
         max="100"
         step="50"
         style={rangeFilter}
+        value={props.propsState.cut ? props.propsState.cut : null}
       />
       <div style={serviceName}>커트</div>
       <input
@@ -144,6 +148,7 @@ const Filter = props => {
         max="100"
         step="50"
         style={rangeFilter}
+        value={props.propsState.dye ? props.propsState.dye : null}
       />
       <div style={serviceName}>염색</div>
       <input
@@ -155,6 +160,7 @@ const Filter = props => {
         max="100"
         step="50"
         style={rangeFilter}
+        value={props.propsState.perm ? props.propsState.perm : null}
       />
       <div style={serviceName}>펌</div>
     </div>

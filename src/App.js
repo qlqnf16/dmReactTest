@@ -100,6 +100,28 @@ class App extends Component {
     finishRedux: true
   };
 
+  ///////Filter 유지 시도 /////
+
+  filterChangeHandler = event => {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+
+    this.setState({ [name]: value });
+  };
+
+  refreshFilter = () => {
+    this.setState({
+      gender: null,
+      date: null,
+      sido: null,
+      sigungu: null,
+      cut: null,
+      perm: null,
+      dye: null
+    });
+  };
+
   /////////// mobile version sideDrawer methods
 
   componentWillMount() {
@@ -209,7 +231,19 @@ class App extends Component {
           <Toolbar finishRedux={this.state.finishRedux} />
           <div className="app-content web">
             <Switch>
-              <Route path="/" exact component={DesignerList} />
+              {/* 필터 유지 위해 다른 방법으로 렌더링 */}
+              <Route
+                path="/"
+                exact
+                render={() => (
+                  <DesignerList
+                    filterChangeHandler={this.filterChangeHandler}
+                    refreshFilter={this.refreshFilter}
+                    state={this.state}
+                  />
+                )}
+              />
+              {/* <Route path="/" exact component={DesignerList} /> */}
               <Route path="/landing" component={Landing} />
               <Route path="/about" component={About} />
               <Route path="/QnA" component={QnA} />
@@ -217,7 +251,19 @@ class App extends Component {
               <Route path="/FAQ" component={FAQ} />
               <Route path="/InfoPolicy" component={InfoPolicy} />
               <Route path="/Withdrawal" component={Withdrawal} />
-              <Route path="/designerList" component={DesignerList} />
+
+              {/* 필터 유지 위해 다른 방법으로 렌더링 */}
+              <Route
+                path="/designerList"
+                render={() => (
+                  <DesignerList
+                    filterChangeHandler={this.filterChangeHandler}
+                    refreshFilter={this.refreshFilter}
+                    state={this.state}
+                  />
+                )}
+              />
+              {/* <Route path="/designerList" component={DesignerList} /> */}
               <Route path="/designerDetail/:id" component={DesignerDetail} />
               <Route
                 path="/reservationConfirm/:reservation_id"
@@ -432,7 +478,18 @@ class App extends Component {
             {/* ------------------------------- */}
             {/* landing */}
             <Switch>
-              <Route path="/" exact component={M_DesignerList} />
+              <Route
+                path="/"
+                exact
+                render={() => (
+                  <M_DesignerList
+                    filterChangeHandler={this.filterChangeHandler}
+                    refreshFilter={() => this.refreshFilter()}
+                    state={this.state}
+                  />
+                )}
+              />
+              {/* <Route path="/" exact component={M_DesignerList} /> */}
               <Route path="/landing" component={M_Landing} />
               <Route path="/about" component={M_About} />
               <Route path="/FAQ" component={M_FAQ} />
@@ -441,7 +498,17 @@ class App extends Component {
               <Route path="/QnA" component={M_QnA} />
               <Route path="/Withdrawal" component={M_Withdrawal} />
               <Route path="/signup" component={M_SignUp} />
-              <Route path="/designerlist" component={M_DesignerList} />
+              <Route
+                path="/designerlist"
+                render={() => (
+                  <M_DesignerList
+                    filterChangeHandler={this.filterChangeHandler}
+                    refreshFilter={() => this.refreshFilter()}
+                    state={this.state}
+                  />
+                )}
+              />
+              {/* <Route path="/designerlist" component={M_DesignerList} /> */}
               <Route path="/designerDetail/:id" component={M_DesignerDetail} />
               <Route
                 path="/reservationConfirm/:reservation_id"
