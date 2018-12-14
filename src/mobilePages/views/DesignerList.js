@@ -173,7 +173,6 @@ class DesignerList extends Component {
 
   getFilteredCards = async () => {
     const state = this.props.state;
-    console.log(state);
     let must = '';
     let gender = '';
     let no = '';
@@ -226,6 +225,7 @@ class DesignerList extends Component {
       recruits: uniqueRecruits,
       recruitsSeen: uniqueRecruits.slice(0, 6)
     });
+    this.props.useFilter();
     this.filterToggle();
   };
 
@@ -284,6 +284,7 @@ class DesignerList extends Component {
           <DesignerCardList
             recruits={this.state.recruits}
             recruitsSeen={this.state.recruitsSeen}
+            useFilter={this.props.state.useFilter}
           />
         </div>
       );

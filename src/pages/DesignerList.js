@@ -181,6 +181,7 @@ class DesignerList extends Component {
     this.setState({
       recruits: uniqueRecruits
     });
+    this.props.useFilter();
   };
 
   filterChangeHandler = event => {
@@ -212,7 +213,11 @@ class DesignerList extends Component {
     );
     if (this.state.recruits.length) {
       recruits = this.state.recruits.map((recruit, key) => (
-        <DesignerCard key={key} recruit={recruit} />
+        <DesignerCard
+          key={key}
+          recruit={recruit}
+          useFilter={this.props.state.useFilter}
+        />
       ));
     }
 

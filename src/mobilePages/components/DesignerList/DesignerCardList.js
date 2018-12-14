@@ -6,7 +6,11 @@ const DesignerCardList = props => {
     <div style={containerStyle}>
       {props.recruitsSeen && props.recruitsSeen.length !== 0 ? (
         props.recruitsSeen.map((recruit, key) => (
-          <DesignerCard recruit={recruit} key={key} />
+          <DesignerCard
+            recruit={recruit}
+            key={key}
+            useFilter={props.useFilter}
+          />
         ))
       ) : (
         <div

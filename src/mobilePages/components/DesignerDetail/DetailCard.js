@@ -5,6 +5,7 @@ import moment from 'moment';
 import ReactTooltip from 'react-tooltip';
 
 import questionMark from '../../../assets/images/question_navy.png';
+import finish from '../../../assets/images/finish.png';
 
 class DetailCard extends Component {
   state = {
@@ -106,8 +107,25 @@ class DetailCard extends Component {
     if (!noParse.length) noParse = '없음';
 
     return (
-      <div className={dcard}>
-        <div className="p-4" onClick={this.addData}>
+      <div
+        className={dcard}
+        style={
+          this.props.cardData.reservable
+            ? null
+            : {
+                backgroundImage: `url(${finish})`,
+                backgroundSize: 'contain',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center'
+              }
+        }
+      >
+        <div
+          className="p-4"
+          // onClick={this.addData}
+          onClick={this.props.cardData.reservable ? this.addData : null}
+          style={this.props.cardData.reservable ? null : { opacity: '0.5' }}
+        >
           <p style={{ fontSize: '2rem', fontWeight: 'bold', color: '#1f3354' }}>
             <Moment format="MM/DD">
               {this.props.cardData && this.props.cardData.date}

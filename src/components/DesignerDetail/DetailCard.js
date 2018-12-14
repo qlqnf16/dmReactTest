@@ -5,6 +5,7 @@ import moment from 'moment';
 import ReactTooltip from 'react-tooltip';
 
 import questionMark from '../../assets/images/question_navy.png';
+import finish from '../../assets/images/finish.png';
 
 import './DetailCard.css';
 
@@ -106,23 +107,22 @@ class DetailCard extends Component {
     return (
       <div
         className={dcard}
-        // style={
-        //   this.props.cardData.reservable
-        //     ? null
-        //     : {
-        //         backgroundImage:
-        //           'url(https://humandignityco.files.wordpress.com/2014/09/sold-out.png?w=1180&h=435&crop=1)',
-        //         backgroundSize: 'contain',
-        //         backgroundRepeat: 'no-repeat',
-        //         backgroundPosition: 'center'
-        //       }
-        // }
+        style={
+          this.props.cardData.reservable
+            ? null
+            : {
+                backgroundImage: `url(${finish})`,
+                backgroundSize: 'contain',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center'
+              }
+        }
       >
         <div
           className="p-4"
-          onClick={this.addData}
-          // onClick={this.props.cardData.reservable ? this.addData : null}
-          // style={this.props.cardData.reservable ? null : { opacity: '0.5' }}
+          // onClick={this.addData}
+          onClick={this.props.cardData.reservable ? this.addData : null}
+          style={this.props.cardData.reservable ? null : { opacity: '0.5' }}
         >
           <p className="dcard_date">
             <Moment format="MM/DD">

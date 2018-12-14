@@ -6,6 +6,8 @@ import axios from '../../config/Axios';
 import TicketBox from '../../components/UI/DesignerTicket/TicketBox/TicketBox';
 import TicketPurchaseButton from '../../components/UI/DesignerTicket/TicketPurchaseButton/TicketPurchaseButton';
 
+import ticketCover from '../../assets/images/ticketCover.png';
+
 class DesignerTicket extends Component {
   state = {
     madeRequest: false,
@@ -130,6 +132,14 @@ class DesignerTicket extends Component {
                 className="col-4 py-2 mx-auto"
                 style={{ display: 'flex', flexDirection: 'column' }}
               >
+                {/* <div
+                  style={{
+                    width: '100%',
+                    height: '70%',
+                    backgroundColor: ' rgba(0,0,0,0.1)'
+                  }}
+                > */}
+                {/* <img src={ticketCover} style={{ width: '100%' }} alt="img" /> */}
                 <TicketPurchaseButton purchaseHandler={this.purchaseHandler} />
                 <div className="row">
                   <div className="col-12 mt-5" />
@@ -219,6 +229,7 @@ class DesignerTicket extends Component {
                       휴대폰 소액결제
                     </label>
                   </div>
+                  {/* </div> */}
                 </div>
                 <div
                   className="u_title"

@@ -10,9 +10,10 @@ import {
   CardTitle,
   CardSubtitle
 } from 'reactstrap';
-import DesignerCarousel from './DesignerCarousel/DesignerCarousel';
+// import DesignerCarousel from './DesignerCarousel/DesignerCarousel';
 import StarRatings from 'react-star-ratings';
 import defaultGuy from '../../assets/images/Default_guy-01.jpg';
+import allFinish from '../../assets/images/allFinish.png';
 import './DesignerCard.css';
 
 class DesginerCard extends Component {
@@ -62,12 +63,51 @@ class DesginerCard extends Component {
 
       if (!portfolios || !portfolios.length) portfolios = [defaultGuy];
 
+      let unreservable = false;
+      if (
+        !recruit._cards.some(card => {
+          return card.reservable && card.date > new Date().getTime();
+        })
+      )
+        unreservable = true;
       return (
         <Col className="m-0 p-1 " xs="3">
           <Link to={`/designerdetail/${recruit._id}`} className="hover-effect">
             <Card className="m-0 border-0" style={{ textDecoration: 'none' }}>
               <CardHeader className="p-0">
-                <DesignerCarousel images={portfolios} />
+                <div
+                  style={
+                    unreservable && !this.props.useFilter
+                      ? {
+                          position: 'absolute',
+                          display: 'flex',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                          zIndex: '1',
+                          width: '100%',
+                          height: '210px',
+                          top: 0,
+                          left: 0,
+                          backgroundColor: 'rgba(255,255,255,0.7)'
+                        }
+                      : null
+                  }
+                >
+                  {unreservable && !this.props.useFilter ? (
+                    <img src={allFinish} alt="alt" style={{ width: '70%' }} />
+                  ) : null}
+                </div>
+                <div style={{ backgroundColor: 'rgba(0,0,0,0.2)' }} />
+                {/* <DesignerCarousel images={portfolios} /> */}
+                <img
+                  src={portfolios[0] + '_thump'}
+                  onError={e => {
+                    e.target.onerror = null;
+                    e.target.src = portfolios[0];
+                  }}
+                  alt="alt"
+                  style={{ width: '100%', height: 200 }}
+                />
               </CardHeader>
               <CardBody className="pl-0 text-dark">
                 <CardSubtitle>

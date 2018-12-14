@@ -97,7 +97,8 @@ class App extends Component {
     madeRequest: false,
     width: window.innerWidth, // mobile version 만들기 위함
     sideDrawerOpen: false, // mobile version sideDrawer
-    finishRedux: true
+    finishRedux: true,
+    useFilter: false
   };
 
   ///////Filter 유지 시도 /////
@@ -120,6 +121,10 @@ class App extends Component {
       perm: null,
       dye: null
     });
+  };
+
+  useFilter = () => {
+    this.setState({ useFilter: true });
   };
 
   /////////// mobile version sideDrawer methods
@@ -240,6 +245,7 @@ class App extends Component {
                     filterChangeHandler={this.filterChangeHandler}
                     refreshFilter={this.refreshFilter}
                     state={this.state}
+                    useFilter={this.useFilter}
                   />
                 )}
               />
@@ -260,6 +266,7 @@ class App extends Component {
                     filterChangeHandler={this.filterChangeHandler}
                     refreshFilter={this.refreshFilter}
                     state={this.state}
+                    useFilter={this.useFilter}
                   />
                 )}
               />
@@ -486,6 +493,7 @@ class App extends Component {
                     filterChangeHandler={this.filterChangeHandler}
                     refreshFilter={() => this.refreshFilter()}
                     state={this.state}
+                    useFilter={() => this.useFilter()}
                   />
                 )}
               />
@@ -505,6 +513,7 @@ class App extends Component {
                     filterChangeHandler={this.filterChangeHandler}
                     refreshFilter={() => this.refreshFilter()}
                     state={this.state}
+                    useFilter={() => this.useFilter()}
                   />
                 )}
               />

@@ -20,8 +20,8 @@ class DetailCards extends Component {
       );
       const cards = filteredCards.sort((a, b) => a.date - b.date);
       cards.forEach((card, key) => {
-        if (card.reservable) {
-          // if (true) {
+        // if (card.reservable) {
+        if (true) {
           count % 2
             ? rightCards.push(
                 <DetailCard
