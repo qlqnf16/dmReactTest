@@ -280,7 +280,7 @@ class SignUp extends Component {
                 </StepLabel>
                 <StepContent>
                   <div>{this.getStepContent(index)}</div>
-                  <div>
+                  {/* <div>
                     <div style={{ textAlign: 'right' }}>
                       <Button
                         variant="contained"
@@ -291,7 +291,7 @@ class SignUp extends Component {
                         {activeStep === steps.length - 1 ? '완료' : '다음'}
                       </Button>
                     </div>
-                  </div>
+                  </div> */}
                 </StepContent>
               </Step>
             );

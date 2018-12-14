@@ -276,7 +276,7 @@ class SignUp extends Component {
                 </StepLabel>
                 <StepContent>
                   <div>{this.getStepContent(index)}</div>
-                  <div>
+                  {/* <div>
                     <div style={{ textAlign: 'right' }}>
                       <Button
                         variant="contained"
@@ -287,37 +287,12 @@ class SignUp extends Component {
                         {activeStep === steps.length - 1 ? '완료' : '다음'}
                       </Button>
                     </div>
-                  </div>
+                  </div> */}
                 </StepContent>
               </Step>
             );
           })}
         </Stepper>
-        {/* {activeStep === steps.length && (
-            <Paper square elevation={0}>
-              <div>
-                드리머리 회원이 되신 것을 진심으로 축하합니다.
-                <div className="d-block text-center mt-5">
-                  <div
-                    onClick={this.goToDesignerList}
-                    className="btn"
-                    style={{
-                      textAlign: 'center',
-                      margin: '0 auto',
-                      padding: '0.3rem 2rem',
-                      color: 'white',
-                      backgroundColor: '#de6966',
-                      boxShadow: '2px 3px 10px rgba(0,0,0,0.5)',
-                      fontSize: '1.4rem',
-                      lineHeight: 2
-                    }}
-                  >
-                    예디 찾기
-                  </div>
-                </div>
-              </div>
-            </Paper>
-          )} */}
       </div>
     );
   }
