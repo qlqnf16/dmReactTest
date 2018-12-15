@@ -54,6 +54,15 @@ class SignUp extends Component {
     }
   };
 
+  componentDidUpdate = () => {
+    if (!this.props.location.pathname.includes('signup')) {
+      if (!this.state.madeRequest) {
+        this.setState({ madeRequest: true });
+        alert('회원가입 완료 후 서비스를 이용하실 수 있습니다');
+      }
+    }
+  };
+
   getStepContent = step => {
     switch (step) {
       case 0:

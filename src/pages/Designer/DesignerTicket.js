@@ -132,14 +132,16 @@ class DesignerTicket extends Component {
                 className="col-4 py-2 mx-auto"
                 style={{ display: 'flex', flexDirection: 'column' }}
               >
-                {/* <div
+                <div
                   style={{
                     width: '100%',
                     height: '70%',
-                    backgroundColor: ' rgba(0,0,0,0.1)'
+                    zIndex: 1,
+                    position: 'absolute'
                   }}
-                > */}
-                {/* <img src={ticketCover} style={{ width: '100%' }} alt="img" /> */}
+                >
+                  <img src={ticketCover} style={{ width: '100%' }} alt="img" />
+                </div>
                 <TicketPurchaseButton purchaseHandler={this.purchaseHandler} />
                 <div className="row">
                   <div className="col-12 mt-5" />

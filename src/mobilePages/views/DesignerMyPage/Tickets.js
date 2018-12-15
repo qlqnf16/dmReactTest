@@ -7,6 +7,8 @@ import TicketBox from '../../components/Tickets/TicketBox';
 import TicketPurchaseButton from '../../components/Tickets/TicketPurchase';
 import './Tickets.css';
 
+import ticketCover from '../../../assets/images/ticketCover.png';
+
 class DesignerTicket extends Component {
   state = {
     madeRequest: false,
@@ -135,6 +137,17 @@ class DesignerTicket extends Component {
             />
             <div style={subtitleStyle}>
               이용권 구매
+              <div
+                style={{
+                  width: '100%',
+                  height: '50%',
+                  zIndex: 1,
+                  left: 0,
+                  position: 'absolute'
+                }}
+              >
+                <img src={ticketCover} style={{ width: '100%' }} alt="img" />
+              </div>
               <div
                 style={{
                   fontWeight: 'normal',
