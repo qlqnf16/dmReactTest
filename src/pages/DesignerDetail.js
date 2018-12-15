@@ -10,6 +10,8 @@ import DetailCards from '../components/DesignerDetail/DetailCards';
 import MyModal from '../components/UI/MyModal/MyModal';
 import ShowLargeImage from '../components/DesignerDetail/ShowLargeImage';
 
+import Spinner from '../assets/images/loading_spinner.gif';
+
 class DesginerDetail extends Component {
   state = {
     recruit: {},
@@ -28,7 +30,6 @@ class DesginerDetail extends Component {
       );
       this.setState({
         recruit: data,
-        madeRequest: true,
         isLogin: this.props.userData.uid
       });
       await this.authListener();
@@ -47,6 +48,8 @@ class DesginerDetail extends Component {
       .on('value', async res => {
         this.setState({ designerData: res.val() });
       });
+
+    this.setState({ madeRequest: true });
   };
 
   authListener() {
@@ -122,32 +125,43 @@ class DesginerDetail extends Component {
         />
       );
     }
-    return (
-      <div>
-        <div className="text-center mb-5">
-          <img alt="alt" style={{ width: '100%' }} src={step2} />
-        </div>
-        <div className="row align-items-start">
-          {loading}
-          <DetailCards
-            recruit={this.state.recruit}
-            loginToggle={this.loginToggleHandler}
-            submitReservation={this.submitReservation}
-            isLogin={this.state.isLogin}
+    if (this.state.madeRequest) {
+      return (
+        <div>
+          <div className="text-center mb-5">
+            <img alt="alt" style={{ width: '100%' }} src={step2} />
+          </div>
+          <div className="row align-items-start">
+            {loading}
+            <DetailCards
+              recruit={this.state.recruit}
+              loginToggle={this.loginToggleHandler}
+              submitReservation={this.submitReservation}
+              isLogin={this.state.isLogin}
+            />
+          </div>
+          <MyModal
+            showLogin={this.state.showLogin}
+            off={this.loginToggleHandler}
+            type="login"
+          />
+          <ShowLargeImage
+            isOpen={this.state.showLargeImage}
+            toggle={this.showLargeImageToggle}
+            src={this.state.largeImage}
           />
         </div>
-        <MyModal
-          showLogin={this.state.showLogin}
-          off={this.loginToggleHandler}
-          type="login"
-        />
-        <ShowLargeImage
-          isOpen={this.state.showLargeImage}
-          toggle={this.showLargeImageToggle}
-          src={this.state.largeImage}
-        />
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div
+          style={{ height: '100vh', width: '100%' }}
+          className="d-flex justify-content-center align-items-center"
+        >
+          <img alt="alt" style={{ height: '20%' }} src={Spinner} />
+        </div>
+      );
+    }
   }
 }
 

@@ -7,6 +7,8 @@ import FilterButton from '../components/DesignerList/FilterButton';
 import Filter from '../components/DesignerList/Filter';
 import DesignerCardList from '../components/DesignerList/DesignerCardList';
 
+import Spinner from '../../assets/images/loading_spinner.gif';
+
 import './Pages.css';
 
 class DesignerList extends Component {
@@ -133,7 +135,7 @@ class DesignerList extends Component {
         else if (a.score > b.score) return -1;
         else return 0;
       });
-      this.setState({ recruits: filteredData, madeRequest: true });
+      this.setState({ recruits: filteredData });
     }
 
     // 시/도
@@ -289,7 +291,14 @@ class DesignerList extends Component {
         </div>
       );
     } else {
-      return <div />;
+      return (
+        <div
+          style={{ height: '100vh', width: '100%' }}
+          className="d-flex justify-content-center align-items-center"
+        >
+          <img alt="alt" style={{ height: '20%' }} src={Spinner} />
+        </div>
+      );
     }
   }
 }

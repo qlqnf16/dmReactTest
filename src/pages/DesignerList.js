@@ -6,6 +6,8 @@ import axios from '../config/Axios';
 import firebase from '../config/Firebase';
 import step1 from '../assets/images/step1.png';
 
+import Spinner from '../assets/images/loading_spinner.gif';
+
 import './PageCss.css';
 
 class DesignerList extends Component {
@@ -96,8 +98,7 @@ class DesignerList extends Component {
         else return 0;
       });
       this.setState({
-        recruits: filteredData,
-        madeRequest: true
+        recruits: filteredData
       });
     }
 
@@ -231,27 +232,39 @@ class DesignerList extends Component {
       sigungu = new Set(sigungu);
       sigungu = [...sigungu].sort();
     }
-    return (
-      <div>
-        <div className="mb-5 text-center">
-          <img alt="alt" style={{ width: '100%' }} src={step1} />
-        </div>
-        <div className="row" style={{ width: '92%', margin: 'auto' }}>
-          <Filter
-            getFilteredCards={this.getFilteredCards}
-            filterChangeHandler={e => this.props.filterChangeHandler(e)}
-            checked={this.props.state.gender}
-            state={this.state}
-            //필터 정보 app.js로부터 받아온 state
-            propsState={this.props.state}
-            sigungu={sigungu}
-          />
-          <div className="col-9">
-            <CardDeck style={{ marginLeft: '1%' }}>{recruits}</CardDeck>
+
+    if (this.state.madeRequest) {
+      return (
+        <div>
+          <div className="mb-5 text-center">
+            <img alt="alt" style={{ width: '100%' }} src={step1} />
+          </div>
+          <div className="row" style={{ width: '92%', margin: 'auto' }}>
+            <Filter
+              getFilteredCards={this.getFilteredCards}
+              filterChangeHandler={e => this.props.filterChangeHandler(e)}
+              checked={this.props.state.gender}
+              state={this.state}
+              //필터 정보 app.js로부터 받아온 state
+              propsState={this.props.state}
+              sigungu={sigungu}
+            />
+            <div className="col-9">
+              <CardDeck style={{ marginLeft: '1%' }}>{recruits}</CardDeck>
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div
+          style={{ height: '100vh', width: '100%' }}
+          className="d-flex justify-content-center align-items-center"
+        >
+          <img alt="alt" style={{ height: '20%' }} src={Spinner} />
+        </div>
+      );
+    }
   }
 }
 

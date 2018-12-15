@@ -11,6 +11,8 @@ import DetailCards from '../components/DesignerDetail/DetailCards';
 import MyModal from '../../components/UI/MyModal/MyModal';
 import ShowLargeImage from '../../components/DesignerDetail/ShowLargeImage';
 
+import Spinner from '../../assets/images/loading_spinner.gif';
+
 class DesignerDetail extends Component {
   state = {
     modal: false,
@@ -34,7 +36,6 @@ class DesignerDetail extends Component {
       );
       this.setState({
         recruit: data,
-        madeRequest: true,
         isLogin: this.props.userData.uid
       });
       await this.authListener();
@@ -46,6 +47,8 @@ class DesignerDetail extends Component {
       .on('value', async res => {
         this.setState({ designerData: res.val() });
       });
+
+    this.setState({ madeRequest: true });
   };
 
   authListener() {
@@ -150,174 +153,191 @@ class DesignerDetail extends Component {
         ? true
         : false;
     }
-    return (
-      <div className="m_containerStyle">
-        <Header />
-        <div style={containerStyle}>
-          <div style={designerIntroHeaderStyle}>
-            <div style={{ width: '75%' }}>
-              <div style={designerStyle}>{designer.name}</div>
-              <div style={titleStyle}>{recruit.title}</div>
-              <div style={occupationStyle}>{shops}</div>
+    if (this.state.madeRequest) {
+      return (
+        <div className="m_containerStyle">
+          <Header />
+          <div style={containerStyle}>
+            <div style={designerIntroHeaderStyle}>
+              <div style={{ width: '75%' }}>
+                <div style={designerStyle}>{designer.name}</div>
+                <div style={titleStyle}>{recruit.title}</div>
+                <div style={occupationStyle}>{shops}</div>
+              </div>
+              <div
+                style={{
+                  width: 64,
+                  height: 64,
+                  textAlign: 'right',
+                  borderRadius: '50%',
+                  backgroundImage: `url(${designer.profile})`,
+                  backgroundPosition: 'center',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundSize: 'cover'
+                }}
+              />
             </div>
+            <pre style={{ ...paragraphStyle, marginTop: '3rem' }}>
+              {designer.introduce}
+            </pre>
             <div
               style={{
-                width: 64,
-                height: 64,
-                textAlign: 'right',
-                borderRadius: '50%',
-                backgroundImage: `url(${designer.profile})`,
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat',
-                backgroundSize: 'cover'
+                border: '1px solid rgba(76, 145, 186, 0.6)',
+                borderRadius: '5px',
+                padding: '1.5rem',
+                marginTop: '2rem'
               }}
-            />
-          </div>
-          <pre style={{ ...paragraphStyle, marginTop: '3rem' }}>
-            {designer.introduce}
-          </pre>
-          <div
-            style={{
-              border: '1px solid rgba(76, 145, 186, 0.6)',
-              borderRadius: '5px',
-              padding: '1.5rem',
-              marginTop: '2rem'
-            }}
-          >
-            <div style={{ ...labelStyle, marginTop: 0 }}>요청사항</div>
-            <pre style={paragraphStyle}>{recruit.requirement}</pre>
-            <div style={labelStyle}>예상 시술 소요시간</div>
-            <div style={paragraphStyle}>
-              커트:{' '}
-              {this.timeFormat(recruit.requireTime && recruit.requireTime.cut)}{' '}
-              | 염색:{' '}
-              {this.timeFormat(recruit.requireTime && recruit.requireTime.dye)}{' '}
-              | 펌:{' '}
-              {this.timeFormat(recruit.requireTime && recruit.requireTime.perm)}
-            </div>
-          </div>
-          <div>
-            <div style={sectionTitleStyle}>예디정보</div>
-            <div>
-              <div style={labelStyle}>경력 및 이력</div>
-              <pre style={paragraphStyle}>{designer.careerDetail}</pre>
-            </div>
-            <div>
-              {/* todo: modal(big picture) show when clicked */}
-              <div style={labelStyle}>포트폴리오</div>
-              <div className="row wrap">
-                {portfolios.map(portfolio => (
-                  <div className="col-4 px-1 my-1">
-                    <div
-                      key={portfolio}
-                      style={{
-                        height: 100,
-                        backgroundImage: `url(${portfolio})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center'
-                      }}
-                      // style={{ padding: '0', width: '100%', height: '100%' }}
-                      onClick={() => this.showLargeImageToggle(portfolio)}
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-          <div>
-            <div style={{ ...sectionTitleStyle, marginBottom: '1rem' }}>
-              예디리뷰
-            </div>
-            <div
-              style={{ fontSize: '1.2rem', transform: 'translateX(-0.5rem)' }}
             >
-              <span style={{ ...starStyle, fontSize: '1.2rem' }}>
-                ★ {recruit.score}
-              </span>
-              <span
-                style={{
-                  color: '#2b2e34',
-                  marginLeft: '1rem',
-                  paddingLeft: '1rem',
-                  borderLeft: 'solid 1px #b2b2b2'
-                }}
-              >
-                리뷰 {recruit._reviews && recruit._reviews.length}
-              </span>
+              <div style={{ ...labelStyle, marginTop: 0 }}>요청사항</div>
+              <pre style={paragraphStyle}>{recruit.requirement}</pre>
+              <div style={labelStyle}>예상 시술 소요시간</div>
+              <div style={paragraphStyle}>
+                커트:{' '}
+                {this.timeFormat(
+                  recruit.requireTime && recruit.requireTime.cut
+                )}{' '}
+                | 염색:{' '}
+                {this.timeFormat(
+                  recruit.requireTime && recruit.requireTime.dye
+                )}{' '}
+                | 펌:{' '}
+                {this.timeFormat(
+                  recruit.requireTime && recruit.requireTime.perm
+                )}
+              </div>
             </div>
-            {recruit._reviews &&
-              recruit._reviews.map((review, key) => (
-                <Review
-                  key={key}
-                  review={review}
-                  showLargeImageToggle={this.showLargeImageToggle}
-                />
-              ))}
+            <div>
+              <div style={sectionTitleStyle}>예디정보</div>
+              <div>
+                <div style={labelStyle}>경력 및 이력</div>
+                <pre style={paragraphStyle}>{designer.careerDetail}</pre>
+              </div>
+              <div>
+                {/* todo: modal(big picture) show when clicked */}
+                <div style={labelStyle}>포트폴리오</div>
+                <div className="row wrap">
+                  {portfolios.map(portfolio => (
+                    <div className="col-4 px-1 my-1">
+                      <div
+                        key={portfolio}
+                        style={{
+                          height: 100,
+                          backgroundImage: `url(${portfolio})`,
+                          backgroundSize: 'cover',
+                          backgroundPosition: 'center'
+                        }}
+                        // style={{ padding: '0', width: '100%', height: '100%' }}
+                        onClick={() => this.showLargeImageToggle(portfolio)}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div>
+              <div style={{ ...sectionTitleStyle, marginBottom: '1rem' }}>
+                예디리뷰
+              </div>
+              <div
+                style={{ fontSize: '1.2rem', transform: 'translateX(-0.5rem)' }}
+              >
+                <span style={{ ...starStyle, fontSize: '1.2rem' }}>
+                  ★ {recruit.score}
+                </span>
+                <span
+                  style={{
+                    color: '#2b2e34',
+                    marginLeft: '1rem',
+                    paddingLeft: '1rem',
+                    borderLeft: 'solid 1px #b2b2b2'
+                  }}
+                >
+                  리뷰 {recruit._reviews && recruit._reviews.length}
+                </span>
+              </div>
+              {recruit._reviews &&
+                recruit._reviews.map((review, key) => (
+                  <Review
+                    key={key}
+                    review={review}
+                    showLargeImageToggle={this.showLargeImageToggle}
+                  />
+                ))}
+            </div>
+            {/* fixed button 때문에 만들어놓은 임시 div */}
+            <div style={{ height: 100 }} />
+            <div
+              style={{
+                height: 90,
+                position: 'fixed',
+                left: 0,
+                bottom: '0%',
+                width: '100%',
+                backgroundColor: 'white'
+              }}
+            >
+              {reservable ? (
+                <div
+                  style={{
+                    ...buttonStyle,
+                    marginLeft: 'auto',
+                    marginRight: 'auto',
+                    width: '85%'
+                  }}
+                  onClick={this.toggleModal}
+                >
+                  날짜/시간 선택하기
+                </div>
+              ) : (
+                <div
+                  style={{
+                    ...buttonStyle,
+                    marginLeft: 'auto',
+                    marginRight: 'auto',
+                    width: '85%',
+                    backgroundColor: 'rgba(0,0,0,0.5)'
+                  }}
+                >
+                  현재 예약 가능한 스케줄이 없습니다
+                </div>
+              )}
+            </div>
           </div>
-          {/* fixed button 때문에 만들어놓은 임시 div */}
-          <div style={{ height: 100 }} />
-          <div
-            style={{
-              height: 90,
-              position: 'fixed',
-              left: 0,
-              bottom: '0%',
-              width: '100%',
-              backgroundColor: 'white'
-            }}
+          <MyModal
+            showLogin={this.state.showLogin}
+            off={this.loginToggleHandler}
+            type="login"
+          />
+          <ShowLargeImage
+            isOpen={this.state.showLargeImage}
+            toggle={this.showLargeImageToggle}
+            src={this.state.largeImage}
+          />
+          <Modal
+            isOpen={this.state.modal}
+            toggle={this.toggleModal}
+            className={this.props.className}
           >
-            {reservable ? (
-              <div
-                style={{
-                  ...buttonStyle,
-                  marginLeft: 'auto',
-                  marginRight: 'auto',
-                  width: '85%'
-                }}
-                onClick={this.toggleModal}
-              >
-                날짜/시간 선택하기
-              </div>
-            ) : (
-              <div
-                style={{
-                  ...buttonStyle,
-                  marginLeft: 'auto',
-                  marginRight: 'auto',
-                  width: '85%',
-                  backgroundColor: 'rgba(0,0,0,0.5)'
-                }}
-              >
-                현재 예약 가능한 스케줄이 없습니다
-              </div>
-            )}
-          </div>
+            <ModalHeader toggle={this.toggleModal} />
+            <ModalBody>
+              <DetailCards
+                recruit={this.state.recruit}
+                submitReservation={this.submitReservation}
+              />
+            </ModalBody>
+          </Modal>
         </div>
-        <MyModal
-          showLogin={this.state.showLogin}
-          off={this.loginToggleHandler}
-          type="login"
-        />
-        <ShowLargeImage
-          isOpen={this.state.showLargeImage}
-          toggle={this.showLargeImageToggle}
-          src={this.state.largeImage}
-        />
-        <Modal
-          isOpen={this.state.modal}
-          toggle={this.toggleModal}
-          className={this.props.className}
+      );
+    } else {
+      return (
+        <div
+          style={{ height: '100vh', width: '100%' }}
+          className="d-flex justify-content-center align-items-center"
         >
-          <ModalHeader toggle={this.toggleModal} />
-          <ModalBody>
-            <DetailCards
-              recruit={this.state.recruit}
-              submitReservation={this.submitReservation}
-            />
-          </ModalBody>
-        </Modal>
-      </div>
-    );
+          <img alt="alt" style={{ height: '20%' }} src={Spinner} />
+        </div>
+      );
+    }
   }
 }
 
