@@ -193,9 +193,10 @@ class AddDesigner extends Component {
       addresses,
       isApproval: false,
       isRegister,
-      introduce,
-      yeinbub
+      introduce
     };
+
+    if (yeinbub) firebaseUserData = { ...firebaseUserData, yeinbub };
 
     if (!careerDetail) return alert('이력을 작성해주세요');
     if (!firebaseUserData.name) return alert('이름을 작성해주세요');

@@ -149,7 +149,8 @@ class AddDesigner extends Component {
             .once('value')
             .then(snapshot => {
               let { portfolios } = snapshot.val();
-              portfolios = portfolios.filter(url => url !== remove);
+              if (portfolios)
+                portfolios = portfolios.filter(url => url !== remove);
               firebase
                 .database()
                 .ref(`/users/${this.props.userData.uid}`)
@@ -236,9 +237,9 @@ class AddDesigner extends Component {
       addresses,
       isApproval: false,
       isRegister,
-      introduce,
-      yeinbub
+      introduce
     };
+    if (yeinbub) firebaseUserData = { ...firebaseUserData, yeinbub };
     // if (
     //   Object.values(firebaseUserData).includes(undefined) ||
     //   Object.values(firebaseUserData.birthday).includes('null') ||
@@ -275,13 +276,14 @@ class AddDesigner extends Component {
     window.scrollTo(0, 0);
 
     try {
+      console.log('try 시작');
       await firebase
         .database()
         .ref('users/' + this.props.userData.uid)
         .update(firebaseUserData);
 
       await axios.patch(`users/${this.props.userData._id}`, { name });
-
+      console.log('patch 끝');
       const formData = new fd();
       formData.append('cert_mh', this.state.certFile1);
       formData.append('cert_jg', this.state.certFile2);
@@ -289,6 +291,7 @@ class AddDesigner extends Component {
       this.state.portfolioFile.forEach((p, index) => {
         formData.append(`portfolio${index + this.state.portfoliosNum}`, p);
       });
+      console.log('사진 업로드 시작');
       await axios.post(
         `firebase/upload?uid=${this.props.userData.uid}`,
         formData,
@@ -298,14 +301,17 @@ class AddDesigner extends Component {
           }
         }
       );
-
+      console.log('사진 업로드 끝');
       alert(
         '성공적으로 신청되었습니다. \n관리자의 승인을 거친 후 정상적으로 스케줄을 등록하실 수 있습니다.'
       );
       this.setState({ submitLoading: true });
       this.props.history.push('/');
     } catch (err) {
+      console.log('err 발생');
+      console.log(err);
       alert('문제가 발생했습니다. 잠시 뒤에 다시 시도해주세요.');
+      this.setState({ submitLoading: true });
     }
   };
 
