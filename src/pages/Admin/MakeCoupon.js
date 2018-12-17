@@ -94,7 +94,7 @@ class MakeCoupon extends Component {
         <AdminNav />
         <div className="h1 hard">쿠폰 발행</div>
         <div className="row">
-          <div className="row col-6">
+          <div className="row col-6" style={{ maxHeight: '100px' }}>
             <div className="col-12 h2 hard">유저용</div>
             <div className="col-2 if_head">포인트</div>
             <div className="col-3">

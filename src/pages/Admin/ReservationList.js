@@ -62,15 +62,16 @@ class DesignerList extends Component {
           </td>
           <td>
             <Moment format="YYYY/MM/DD">{reservation.date}</Moment>
-          </td>
-          <td>
+            <br />
             {`${Math.floor(reservation.time.since / 60)}:${reservation.time
               .since % 60} ~ ${Math.floor(
               reservation.time.until / 60
             )}:${reservation.time.until % 60}`}
           </td>
-          <td>{reservation._card && reservation._card.fullAddress}</td>
-          <td>{reservation._card && reservation._card.shop}</td>
+          <td style={{ whiteSpace: 'inherit' }}>
+            {reservation._card && reservation._card.fullAddress} <br />
+            {reservation._card && reservation._card.shop}
+          </td>
           <td>
             {!reservation.isCanceled
               ? reservation.isDone
@@ -78,13 +79,14 @@ class DesignerList extends Component {
                 : '예약중'
               : '취소'}
           </td>
+          <td style={{ whiteSpace: 'inherit' }}>{reservation.cancelReason}</td>
         </tr>
       ));
       return (
         <div>
           <AdminNav />
           <h1>디자이너 관리</h1>
-          <table className="table text-center">
+          <table className="table text-center" style={{ tableLayout: 'fixed' }}>
             <thead>
               <tr>
                 <th>서비스 종류</th>
@@ -94,10 +96,11 @@ class DesignerList extends Component {
                   예약 체결일
                 </th>
                 <th onClick={this.reservationSortHandler}>예약일</th>
-                <th>예약일시</th>
+                {/* <th>예약일시</th> */}
                 <th>주소</th>
-                <th>샵</th>
+                {/* <th>샵</th> */}
                 <th>상태</th>
+                <th>취소사유</th>
               </tr>
             </thead>
             <tbody>{reservations}</tbody>

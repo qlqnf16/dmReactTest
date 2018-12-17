@@ -90,7 +90,7 @@ class WaitDesigner extends Component {
         </td>
         <td>
           <button
-            onClick={() => this.noAprovalSubmit(designer.uid)}
+            onClick={() => this.noApprovalSubmit(designer.uid)}
             className="btn-sm"
           >
             미승인
