@@ -133,7 +133,11 @@ class DesignerList extends Component {
       filteredData.sort((a, b) => {
         if (a.score < b.score) return 1;
         else if (a.score > b.score) return -1;
-        else return 0;
+        else {
+          if (a._reviews.length < b._reviews.length) return 1;
+          else if (a._reviews.length > b._reviews.length) return -1;
+          else return 0;
+        }
       });
       this.setState({ recruits: filteredData });
     }
@@ -220,7 +224,11 @@ class DesignerList extends Component {
     uniqueRecruits.sort((a, b) => {
       if (a.score < b.score) return 1;
       else if (a.score > b.score) return -1;
-      else return 0;
+      else {
+        if (a._reviews.length < b._reviews.length) return 1;
+        else if (a._reviews.length > b._reviews.length) return -1;
+        else return 0;
+      }
     });
 
     this.setState({
