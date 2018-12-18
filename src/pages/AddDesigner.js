@@ -289,6 +289,8 @@ class AddDesigner extends Component {
       this.state.portfolioFile.forEach((p, index) => {
         formData.append(`portfolio${index + this.state.portfoliosNum}`, p);
       });
+
+      console.log('사진 업로드 시작');
       await axios.post(
         `firebase/upload?uid=${this.props.userData.uid}`,
         formData,

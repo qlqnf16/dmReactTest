@@ -14,7 +14,8 @@ class ReviewModal extends Component {
     score: 0.0001,
     reviewImg: [],
     reviewImgFile: [],
-    num: 0
+    num: 0,
+    submitRequest: true
   };
 
   changeRating = score => {
@@ -48,6 +49,7 @@ class ReviewModal extends Component {
   };
 
   reviewSubmit = async () => {
+    this.setState({ submitRequest: false });
     const reviewData = {
       content: this.state.content,
       score: this.state.score,
@@ -80,7 +82,7 @@ class ReviewModal extends Component {
         }
       }
     );
-
+    this.setState({ submitRequest: true });
     alert('성공적으로 등록되었습니다');
     await this.props.toggle();
     await this.props.reloadData();
@@ -191,13 +193,30 @@ class ReviewModal extends Component {
                     />
                   </label>
                 </div>
-                <div
-                  className="m_button m_button_green"
-                  style={{ width: '100%', margin: 0, height: 'fit-content' }}
-                  onClick={this.reviewSubmit}
-                >
-                  리뷰 등록
-                </div>
+                {!this.state.submitRequest ? (
+                  <div
+                    className="m_button m_button_green"
+                    style={{ width: '100%', margin: 0, height: '30.5px' }}
+                    onClick={this.reviewSubmit}
+                  >
+                    리뷰 등록
+                  </div>
+                ) : (
+                  <div
+                    className="m_button m_button_green"
+                    style={{
+                      width: '100%',
+                      margin: 0,
+                      height: '30.5px',
+                      cursor: 'default',
+                      backgroundColor: 'rgba(0,0,0,0.1)',
+                      color: 'rgb(31, 51, 84)',
+                      fontWeight: 'normal'
+                    }}
+                  >
+                    저장중
+                  </div>
+                )}
               </div>
             </div>
           </ModalBody>

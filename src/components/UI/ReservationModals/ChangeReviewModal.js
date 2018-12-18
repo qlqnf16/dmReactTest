@@ -16,7 +16,8 @@ class ChangeReviewModal extends Component {
       score: 3,
       reviewImg: [],
       reviewImgFile: [],
-      num: 0
+      num: 0,
+      submitRequest: true
     };
   }
 
@@ -26,8 +27,14 @@ class ChangeReviewModal extends Component {
     const isFinishSetstate = this.state.score !== nextState.score;
     const isImgChange = this.state.num !== nextState.num;
     const isTextChange = this.state.content !== nextState.content;
+    const isSubmitRequest =
+      this.state.submitRequest !== nextState.submitRequest;
     return (
-      isReservationChange || isFinishSetstate || isImgChange || isTextChange
+      isReservationChange ||
+      isFinishSetstate ||
+      isImgChange ||
+      isTextChange ||
+      isSubmitRequest
     );
   };
 
@@ -80,6 +87,7 @@ class ChangeReviewModal extends Component {
   };
 
   reviewSubmit = async () => {
+    this.setState({ submitRequest: false });
     const reviewData = {
       content: this.state.content,
       score: this.state.score,
@@ -98,7 +106,7 @@ class ChangeReviewModal extends Component {
       reviewData
     );
 
-    // 사진 업로드
+    // // 사진 업로드
     const formData = new fd();
     this.state.reviewImgFile.forEach((p, index) => {
       formData.append(`review${index}`, p);
@@ -114,7 +122,7 @@ class ChangeReviewModal extends Component {
         }
       }
     );
-
+    this.setState({ submitRequest: true });
     alert('성공적으로 등록되었습니다');
     await this.props.toggle();
     await this.props.reloadData();
@@ -149,6 +157,7 @@ class ChangeReviewModal extends Component {
         });
         services = services.substring(1);
       }
+
       return (
         <Modal isOpen={this.props.isOpen} centered toggle={this.toggle}>
           <ModalBody className="m-4">
@@ -226,13 +235,30 @@ class ChangeReviewModal extends Component {
                     />
                   </label>
                 </div>
-                <div
-                  className="m_button m_button_green"
-                  style={{ width: '100%', margin: 0, height: '30.5px' }}
-                  onClick={this.reviewSubmit}
-                >
-                  리뷰 수정
-                </div>
+                {this.state.submitRequest ? (
+                  <div
+                    className="m_button m_button_green"
+                    style={{ width: '100%', margin: 0, height: '30.5px' }}
+                    onClick={this.reviewSubmit}
+                  >
+                    리뷰 수정
+                  </div>
+                ) : (
+                  <div
+                    className="m_button m_button_green"
+                    style={{
+                      width: '100%',
+                      margin: 0,
+                      height: '30.5px',
+                      cursor: 'default',
+                      backgroundColor: 'rgba(0,0,0,0.1)',
+                      color: 'rgb(31, 51, 84)',
+                      fontWeight: 'normal'
+                    }}
+                  >
+                    저장중
+                  </div>
+                )}
               </div>
             </div>
           </ModalBody>
