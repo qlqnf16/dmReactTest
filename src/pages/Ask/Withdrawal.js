@@ -22,13 +22,20 @@ class Withdrawal extends Component {
   withdrawalSubmit = () => {
     if (!this.state.content) return alert('탈퇴 요청 사유를 작성해주세요');
 
-    firebase
-      .database()
-      .ref('users/' + this.props.userData.uid)
-      .update({ withdrawal: this.state.content });
-
-    alert('요청되었습니다. 3일 이내로 처리될 예정입니다.');
-    this.props.history.push('/');
+    if (
+      window.confirm(
+        '회원 탈퇴는 즉시 처리되며, 향후 60일간 재가입이 불가능합니다. 정말 탈퇴하시겠습니까?'
+      )
+    ) {
+      firebase
+        .database()
+        .ref('users/' + this.props.userData.uid)
+        .update({ withdrawal: this.state.content });
+      alert('처리 되었습니다.');
+      //Logout
+      firebase.auth().signOut();
+      this.props.history.push('/');
+    }
   };
 
   render() {

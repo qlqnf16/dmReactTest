@@ -178,7 +178,6 @@ class App extends Component {
             await this.props.updateRedux('_tickets', data._tickets);
             await this.props.updateRedux('_reservations', data._reservations);
             await this.props.connectSocket();
-            this.setState({ finishRedux: true });
             if (
               !userData.isRegister &&
               !this.props.location.pathname.includes('whyDreamary')
@@ -187,6 +186,7 @@ class App extends Component {
             } else if (this.props.location.pathname.includes('whyDreamary')) {
               this.props.history.push('/addDesigner');
             }
+            if (!userData.withdrawal) this.setState({ finishRedux: true });
           });
 
         if (document.querySelector('iframe')) {

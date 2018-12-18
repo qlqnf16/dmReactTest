@@ -10,10 +10,21 @@ export const facebookLogin = async () => {
 
     const currentUser = firebase.auth().currentUser;
     const { displayName, uid, email } = currentUser;
-    const DBUserData = {
-      _uid: uid,
-      name: displayName
-    };
+    const DBUserData = { _uid: uid, name: displayName };
+
+    // 탈퇴 유저인지 검증
+    let withdrawal;
+    await firebase
+      .database()
+      .ref('/users/' + uid)
+      .on('value', res => {
+        withdrawal = res.val().withdrawal;
+      });
+
+    if (withdrawal) {
+      firebase.auth().signOut();
+      throw 'withdrawal';
+    }
 
     const Users = await axios.get('users');
     let newUser = true;
@@ -176,6 +187,20 @@ export const kakao_login_success = async userToken => {
     // 넘겨받은 토큰으로 커스텀 로그인
     await firebase.auth().signInWithCustomToken(customToken);
 
+    // 탈퇴 유저인지 검증
+    let withdrawal;
+    await firebase
+      .database()
+      .ref('/users/' + data.id)
+      .on('value', res => {
+        withdrawal = res.val().withdrawal;
+      });
+
+    if (withdrawal) {
+      firebase.auth().signOut();
+      throw 'withdrawal';
+    }
+
     const DBUserData = {
       _uid: data.id,
       name: data.properties.nickname
@@ -206,14 +231,13 @@ export const kakao_login_success = async userToken => {
   } catch (error) {
     var errorCode = error.code;
     var errorMessage = error.message;
-    // console.log(errorCode, errorMessage);
-    alert(errorCode);
-    alert(errorMessage);
     if (errorCode === 'auth/account-exists-with-different-credential')
       alert(
         '이미 다른 플랫폼으로 가입한 적이 있는 이메일입니다. 해당 플랫폼으로 로그인해주세요.'
       );
-    else {
+    else if (error === 'withdrawal') {
+      alert('회원 탈퇴한 계정입니다.');
+    } else {
       alert('문제가 발생했습니다. 잠시 뒤에 다시 시도해주세요');
       // window.location.reload();
     }
