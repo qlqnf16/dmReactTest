@@ -45,7 +45,7 @@ const Filter = props => {
           className="form-control"
           placeholder="2018-xx-xx"
           onChange={props.filterChangeHandler}
-          value={props.propsState.date ? props.propsState.date : null}
+          value={props.propsState.date}
         />
       </div>
       <div className="col-12 filterTitle">지역</div>
@@ -119,7 +119,7 @@ const Filter = props => {
             min="0"
             max="100"
             step="50"
-            value={props.propsState.cut ? props.propsState.cut : null}
+            value={props.propsState.cut ? props.propsState.cut : 50}
           />
           <label>커트</label>
         </div>
@@ -132,7 +132,7 @@ const Filter = props => {
             min="0"
             max="100"
             step="50"
-            value={props.propsState.dye ? props.propsState.dye : null}
+            value={props.propsState.dye ? props.propsState.dye : 50}
           />
           <label>염색</label>
         </div>
@@ -145,7 +145,7 @@ const Filter = props => {
             min="0"
             max="100"
             step="50"
-            value={props.propsState.perm ? props.propsState.perm : null}
+            value={props.propsState.perm ? props.propsState.perm : 50}
           />
           <label>펌</label>
         </div>
@@ -157,7 +157,8 @@ const Filter = props => {
         검색하기
       </div>
       <div
-        onClick={() => window.location.reload()}
+        onClick={() => props.refreshFilter()}
+        // onClick={() => window.location.reload()}
         className="col-12 filterRefresh"
       >
         초기화

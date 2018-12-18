@@ -257,7 +257,8 @@ class DesignerList extends Component {
     }
     const refreshButton = (
       <div
-        onClick={() => window.location.reload()}
+        onClick={() => this.refreshFilter()}
+        // onClick={() => window.location.reload()}
         style={{
           width: '85%',
           height: '33px',

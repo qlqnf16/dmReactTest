@@ -323,11 +323,11 @@ class DesignerInfo extends Component {
       );
       // );
       alert('성공적으로 저장되었습니다. \n스케줄 등록으로 이동합니다.');
-      this.setState({ submitLoading: true });
       this.props.history.push('/designer/schedule');
     } catch (err) {
       alert('문제가 발생했습니다. 잠시 뒤에 다시 시도해주세요.');
     }
+    this.setState({ submitLoading: true });
   };
 
   render() {

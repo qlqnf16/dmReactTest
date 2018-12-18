@@ -68,7 +68,9 @@ class Yeinbub extends Component {
         <tr key={key}>
           <td>{user.name}</td>
           <td>{user.yeinbub}</td>
-          <Moment format="YYYY/MM/DD">{user.joinedDate}</Moment>
+          <td>
+            <Moment format="YYYY/MM/DD">{user.joinedDate}</Moment>
+          </td>
         </tr>
       ));
 

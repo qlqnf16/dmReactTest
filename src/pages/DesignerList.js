@@ -201,6 +201,11 @@ class DesignerList extends Component {
     this.setState({ [name]: value });
   };
 
+  refreshFilter = async () => {
+    await this.props.refreshFilter();
+    await this.getFilteredCards();
+  };
+
   render() {
     let recruits = (
       <div
@@ -256,6 +261,7 @@ class DesignerList extends Component {
               //필터 정보 app.js로부터 받아온 state
               propsState={this.props.state}
               sigungu={sigungu}
+              refreshFilter={this.refreshFilter}
             />
             <div className="col-9">
               <CardDeck style={{ marginLeft: '1%' }}>{recruits}</CardDeck>

@@ -255,11 +255,11 @@ class AddDesigner extends Component {
       alert(
         '성공적으로 신청되었습니다. \n관리자의 승인을 거친 후 정상적으로 스케줄을 등록하실 수 있습니다.'
       );
-      this.setState({ submitLoading: true });
       this.props.history.push('/');
     } catch (err) {
       alert('문제가 발생했습니다. 잠시 뒤에 다시 시도해주세요.');
     }
+    this.setState({ submitLoading: true });
   };
 
   phoneCert = () => {

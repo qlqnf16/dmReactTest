@@ -113,13 +113,13 @@ class App extends Component {
 
   refreshFilter = () => {
     this.setState({
-      gender: null,
-      date: null,
-      sido: null,
-      sigungu: null,
-      cut: null,
-      perm: null,
-      dye: null
+      gender: false,
+      date: false,
+      // sido: false,
+      sigungu: false,
+      cut: false,
+      perm: false,
+      dye: false
     });
   };
 
