@@ -155,6 +155,13 @@ class App extends Component {
 
   componentDidMount = () => {
     if (!this.state.madeRequest) this.authListener();
+
+    let ua = navigator.userAgent || navigator.vendor || window.opera;
+    const isIE = ua.indexOf('MSIE') > -1 || ua.indexOf('rv') > -1;
+    if (isIE)
+      alert(
+        'Internet Explorer에서는 드리머리의 일부 기능이 작동하지 않을 수 있습니다. \n크롬과 같은 다른 브라우저 또는 모바일 환경을 이용해주세요'
+      );
   };
 
   authListener() {
@@ -213,10 +220,9 @@ class App extends Component {
     let ua = navigator.userAgent || navigator.vendor || window.opera;
     const isFacebookApp = ua.indexOf('FBAN') > -1 || ua.indexOf('FBAV') > -1;
     const isInstagram = ua.indexOf('Instagram') > -1 ? true : false;
-
+    const isIE = ua.indexOf('MSIE') > -1 || ua.indexOf('rv') > -1;
     // 장막
     // const isMobile = false;
-
     // firebase에서 불러오기 전
     if (!this.state.madeRequest) {
       return (
