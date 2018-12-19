@@ -290,7 +290,6 @@ class AddDesigner extends Component {
         formData.append(`portfolio${index + this.state.portfoliosNum}`, p);
       });
 
-      console.log('사진 업로드 시작');
       await axios.post(
         `firebase/upload?uid=${this.props.userData.uid}`,
         formData,
@@ -306,7 +305,6 @@ class AddDesigner extends Component {
       this.setState({ submitLoading: true });
       this.props.history.push('/');
     } catch (err) {
-      console.log(err);
       alert('문제가 발생했습니다. 잠시 뒤에 다시 시도해주세요.');
       this.setState({ submitLoading: true });
     }
