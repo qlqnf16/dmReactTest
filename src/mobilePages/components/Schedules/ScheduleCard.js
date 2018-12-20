@@ -94,7 +94,7 @@ const ScheduleCard = props => {
     <div style={containerStyle}>
       <div
         style={{
-          width: '30%',
+          width: '40%',
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center'
@@ -129,20 +129,20 @@ const ScheduleCard = props => {
           width: '50%',
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'space-evenly'
+          justifyContent: 'center'
         }}
       >
-        <div className="row">
+        <div className="row py-2">
           <div className="col-6 font-weight-bold">모델성별</div>
           <div className="col-6 px-0">
             {genderFormat(props.card.requireGender)}
           </div>
         </div>
-        <div className="row">
+        <div className="row py-2">
           <div className="col-6 font-weight-bold">헤어샵</div>
           <div className="col-6 px-0">{props.card.shop}</div>
         </div>
-        <div className="row">
+        <div className="row py-2">
           <div className="col-6 font-weight-bold">사진촬영</div>
           <div className="col-6 px-0">{props.card.picture}</div>
         </div>
@@ -164,7 +164,8 @@ const ScheduleCard = props => {
 
 const styles = {
   containerStyle: {
-    height: 130,
+    padding: '1rem 0',
+    minHeight: 130,
     borderRadius: 5,
     border: 'solid 1px rgba(0, 0, 0, 0.1)',
     fontSize: '1.2rem',
