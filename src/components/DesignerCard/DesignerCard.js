@@ -52,6 +52,7 @@ class DesginerCard extends Component {
 
   render() {
     const recruit = this.props.recruit;
+
     if (recruit && this.state.madeRequest) {
       let shops = '';
       recruit.shops.forEach(shop => {
@@ -59,7 +60,7 @@ class DesginerCard extends Component {
       });
       shops = shops.substring(1);
 
-      let { portfolios } = this.state.designerData;
+      let { portfolios } = this.state.designerData || [];
 
       if (!portfolios || !portfolios.length) portfolios = [defaultGuy];
 

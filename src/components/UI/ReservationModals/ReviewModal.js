@@ -193,7 +193,7 @@ class ReviewModal extends Component {
                     />
                   </label>
                 </div>
-                {!this.state.submitRequest ? (
+                {this.state.submitRequest ? (
                   <div
                     className="m_button m_button_green"
                     style={{ width: '100%', margin: 0, height: '30.5px' }}
