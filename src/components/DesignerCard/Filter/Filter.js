@@ -2,6 +2,23 @@ import React from 'react';
 import './Filter.css';
 
 const Filter = props => {
+  let today = new Date();
+  let dd = today.getDate() + 1;
+  let mm = today.getMonth() + 1; //January is 0!
+  let yyyy = today.getFullYear();
+  let hour = new Date().getHours();
+  let minute = new Date().getMinutes();
+
+  if (hour >= 19 && minute >= 30) dd += 1;
+  if (dd < 10) {
+    dd = '0' + dd;
+  }
+  if (mm < 10) {
+    mm = '0' + mm;
+  }
+
+  today = yyyy + '-' + mm + '-' + dd;
+
   return (
     <div className="col-3 form-row d-flex align-items-baseline filter-responsive">
       <div className="col-5">
@@ -46,6 +63,7 @@ const Filter = props => {
           placeholder="2018-xx-xx"
           onChange={props.filterChangeHandler}
           value={props.propsState.date}
+          min={today}
         />
       </div>
       <div className="col-12 filterTitle">지역</div>

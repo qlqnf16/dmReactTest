@@ -16,6 +16,24 @@ const Filter = props => {
     emoji,
     selectFilterText
   } = styles;
+
+  let today = new Date();
+  let dd = today.getDate() + 1;
+  let mm = today.getMonth() + 1; //January is 0!
+  let yyyy = today.getFullYear();
+  let hour = new Date().getHours();
+  let minute = new Date().getMinutes();
+
+  if (hour >= 19 && minute >= 30) dd += 1;
+  if (dd < 10) {
+    dd = '0' + dd;
+  }
+  if (mm < 10) {
+    mm = '0' + mm;
+  }
+
+  today = yyyy + '-' + mm + '-' + dd;
+
   return (
     <div
       style={props.on ? filter : filterOff}
@@ -67,6 +85,7 @@ const Filter = props => {
             onChange={props.filterChangeHandler}
             name="date"
             value={props.propsState.date ? props.propsState.date : null}
+            min={today}
           />
         </div>
       </div>
