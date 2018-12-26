@@ -15,14 +15,35 @@ class DesignerList extends Component {
         `users/5bc213a5f4376e579d2c18f6/reservations/all`
       );
       data = data.sort((a, b) => b.createdAt - a.createdAt);
+      const filteredData = data.filter(
+        d => d.date + 604800000 >= new Date().getTime()
+      );
       this.setState({
-        reservations: data,
+        reservations: filteredData,
         madeRequest: true
       });
     }
   };
 
   reservationSortHandlerCreated = async () => {
+    const sortedData = this.state.reservations.sort(
+      (a, b) => b.createdAt - a.createdAt
+    );
+    this.setState({
+      reservations: sortedData,
+      madeRequest: true
+    });
+  };
+
+  reservationSortHandler = async () => {
+    const sortedData = this.state.reservations.sort((a, b) => b.date - a.date);
+    this.setState({
+      reservations: sortedData,
+      madeRequest: true
+    });
+  };
+
+  allReservations = async () => {
     let { data } = await axios.get(
       `users/5bc213a5f4376e579d2c18f6/reservations/all`
     );
@@ -32,14 +53,16 @@ class DesignerList extends Component {
       madeRequest: true
     });
   };
-
-  reservationSortHandler = async () => {
+  weekReservations = async () => {
     let { data } = await axios.get(
       `users/5bc213a5f4376e579d2c18f6/reservations/all`
     );
-    data = data.sort((a, b) => b.date - a.date);
+    data = data.sort((a, b) => b.createdAt - a.createdAt);
+    const filteredData = data.filter(
+      d => d.date + 604800000 >= new Date().getTime()
+    );
     this.setState({
-      reservations: data,
+      reservations: filteredData,
       madeRequest: true
     });
   };
@@ -85,7 +108,15 @@ class DesignerList extends Component {
       return (
         <div>
           <AdminNav />
-          <h1>디자이너 관리</h1>
+          <h1>예약 관리</h1>
+          <div className="d-flex">
+            <div className="btn btn-light h3" onClick={this.allReservations}>
+              모든 예약 보기
+            </div>
+            <div className="btn btn-light h3" onClick={this.weekReservations}>
+              예전꺼 지우기
+            </div>
+          </div>
           <table className="table text-center" style={{ tableLayout: 'fixed' }}>
             <thead>
               <tr>

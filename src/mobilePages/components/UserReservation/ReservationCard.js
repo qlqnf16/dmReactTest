@@ -74,6 +74,7 @@ const ReservationCard = props => {
         type = <div style={typeStyle}>D-day</div>;
         button = (
           <div
+            style={buttonStyle}
             onClick={() => {
               alert('당일 취소는 경고 1회 누적됩니다.');
               props.cancelModalToggle(props.reservation, true);
