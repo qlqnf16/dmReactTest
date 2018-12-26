@@ -101,7 +101,7 @@ class DesginerCard extends Component {
                 <div style={{ backgroundColor: 'rgba(0,0,0,0.2)' }} />
                 {/* <DesignerCarousel images={portfolios} /> */}
                 <img
-                  src={portfolios[0] + '_thump'}
+                  src={portfolios[0] + '_thumb'}
                   onError={e => {
                     e.target.onerror = null;
                     e.target.src = portfolios[0];
