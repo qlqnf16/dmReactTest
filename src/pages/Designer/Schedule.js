@@ -20,11 +20,9 @@ class Schedule extends Component {
       const { data } = await axios.get(
         `recruits/${this.props.userData._recruit}`
       );
-      console.log(data);
       const cards = data._cards.filter(
         card => card.reservable && card.date > new Date().getTime()
       );
-      console.log(cards);
       this.setState({
         cards,
         madeRequest: true,
@@ -131,7 +129,6 @@ class Schedule extends Component {
     shops = this.props.userData.addresses.map(address => address.extraAddress);
     recruitData['shops'] = shops;
 
-    console.log(recruitData);
     //안 채워진 정보 검증
     if (!recruitData.title) return alert('제목을 작성해주세요');
     if (!recruitData.requirement) return alert('요청사항을 작성해주세요');
