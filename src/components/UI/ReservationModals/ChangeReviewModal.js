@@ -17,6 +17,7 @@ class ChangeReviewModal extends Component {
       reviewImg: [],
       reviewImgFile: [],
       num: 0,
+      fileNum: 0,
       submitRequest: true
     };
   }
@@ -71,14 +72,29 @@ class ChangeReviewModal extends Component {
     let file = e.target.files[0];
     this.state.reviewImg.push(URL.createObjectURL(file));
     this.state.reviewImgFile.push(file);
-    this.setState({ num: this.state.num + 1 });
+    this.setState({ num: this.state.num + 1, fileNum: this.state.fileNum + 1 });
   };
 
   deleteImg = e => {
+    if (
+      !window.confirm('사진이 바로 삭제됩니다. 삭제하시려면 확인을 눌러주세요.')
+    )
+      return;
+    const fakeImg = this.state.num - this.state.fileNum;
     let foundFile = this.state.reviewImg.findIndex(url => url === e.target.src);
     this.state.reviewImg.splice(foundFile, 1);
-    this.state.reviewImgFile.splice(foundFile, 1);
     this.setState({ num: this.state.num - 1 });
+    // 실제 파일을 지운 경우
+    if (foundFile >= fakeImg) {
+      this.state.reviewImgFile.splice(foundFile - fakeImg, 1);
+      this.setState({ fileNum: this.state.fileNum - 1 });
+    } else {
+      axios.delete(
+        `recruits/${this.props.reservation._designer._recruit._id}/reviews/${
+          this.props.reservation._review._id
+        }/images/${foundFile}`
+      );
+    }
   };
 
   toggle = () => {

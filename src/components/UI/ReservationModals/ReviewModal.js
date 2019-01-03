@@ -40,6 +40,9 @@ class ReviewModal extends Component {
     let foundFile = this.state.reviewImg.findIndex(url => url === e.target.src);
     this.state.reviewImg.splice(foundFile, 1);
     this.state.reviewImgFile.splice(foundFile, 1);
+
+    axios.delete();
+
     this.setState({ num: this.state.num - 1 });
   };
 
