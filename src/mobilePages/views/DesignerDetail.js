@@ -41,12 +41,24 @@ class DesignerDetail extends Component {
       await this.authListener();
     }
 
-    await firebase
-      .database()
-      .ref('/users/' + this.state.recruit._designer._uid)
-      .on('value', async res => {
-        this.setState({ designerData: res.val() });
-      });
+    const fbPromise = new Promise(resolve => {
+      firebase
+        .database()
+        .ref('/users/' + this.state.recruit._designer._uid)
+        .on('value', res => {
+          this.setState({ designerData: res.val() });
+          resolve(true);
+        });
+    });
+
+    await fbPromise;
+
+    // await firebase
+    //   .database()
+    //   .ref('/users/' + this.state.recruit._designer._uid)
+    //   .on('value', async res => {
+    //     this.setState({ designerData: res.val() });
+    //   });
 
     this.setState({ madeRequest: true });
   };
