@@ -20,8 +20,13 @@ class Schedule extends Component {
       const { data } = await axios.get(
         `recruits/${this.props.userData._recruit}`
       );
+      console.log(data);
+      const cards = data._cards.filter(
+        card => card.reservable && card.date > new Date().getTime()
+      );
+      console.log(cards);
       this.setState({
-        cards: data._cards,
+        cards,
         madeRequest: true,
         newCards: [],
         requireTime: data.requireTime
@@ -50,11 +55,17 @@ class Schedule extends Component {
     const { data } = await axios.get(
       `recruits/${this.props.userData._recruit}`
     );
-    await this.setState({ cards: data._cards, madeRequest: true });
+
+    const cards = data._cards.filter(
+      card => card.reservable && card.date > new Date().getTime()
+    );
+
+    await this.setState({ cards, madeRequest: true });
   };
 
   cancelCardHandler = async (cardId, recruitId) => {
-    await axios.delete(`recruits/${recruitId}/cards/${cardId}`);
+    await axios.patch(`recruits/${recruitId}/cards/${cardId}`);
+    // await axios.delete(`recruits/${recruitId}/cards/${cardId}`);
     await this.reloadCardData();
   };
 

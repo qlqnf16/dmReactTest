@@ -36,8 +36,10 @@ const AddCardModal = props => {
       }
       let finishts = finishTimes.map((ftime, key) => (
         <option key={key} value={ftime}>
-          {ftime / 60 > 23 ? ftime / 60 - 24 : ftime / 60}:
-          {ftime % 60 ? '30' : '00'} 까지
+          {ftime / 60 > 23
+            ? Math.floor(ftime / 60 - 24)
+            : Math.floor(ftime / 60)}
+          :{ftime % 60 ? '30' : '00'} 까지
         </option>
       ));
       timeSelector.push(

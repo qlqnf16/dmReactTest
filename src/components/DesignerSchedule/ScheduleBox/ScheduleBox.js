@@ -43,8 +43,12 @@ class ScheduleBox extends Component {
       const { data } = await axios.get(
         `recruits/${this.props.userData._recruit}`
       );
+
+      const cards = data._cards.filter(
+        card => card.reservable && card.date > new Date().getTime()
+      );
       this.setState({
-        cards: data._cards,
+        cards,
         title: data.title,
         requirement: data.requirement,
         requireTime: data.requireTime,
@@ -222,7 +226,6 @@ class ScheduleBox extends Component {
       !cardData.shop ||
       !cardData.picture ||
       !cardData.requireGender;
-
     return (
       <div className="row align-items-start">
         <div className="col-6">

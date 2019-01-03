@@ -110,7 +110,7 @@ class Schedule extends Component {
               type="date"
               onChange={this.props.datePick}
               disabledDate={disabledDate}
-              showDateInput="false"
+              showDateInput={false}
               locale={koKR}
               defaultValue={null}
               style={{ color: '#1f3354', width: '90%' }}
