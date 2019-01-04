@@ -4,6 +4,10 @@ import axios from '../../../config/Axios';
 import { connect } from 'react-redux';
 
 class QnA extends Component {
+  state = {
+    fetched: true
+  };
+
   componentDidMount = () => {
     window.scrollTo(0, 0);
   };
@@ -16,12 +20,14 @@ class QnA extends Component {
     this.setState({ [name]: value });
   };
 
-  qnaSubmit = () => {
+  qnaSubmit = async () => {
+    this.setState({ fetched: false });
     const inquirie = {
       ...this.state,
       _user: this.props.userData._id
     };
-    axios.post('inquiries', inquirie);
+    await axios.post('inquiries', inquirie);
+    this.setState({ fetched: true });
     alert('성공적으로 제출되었습니다.');
   };
 
@@ -75,9 +81,13 @@ class QnA extends Component {
               style={{ height: '166px' }}
             />
           </div>
-          <div onClick={this.qnaSubmit} className="m_ask_button">
-            제출하기
-          </div>
+          {this.state.fetched ? (
+            <div onClick={this.qnaSubmit} className="m_ask_button">
+              제출하기
+            </div>
+          ) : (
+            <div className="m_ask_button">제출중</div>
+          )}
         </div>
       </div>
     );
