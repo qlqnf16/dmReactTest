@@ -70,7 +70,15 @@ class DesignerList extends Component {
   render() {
     if (this.state.madeRequest) {
       const reservations = this.state.reservations.map((reservation, key) => (
-        <tr key={key}>
+        <tr
+          key={key}
+          style={
+            reservation.isCanceled &&
+            reservation.updatedAt + 86400000 > new Date().getTime()
+              ? { color: 'red' }
+              : null
+          }
+        >
           <td>{Object.keys(reservation.services)}</td>
           <td>
             <div>{reservation._designer.name}</div>
@@ -102,6 +110,11 @@ class DesignerList extends Component {
                 : '예약중'
               : '취소'}
           </td>
+          <td>
+            {reservation.updatedAt ? (
+              <Moment format="YYYY/MM/DD HH:mm">{reservation.updatedAt}</Moment>
+            ) : null}
+          </td>
           <td style={{ whiteSpace: 'inherit' }}>{reservation.cancelReason}</td>
         </tr>
       ));
@@ -131,6 +144,7 @@ class DesignerList extends Component {
                 <th>주소</th>
                 {/* <th>샵</th> */}
                 <th>상태</th>
+                <th>취소/완료 일시</th>
                 <th>취소사유</th>
               </tr>
             </thead>
