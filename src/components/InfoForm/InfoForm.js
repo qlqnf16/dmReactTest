@@ -174,26 +174,26 @@ class InfoForm extends Component {
     } else {
       cert1 = (
         <Fragment>
-          <span>미용사 면허증</span>
+          <span>미용사 면허증/자격증</span>
           <span>+</span>
         </Fragment>
       );
     }
-    if (this.props.certImg2) {
-      cert2 = (
-        <ImgPreview
-          url={this.props.certImg2}
-          style={{ maxWidth: '100%', maxHeight: '100%' }}
-        />
-      );
-    } else {
-      cert2 = (
-        <Fragment>
-          <span>미용사 자격증</span>
-          <span>+</span>
-        </Fragment>
-      );
-    }
+    // if (this.props.certImg2) {
+    //   cert2 = (
+    //     <ImgPreview
+    //       url={this.props.certImg2}
+    //       style={{ maxWidth: '100%', maxHeight: '100%' }}
+    //     />
+    //   );
+    // } else {
+    //   cert2 = (
+    //     <Fragment>
+    //       <span>미용사 자격증</span>
+    //       <span>+</span>
+    //     </Fragment>
+    //   );
+    // }
 
     return (
       <Fragment>
@@ -449,7 +449,7 @@ class InfoForm extends Component {
                 />
                 <div className="if_file">{cert1}</div>
               </label>
-              <label>
+              {/* <label>
                 <input
                   style={{ display: 'none' }}
                   type="file"
@@ -457,7 +457,7 @@ class InfoForm extends Component {
                   onChange={this.props.imgChange}
                 />
                 <div className="if_file">{cert2}</div>
-              </label>
+              </label> */}
             </div>
             <div className="if_detail" style={{ marginTop: '8.3px' }}>
               취득한것만 올려주시면 됩니다. 드리머리 예디 승인 여부에 사용되며
