@@ -151,15 +151,7 @@ const ReservationForm = props => {
           {props.state.finalPrice}원
         </div>
       </div>
-      <div style={subtitleStyle}>
-        결제방법
-        <div
-          style={{ fontWeight: 'normal', color: 'gray', fontSize: '1.1rem' }}
-        >
-          * 실시간 계좌이체, 가상계좌 결제가 빠른 시일 내에 가능해질 예정입니다.
-          조금만 기다려주세요!
-        </div>
-      </div>
+      <div style={subtitleStyle}>결제방법</div>
 
       <div
         className="m-3"
@@ -228,7 +220,7 @@ const ReservationForm = props => {
         </label>
         <label
           htmlFor="phone"
-          className="purchase_type disabledButton"
+          className="purchase_type "
           style={
             props.method === 'phone'
               ? { borderColor: '#dd6866', fontWeight: 'bold' }
@@ -242,7 +234,6 @@ const ReservationForm = props => {
             id="phone"
             onChange={props.handleInputChange}
             value="phone"
-            disabled
           />
           <div>휴대폰 소액결제</div>
         </label>

@@ -44,7 +44,7 @@ class InfoForm extends Component {
             type="text"
             name="extraAddress"
             id={i}
-            placeholder="샵 상세주소(ex. OO헤어 청담점)"
+            placeholder="샵 상세명칭(ex. OO헤어 청담점)"
             value={
               this.props.state.addresses[i] &&
               this.props.state.addresses[i].extraAddress

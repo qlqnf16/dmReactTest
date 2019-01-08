@@ -189,7 +189,7 @@ class ReservationForm extends Component {
                 <span className="rf-radiobutton" />
                 <span style={{ marginRight: '21.5px' }}>실시간 계좌이체</span>
               </label>
-              {/* <label className="rf-hideinput">
+              <label className="rf-hideinput">
                 <input
                   type="radio"
                   name="method"
@@ -200,7 +200,7 @@ class ReservationForm extends Component {
                 />
                 <span className="rf-radiobutton" />
                 <span style={{ marginRight: '21.5px' }}>휴대폰 소액결제</span>
-              </label> */}
+              </label>
             </div>
           </div>
         </div>
