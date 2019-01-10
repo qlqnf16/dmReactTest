@@ -50,7 +50,11 @@ class CardList extends Component {
     if (this.state.madeRequest) {
       const cards = this.state.cards.map((card, key) => (
         <tr key={key}>
-          <td>{card._recruit && card._recruit._designer.name}</td>
+          <td>
+            {card._recruit &&
+              card._recruit._designer &&
+              card._recruit._designer.name}
+          </td>
           <td>
             <Moment format="YYYY/MM/DD">{card.createdAt}</Moment>{' '}
           </td>
@@ -70,12 +74,12 @@ class CardList extends Component {
           <td>{card.requireGender}</td>
           <td>
             {card._recruit &&
+            card._recruit._designer &&
             card._recruit._designer.expiredAt &&
             card._recruit._designer.expiredAt > new Date().getTime()
               ? 'O'
               : 'X'}
           </td>
-          <td>{card.reservedTimes.length}</td>
         </tr>
       ));
       return (
@@ -93,7 +97,6 @@ class CardList extends Component {
                 <th>샵</th>
                 <th>모델 성별</th>
                 <th>이용권 사용중</th>
-                <th>예약 갯수</th>
               </tr>
             </thead>
             <tbody>{cards}</tbody>
