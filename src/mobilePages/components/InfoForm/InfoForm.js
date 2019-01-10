@@ -175,15 +175,15 @@ class InfoForm extends Component {
           <span style={{ fontSize: '2rem' }}>+</span>
         </Fragment>
       );
-    if (userData.certImg2)
-      cert2 = <ImgPreview style={ImgPreviewStyle} url={userData.certImg2} />;
-    else
-      cert2 = (
-        <Fragment>
-          <span>미용사 자격증</span>
-          <span style={{ fontSize: '2rem' }}>+</span>
-        </Fragment>
-      );
+    // if (userData.certImg2)
+    //   cert2 = <ImgPreview style={ImgPreviewStyle} url={userData.certImg2} />;
+    // else
+    //   cert2 = (
+    //     <Fragment>
+    //       <span>미용사 자격증</span>
+    //       <span style={{ fontSize: '2rem' }}>+</span>
+    //     </Fragment>
+    //   );
 
     return (
       <Fragment>
@@ -404,7 +404,7 @@ class InfoForm extends Component {
               />
               <div style={fileAttachingInputStyle}>{cert1}</div>
             </label>
-            <label style={{ width: '47%' }} htmlFor="cert2">
+            {/* <label style={{ width: '47%' }} htmlFor="cert2">
               <input
                 style={defaultInputFileDisplayNone}
                 id="cert2"
@@ -413,7 +413,7 @@ class InfoForm extends Component {
                 onChange={this.props.handleImgChange}
               />
               <div style={fileAttachingInputStyle}>{cert2}</div>
-            </label>
+            </label> */}
           </div>
           <div style={{ fontSize: '1.1rem', color: '#1f3354' }}>
             취득한것만 올려주시면 됩니다.
