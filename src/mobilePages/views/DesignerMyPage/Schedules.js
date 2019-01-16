@@ -302,7 +302,8 @@ class Schedule extends Component {
   };
 
   cancelCardHandler = async (cardId, recruitId) => {
-    await axios.delete(`recruits/${recruitId}/cards/${cardId}`);
+    await axios.patch(`recruits/${recruitId}/cards/${cardId}`);
+    // await axios.delete(`recruits/${recruitId}/cards/${cardId}`);
     await this.reloadCardData();
   };
 
