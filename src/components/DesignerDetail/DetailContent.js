@@ -35,15 +35,16 @@ const DetailContent = props => {
                 ★{recruit.score}
               </span>
               <span style={{ color: '#b2b2b2' }}> | </span>
-              리뷰 {recruit._reviews.length}
+              리뷰 {recruit._reviews && recruit._reviews.length}
             </div>
-            {recruit._reviews.map((review, key) => (
-              <Review
-                key={key}
-                review={review}
-                showLargeImageToggle={props.showLargeImageToggle}
-              />
-            ))}
+            {recruit._reviews &&
+              recruit._reviews.map((review, key) => (
+                <Review
+                  key={key}
+                  review={review}
+                  showLargeImageToggle={props.showLargeImageToggle}
+                />
+              ))}
           </div>
         </div>
       </div>

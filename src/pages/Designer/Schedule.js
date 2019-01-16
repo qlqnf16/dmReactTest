@@ -20,9 +20,14 @@ class Schedule extends Component {
       const { data } = await axios.get(
         `recruits/${this.props.userData._recruit}`
       );
-      const cards = data._cards.filter(
-        card => card.reservable && card.date > new Date().getTime()
-      );
+      let cards;
+      if (data._cards) {
+        cards = data._cards.filter(
+          card => card.reservable && card.date > new Date().getTime()
+        );
+      } else {
+        cards = [];
+      }
       this.setState({
         cards,
         madeRequest: true,
