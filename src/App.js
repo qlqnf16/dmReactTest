@@ -109,6 +109,7 @@ class App extends Component {
     const name = target.name;
 
     this.setState({ [name]: value });
+    this.useFilter();
   };
 
   refreshFilter = () => {
