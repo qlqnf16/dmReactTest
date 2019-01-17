@@ -154,7 +154,8 @@ class CardAdd extends Component {
       time += this.props.recruit.requireTime.perm;
       service += '/ 펌';
       serviceFormat['perm'] = true;
-      maxPrice += Math.max(...Object.values(this.props.cardData.permPrice));
+      maxPrice +=
+        price + Math.max(...Object.values(this.props.cardData.permPrice));
     }
     if (this.state.dye && this.state.perm) {
       maxPrice -= price;
@@ -167,7 +168,8 @@ class CardAdd extends Component {
       time += this.props.recruit.requireTime.dye;
       service += '/ 염색';
       serviceFormat['dye'] = true;
-      maxPrice += Math.max(...Object.values(this.props.cardData.dyePrice));
+      maxPrice +=
+        price + Math.max(...Object.values(this.props.cardData.dyePrice));
     }
     service = service.substring(1);
 
