@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import ChatPreview from '../components/Message/ChatPreview';
 import messageSort from '../../utility/messageSortFunc';
 
-const socket = io('http://54.180.92.115:3030');
+const socket = io('http://52.78.187.58:3030');
 
 class Message extends Component {
   constructor(props) {
@@ -23,9 +23,7 @@ class Message extends Component {
   async componentDidMount() {
     if (!this.state.messages) {
       const { data } = await axios.get(
-        `users/${
-          this.props.userData._id
-        }/reservations`
+        `users/${this.props.userData._id}/reservations`
       );
       const future = data.filter(d => !d.isDone && !d.isCanceled);
       const prev = data.filter(d => d.isDone || d.isCanceled);
@@ -69,9 +67,7 @@ class Message extends Component {
   async componentDidUpdate() {
     if (!this.state.messages) {
       const { data } = await axios.get(
-        `users/${
-          this.props.userData._id
-        }/reservations`
+        `users/${this.props.userData._id}/reservations`
       );
       const future = data.filter(d => !d.isDone && !d.isCanceled);
       const prev = data.filter(d => d.isDone || d.isCanceled);

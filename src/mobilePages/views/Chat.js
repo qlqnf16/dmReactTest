@@ -5,7 +5,7 @@ import axios from '../../config/Axios';
 import { connect } from 'react-redux';
 import ChatBox from '../components/Message/ChatBox';
 
-const socket = io('http://54.180.92.115:3030'); // 실제 chat 서버 주소
+const socket = io('http://52.78.187.58:3030'); // 실제 chat 서버 주소
 let names;
 
 class Chat extends Component {

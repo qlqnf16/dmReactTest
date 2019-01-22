@@ -7,7 +7,7 @@ import messageSort from '../utility/messageSortFunc';
 import './PageCss.css';
 // import { connectSocket } from '../modules/authentication';
 
-// const socket = io('http://54.180.92.115:3030'); // 실제 chat 서버 주소
+// const socket = io('http://52.78.187.58:3030'); // 실제 chat 서버 주소
 
 class Message extends Component {
   constructor(props) {

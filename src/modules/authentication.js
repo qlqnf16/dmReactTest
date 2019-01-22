@@ -38,7 +38,7 @@ export default (state = initialState, { type, payload }) => {
       const updateData = payload.updateData;
       return { ...state, userData: { ...state.userData, [name]: updateData } };
     case CONNECT_SOCKET:
-      const socket = io('http://54.180.92.115:3030');
+      const socket = io('http://52.78.187.58:3030');
       return { ...state, socket };
     default:
       return state;
